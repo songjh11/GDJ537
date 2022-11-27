@@ -88,9 +88,9 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - Messanger -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/messenger/main">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Messanger</span></a>
+                    <span>Messenger</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
