@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- meta tag 추가 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 	.container-fluid{
@@ -13,10 +14,25 @@
 		margin: 0 0 !important;
 	}
 
+	.mb-4{
+		margin-bottom: 0px !important;
+	}
+
 	.miniBar{
-		width: 30px;
+		width: 70px;
 		height: 100%;
-		background: #4e73df24;
+		background:#4e73df24;
+	}
+
+	.miniBar img{
+		width: 35px;
+		filter: invert(100%);
+		margin-top: 20px;
+	}
+
+	.miniBar button{
+		background: transparent;
+		border: none;
 	}
 
 	.chatDiv{
@@ -38,10 +54,41 @@
 		display: flex;
 		list-style: none;
 		border-bottom: 1px #4e73df24 solid;
+		margin-top: 5px;
 		margin-bottom: 10px;
 		padding-bottom: 10px;
 		padding-left: 10px;
 		align-items: flex-end;
+	}
+
+	.userInfo{
+		color: #696969;
+		font-size: 18px;
+	}
+
+	.statMsg{
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.userArea{
+		width: 100%;
+	}
+
+	.pickBtn{
+		background: transparent;
+		border: none;
+	}
+
+	/* .on{
+		background: src="/img/star (3).png";
+	} */
+
+	.pickImg{
+		width: 30px;
+		margin-top: -10px;
+		margin-right: 15px;
 	}
 </style>
 <title>Insert title here</title>
@@ -73,27 +120,65 @@
 	
 	            	<!-- Page Heading -->
 					<div class="miniBar">
-						<h1 class="h3 mb-4 text-gray-800">미니 사이드바</h1>
+						<button type="button"><img src="/img/conversation.png"></button>
+						<button type="button"><img src="/img/email.png"></button>
 					</div>
 					<div class="chatDiv">
 						<h1 class="h3 mb-4 text-gray-800">사원목록</h1>
+						<div>
+							<!-- Topbar Search -->
+							<form
+							class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+							<div class="input-group">
+								<input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+									aria-label="Search" aria-describedby="basic-addon2">
+								<div class="input-group-append">
+									<button class="btn btn-primary" type="button">
+										<i class="fas fa-search fa-sm"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+						</div>
 						<ul class="chatUl">
 							<li class="chatLi">
 								<div>
 									<img class="yourImg" src="/img/undraw_profile_3.svg">
 								</div>
-								<div>
-									<div>
+								<div class="userArea">
+									<div class="userInfo">
 										<span>김사원</span>
 										<span>(마케팅부/사원)</span>
 									</div>
-									<div>
-										<span>오늘도 화이팅!</span>
-										<span style="margin-left: 50px;">즐찾</span>
+									<div class="statMsg">
+										<div style="margin-top: 3px; margin-left: 3px;">
+											<span>오늘도 화이팅!</span>
+										</div>
+										<div class="btnArea">
+											<button type="button" class="pickBtn" userNum="1"><img class="pickImg" src="/img/star (3).png"></button>
+										</div>
 									</div>
 								</div>
 							</li>
-							<li class="chatLi"><img class="yourImg" src="/img/undraw_profile_3.svg"></li>
+							<li class="chatLi">
+								<div>
+									<img class="yourImg" src="/img/undraw_profile_3.svg">
+								</div>
+								<div class="userArea">
+									<div class="userInfo">
+										<span>김사원</span>
+										<span>(마케팅부/사원)</span>
+									</div>
+									<div class="statMsg">
+										<div style="margin-top: 3px; margin-left: 3px;">
+											<span>오늘도 화이팅!</span>
+										</div>
+										<div class="btnArea">
+											<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
+										</div>
+									</div>
+								</div>
+							</li>
 						</ul>
 					</div>
 					<div class="chatDiv">
@@ -118,5 +203,6 @@
 
 	<!-- Scroll Top, Login Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+	<script src="/js/messenger/main.js"></script>
 </body>
 </html>
