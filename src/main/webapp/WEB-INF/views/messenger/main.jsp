@@ -35,6 +35,20 @@
 		border: none;
 	}
 
+	.searchOption{
+		font-size: 0.9rem !important;
+		font-weight: 400;
+		line-height: 1.5;
+		color: #858796;
+		background-color: #f8f9fc!important;
+		border: none !important;
+		width: 40px !important;
+	}
+
+	li{
+		list-style: none;
+	}
+
 	.chatDiv{
 		width:600px;
 		height: 100%;
@@ -48,6 +62,10 @@
 
 	.chatUl{
 		padding: 0 0 !important;
+	}
+
+	.chat-divider{
+		margin-top: 0 !important;
 	}
 
 	.chatLi{
@@ -90,6 +108,11 @@
 		margin-top: -10px;
 		margin-right: 15px;
 	}
+
+	img{
+		vertical-align: middle;
+	}
+
 </style>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
@@ -127,10 +150,15 @@
 						<h1 class="h3 mb-4 text-gray-800">사원목록</h1>
 						<div>
 							<!-- Topbar Search -->
-							<form
-							class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-							<div class="input-group">
-								<input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+						<form class="form-inline navbar-search" style="display: flex; justify-content: flex-end; margin-right: 10px; margin-bottom: 30px;">
+							<div class="input-group" style="width: 100%;"> 
+								<select class="searchOption form-control" value="">
+									<option vlaue="" selected>정렬</option>
+									<option value="">이름 순</option>
+									<option value="">부서 순</option>
+									<option value="">직급 순</option>
+								</select>
+								<input type="text" class="form-control bg-light border-0 small" style="width: 180px !important;" placeholder="Search for..."
 									aria-label="Search" aria-describedby="basic-addon2">
 								<div class="input-group-append">
 									<button class="btn btn-primary" type="button">
@@ -141,6 +169,8 @@
 						</form>
 						</div>
 						<ul class="chatUl">
+							<li style="font-size: 18px; font-weight: bold; text-align: end; margin-right: 10px; color: #696969;">즐겨찾기 🔽</li>
+							<hr class="chat-divider">
 							<li class="chatLi">
 								<div>
 									<img class="yourImg" src="/img/undraw_profile_3.svg">
@@ -161,24 +191,23 @@
 								</div>
 							</li>
 							<li class="chatLi">
-								<div>
-									<img class="yourImg" src="/img/undraw_profile_3.svg">
-								</div>
-								<div class="userArea">
-									<div class="userInfo">
+								<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+									<div>
+										<img class="yourImg" src="/img/undraw_profile_3.svg">
+									</div>
+									<div class="userInfo" style="margin-left: -250px;">
 										<span>김사원</span>
 										<span>(마케팅부/사원)</span>
 									</div>
-									<div class="statMsg">
-										<div style="margin-top: 3px; margin-left: 3px;">
-											<span>오늘도 화이팅!</span>
-										</div>
 										<div class="btnArea">
 											<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
 										</div>
-									</div>
 								</div>
 							</li>
+							<li style="font-size: 18px; font-weight: bold; text-align: end; margin-right: 10px; color: #696969;">개발팀 🔽</li>
+							<hr class="chat-divider">
+							<li style="font-size: 18px; font-weight: bold; text-align: end; margin-right: 10px; color: #696969;">인사팀 🔽</li>
+							<hr class="chat-divider">
 						</ul>
 					</div>
 					<div class="chatDiv">
@@ -186,6 +215,12 @@
 					</div>
 					<div class="chatDiv">
 						<h1 class="h3 mb-4 text-gray-800">프로필</h1>
+						<div class="col-lg-4">
+							<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+							<h2 class="fw-normal">Heading</h2>
+							<p>And lastly this, the third column of representative placeholder content.</p>
+							<p><a class="btn btn-secondary" href="#">View details »</a></p>
+						  </div>
 					</div>
 	
 	            </div>

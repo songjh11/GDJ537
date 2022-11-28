@@ -16,3 +16,19 @@ $(".btnArea").on("click", ".pickBtn", function(){
         console.log("3",src);
     }
 })
+
+( function( $ ) {
+    $('.cate ul').hide();
+    $('.cate .menu .subopen').click(function() {
+      if($(this).hasClass('active')){
+         $(this).parent().next().slideUp('slow');
+         $(this).removeClass('active');
+      }else{
+        $('.accordion').find('.active').parent().next().slideUp('slow');
+        $('.accordion').find('.active').removeClass('active');
+        $(this).parent().next().slideDown('slow');
+        $(this).addClass('active');
+      }     
+     
+     });
+  })( jQuery );
