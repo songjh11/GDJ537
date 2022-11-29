@@ -3,7 +3,10 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.app.home.board.BoardMapper">
-	
+<mapper namespace="com.app.home.board.BoardDAO">
+	<insert id="setBoard" parameterType="com.app.home.board.BoardVO">
+		INSERT INTO BOARD (NUM, ID, TITLE, CONTENTS, DEPNUM, HIT, SORT)
+		VALUES (0, #{id}, #{title}, #{contents}, #{depnum}, 0, #{sort})
+	</insert>
 	
 </mapper>    
