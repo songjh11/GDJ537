@@ -162,8 +162,8 @@
 	
 	            	<!-- Page Heading -->
 					<div class="miniBar">
-						<button type="button" id="chatBtn"><img src="/img/conversation.png"></button>
-						<button type="button" id="msgBtn"><img src="/img/email.png"></button>
+						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"></button></a>
+						<a href="../messenger/msg"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
 					</div>
 					<div class="chatDiv">
 						<h1 class="h3 mb-4 text-gray-800">사원목록</h1>
@@ -265,7 +265,7 @@
 						</ul>
 					</div>
 					<div class="chatDiv">
-						<h1 class="h3 mb-4 text-gray-800">채팅방목록</h1>
+						<h1 class="h3 mb-4 text-gray-800">메세지함</h1>
 					</div>
 					<div class="chatDiv">
 						<h1 class="h3 mb-4 text-gray-800">프로필</h1>
