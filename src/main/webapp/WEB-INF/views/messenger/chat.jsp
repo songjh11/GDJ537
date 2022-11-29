@@ -18,6 +18,10 @@
 		margin-bottom: 0px !important;
 	}
 
+	.blank{
+		height: 34px;
+	}
+
 	.miniBar{
 		width: 50px;
 		height: 100%;
@@ -26,7 +30,6 @@
 
 	.miniBar img{
 		width: 35px;
-		filter: invert(100%);
 		margin-top: 20px;
 	}
 
@@ -75,7 +78,6 @@
 		padding: 5px 0;
 		width: 100%;
 	}
-
 
 	.chatLi{
 		display: flex;
@@ -130,8 +132,34 @@
 
 	.acoArea::before {
 		display: inline-block;
-		}
+	}
 
+	.profile{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+	}	
+
+	.profile p{
+		font-size: 18px;
+	}
+
+	.h2title{
+		font-weight: bold; 
+		background: linear-gradient(#4e73df 10%,#224abe 100%);
+		color: transparent; 
+		-webkit-background-clip: text;
+	}
+
+	.proArea{
+		width: 500px;
+		padding: 20px;
+		background-color: #FFFFFF;
+		border-radius: 20px;
+		box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+		text-align: center;
+	}
 </style>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
@@ -166,7 +194,7 @@
 						<a href="../messenger/msg"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
 					</div>
 					<div class="chatDiv">
-						<h1 class="h3 mb-4 text-gray-800">사원목록</h1>
+						<div class="blank"></div>
 						<div>
 							<!-- Topbar Search -->
 						<form class="form-inline navbar-search" style="display: flex; justify-content: flex-end; margin-right: 10px; margin-bottom: 30px;">
@@ -265,15 +293,22 @@
 						</ul>
 					</div>
 					<div class="chatDiv">
-						<h1 class="h3 mb-4 text-gray-800">채팅방목록</h1>
+						<div class="blank"></div>
+						<h1>채팅목록 자리</h1>
 					</div>
 					<div class="chatDiv">
-						<h1 class="h3 mb-4 text-gray-800">프로필</h1>
-						<div class="col-lg-4">
-							<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-							<h2 class="fw-normal">Heading</h2>
-							<p>And lastly this, the third column of representative placeholder content.</p>
-							<p><a class="btn btn-secondary" href="#">View details »</a></p>
+						<div class="blank"></div>
+						<div class="profile">
+							<img src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
+							<h2 class="h2title">Goodee Company</h2>
+							<div class="proArea">
+								<p>이름</p>
+								<p>부서</p>
+								<p>직급</p>
+								<p>이메일</p>
+								<p>전화번호</p>
+								<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">개인 정보 수정 »</a></p>
+							</div>
 						  </div>
 					</div>
 	
