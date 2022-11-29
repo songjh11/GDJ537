@@ -76,8 +76,8 @@
 									<div class="mb-1 row">
 									  	<label class="col-sm-2 col-form-label justify-contents-end" for=""><button type="button" class="btn btn-sm btn-danger">파일삭제</button></label>
 									  	<div class="col-sm-10">
-									  		<input type="file" class="custom-file-input" name="files" id="files">
-										 	<label class="custom-file-label m-1" for="files">파일을 추가하세요</label>
+									  		<input type="file" class="custom-file-input" name="multipartFiles" id="multipartFiles">
+										 	<label class="custom-file-label m-1" for="multipartFiles">파일을 추가하세요</label>
 									  	</div>
 									</div>
 								</div>

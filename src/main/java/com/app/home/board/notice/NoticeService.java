@@ -1,10 +1,15 @@
 package com.app.home.board.notice;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.home.board.BoardDAO;
 import com.app.home.board.BoardVO;
+import com.app.home.file.FileDAO;
+import com.app.home.file.FileVO;
+import com.app.home.util.FileManager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,6 +19,12 @@ public class NoticeService {
 	
 	@Autowired
 	private BoardDAO boardDAO;
+	@Value("${app.file.base.board}")
+	private String path;
+	@Autowired
+	private FileManager fileManager;
+	@Autowired
+	private FileDAO fileDAO;
 	
 	public boolean checkValid(BoardVO boardVO) {
 		boolean chkId = false;
@@ -36,6 +47,22 @@ public class NoticeService {
 		boardVO.setSort(1);
 		
 		int result = boardDAO.setBoard(boardVO);
+		
+		log.info("file{}", boardVO);
+		if(result == 1 ) {
+			for(MultipartFile file : boardVO.getMultipartFiles()) {
+				if(file!=null) {
+					FileVO fileVO = new FileVO();
+					String fileName = fileManager.saveFile(file, path);
+					fileVO.setFileName(fileName);
+					fileVO.setOriName(file.getOriginalFilename());
+					fileVO.setNum(boardVO.getNum());
+					
+					int result2 =fileDAO.setFile(fileVO);
+				}
+			}
+		}
+		
 		return result;
 	}
 

@@ -27,12 +27,12 @@ public class NoticeController {
 	public void setNotice(BoardVO boardVO) throws Exception{
 		
 		boolean chk = noticeService.checkValid(boardVO);
-		log.info("postMapping add {}", chk);
-		
 		
 		if(chk) {
 			//DB에 저장 진행
 			int result = noticeService.setNotice(boardVO);
+			
+			log.info("notice num {}", boardVO.getNum());
 		}else {
 			
 		}
