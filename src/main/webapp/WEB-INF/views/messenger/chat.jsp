@@ -9,6 +9,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+	body{
+		font-family: 'Nanum Gothic', sans-serif !important;
+	}
 	.container-fluid{
 		padding: 0 0 !important;
 		margin: 0 0 !important;
@@ -92,7 +97,8 @@
 
 	.userInfo{
 		color: #696969;
-		font-size: 18px;
+		font-size: 16px;
+		width: 70%;
 	}
 
 	.statMsg{
@@ -111,9 +117,8 @@
 	}
 
 	.pickImg{
-		width: 30px;
-		margin-top: -10px;
-		margin-right: 5px;
+		width: 25px;
+		margin-right: 7px;
 	}
 
 	img{
@@ -123,6 +128,19 @@
 	button{
 		border: none;
 		background: transparent;
+	}
+
+	.titleLi .showBtn {
+		display: block;
+	}
+	.titleLi .hideBtn {
+	display: none;
+	}
+	.titleLi.on .showBtn  {
+	display: none;
+	}
+	.titleLi.on .hideBtn {
+	display: block; 
 	}
 
 	.acoArea{
@@ -218,7 +236,8 @@
 						<ul class="chatUl">
 							<li class="titleLi">
 								<span style="margin-left: 20px;">즐겨찾기</span>
-								<button type="button" class="showBtn" style="margin-right: 8px;">🔼</button>
+								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
+								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
 							</li>
 							<ul class="acoArea" id="acoArea1">
 								<li class="chatLi">
@@ -226,7 +245,7 @@
 										<div>
 											<img class="yourImg" src="/img/undraw_profile_3.svg">
 										</div>
-										<div class="userInfo" style="width: 60%;">
+										<div class="userInfo">
 											<span>김사원</span>
 											<span>(마케팅부/사원)</span>
 										</div>
@@ -240,7 +259,7 @@
 										<div>
 											<img class="yourImg" src="/img/undraw_profile_3.svg">
 										</div>
-										<div class="userInfo" style="width: 60%;">
+										<div class="userInfo">
 											<span>김사원</span>
 											<span>(마케팅부/사원)</span>
 										</div>
@@ -252,7 +271,8 @@
 							</ul>
 							<li class="titleLi">
 								<span style="margin-left: 20px;">개발팀</span>
-								<button type="button" class="showBtn" style="margin-right: 8px;">🔼</button>
+								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
+								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
 							</li>
 							<ul class="acoArea">
 								<li class="chatLi">
@@ -272,7 +292,8 @@
 							</ul>
 							<li class="titleLi">
 								<span style="margin-left: 20px;">인사팀</span>
-								<button type="button" class="showBtn" style="margin-right: 8px;">🔼</button>
+								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
+								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
 							</li>
 							<ul class="acoArea">
 								<li class="chatLi">
