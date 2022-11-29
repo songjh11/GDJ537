@@ -19,7 +19,7 @@
 	}
 
 	.miniBar{
-		width: 70px;
+		width: 50px;
 		height: 100%;
 		background:#4e73df24;
 	}
@@ -162,8 +162,8 @@
 	
 	            	<!-- Page Heading -->
 					<div class="miniBar">
-						<button type="button"><img src="/img/conversation.png"></button>
-						<button type="button"><img src="/img/email.png"></button>
+						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"></button></a>
+						<a href="../messenger/msg"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
 					</div>
 					<div class="chatDiv">
 						<h1 class="h3 mb-4 text-gray-800">사원목록</h1>

@@ -8,7 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("messenger")
 public class MessengerController {
 
-	@GetMapping("main")
+	@GetMapping("chat")
+	public void getMyChat()throws Exception{
+		
+	}
+	
+	@GetMapping("msg")
 	public void getMyMessenger()throws Exception{
 		
 	}

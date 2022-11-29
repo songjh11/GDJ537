@@ -44,3 +44,11 @@ $(".showBtn").click(function() {
     $(this).toggleClass('on').siblings().removeClass('on');
     $(this).next(".acoArea").siblings(".acoArea").slideUp(300); // 1개씩 펼치기
  });
+
+ $("#chatBtn").click(function(){
+    console.log("채팅함");
+ })
+
+ $("#msgBtn").click(function(){
+    console.log("메세지함");
+ })
