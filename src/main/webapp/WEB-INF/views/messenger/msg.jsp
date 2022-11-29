@@ -153,7 +153,7 @@
 	}
 
 	.proArea{
-		width: 500px;
+		width: 80%;
 		padding: 20px;
 		background-color: #FFFFFF;
 		border-radius: 20px;

@@ -153,7 +153,7 @@
 	}
 
 	.proArea{
-		width: 500px;
+		width: 80%;
 		padding: 20px;
 		background-color: #FFFFFF;
 		border-radius: 20px;
@@ -226,7 +226,7 @@
 										<div>
 											<img class="yourImg" src="/img/undraw_profile_3.svg">
 										</div>
-										<div class="userInfo" style="width: 450px;">
+										<div class="userInfo" style="width: 60%;">
 											<span>김사원</span>
 											<span>(마케팅부/사원)</span>
 										</div>
@@ -240,7 +240,7 @@
 										<div>
 											<img class="yourImg" src="/img/undraw_profile_3.svg">
 										</div>
-										<div class="userInfo" style="width: 450px;">
+										<div class="userInfo" style="width: 60%;">
 											<span>김사원</span>
 											<span>(마케팅부/사원)</span>
 										</div>
@@ -260,7 +260,7 @@
 										<div>
 											<img class="yourImg" src="/img/undraw_profile_3.svg">
 										</div>
-										<div class="userInfo" style="width: 450px;">
+										<div class="userInfo" style="width: 60%;">
 											<span>김사원</span>
 											<span>(마케팅부/사원)</span>
 										</div>
@@ -280,7 +280,7 @@
 										<div>
 											<img class="yourImg" src="/img/undraw_profile_3.svg">
 										</div>
-										<div class="userInfo" style="width: 450px;">
+										<div class="userInfo" style="width: 60%;">
 											<span>김사원</span>
 											<span>(마케팅부/사원)</span>
 										</div>

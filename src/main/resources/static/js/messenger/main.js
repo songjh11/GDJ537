@@ -31,15 +31,12 @@ $(".btnArea").on("click", ".pickBtn", function(){
 // })
 
 $(".showBtn").click(function() {
-    console.log("dsjlfds");
     if( $(this).text()=="🔽"){
         $(this).text("🔼");
     } else{
         $(this).text("🔽");
     }
-    console.log($(this));
-    console.log($(this).parent());
-    console.log($(this).parent().next(".acoArea"));
+
     $(this).parent().next(".acoArea").stop().slideToggle(300);
     $(this).toggleClass('on').siblings().removeClass('on');
     $(this).next(".acoArea").siblings(".acoArea").slideUp(300); // 1개씩 펼치기
