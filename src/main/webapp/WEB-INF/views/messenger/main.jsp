@@ -64,9 +64,18 @@
 		padding: 0 0 !important;
 	}
 
-	.chat-divider{
-		margin-top: 0 !important;
+	.titleLi{
+		font-size: 18px; 
+		font-weight: bold; 
+		margin-right: 10px; 
+		color: #696969; 
+		display: flex;	
+		justify-content: space-between; 
+		border-bottom: 1px solid rgba(0,0,0,.1);
+		padding: 5px 0;
+		width: 100%;
 	}
+
 
 	.chatLi{
 		display: flex;
@@ -99,19 +108,29 @@
 		border: none;
 	}
 
-	/* .on{
-		background: src="/img/star (3).png";
-	} */
-
 	.pickImg{
 		width: 30px;
 		margin-top: -10px;
-		margin-right: 15px;
+		margin-right: 5px;
 	}
 
 	img{
 		vertical-align: middle;
 	}
+
+	button{
+		border: none;
+		background: transparent;
+	}
+
+	.acoArea{
+		display: none;
+		padding-inline-start: 0px !important;
+	}
+
+	.acoArea::before {
+		display: inline-block;
+		}
 
 </style>
 <title>Insert title here</title>
@@ -169,45 +188,80 @@
 						</form>
 						</div>
 						<ul class="chatUl">
-							<li style="font-size: 18px; font-weight: bold; text-align: end; margin-right: 10px; color: #696969;">즐겨찾기 🔽</li>
-							<hr class="chat-divider">
-							<li class="chatLi">
-								<div>
-									<img class="yourImg" src="/img/undraw_profile_3.svg">
-								</div>
-								<div class="userArea">
-									<div class="userInfo">
-										<span>김사원</span>
-										<span>(마케팅부/사원)</span>
-									</div>
-									<div class="statMsg">
-										<div style="margin-top: 3px; margin-left: 3px;">
-											<span>오늘도 화이팅!</span>
-										</div>
-										<div class="btnArea">
-											<button type="button" class="pickBtn" userNum="1"><img class="pickImg" src="/img/star (3).png"></button>
-										</div>
-									</div>
-								</div>
+							<li class="titleLi">
+								<span style="margin-left: 20px;">즐겨찾기</span>
+								<button type="button" class="showBtn" style="margin-right: 8px;">🔼</button>
 							</li>
-							<li class="chatLi">
-								<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-									<div>
-										<img class="yourImg" src="/img/undraw_profile_3.svg">
-									</div>
-									<div class="userInfo" style="margin-left: -250px;">
-										<span>김사원</span>
-										<span>(마케팅부/사원)</span>
-									</div>
+							<ul class="acoArea" id="acoArea1">
+								<li class="chatLi">
+									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+										<div>
+											<img class="yourImg" src="/img/undraw_profile_3.svg">
+										</div>
+										<div class="userInfo" style="width: 450px;">
+											<span>김사원</span>
+											<span>(마케팅부/사원)</span>
+										</div>
 										<div class="btnArea">
 											<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
 										</div>
-								</div>
+									</div>
+								</li>
+								<li class="chatLi">
+									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+										<div>
+											<img class="yourImg" src="/img/undraw_profile_3.svg">
+										</div>
+										<div class="userInfo" style="width: 450px;">
+											<span>김사원</span>
+											<span>(마케팅부/사원)</span>
+										</div>
+											<div class="btnArea">
+												<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
+											</div>
+									</div>
+								</li>
+							</ul>
+							<li class="titleLi">
+								<span style="margin-left: 20px;">개발팀</span>
+								<button type="button" class="showBtn" style="margin-right: 8px;">🔼</button>
 							</li>
-							<li style="font-size: 18px; font-weight: bold; text-align: end; margin-right: 10px; color: #696969;">개발팀 🔽</li>
-							<hr class="chat-divider">
-							<li style="font-size: 18px; font-weight: bold; text-align: end; margin-right: 10px; color: #696969;">인사팀 🔽</li>
-							<hr class="chat-divider">
+							<ul class="acoArea">
+								<li class="chatLi">
+									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+										<div>
+											<img class="yourImg" src="/img/undraw_profile_3.svg">
+										</div>
+										<div class="userInfo" style="width: 450px;">
+											<span>김사원</span>
+											<span>(마케팅부/사원)</span>
+										</div>
+											<div class="btnArea">
+												<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
+											</div>
+									</div>
+								</li>
+							</ul>
+							<li class="titleLi">
+								<span style="margin-left: 20px;">인사팀</span>
+								<button type="button" class="showBtn" style="margin-right: 8px;">🔼</button>
+							</li>
+							<ul class="acoArea">
+								<li class="chatLi">
+									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+										<div>
+											<img class="yourImg" src="/img/undraw_profile_3.svg">
+										</div>
+										<div class="userInfo" style="width: 450px;">
+											<span>김사원</span>
+											<span>(마케팅부/사원)</span>
+										</div>
+											<div class="btnArea">
+												<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
+											</div>
+									</div>
+								</li>
+							</ul>
 						</ul>
 					</div>
 					<div class="chatDiv">

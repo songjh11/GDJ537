@@ -17,18 +17,30 @@ $(".btnArea").on("click", ".pickBtn", function(){
     }
 })
 
-( function( $ ) {
-    $('.cate ul').hide();
-    $('.cate .menu .subopen').click(function() {
-      if($(this).hasClass('active')){
-         $(this).parent().next().slideUp('slow');
-         $(this).removeClass('active');
-      }else{
-        $('.accordion').find('.active').parent().next().slideUp('slow');
-        $('.accordion').find('.active').removeClass('active');
-        $(this).parent().next().slideDown('slow');
-        $(this).addClass('active');
-      }     
-     
-     });
-  })( jQuery );
+// $(".showBtn").on("click", function(){
+
+//     let style = $("#acoArea1").attr("style");
+//     console.log(style);
+//     $(this).text("🔽")
+//     $("#acoArea1").attr("style", "display:block;")
+//     if(style == "display:block;"){
+//         $(this).text("🔼")
+//         console.log("1번영역");
+//         $("#acoArea1").attr("style", "display:none;")
+//     }
+// })
+
+$(".showBtn").click(function() {
+    console.log("dsjlfds");
+    if( $(this).text()=="🔽"){
+        $(this).text("🔼");
+    } else{
+        $(this).text("🔽");
+    }
+    console.log($(this));
+    console.log($(this).parent());
+    console.log($(this).parent().next(".acoArea"));
+    $(this).parent().next(".acoArea").stop().slideToggle(300);
+    $(this).toggleClass('on').siblings().removeClass('on');
+    $(this).next(".acoArea").siblings(".acoArea").slideUp(300); // 1개씩 펼치기
+ });
