@@ -7,5 +7,6 @@ public interface BoardDAO {
 	
 	public int setBoard(BoardVO boardVO)throws Exception;
 	public BoardVO getDetail(BoardVO boardVO) throws Exception;
+	public int setUpdate(BoardVO boardVO) throws Exception;
 
 }

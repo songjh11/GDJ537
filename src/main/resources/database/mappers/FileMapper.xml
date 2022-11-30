@@ -11,5 +11,8 @@
 	<select id="getFileDetail" parameterType="com.app.home.file.FileVO" resultType="com.app.home.file.FileVO">
 		SELECT * FROM FILE WHERE FILENUM = #{fileNum}
 	</select>
+	<delete id="setFileDelete" parameterType="com.app.home.file.FileVO">
+		DELETE FROM FILE WHERE FILENUM = #{fileNum}
+	</delete>
 	
 </mapper>    

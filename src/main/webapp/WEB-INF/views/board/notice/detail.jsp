@@ -71,8 +71,8 @@
 		            		</div>
 	            		
 	            	</div>
-	            						                  <button type="button" class="btn btn-danger">글 수정</button> 
-					                  <button type="button" class="btn btn-danger">글 삭제</button>
+	            					<a href="/notice/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a> 
+					                <button type="button" class="btn btn-danger">글 삭제</button>
 	            </div>
 	            <!-- End Page Content -->
 					

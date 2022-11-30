@@ -27,4 +27,7 @@
 		</collection>
 	</resultMap>
 	
+	<update id="setUpdate" parameterType="com.app.home.board.BoardVO">
+		UPDATE BOARD set title=#{title}, CONTENTS =#{contents} WHERE NUM =#{num};
+	</update>
 </mapper>    

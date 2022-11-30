@@ -42,10 +42,26 @@ public class NoticeController {
 	@GetMapping("detail")
 	public ModelAndView getDetail(BoardVO boardVO, ModelAndView mv) throws Exception{
 		boardVO = noticeService.getDetail(boardVO);
-		log.info("board {}",boardVO);
 		mv.addObject("boardVO", boardVO);
 		mv.setViewName("/board/notice/detail");
 		return mv;
+	}
+	
+	@GetMapping("update")
+	public ModelAndView setUpdate(BoardVO boardVO, ModelAndView mv)throws Exception{
+		boardVO = noticeService.getDetail(boardVO);
+		mv.addObject("boardVO", boardVO);
+		mv.setViewName("/board/notice/update");
+		return mv;
+		
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(BoardVO boardVO) throws Exception{
+		log.info("update boardVO {}", boardVO);
+		int result = noticeService.setUpdate(boardVO);
+		
+		return "redirect:/notice/detail?num="+boardVO.getNum();
 	}
 
 }

@@ -71,5 +71,25 @@ public class NoticeService {
 		
 		return boardVO;
 	}
+	
+	public int setUpdate(BoardVO boardVO) throws Exception{
+		int result = boardDAO.setUpdate(boardVO);
+		
+		if(result == 1 && boardVO.getMultipartFiles() !=null) {
+			for(MultipartFile file : boardVO.getMultipartFiles()) {
+				if(file.getOriginalFilename()!="") {
+					FileVO fileVO = new FileVO();
+					String fileName = fileManager.saveFile(file, path);
+					fileVO.setFileName(fileName);
+					fileVO.setOriName(file.getOriginalFilename());
+					fileVO.setNum(boardVO.getNum());
+					
+					int result2 =fileDAO.setFile(fileVO);
+				}
+			}
+		}
+		
+		return result;
+	}
 
 }

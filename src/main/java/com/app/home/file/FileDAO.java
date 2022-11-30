@@ -7,5 +7,5 @@ public interface FileDAO {
 	
 	public int setFile(FileVO fileVO)throws Exception;
 	public FileVO getFileDetail(FileVO fileVO)throws Exception;
-
+	public int setFileDelete(FileVO fileVO)throws Exception;
 }
