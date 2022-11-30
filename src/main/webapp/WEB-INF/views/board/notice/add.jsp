@@ -39,7 +39,7 @@
 	            	<h1 class="h3 mb-4 text-gray-800">여기에 상세페이지 작성</h1>
 	            	<!-- 공지사항 작성 -->
 	            	<div class="card mb-3">
-		            	<form action="./add" method="post" enctype="multipart/form-data">
+		            	<form action="./add" method="post" enctype="multipart/form-data" id="boardForm">
 		            		<div class="card-header bg-white">
 		            			<div class="row">
 		            				<div class="col-auto align-self-center">
@@ -73,19 +73,12 @@
 								  	
 								</div>
 								<div id="fileDiv">
-									<div class="mb-1 row">
-									  	<label class="col-sm-2 col-form-label justify-contents-end" for=""><button type="button" class="btn btn-sm btn-danger">파일삭제</button></label>
-									  	<div class="col-sm-10">
-									  		<input type="file" class="custom-file-input" name="multipartFiles" id="multipartFiles">
-										 	<label class="custom-file-label m-1" for="multipartFiles">파일을 추가하세요</label>
-									  	</div>
-									</div>
 								</div>
 
 		            		</div>
 		            		<div class="card-footer bg-white">
 		            			<div class="row justify-content-end">
-								<button type="submit" class="btn btn-primary">작성완료</button>
+								<button type="button" id="btnSubmit" class="btn btn-primary">작성완료</button>
 		            			</div>
 							</div>
 	            			

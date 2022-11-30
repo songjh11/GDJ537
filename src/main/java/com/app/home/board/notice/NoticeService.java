@@ -48,10 +48,9 @@ public class NoticeService {
 		
 		int result = boardDAO.setBoard(boardVO);
 		
-		log.info("file{}", boardVO);
-		if(result == 1 ) {
+		if(result == 1 && boardVO.getMultipartFiles() !=null) {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
-				if(file!=null) {
+				if(file.getOriginalFilename()!="") {
 					FileVO fileVO = new FileVO();
 					String fileName = fileManager.saveFile(file, path);
 					fileVO.setFileName(fileName);
@@ -62,8 +61,15 @@ public class NoticeService {
 				}
 			}
 		}
+
 		
 		return result;
+	}
+	
+	public BoardVO getDetail(BoardVO boardVO) throws Exception{
+		boardVO = boardDAO.getDetail(boardVO);
+		
+		return boardVO;
 	}
 
 }

@@ -24,7 +24,7 @@ public class NoticeController {
 	}
 	
 	@PostMapping("add")
-	public void setNotice(BoardVO boardVO) throws Exception{
+	public String setNotice(BoardVO boardVO) throws Exception{
 		
 		boolean chk = noticeService.checkValid(boardVO);
 		
@@ -32,11 +32,16 @@ public class NoticeController {
 			//DB에 저장 진행
 			int result = noticeService.setNotice(boardVO);
 			
-			log.info("notice num {}", boardVO.getNum());
 		}else {
-			
+			return "redirect:/notice/add?error=1";
 		}
-		
+		return "redirect:/notice/detail?num="+boardVO.getNum();
+	}
+	
+	@GetMapping("detail")
+	public void getDetail(BoardVO boardVO) throws Exception{
+		boardVO = noticeService.getDetail(boardVO);
+		log.info("board {}",boardVO);
 	}
 
 }

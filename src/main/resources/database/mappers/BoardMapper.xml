@@ -8,5 +8,22 @@
 		INSERT INTO BOARD (NUM, ID, TITLE, CONTENTS, DEPNUM, HIT, SORT)
 		VALUES (0, #{id}, #{title}, #{contents}, #{depnum}, 0, #{sort})
 	</insert>
+	<select id="getDetail" parameterType="com.app.home.board.BoardVO" resultMap="resultBoardAddfiles">
+		select  b.*,f.filenum, f.filename, f.oriname from board b left join file f on b.num = f.num where b.num=#{num}
+	</select>
+	<resultMap type="com.app.home.board.BoardVO" id="resultBoardAddfiles">
+		<id column="num" property="num"/>
+		<result column="title" property="title"/>
+		<result column="contents" property="contents"/>
+		<result column="id" property="id"/>
+		<result column="depnum" property="depnum"/>
+		<result column="hit" property="hit"/>
+		<result column="sort" property="sort"/>
+		<collection property="fileVOs" javaType="List" ofType="com.app.home.file.FileVO">
+			<id column="filenum" property="fileNum"/>
+			<result column="filename" property="fileName"/>
+			<result column="oriname" property="oriName"/>
+		</collection>
+	</resultMap>
 	
 </mapper>    

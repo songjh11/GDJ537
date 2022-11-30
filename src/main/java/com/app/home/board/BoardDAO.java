@@ -6,5 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface BoardDAO {
 	
 	public int setBoard(BoardVO boardVO)throws Exception;
+	public BoardVO getDetail(BoardVO boardVO) throws Exception;
 
 }
