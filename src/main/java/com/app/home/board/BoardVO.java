@@ -1,5 +1,6 @@
 package com.app.home.board;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +19,9 @@ public class BoardVO {
 	private Integer depnum; // 부서번호, 요청게시판에서만 사용.
 	private Integer hit; //조회수
 	private Integer sort; // 게시판 구분자 - 1: 공지사항
+	private Timestamp regDate; //등록일자
 	private MultipartFile[] multipartFiles;
 	private List<FileVO> fileVOs;
 
+	
 }

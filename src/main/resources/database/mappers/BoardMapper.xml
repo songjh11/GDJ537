@@ -19,6 +19,7 @@
 		<result column="depnum" property="depnum"/>
 		<result column="hit" property="hit"/>
 		<result column="sort" property="sort"/>
+		<result column="regdate" property="regDate"/>
 		<collection property="fileVOs" javaType="List" ofType="com.app.home.file.FileVO">
 			<id column="filenum" property="fileNum"/>
 			<result column="filename" property="fileName"/>

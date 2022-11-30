@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.board.BoardVO;
 
@@ -39,9 +40,12 @@ public class NoticeController {
 	}
 	
 	@GetMapping("detail")
-	public void getDetail(BoardVO boardVO) throws Exception{
+	public ModelAndView getDetail(BoardVO boardVO, ModelAndView mv) throws Exception{
 		boardVO = noticeService.getDetail(boardVO);
 		log.info("board {}",boardVO);
+		mv.addObject("boardVO", boardVO);
+		mv.setViewName("/board/notice/detail");
+		return mv;
 	}
 
 }

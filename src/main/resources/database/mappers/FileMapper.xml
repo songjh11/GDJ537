@@ -8,5 +8,8 @@
 		INSERT INTO FILE (FILENUM, NUM, FILENAME, ORINAME)
 		VALUES (0, #{num}, #{fileName}, #{oriName})
 	</insert>
+	<select id="getFileDetail" parameterType="com.app.home.file.FileVO" resultType="com.app.home.file.FileVO">
+		SELECT * FROM FILE WHERE FILENUM = #{fileNum}
+	</select>
 	
 </mapper>    

@@ -33,7 +33,8 @@ public class FileManager extends AbstractView {
 
 		log.info("==fileDownloadView==");
 		FileVO fileVO = (FileVO)model.get("fileVO");
-		File file = new File(base, fileVO.getFileName());
+		String path = (String)model.get("path");
+		File file = new File(base+path, fileVO.getFileName());
 
 		//한글 처리
 		response.setCharacterEncoding("UTF-8");
