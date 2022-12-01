@@ -23,29 +23,9 @@
           tabsize: 2,
           height: 200,
           callbacks: {
-		    
-		    onImageUpload: function(files) {
-			console.log("ImageUpload")
-			console.log("file", files)
-			const formData = new FormData();
-			
-			formData.append('files', files[0])
-
-			$.ajax({
-				type:"POST",
-				url:"summerfile",
-				data:formData,
-				cache:false,
-				processData:false,
-				contentType:false,
-				enctype:'multipart/form-data',
-				success:function(img){
-					let imgnode = '<img src="'+img+'">'
-					console.log(files[0].name, imgnode)
-					$("#contents").summernote('pasteHTML', imgnode, files[0].name)
-				}
-			})
-			},
+		    onBlur: function() {
+		      console.log('blur:' );
+		    }
 		  }
       });
  
