@@ -13,7 +13,7 @@ public class MessengerController {
 		
 	}
 	
-	@GetMapping("msg")
+	@GetMapping("note")
 	public void getMyMessenger()throws Exception{
 		
 	}

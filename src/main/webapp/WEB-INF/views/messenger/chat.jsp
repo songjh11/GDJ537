@@ -209,7 +209,7 @@
 	            	<!-- Page Heading -->
 					<div class="miniBar">
 						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"></button></a>
-						<a href="../messenger/msg"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
+						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
 					</div>
 					<div class="chatDiv">
 						<div class="blank"></div>
