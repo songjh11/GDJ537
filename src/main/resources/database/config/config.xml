@@ -7,5 +7,7 @@
   	<typeAliases>
   		<typeAlias type="java.util.List" alias="List"/>
   		
+  		<typeAlias type="com.app.home.schedule.room.RoomVO" alias="RoomVO" />
+  		
   	</typeAliases>
   </configuration>
