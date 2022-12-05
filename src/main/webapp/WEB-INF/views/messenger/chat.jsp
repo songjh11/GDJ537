@@ -269,27 +269,15 @@
 									</div>
 								</li>
 							</ul>
-							<li class="titleLi">
-								<span style="margin-left: 20px;">개발팀</span>
-								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
-								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
-							</li>
-							<ul class="acoArea">
-								<li class="chatLi">
-									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-										<div>
-											<img class="yourImg" src="/img/undraw_profile_3.svg">
-										</div>
-										<div class="userInfo" style="width: 60%;">
-											<span>김사원</span>
-											<span>(마케팅부/사원)</span>
-										</div>
-											<div class="btnArea">
-												<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
-											</div>
-									</div>
+							<c:forEach items="${empList}" var="e" varStatus="a">
+								<c:if test="${e.departmentVO.depNum eq a.index}">
+								<li class="titleLi">
+									<span style="margin-left: 20px;">${e.departmentVO.depName}</span>
+									<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
+									<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
 								</li>
-							</ul>
+								</c:if>	
+							</c:forEach>
 							<li class="titleLi">
 								<span style="margin-left: 20px;">인사팀</span>
 								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
