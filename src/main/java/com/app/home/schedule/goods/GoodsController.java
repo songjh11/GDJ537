@@ -1,4 +1,4 @@
-package com.app.home.schedule.room;
+package com.app.home.schedule.goods;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,22 +7,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-@RequestMapping(value="/room/*")
+@RequestMapping(value="/goods/*")
 @Controller
-public class RoomController {
+public class GoodsController {
 	
 	@Autowired
-	private RoomService roomService;
+	private GoodsService goodsService;
 	
 	@GetMapping("add")
 	public String getAdd() throws Exception{
-		return "/room/add";
+		return "/goods/add";
 	}
 	
 	@PostMapping("add")
-	public String setAdd(RoomVO roomVO) throws Exception{
-		int result = roomService.setAdd(roomVO);
-		return "redirect:/";
+	public String setAdd(GoodsVO goodsVO) throws Exception{
+		int result = goodsService.setAdd(goodsVO);
+		return "redirect:/goods/add";
+	}
+	
+	@GetMapping("update")
+	public String getUpdate() throws Exception{
+		return "/goods/update";
 	}
 
 }

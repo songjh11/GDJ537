@@ -40,23 +40,37 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800">여기에 상세페이지 작성</h1>
+	            	<h1 class="h3 mb-4 text-gray-800">공용 시설 추가</h1>
 	            	
 	            	<form action="add" method="post" enctype="multipart/form-data">
+	            	 <div class="mb-3">
+	            	 	<div>
+					    	<label for="exampleInputName" class="form-label">kind</label>
+					    </div>
+					    <label class="test_obj">
+						    <input type="radio" name="id" value="RO">
+						    <span>회의실</span>
+						</label>
+						 
+						<label class="test_obj">
+						    <input type="radio" name="id" value="CA">
+						    <span>차량</span>
+						</label>
+					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputEmail1" class="form-label">name</label>
+					    <label for="exampleInputName" class="form-label">name</label>
 					    <input type="text" class="form-control" id="name" name="name">
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputPassword1" class="form-label">contents</label>
+					    <label for="exampleInputContents" class="form-label">contents</label>
 			            <textarea  class="form-control add_ele" id="contents" name="contents"></textarea>
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputEmail1" class="form-label">max</label>
+					    <label for="exampleInputMax" class="form-label">max</label>
 					    <input type="text" class="form-control" id="max" name="max">
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputEmail1" class="form-label">location</label>
+					    <label for="exampleInputLocation" class="form-label">location</label>
 					    <input type="text" class="form-control" id="location" name="location">
 					  </div>
 					  <button type="submit" class="btn btn-primary">Submit</button>
