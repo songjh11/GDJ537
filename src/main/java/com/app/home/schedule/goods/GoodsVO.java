@@ -1,5 +1,7 @@
 package com.app.home.schedule.goods;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -14,5 +16,6 @@ public class GoodsVO {
 	private String location;
 	
 	private MultipartFile [] files;
+	private List<GoodsFileVO> fileList;
 	
 }

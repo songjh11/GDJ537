@@ -22,5 +22,10 @@
 		SELECT * FROM GOODS WHERE ID = #{id}	
 	</select>
 	
+	<insert id="setGoodsFileAdd" parameterType="GoodsFileVO">
+ 		INSERT INTO GOODSFILE
+ 		VALUE (#{imgNum},#{id},#{fileName},#{oriName})
+ 	</insert>
+	
 	
 </mapper> 

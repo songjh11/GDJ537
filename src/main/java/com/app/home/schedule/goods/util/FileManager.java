@@ -24,8 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FileManager extends AbstractView{
 	
-	@Value("${app.download.base}")
-	private String base;
+//	@Value("${app.download.base}")
+//	private String base;
 	
 	// 상속 받아주는 메소드
 	// 얘가 view 가 됨
