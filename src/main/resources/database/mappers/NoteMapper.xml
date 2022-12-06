@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.app.home.messenger.NoteMapper">
+
+<select id="getReceiveNoteList" resultType="NoteVO">
+SELECT * FROM NOTE
+</select>
+
+<select id="getNoteDetail" resultType="NoteVO" parameterType="NoteVO">
+SELECT * FROM NOTE 
+WHERE NOTENUM = #{noteNum}
+</select>
+	
+</mapper>    

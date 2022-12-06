@@ -178,6 +178,82 @@
 		box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
 		text-align: center;
 	}
+
+
+
+	/* 노트 CSS */
+	.noteStart {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+    	width: 100%;
+		overflow: hidden;
+	}
+
+	#noteTitle {
+		height: 8%;
+    	font-size: 30px;
+	}
+
+	#noteChoice {
+		display: flex;
+		height: 5%;
+	}
+
+	#noteChoice div {
+		width: 50%; 
+		display: flex;
+		justify-content: center;
+	}
+
+	#noteContent {
+		height: 78%;
+		overflow-y: scroll;
+	}
+
+	.noteList{
+		/* border: 1px solid; */
+		background: #3b4bbd0f;
+		margin: 3px 5px;
+		display: flex;
+		height: 80px;
+		align-items: center;
+		padding: 3px;
+		
+	}
+
+	.noteList:hover {
+		cursor: pointer;
+	}
+
+	#listImage{
+		width: 15%;
+		height: 80%;
+		margin: 0px 8px 0px 3px;
+	}
+
+	#listImage img{
+		width:100%;
+    	height:100%;
+		object-fit: contain;
+	}
+
+	#listInfo {
+		margin-bottom: auto;
+	}
+
+	#listInfo div:nth-child(1) {
+		margin: 3px 0px 1px;
+	}
+
+	
+
+	/* .noteList div:nth-child(3){
+		text-overflow: ellipsis;
+	} */
+
+	
+
 </style>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
@@ -211,6 +287,7 @@
 						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"></button></a>
 						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
 					</div>
+
 					<div class="chatDiv">
 						<div class="blank"></div>
 						<div>
@@ -313,10 +390,64 @@
 							</ul>
 						</ul>
 					</div>
+
+
+
+
+
 					<div class="chatDiv">
-						<div class="blank"></div>
-						<h1>메세지함 자리</h1>
+
+						<!-- YR -->
+						<div class="noteStart">
+							<div id="noteTitle">쪽지함</div>
+
+							<div id="noteChoice">
+								<div><button>수신</button></div>
+								<div><button>발신</button></div>
+								
+							</div>
+
+							<div id="noteContent">
+								<c:forEach items="${list}" var="list">
+
+									<div class="noteList" onclick="notePop(${list.noteNum})">
+										<div id="listImage">
+											<img src="/img/messenger/test.png" alt="">
+										</div>
+
+										
+
+										<div id="listInfo">
+											<div>${list.sendId}</div>
+											<div>${list.contents}</div>
+											
+										
+										</div>
+										
+										
+
+									</div>
+
+								</c:forEach>
+							</div>
+
+						</div>
+						<!-- YR -->
+
+
+						<script>
+							function notePop(num) {
+								window.open('./note/detail?noteNum='+num, '_blank', "width=500px, height=500px, location=no, top=100, left=500");
+							};
+						</script>
+						
+
 					</div>
+
+
+
+
+
 					<div class="chatDiv">
 						<div class="blank"></div>
 						<div class="profile">
