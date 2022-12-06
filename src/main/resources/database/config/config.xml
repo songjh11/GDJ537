@@ -6,6 +6,7 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="java.util.List" alias="List"/>
-  		
+		<typeAlias type="com.app.home.messenger.NoteVO" alias="NoteVO"/>
+		
   	</typeAliases>
   </configuration>
