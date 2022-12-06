@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.home.user.DepartmentVO;
+import com.app.home.user.EmployeeVO;
+
 @Controller
 @RequestMapping("messenger")
 public class MessengerController {
@@ -16,9 +19,17 @@ public class MessengerController {
 	@Autowired
 	private NoteService noteService;
 
+	@Autowired
+	private MessengerService messengerService;
+	
 	@GetMapping("chat")
-	public void getMyChat()throws Exception{
-		
+	public ModelAndView getMyChat()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<DepartmentVO> dl = messengerService.getDepList();
+		List<EmployeeVO> el = messengerService.getEmpList();
+		mv.addObject("depList", dl);
+		mv.addObject("empList", el);
+		return mv;
 	}
 	
 	@GetMapping("note")
