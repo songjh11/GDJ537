@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.home.user.DepartmentVO;
 import com.app.home.user.EmployeeVO;
 
 @Controller
@@ -20,7 +21,9 @@ public class MessengerController {
 	@GetMapping("chat")
 	public ModelAndView getMyChat()throws Exception{
 		ModelAndView mv = new ModelAndView();
+		List<DepartmentVO> dl = messengerService.getDepList();
 		List<EmployeeVO> el = messengerService.getEmpList();
+		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
 		return mv;
 	}

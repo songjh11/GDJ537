@@ -16,6 +16,11 @@
 		ORDER BY D.DEPNUM, E.NAME
 	</select>
 	
+	<select id="getDepList" resultType="DepartmentVO">
+		SELECT * FROM DEPARTMENT
+		ORDER BY DEPNUM
+	</select>
+	
 	<resultMap type="EmployeeVO" id="getEmpListResult">
 		<id column="NUM" property="num"/>
 		<result column="ID" property="id"/>
