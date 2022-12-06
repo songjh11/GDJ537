@@ -8,7 +8,7 @@
 <!-- meta tag 추가 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
-<!-- 공통 css, js -->
+<!-- 공통 css, js, jquery -->
 <c:import url="./temp/layout_header.jsp"></c:import>
 </head>
 
@@ -50,7 +50,7 @@
 		<!-- End of Content Wrapper -->
 	</div>
 
-	<!-- Scroll Top, Login Modal import -->
+	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="./temp/layout_top_logoutModal.jsp"></c:import>
 </body>
 </html>
