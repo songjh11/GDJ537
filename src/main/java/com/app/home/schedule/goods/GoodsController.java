@@ -1,5 +1,7 @@
 package com.app.home.schedule.goods;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,26 @@ public class GoodsController {
 	}
 	
 	@GetMapping("update")
-	public String getUpdate() throws Exception{
+	public ModelAndView getUpdate(GoodsVO goodsVO,ModelAndView mv,HttpSession session) throws Exception{
+		goodsVO = goodsService.getGoods(goodsVO);
+		String str = goodsVO.getId().substring(0,2);
+		session.setAttribute("id", goodsVO.getId());
+		System.out.println(goodsVO.getGoodsFileVO());
+		List<GoodsFileVO> list = goodsVO.getGoodsFileVO();
+		mv.addObject("list", list);
+		mv.addObject("str", str);
+		mv.addObject("goods", goodsVO);
+		mv.setViewName("/goods/update");
+		return mv;
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(GoodsVO goodsVO,HttpSession session) throws Exception {
+		String id = (String) session.getAttribute("id");
+		goodsVO.setId(id);
+		int result = goodsService.setUpdate(goodsVO);
 		return "/goods/update";
+		
 	}
 
 }

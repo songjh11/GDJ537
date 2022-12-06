@@ -50,5 +50,28 @@ public class GoodsService {
 		return result;	
 	}
 	
+	public GoodsVO getGoods(GoodsVO goodsVO) throws Exception{
+		return goodsMapper.getGoods(goodsVO);
+	}
+	
+	public int setUpdate(GoodsVO goodsVO) throws Exception{
+//		int count = goodsMapper.getCount(goodsVO);
+//		
+//		if(count == 0) {
+//			count = 1000;
+//		}else {
+//			count = Integer.parseInt(goodsMapper.getMaxCount(goodsVO).substring(2))+1;
+//		}
+//		goodsVO.setId(goodsVO.getId().concat(String.valueOf(count)));
+		return goodsMapper.setUpdate(goodsVO);
+	}
+	
+	public int getCount(GoodsVO goodsVO) throws Exception{
+		return goodsMapper.getCount(goodsVO);
+	}
+	
+	public String getMaxCount(GoodsVO goodsVO) throws Exception{
+		return goodsMapper.getMaxCount(goodsVO);
+	}
 
 }

@@ -16,6 +16,6 @@ public class GoodsVO {
 	private String location;
 	
 	private MultipartFile [] files;
-	private List<GoodsFileVO> fileList;
+	private List<GoodsFileVO> goodsFileVO;
 	
 }

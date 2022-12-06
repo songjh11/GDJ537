@@ -14,6 +14,10 @@ public interface GoodsMapper {
 	public String getMaxCount(GoodsVO goodsVO) throws Exception;
 	
 	public int setGoodsFileAdd(GoodsFileVO goodsFileVO) throws Exception;
+	
+	public GoodsVO getGoods(GoodsVO goodsVO) throws Exception;
+	
+	public int setUpdate(GoodsVO goodsVO) throws Exception;
 
 
 }

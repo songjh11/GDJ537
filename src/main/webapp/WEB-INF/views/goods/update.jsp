@@ -42,38 +42,46 @@
 	            	<!-- Page Heading -->
 	            	<h1 class="h3 mb-4 text-gray-800">공용 시설 추가</h1>
 	            	
-	            	<form action="add" method="post" enctype="multipart/form-data">
+	            	<form action="update" method="post" enctype="multipart/form-data">
 	            	 <div class="mb-3">
 	            	 	<div>
-					    	<label for="exampleInputName" class="form-label">kind</label>
+					    	<label for="exampleInputName" class="form-label" data-str-num="${str}">kind</label>
 					    </div>
 					    <label class="test_obj">
-						    <input type="radio" name="auctionSort" value="RO">
+						    <input type="radio" <c:if test="${str == 'RO'}">checked</c:if> value=${goods.id} disabled>
 						    <span>회의실</span>
 						</label>
 						 
 						<label class="test_obj">
-						    <input type="radio" name="auctionSort" value="CA">
+						    <input type="radio" <c:if test="${str == 'CA'}">checked</c:if> value=${goods.id} disabled>
 						    <span>차량</span>
 						</label>
 					  </div>
 					  <div class="mb-3">
 					    <label for="exampleInputName" class="form-label">name</label>
-					    <input type="text" class="form-control" id="name" name="name">
+					    <input type="text" class="form-control" id="name" name="name" value="${goods.name}">
 					  </div>
 					  <div class="mb-3">
 					    <label for="exampleInputContents" class="form-label">contents</label>
-			            <textarea  class="form-control add_ele" id="contents" name="contents"></textarea>
+			            <textarea  class="form-control add_ele" id="contents" name="contents">${goods.contents}</textarea>
 					  </div>
 					  <div class="mb-3">
 					    <label for="exampleInputMax" class="form-label">max</label>
-					    <input type="text" class="form-control" id="max" name="max">
+					    <input type="text" class="form-control" id="max" name="max" value="${goods.max}" >
 					  </div>
 					  <div class="mb-3">
 					    <label for="exampleInputLocation" class="form-label">location</label>
-					    <input type="text" class="form-control" id="location" name="location">
+					    <input type="text" class="form-control" id="location" name="location" value="${goods.location}">
+					  </div>
+					  <div>
+						<h2>${goods.goodsFileVO[0].oriName}</h2>
+						<c:forEach items="${list}" var="li">
+							<img class="img-fluid rounded" src="../resources/upload/goods/${li.fileName}" alt="..." width="600" height="350" >
+						</c:forEach>
 					  </div>
 					  <button type="submit" class="btn btn-primary">Submit</button>
+
+
 					  </form>
 	
 	            </div>
@@ -90,6 +98,7 @@
 	</div>
 
 	<!-- Scroll Top, Login Modal import -->
+	<script src="/js/goods/addFiles.js"></script>
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 	<script type="text/javascript">
       $(document).ready(function(){
