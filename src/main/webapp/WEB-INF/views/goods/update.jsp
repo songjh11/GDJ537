@@ -57,6 +57,9 @@
 						    <span>차량</span>
 						</label>
 					  </div>
+					  <div>
+						<input type="hidden" id="goodId" name="id" value="${goods.id}">
+					  </div>
 					  <div class="mb-3">
 					    <label for="exampleInputName" class="form-label">name</label>
 					    <input type="text" class="form-control" id="name" name="name" value="${goods.name}">
@@ -76,8 +79,15 @@
 					  <div>
 						<h2>${goods.goodsFileVO[0].oriName}</h2>
 						<c:forEach items="${list}" var="li">
-							<img class="img-fluid rounded" src="../resources/upload/goods/${li.fileName}" alt="..." width="600" height="350" >
+							<div class="file_form mt-2">
+                                <input type="file" name="files"  class="files form-control">
+                                <span class="text" >${li.oriName}</span> 
+                                <button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>
+                            </div>
 						</c:forEach>
+						<div class="mb-3">
+							<button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
+				 		</div>
 					  </div>
 					  <button type="submit" class="btn btn-primary">Submit</button>
 

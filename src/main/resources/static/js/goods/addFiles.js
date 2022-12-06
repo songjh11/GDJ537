@@ -1,5 +1,6 @@
 let flag=true;
 let count = 0;
+let goodId = $("#goodId").val();
 
 $("#fileAdd").click(function(){
     if(flag){
@@ -68,7 +69,7 @@ for(let i=0; i<$(".files").length; i++){
                         url :"./fileUpdateNumber",
                         data:{
                             rowNum:i,
-                            productNum:productNum
+                            "id":goodId
                         },
                         success:function(result){
                             console.log("Result : ",result)
@@ -96,7 +97,7 @@ for(let i=0; i<$(".files").length; i++){
             url :"./fileDelete",
             data:{
                 "rowNum":i,
-                "productNum":productNum
+                "id":goodId
             },
             success:function(result){
                 console.log("Result : ",result)
@@ -120,4 +121,47 @@ for(let i=0; i<$(".files").length; i++){
 $("#fileAddResult").on("click", ".del", function(){
     $(this).parent().remove();
     
+});
+
+flag=true;
+/// 글 수정시 첨부파일 삭제
+$(".deleteFile").click(function(){
+    //DB, HDD에 파일 삭제
+    let check = confirm("삭제 됩니다.. 복구 불가");
+
+    if(flag){
+        let size = $("#fileAddResult").attr("data-file-size");
+        
+        
+        count=size;
+        flag=false;
+    }
+
+    if(check){
+        //post
+        // /qna/fileDelete
+        //파라미터 fileNum
+        let fileNum = $(this).attr("data-file-num");
+        console.log("Before Result This", $(this));
+        const btn = $(this);
+        $.ajax({
+            type:"POST",
+            url :"fileDelete",
+            data:{
+                fileNum:fileNum
+            },
+            success:function(result){
+                console.log("Result : ",result)
+                console.log("After Result This", $(this));
+                $(btn).parent().remove();
+                count--;
+            },
+            error:function(){
+                console.log("Error 발생");
+            }
+
+        });
+
+    }
+
 });
