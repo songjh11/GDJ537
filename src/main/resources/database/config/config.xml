@@ -8,8 +8,6 @@
   		<typeAlias type="java.util.List" alias="List"/>
   		<typeAlias type="com.app.home.user.EmployeeVO" alias="EmployeeVO"/>
   		<typeAlias type="com.app.home.user.DepartmentVO" alias="DepartmentVO"/>
-  		
 		<typeAlias type="com.app.home.messenger.NoteVO" alias="NoteVO"/>
-		
   	</typeAliases>
   </configuration>
