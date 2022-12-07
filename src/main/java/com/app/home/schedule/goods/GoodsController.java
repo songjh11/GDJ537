@@ -24,32 +24,6 @@ public class GoodsController
 	@Autowired
 	private GoodsService goodsService;
 
-	@GetMapping("/room/roomList")
-	public ModelAndView getRoomList(GoodsVO goodsVO) throws Exception
-	{
-		ModelAndView modelAndView = new ModelAndView();
-		List<GoodsVO> goodsVOs = goodsService.getGoodsList(goodsVO);
-
-		log.info("goodVO list: {}", goodsVOs);
-
-		modelAndView.addObject("goodVO", goodsVOs);
-		modelAndView.setViewName("/goods/room/roomList");
-
-		return modelAndView;
-	}
-
-	@GetMapping("/room/roomDetail")
-	public String getRoomDetail() throws Exception
-	{
-		return "/goods/room/roomDetail";
-	}
-
-	@GetMapping("/room/roomReserve")
-	public String setRoomReserve() throws Exception
-	{
-		return "/goods/room/roomReserve";
-	}
-
 	@GetMapping("add")
 	public String getAdd() throws Exception
 	{

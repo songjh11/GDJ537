@@ -1,4 +1,4 @@
-package com.app.home.schedule.reserve;
+package com.app.home.schedule.goods;
 
 import java.sql.Date;
 
