@@ -54,5 +54,10 @@ public class GoodsController {
 		return "/goods/update";
 		
 	}
+	
+	@GetMapping("calendar")
+	public void getCalendar() throws Exception{
+		
+	}
 
 }
