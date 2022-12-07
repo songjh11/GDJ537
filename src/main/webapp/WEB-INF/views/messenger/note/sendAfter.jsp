@@ -24,7 +24,7 @@
         }
 
         #noteBox {
-            background: #fff;
+            background: #c1d1eca3;
             width: 100%;
             height: 100%;
             display: flex;
@@ -34,46 +34,73 @@
         #title {
             color: black;
             height: 50px;
-            width: 440px;
+            width: 430px;
             margin: 10px auto;
-            background-color: #c1d1eca3;
+            background-color: #fff;
             display: flex;
-            /* justify-content: center; */
+            justify-content: space-between;
             align-items: center;
             border-radius: 10px 10px;
             font-weight: bold;
-            box-shadow: 1px 1px 8px 1px #80808026;
 
-        }
-
-        #receiveId {
-            padding: 25px;
         }
 
         #contents {
-            height: 430px;
-            background-color: #c1d1eca3;
-            width: 440px;
+            height: 390px;
+            background-color: #fff;
+            width: 430px;
             margin: 0 auto 10px;
             border-radius: 10px 10px;
-            box-shadow: 1px 1px 8px 1px #80808026;
+            box-shadow: 2px 2px #8080801f;
         }
 
         #realContents {
-            padding: 25px;
+            padding: 12px;
+        }
+
+        #inputContents {
+            /* background: #c1d1ec26; */
+            border: none;
+            width: 100%;
+            height: 330px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 5px;
+        }
+
+        textarea:focus { 
+            outline: none; 
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        #btnDiv {
+            height: 40px; 
+            display: flex; 
+            justify-content: center;
+        }
+
+        #sendBtn {
+            background: linear-gradient(45deg, #758eff, #8a63da8a);
+            height: 30px;
+            width: 60px;
+            border: none;
+            color: #fff;
+            border-radius: 7px;
+            box-shadow: 1px 2px 2px 1px #80808085;
+
+
         }
 
     </style>
-    <title>Document</title>
+    <title>메시지 발송</title>
 </head>
 <body>
     <div id="noteBox">
-        <div id="title">
-            <div id="receiveId">발신자 : ${detail.sendId}</div>
-        </div>
-        <div id="contents">
-            <div id="realContents">${detail.contents}</div>
-            
+        <div id="afterMsg">
+            ${message}
         </div>
     </div>
 </body>

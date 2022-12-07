@@ -191,13 +191,21 @@
 	}
 
 	#noteTitle {
-		height: 8%;
-    	font-size: 30px;
+		height: 50px;
+    	font-size: 25px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	#noteChoice {
 		display: flex;
-		height: 5%;
+		height: 40px;
+		/* border: 1px solid #80808042; */
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		/* box-shadow: 0px -5px 7px -4px #80808052; */
+		margin: 10px 0px;
 	}
 
 	#noteChoice div {
@@ -207,18 +215,22 @@
 	}
 
 	#noteContent {
-		height: 78%;
+		/* height: 520px; */
 		overflow-y: scroll;
 	}
 
 	.noteList{
 		/* border: 1px solid; */
 		background: #3b4bbd0f;
-		margin: 3px 5px;
+		margin: 8px 5px;
 		display: flex;
-		height: 80px;
+		height: 70px;
 		align-items: center;
 		padding: 3px;
+		overflow: hidden;
+		border-radius: 10px 10px;
+   		font-size: 13px;
+		box-shadow: 2px 2px #8080801f;
 		
 	}
 
@@ -240,10 +252,12 @@
 
 	#listInfo {
 		margin-bottom: auto;
+		width: 75%;
 	}
 
 	#listInfo div:nth-child(1) {
-		margin: 3px 0px 1px;
+		margin: 3px 0px 3px;
+		font-weight: bold;
 	}
 
 	
@@ -399,54 +413,39 @@
 
 						<!-- YR -->
 						<div class="noteStart">
-							<div id="noteTitle">쪽지함</div>
+							<!-- <div id="noteTitle">쪽지함</div> -->
 
 							<div id="noteChoice">
-								<div><button>수신</button></div>
-								<div><button>발신</button></div>
+								<div><button id="receiveNote" onclick="location.href='./note'"><img src="/img/messenger/receive.png" alt=""></button></div>
+								<div><button id="sentNoteList"><img src="/img/messenger/send.png" alt=""></button></div>
 								
 							</div>
 
+							
+
 							<div id="noteContent">
 								<c:forEach items="${list}" var="list">
-
 									<div class="noteList" onclick="notePop(${list.noteNum})">
 										<div id="listImage">
 											<img src="/img/messenger/test.png" alt="">
 										</div>
-
-										
-
 										<div id="listInfo">
-											<div>${list.sendId}</div>
+											<div>발신자:${list.sendId}</div>
 											<div>${list.contents}</div>
-											
-										
 										</div>
-										
-										
-
 									</div>
 
 								</c:forEach>
 							</div>
 
+							<div>임시쪽지보내기버튼
+								<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
+							</div>
+
 						</div>
 						<!-- YR -->
 
-
-						<script>
-							function notePop(num) {
-								window.open('./note/detail?noteNum='+num, '_blank', "width=500px, height=500px, location=no, top=100, left=500");
-							};
-						</script>
-						
-
 					</div>
-
-
-
-
 
 					<div class="chatDiv">
 						<div class="blank"></div>
@@ -476,6 +475,47 @@
 		</div>
 		<!-- End of Content Wrapper -->
 	</div>
+
+	<script>
+
+		$('#sendNote').on("click",function(){
+			console.log("하이");
+			window.open('./note/send?receiveId=2', '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+		})
+		function notePop(num) {
+			window.open('./note/detail?noteNum='+num, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+		};
+
+		$('#sentNoteList').on("click", function(){
+			console.log("일로와");
+
+			$.ajax({
+				type:"GET",
+				url :"./note/sent",
+				traditional:true, //배열을 전송할 때 사용, true
+				data:{
+					ii: 1
+				},
+				success : function(data){
+					console.log("나는성공, 나의 데이터는? : ", data);
+
+					let tempest = '';
+
+					$.each(data.list, function(index, item) { 
+						console.log(item);
+						$('#noteContent').empty();
+						console.log(item.noteNum);
+						tempest += '<div class="noteList" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/messenger/test.png" alt=""></div><div id="listInfo"><div>수신자:'+item.receiveId+'</div><div>'+item.contents+'</div></div></div>'
+
+						$('#noteContent').html(tempest);
+					})
+				},
+				error   : function(){
+					console.log("나는에러");
+				}
+			});
+		})
+	</script>
 
 	<!-- Scroll Top, Login Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
