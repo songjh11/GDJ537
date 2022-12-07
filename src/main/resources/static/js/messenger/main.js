@@ -17,7 +17,7 @@ $(".btnArea").on("click", ".pickBtn", function(){
     }
 })
 
-$(".titleLi").click(function() {    
+$(".titleLi").click(function() {
     $(this).next(".acoArea").stop().slideToggle(300);
     $(this).toggleClass('on').siblings().removeClass('on');
     $(this).next(".acoArea").siblings(".acoArea").slideUp(300); // 1개씩 펼치기

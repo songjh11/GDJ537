@@ -5,7 +5,7 @@
 
 <mapper namespace="com.app.home.messenger.MessengerMapper">
 	<select id="getEmpList" resultMap="getEmpListResult">
-		SELECT E.*, D.DEPNAME, R.ROLENAME FROM EMPLOYEE E
+		SELECT E.*, D.DEPNUM,D.DEPNAME, R.ROLENAME FROM EMPLOYEE E
 		INNER JOIN
 			DEPARTMENT D
 			ON E.DEPNUM=D.DEPNUM

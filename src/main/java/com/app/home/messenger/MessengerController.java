@@ -12,8 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.app.home.user.DepartmentVO;
 import com.app.home.user.EmployeeVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("messenger")
+@Slf4j
 public class MessengerController {
 	
 	@Autowired
@@ -29,6 +32,7 @@ public class MessengerController {
 		List<EmployeeVO> el = messengerService.getEmpList();
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
+		log.info("emp : {} ", el);
 		return mv;
 	}
 	
