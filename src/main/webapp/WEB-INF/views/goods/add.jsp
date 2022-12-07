@@ -8,10 +8,10 @@
 <!-- meta tag 추가 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <c:import url="../temp/layout_header.jsp"></c:import>
@@ -70,10 +70,14 @@
 					    <input type="text" class="form-control" id="max" name="max">
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputLocation" class="form-label">location</label>
-					    <input type="text" class="form-control" id="location" name="location">
+						<label for="exampleInputLocation" class="form-label">location</label>
+						<input type="text" class="form-control" id="location" name="location">
 					  </div>
-					  <div  class="board-filetitle">이미지 첨부  
+					  <div class="mb-3" style="display: none;" id="carChecked">
+						<label for="exampleInputLocation" class="form-label">CarNumber</label>
+						<input type="text" class="form-control" id="carNum" name="carNum">
+					  </div>
+					  <div class="board-filetitle">이미지 첨부  
 			          	<div class="mb-3" id="fileAddResult">      
 			            </div>
 			          </div>
@@ -99,31 +103,6 @@
 	<!-- Scroll Top, Login Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 	<script src="/js/goods/addFiles.js"></script>
-	<script type="text/javascript">
-      $(document).ready(function(){
-        $("#contents").summernote({
-          height:500,
-          minHeight: null,             // 최소 높이
-				  maxHeight: null,             // 최대 높이
-			  	focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-			  	lang: "ko-KR",					// 한글 설정
-			  	placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
-			  	callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-            onImageUpload : function(files) {
-              uploadSummernoteImageFile(files[0],this);
-            },
-            onPaste: function (e) {
-              var clipboardData = e.originalEvent.clipboardData;
-              if (clipboardData && clipboardData.items && clipboardData.items.length) {
-                var item = clipboardData.items[0];
-                if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
-                  e.preventDefault();
-                }
-              }
-            }
-				  }
-        });
-      })
-	</script>
+	<script src="/js/goods/add.js"></script>
 </body>
 </html>

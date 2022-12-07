@@ -1,10 +1,11 @@
-let flag=true;
 let count = 0;
 let goodId = $("#goodId").val();
+let flag=true;
 
 $("#fileAdd").click(function(){
     if(flag){
         let size = $("#fileAddResult").attr("data-file-size");
+        console.log("sizeeee : "+size);
         if(size==undefined){
             size=0;
         }
@@ -12,7 +13,7 @@ $("#fileAdd").click(function(){
         flag=false;    
     }
     
-    if($(".files").length<3){
+    if($(".files").length<5){
         let r = '<div class="file_form mt-2">';
         /* r = r+'<label for="contents" class="form-label">Files</label>'; label 여부 체크 */
         r = r+'<input type="file" name="files" class="files form-control">';
@@ -68,7 +69,7 @@ for(let i=0; i<$(".files").length; i++){
                         type:"POST",
                         url :"./fileUpdateNumber",
                         data:{
-                            rowNum:i,
+                            "rowNum":i,
                             "id":goodId
                         },
                         success:function(result){
@@ -104,7 +105,7 @@ for(let i=0; i<$(".files").length; i++){
                 console.log("After Result This", $(this));
                 if(result == 1 ){
                     swal("첨부파일이 삭제되었습니다.").then(function(){
-                        location.replace("./update?noticeNum="+noticeNum);
+                        location.replace("./update?id="+goodId);
                     })
                 }
                 
@@ -141,14 +142,14 @@ $(".deleteFile").click(function(){
         //post
         // /qna/fileDelete
         //파라미터 fileNum
-        let fileNum = $(this).attr("data-file-num");
+        let imgNum = $(this).attr("data-file-num");
         console.log("Before Result This", $(this));
         const btn = $(this);
         $.ajax({
             type:"POST",
             url :"fileDelete",
             data:{
-                fileNum:fileNum
+                imgNum:imgNum
             },
             success:function(result){
                 console.log("Result : ",result)
@@ -163,5 +164,6 @@ $(".deleteFile").click(function(){
         });
 
     }
-
 });
+
+

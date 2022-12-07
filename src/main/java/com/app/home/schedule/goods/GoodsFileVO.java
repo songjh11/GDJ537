@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class GoodsFileVO {
+	private Long rowNum;
 	private Long imgNum;
 	private String id;
 	private String fileName;

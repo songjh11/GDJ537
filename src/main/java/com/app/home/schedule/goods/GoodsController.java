@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -37,9 +38,10 @@ public class GoodsController {
 		goodsVO = goodsService.getGoods(goodsVO);
 		String str = goodsVO.getId().substring(0,2);
 		session.setAttribute("id", goodsVO.getId());
-		System.out.println(goodsVO.getGoodsFileVO());
-		List<GoodsFileVO> list = goodsVO.getGoodsFileVO();
-		mv.addObject("list", list);
+		if(goodsVO.getGoodsFileVO() != null) {
+			List<GoodsFileVO> list = goodsVO.getGoodsFileVO();
+			mv.addObject("list", list);
+		}
 		mv.addObject("str", str);
 		mv.addObject("goods", goodsVO);
 		mv.setViewName("/goods/update");
@@ -47,12 +49,43 @@ public class GoodsController {
 	}
 	
 	@PostMapping("update")
-	public String setUpdate(GoodsVO goodsVO,HttpSession session) throws Exception {
+	public String setUpdate(GoodsVO goodsVO,MultipartFile [] files,HttpSession session,String [] fileUpdateNumber) throws Exception {
 		String id = (String) session.getAttribute("id");
 		goodsVO.setId(id);
-		int result = goodsService.setUpdate(goodsVO);
+		int result = goodsService.setUpdate(goodsVO,files,session.getServletContext(),fileUpdateNumber);
 		return "/goods/update";
-		
 	}
+	
+	@PostMapping("fileUpdateNumber")
+	@ResponseBody
+	public int setFileUpdateNumber(GoodsFileVO goodsFileVO) throws Exception{
+		long ROWNUM = goodsFileVO.getRowNum()+1L;
+		goodsFileVO.setRowNum(ROWNUM);
+		goodsFileVO = goodsService.getFileNumCheck(goodsFileVO);
+		int result = goodsFileVO.getImgNum().intValue();
+		
+		return result;
+	}
+	
+	@PostMapping("fileDelete")
+	@ResponseBody
+	public int setAttachFileDelete(GoodsFileVO goodsFileVO)throws Exception{
+		long ROWNUM = goodsFileVO.getRowNum()+1L;
+		goodsFileVO.setRowNum(ROWNUM);
+		goodsFileVO = goodsService.getFileNumCheck(goodsFileVO);
+		int result = goodsService.setFileNumCheckDelete(goodsFileVO);
+		
+		return result;
+	}
+	
+	@GetMapping("delete")
+	public ModelAndView setGoodsDelete(GoodsVO goodsVO,ModelAndView mv) throws Exception{
+		int result = goodsService.setGoodsDelete(goodsVO);
+		//리스트 페이지로
+		//mv.setViewName("redirect:./list");
+		return mv;
+	}
+	
+	
 
 }

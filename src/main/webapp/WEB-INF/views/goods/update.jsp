@@ -8,10 +8,10 @@
 <!-- meta tag 추가 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <c:import url="../temp/layout_header.jsp"></c:import>
@@ -40,7 +40,7 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800">공용 시설 추가</h1>
+	            	<h1 class="h3 mb-4 text-gray-800">공용 시설 수정</h1>
 	            	
 	            	<form action="update" method="post" enctype="multipart/form-data">
 	            	 <div class="mb-3">
@@ -76,15 +76,20 @@
 					    <label for="exampleInputLocation" class="form-label">location</label>
 					    <input type="text" class="form-control" id="location" name="location" value="${goods.location}">
 					  </div>
+					  <div class="mb-3" <c:if test="${str == 'RO'}">style ="display:none;"</c:if>>
+					    <label for="exampleInputLocation" class="form-label">carNumber</label>
+					    <input type="text" class="form-control" id="carNum" name="carNum" value="${goods.carNum}">
+					  </div>
 					  <div>
-						<h2>${goods.goodsFileVO[0].oriName}</h2>
-						<c:forEach items="${list}" var="li">
-							<div class="file_form mt-2">
-                                <input type="file" name="files"  class="files form-control">
-                                <span class="text" >${li.oriName}</span> 
-                                <button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>
-                            </div>
-						</c:forEach>
+						<div class="mb-3" id="fileAddResult">      
+							<c:forEach items="${list}" var="li">
+								<div class="file_form mt-2">
+									<input type="file" name="files" class="files form-control">
+									<span class="text" >${li.oriName}</span> 
+									<button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>
+								</div>
+							</c:forEach>
+						</div>
 						<div class="mb-3">
 							<button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
 				 		</div>
@@ -110,7 +115,7 @@
 	<!-- Scroll Top, Login Modal import -->
 	<script src="/js/goods/addFiles.js"></script>
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
       $(document).ready(function(){
         $("#contents").summernote({
           height:500,
@@ -135,6 +140,6 @@
 				  }
         });
       })
-	</script>
+	</script> -->
 </body>
 </html>
