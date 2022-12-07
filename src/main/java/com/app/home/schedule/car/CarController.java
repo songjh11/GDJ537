@@ -28,6 +28,19 @@ public class CarController {
 	
 	@Autowired
 	private CarService carService;
+	
+	// 예약 변경 GET
+	@GetMapping("/car/carReserveChange")
+	public ModelAndView carReserveChange(GoodsVO goodsVO, ModelAndView mv) throws Exception {
+		
+		goodsVO = carService.getGoods(goodsVO);
+		
+		log.info("예약 변경 GET : {}", goodsVO);
+		
+		mv.addObject("goods", goodsVO);
+		
+		return mv;
+	}
 
 	// 예약 GET
 	@GetMapping("/car/carReserve")
