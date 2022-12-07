@@ -5,8 +5,20 @@
 
 <mapper namespace="com.app.home.messenger.NoteMapper">
 
-<select id="getReceiveNoteList" resultType="NoteVO">
-SELECT * FROM NOTE
+<insert id="setSendNote" parameterType="NoteVO">
+INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, sysdate(), 1)
+</insert>
+
+<select id="getSendNoteList" parameterType="EmployeeVO" resultType="NoteVO">
+SELECT * FROM NOTE WHERE SENDID = #{id}
+ORDER BY NOTENUM DESC
+LIMIT 0, 5
+</select>
+
+<select id="getReceiveNoteList" parameterType="EmployeeVO" resultType="NoteVO">
+SELECT * FROM NOTE WHERE RECEIVEID = #{id}
+ORDER BY NOTENUM DESC
+LIMIT 0, 5
 </select>
 
 <select id="getNoteDetail" resultType="NoteVO" parameterType="NoteVO">
