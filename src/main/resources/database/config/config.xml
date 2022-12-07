@@ -11,7 +11,7 @@
   		
   		<typeAlias type="com.app.home.schedule.goods.GoodsVO" alias="GoodsVO" />
   		<typeAlias type="com.app.home.schedule.goods.GoodsFileVO" alias="GoodsFileVO" />
-  		
+  		<typeAlias type="com.app.home.schedule.goods.GoodsReserveVO" alias="GoodsReserveVO" />
   		
   	</typeAliases>
   </configuration>

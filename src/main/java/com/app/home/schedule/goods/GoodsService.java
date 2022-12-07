@@ -1,5 +1,7 @@
 package com.app.home.schedule.goods;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +74,11 @@ public class GoodsService {
 	
 	public String getMaxCount(GoodsVO goodsVO) throws Exception{
 		return goodsMapper.getMaxCount(goodsVO);
+	}
+	
+	public List<GoodsReserveVO> getReserveList() throws Exception{
+		
+		return goodsMapper.getReserveList();
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.app.home.schedule.goods;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +21,6 @@ public interface GoodsMapper {
 	
 	public int setUpdate(GoodsVO goodsVO) throws Exception;
 
+	public List<GoodsReserveVO> getReserveList() throws Exception;
 
 }

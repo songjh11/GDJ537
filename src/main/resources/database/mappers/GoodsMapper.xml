@@ -52,5 +52,9 @@
 		</collection>
 	</resultMap>
 	
+	<select id="getReserveList" parameterType="GoodsReserveVO" resultType="GoodsReserveVO">
+		select * from RESERVE;
+	</select>
+	
 	
 </mapper> 
