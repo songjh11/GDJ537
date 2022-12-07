@@ -33,12 +33,12 @@
                             <span><strong>채팅방 이름</strong></span>
                         </div>
                         <div class="number">
-                            <img src="number.png" width="15px" height="15px">
+                            <img src="/image/chatroom-number.png" width="15px" height="15px">
                             <span>2</span>
                         </div>
                     </div>
                     <div class="search">
-                        <img src="search.png" width="15px" height="15px">
+                        <img src="/image/chatroom-search.png" width="15px" height="15px">
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <div class="you-flex">
                         <div class="you-profile">
                             <div class="pic">
-                                <img src="profile.jpg" width="35px" height="35px">
+                                <img src="/image/chatroom-profile.jpg" width="35px" height="35px">
                             </div>
                         </div>
                         <div class="namebubble">
