@@ -269,32 +269,37 @@
 									</div>
 								</li>
 							</ul>
+							<hr>
+
+
 							<c:forEach items="${depList}" var="d">
 								<li class="titleLi">
-									<span style="margin-left: 20px;">${d.depName}</span>
+									<span style="margin-left: 20px;">${d.depName}, ${d.depNum}, ${empList.size()}</span>
 									<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
 									<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
 								</li>
-								<c:forEach items="${empList}" var="e">
-								<c:if test="${e.departmentVO.depName eq d.depName}">
-									<ul class="acoArea">
-										<li class="chatLi">
-											<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-												<div>
-													<img class="yourImg" src="/img/undraw_profile_3.svg">
+
+								<ul class="acoArea">
+									<c:forEach items="${empList}" var="e">
+										<c:if test="${e.departmentVO.depNum eq d.depNum}">
+											<li class="chatLi">
+												<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+													<div>
+														<img class="yourImg" src="/img/undraw_profile_3.svg">
+													</div>
+													<div class="userInfo" style="width: 60%;">
+														<span>${e.id}</span>
+														<span>(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
+													</div>
+													<div class="btnArea">
+														<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
+													</div>
 												</div>
-												<div class="userInfo" style="width: 60%;">
-													<span>${e.id}</span>
-													<span>(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
-												</div>
-												<div class="btnArea">
-													<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</c:if>
-								</c:forEach>
+											</li>
+											
+										</c:if> 
+									</c:forEach>
+										</ul>
 							</c:forEach>
 								<li class="titleLi">
 									<span style="margin-left: 20px;">인사팀</span>
