@@ -10,7 +10,6 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
-
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -43,11 +42,12 @@
 								<th>예약하기</th>
 							</tr>
 							<c:forEach items="${goodVO }" var="good">
+								<input type="hidden" value="${good.id}" class="ROID">
 								<tr>
 									<td>${good.name }</td>
 									<td>${good.location }</td>
 									<td>
-										<a href="./roomDetail">
+										<a href="./roomDetail?id=${good.id }">
 											<button type="button" class="btn btn-outline-none">정보 보기</button>
 										</a>
 									</td>

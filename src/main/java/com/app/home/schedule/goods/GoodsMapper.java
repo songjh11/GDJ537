@@ -20,6 +20,4 @@ public interface GoodsMapper
 	public GoodsVO getGoods(GoodsVO goodsVO) throws Exception;
 
 	public int setUpdate(GoodsVO goodsVO) throws Exception;
-
-	public List<GoodsVO> getGoodsList(GoodsVO goodsVO) throws Exception;
 }

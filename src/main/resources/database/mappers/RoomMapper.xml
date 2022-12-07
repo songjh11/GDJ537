@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.app.home.schedule.room.RoomMapper">
+
+	<!-- 전체 정보 출력을 위한 리스트 -->
+	<select id="getRoomList" parameterType="GoodsVO"
+		resultMap="getGoods">
+		SELECT * FROM GOODS G
+		left JOIN GOODSFILE F
+		ON G.ID = F.ID
+	</select>
+
+	<resultMap type="GoodsVO" id="getGoods">
+		<id column="ID" property="id"></id>
+		<result column="NAME" property="name"></result>
+		<result column="MAX" property="max"></result>
+		<result column="CONTENTS" property="contents"></result>
+		<result column="LOCATION" property="location"></result>
+
+		<collection property="goodsFileVO" javaType="List"
+			ofType="GoodsFileVO">
+			<id column="IMGNUM" property="imgNum"></id>
+			<result column="FILENAME" property="fileName"></result>
+			<result column="ORINAME" property="oriName"></result>
+		</collection>
+	</resultMap>
+
+	<select id="getRoomTotal" parameterType="GoodsVO"
+		resultMap="getRoom">
+		SELECT * FROM GOODS G
+		left JOIN GOODSFILE F
+		ON G.ID = F.ID
+		where G.ID = #{id}
+	</select>
+
+	<resultMap type="GoodsVO" id="getRoom">
+		<id column="ID" property="id"></id>
+		<result column="NAME" property="name"></result>
+		<result column="MAX" property="max"></result>
+		<result column="CONTENTS" property="contents"></result>
+		<result column="LOCATION" property="location"></result>
+
+		<collection property="goodsFileVO" javaType="List"
+			ofType="GoodsFileVO">
+			<id column="IMGNUM" property="imgNum"></id>
+			<result column="FILENAME" property="fileName"></result>
+			<result column="ORINAME" property="oriName"></result>
+		</collection>
+	</resultMap>
+
+</mapper>    

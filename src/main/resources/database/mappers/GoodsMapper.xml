@@ -59,28 +59,5 @@
 		</collection>
 	</resultMap>
 
-<!-- 전체 정보 출력을 위한 리스트 -->
-	<select id="getGoodsList" parameterType="GoodsVO"
-		resultMap="getGoods">
-		SELECT * FROM GOODS G
-		left JOIN GOODSFILE F
-		ON G.ID = F.ID
-	</select>
-
-	<resultMap type="GoodsVO" id="getGoods">
-		<id column="ID" property="id"></id>
-		<result column="NAME" property="name"></result>
-		<result column="MAX" property="max"></result>
-		<result column="CONTENTS" property="contents"></result>
-		<result column="LOCATION" property="location"></result>
-
-		<collection property="goodsFileVO" javaType="List"
-			ofType="GoodsFileVO">
-			<id column="IMGNUM" property="imgNum"></id>
-			<result column="FILENAME" property="fileName"></result>
-			<result column="ORINAME" property="oriName"></result>
-		</collection>
-	</resultMap>
-
 
 </mapper> 

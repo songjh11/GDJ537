@@ -23,11 +23,6 @@ public class GoodsService
 	@Autowired
 	private FileManager fileManager;
 
-	public List<GoodsVO> getGoodsList(GoodsVO goodsVO) throws Exception
-	{
-		return goodsMapper.getGoodsList(goodsVO);
-	}
-
 	public int setAdd(GoodsVO goodsVO, MultipartFile[] files, ServletContext servletContext) throws Exception
 	{
 		int count = goodsMapper.getCount(goodsVO);

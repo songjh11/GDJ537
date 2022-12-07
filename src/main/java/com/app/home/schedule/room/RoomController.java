@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.schedule.goods.GoodsService;
@@ -15,17 +16,17 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-@RequestMapping(value="/goods/*")
-public class RoomController {
-	
+@RequestMapping(value = "/goods/*")
+public class RoomController
+{
 	@Autowired
-	private GoodsService goodsService;
-	
+	private RoomService roomService;
+
 	@GetMapping("/room/roomList")
 	public ModelAndView getRoomList(GoodsVO goodsVO) throws Exception
 	{
 		ModelAndView modelAndView = new ModelAndView();
-		List<GoodsVO> goodsVOs = goodsService.getGoodsList(goodsVO);
+		List<GoodsVO> goodsVOs = roomService.getRoomList(goodsVO);
 
 		log.info("goodVO list: {}", goodsVOs);
 
@@ -36,9 +37,18 @@ public class RoomController {
 	}
 
 	@GetMapping("/room/roomDetail")
-	public String getRoomDetail() throws Exception
+	public ModelAndView getRoomDetail(GoodsVO goodsVO) throws Exception
 	{
-		return "/goods/room/roomDetail";
+		log.info("======= roomDetail =======");
+		ModelAndView modelAndView = new ModelAndView();
+		goodsVO = roomService.getRoomTotal(goodsVO);
+
+		// log.info("goodVO 1 : {}", goodsVO);
+
+		modelAndView.addObject("goodDetail", goodsVO);
+		modelAndView.setViewName("/goods/room/roomDetail");
+
+		return modelAndView;
 	}
 
 	@GetMapping("/room/roomReserve")

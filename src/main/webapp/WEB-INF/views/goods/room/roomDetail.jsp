@@ -10,7 +10,22 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
+<style>
+.de {
+	width: 350px;
+	height: 350px;
+	padding-left: 20px;
+	padding-right: 25px;
+}
 
+ul {
+	display: flex;
+}
+
+ul li {
+	list-style: none;
+}
+</style>
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -29,13 +44,42 @@
 				<!-- Topbar import-->
 				<c:import url="../../temp/layout_topbar.jsp"></c:import>
 				<!-- End of Topbar -->
-
+				<%-- ${goodDetail.goodsFileVO } --%>
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-					<section class="container d-flex flex-wrap justify-content-center">
-						<!-- Page Heading -->
+					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
 						<h1 class="h3 mb-4 text-gray-800">회의실 상세정보</h1>
-
+						<!-- Page Heading -->
+						<ul>
+							<li>
+								<img class="de" src="/img/undraw_profile_1.svg" alt="">
+							</li>
+							<li>
+								<img class="de" src="/img/undraw_profile_2.svg" alt="">
+							</li>
+							<li>
+								<img class="de" src="/img/undraw_profile_3.svg" alt="">
+							</li>
+						</ul>
+						<table class="table table-hover">
+							<tr>
+								<th>회의실 번호</th>
+								<th>이름</th>
+								<th>상세정보</th>
+								<th>최대 인원(명)</th>
+								<th>위치</th>
+							</tr>
+							<tr>
+								<td>${goodDetail.id }</td>
+								<td>${goodDetail.name }</td>
+								<td>${goodDetail.contents }</td>
+								<td>${goodDetail.max }</td>
+								<td>${goodDetail.location }</td>
+							</tr>
+						</table>
+						<a href="./roomList">
+							<button type="button" class="btn btn-outline-none">뒤로가기</button>
+						</a>
 					</section>
 
 				</div>
