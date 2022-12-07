@@ -4,53 +4,83 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.app.home.schedule.goods.GoodsMapper">
-	
+
 	<update id="setUpdate" parameterType="GoodsVO">
-		UPDATE GOODS SET NAME = #{name}, MAX = #{max}, CONTENTS = #{contents}, LOCATION = #{location} WHERE ID = #{id}
+		UPDATE GOODS SET NAME =
+		#{name}, MAX = #{max}, CONTENTS = #{contents}, LOCATION = #{location}
+		WHERE ID = #{id}
 	</update>
 
 	<insert id="setAdd" parameterType="GoodsVO">
-			INSERT INTO GOODS
-				VALUES (#{id},#{name},#{max},#{contents},#{location})
+		INSERT INTO GOODS
+		VALUES (#{id},#{name},#{max},#{contents},#{location})
 	</insert>
-	
+
 	<select id="getCount" parameterType="GoodsVO" resultType="int">
-		SELECT COUNT(*) FROM GOODS WHERE ID LIKE CONCAT (#{id},'%')
+		SELECT
+		COUNT(*) FROM GOODS WHERE ID LIKE CONCAT (#{id},'%')
 	</select>
-	
-	<select id="getMaxCount" parameterType="GoodsVO" resultType="String">
+
+	<select id="getMaxCount" parameterType="GoodsVO"
+		resultType="String">
 		SELECT MAX(ID) FROM GOODS WHERE ID LIKE CONCAT (#{id},'%')
 	</select>
-	
-	<select id="getGood" parameterType="GoodsVO" resultType="GoodsVO">
-		SELECT * FROM GOODS WHERE ID = #{id}	
+
+	<select id="getGood" parameterType="GoodsVO"
+		resultType="GoodsVO">
+		SELECT * FROM GOODS WHERE ID = #{id}
 	</select>
-	
+
 	<insert id="setGoodsFileAdd" parameterType="GoodsFileVO">
- 		INSERT INTO GOODSFILE
- 		VALUE (#{imgNum},#{id},#{fileName},#{oriName})
- 	</insert>
- 	
- 	<select id="getGoods" parameterType="GoodsVO" resultMap="getGoodsDetail">
- 		SELECT * FROM GOODS G
-			INNER JOIN GOODSFILE F
-			ON G.ID  = F.ID
-			WHERE G.ID = #{id}
- 	</select>
-	
+		INSERT INTO GOODSFILE
+		VALUE (#{imgNum},#{id},#{fileName},#{oriName})
+	</insert>
+
+	<select id="getGoods" parameterType="GoodsVO"
+		resultMap="getGoodsDetail">
+		SELECT * FROM GOODS G
+		INNER JOIN GOODSFILE F
+		ON G.ID = F.ID
+		WHERE G.ID = #{id}
+	</select>
+
 	<resultMap type="GoodsVO" id="getGoodsDetail">
 		<id column="ID" property="id"></id>
 		<result column="NAME" property="name"></result>
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
 		<result column="LOCATION" property="location"></result>
-		
-		<collection property="goodsFileVO" javaType="List" ofType="GoodsFileVO">
-				<id column="IMGNUM" property="imgNum"></id>
-				<result column = "FILENAME" property="fileName"></result>
-				<result column = "ORINAME" property="oriName"></result>
+
+		<collection property="goodsFileVO" javaType="List"
+			ofType="GoodsFileVO">
+			<id column="IMGNUM" property="imgNum"></id>
+			<result column="FILENAME" property="fileName"></result>
+			<result column="ORINAME" property="oriName"></result>
 		</collection>
 	</resultMap>
-	
-	
+
+<!-- 전체 정보 출력을 위한 리스트 -->
+	<select id="getGoodsList" parameterType="GoodsVO"
+		resultMap="getGoods">
+		SELECT * FROM GOODS G
+		left JOIN GOODSFILE F
+		ON G.ID = F.ID
+	</select>
+
+	<resultMap type="GoodsVO" id="getGoods">
+		<id column="ID" property="id"></id>
+		<result column="NAME" property="name"></result>
+		<result column="MAX" property="max"></result>
+		<result column="CONTENTS" property="contents"></result>
+		<result column="LOCATION" property="location"></result>
+
+		<collection property="goodsFileVO" javaType="List"
+			ofType="GoodsFileVO">
+			<id column="IMGNUM" property="imgNum"></id>
+			<result column="FILENAME" property="fileName"></result>
+			<result column="ORINAME" property="oriName"></result>
+		</collection>
+	</resultMap>
+
+
 </mapper> 

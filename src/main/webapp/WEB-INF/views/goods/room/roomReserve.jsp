@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
 <!-- 공통 css, js, jquery -->
-<c:import url="../temp/layout_header.jsp"></c:import>
+<c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
 
 <!-- body ID 작성 -->
@@ -18,7 +18,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar import -->
-		<c:import url="../temp/layout_sidebar.jsp"></c:import>
+		<c:import url="../../temp/layout_sidebar.jsp"></c:import>
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -27,7 +27,7 @@
 			<div id="content">
 
 				<!-- Topbar import-->
-				<c:import url="../temp/layout_topbar.jsp"></c:import>
+				<c:import url="../../temp/layout_topbar.jsp"></c:import>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -45,13 +45,13 @@
 			<!-- End of Main Content -->
 
 			<!-- Footer import -->
-			<c:import url="../temp/layout_footer.jsp"></c:import>
+			<c:import url="../../temp/layout_footer.jsp"></c:import>
 			<!-- End of Footer -->
 		</div>
 		<!-- End of Content Wrapper -->
 	</div>
 
 	<!-- Scroll Top, Logout Modal import -->
-	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 </body>
 </html>

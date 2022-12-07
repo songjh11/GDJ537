@@ -13,29 +13,62 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@RequestMapping(value="/goods/*")
+import lombok.extern.slf4j.Slf4j;
+
+@RequestMapping(value = "/goods/*")
 @Controller
-public class GoodsController {
-	
+@Slf4j
+public class GoodsController
+{
+
 	@Autowired
 	private GoodsService goodsService;
-	
+
+	@GetMapping("/room/roomList")
+	public ModelAndView getRoomList(GoodsVO goodsVO) throws Exception
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		List<GoodsVO> goodsVOs = goodsService.getGoodsList(goodsVO);
+
+		log.info("goodVO list: {}", goodsVOs);
+
+		modelAndView.addObject("goodVO", goodsVOs);
+		modelAndView.setViewName("/goods/room/roomList");
+
+		return modelAndView;
+	}
+
+	@GetMapping("/room/roomDetail")
+	public String getRoomDetail() throws Exception
+	{
+		return "/goods/room/roomDetail";
+	}
+
+	@GetMapping("/room/roomReserve")
+	public String setRoomReserve() throws Exception
+	{
+		return "/goods/room/roomReserve";
+	}
+
 	@GetMapping("add")
-	public String getAdd() throws Exception{
+	public String getAdd() throws Exception
+	{
 		return "/goods/add";
 	}
-	
+
 	@PostMapping("add")
-	public String setAdd(GoodsVO goodsVO, MultipartFile [] files,
-			RedirectAttributes redirectAttributes,HttpSession session) throws Exception{
-		int result = goodsService.setAdd(goodsVO,files,session.getServletContext());
+	public String setAdd(GoodsVO goodsVO, MultipartFile[] files, RedirectAttributes redirectAttributes, HttpSession session)
+			throws Exception
+	{
+		int result = goodsService.setAdd(goodsVO, files, session.getServletContext());
 		return "redirect:/goods/add";
 	}
-	
+
 	@GetMapping("update")
-	public ModelAndView getUpdate(GoodsVO goodsVO,ModelAndView mv,HttpSession session) throws Exception{
+	public ModelAndView getUpdate(GoodsVO goodsVO, ModelAndView mv, HttpSession session) throws Exception
+	{
 		goodsVO = goodsService.getGoods(goodsVO);
-		String str = goodsVO.getId().substring(0,2);
+		String str = goodsVO.getId().substring(0, 2);
 		session.setAttribute("id", goodsVO.getId());
 		System.out.println(goodsVO.getGoodsFileVO());
 		List<GoodsFileVO> list = goodsVO.getGoodsFileVO();
@@ -45,14 +78,15 @@ public class GoodsController {
 		mv.setViewName("/goods/update");
 		return mv;
 	}
-	
+
 	@PostMapping("update")
-	public String setUpdate(GoodsVO goodsVO,HttpSession session) throws Exception {
+	public String setUpdate(GoodsVO goodsVO, HttpSession session) throws Exception
+	{
 		String id = (String) session.getAttribute("id");
 		goodsVO.setId(id);
 		int result = goodsService.setUpdate(goodsVO);
 		return "/goods/update";
-		
+
 	}
 
 }
