@@ -40,19 +40,19 @@
 								<th>차량번호</th>
 								<th>모델명</th>
 								<th>상세정보</th>
-								<th>예약하기</th>
+								<th>예약</th>
 							</tr>
-							<c:forEach items="${goodVO }" var="good">
+							<c:forEach items="${goods }" var="goods">
 								<tr>
-									<td>${good.name }</td>
-									<td>${good.location }</td>
+									<td>${goods.carNum }</td>
+									<td>${goods.name }</td>
 									<td>
-										<a href="./roomDetail">
+										<a href="./carDetail?id="${goods.id}>
 											<button type="button" class="btn btn-outline-none">정보 보기</button>
 										</a>
 									</td>
 									<td>
-										<a href="./roomReserve">
+										<a href="./carReserve?id=${goods.id}">
 											<button type="button" class="btn btn-outline-none">예약하기</button>
 										</a>
 									</td>

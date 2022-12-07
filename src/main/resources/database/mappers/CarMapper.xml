@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.app.home.schedule.car.CarMapper">
+
+	<!-- 예약 -->
+	<insert id="setReserve" parameterType="ReserveVO">
+		INSERT INTO RESERVE(RESERVENUM, ID, DATE, STARTTIME, ENDTIME, MEMBERNUM, USEPURPOSE)
+		VALUES(null, #{id}, #{date}, #{startTime}, #{endTime}, '5', #{usePurpose})
+	</insert>
+
+	<!-- 상세보기 -->
+	<select id="getGoods" parameterType="GoodsVO" resultMap="getGoodsDetail">
+		SELECT * FROM GOODS G
+		LEFT JOIN GOODSFILE F
+		ON G.ID = F.ID
+		WHERE G.ID = #{id}
+	</select>
+
+	<resultMap type="GoodsVO" id="getGoodsDetail">
+		<id column="ID" property="id"></id>
+		<result column="NAME" property="name"></result>
+		<result column="MAX" property="max"></result>
+		<result column="CONTENTS" property="contents"></result>
+		<result column="LOCATION" property="location"></result>
+		<result column="CARNUM" property="carNum"></result>
+
+		<collection property="goodsFileVO" javaType="List"
+			ofType="GoodsFileVO">
+			<id column="IMGNUM" property="imgNum"></id>
+			<result column="FILENAME" property="fileName"></result>
+			<result column="ORINAME" property="oriName"></result>
+		</collection>
+	</resultMap>
+
+</mapper>    
