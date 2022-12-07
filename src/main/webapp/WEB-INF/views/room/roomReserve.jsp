@@ -34,32 +34,7 @@
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
-						<h1 class="h3 mb-4 text-gray-800">회의실 정보</h1>
-						<table class="table table-hover justify-content-right" style="text-align: center;">
-							<tr>
-								<th>이름</th>
-								<th>위치</th>
-								<th>상세정보</th>
-								<th>예약하기</th>
-							</tr>
-							<c:forEach items="${room }" var="ro">
-								<input type="hidden" value="${ro.id }">
-								<tr>
-									<td>${ro.name }</td>
-									<td>${ro.location }</td>
-									<td>
-										<a href="">
-											<button type="button" class="btn btn-outline-none">정보 보기</button>
-										</a>
-									</td>
-									<td>
-										<a href="./roomReserve">
-											<button type="button" class="btn btn-outline-none">예약하기</button>
-										</a>
-									</td>
-								</tr>
-							</c:forEach>
-						</table>
+						<h1 class="h3 mb-4 text-gray-800">회의실 예약</h1>
 
 					</section>
 
