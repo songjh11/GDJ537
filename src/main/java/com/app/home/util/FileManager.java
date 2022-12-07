@@ -100,7 +100,7 @@ public class FileManager extends AbstractView {
 	//파일 삭제 (label 값과 FileName 필수)//
 	public boolean deleteFile(FileVO fileVO, String path)throws Exception{
 		
-		File file = new File(path, fileVO.getFileName());
+		File file = new File(base + path, fileVO.getFileName());
 		
 		boolean result = file.delete();
 		
