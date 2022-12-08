@@ -10,6 +10,22 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
+<style>
+.de {
+	width: 350px;
+	height: 350px;
+	padding-left: 20px;
+	padding-right: 25px;
+}
+
+ul {
+	display: flex;
+}
+
+ul li {
+	list-style: none;
+}
+</style>
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -28,43 +44,32 @@
 				<!-- Topbar import-->
 				<c:import url="../../temp/layout_topbar.jsp"></c:import>
 				<!-- End of Topbar -->
-
+				<%-- ${goodDetail.goodsFileVO } --%>
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-					<section class="container d-flex flex-wrap justify-content-center">
-						<!-- Page Heading -->
-						<h1 class="h3 mb-4 text-gray-800">회의실 정보</h1>
-						<table class="table table-hover justify-content-right" style="text-align: center;">
+					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
+						<h1 class="h3 mb-4 text-gray-800">회의실 예약정보</h1>
+						<table class="table table-hover">
 							<tr>
-								<th>이름</th>
-								<th>위치</th>
-								<th>상세정보</th>
-								<th>예약하기</th>
-								<th>예약된 정보 보기</th>
+								<th>예약자</th>
+								<th>날짜</th>
+								<th>사용 목적</th>
+								<th>시작 시간</th>
+								<th>종료 시간</th>
 							</tr>
-							<c:forEach items="${goodVO }" var="good">
-								<input type="hidden" value="${good.id}" class="ROID">
+							<c:forEach items="${roomInfo }" var="ro">
 								<tr>
-									<td>${good.name }</td>
-									<td>${good.location }</td>
-									<td>
-										<a href="./roomDetail?id=${good.id }">
-											<button type="button" class="btn btn-outline-none">보기</button>
-										</a>
-									</td>
-									<td>
-										<a href="./roomReserve?id=${good.id }">
-											<button type="button" class="btn btn-outline-none">예약</button>
-										</a>
-									</td>
-									<td>
-										<a href="./roomResInfo?id=${good.id }">
-											<button type="button" class="btn btn-outline-none">보기</button>
-										</a>
-									</td>
+									<td>${ro.memberNum }</td>
+									<td>${ro.date }</td>
+									<td>${ro.usePurpose }</td>
+									<td>${ro.startTime }</td>
+									<td>${ro.endTime }</td>
 								</tr>
 							</c:forEach>
 						</table>
+						<a href="./roomList">
+							<button type="button" class="btn btn-outline-none">뒤로가기</button>
+						</a>
 					</section>
 
 				</div>

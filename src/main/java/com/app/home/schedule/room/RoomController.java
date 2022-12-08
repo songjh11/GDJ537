@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,8 +53,50 @@ public class RoomController
 	}
 
 	@GetMapping("/room/roomReserve")
-	public String setRoomReserve() throws Exception
+	public ModelAndView setRoomReserve(GoodsVO goodsVO, RoomVO roomVO) throws Exception
 	{
-		return "/goods/room/roomReserve";
+		log.info("======= get roomReserve =======");
+		ModelAndView modelAndView = new ModelAndView();
+		goodsVO = roomService.getRoomTotal(goodsVO);
+		List<RoomVO> roomVOs = roomService.getReserveStartTime(roomVO);
+		log.info("roomVOs: {}", roomVOs);
+
+		// log.info("goodVO 1 : {}", goodsVO);
+
+		modelAndView.addObject("stTime", roomVOs);
+		modelAndView.addObject("goodDetail", goodsVO);
+		modelAndView.setViewName("/goods/room/roomReserve");
+
+		return modelAndView;
+	}
+
+	@PostMapping("/room/roomReserve")
+	public ModelAndView setRoomReserve(RoomVO roomVO) throws Exception
+	{
+		log.info("======= post roomReserve =======");
+		ModelAndView modelAndView = new ModelAndView();
+		int rs = roomService.setRoomReserve(roomVO);
+
+		log.info("room reserve: {}", rs);
+
+		// modelAndView.setViewName("/goods/room/roomReserve");
+		modelAndView.setViewName("/goods/room/roomList");
+
+		return modelAndView;
+	}
+
+	@GetMapping("/room/roomResInfo")
+	public ModelAndView getRoomResInfo(RoomVO roomVO) throws Exception
+	{
+		log.info("====== get Info =====");
+		ModelAndView modelAndView = new ModelAndView();
+		List<RoomVO> roomVOs = roomService.getResInfo(roomVO);
+
+		log.info("roomVOs: {}", roomVOs);
+
+		modelAndView.addObject("roomInfo", roomVOs);
+		modelAndView.setViewName("/goods/room/roomResInfo");
+
+		return modelAndView;
 	}
 }

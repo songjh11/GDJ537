@@ -11,6 +11,6 @@ public class ReserveVO {
 	private Date date;
 	private String memberNum;
 	private String usePurpose;
-	private Date startTime;
-	private Date endTime;
+	private String startTime;
+	private String endTime;
 }

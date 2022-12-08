@@ -51,4 +51,20 @@
 		</collection>
 	</resultMap>
 
+	<insert id="setRoomReserve" parameterType="RoomVO">
+		insert into RESERVE
+		values(#{reserveNum}, #{id}, #{date}, #{startTime},
+		#{endTime},
+		#{memberNum},
+		#{usePurpose})
+	</insert>
+
+	<select id="getReserveStartTime" parameterType="List" resultType="ReserveVO">
+		select STARTTIME from RESERVE where ID = #{id}
+	</select>
+
+	<select id="getResInfo" parameterType="List" resultType="ReserveVO">
+		select * from RESERVE where ID = #{id}
+	</select>
+
 </mapper>    
