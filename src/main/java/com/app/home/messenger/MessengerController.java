@@ -48,6 +48,19 @@ public class MessengerController {
 		return mv;
 	}
 	
+	@GetMapping("chatTest")
+	public ModelAndView getMyChat2(HttpSession session)throws Exception{
+		int id = 1;
+		ModelAndView mv = new ModelAndView();
+		List<DepartmentVO> dl = messengerService.getDepList();
+		List<EmployeeVO> el = messengerService.getEmpList();
+		mv.addObject("myId", id);
+		mv.addObject("depList", dl);
+		mv.addObject("empList", el);
+		mv.addObject("message", "all");
+		return mv;
+	}
+	
 	@PostMapping("searchEmp")
 	public ModelAndView getSearchResult(HttpSession session, String kind, String keyword) throws Exception{
 		log.info("keyword:{},kind:{}", keyword, kind);
