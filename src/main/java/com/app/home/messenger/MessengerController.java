@@ -57,25 +57,27 @@ public class MessengerController {
 		mv.setViewName("messenger/note/detail");
 		return mv;
 	}
+	
+	
+	//-----------
+	
+	@GetMapping("chat1")
+	public ModelAndView chat()throws Exception{
+		ModelAndView mv= new ModelAndView();
+	
+		mv.setViewName("messenger/chat1");
+		return mv;
+	}
 
+	@GetMapping("chatroom")
+	public ModelAndView chat3()throws Exception{
+		ModelAndView mv= new ModelAndView();
+	
+		mv.setViewName("messenger/chatroom");
+		return mv;
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 }
 
 
