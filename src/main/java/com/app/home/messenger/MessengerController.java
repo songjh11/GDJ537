@@ -140,9 +140,18 @@ public class MessengerController {
 	
 	// --------------------- 효경 ------------------------------
 	
-	@GetMapping("addRoom")
-	public ModelAndView setAddRoom()throws Exception{
+	// 채팅방 추가
+	@GetMapping("chatRoom/addRoom")
+	public String setAddRoom()throws Exception{
+		return "messenger/chatRoom/addRoom";
+	}
+	
+	// 채팅방 추가
+	@PostMapping("chatRoom/addRoom")
+	public ModelAndView setAddRoom(RoomVO roomVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
+		
 		
 		mv.setViewName("messenger/chatRoom/addRoom");
 		
