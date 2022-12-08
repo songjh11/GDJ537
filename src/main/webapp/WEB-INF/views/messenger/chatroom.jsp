@@ -14,6 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     <link rel="stylesheet" href="/css/chatroom.css">
+    <script type="text/javascript" defer src="/js/messenger/chatroom.js"></script>
     
     <link rel="icon" href="/images/favicon.png">
 	<title>채팅방 💭 </title>
@@ -21,8 +22,6 @@
 
 
 <body>
-    <!-- 팝업 사이즈 680*1024 -->
-
     <div class="wrapAll">
         <div class="contain">
             
