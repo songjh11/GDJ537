@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<% pageContext.setAttribute("replaceChar", "\r\n"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,12 +42,9 @@
             align-items: center;
             border-radius: 10px 10px;
             font-weight: bold;
-            box-shadow: 1px 1px 8px 1px #80808026;
             font-size: 14px;
-        }
 
-        #receiveId {
-            padding: 25px;
+
         }
 
         #contents {
@@ -59,31 +53,29 @@
             width: 430px;
             margin: 0 auto 7px;
             border-radius: 10px 10px;
-            box-shadow: 1px 1px 8px 1px #80808026;
-            overflow-y: scroll;
-        }
-
-        #contents::-webkit-scrollbar {
-            display: none;
-        }
-
-        #line {
-            border-bottom: 1px solid #cecec59c;
-            width: 381px;
-            height: 2px;
-            margin: 12px 20px 0px;
-        }
-
-        #time {
-            padding: 21px 25px 0 25px;
-            font-size: 13px;
-            color: #4579e1d1;
+            box-shadow: 2px 2px #8080801f;
         }
 
         #realContents {
-            padding: 15px 25px 25px 25px;
-            word-wrap: break-word;
-            font-size: 14px;
+            padding: 12px;
+        }
+
+        #inputContents {
+            /* background: #c1d1ec26; */
+            border: none;
+            width: 99%;
+            height: 330px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 5px;
+        }
+
+        textarea:focus { 
+            outline: none; 
+        }
+
+        textarea {
+            resize: none;
         }
 
         #btnDiv {
@@ -107,36 +99,60 @@
             cursor: pointer;
         }
 
+        #count {
+            display: flex;
+            right: 0;
+            justify-content: flex-end;
+            font-size: 11px;
+            position: absolute;
+            transform: translate3d(-23px, -32px, 10px);
+        }
+
     </style>
-    <title>Document</title>
+    <title>메시지 발송</title>
 </head>
 <body>
     <div id="noteBox">
-        <!-- <div id="title">
-            <div id="receiveId">발신자 : 김경경 (${detail.sendId})</div>
-        </div> -->
-        <div id="title">
-            <div style="margin: 15px;">발신자 : 김경경 (${detail.sendId})</div>
-            <div style="margin: 15px;">수신자 : 박수신 (${detail.receiveId})</div>
-        </div>
-        <div id="contents">
-            <div id="time">보낸시간 : 
-                <fmt:formatDate value="${detail.regDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+        <form action="./send" method="post" id="fofo">
+            <input type="hidden" name="sendId" value="${member.id}">
+            <input type="hidden" name="receiveId" value="${param.receiveId}">
+            <div id="title">
+                <div style="margin: 15px;">발신자 : ${member.id}</div>
+                <div style="margin: 15px;">수신자 : ${param.receiveId}</div>
             </div>
-            <div id="line"></div>
-            <div id="realContents">${fn:replace(detail.contents, replaceChar, "<br/>")}</div>
+            <div id="contents">
+                <div id="realContents">
+                    <textarea id="inputContents" name="contents"></textarea>
+                </div>
+            </div>
+            <div id="count">
+                0 / 5000
+            </div>
             
-        </div>
-        <div id="btnDiv">
-            <button type="button" id="sendBtn">닫기</button>
-        </div>
+            <div id="btnDiv">
+                <button type="button" id="sendBtn">보내기</button>
+            </div>
+        </form>
     </div>
 
+
     <script>
-        $('#sendBtn').on("click", function(){
-            console.log("닫자");
-            window.close();
+        let val = "";
+        $("#inputContents").on("keyup",function(){
+            val = $("#inputContents").val();
+            console.log(val.length);
+            $("#count").text(val.length+" / 5000");
         })
+
+        $("#sendBtn").on("click", function(){
+            if(val.length<5000) {
+                $("#fofo").submit();
+            } else {
+                alert("쪽지는 5000자까지 작성할 수 있습니다.")
+            }
+            
+        })
+        
     </script>
 </body>
 </html>
