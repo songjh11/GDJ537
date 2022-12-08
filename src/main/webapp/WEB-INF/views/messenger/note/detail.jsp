@@ -69,7 +69,7 @@
 
         #line {
             border-bottom: 1px solid #cecec59c;
-            width: 367px;
+            width: 381px;
             height: 2px;
             margin: 12px 20px 0px;
         }

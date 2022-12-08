@@ -99,12 +99,21 @@
             cursor: pointer;
         }
 
+        #count {
+            display: flex;
+            right: 0;
+            justify-content: flex-end;
+            font-size: 11px;
+            position: absolute;
+            transform: translate3d(-23px, -32px, 10px);
+        }
+
     </style>
     <title>메시지 발송</title>
 </head>
 <body>
     <div id="noteBox">
-        <form action="./send" method="post">
+        <form action="./send" method="post" id="fofo">
             <input type="hidden" name="sendId" value="${member.id}">
             <input type="hidden" name="receiveId" value="${param.receiveId}">
             <div id="title">
@@ -116,11 +125,34 @@
                     <textarea id="inputContents" name="contents"></textarea>
                 </div>
             </div>
-
+            <div id="count">
+                0 / 5000
+            </div>
+            
             <div id="btnDiv">
-                <button type="submit" id="sendBtn">보내기</button>
+                <button type="button" id="sendBtn">보내기</button>
             </div>
         </form>
     </div>
+
+
+    <script>
+        let val = "";
+        $("#inputContents").on("keyup",function(){
+            val = $("#inputContents").val();
+            console.log(val.length);
+            $("#count").text(val.length+" / 5000");
+        })
+
+        $("#sendBtn").on("click", function(){
+            if(val.length<5000) {
+                $("#fofo").submit();
+            } else {
+                alert("쪽지는 5000자까지 작성할 수 있습니다.")
+            }
+            
+        })
+        
+    </script>
 </body>
 </html>

@@ -202,12 +202,12 @@
 
 	#noteChoice {
 		display: flex;
-		height: 40px;
-		/* border: 1px solid #80808042; */
+		height: 57px;
+		border: 1px solid #80808042;
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px;
 		/* box-shadow: 0px -5px 7px -4px #80808052; */
-		margin: 10px 0px;
+		margin: 10px 0px 0px;
 	}
 
 	#noteChoice div {
@@ -269,7 +269,9 @@
     	width: 300px;
 	}
 
-
+	#noteContent::-webkit-scrollbar {
+		display: none;
+	}
 
 	/* .noteList div:nth-child(3){
 		text-overflow: ellipsis;
