@@ -1,6 +1,8 @@
 package com.app.home.messenger;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -36,6 +38,18 @@ public class MessengerController {
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
+		return mv;
+	}
+	
+	@PostMapping("searchEmp")
+	public ModelAndView getSearchResult(String kind, String keyword) throws Exception{
+//		log.info("keyword:{},kind:{}", keyword, kind);
+		Map<String, String> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("kind", kind);
+		List<EmployeeVO> el = messengerService.getSearchResult(map);
+		log.info("map:{}", el);
+		ModelAndView mv = new ModelAndView();
 		return mv;
 	}
 	
