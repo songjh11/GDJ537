@@ -31,6 +31,11 @@ public class CarController {
 	@Autowired
 	private CarService carService;
 	
+	@GetMapping("/car/ReserveDetail")
+	public void getReserveDetail(ReserveVO reserveVO) throws Exception {
+		
+	}
+	
 	// 예약 취소 
 	@GetMapping("/car/carReserveDelete")
 	@ResponseBody
@@ -68,7 +73,7 @@ public class CarController {
 		
 		mv.addObject("goods", goodsVOs);
 		mv.addObject("reserve", reserveVO);
-		mv.setViewName("redirect:../car/carList");
+		mv.setViewName("/goods/car/carReserveChange");
 		
 		return mv;
 	}
