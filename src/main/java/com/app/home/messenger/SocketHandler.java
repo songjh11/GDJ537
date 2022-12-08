@@ -11,7 +11,10 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class SocketHandler extends TextWebSocketHandler{
 
 	HashMap<String, WebSocketSession>sessionMap=new HashMap<>(); // 웹소켓 세션을 담아둘 맵
@@ -40,7 +43,6 @@ public class SocketHandler extends TextWebSocketHandler{
 		obj.put("type", "getId");
 		obj.put("sessionId", session.getId());
 		session.sendMessage(new TextMessage(obj.toJSONString()));
-		
 	}
 
 	

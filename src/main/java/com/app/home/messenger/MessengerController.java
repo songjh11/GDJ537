@@ -69,10 +69,15 @@ public class MessengerController {
 		return mv;
 	}
 
+	@GetMapping("chatroom")
+	public ModelAndView chat3()throws Exception{
+		ModelAndView mv= new ModelAndView();
+	
+		mv.setViewName("messenger/chatroom");
+		return mv;
+	}
 
-
-
-
+	
 }
 
 
