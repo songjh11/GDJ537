@@ -1,6 +1,7 @@
 package com.app.home.messenger;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,4 +23,7 @@ public class MessengerService {
 		return messengerMapper.getDepList();
 	}
 	
+	public List<EmployeeVO> getSearchResult (Map<String, String> map) throws Exception{
+		return messengerMapper.getSearchResult(map); 
+	}
 }
