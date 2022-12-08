@@ -13,4 +13,6 @@ public class ReserveVO {
 	private String usePurpose;
 	private String startTime;
 	private String endTime;
+	
+	private GoodsVO goodsVO;
 }
