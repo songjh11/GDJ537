@@ -1,6 +1,7 @@
 package com.app.home.messenger;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,4 +14,6 @@ public interface MessengerMapper {
 	public List<EmployeeVO> getEmpList () throws Exception;
 	
 	public List<DepartmentVO> getDepList() throws Exception;
+	
+	public List<EmployeeVO> getSearchResult (Map<String, String> map) throws Exception;
 }
