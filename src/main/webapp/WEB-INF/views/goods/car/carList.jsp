@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -9,8 +10,8 @@
 <title>Insert title here</title>
 
 <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
@@ -37,7 +38,7 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center">
-					
+
 						<!-- Page Heading -->
 						<h1 class="h3 mb-4 text-gray-800">차량 정보</h1>
 						<table class="table table-hover justify-content-right" style="text-align: center;">
@@ -47,55 +48,44 @@
 								<th>상세정보</th>
 								<th>예약</th>
 							</tr>
+							
 							<c:forEach items="${goods}" var="goods">
 								<tr>
 									<td>${goods.carNum }</td>
 									<td>${goods.name }</td>
-									<td>
-										<a href="./carDetail?id="${goods.id}>
-											<button type="button" class="btn btn-outline-none">정보 보기</button>
-										</a>
-									</td>
-									<td>
-										<a href="./carReserve?id=${goods.id}">
-											<button type="button" class="btn btn-outline-none">예약하기</button>
-										</a>
-									</td>
+									<td><a href="./carDetail?id=" ${goods.id}><button type="button" class="btn btn-outline-none">정보 보기</button></a></td>
+									<td><a href="./carReserve?id=${goods.id}"><button type="button" class="btn btn-outline-none">예약하기</button>	</a></td>
 								</tr>
 							</c:forEach>
 						</table>
-						
-						<div>-------------------------------예약 리스트--------------------------------------</div>
 
-						<table class="table table-hover justify-content-right"
-							style="text-align: center;">
+						<div>------------------------------------예약 리스트--------------------------------------</div>
+
+						<table class="table table-hover justify-content-right" style="text-align: center;">
 							<tr>
 								<th>예약 번호</th>
 								<th>예약 날짜</th>
 								<th>예약자</th>
-								<th>상세보기</th>
+								<th>예약정보</th>
 								<th>예약 변경</th>
 								<th>예약 취소</th>
 							</tr>
+							
 							<c:forEach items="${reserves}" var="reserve">
-
-
 								<tr>
 									<td>${reserve.reserveNum}</td>
 									<td>${reserve.startTime}</td>
 									<td>${reserve.memberNum}</td>
-									<td><a href="#" class="btn btn-outline-none">정보 보기</a></td>
+									<td><a href="./carDetail?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">정보 보기</a></td>
 									<td><a href="./carReserveChange?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">변경</a></td>
-									<td><a href="./carReserveDelete?reserveNum=${reserve.reserveNum}" id="delete_btn" class="btn btn-outline-none">취소</a></td>
+									<td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reserveNum}">취소</button></td>
+									<%-- <td><a href="./carReserveDelete?reserveNum=${reserve.reserveNum}" id="delete_btn" class="btn btn-outline-none">취소</a></td> --%>
 								</tr>
-
 							</c:forEach>
 						</table>
 					</section>
-
 				</div>
 				<!-- End Page Content -->
-
 			</div>
 			<!-- End of Main Content -->
 
@@ -108,18 +98,21 @@
 
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
-	
-<!-- 	<script>
-		$('#delete_btn').click(function() {
-			console.log("adsf");
-		    let result = confirm("예약을 취소하시겠습니까? \n취소 후에는 되돌릴 수 없습니다.");
-		    
- 		   	if(result){
-		        $.get("carReserveDelete?reserveNum=${reserveNum}", function(result) {
-		        	console.log("${reserveNum}");
-		        }); 
-		    }
+
+	<script>
+		$('.delete_btn').click(function() {
+			console.log($(this).val()); // 클릭 한 요소의 value값(reserveNum)을 출력한다.
+			
+			let reserve = $(this).val(); // value값(reserveNum)을 reserve에 저장한다.
+			let result = confirm("예약을 취소하시겠습니까? \n취소 후에는 되돌릴 수 없습니다.");
+
+			if (result) { // 확인 클릭 시
+				$.get("carReserveDelete?reserveNum=" + reserve, function(result) { // controller로 get방식의 보낸다
+					console.log(reserve);
+					location.reload();
+				});
+			}
 		});
-	</script> -->
+	</script>
 </body>
 </html>

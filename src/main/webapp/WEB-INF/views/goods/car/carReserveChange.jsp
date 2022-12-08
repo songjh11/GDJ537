@@ -39,8 +39,8 @@
 							<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">차량 예약 변경</h1>
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
-<%-- 										<th>차량번호</th>
-										<td>${goods.carNum}</td>
+ 										<th>차량번호</th>
+<%--									<td>${goods.carNum}</td>
 										<th>모델명</th>
 										<td>${goods.name}</td>									
 										<th>정원</th>
