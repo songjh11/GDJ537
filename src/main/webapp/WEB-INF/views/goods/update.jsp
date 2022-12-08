@@ -95,9 +95,8 @@
 				 		</div>
 					  </div>
 					  <button type="submit" class="btn btn-primary">Submit</button>
-
-
-					  </form>
+					  <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.id}">
+					</form>
 	
 	            </div>
 	            <!-- End Page Content -->

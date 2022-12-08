@@ -167,3 +167,23 @@ $(".deleteFile").click(function(){
 });
 
 
+$("#delete").click(function(){
+    var id = $("#delete").attr("data-id-num");
+    $.ajax({
+        type:"GET",
+        url :"delete",
+        data:{
+            id:id
+        },
+        success:function(result){
+            console.log("삭제 완료 ");            
+            location.href="/goods/ad_list";
+        },
+        error:function(){
+            console.log("Error 발생");
+        }
+
+    });
+    
+
+})

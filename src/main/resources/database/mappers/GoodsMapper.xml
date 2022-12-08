@@ -72,6 +72,22 @@
  	<delete id="setGoodsFileDelete" parameterType="GoodsVO">
  		DELETE FROM GOODSFILE WHERE ID = #{id}
  	</delete>
+ 	
+ 	<select id="getRoomList" resultMap="getGoodsDetail">
+ 		SELECT * FROM 
+ 		GOODS G
+ 		LEFT JOIN GOODSFILE GF
+ 		ON G.ID = GF.ID
+ 		WHERE G.ID LIKE 'RO%'
+ 	</select>
+ 	
+ 	<select id="getCarList" resultMap="getGoodsDetail">
+ 		SELECT * FROM
+ 		GOODS G
+ 		LEFT JOIN GOODSFILE GF
+ 		ON G.ID = GF.ID
+ 		WHERE G.ID LIKE 'CA%'
+ 	</select>
 
 	
 </mapper> 

@@ -130,5 +130,13 @@ public class GoodsService {
 		goodsMapper.setGoodsFileDelete(goodsVO);
 		return goodsMapper.setGoodsDelete(goodsVO);
 	}
+	 
+	public List<GoodsVO> getRoomList() throws Exception{
+		return goodsMapper.getRoomList();
+	}
+	
+	public List<GoodsVO> getCarList() throws Exception{
+		return goodsMapper.getCarList();
+	}
 
 }

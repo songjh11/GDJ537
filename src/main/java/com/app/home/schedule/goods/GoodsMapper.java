@@ -27,8 +27,10 @@ public interface GoodsMapper {
 	
 	public List<GoodsVO> getRoomList() throws Exception;
 	
+	public List<GoodsVO> getCarList() throws Exception;
+	
 	public int setGoodsDelete(GoodsVO goodsVO) throws Exception;
 
 	public int setGoodsFileDelete(GoodsVO goodsVO) throws Exception;
-
+	
 }

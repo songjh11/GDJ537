@@ -79,10 +79,23 @@ public class GoodsController {
 	}
 	
 	@GetMapping("delete")
+	@ResponseBody
 	public ModelAndView setGoodsDelete(GoodsVO goodsVO,ModelAndView mv) throws Exception{
 		int result = goodsService.setGoodsDelete(goodsVO);
 		//리스트 페이지로
-		//mv.setViewName("redirect:./list");
+		mv.setViewName("/goods/ad_list");
+		return mv;
+	}
+	
+	@GetMapping("ad_list")
+	public ModelAndView getAdminGoodsList() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<GoodsVO> room = goodsService.getRoomList();
+		List<GoodsVO> car = goodsService.getCarList();
+		
+		mv.addObject("room", room);
+		mv.addObject("car", car);
+		mv.setViewName("/goods/ad_list");
 		return mv;
 	}
 	
