@@ -31,9 +31,6 @@ public class MessengerController {
 	@Autowired
 	private MessengerService messengerService;
 	
-	// DB저장이 아니라 방의 정보를 담아둘 List<RoomVO>를 생성
-	List<RoomVO> roomVOs =  new ArrayList<RoomVO>();
-	
 	static int roomNum = 0;
 	
 	@GetMapping("chat")
@@ -140,6 +137,18 @@ public class MessengerController {
 		mv.setViewName("messenger/note/sendAfter");
 		return mv;
 	}
+	
+	// --------------------- 효경 ------------------------------
+	
+	@GetMapping("addRoom")
+	public ModelAndView setAddRoom()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("messenger/chatRoom/addRoom");
+		
+		return mv;
+	}
+	
 	//-----------
 	
 	@GetMapping("chat1")

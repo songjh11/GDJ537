@@ -16,4 +16,7 @@ public interface MessengerMapper {
 	public List<DepartmentVO> getDepList() throws Exception;
 	
 	public List<EmployeeVO> getSearchResult (Map<String, String> map) throws Exception;
+	
+	public int setAddRoom(RoomVO roomVO)throws Exception;
+	
 }
