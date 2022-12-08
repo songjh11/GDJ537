@@ -7,6 +7,10 @@
 <!-- meta tag 추가 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
+
+<!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
@@ -68,8 +72,8 @@
 							<tr>
 								<th>예약 번호</th>
 								<th>예약 날짜</th>
-								<th>반납 날짜</th>
 								<th>예약자</th>
+								<th>상세보기</th>
 								<th>예약 변경</th>
 								<th>예약 취소</th>
 							</tr>
@@ -79,10 +83,10 @@
 								<tr>
 									<td>${reserve.reserveNum}</td>
 									<td>${reserve.startTime}</td>
-									<td>${reserve.endTime}</td>
 									<td>${reserve.memberNum}</td>
+									<td><a href="#" class="btn btn-outline-none">정보 보기</a></td>
 									<td><a href="./carReserveChange?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">변경</a></td>
-									<td><a href="#" class="btn btn-outline-none">취소</a></td>
+									<td><a href="./carReserveDelete?reserveNum=${reserve.reserveNum}" id="delete_btn" class="btn btn-outline-none">취소</a></td>
 								</tr>
 
 							</c:forEach>
@@ -104,5 +108,18 @@
 
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
+	
+<!-- 	<script>
+		$('#delete_btn').click(function() {
+			console.log("adsf");
+		    let result = confirm("예약을 취소하시겠습니까? \n취소 후에는 되돌릴 수 없습니다.");
+		    
+ 		   	if(result){
+		        $.get("carReserveDelete?reserveNum=${reserveNum}", function(result) {
+		        	console.log("${reserveNum}");
+		        }); 
+		    }
+		});
+	</script> -->
 </body>
 </html>

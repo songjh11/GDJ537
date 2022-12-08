@@ -17,6 +17,14 @@ public class CarService {
 	@Autowired
 	private CarMapper carMapper;
 	
+	// 예약 취소
+	public int setDelete(ReserveVO reserveVO) throws Exception {
+		
+		int result = carMapper.setDelete(reserveVO);
+		
+		return result;
+	}
+	
 	// 예약 변경
 	public int setUpdate(ReserveVO reserveVO) throws Exception {
 		

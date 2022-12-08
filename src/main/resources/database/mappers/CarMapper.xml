@@ -5,6 +5,12 @@
 
 <mapper namespace="com.app.home.schedule.car.CarMapper">
 
+	<!-- 예약 취소 -->
+	<delete id="setDelete" parameterType="ReserveVO">
+		DELETE FROM RESERVE 
+		WHERE RESERVENUM = #{reserveNum}
+	</delete>
+
 	<!-- 예약 변경 -->
 	<update id="setUpdate" parameterType="ReserveVO">
 		UPDATE RESERVE R
@@ -28,7 +34,7 @@
 	<!-- 예약 -->
 	<insert id="setReserve" parameterType="ReserveVO">
 		INSERT INTO RESERVE(RESERVENUM, ID, DATE, STARTTIME, ENDTIME, MEMBERNUM, USEPURPOSE)
-		VALUES(null, #{id}, #{date}, #{startTime}, #{endTime}, '5', #{usePurpose})
+		VALUES(null, #{id}, #{date}, #{startTime}, #{endTime}, '아이유', #{usePurpose})
 	</insert>
 
 	<!-- 상세보기 -->

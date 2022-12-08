@@ -64,12 +64,12 @@
 								
 								<div class="mb-5">
 									<label>예약자</label>
-									<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="아이폰">
+									<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="아이유">
 								</div>
 								
 								<div class="mb-5">
 									<label>부서명</label>
-									<input type="text" class="form-control" id="exampleFormControlInput1" value="애플">
+									<input type="text" class="form-control" id="exampleFormControlInput1" value="인사과">
 								</div>	
 																																	
 								<div class="mb-5">

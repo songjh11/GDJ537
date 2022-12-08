@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.schedule.goods.GoodsService;
@@ -29,6 +31,28 @@ public class CarController {
 	@Autowired
 	private CarService carService;
 	
+	// 예약 취소 
+	@GetMapping("/car/carReserveDelete")
+	@ResponseBody
+	public ModelAndView setDelete(ReserveVO reserveVO, ModelAndView mv) throws Exception{
+		
+		log.info("예약 취소 : {}", reserveVO);
+		
+		int result = carService.setDelete(reserveVO);
+		
+		log.info("후후후후 : {}", reserveVO);
+		
+		if (result > 0) {
+			log.info("취소 성공");
+		} else {
+			log.info("취소 실패");
+		}
+		
+		mv.setViewName("redirect:../car/carList");
+		
+		return mv;
+	}
+	
 	// 예약 변경 GET
 	@GetMapping("/car/carReserveChange")
 	public ModelAndView setUpdate(ReserveVO reserveVO, ModelAndView mv, HttpSession session) throws Exception {
@@ -44,7 +68,7 @@ public class CarController {
 		
 		mv.addObject("goods", goodsVOs);
 		mv.addObject("reserve", reserveVO);
-		mv.setViewName("/goods/car/carReserveChange");
+		mv.setViewName("redirect:../car/carList");
 		
 		return mv;
 	}
@@ -88,7 +112,7 @@ public class CarController {
 		
 		log.info("예약하기 POST : {}", reserveVO);
 		
-		mv.setViewName("goods/car/carList");
+		mv.setViewName("redirect:../car/carList");
 		
 		return mv;
 	}
