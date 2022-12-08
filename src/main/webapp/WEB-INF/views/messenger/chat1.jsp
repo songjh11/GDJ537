@@ -62,11 +62,14 @@
 				
 			  let d = JSON.parse(msg);
 			  if(d.type =="getId"){
-				  let si =d.sessionId != null  d.sessionId:"";
+				
+				  
+				  let si =d.sessionId != null ; d.sessionId ="";
 				  if(si !=""){
 					  $("#sessionId").val(si);
+					  
 				  }
-			  }else if (d.type ==""message){
+			  }else if (d.type =="message"){
 				  if(d.sessionId==$("#sessionId").val()){
 					  $("#chating").append("<p class='me'>나 :" + d.msg + "</p>");	
 				  }else{
@@ -101,11 +104,12 @@
 
 	function send() {
 		
-		let option{} 
-		let uN = $("#userName").val();
-		let msg = $("#chatting").val();
-		msg: $("#chatting").val()
-	}
+		let option={
+				type:"message",
+				sssionId:$("#sessionId").val(),
+				userName:$("#userName").val(),
+				msg: $("#chatting").val()
+			}
 		ws.send(JSON.stringify(option))
 		$('#chatting').val("");
 	}
@@ -113,6 +117,7 @@
 <body>
 	<div id="container" class="container">
 		<h1>채팅</h1>
+		<input type="hidden" id="sessionId" value="">
 		<div id="chating" class="chating">
 		</div>
 		
