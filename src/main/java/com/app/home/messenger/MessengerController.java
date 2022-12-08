@@ -1,6 +1,5 @@
 package com.app.home.messenger;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -156,6 +155,7 @@ public class MessengerController {
 	public ModelAndView setAddRoom(RoomVO roomVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
+		int result = messengerService.setAddRoom(roomVO);
 		
 		
 		mv.setViewName("messenger/chatRoom/addRoom");
