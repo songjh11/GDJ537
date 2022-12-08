@@ -50,6 +50,7 @@
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
 		<result column="LOCATION" property="location"></result>
+		<result column="CARNUM" property="carNum"></result>
 
 		<collection property="goodsFileVO" javaType="List"
 			ofType="GoodsFileVO">
@@ -73,6 +74,7 @@
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
 		<result column="LOCATION" property="location"></result>
+		<result column="CARNUM" property="carNum"></result>
 
 		<collection property="goodsFileVO" javaType="List"
 			ofType="GoodsFileVO">
