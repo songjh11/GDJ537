@@ -270,6 +270,40 @@
 						</div>
 	
 						<ul class="chatUl" style="overflow-y: scroll; overflow-x: hidden; height: 560px;">
+							<li class="titleLi">
+								<span style="margin-left: 20px;">즐겨찾기</span>
+								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
+								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
+							</li>
+							<ul class="acoArea">
+								<c:choose>
+									<c:when test="${empty pickList}">
+										<h1>즐겨찾기한 직원이 없습니다</h1>
+									</c:when>
+									<c:when test="${not empty pickList}">
+										<c:forEach items="${pickList}" var="p">
+											<c:if test="${e.id ne myId}">
+												<li class="chatLi">
+													<input type="hidden" id="email${p.id}" value="${p.email}">
+													<input type="hidden" id="phone${p.id}" value="${p.phone}">
+													<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+														<div>
+															<img id="yourImg${p.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+														</div>
+														<div class="userInfo" style="width: 60%;">
+															<span class="empName" empId="${p.id}" value="${p.name}">😎${p.name}</span>
+															<span id="depN${p.id}" value="${p.departmentVO.depName}/${p.roleVO.roleName}">(${p.departmentVO.depName}/${p.roleVO.roleName})</span>
+														</div>
+														<div class="btnArea">
+															<button type="button" class="pickBtn" value="${p.id}"><img class="pickImg" src="/img/star (3).png"></button>
+														</div>
+													</div>
+												</li>
+											</c:if>
+										</c:forEach>
+									</c:when>
+								</c:choose>
+							</ul>
 							<c:choose>
 								<c:when test="${not empty depList}">
 									<c:forEach items="${depList}" var="d">
