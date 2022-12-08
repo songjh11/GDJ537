@@ -31,15 +31,40 @@ public class CarController {
 	
 	// 예약 변경 GET
 	@GetMapping("/car/carReserveChange")
-	public ModelAndView carReserveChange(GoodsVO goodsVO, ModelAndView mv) throws Exception {
+	public ModelAndView setUpdate(ReserveVO reserveVO, ModelAndView mv, HttpSession session) throws Exception {
+		GoodsVO goodsVO = new GoodsVO();
 		
-		goodsVO = carService.getGoods(goodsVO);
+		List<GoodsVO> goodsVOs = goodsService.getGoodsList(goodsVO);
+		reserveVO = carService.getReserveDetail(reserveVO);
 		
-		log.info("예약 변경 GET : {}", goodsVO);
+		session.setAttribute("reserveNum", reserveVO.getReserveNum());
 		
-		mv.addObject("goods", goodsVO);
+		log.info("예약 변경 GET : {}", goodsVOs);
+		log.info("예약 변경 GET : {}", reserveVO);
+		
+		mv.addObject("goods", goodsVOs);
+		mv.addObject("reserve", reserveVO);
+		mv.setViewName("/goods/car/carReserveChange");
 		
 		return mv;
+	}
+	
+	// 예약 변경 POST
+	@PostMapping("/car/carReserveChange")
+	public String setUpdate(ReserveVO reserveVO, HttpSession session) throws Exception {
+		
+		Long reserveNum = (Long)session.getAttribute("reserveNum");
+		reserveVO.setReserveNum(reserveNum);
+		
+		int result = carService.setUpdate(reserveVO);
+		
+		if(result > 0) {
+			log.info("변경 성공");
+		} else {
+			log.info("변경 실패");
+		}
+		
+		return "/goods/car/carList";
 	}
 
 	// 예약 GET
@@ -71,12 +96,16 @@ public class CarController {
 	// 차량 리스트
 	@GetMapping("/car/carList")
 	public ModelAndView getCarList(GoodsVO goodsVO, ModelAndView mv, HttpSession session) throws Exception {
+		ReserveVO reserveVO = new ReserveVO();
 		
 		List<GoodsVO> goodsVOs = goodsService.getGoodsList(goodsVO);
+		List<ReserveVO> reserveVOs = carService.getReserveList(reserveVO);
 
 		log.info("goodVO list: {}", goodsVOs);
+		log.info("reserveVO : {}", reserveVOs);
 
 		mv.addObject("goods", goodsVOs);
+		mv.addObject("reserves", reserveVOs);
 		mv.setViewName("/goods/car/carList");
 
 		return mv;

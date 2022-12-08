@@ -33,6 +33,7 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center">
+					
 						<!-- Page Heading -->
 						<h1 class="h3 mb-4 text-gray-800">차량 정보</h1>
 						<table class="table table-hover justify-content-right" style="text-align: center;">
@@ -42,7 +43,7 @@
 								<th>상세정보</th>
 								<th>예약</th>
 							</tr>
-							<c:forEach items="${goods }" var="goods">
+							<c:forEach items="${goods}" var="goods">
 								<tr>
 									<td>${goods.carNum }</td>
 									<td>${goods.name }</td>
@@ -57,6 +58,33 @@
 										</a>
 									</td>
 								</tr>
+							</c:forEach>
+						</table>
+						
+						<div>-------------------------------예약 리스트--------------------------------------</div>
+
+						<table class="table table-hover justify-content-right"
+							style="text-align: center;">
+							<tr>
+								<th>예약 번호</th>
+								<th>예약 날짜</th>
+								<th>반납 날짜</th>
+								<th>예약자</th>
+								<th>예약 변경</th>
+								<th>예약 취소</th>
+							</tr>
+							<c:forEach items="${reserves}" var="reserve">
+
+
+								<tr>
+									<td>${reserve.reserveNum}</td>
+									<td>${reserve.startTime}</td>
+									<td>${reserve.endTime}</td>
+									<td>${reserve.memberNum}</td>
+									<td><a href="./carReserveChange?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">변경</a></td>
+									<td><a href="#" class="btn btn-outline-none">취소</a></td>
+								</tr>
+
 							</c:forEach>
 						</table>
 					</section>
