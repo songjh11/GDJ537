@@ -138,7 +138,8 @@ public class MessengerController {
 		}
 		mv.addObject("message", message);
 		mv.setViewName("messenger/note/sendAfter");
-	
+		return mv;
+	}
 	//-----------
 	
 	@GetMapping("chat1")
