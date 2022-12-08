@@ -2,6 +2,8 @@ package com.app.home.messenger;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.app.home.user.DepartmentVO;
 import com.app.home.user.EmployeeVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("messenger")
+@Slf4j
 public class MessengerController {
 	
 	@Autowired
@@ -23,10 +28,12 @@ public class MessengerController {
 	private MessengerService messengerService;
 	
 	@GetMapping("chat")
-	public ModelAndView getMyChat()throws Exception{
+	public ModelAndView getMyChat(HttpSession session)throws Exception{
+		int id = 1;
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<EmployeeVO> el = messengerService.getEmpList();
+		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
 		return mv;
