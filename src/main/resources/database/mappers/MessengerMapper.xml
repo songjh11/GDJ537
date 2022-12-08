@@ -5,6 +5,16 @@
 
 <mapper namespace="com.app.home.messenger.MessengerMapper">
 
+<sql id="search">
+			WHERE	
+	 		<choose>
+				<when test="kind==0">E.NAME</when>
+				<when test="kind==1">D.DEPNAME</when>
+				<otherwise>R.ROLENAME</otherwise>
+			 </choose>
+			LIKE CONCAT('%', #{keyword}, '%')
+</sql>
+
 	<select id="getEmpList" resultMap="getEmpListResult">
 		SELECT E.*, D.DEPNUM,D.DEPNAME, R.ROLENAME FROM EMPLOYEE E
 		INNER JOIN
@@ -31,9 +41,9 @@
 				 	ROLE R
 				 	ON E.ROLENUM=R.ROLENUM	
 				 	<if test="kind!=null">
-						WHERE #{kind} LIKE CONCAT("%",#{keyword},"%")	 	
+						<include refid="search"></include> 	
 				 	</if>
-			ORDER BY D.DEPNUM, E.NAME;	
+			ORDER BY D.DEPNUM, E.NAME
 	</select>
 	
 	
