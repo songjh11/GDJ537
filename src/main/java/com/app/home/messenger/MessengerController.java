@@ -31,6 +31,9 @@ public class MessengerController {
 	@Autowired
 	private MessengerService messengerService;
 	
+	@Autowired
+	private PickService pickService;
+	
 	// DB저장이 아니라 방의 정보를 담아둘 List<RoomVO>를 생성
 	List<RoomVO> roomVOs =  new ArrayList<RoomVO>();
 	
@@ -68,7 +71,10 @@ public class MessengerController {
 	
 	@GetMapping("pick")
 	public int setPick (String myId, String yourId) throws Exception{
-		
+		myId = "1";
+		int result = pickService.createPick(myId);
+		log.info("result:{}",result);
+		return 0;
 	}
 	
 	//수신함
