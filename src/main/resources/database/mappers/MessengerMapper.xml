@@ -69,4 +69,11 @@
 			</association>
 	</resultMap>
 	
+	<!--                       효경                       -->
+	
+	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum">
+		INSERT INTO  CHATROOM
+		VALUES(#{roomNum}, now(), #{roomName}, #{hostId}, #{pw})
+	</insert>
+	
 </mapper>    
