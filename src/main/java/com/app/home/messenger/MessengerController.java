@@ -33,6 +33,7 @@ public class MessengerController {
 		return mv;
 	}
 	
+	//수신함
 	@GetMapping("note")
 	public ModelAndView getReceiveNoteList(EmployeeVO employeeVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -46,6 +47,7 @@ public class MessengerController {
 		
 	}
 	
+	//발신함
 	@GetMapping("note/sent")
 	@ResponseBody
 	public ModelAndView getSendNoteList(EmployeeVO employeeVO)throws Exception{
@@ -59,6 +61,7 @@ public class MessengerController {
 		
 	}
 	
+	//쪽지 상세
 	@GetMapping("note/detail")
 	public ModelAndView getNoteDetail(NoteVO noteVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -68,6 +71,7 @@ public class MessengerController {
 		return mv;
 	}
 	
+	//쪽지발송
 	@GetMapping("note/send")
 	public ModelAndView setSendNote(EmployeeVO employeeVO)throws Exception{
 		ModelAndView mv = new ModelAndView();

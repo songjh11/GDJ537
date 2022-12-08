@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<% pageContext.setAttribute("replaceChar", "\r\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -215,22 +217,23 @@
 	}
 
 	#noteContent {
-		/* height: 520px; */
+		height: 700px;
 		overflow-y: scroll;
 	}
 
 	.noteList{
-		/* border: 1px solid; */
-		background: #3b4bbd0f;
-		margin: 8px 5px;
+		border: 1px solid #d8d9f7a1;
+		/* background: #3b4bbd0f; */
+		background: #fff;
+		margin: 8px 7px;
 		display: flex;
-		height: 70px;
+		height: 73px;
 		align-items: center;
 		padding: 3px;
 		overflow: hidden;
 		border-radius: 10px 10px;
    		font-size: 13px;
-		box-shadow: 2px 2px #8080801f;
+		box-shadow: 2px 2px 5px #8080801f;
 		
 	}
 
@@ -256,11 +259,17 @@
 	}
 
 	#listInfo div:nth-child(1) {
-		margin: 3px 0px 3px;
+		margin: 3px 0px 4px;
 		font-weight: bold;
 	}
 
-	
+	#listInfo div:nth-child(2) {
+		word-wrap: break-word;
+		text-overflow: ellipsis;
+    	width: 300px;
+	}
+
+
 
 	/* .noteList div:nth-child(3){
 		text-overflow: ellipsis;
@@ -411,7 +420,7 @@
 
 					<div class="chatDiv">
 
-						<!-- YR -->
+						<!------------------------------------ YR ------------------------------------------->
 						<div class="noteStart">
 							<!-- <div id="noteTitle">쪽지함</div> -->
 
@@ -431,19 +440,36 @@
 										</div>
 										<div id="listInfo">
 											<div>발신자:${list.sendId}</div>
-											<div>${list.contents}</div>
+											<div>${fn:replace(list.contents, replaceChar, "<br/>")}
+												<!-- ${list.contents} -->
+											</div>
 										</div>
 									</div>
 
 								</c:forEach>
+
+								<div>임시쪽지보내기버튼
+									<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
+								</div>
+	
+								
 							</div>
 
-							<div>임시쪽지보내기버튼
-								<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
+							<div id="pagination">
+								<p>
+									<a href="">왼쪽</a>
+									<a href="">1</a>
+									<a href="">오른쪽</a>
+								</p>
+
+
 							</div>
+
+							
 
 						</div>
-						<!-- YR -->
+						<!------------------------------------ YR ------------------------------------------->
+
 
 					</div>
 
@@ -476,8 +502,9 @@
 		<!-- End of Content Wrapper -->
 	</div>
 
-	<script>
 
+
+	<script>
 		$('#sendNote').on("click",function(){
 			console.log("하이");
 			window.open('./note/send?receiveId=2', '_blank', "width=450px, height=500px, location=no, top=100, left=500");
@@ -502,9 +529,11 @@
 					let tempest = '';
 
 					$.each(data.list, function(index, item) { 
-						console.log(item);
+						// console.log(item);
 						$('#noteContent').empty();
-						console.log(item.noteNum);
+						// console.log(item.noteNum);
+						item.contents = item.contents.replace(/\r\n/g, "</br>");
+
 						tempest += '<div class="noteList" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/messenger/test.png" alt=""></div><div id="listInfo"><div>수신자:'+item.receiveId+'</div><div>'+item.contents+'</div></div></div>'
 
 						$('#noteContent').html(tempest);
