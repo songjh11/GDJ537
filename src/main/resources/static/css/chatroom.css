@@ -8,7 +8,7 @@
 
 /* ----- hearder ----- */
 .header {
-    background-color: aquamarine;
+    background-color: #4e73df;
     width: 100%;
     height: 80px;
     position: fixed;
@@ -40,7 +40,7 @@
 
 /* ----- chat ----- */
 .chat {
-    background-color: beige;
+    background-color: #4e73df;
     width: 100%;
     height: 750px;
     margin-top: 80px;
@@ -68,7 +68,7 @@
 }
 
 .you-bubble {
-    background-color: cadetblue;
+    background-color: #4e73df24;
     padding: 0.6rem;
     border-radius: 0.5rem;
 }
@@ -98,7 +98,7 @@
 }
 
 .me-bubble {
-    background-color: cadetblue;
+    background-color: #4e73df24;
     padding: 0.6rem;
     border-radius: 0.5rem;
 }
@@ -111,7 +111,7 @@
 
 /* ----- put ----- */
 .put {
-    background-color: aquamarine;
+    background-color: #ffffff;
     width: 100%;
     height: 85px;
     margin-top: 830px;
@@ -125,7 +125,7 @@
 .typing .text {
     width: 100%;
     height: 48px;
-    background-color: aquamarine;
+    background-color: #ffffff;
     color: #000;
 }
 
@@ -134,7 +134,7 @@
     height: 35px;
     width: 50px;
     align-content: center;
-    background-color: aliceblue;
+    background-color: #4e73df;
     border-radius: 0.5rem;
     font-size: smaller;
 }
