@@ -1,5 +1,6 @@
 package com.app.home.messenger;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,11 @@ public class MessengerController {
 
 	@Autowired
 	private MessengerService messengerService;
+	
+	// DB저장이 아니라 방의 정보를 담아둘 List<RoomVO>를 생성
+	List<RoomVO> roomVOs =  new ArrayList<RoomVO>();
+	
+	static int roomNum = 0;
 	
 	@GetMapping("chat")
 	public ModelAndView getMyChat(HttpSession session)throws Exception{
