@@ -38,18 +38,24 @@ public class MessengerController {
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
+		mv.addObject("message", "all");
 		return mv;
 	}
 	
 	@PostMapping("searchEmp")
-	public ModelAndView getSearchResult(String kind, String keyword) throws Exception{
-//		log.info("keyword:{},kind:{}", keyword, kind);
+	public ModelAndView getSearchResult(HttpSession session, String kind, String keyword) throws Exception{
+		log.info("keyword:{},kind:{}", keyword, kind);
+		int id = 1;
 		Map<String, String> map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("kind", kind);
 		List<EmployeeVO> el = messengerService.getSearchResult(map);
-		log.info("map:{}", el);
+		log.info("el:{}", el);
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("myId", id);
+		mv.addObject("empList", el);
+		mv.addObject("message", "search");
+		mv.setViewName("/messenger/chat");
 		return mv;
 	}
 	
