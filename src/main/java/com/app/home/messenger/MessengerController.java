@@ -31,23 +31,11 @@ public class MessengerController {
 	@Autowired
 	private MessengerService messengerService;
 	
-	static int roomNum = 0;
+	@Autowired
+	private PickService pickService;
 	
 	@GetMapping("chat")
 	public ModelAndView getMyChat(HttpSession session)throws Exception{
-		int id = 1;
-		ModelAndView mv = new ModelAndView();
-		List<DepartmentVO> dl = messengerService.getDepList();
-		List<EmployeeVO> el = messengerService.getEmpList();
-		mv.addObject("myId", id);
-		mv.addObject("depList", dl);
-		mv.addObject("empList", el);
-		mv.addObject("message", "all");
-		return mv;
-	}
-	
-	@GetMapping("chatTest")
-	public ModelAndView getMyChat2(HttpSession session)throws Exception{
 		int id = 1;
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> dl = messengerService.getDepList();
@@ -76,6 +64,14 @@ public class MessengerController {
 		return mv;
 	}
 	
+	@GetMapping("pickCheck")
+	@ResponseBody
+	public int setPickCheck (String myId, String yourId) throws Exception{
+		int result = pickService.createPick(myId, yourId);
+		log.info("result:{}",result);
+		return 0;
+	}
+	
 	//수신함
 	@GetMapping("note")
 	public ModelAndView getReceiveNoteList(EmployeeVO employeeVO)throws Exception{
@@ -86,6 +82,15 @@ public class MessengerController {
 		List<NoteVO> ar = noteService.getReceiveNoteList(employeeVO);
 		
 		mv.addObject("list", ar);
+		
+		int id = 1;
+		List<DepartmentVO> dl = messengerService.getDepList();
+		List<EmployeeVO> el = messengerService.getEmpList();
+		mv.addObject("myId", id);
+		mv.addObject("depList", dl);
+		mv.addObject("empList", el);
+		mv.addObject("message", "all");
+		
 		return mv;
 		
 	}
