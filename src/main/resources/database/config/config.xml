@@ -6,6 +6,8 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="java.util.List" alias="List"/>
-  		
+  		<typeAlias type="com.app.home.user.UserVO" alias="UserVO"/>
+  		<typeAlias type="com.app.home.user.RoleVO" alias="RoleVO"/>
+  		<typeAlias type="com.app.home.user.DepartmentVO" alias="DepartmentVO"/>
   	</typeAliases>
   </configuration>
