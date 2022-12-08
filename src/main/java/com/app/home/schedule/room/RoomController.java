@@ -79,8 +79,7 @@ public class RoomController
 
 		log.info("room reserve: {}", rs);
 
-		modelAndView.addObject("rs", rs);
-		modelAndView.setViewName("/goods/room/roomList");
+		modelAndView.setViewName("redirect:/goods/room/roomList");
 
 		return modelAndView;
 	}
