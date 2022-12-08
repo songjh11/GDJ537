@@ -1,5 +1,3 @@
-console.log("main");
-
 const modal = document.getElementById("modal")
 const closeBtn = modal.querySelector(".close-area")
 closeBtn.addEventListener("click", e => {
@@ -8,19 +6,21 @@ closeBtn.addEventListener("click", e => {
 
 
 $(".btnArea").on("click", ".pickBtn", function(){
-    console.log("픽픽");
-    console.log($(this).attr("userNum"));
+    console.log($(this).attr("value"));
     console.log($(this).children(".pickImg"));
+    let myId = 1;
+    let yourId = $(this).attr("value");
     let src = $(this).children(".pickImg").attr("src");
     console.log("1",src);
     if(src == "/img/star (3).png"){
         src = "/img/star (4).png"
         $(this).children(".pickImg").attr("src", src);
-        console.log("2",src);
+        $.ajax({
+
+        })
     } else{
         src = "/img/star (3).png"
         $(this).children(".pickImg").attr("src", src);
-        console.log("3",src);
     }
 })
 
