@@ -218,7 +218,7 @@
 
 	#noteContent {
 		height: 700px;
-		overflow-y: scroll;
+		
 	}
 
 	.noteList{
@@ -269,10 +269,6 @@
     	width: 300px;
 	}
 
-	#noteContent::-webkit-scrollbar {
-		display: none;
-	}
-
 	/* .noteList div:nth-child(3){
 		text-overflow: ellipsis;
 	} */
@@ -315,111 +311,8 @@
 
 					<div class="chatDiv">
 						<div class="blank"></div>
-						<div>
-							<!-- Topbar Search -->
-						<form class="form-inline navbar-search" style="display: flex; justify-content: flex-end; margin-right: 10px; margin-bottom: 30px;">
-							<div class="input-group" style="width: 100%;"> 
-								<select class="searchOption form-control" value="">
-									<option vlaue="" selected>정렬</option>
-									<option value="">이름 순</option>
-									<option value="">부서 순</option>
-									<option value="">직급 순</option>
-								</select>
-								<input type="text" class="form-control bg-light border-0 small" style="width: 180px !important;" placeholder="Search for..."
-									aria-label="Search" aria-describedby="basic-addon2">
-								<div class="input-group-append">
-									<button class="btn btn-primary" type="button">
-										<i class="fas fa-search fa-sm"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-						</div>
-						<ul class="chatUl">
-							<li class="titleLi">
-								<span style="margin-left: 20px;">즐겨찾기</span>
-								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
-								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
-							</li>
-							<ul class="acoArea" id="acoArea1">
-								<li class="chatLi">
-									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-										<div>
-											<img class="yourImg" src="/img/undraw_profile_3.svg">
-										</div>
-										<div class="userInfo">
-											<span>김사원</span>
-											<span>(마케팅부/사원)</span>
-										</div>
-										<div class="btnArea">
-											<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
-										</div>
-									</div>
-								</li>
-								<li class="chatLi">
-									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-										<div>
-											<img class="yourImg" src="/img/undraw_profile_3.svg">
-										</div>
-										<div class="userInfo">
-											<span>김사원</span>
-											<span>(마케팅부/사원)</span>
-										</div>
-											<div class="btnArea">
-												<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
-											</div>
-									</div>
-								</li>
-							</ul>
-							<li class="titleLi">
-								<span style="margin-left: 20px;">개발팀</span>
-								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
-								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
-							</li>
-							<ul class="acoArea">
-								<li class="chatLi">
-									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-										<div>
-											<img class="yourImg" src="/img/undraw_profile_3.svg">
-										</div>
-										<div class="userInfo" style="width: 60%;">
-											<span>김사원</span>
-											<span>(마케팅부/사원)</span>
-										</div>
-											<div class="btnArea">
-												<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
-											</div>
-									</div>
-								</li>
-							</ul>
-							<li class="titleLi">
-								<span style="margin-left: 20px;">인사팀</span>
-								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
-								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
-							</li>
-							<ul class="acoArea">
-								<li class="chatLi">
-									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-										<div>
-											<img class="yourImg" src="/img/undraw_profile_3.svg">
-										</div>
-										<div class="userInfo" style="width: 60%;">
-											<span>김사원</span>
-											<span>(마케팅부/사원)</span>
-										</div>
-											<div class="btnArea">
-												<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
-											</div>
-									</div>
-								</li>
-							</ul>
-						</ul>
+							<c:import url="./employeeList.jsp"></c:import>	
 					</div>
-
-
-
-
-
 					<div class="chatDiv">
 
 						<!------------------------------------ YR ------------------------------------------->
