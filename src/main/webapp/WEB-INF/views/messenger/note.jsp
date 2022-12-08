@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<% pageContext.setAttribute("replaceChar", "\r\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -191,13 +193,21 @@
 	}
 
 	#noteTitle {
-		height: 8%;
-    	font-size: 30px;
+		height: 50px;
+    	font-size: 25px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	#noteChoice {
 		display: flex;
-		height: 5%;
+		height: 57px;
+		border: 1px solid #80808042;
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		/* box-shadow: 0px -5px 7px -4px #80808052; */
+		margin: 10px 0px 0px;
 	}
 
 	#noteChoice div {
@@ -207,18 +217,23 @@
 	}
 
 	#noteContent {
-		height: 78%;
+		height: 700px;
 		overflow-y: scroll;
 	}
 
 	.noteList{
-		/* border: 1px solid; */
-		background: #3b4bbd0f;
-		margin: 3px 5px;
+		border: 1px solid #d8d9f7a1;
+		/* background: #3b4bbd0f; */
+		background: #fff;
+		margin: 8px 7px;
 		display: flex;
-		height: 80px;
+		height: 73px;
 		align-items: center;
 		padding: 3px;
+		overflow: hidden;
+		border-radius: 10px 10px;
+   		font-size: 13px;
+		box-shadow: 2px 2px 5px #8080801f;
 		
 	}
 
@@ -240,13 +255,23 @@
 
 	#listInfo {
 		margin-bottom: auto;
+		width: 75%;
 	}
 
 	#listInfo div:nth-child(1) {
-		margin: 3px 0px 1px;
+		margin: 3px 0px 4px;
+		font-weight: bold;
 	}
 
-	
+	#listInfo div:nth-child(2) {
+		word-wrap: break-word;
+		text-overflow: ellipsis;
+    	width: 300px;
+	}
+
+	#noteContent::-webkit-scrollbar {
+		display: none;
+	}
 
 	/* .noteList div:nth-child(3){
 		text-overflow: ellipsis;
@@ -397,56 +422,58 @@
 
 					<div class="chatDiv">
 
-						<!-- YR -->
+						<!------------------------------------ YR ------------------------------------------->
 						<div class="noteStart">
-							<div id="noteTitle">쪽지함</div>
+							<!-- <div id="noteTitle">쪽지함</div> -->
 
 							<div id="noteChoice">
-								<div><button>수신</button></div>
-								<div><button>발신</button></div>
+								<div><button id="receiveNote" onclick="location.href='./note'"><img src="/img/messenger/receive.png" alt=""></button></div>
+								<div><button id="sentNoteList"><img src="/img/messenger/send.png" alt=""></button></div>
 								
 							</div>
 
+							
+
 							<div id="noteContent">
 								<c:forEach items="${list}" var="list">
-
 									<div class="noteList" onclick="notePop(${list.noteNum})">
 										<div id="listImage">
 											<img src="/img/messenger/test.png" alt="">
 										</div>
-
-										
-
 										<div id="listInfo">
-											<div>${list.sendId}</div>
-											<div>${list.contents}</div>
-											
-										
+											<div>발신자:${list.sendId}</div>
+											<div>${fn:replace(list.contents, replaceChar, "<br/>")}
+												<!-- ${list.contents} -->
+											</div>
 										</div>
-										
-										
-
 									</div>
 
 								</c:forEach>
+
+								<div>임시쪽지보내기버튼
+									<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
+								</div>
+	
+								
 							</div>
 
+							<div id="pagination">
+								<p>
+									<a href="">왼쪽</a>
+									<a href="">1</a>
+									<a href="">오른쪽</a>
+								</p>
+
+
+							</div>
+
+							
+
 						</div>
-						<!-- YR -->
+						<!------------------------------------ YR ------------------------------------------->
 
-
-						<script>
-							function notePop(num) {
-								window.open('./note/detail?noteNum='+num, '_blank', "width=500px, height=500px, location=no, top=100, left=500");
-							};
-						</script>
-						
 
 					</div>
-
-
-
-
 
 					<div class="chatDiv">
 						<div class="blank"></div>
@@ -476,6 +503,50 @@
 		</div>
 		<!-- End of Content Wrapper -->
 	</div>
+
+
+
+	<script>
+		$('#sendNote').on("click",function(){
+			console.log("하이");
+			window.open('./note/send?receiveId=2', '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+		})
+		function notePop(num) {
+			window.open('./note/detail?noteNum='+num, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+		};
+
+		$('#sentNoteList').on("click", function(){
+			console.log("일로와");
+
+			$.ajax({
+				type:"GET",
+				url :"./note/sent",
+				traditional:true, //배열을 전송할 때 사용, true
+				data:{
+					ii: 1
+				},
+				success : function(data){
+					console.log("나는성공, 나의 데이터는? : ", data);
+
+					let tempest = '';
+
+					$.each(data.list, function(index, item) { 
+						// console.log(item);
+						$('#noteContent').empty();
+						// console.log(item.noteNum);
+						item.contents = item.contents.replace(/\r\n/g, "</br>");
+
+						tempest += '<div class="noteList" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/messenger/test.png" alt=""></div><div id="listInfo"><div>수신자:'+item.receiveId+'</div><div>'+item.contents+'</div></div></div>'
+
+						$('#noteContent').html(tempest);
+					})
+				},
+				error   : function(){
+					console.log("나는에러");
+				}
+			});
+		})
+	</script>
 
 	<!-- Scroll Top, Login Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
