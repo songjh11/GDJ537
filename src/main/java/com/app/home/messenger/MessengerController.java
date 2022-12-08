@@ -69,10 +69,10 @@ public class MessengerController {
 		return mv;
 	}
 	
-	@GetMapping("pick")
-	public int setPick (String myId, String yourId) throws Exception{
-		myId = "1";
-		int result = pickService.createPick(myId);
+	@GetMapping("pickCheck")
+	@ResponseBody
+	public int setPickCheck (String myId, String yourId) throws Exception{
+		int result = pickService.createPick(myId, yourId);
 		log.info("result:{}",result);
 		return 0;
 	}
