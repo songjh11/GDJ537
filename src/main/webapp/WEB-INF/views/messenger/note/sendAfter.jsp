@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
 
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
@@ -31,7 +31,7 @@
             flex-direction: column;
         }
 
-        #title {
+        #afterMsg {
             color: black;
             height: 50px;
             width: 430px;
@@ -45,41 +45,15 @@
 
         }
 
-        #contents {
-            height: 390px;
-            background-color: #fff;
-            width: 430px;
-            margin: 0 auto 10px;
-            border-radius: 10px 10px;
-            box-shadow: 2px 2px #8080801f;
-        }
-
-        #realContents {
-            padding: 12px;
-        }
-
-        #inputContents {
-            /* background: #c1d1ec26; */
-            border: none;
-            width: 100%;
-            height: 330px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            padding: 5px;
-        }
-
-        textarea:focus { 
-            outline: none; 
-        }
-
-        textarea {
-            resize: none;
+        #afterMsg > div {
+            padding: 16px;
         }
 
         #btnDiv {
             height: 40px; 
             display: flex; 
             justify-content: center;
+            align-items: center;
         }
 
         #sendBtn {
@@ -90,8 +64,10 @@
             color: #fff;
             border-radius: 7px;
             box-shadow: 1px 2px 2px 1px #80808085;
+        }
 
-
+        #sendBtn:hover {
+            cursor: pointer;
         }
 
     </style>
@@ -100,8 +76,19 @@
 <body>
     <div id="noteBox">
         <div id="afterMsg">
-            ${message}
+            <div>${message}</div>
+        </div>
+
+        <div id="btnDiv">
+            <button type="button" id="sendBtn">닫기</button>
         </div>
     </div>
+
+    <script>
+        $('#sendBtn').on("click", function(){
+            console.log("닫자");
+            window.close();
+        })
+    </script>
 </body>
 </html>

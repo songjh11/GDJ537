@@ -1,6 +1,7 @@
 package com.app.home.messenger;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Data;
 
@@ -11,7 +12,7 @@ public class NoteVO {
 	private Long sendId;
 	private Long receiveId;
 	private String contents;
-	private Date regDate;
+	private Timestamp regDate;
 	private int readCheck;
 	
 }

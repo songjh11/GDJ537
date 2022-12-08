@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
 
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
@@ -42,14 +42,16 @@
             align-items: center;
             border-radius: 10px 10px;
             font-weight: bold;
+            font-size: 14px;
+
 
         }
 
         #contents {
-            height: 390px;
+            height: 380px;
             background-color: #fff;
             width: 430px;
-            margin: 0 auto 10px;
+            margin: 0 auto 7px;
             border-radius: 10px 10px;
             box-shadow: 2px 2px #8080801f;
         }
@@ -61,7 +63,7 @@
         #inputContents {
             /* background: #c1d1ec26; */
             border: none;
-            width: 100%;
+            width: 99%;
             height: 330px;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
@@ -80,6 +82,7 @@
             height: 40px; 
             display: flex; 
             justify-content: center;
+            align-items: center;
         }
 
         #sendBtn {
@@ -90,8 +93,10 @@
             color: #fff;
             border-radius: 7px;
             box-shadow: 1px 2px 2px 1px #80808085;
+        }
 
-
+        #sendBtn:hover {
+            cursor: pointer;
         }
 
     </style>
