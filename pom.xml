@@ -26,6 +26,11 @@
 		
 		<!-- 보고서   1조 -->
 		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency> 
+		
 		<!-- 메신져   3조 -->
 	
 	

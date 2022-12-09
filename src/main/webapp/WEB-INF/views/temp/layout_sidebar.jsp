@@ -79,6 +79,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="#">업무보고서</a>
                         <a class="collapse-item" href="#">휴가신청서</a>
+                        <a class="collapse-item" href="/hjs/insa">휴가담당 관리자</a>
                     </div>
                 </div>
 			</li>
@@ -104,7 +105,7 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - 관리자 -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../hjs/insa">
                     <i class="fas fa-fw fa-table"></i>
                     <span>관리자</span></a>
             </li> 
