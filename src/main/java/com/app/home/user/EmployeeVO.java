@@ -2,6 +2,8 @@ package com.app.home.user;
 
 import java.sql.Date;
 
+import com.app.home.messenger.PickVO;
+
 import lombok.Data;
 
 @Data
@@ -21,4 +23,5 @@ public class EmployeeVO {
 	
 	private RoleVO roleVO;
 	private DepartmentVO departmentVO; 
+	private PickVO pickVO;
 }

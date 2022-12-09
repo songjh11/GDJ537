@@ -46,6 +46,16 @@
 		ORDER BY E.NAME
 	</select>
 	
+	<select id="perCheck" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM PICKDETAIL
+		WHERE PICKNUM=#{pickNum} AND YOURID=#{yourId}
+	</select>
+	
+	<delete id="pickCancel" parameterType="Map">
+		DELETE FROM PICKDETAIL
+		WHERE PICKNUM=#{pickNum} AND YOURID=#{yourId}
+	</delete>
+	
 	<!-- <select id="getDepList" resultType="DepartmentVO">
 		SELECT * FROM DEPARTMENT
 		ORDER BY DEPNUM
@@ -107,6 +117,10 @@
 			<association property="departmentVO">
 				<id column="DEPNUM" property="depNum"/>
 				<result column="DEPNAME" property="depName"/>
+			</association>
+			<association property="pickVO">
+				<id column="PICKNUM" property="pickNum"/>
+				<result column="MYID" property="myId"/>
 			</association>
 	</resultMap>
 	
