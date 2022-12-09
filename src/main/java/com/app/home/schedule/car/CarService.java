@@ -60,5 +60,10 @@ public class CarService {
 		
 		return carMapper.getGoods(goodsVO);
 	}
+	
+	public List<GoodsVO> getGoodsList(GoodsVO goodsVO) throws Exception {
+		
+		return carMapper.getGoodsList(goodsVO);
+	}
 
 }

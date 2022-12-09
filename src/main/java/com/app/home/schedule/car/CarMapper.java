@@ -27,4 +27,6 @@ public interface CarMapper {
 	
 	// 상세보기
 	public GoodsVO getGoods(GoodsVO goodsVO) throws Exception;
+	
+	public List<GoodsVO> getGoodsList(GoodsVO goodsVO) throws Exception;
 }

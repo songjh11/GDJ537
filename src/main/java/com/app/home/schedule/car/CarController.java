@@ -24,9 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value = "/goods/*")
 @Slf4j
 public class CarController {
-
-	@Autowired
-	private GoodsService goodsService;
 	
 	@Autowired
 	private CarService carService;
@@ -63,7 +60,7 @@ public class CarController {
 	public ModelAndView setUpdate(ReserveVO reserveVO, ModelAndView mv, HttpSession session) throws Exception {
 		GoodsVO goodsVO = new GoodsVO();
 		
-		List<GoodsVO> goodsVOs = goodsService.getGoodsList(goodsVO);
+		List<GoodsVO> goodsVOs = carService.getGoodsList(goodsVO);
 		reserveVO = carService.getReserveDetail(reserveVO);
 		
 		session.setAttribute("reserveNum", reserveVO.getReserveNum());
@@ -127,7 +124,7 @@ public class CarController {
 	public ModelAndView getCarList(GoodsVO goodsVO, ModelAndView mv, HttpSession session) throws Exception {
 		ReserveVO reserveVO = new ReserveVO();
 		
-		List<GoodsVO> goodsVOs = goodsService.getGoodsList(goodsVO);
+		List<GoodsVO> goodsVOs = carService.getGoodsList(goodsVO);
 		List<ReserveVO> reserveVOs = carService.getReserveList(reserveVO);
 
 		log.info("goodVO list: {}", goodsVOs);

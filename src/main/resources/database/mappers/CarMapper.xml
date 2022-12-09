@@ -59,5 +59,29 @@
 			<result column="ORINAME" property="oriName"></result>
 		</collection>
 	</resultMap>
+	
+	<!-- 공공시설 전체 출력 -->
+	<select id="getGoodsList" parameterType="GoodsVO"
+		resultMap="getGoods">
+		SELECT * FROM GOODS G
+		left JOIN GOODSFILE F
+		ON G.ID = F.ID
+	</select>
+
+	<resultMap type="GoodsVO" id="getGoods">
+		<id column="ID" property="id"></id>
+		<result column="NAME" property="name"></result>
+		<result column="MAX" property="max"></result>
+		<result column="CONTENTS" property="contents"></result>
+		<result column="LOCATION" property="location"></result>
+		<result column="CARNUM" property="carNum"></result>
+
+		<collection property="goodsFileVO" javaType="List"
+			ofType="GoodsFileVO">
+			<id column="IMGNUM" property="imgNum"></id>
+			<result column="FILENAME" property="fileName"></result>
+			<result column="ORINAME" property="oriName"></result>
+		</collection>
+	</resultMap>
 
 </mapper>    
