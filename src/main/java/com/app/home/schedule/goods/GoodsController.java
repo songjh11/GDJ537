@@ -14,29 +14,36 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@RequestMapping(value="/goods/*")
+import lombok.extern.slf4j.Slf4j;
+
+@RequestMapping(value = "/goods/*")
 @Controller
-public class GoodsController {
-	
+@Slf4j
+public class GoodsController
+{
+
 	@Autowired
 	private GoodsService goodsService;
-	
+
 	@GetMapping("add")
-	public String getAdd() throws Exception{
+	public String getAdd() throws Exception
+	{
 		return "/goods/add";
 	}
-	
+
 	@PostMapping("add")
-	public String setAdd(GoodsVO goodsVO, MultipartFile [] files,
-			RedirectAttributes redirectAttributes,HttpSession session) throws Exception{
-		int result = goodsService.setAdd(goodsVO,files,session.getServletContext());
+	public String setAdd(GoodsVO goodsVO, MultipartFile[] files, RedirectAttributes redirectAttributes, HttpSession session)
+			throws Exception
+	{
+		int result = goodsService.setAdd(goodsVO, files, session.getServletContext());
 		return "redirect:/goods/add";
 	}
-	
+
 	@GetMapping("update")
-	public ModelAndView getUpdate(GoodsVO goodsVO,ModelAndView mv,HttpSession session) throws Exception{
+	public ModelAndView getUpdate(GoodsVO goodsVO, ModelAndView mv, HttpSession session) throws Exception
+	{
 		goodsVO = goodsService.getGoods(goodsVO);
-		String str = goodsVO.getId().substring(0,2);
+		String str = goodsVO.getId().substring(0, 2);
 		session.setAttribute("id", goodsVO.getId());
 		if(goodsVO.getGoodsFileVO() != null) {
 			List<GoodsFileVO> list = goodsVO.getGoodsFileVO();
@@ -47,7 +54,7 @@ public class GoodsController {
 		mv.setViewName("/goods/update");
 		return mv;
 	}
-	
+
 	@PostMapping("update")
 	public String setUpdate(GoodsVO goodsVO,MultipartFile [] files,HttpSession session,String [] fileUpdateNumber) throws Exception {
 		String id = (String) session.getAttribute("id");

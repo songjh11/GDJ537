@@ -7,18 +7,18 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
-public interface GoodsMapper {
-	
+public interface GoodsMapper
+{
 	public int setAdd(GoodsVO goodsVO) throws Exception;
-	
+
 	public int getCount(GoodsVO goodsVO) throws Exception;
-	 
+
 	public String getMaxCount(GoodsVO goodsVO) throws Exception;
-	
+
 	public int setGoodsFileAdd(GoodsFileVO goodsFileVO) throws Exception;
-	
+
 	public GoodsVO getGoods(GoodsVO goodsVO) throws Exception;
-	
+
 	public int setUpdate(GoodsVO goodsVO) throws Exception;
 	
 	public GoodsFileVO getFileNumCheck(GoodsFileVO goodsFileVO) throws Exception;

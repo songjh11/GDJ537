@@ -59,8 +59,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">예약 List</h6>
-                        <a class="collapse-item" href="#">회의실 예약</a>
-                        <a class="collapse-item" href="#">출장자동차 예약</a>
+                        <a class="collapse-item" href="/goods/room/roomList">회의실 예약</a>
+                        <a class="collapse-item" href="/goods/car/carList">출장자동차 예약</a>
                     </div>
                 </div>
             </li>

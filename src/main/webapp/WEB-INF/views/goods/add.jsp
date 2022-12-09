@@ -55,6 +55,7 @@
 						<label class="test_obj">
 						    <input type="radio" name="id" value="CA">
 						    <span>차량</span>
+						    <span>차량1</span>
 						</label>
 					  </div>
 					  <div class="mb-3">
