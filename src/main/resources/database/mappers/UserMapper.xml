@@ -181,11 +181,6 @@
    <update id="setProfile" parameterType="UserVO">
        UPDATE USER SET PROFILE=#{profile} WHERE ID=#{id}
    </update>
-	
-
-	<insert id="setJoin" parameterType="UserVO">
-      INSERT INTO USER VALUES(null,#{id},1,1,#{pw},#{name},#{email},#{phone},now(),"asd","asd");
-   </insert>
 
    <select id="getLogin" parameterType="String" resultMap="getUserVO">
       SELECT U.*, R.*
