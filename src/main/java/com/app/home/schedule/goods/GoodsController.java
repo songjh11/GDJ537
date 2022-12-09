@@ -128,7 +128,7 @@ public class GoodsController {
 	public List<Map<String, Object>> getCalendar(Model model,GoodsReserveVO goodsReserveVO) throws Exception{
 		
 		
-		List<GoodsReserveVO> list = goodsService.getReserveList();
+		List<ReserveVO> list = goodsService.getReserveList();
 		JSONObject jsonObj = new JSONObject();
         JSONArray jsonArr = new JSONArray();
  
