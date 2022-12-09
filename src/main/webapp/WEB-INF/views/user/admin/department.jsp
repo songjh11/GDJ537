@@ -48,7 +48,7 @@
                      id="department">부서</a></li>
                   <li class="nav-item"><a class="nav-link" href="./role"
                      id="role">직급</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#" id="addDepartment">+</a></li>
+                  <!-- <li class="nav-item"><a class="nav-link" href="#" id="addDepartment">+</a></li> -->
                </ul>
 
                <!-- <table class="table table-bordered w-auto"> -->
@@ -80,10 +80,9 @@
                         <td class="departmentDel"><a href="#">X</a></td>
                      </tr>
                      </c:forEach>
-                     
-
                   </tbody>
                </table>
+                  <a class="nav-link" href="#" id="addDepartment">부서 추가</a>
 
 
             </div>

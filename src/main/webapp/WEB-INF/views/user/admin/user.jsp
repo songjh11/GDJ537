@@ -56,7 +56,7 @@
                <table class="table table-bordered">
                   <thead>
                      <tr>
-                        <th class="id" scope="col">사원번호<i class="fas fa-bell"></i></th>
+                        <th class="id" scope="col">사원번호</th>
                         <th class="roleName" scope="col">직급</th>
                         <th class="depName" scope="col">부서</th>
                         <th class="name" scope="col">이름</th>
@@ -75,8 +75,8 @@
                         <td class="showUser" data-user="name">${userVO.name}</td>
                         <td class="showUser" data-user="email">${userVO.email}</td>
                         <td class="showUser" data-user="phone">${userVO.phone}</td>
-                        <td>${userVO.entDate}</td>
-                        <td class="dismiss"><a href="#">X</a></td>
+                        <td class="showUser" data-user="entDate">${userVO.entDate}</td>
+                        <td class="dismiss"><a href="#">퇴사</a></td>
                      </tr>
                      </c:forEach>
 

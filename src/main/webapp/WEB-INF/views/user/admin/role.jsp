@@ -47,7 +47,7 @@
                      id="department">부서</a></li>
                   <li class="nav-item"><a class="nav-link active" href="./role"
                      id="role">직급</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#" id="roleAdd">+</a></li>
+                  <!-- <li class="nav-item"><a class="nav-link" href="#" id="roleAdd">+</a></li> -->
                </ul>
 
                <!-- <table class="table table-bordered w-auto"> -->
@@ -70,7 +70,7 @@
 
                   </tbody>
                </table>
-
+				<a class="nav-link" href="#" id="roleAdd">직급 추가</a>
 
             </div>
             <!-- End Page Content -->

@@ -70,6 +70,8 @@ $(".dismiss").click(function(){
                 break;
                 case 'phone':phoneUpdate(id,getName);
                 break;
+                case 'entDate':entDateUpdate(id,getName);
+                break;
             }
         }
     })()   
@@ -162,6 +164,25 @@ function phoneUpdate(id,phone){
         data:{
             id:id,
             phone:phone
+        },
+        success:function(){
+            Swal.fire('번호를 변경하였습니다.','','success');
+            setTimeout(function(){
+                location.reload();
+            },1000);
+        },
+        error:function(error){
+            Swal.fire('실패하였습니다.','','error');
+        }
+    })
+};
+function entDateUpdate(id,entDate){
+    $.ajax({
+        type:"post",
+        url:"/user/admin/entDateUpdate",
+        data:{
+            id:id,
+            entDate:entDate
         },
         success:function(){
             Swal.fire('번호를 변경하였습니다.','','success');

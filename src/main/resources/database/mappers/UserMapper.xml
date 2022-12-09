@@ -131,6 +131,10 @@
       UPDATE USER SET PHONE=#{phone} WHERE ID=#{id}
    </update>
    
+   <update id="setEntDateUpdate" parameterType="UserVO">
+      UPDATE USER SET ENTDATE=#{entDate} WHERE ID=#{id}
+   </update>
+   
    <insert id="setDepartmentInsert" parameterType="DepartmentVO">
       INSERT INTO DEPARTMENT VALUES(NULL,#{depName},NULL)
    </insert>
@@ -158,6 +162,10 @@
    <delete id="setRoleDel" parameterType="RoleVO">
       DELETE FROM ROLE WHERE ROLENUM=#{roleNum}
    </delete>
+   
+   <select id="getDepCheck" parameterType="UserVO" resultType="UserVO">
+      SELECT * FROM USER WHERE DEPNUM=#{depNum};
+   </select>
 	
 	<!-- 사원번호 조회 -->
    <select id="getIdCheck" parameterType="UserVO" resultMap="getUserVO">

@@ -126,6 +126,11 @@ public class UserService {
 		int result = userMapper.setPhoneUpdate(userVO);
 		return result;
 	}
+	
+	public int setEntDateUpdate(UserVO userVO) throws Exception {
+		int result = userMapper.setEntDateUpdate(userVO);
+		return result;
+	}
 
 	public int setDepartmentInsert(DepartmentVO departmentVO) throws Exception {
 		int result = userMapper.setDepartmentInsert(departmentVO);
@@ -160,6 +165,11 @@ public class UserService {
 	public int setRoleAdd(RoleVO roleVO) throws Exception {
 		int result = userMapper.setRoleAdd(roleVO);
 		return result;
+	}
+	
+	public List<UserVO> getDepCheck(UserVO userVO) throws Exception {
+		List<UserVO> userVOs = userMapper.getDepCheck(userVO);
+		return userVOs;
 	}
 
 	@Value("${app.profile}") // C:/user/profile/

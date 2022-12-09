@@ -75,8 +75,8 @@
                         <td>${userVO.email}</td>
                         <td>${userVO.phone}</td>
                         <td>${userVO.entDate}</td>
-                        <td class="allow" ><a href="#">O</a></td>
-                        <td class="allowNot"><a href="#">X</a></td>
+                        <td class="allow" ><a href="#">승인</a></td>
+                        <td class="allowNot"><a href="#">미승인</a></td>
                      </tr>
                      </c:forEach>
                      
