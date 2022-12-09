@@ -10,5 +10,8 @@
   		
   		<typeAlias type="com.app.home.report.ReportVO" alias="ReportVO"/>
   		
+  		
+  		<typeAlias type="com.app.home.report.UserVO" alias="UserVO"/>
+  		
   	</typeAliases>
   </configuration>

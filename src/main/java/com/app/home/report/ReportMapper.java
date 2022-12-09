@@ -1,6 +1,11 @@
 package com.app.home.report;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Mapper
 public interface ReportMapper {
+	
 	
 	
 	//=======================김도영===================
@@ -19,7 +24,7 @@ public interface ReportMapper {
 	
 	//=======================한종석===================
 	
-	
+	public int setLstatusUpdate(ReportVO reportVO) throws Exception;
 	
 	
 	
