@@ -148,5 +148,9 @@ public class GoodsService
 	public List<GoodsVO> getCarList() throws Exception{
 		return goodsMapper.getCarList();
 	}
+	public List<GoodsReserveVO> getReserveList() throws Exception{
+		
+		return goodsMapper.getReserveList();
+	}
 
 }
