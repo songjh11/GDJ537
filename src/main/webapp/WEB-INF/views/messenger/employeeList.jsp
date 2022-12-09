@@ -276,6 +276,7 @@
 								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
 							</li>
 							<ul class="acoArea pickLi">
+								<div id="pickRemove">
 								<c:choose>
 									<c:when test="${empty pickList}">
 									</c:when>
@@ -311,6 +312,7 @@
 										</c:forEach>
 									</c:when>
 								</c:choose>
+								</div>
 							</ul>
 							<c:choose>
 								<c:when test="${not empty depList}">
