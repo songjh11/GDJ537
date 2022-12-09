@@ -116,7 +116,7 @@
 		</collection>
 	</resultMap>
 	
-	<select id="getReserveList" parameterType="GoodsReserveVO" resultType="GoodsReserveVO">
+	<select id="getReserveList" parameterType="ReserveVO" resultType="ReserveVO">
 		select * from RESERVE;
 	</select>
 	
