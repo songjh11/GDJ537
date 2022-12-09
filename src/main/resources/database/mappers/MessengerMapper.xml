@@ -39,15 +39,21 @@
 	
 	<select id="getSearchResult" parameterType="Map" resultMap="getEmpListResult">
 		SELECT * FROM EMPLOYEE E
-			INNER JOIN
-			DEPARTMENT D
-			ON E.DEPNUM=D.DEPNUM
-			INNER JOIN
-				 	ROLE R
-				 	ON E.ROLENUM=R.ROLENUM	
-				 	<if test="kind!=null">
-						<include refid="search"></include> 	
-				 	</if>
+			LEFT JOIN
+			PICKDETAIL PD 
+			ON E.ID=PD.YOURID 
+				LEFT JOIN
+				PICK P
+				ON P.PICKNUM=PD.PICKNUM 
+					INNER JOIN
+					DEPARTMENT D
+					ON E.DEPNUM=D.DEPNUM
+					INNER JOIN
+						 	ROLE R
+						 	ON E.ROLENUM=R.ROLENUM	
+						 	<if test="kind!=null">
+								<include refid="search"></include> 	
+						 	</if>
 			ORDER BY D.DEPNUM, E.NAME
 	</select>
 	

@@ -297,12 +297,12 @@
 														<c:choose>
 															<c:when test="${p.pickVO.myId eq myId}">
 																<div class="btnArea">
-																	<button type="button" class="pickBtn" value="${p.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																	<button type="button" class="pickBtn" value="${p.id}" pickBtnNum="${p.id}"><img class="pickImg" src="/img/star (4).png"></button>
 																</div>
 															</c:when>
 															<c:when test="${p.pickVO.myId ne myId}">
 																<div class="btnArea">
-																	<button type="button" class="pickBtn" value="${p.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																	<button type="button" class="pickBtn" value="${p.id}" pickBtnNum="${p.id}"><img class="pickImg" src="/img/star (3).png"></button>
 																</div>
 															</c:when>
 														</c:choose>
@@ -357,7 +357,7 @@
 								</c:when>
 								<c:when test="${empty depList}">
 									<div>
-										<a href="../messenger/chat">button</a>
+										<a href="../messenger/chat"><img style="width: 30px;" src="/img/messenger/left.png"></a>
 									</div>
 									<c:choose>
 										<c:when test="${empty empList}">
@@ -378,7 +378,14 @@
 																<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 															</div>
 															<div class="btnArea">
-																<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																<c:choose>
+																	<c:when test="${e.pickVO.myId eq myId}">
+																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																	</c:when>
+																	<c:when test="${e.pickVO.myId ne myId}">
+																		<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																	</c:when>
+																</c:choose>
 															</div>
 														</div>
 													</li>

@@ -57,7 +57,7 @@ public class MessengerController {
 	@PostMapping("searchEmp")
 	public ModelAndView getSearchResult(HttpSession session, String kind, String keyword) throws Exception{
 		log.info("keyword:{},kind:{}", keyword, kind);
-		int id = 1;
+		int id = 10;
 		Map<String, String> map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("kind", kind);

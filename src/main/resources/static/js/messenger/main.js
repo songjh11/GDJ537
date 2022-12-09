@@ -27,13 +27,15 @@ $(".btnArea").on("click", ".pickBtn", function(){
                     console.log("추가됨", result);
                     $("#pickRemove").append(appendLi);
                 } else{
-                    console.log("실패", result);                }
+                    console.log("실패", result);                
+                }
             },error:function(error){
                 console.log("error",error);
             }
         })
     } else{
         src = "/img/star (3).png"
+        let pickBtnNum = $(this).attr("value");
         $(this).children(".pickImg").attr("src", src);
         $.ajax({
             type:"POST",
@@ -43,7 +45,13 @@ $(".btnArea").on("click", ".pickBtn", function(){
                 yourId:yourId
             },success:function(result){
                 if(result>0){
-                    console.log("취소됨", result);                    
+                    console.log("취소됨", result); 
+                    $(".pickBtn").each(function(index,item){
+                        if($(item).attr("value") === pickBtnNum){
+                            $(this).parents(".chatLi").remove();
+                            return false;
+                        }
+                    })                       
                 } else{
                     console.log("실패", result);
                 }
