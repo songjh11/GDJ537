@@ -93,17 +93,18 @@
             align-items: center;
         }
 
-        #sendBtn {
-            background: linear-gradient(45deg, #758eff, #8a63da8a);
+        .sendBtn {
+            /* background: linear-gradient(45deg, #758eff, #8a63da8a); */
             height: 30px;
             width: 60px;
             border: none;
             color: #fff;
             border-radius: 7px;
             box-shadow: 1px 2px 2px 1px #80808085;
+            margin: 7px;
         }
 
-        #sendBtn:hover {
+        .sendBtn:hover {
             cursor: pointer;
         }
 
@@ -116,7 +117,7 @@
             <div id="receiveId">발신자 : 김경경 (${detail.sendId})</div>
         </div> -->
         <div id="title">
-            <div style="margin: 15px;">발신자 : 김경경 (${detail.sendId})</div>
+            <div sendId="${detail.sendId}" id="sendId" style="margin: 15px;">발신자 : 김경경 (${detail.sendId})</div>
             <div style="margin: 15px;">수신자 : 박수신 (${detail.receiveId})</div>
         </div>
         <div id="contents">
@@ -128,15 +129,23 @@
             
         </div>
         <div id="btnDiv">
-            <button type="button" id="sendBtn">닫기</button>
+            <button type="button" class="sendBtn" id="reply" style="background: linear-gradient(45deg, #758eff, #8a63da8a)">답장</button>
+            <button type="button" class="sendBtn" id="close" style="background: linear-gradient(45deg, #a6a6a6, #7473758a);">닫기</button>
         </div>
     </div>
 
     <script>
-        $('#sendBtn').on("click", function(){
+        $('#close').on("click", function(){
             console.log("닫자");
             window.close();
         })
+
+        $('#reply').on("click",function(){
+			console.log("답장");
+            let sId = $("#sendId").attr("sendId");
+            console.log(sId);
+			window.open('./send?receiveId='+sId, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+		})
     </script>
 </body>
 </html>

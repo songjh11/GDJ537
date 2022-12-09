@@ -117,8 +117,8 @@
             <input type="hidden" name="sendId" value="${member.id}">
             <input type="hidden" name="receiveId" value="${param.receiveId}">
             <div id="title">
-                <div style="margin: 15px;">발신자 : ${member.id}</div>
-                <div style="margin: 15px;">수신자 : ${param.receiveId}</div>
+                <div style="margin: 15px;">발신자 : 발신자 (${member.id})</div>
+                <div style="margin: 15px;">수신자 : 수신자 (${param.receiveId})</div>
             </div>
             <div id="contents">
                 <div id="realContents">
@@ -145,7 +145,7 @@
         })
 
         $("#sendBtn").on("click", function(){
-            if(val.length<5000) {
+            if(val.length<5001) {
                 $("#fofo").submit();
             } else {
                 alert("쪽지는 5000자까지 작성할 수 있습니다.")
