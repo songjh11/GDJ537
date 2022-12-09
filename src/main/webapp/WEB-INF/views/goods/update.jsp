@@ -84,6 +84,7 @@
 						<div class="mb-3" id="fileAddResult">      
 							<c:forEach items="${list}" var="li">
 								<div class="file_form mt-2">
+									<img src="/resources/upload/goods/${li.fileName}"  width="300" height="300">
 									<input type="file" name="files" class="files form-control">
 									<span class="text" >${li.oriName}</span> 
 									<button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>
