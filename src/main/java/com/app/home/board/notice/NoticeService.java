@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class NoticeService {
-	
+
 	@Autowired
 	private BoardDAO boardDAO;
 	@Value("${app.file.base.board}")
@@ -25,7 +25,7 @@ public class NoticeService {
 	private FileManager fileManager;
 	@Autowired
 	private FileDAO fileDAO;
-	
+
 	public boolean checkValid(BoardVO boardVO) {
 		boolean chkId = false;
 		boolean chkTitle = false;
@@ -38,16 +38,16 @@ public class NoticeService {
 			return false;
 		}
 
-				
+
 		return chkId&chkTitle&chkContents;
 	}
-	
+
 	public int setNotice(BoardVO boardVO) throws Exception{
 		//sort에 1 (notice) 세팅
 		boardVO.setSort(1);
-		
+
 		int result = boardDAO.setBoard(boardVO);
-		
+
 		if(result == 1 && boardVO.getMultipartFiles() !=null) {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(file.getOriginalFilename()!="") {
@@ -56,25 +56,25 @@ public class NoticeService {
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setNum(boardVO.getNum());
-					
+
 					int result2 =fileDAO.setFile(fileVO);
 				}
 			}
 		}
 
-		
+
 		return result;
 	}
-	
+
 	public BoardVO getDetail(BoardVO boardVO) throws Exception{
 		boardVO = boardDAO.getDetail(boardVO);
-		
+
 		return boardVO;
 	}
-	
+
 	public int setUpdate(BoardVO boardVO) throws Exception{
 		int result = boardDAO.setUpdate(boardVO);
-		
+
 		if(result == 1 && boardVO.getMultipartFiles() !=null) {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(file.getOriginalFilename()!="") {
@@ -83,12 +83,12 @@ public class NoticeService {
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setNum(boardVO.getNum());
-					
+
 					int result2 =fileDAO.setFile(fileVO);
 				}
 			}
 		}
-		
+
 		return result;
 	}
 

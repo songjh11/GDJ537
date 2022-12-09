@@ -22,7 +22,7 @@ class BoardDAOTest {
 	//@Test
 	void pagingTest() throws Exception {
 		int result = 0;
-		for(int i = 0; i < 100; i++) {
+		for(int i = 0; i < 10; i++) {
 			BoardVO boardVO = new BoardVO();
 			boardVO.setId(1234);
 			boardVO.setTitle("test" + i);
@@ -33,7 +33,7 @@ class BoardDAOTest {
 			unknownService.setUnknownAdd(boardVO);
 			result++;
 		}
-		assertEquals(100, result);
+		assertEquals(10, result);
 	}
 
 }
