@@ -37,7 +37,7 @@
 						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"></button></a>
 						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
 					</div>
-					<div class="chatDiv">
+					<div class="chatDiv" id="chatArea">
 						<div class="blank"></div>
 							<c:import url="./employeeList.jsp"></c:import>	
 					</div>

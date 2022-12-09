@@ -294,9 +294,18 @@
 															<span class="empName" empId="${p.id}" value="${p.name}">😎${p.name}</span>
 															<span id="depN${p.id}" value="${p.departmentVO.depName}/${p.roleVO.roleName}">(${p.departmentVO.depName}/${p.roleVO.roleName})</span>
 														</div>
-														<div class="btnArea">
-															<button type="button" class="pickBtn" value="${p.id}"><img class="pickImg" src="/img/star (3).png"></button>
-														</div>
+														<c:choose>
+															<c:when test="${p.pickVO.myId eq myId}">
+																<div class="btnArea">
+																	<button type="button" class="pickBtn" value="${p.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																</div>
+															</c:when>
+															<c:when test="${p.pickVO.myId ne myId}">
+																<div class="btnArea">
+																	<button type="button" class="pickBtn" value="${p.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																</div>
+															</c:when>
+														</c:choose>
 													</div>
 												</li>
 											</c:if>

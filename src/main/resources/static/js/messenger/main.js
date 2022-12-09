@@ -11,7 +11,6 @@ $(".btnArea").on("click", ".pickBtn", function(){
     let myId = 10;
     let yourId = $(this).attr("value");
     let src = $(this).children(".pickImg").attr("src");
-    console.log("1",src);
     if(src == "/img/star (3).png"){
         src = "/img/star (4).png"
         $(this).children(".pickImg").attr("src", src);
@@ -22,15 +21,35 @@ $(".btnArea").on("click", ".pickBtn", function(){
                 myId:myId,
                 yourId:yourId
             },success:function(result){
-                console.log(result);
+                if(result>0){
+                    console.log("추가됨", result);
+                } else{
+                    console.log("실패", result);
+                }
             },error:function(error){
                 console.log("error",error);
             }
-
         })
     } else{
         src = "/img/star (3).png"
         $(this).children(".pickImg").attr("src", src);
+        $.ajax({
+            type:"POST",
+            url:"/messenger/pickCancel",
+            data:{
+                myId:myId,
+                yourId:yourId
+            },success:function(result){
+                if(result>0){
+                    console.log("취소됨", result);
+                    // $('#chatArea').load(location.href+' #chatArea');
+                } else{
+                    console.log("실패", result);
+                }
+            },error:function(error){
+                console.log("error",error);
+            }
+        })
     }
 })
 

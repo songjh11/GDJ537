@@ -41,13 +41,15 @@ public class MessengerController {
 	
 	@GetMapping("chat")
 	public ModelAndView getMyChat(HttpSession session)throws Exception{
-		int id = 1;
+		Integer id = 10;
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<EmployeeVO> el = messengerService.getEmpList();
+		List<EmployeeVO> pl = pickService.getPickList(id.toString());
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
+		mv.addObject("pickList", pl);
 		mv.addObject("message", "all");
 		return mv;
 	}
@@ -74,7 +76,15 @@ public class MessengerController {
 	public int setPickCheck (String myId, String yourId) throws Exception{
 		int result = pickService.createPick(myId, yourId);
 		log.info("result:{}",result);
-		return 0;
+		return result;
+	}
+	
+	@PostMapping("pickCancel")
+	@ResponseBody
+	public int pickCancel (String myId, String yourId) throws Exception{
+		int result = pickService.pickCancel(myId, yourId);
+		log.info("result:{}",result);
+		return result;
 	}
 	
 	//수신함
