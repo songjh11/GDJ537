@@ -9,10 +9,10 @@ public class ReserveVO {
 	private Long reserveNum;
 	private String id;
 	private Date date;
-	private String memberNum;
-	private String usePurpose;
 	private String startTime;
 	private String endTime;
+	private String memberNum;
+	private String usePurpose;
 	
 	private GoodsVO goodsVO;
 }

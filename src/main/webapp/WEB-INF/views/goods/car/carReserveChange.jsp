@@ -35,46 +35,46 @@
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
 						
-						<form action="carReserve" method="POST">
-							<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">차량 예약</h1>
+						<form action="carReserveChange" method="POST">
+							<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">차량 예약 변경</h1>
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
-										<th>차량번호</th>
-										<td>${goods.carNum}</td>
+ 										<th>차량번호</th>
+<%--									<td>${goods.carNum}</td>
 										<th>모델명</th>
 										<td>${goods.name}</td>									
 										<th>정원</th>
-										<td>${goods.max}명</td>													
+										<td>${goods.max}명</td>	 --%>												
 									</tr>
 								</table>
 								
-								<input type="hidden" name="id" value="${goods.id}">
+<%-- 								<input type="hidden" name="id" value="${goods.id}"> --%>
 								
 								<div class="mb-3">
 									<label>예약날짜</label>
-									<input type="date" name="startTime" class="form-control" id="exampleFormControlInput1" placeholder="시작시간">
+									<input type="date" name="startTime" class="form-control" id="exampleFormControlInput1" value="${reserve.startTime}">
 									<br>
 								</div>
 								
 								<div class="mb-3">
 									<label>반납날짜</label>
-									<input type="date" name="endTime" class="form-control" id="exampleFormControlInput1" placeholder="시작시간">
+									<input type="date" name="endTime" class="form-control" id="exampleFormControlInput1" value="${reserve.endTime}">
 									<br>
 								</div> 
 								
 								<div class="mb-5">
 									<label>예약자</label>
-									<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="아이유">
+									<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="아이폰">
 								</div>
 								
 								<div class="mb-5">
 									<label>부서명</label>
-									<input type="text" class="form-control" id="exampleFormControlInput1" value="인사과">
+									<input type="text" class="form-control" id="exampleFormControlInput1" value="애플">
 								</div>	
 																																	
 								<div class="mb-5">
-								  <label>사용 목적</label>
-								  <input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1">
+								  <label>변경 사유</label>
+								  <input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1" placeholder="${reserve.usePurpose }">
 								</div>
 								
 								<button type="submit" class="btn btn-success">예약하기</button>

@@ -34,7 +34,7 @@
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
-						<h1 class="h3 mb-4 text-gray-800">회의실 상세정보</h1>
+						<h1 class="h3 mb-4 text-gray-800">차량 상세정보</h1>
 
 					</section>
 
