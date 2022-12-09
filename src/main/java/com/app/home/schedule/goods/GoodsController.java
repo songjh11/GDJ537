@@ -54,8 +54,8 @@ public class GoodsController {
 	public ModelAndView getUpdate(GoodsVO goodsVO, ModelAndView mv, HttpSession session) throws Exception
 	{
 		goodsVO = goodsService.getGoods(goodsVO);
-		String str = goodsVO.getId().substring(0, 2);
-		session.setAttribute("id", goodsVO.getId());
+		String str = goodsVO.getGoodsId().substring(0, 2);
+		session.setAttribute("id", goodsVO.getGoodsId());
 		if(goodsVO.getGoodsFileVO() != null) {
 			List<GoodsFileVO> list = goodsVO.getGoodsFileVO();
 			mv.addObject("list", list);
@@ -69,7 +69,7 @@ public class GoodsController {
 	@PostMapping("update")
 	public String setUpdate(GoodsVO goodsVO,MultipartFile [] files,HttpSession session,String [] fileUpdateNumber) throws Exception {
 		String id = (String) session.getAttribute("id");
-		goodsVO.setId(id);
+		goodsVO.setGoodsId(id);
 		int result = goodsService.setUpdate(goodsVO,files,session.getServletContext(),fileUpdateNumber);
 		return "/goods/update";
 	}

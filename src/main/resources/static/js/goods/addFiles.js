@@ -19,6 +19,7 @@ $("#fileAdd").click(function(){
         r = r+'<input type="file" name="files" class="files form-control">';
         r = r+'<span class="text">선택된 파일 없음</span> ';
         r = r+'<button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>'
+        r = r+'<div id="see"></div>'
         r = r+'</div>';
         $("#fileAddResult").append(r);
     }else {
@@ -31,7 +32,22 @@ $("#fileAdd").click(function(){
             console.log("rr");
             var fileName = $($(".files")[i]).val();
             let result = fileName.split('\\'); // fileName c\\filepath\\fileName.jpg
+            console.log(fileName);
+            // const reader = new FileReader();
+            // reader.onload = ({ target }) => {
+            //     src = target.result;
+            // };
+            // if($(".files")[i]){
+            //     reader.readAsDataURL($(".files")[i]);
+            //   }
+            // let r = `<img src=`+src+` width=300 height=300>`
+            // $("#fileAddResult").append(r);
+            // const imageSrc = URL.createObjectURL($($(".files").files[0]));
+            // src = imageSrc;
+            // let r = `<img src=`+src+` width=300 height=300>`
+            // $("#fileAddResult").append(r);
             $($(".text")[i]).html(result[2]);
+            
             // $.ajax({
             //     type:"POST",
             //     url :"./fileDelete",

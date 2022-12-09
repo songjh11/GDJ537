@@ -35,10 +35,10 @@ public class GoodsService
 		{
 			count = Integer.parseInt(goodsMapper.getMaxCount(goodsVO).substring(2)) + 1;
 		}
-		if(goodsVO.getId().equals("RO")) {
+		if(goodsVO.getGoodsId().equals("RO")) {
 			goodsVO.setCarNum(null);
 		}
-		goodsVO.setId(goodsVO.getId().concat(String.valueOf(count)));
+		goodsVO.setGoodsId(goodsVO.getGoodsId().concat(String.valueOf(count)));
 		
 		int result = goodsMapper.setAdd(goodsVO);
 		String path = "resources/upload/goods";
@@ -56,7 +56,7 @@ public class GoodsService
 					GoodsFileVO goodsFileVO = new GoodsFileVO();
 					goodsFileVO.setFileName(fileName);
 					goodsFileVO.setOriName(file.getOriginalFilename());
-					goodsFileVO.setId(goodsVO.getId());
+					goodsFileVO.setGoodsId(goodsVO.getGoodsId());
 					goodsMapper.setGoodsFileAdd(goodsFileVO);
 				}
 			}
@@ -96,20 +96,20 @@ public class GoodsService
 						
 							goodsFileVO.setFileName(fileName);
 							goodsFileVO.setOriName(file.getOriginalFilename());
-							goodsFileVO.setId(goodsVO.getId());
+							goodsFileVO.setGoodsId(goodsVO.getGoodsId());
 							goodsMapper.setGoodsFileAdd(goodsFileVO);
 						}else {
 							goodsFileVO.setImgNum(Long.parseLong(fileUpdateNumber[count]));
 							goodsFileVO.setFileName(fileName);
 							goodsFileVO.setOriName(file.getOriginalFilename());
-							goodsFileVO.setId(goodsVO.getId());
+							goodsFileVO.setGoodsId(goodsVO.getGoodsId());
 							goodsMapper.setGoodsFileAdd(goodsFileVO);
 							count++;
 						}
 					}else if(fileUpdateNumber == null) {
 						goodsFileVO.setFileName(fileName);
 						goodsFileVO.setOriName(file.getOriginalFilename());
-						goodsFileVO.setId(goodsVO.getId());
+						goodsFileVO.setGoodsId(goodsVO.getGoodsId());
 						goodsMapper.setGoodsFileAdd(goodsFileVO);
 					}
 				}

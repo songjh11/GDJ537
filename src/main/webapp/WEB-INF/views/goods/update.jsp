@@ -48,17 +48,17 @@
 					    	<label for="exampleInputName" class="form-label" data-str-num="${str}">kind</label>
 					    </div>
 					    <label class="test_obj">
-						    <input type="radio" <c:if test="${str == 'RO'}">checked</c:if> value=${goods.id} disabled>
+						    <input type="radio" <c:if test="${str == 'RO'}">checked</c:if> value=${goods.goodsId} disabled>
 						    <span>회의실</span>
 						</label>
 						 
 						<label class="test_obj">
-						    <input type="radio" <c:if test="${str == 'CA'}">checked</c:if> value=${goods.id} disabled>
+						    <input type="radio" <c:if test="${str == 'CA'}">checked</c:if> value=${goods.goodsId} disabled>
 						    <span>차량</span>
 						</label>
 					  </div>
 					  <div>
-						<input type="hidden" id="goodId" name="id" value="${goods.id}">
+						<input type="hidden" id="goodId" name="goodsId" value="${goods.goodsId}">
 					  </div>
 					  <div class="mb-3">
 					    <label for="exampleInputName" class="form-label">name</label>
@@ -96,7 +96,7 @@
 				 		</div>
 					  </div>
 					  <button type="submit" class="btn btn-primary">Submit</button>
-					  <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.id}">
+					  <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}">
 					</form>
 	
 	            </div>

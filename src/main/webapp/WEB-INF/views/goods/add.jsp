@@ -48,14 +48,13 @@
 					    	<label for="exampleInputName" class="form-label">kind</label>
 					    </div>
 					    <label class="test_obj">
-						    <input type="radio" name="id" value="RO">
+						    <input type="radio" name="goodsId" value="RO">
 						    <span>회의실</span>
 						</label>
 						 
 						<label class="test_obj">
-						    <input type="radio" name="id" value="CA">
+						    <input type="radio" name="goodsId" value="CA">
 						    <span>차량</span>
-						    <span>차량1</span>
 						</label>
 					  </div>
 					  <div class="mb-3">

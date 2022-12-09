@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class GoodsVO {
 	
-	private String id;
+	private String goodsId;
 	private String name;
 	private int max;
 	private String contents;

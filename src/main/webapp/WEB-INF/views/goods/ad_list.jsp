@@ -53,16 +53,16 @@
 						<div id="tab-1" class="tab-content current">
 							<div class="row mb-2" id="ro">
 								<c:forEach items="${room}" var="ro">
-								<div class="col-md-6" data-item-num="${ro.id}">
-								  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-item-num="${ro.id}">
-									<div class="col p-4 d-flex flex-column position-static" data-item-num="${ro.id}">
-									  <h3 class="mb-0" data-item-num="${ro.id}">${ro.name}</h3>
-									  <div class="mb-1 text-muted" data-item-num="${ro.id}">최대 정원 : ${ro.max}명</div>
-									  <p class="card-text mb-auto" data-item-num="${ro.id}">상세설명 : ${ro.contents}</p>
-									  <p class="card-text mb-auto" data-item-num="${ro.id}">위치 : ${ro.location}</p>
+								<div class="col-md-6" data-item-num="${ro.goodsId}">
+								  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-item-num="${ro.goodsId}">
+									<div class="col p-4 d-flex flex-column position-static" data-item-num="${ro.goodsId}">
+									  <h3 class="mb-0" data-item-num="${ro.goodsId}">${ro.name}</h3>
+									  <div class="mb-1 text-muted" data-item-num="${ro.goodsId}">최대 정원 : ${ro.max}명</div>
+									  <p class="card-text mb-auto" data-item-num="${ro.goodsId}">상세설명 : ${ro.contents}</p>
+									  <p class="card-text mb-auto" data-item-num="${ro.goodsId}">위치 : ${ro.location}</p>
 									</div>
-									<div class="col-auto d-none d-lg-block" data-item-num="${ro.id}">
-									  <img src="/resources/upload/goods/${ro.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ro.id}">
+									<div class="col-auto d-none d-lg-block" data-item-num="${ro.goodsId}">
+									  <img src="/resources/upload/goods/${ro.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ro.goodsId}">
 									</div>
 								  </div>
 								</div> 
@@ -73,17 +73,17 @@
 						<div id="tab-2" class="tab-content">
 							<div class="row mb-2" id="ca">
 								<c:forEach items="${car}" var="ca">
-								<div class="col-md-6" data-item-num="${ca.id}">
-								  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-item-num="${ca.id}">
-									<div class="col p-4 d-flex flex-column position-static" data-item-num="${ca.id}">
-									  <h3 class="mb-0" data-item-num="${ca.id}">${ca.name}</h3>
-									  <div class="mb-1 text-muted" data-item-num="${ca.id}">최대 정원 : ${ca.max}명</div>
-									  <p class="card-text mb-auto" data-item-num="${ca.id}">상세설명 : ${ca.contents}</p>
-									  <p class="card-text mb-auto" data-item-num="${ca.id}">위치 : ${ca.location}</P>
-									  <p class="card-text mb-auto" data-item-num="${ca.id}">차량 번호 : ${ca.carNum}</P>
+								<div class="col-md-6" data-item-num="${ca.goodsId}">
+								  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-item-num="${ca.goodsId}">
+									<div class="col p-4 d-flex flex-column position-static" data-item-num="${ca.goodsId}">
+									  <h3 class="mb-0" data-item-num="${ca.goodsId}">${ca.name}</h3>
+									  <div class="mb-1 text-muted" data-item-num="${ca.goodsId}">최대 정원 : ${ca.max}명</div>
+									  <p class="card-text mb-auto" data-item-num="${ca.goodsId}">상세설명 : ${ca.contents}</p>
+									  <p class="card-text mb-auto" data-item-num="${ca.goodsId}">위치 : ${ca.location}</P>
+									  <p class="card-text mb-auto" data-item-num="${ca.goodsId}">차량 번호 : ${ca.carNum}</P>
 									</div>
-									<div class="col-auto d-none d-lg-block" data-item-num="${ca.id}">
-										<img src="/resources/upload/goods/${ca.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ca.id}">
+									<div class="col-auto d-none d-lg-block" data-item-num="${ca.goodsId}">
+										<img src="/resources/upload/goods/${ca.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ca.goodsId}">
 									</div>
 								  </div>
 								</div>  

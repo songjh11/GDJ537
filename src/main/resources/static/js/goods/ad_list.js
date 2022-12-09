@@ -19,13 +19,13 @@ $("#add").click(function(){
 
 $("#ro").click(function(event){
     let t = $(event.target).attr("data-item-num");
-    location.href="/goods/update?id="+t;
+    location.href="/goods/update?goodsId="+t;
 })
 
 
 $("#ca").click(function(event){
     let t = $(event.target).attr("data-item-num");
-    location.href="/goods/update?id="+t;
+    location.href="/goods/update?goodsId="+t;
 })
 
 
