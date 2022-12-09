@@ -62,7 +62,9 @@ public class ReportService {
 	
 	//=======================류형민===================
 	
-	
+	public void getMyReportList() throws Exception{
+		
+	}
 	
 	
 	

@@ -1,5 +1,7 @@
 package com.app.home.report;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -63,8 +65,9 @@ public class ReportController {
 	
 	//=======================류형민===================
 	
-	
-	
+	public void getMyReportList() throws Exception{
+		
+	}
 	
 	
 	
