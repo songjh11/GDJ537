@@ -8,6 +8,13 @@
 <!-- meta tag 추가 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
+<script defer src="/js/hjs/drop.js"></script>
+<c:import url="../common/jquery.jsp"></c:import>
+<style>
+	.deptLi{
+		cursor: pointer;
+	}
+</style>
 <!-- 공통 css, js, jquery -->
 <c:import url="../temp/layout_header.jsp"></c:import>
 </head>
@@ -43,13 +50,14 @@
 				   부서
 				 </button>
 				  <div class="dropdown-menu">
-					   <select name="whsalCd" id="whsalCd">
-			                <option value="110001">영업팀</option>
-			                <option value="311201">총무팀</option>
-			                <option value="240004">인사팀</option>
-			                <option value="250001">IT개발팀</option>
-			                <option value="220001">생산팀</option>
-		              </select>
+		              <input id="dropId" name="depNum" value="${userVO.depNum}"> 
+					   <ul>
+					   		<li class="deptLi" data-depNum="1">영업팀</li>
+					   		<li class="deptLi" data-depNum="2">총무팀</li>
+					   		<li class="deptLi" data-depNum="3">인사팀</li>
+					   		<li class="deptLi" data-depNum="4">IT개발팀</li>
+					   		<li class="deptLi" data-depNum="5">생산팀</li>
+					   </ul>
 				  </div>
 			</div>
 			
