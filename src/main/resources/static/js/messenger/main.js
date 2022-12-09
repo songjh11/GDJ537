@@ -14,6 +14,8 @@ $(".btnArea").on("click", ".pickBtn", function(){
     if(src == "/img/star (3).png"){
         src = "/img/star (4).png"
         $(this).children(".pickImg").attr("src", src);
+        console.log($(this).parents(".chatLi"));
+        let appendLi = $(this).parents(".chatLi").clone();
         $.ajax({
             type:"GET",
             url:"/messenger/pickCheck",
@@ -23,9 +25,9 @@ $(".btnArea").on("click", ".pickBtn", function(){
             },success:function(result){
                 if(result>0){
                     console.log("추가됨", result);
+                    $(".pickLi").append(appendLi);
                 } else{
-                    console.log("실패", result);
-                }
+                    console.log("실패", result);                }
             },error:function(error){
                 console.log("error",error);
             }
@@ -41,8 +43,7 @@ $(".btnArea").on("click", ".pickBtn", function(){
                 yourId:yourId
             },success:function(result){
                 if(result>0){
-                    console.log("취소됨", result);
-                    // $('#chatArea').load(location.href+' #chatArea');
+                    console.log("취소됨", result);                    
                 } else{
                     console.log("실패", result);
                 }

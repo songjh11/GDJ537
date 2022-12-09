@@ -275,10 +275,9 @@
 								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
 								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
 							</li>
-							<ul class="acoArea">
+							<ul class="acoArea pickLi">
 								<c:choose>
 									<c:when test="${empty pickList}">
-										<h1>즐겨찾기한 직원이 없습니다</h1>
 									</c:when>
 									<c:when test="${not empty pickList}">
 										<c:forEach items="${pickList}" var="p">
@@ -337,7 +336,14 @@
 																<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 															</div>
 															<div class="btnArea">
-																<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																<c:choose>
+																	<c:when test="${e.pickVO.myId eq myId}">
+																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																	</c:when>
+																	<c:when test="${e.pickVO.myId ne myId}">
+																		<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																	</c:when>
+																</c:choose>
 															</div>
 														</div>
 													</li>
