@@ -10,7 +10,10 @@
 	<!-- ==================================== -->
 	
 	<!-- ============== 한종석 ================ -->
-	
+	<!-- 권한수정 누구를 부장(lstatus = 2)로 바꿀것인지 ****id를 받아서 -->
+	<update id="setLstatusUpdate" parameterType="ReportVO">
+		UPDATE REPORTLICENCES SET LSTATUS = 2 WHERE ID = #{id}
+	</update>
 	
 	
 	<!-- ==================================== -->
