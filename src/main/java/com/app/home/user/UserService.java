@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,13 @@ public class UserService {
 
 	@Autowired
 	private FileManager fileManager;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Value("${app.profile}") // C:/user/profile/
+	private String path;
+	
 
 	public UserVO setUserID(UserVO userVO) throws Exception {
 		userMapper.setUser(userVO);
@@ -162,8 +170,6 @@ public class UserService {
 		return result;
 	}
 
-	@Value("${app.profile}") // C:/user/profile/
-	private String path;
 
 	// 사원번호 조회
 	public UserVO getIdCheck(UserVO userVO) throws Exception {
@@ -172,30 +178,29 @@ public class UserService {
 
 	// 회원가입
 	public int setJoin(UserVO userVO, String email, String address) throws Exception {
+		//패스워드 암호화
+		userVO.setPw(passwordEncoder.encode(userVO.getPw()));
+		
 		// 이메일
 		userVO.setEmail(email + "@" + address);
-		int result = userMapper.setJoin(userVO);
 
+		// 프로필사진 등록
 		File file = new File(path);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
-
-		// 프로필사진 등록
+		
 		if (userVO.getFile() != null) {
 			MultipartFile f = userVO.getFile();
 			String fileName = fileManager.saveFile(f, path);
 			userVO.setProfile(fileName);
-			userVO.setId(userVO.getId());
-			userMapper.setProfile(userVO);
-
-		} else { // default 이미지
+			log.info("=====userVO : {}", userVO);
+			return userMapper.setJoin(userVO);
+			
+		} else {
 			userVO.setProfile("user.webp");
-			userVO.setId(userVO.getId());
-			userMapper.setProfile(userVO);
+			return userMapper.setJoin(userVO);
 		}
-
-		return result;
+		
 	}
-
 }

@@ -70,7 +70,5 @@ public interface UserMapper {
 	   
 	public int setJoin(UserVO userVO) throws Exception;
 	   
-	public int setProfile(UserVO userVO) throws Exception;
-	   
 	public UserVO getLogin(String username)throws UsernameNotFoundException;
 }

@@ -34,18 +34,6 @@ public class UserVO implements UserDetails {
 	private RoleVO roleVO;
 	private DepartmentVO departmentVO;
 
-	public UserVO() {
-
-	}
-
-	public UserVO(int id, String name, RoleVO roleVO, DepartmentVO departmentVO, Date entDate) {
-		this.id = id;
-		this.name = name;
-		this.roleVO = roleVO;
-		this.departmentVO = departmentVO;
-		this.entDate = entDate;
-	}
-
 	private String pw2;
 	private String mail;
 	private String address;

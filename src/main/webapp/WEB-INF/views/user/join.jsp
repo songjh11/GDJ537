@@ -12,7 +12,7 @@
 <body>
    <div class="container-fluid">
       <div class="row justify-content-center" style="height: 100vh;">
-         <div class="col-3 py-4 px-5" style="border: solid 1px black; border-radius: 20px; position: relative; margin: auto 0">
+         <div class="col-3 py-4 px-5" style="border: solid 1px black; position: relative; margin: auto 0">
          
          <h1 class="text-center pb-3"><b>Sign up</b></h1>
          
@@ -49,10 +49,11 @@
                         <td id="date"></td>
                      </tr>
                   </table>
+                  <div id="noDate" class="text-center" style="display: none"></div>
                   </div>
                <div class="modal-footer">
                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary" id="add">등록</button>
+                 <button type="button" class="btn btn-primary" id="add" disabled="disabled">등록</button>
                </div>
              </div>
            </div>
@@ -62,8 +63,8 @@
          <form:form action="join" modelAttribute="userVO" method="post" enctype="multipart/form-data">
             
             <div class="d-flex my-3">
-               <div style="margin: auto 0; width: 35%">
-                  <b>ID</b>
+               <div style="margin: auto 0; width: 45%">
+                  <b>사원번호</b>
                   <!-- Button trigger modal -->
                   <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#idCheckModal">
                   <i class="fa-solid fa-magnifying-glass"></i>
@@ -73,43 +74,45 @@
             </div>
             
             <div class="d-flex my-3">
-               <b style="margin: auto 0; width: 35%">Name</b>
+               <b style="margin: auto 0; width: 45%">이름</b>
                <input type="text" class="form-control" name="name" id="addName" readonly="readonly" style="width: 65%; height: 35px">
             </div>
             
             <div class="d-flex my-3">
-               <b style="margin: auto 0; width: 35%">Department</b> 
+               <b style="margin: auto 0; width: 45%">부서</b> 
                <input type="text" class="form-control" id="addDep" readonly="readonly" style="width: 65%; height: 35px">
             </div>
             
-            <hr class="my-4">
+            <hr class="mt-4 mb-3">
             
             <div class="d-flex">
-               <div class="w-60 me-3" style="margin: auto 0">
+               <div class="w-40 me-4" style="margin: auto 0">
                   <div>
-                     <b><span style="color: red">*</span>Password</b>
+                     <b><span style="color: red">*</span>비밀번호</b>
                      <form:password path="pw" cssClass="form-control" id="pw" />
                      <form:errors path="pw"></form:errors>
                   </div>
                   
                   <div class="mt-3">
-                     <b><span style="color: red">*</span>Password Check</b>
+                     <b><span style="color: red">*</span>비밀번호 확인</b>
                      <form:password path="pw2" cssClass="form-control" id="pw2" />
                      <form:errors path="pw2"></form:errors>
                   </div>
                </div>
                
                <div class="w-50" style="margin: auto 0">
-                  <input type="file" id="file" name="file" accept="image/*" onchange="setThumbnail(event);" style="display: none">
-                  <label id="fileAdd" for="file" ><img id="default" src="/img/user/user.webp" width="140" height="160" class="border border-black rounded-3" >
-                  <div id="profile"></div>
-                  </label>
-                  <div id="fileBox"></div> 
+                  <input type="file" id="file" accept="image/*" onchange="setThumbnail(event);" style="display: none">
+                  <label id="fileAdd" for="file" class="border border-black rounded-3" style="color:#8b95a1; width: 140px; height: 160px; text-align: center">
+						<span id="default">
+						<i class="fa-solid fa-circle-user" style="font-size: 50px; margin: 35px 0;"><p class="pt-2 mb-0" style="font-size: 14px">이미지등록</p></i>
+						</span>
+						<span id="profile"></span>
+				  </label>
                </div>
             </div>
             
-            <div class="my-3">
-               <b><span style="color: red">*</span>Email address</b>
+            <div class="mt-2 mb-3">
+               <b><span style="color: red">*</span>이메일</b>
                <div class="d-flex">
                <form:input path="email" cssClass="form-control" id="email" cssStyle="height:38px"/>
                <span class="px-1" style="margin: auto 0;">@</span>
@@ -126,7 +129,7 @@
             </div>
             
             <div class="my-3">
-               <b><span style="color: red">*</span>Phone number</b>
+               <b><span style="color: red">*</span>휴대전화</b>
                <form:input path="phone" cssClass="form-control" id="phone" placeholder="숫자만 입력해주세요"/>
                <form:errors path="phone"></form:errors>
             </div>
