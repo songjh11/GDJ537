@@ -1,6 +1,9 @@
 package com.app.home.messenger;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.app.home.user.EmployeeVO;
 
 import lombok.Data;
 
@@ -17,6 +20,11 @@ public class RoomVO {
 	private Integer hostId;
 	// 채팅방 비밀번호
 	private Integer pw;
+	
+	// 방장 한명
+	private Integer num;
+	// 방인원 여러명
+	private List<EmployeeVO> employeeVOs;
 	
 //	public String toString() {
 //		return "Room[roomNum="+roomNum+", roomName="+roomName+"]";

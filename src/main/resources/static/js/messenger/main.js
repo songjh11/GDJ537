@@ -64,3 +64,7 @@ $(".empName").click(function(){
  $("#msgBtn").click(function(){
     console.log("메세지함");
  })
+
+ $("#roomBtn").click(function(){
+    roomModal.style.display = "flex";
+})
