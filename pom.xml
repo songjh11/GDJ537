@@ -25,6 +25,11 @@
 		<!-- 예약     5조 -->
 		
 		<!-- 보고서   1조 -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency> 
 		
 		<!-- 메신져   3조 -->
 	
@@ -40,15 +45,15 @@
 		    <artifactId>jstl</artifactId>
 		</dependency>
 	
-<!-- 	
-		<dependency>
+	
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency> -->
 		
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -60,7 +65,7 @@
 			<artifactId>mariadb-java-client</artifactId>
 			<scope>runtime</scope>
 		</dependency>
--->		
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
