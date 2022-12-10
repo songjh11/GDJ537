@@ -71,9 +71,10 @@
 	
 	<!--                       효경                       -->
 	
-	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum">
+	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum" >
 		INSERT INTO  CHATROOM
-		VALUES(#{roomNum}, now(), #{roomName}, #{hostId}, #{pw})
+		VALUES(#{roomNum}, now(), #{roomName}, 
+			   (SELECT ID FROM EMPLOYEE WHERE NUM = #{num}), #{pw})
 	</insert>
 	
 </mapper>    
