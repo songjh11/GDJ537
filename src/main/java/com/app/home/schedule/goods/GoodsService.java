@@ -152,5 +152,13 @@ public class GoodsService
 		
 		return goodsMapper.getReserveList();
 	}
+	
+	public List<GoodsVO> getRoomNameList() throws Exception{
+		return goodsMapper.getRoomNameList();
+	}
+	
+	public List<GoodsVO> getCarNameList() throws Exception{
+		return goodsMapper.getCarNameList();
+	}
 
 }

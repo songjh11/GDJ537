@@ -1,5 +1,6 @@
 package com.app.home.schedule.goods;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -144,6 +145,21 @@ public class GoodsController {
         }
         log.info("jsonArrCheck: {}", jsonArr);
         return jsonArr;
+	}
+	
+	@GetMapping("ad_goods")
+	public ModelAndView getGoodsAdmin() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<GoodsVO> room = goodsService.getRoomNameList();
+		List<GoodsVO> car = goodsService.getCarNameList();
+		List<Double> roomx = new ArrayList<>();
+		for(int i=0;i<room.size();i++) {
+			roomx.add((23.133333841959637 * i));
+		}
+		mv.addObject("room", room);
+		mv.addObject("roomx", roomx);
+		mv.setViewName("/goods/ad_goods");
+		return mv;
 	}
 
 }
