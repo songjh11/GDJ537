@@ -30,4 +30,36 @@
 	<update id="setUpdate" parameterType="com.app.home.board.BoardVO">
 		UPDATE BOARD set title=#{title}, CONTENTS =#{contents} WHERE NUM =#{num};
 	</update>
+	
+	<delete id="setDelete" parameterType="com.app.home.board.BoardVO">
+		DELETE FROM BOARD WHERE NUM = #{num}
+	</delete>
+	
+	<select id="getList" parameterType="com.app.home.util.Pager" resultType="com.app.home.board.BoardVO">
+		SELECT * FROM BOARD 
+			WHERE SORT = #{sort} 
+			AND <include refid="search"></include>
+			ORDER BY NUM DESC
+			LIMIT ${startRow}, ${perPage}
+	</select>
+	
+	<select id="getTotalCount" parameterType="com.app.home.util.Pager" resultType="Long">
+		SELECT COUNT(NUM) FROM BOARD 
+			WHERE SORT = #{sort}
+			AND <include refid="search"></include>
+	</select>
+	
+	<sql id="search">
+		<choose>
+			<when test="kind == 'title'">TITLE</when>
+			<when test="kind == 'contents'">CONTENTS</when>
+			<otherwise>CONTENTS</otherwise>
+		</choose>
+		LIKE CONCAT('%', #{search}, '%')
+	</sql>
+	
+	<update id="setHit" parameterType="com.app.home.board.BoardVO">
+		UPDATE BOARD SET HIT = HIT + 1 WHERE NUM = #{num}
+	</update>
+	
 </mapper>    
