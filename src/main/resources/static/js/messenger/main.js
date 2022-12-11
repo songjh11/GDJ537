@@ -11,10 +11,11 @@ $(".btnArea").on("click", ".pickBtn", function(){
     let myId = 10;
     let yourId = $(this).attr("value");
     let src = $(this).children(".pickImg").attr("src");
-    console.log("1",src);
     if(src == "/img/star (3).png"){
         src = "/img/star (4).png"
         $(this).children(".pickImg").attr("src", src);
+        console.log($(this).parents(".chatLi"));
+        let appendLi = $(this).parents(".chatLi").clone();
         $.ajax({
             type:"GET",
             url:"/messenger/pickCheck",
@@ -22,17 +23,75 @@ $(".btnArea").on("click", ".pickBtn", function(){
                 myId:myId,
                 yourId:yourId
             },success:function(result){
-                console.log(result);
+                if(result>0){
+                    console.log("추가됨", result);
+                    $("#pickRemove").append(appendLi);
+                } else{
+                    console.log("실패", result);                
+                }
             },error:function(error){
                 console.log("error",error);
             }
-
         })
     } else{
         src = "/img/star (3).png"
+        let pickBtnNum = $(this).attr("value");
         $(this).children(".pickImg").attr("src", src);
+        $.ajax({
+            type:"POST",
+            url:"/messenger/pickCancel",
+            data:{
+                myId:myId,
+                yourId:yourId
+            },success:function(result){
+                if(result>0){
+                    console.log("취소됨", result); 
+                    $(".pickBtn").each(function(index,item){
+                        if($(item).attr("value") === pickBtnNum){
+                            $(this).parents(".chatLi").remove();
+                            return false;
+                        }
+                    })                       
+                } else{
+                    console.log("실패", result);
+                }
+            },error:function(error){
+                console.log("error",error);
+            }
+        })
     }
 })
+
+$("#pickRemove").on("click",".pickBtn", function(){
+    let pickBtnNum = $(this).attr("value");
+    let pr = $(this).parents(".chatLi");
+    let myId = 10;
+    let yourId = $(this).attr("value");
+    let src = "/img/star (3).png"
+    //$(this).parents(".chatLi").remove();
+        $.ajax({
+            type:"POST",
+            url:"/messenger/pickCancel",
+            data:{
+                myId:myId,
+                yourId:yourId
+            },success:function(result){
+                if(result>0){
+                    console.log("취소됨", result);
+                    pr.remove();
+                    $(".pickBtn").each(function(index,item){
+                        if($(item).attr("value") === pickBtnNum){
+                            $(this).children(".pickImg").attr("src", src);
+                        }
+                    });
+                } else{
+                    console.log("실패", result);
+                }
+            },error:function(error){
+                console.log("error",error);
+            }
+        })
+    })
 
 $(".titleLi").click(function() {
     $(this).next(".acoArea").stop().slideToggle(300);

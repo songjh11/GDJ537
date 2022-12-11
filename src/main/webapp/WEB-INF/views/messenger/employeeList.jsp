@@ -275,10 +275,10 @@
 								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
 								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
 							</li>
-							<ul class="acoArea">
+							<ul class="acoArea pickLi">
+								<div id="pickRemove">
 								<c:choose>
 									<c:when test="${empty pickList}">
-										<h1>즐겨찾기한 직원이 없습니다</h1>
 									</c:when>
 									<c:when test="${not empty pickList}">
 										<c:forEach items="${pickList}" var="p">
@@ -294,15 +294,25 @@
 															<span class="empName" empId="${p.id}" value="${p.name}">😎${p.name}</span>
 															<span id="depN${p.id}" value="${p.departmentVO.depName}/${p.roleVO.roleName}">(${p.departmentVO.depName}/${p.roleVO.roleName})</span>
 														</div>
-														<div class="btnArea">
-															<button type="button" class="pickBtn" value="${p.id}"><img class="pickImg" src="/img/star (3).png"></button>
-														</div>
+														<c:choose>
+															<c:when test="${p.pickVO.myId eq myId}">
+																<div class="btnArea">
+																	<button type="button" class="pickBtn" value="${p.id}" pickBtnNum="${p.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																</div>
+															</c:when>
+															<c:when test="${p.pickVO.myId ne myId}">
+																<div class="btnArea">
+																	<button type="button" class="pickBtn" value="${p.id}" pickBtnNum="${p.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																</div>
+															</c:when>
+														</c:choose>
 													</div>
 												</li>
 											</c:if>
 										</c:forEach>
 									</c:when>
 								</c:choose>
+								</div>
 							</ul>
 							<c:choose>
 								<c:when test="${not empty depList}">
@@ -328,7 +338,14 @@
 																<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 															</div>
 															<div class="btnArea">
-																<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																<c:choose>
+																	<c:when test="${e.pickVO.myId eq myId}">
+																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																	</c:when>
+																	<c:when test="${e.pickVO.myId ne myId}">
+																		<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																	</c:when>
+																</c:choose>
 															</div>
 														</div>
 													</li>
@@ -340,7 +357,7 @@
 								</c:when>
 								<c:when test="${empty depList}">
 									<div>
-										<a href="../messenger/chat">button</a>
+										<a href="../messenger/chat"><img style="width: 30px;" src="/img/messenger/left.png"></a>
 									</div>
 									<c:choose>
 										<c:when test="${empty empList}">
@@ -361,7 +378,14 @@
 																<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 															</div>
 															<div class="btnArea">
-																<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																<c:choose>
+																	<c:when test="${e.pickVO.myId eq myId}">
+																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																	</c:when>
+																	<c:when test="${e.pickVO.myId ne myId}">
+																		<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																	</c:when>
+																</c:choose>
 															</div>
 														</div>
 													</li>
