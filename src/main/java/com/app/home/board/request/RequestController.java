@@ -47,6 +47,14 @@ public class RequestController {
 		return requestService.setRequestDelete(boardVO);
 	}
 	
+	@GetMapping("detail")
+	public ModelAndView getDetail(BoardVO boardVO, ModelAndView mv) throws Exception{
+		boardVO = requestService.getDetail(boardVO);
+		mv.addObject("boardVO", boardVO);
+		mv.setViewName("/board/request/detail");
+		return mv;
+	}
+	
 	@GetMapping("update")
 	public ModelAndView setUpdate(BoardVO boardVO, ModelAndView mv)throws Exception{
 		boardVO = requestService.getDetail(boardVO);
