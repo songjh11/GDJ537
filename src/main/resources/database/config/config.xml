@@ -6,9 +6,9 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="java.util.List" alias="List"/>
-  		
+  		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		
   		<typeAlias type="com.app.home.report.ReportVO" alias="ReportVO"/>
-  		
+  		<typeAlias type="com.app.home.report.ReportApplyVO" alias="ReportApplyVO"/>
   	</typeAliases>
   </configuration>

@@ -56,11 +56,25 @@ public class ReportService {
 	
 	//=======================최근호===================
 	
+	public Integer getLicenseCheck(ReportVO reportVO) throws Exception{
+		return reportMapper.getLicenseCheck(reportVO);
+	}
 	
+	public ReportVO getFinishReport(ReportVO reportVO) throws Exception{
+		return reportMapper.getFinishReport(reportVO);
+	}
 	
+	public ReportVO getReturnReport(ReportVO reportVO) throws Exception{
+		return reportMapper.getReturnsReport(reportVO);
+	}
 	
+	public ReportVO getDoFirstReport(ReportVO reportVO) throws Exception{
+		return reportMapper.getDoFirstReport(reportVO);
+	}
 	
-	
+	public ReportVO getDoFinalReport(ReportVO reportVO) throws Exception{
+		return reportMapper.getDoFinalReport(reportVO);
+	}
 	
 	
 	
