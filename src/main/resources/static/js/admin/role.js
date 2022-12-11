@@ -2,6 +2,7 @@ console.log("role");
 
   $(".roleDel").click(function(){
     let roleNum=$(this).prev().prev().text();
+    let roleName=$(this).prev().text();
 
     $.ajax({
         type:"post",
@@ -14,7 +15,7 @@ console.log("role");
                 Swal.fire({
         
                     title:'직급을 정말 삭제 하시겠습니까?',
-                    text:roleNum,
+                    text:roleName,
                     icon:'warning',
                 
                     showCancelButton: true, // cancel버튼

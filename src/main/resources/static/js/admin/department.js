@@ -39,7 +39,7 @@ $('.showDepartment').click(function(){
     (async () => {
         const { value: getName } = await Swal.fire({
             title: '수정할 내용을 입력하세요.',
-            text: select,
+            text: content,
             input: 'text',
             inputPlaceholder: content
         })
@@ -105,6 +105,7 @@ $('.showDepartment').mouseenter(function(){
 
   $(".departmentDel").click(function(){
     let depNum=$(this).prev().prev().prev().text();
+    let depName=$(this).prev().prev().text();
 
     $.ajax({
         type:"post",
@@ -117,7 +118,7 @@ $('.showDepartment').mouseenter(function(){
                 Swal.fire({
         
                     title:'부서를 정말 삭제 하시겠습니까?',
-                    text:depNum,
+                    text:depName,
                     icon:'warning',
                 
                     showCancelButton: true, // cancel버튼
