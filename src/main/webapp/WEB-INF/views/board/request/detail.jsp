@@ -35,7 +35,7 @@
 				
 				<!-- Begin Page Content -->
 	            <div class="container-fluid">
-	
+					<button type="button" class="btn btn-success" id="goListBtn">이전으로</button>
 	            	<!-- 공지사항 작성 -->
 	            	<div class="card mb-3">
 		            	
@@ -71,8 +71,8 @@
 		            		</div>
 	            		
 	            	</div>
-	            					<a href="/notice/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a> 
-					                <button type="button" class="btn btn-danger">글 삭제</button>
+	            					<a href="/request/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a> 
+					                <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.num }">글 삭제</button>
 	            </div>
 	            <!-- End Page Content -->
 					
@@ -85,10 +85,22 @@
 		</div>
 		<!-- End of Content Wrapper -->
 	</div>
+	<script src="/js/boardDelete.js"></script>
 	<script type="text/javascript">
 		let regDate = $("#regdate").attr("data-date")
 		$("#regdate").append(regDate.slice(0,16))
 		
+		let goListBtn = $("#goListBtn");
+		goListBtn.on("click", function () {
+			// 이전 페이지의 URI를 불러옴, 단, url을 직접 적어서 들어오면 값이 빈값
+			let referrer = document.referrer;
+			
+			if(referrer == ""){
+				history.back(-1);	// 그냥 이전 페이지를 다시 요청함
+			} else {
+				location.href = referrer;	// 이전의 URI로 요청함
+			}
+		});
 	</script>
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>

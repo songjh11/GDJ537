@@ -43,9 +43,9 @@
 		            		<div class="card-header bg-white">
 		            			<div class="row">
 		            				<div class="col-auto align-self-center">
-					                  <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">요청사항 작성</h5>
+					                  <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">요청게시판 작성</h5>
 					                  <div class="alt-option"></div>
-					                  <p class="mb-0 pt-1 mt-2 mb-0">요청사항 작성 페이지입니다.</p>
+					                  <p class="mb-0 pt-1 mt-2 mb-0">요청게시판 작성 페이지입니다.</p>
 					                </div>
 					             </div>
 					         </div>
