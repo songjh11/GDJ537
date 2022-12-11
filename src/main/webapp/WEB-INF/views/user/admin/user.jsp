@@ -70,7 +70,7 @@
                      <c:forEach items="${list}" var="userVO">
                      <tr>
                         <th scope="row">${userVO.id}</th>
-                        <td class="showUser" data-user="roleNum">${userVO.roleVO.roleName}</td>
+                        <td class="showUser1" data-user="roleNum">${userVO.roleVO.roleName}</td>
                         <td class="showUser" data-user="depNum">${userVO.departmentVO.depName}</td>
                         <td class="showUser" data-user="name">${userVO.name}</td>
                         <td class="showUser" data-user="email">${userVO.email}</td>

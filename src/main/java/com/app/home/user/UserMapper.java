@@ -70,6 +70,8 @@ public interface UserMapper {
 	
 	public List<UserVO> getDepCheck(UserVO userVO) throws Exception;
 	
+	public List<UserVO> getRoleCheck(UserVO userVO) throws Exception;
+	
 	public UserVO getIdCheck(UserVO userVO) throws Exception;
 	   
 	public int setJoin(UserVO userVO) throws Exception;

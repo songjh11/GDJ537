@@ -166,6 +166,10 @@
    <select id="getDepCheck" parameterType="UserVO" resultType="UserVO">
       SELECT * FROM USER WHERE DEPNUM=#{depNum};
    </select>
+   
+   <select id="getRoleCheck" parameterType="UserVO" resultType="UserVO">
+      SELECT * FROM USER WHERE ROLENUM=#{roleNum};
+   </select>
 	
 	<!-- 사원번호 조회 -->
    <select id="getIdCheck" parameterType="UserVO" resultMap="getUserVO">

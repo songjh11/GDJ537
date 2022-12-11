@@ -1,40 +1,56 @@
 console.log("role");
 
-$(".roleDel").click(function(){
+  $(".roleDel").click(function(){
     let roleNum=$(this).prev().prev().text();
-    Swal.fire({
+
+    $.ajax({
+        type:"post",
+        url:"/user/admin/roleCheck",
+        data:{
+            "roleNum":roleNum
+        },
+        success:function(data){
+            if(data==0){
+                Swal.fire({
         
-      title:'직급을 삭제 하시겠습니까?',
-      text:roleNum,
-      icon:'warning',
-  
-      showCancelButton: true, // cancel버튼
-      confirmButtonText: '확인', // confirm 버튼 텍스트 지정
-      cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-    }).then(result=>{
-      if(result.isConfirmed){
-  
-          $.ajax({
-              type:"post",
-              url:"/user/admin/roleDel",
-              data:{
-                  "roleNum":roleNum
-              },
-              success:function(success){
-                  Swal.fire('부서를 삭제하였습니다.', '', 'success');
-                  setTimeout(function() {
-                      location.reload();
-                    }, 1000);
-              },
-              error:function(error){
-                  Swal.fire('실패하였습니다.', '', 'error');
-              }
-          })
-      }else{
-          Swal.fire('취소하였습니다.','','warning');
-      }
+                    title:'직급을 정말 삭제 하시겠습니까?',
+                    text:roleNum,
+                    icon:'warning',
+                
+                    showCancelButton: true, // cancel버튼
+                    confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+                    cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+                  }).then(result=>{
+                    if(result.isConfirmed){
+                
+                        $.ajax({
+                            type:"post",
+                            url:"/user/admin/roleDel",
+                            data:{
+                                "roleNum":roleNum
+                            },
+                            success:function(success){
+                                Swal.fire('직급을 삭제하였습니다.', '', 'success');
+                                setTimeout(function() {
+                                    location.reload();
+                                  }, 1000);
+                            },
+                            error:function(error){
+                                Swal.fire('실패하였습니다.', '', 'error');
+                            }
+                        })
+                    }else{
+                        Swal.fire('취소하였습니다.','','warning');
+                    }
+                  })
+            }else{
+                Swal.fire('삭제할수 없습니다.','해당 직급의 사원들을 다른부서로 변경해주세요','error');
+            }
+        }
+        
     })
   })
+
 
   $('.showRole').mouseenter(function(){
     $(this).css('color','blue');

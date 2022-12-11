@@ -266,6 +266,14 @@ public class UserController {
 		int result = userVOs.size();
 		return result;
 	}
+	
+	@PostMapping("admin/roleCheck")
+	@ResponseBody
+	public int getroleCheck(UserVO userVO) throws Exception {
+		List<UserVO> userVOs = userService.getRoleCheck(userVO);
+		int result = userVOs.size();
+		return result;
+	}
 
 	@GetMapping("join")
 	public void setJoin(@ModelAttribute UserVO userVO) throws Exception {

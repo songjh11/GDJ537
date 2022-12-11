@@ -171,6 +171,11 @@ public class UserService {
 		List<UserVO> userVOs = userMapper.getDepCheck(userVO);
 		return userVOs;
 	}
+	
+	public List<UserVO> getRoleCheck(UserVO userVO) throws Exception {
+		List<UserVO> userVOs = userMapper.getRoleCheck(userVO);
+		return userVOs;
+	}
 
 	@Value("${app.profile}") // C:/user/profile/
 	private String path;
