@@ -11,8 +11,8 @@ public class EmployeeVO {
 
 	private int num;
 	private int id;
-	private int roleNum;
 	private int depNum;
+	private int roleNum;
 	private String pw;
 	private String name;
 	private String email;
