@@ -116,14 +116,23 @@ $(".empName").click(function(){
     $("#proPhone").text(phone);
 })
 
- $("#chatBtn").click(function(){
+$("#chatBtn").click(function(){
     console.log("채팅함");
- })
+})
 
- $("#msgBtn").click(function(){
+$("#msgBtn").click(function(){
     console.log("메세지함");
- })
+})
 
- $("#roomBtn").click(function(){
-    roomModal.style.display = "flex";
+// 채팅방 생성 모달창 닫기
+const room = document.getElementById("room")
+const rmCloseBtn = room.querySelector(".close-area")
+rmCloseBtn.addEventListener("click", e => {
+    room.style.display = "none"
+})
+
+//  채팅방 생성 모달창 열기
+$("#roomBtn").click(function(){
+    console.log("채팅방 모달버튼 클릭중!");
+    room.style.display = "flex";
 })
