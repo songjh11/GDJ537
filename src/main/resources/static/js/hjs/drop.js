@@ -85,10 +85,13 @@ $("#tbd").on("click", "#statusBtn", function(event){
             id : name
         },
 
-    }).done(function(){
-        
-        alert("수정이 되었습니다.")
+        success:function(){
+            alert("수정에 성공하였습니다.")
+        },
+        error:function(){
+            alert("수정에 실패하였습니다");
+        }
 
-        })
+    })
 
 });
