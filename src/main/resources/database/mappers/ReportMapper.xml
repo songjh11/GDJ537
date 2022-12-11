@@ -11,13 +11,38 @@
 	
 	<!-- ============== 한종석 ================ -->
 	
-	<select id="getReportList" parameterType="ReportVO" resultType="ReportVO">
-		SELECT * FROM REPORTLICENSER WHERE DEPNUM = #{depNum} AND ROLENUM = #{roleNum}
+	<select id="getReportList" parameterType="userVO" resultMap="getListResult">
+		SELECT  U.ID, U.NAME, U.ROLENUM , U.DEPNUM, R.ROLENAME
+			FROM USER U
+			INNER JOIN
+				ROLE R 
+				ON R.ROLENUM = U.ROLENUM 
+				INNER JOIN
+				DEPARTMENT D 
+				ON U.DEPNUM = D.DEPNUM 
+				WHERE U.DEPNUM = #{depNum} AND U.ROLENUM = #{roleNum}
 	</select>
+	
+	<resultMap type="UserVO" id="getListResult">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="roleNum" property="roleNum"/>
+		<result column="depNum" property="depNum"/>
+		
+		<association property="roleVO" javaType="RoleVO">
+			<id column="roleNum" property="roleNum"/>
+			<result column="roleName" property="roleName"/>
+		</association>
+		
+		<association property="departmentVO" javaType="DepartmentVO">
+			<id column="depNum" property="depNum"/>
+		</association>
+		
+	</resultMap>
 	
 	<!-- 권한수정 누구를 부장(lstatus = 2)로 바꿀것인지 ****id를 받아서 -->
 	<update id="setLstatusUpdate" parameterType="ReportVO">
-		UPDATE REPORTLICENCES SET LSTATUS = 2 WHERE ID = #{id}
+		UPDATE REPORTLICENSER SET LSTATUS = 2 WHERE ID = #{id}
 	</update>
 	
 	

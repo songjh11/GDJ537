@@ -1,5 +1,7 @@
 package com.app.home.report;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,6 +27,8 @@ public interface ReportMapper {
 	//=======================한종석===================
 	
 	public int setLstatusUpdate(ReportVO reportVO) throws Exception;
+	
+	public List<UserVO> getReportList(UserVO userVO) throws Exception;
 	
 	
 	
