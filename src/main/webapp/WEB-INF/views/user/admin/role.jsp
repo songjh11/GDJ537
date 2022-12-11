@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <meta charset="UTF-8">
 <!-- meta tag 추가 -->
 <meta name="viewport"
@@ -55,9 +56,9 @@
                <table class="table table-bordered">
                   <thead>
                      <tr>
-                        <th scope="col">직급번호</th>
-                        <th scope="col">직급이름</th>
-                        <th scope="col"></th>
+                        <th class="table-light" scope="col">직급번호</th>
+                        <th class="table-light" scope="col">직급이름</th>
+                        <th class="table-light" scope="col"></th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">

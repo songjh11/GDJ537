@@ -1,7 +1,7 @@
 console.log("user");
 
 $(".dismiss").click(function(){
-    let id=$(this).prev().prev().prev().prev().prev().prev().prev().prev().text();
+    let id=$(this).prev().prev().prev().prev().prev().prev().prev().text();
     Swal.fire({
         
       title:'퇴사처리 하시겠습니까?',

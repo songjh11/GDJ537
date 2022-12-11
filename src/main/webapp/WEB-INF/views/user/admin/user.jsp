@@ -53,17 +53,17 @@
                </ul>
 
                <!-- <table class="table table-bordered w-auto"> -->
-               <table class="table table-bordered" align="center">
+               <table class="table table-bordered">
                   <thead>
                      <tr>
-                        <th class="id" scope="col">사원번호</th>
-                        <th class="roleName" scope="col">직급</th>
-                        <th class="depName" scope="col">부서</th>
-                        <th class="name" scope="col">이름</th>
-                        <th scope="email">이메일</th>
-                        <th scope="phone">전화번호</th>
-                        <th class="entDate" scope="col">입사일</th>
-                        <th scope="col"></th>
+                        <th class="table-light id" scope="col">사원번호</th>
+                        <th class="table-light roleName" scope="col">직급</th>
+                        <th class="table-light depName" scope="col">부서</th>
+                        <th class="table-light name" scope="col">이름</th>
+                        <th class="table-light" scope="col">이메일</th>
+                        <th class="table-light" scope="col">전화번호</th>
+                        <th class="table-light entDate" scope="col">입사일</th>
+                        <th class="table-light" scope="col"></th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">
