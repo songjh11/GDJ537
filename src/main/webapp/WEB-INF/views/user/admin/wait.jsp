@@ -12,6 +12,7 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="/css/admin/admin.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
@@ -60,7 +61,6 @@
                         <th scope="col">이름</th>
                         <th scope="col">이메일</th>
                         <th scope="col">전화번호</th>
-                        <th scope="col">입사일</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                      </tr>
@@ -74,7 +74,6 @@
                         <td>${userVO.name}</td>
                         <td>${userVO.email}</td>
                         <td>${userVO.phone}</td>
-                        <td>${userVO.entDate}</td>
                         <td class="allow" ><a href="#">승인</a></td>
                         <td class="allowNot"><a href="#">미승인</a></td>
                      </tr>

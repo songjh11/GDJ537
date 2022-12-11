@@ -121,7 +121,11 @@ public class UserController {
 	public ModelAndView getUser() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<UserVO> list = userService.getUser();
+		List<DepartmentVO> listD = userService.getDepartment();
+		List<RoleVO> listR = userService.getRole();
 		mv.addObject("list", list);
+		mv.addObject("listD", listD);
+		mv.addObject("listR", listR);
 		mv.setViewName("/user/admin/user");
 		return mv;
 	}

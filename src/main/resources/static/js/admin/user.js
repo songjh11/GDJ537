@@ -45,6 +45,15 @@ $(".dismiss").click(function(){
     $(this).css('color','#858796');
     $(this).css('cursor','default');
   })
+  $('.showUser1').mouseenter(function(){
+    $(this).css('color','blue');
+    $(this).css('cursor','pointer');
+  })
+
+  $('.showUser1').mouseleave(function(){
+    $(this).css('color','#858796');
+    $(this).css('cursor','default');
+  })
 
   $('.showUser').click(function(){
     let id = $(this).parent().children().first().text(); //id
@@ -75,7 +84,23 @@ $(".dismiss").click(function(){
             }
         }
     })()   
-  })
+})
+let updateId;
+$('.showUser1').click(function(){
+    updateId = $(this).parent().children().first().text();
+    console.log(updateId);
+})
+
+$('.roleNumUpdate').click(function(){
+    let roleNum = $(this).data().rolenum;
+    roleNumUpdate(updateId,roleNum);
+})
+
+$('.depNumUpdate').click(function(){
+    let depNum = $(this).data().depnum;
+    depNumUpdate(updateId,depNum);
+})
+
 
 function roleNumUpdate(id,roleNum){
     $.ajax({

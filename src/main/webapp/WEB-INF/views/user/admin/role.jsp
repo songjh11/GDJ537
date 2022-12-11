@@ -12,6 +12,7 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="/css/admin/admin.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
@@ -64,7 +65,7 @@
                      <tr>
                         <th scope="row">${roleVO.roleNum}</th>
                         <td class="showRole" data-role="roleName">${roleVO.roleName}</td>
-                        <td class="roleDel"><a href="#">X</a></td>
+                        <td class="roleDel"><a href="#">삭제</a></td>
                      </tr>
                      </c:forEach>
 
