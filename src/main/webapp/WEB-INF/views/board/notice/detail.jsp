@@ -35,7 +35,7 @@
 				
 				<!-- Begin Page Content -->
 	            <div class="container-fluid">
-	
+
 	            	<!-- 공지사항 작성 -->
 	            	<div class="card mb-3">
 		            	
@@ -71,8 +71,10 @@
 		            		</div>
 	            		
 	            	</div>
+	            					<a href="/notice/list" class="btn btn-danger">글 목록</a>
 	            					<a href="/notice/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a> 
-					                <button type="button" class="btn btn-danger">글 삭제</button>
+					                <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.num}">글 삭제</button>
+					                
 	            </div>
 	            <!-- End Page Content -->
 					
@@ -89,7 +91,9 @@
 		let regDate = $("#regdate").attr("data-date")
 		$("#regdate").append(regDate.slice(0,16))
 		
+		
 	</script>
+	<script src="/js/boardDelete.js"></script>
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 </body>
