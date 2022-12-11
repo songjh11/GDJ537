@@ -108,6 +108,11 @@
 		border: none;
 	}
 
+	.roomImg{
+		width: 30px;
+		margin-right: 12px;
+	}
+
 	.pickImg{
 		width: 25px;
 		margin-right: 7px;
@@ -172,81 +177,165 @@
 	}
 
 	#modal.modal-overlay {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-			display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(1.5px);
-            -webkit-backdrop-filter: blur(1.5px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        #modal .modal-window {
-            background: rgba( 69, 139, 197, 0.70 );
-            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-            backdrop-filter: blur( 13.5px );
-            -webkit-backdrop-filter: blur( 13.5px );
-            border-radius: 10px;
-            border: 1px solid rgba( 255, 255, 255, 0.18 );
-            width: 400px;
-            height: 500px;
-            position: relative;
-            top: -100px;
-            padding: 10px;
-        }
-        #modal .title {
-            padding-left: 10px;
-            display: inline;
-            text-shadow: 1px 1px 2px gray;
-            color: white;
-            
-        }
-        #modal .title h2 {
-            display: inline;
-        }
-        #modal .close-area {
-            display: inline;
-            float: right;
-            padding-right: 10px;
-            cursor: pointer;
-            text-shadow: 1px 1px 2px gray;
-            color: white;
-        }
-        
-        #modal .content {
-            margin-top: 20px;
-            padding: 0px 10px;
-            text-shadow: 1px 1px 2px gray;
-            color: white;
-        }
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.25);
+		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+		backdrop-filter: blur(1.5px);
+		-webkit-backdrop-filter: blur(1.5px);
+		border-radius: 10px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+	}
+	#modal .modal-window {
+		background: rgba( 69, 139, 197, 0.70 );
+		box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+		backdrop-filter: blur( 13.5px );
+		-webkit-backdrop-filter: blur( 13.5px );
+		border-radius: 10px;
+		border: 1px solid rgba( 255, 255, 255, 0.18 );
+		width: 400px;
+		height: 500px;
+		position: relative;
+		top: -100px;
+		padding: 10px;
+	}
+	#modal .title {
+		padding-left: 10px;
+		display: inline;
+		text-shadow: 1px 1px 2px gray;
+		color: white;
+		
+	}
+	#modal .title h2 {
+		display: inline;
+	}
+	#modal .close-area {
+		display: inline;
+		float: right;
+		padding-right: 10px;
+		cursor: pointer;
+		text-shadow: 1px 1px 2px gray;
+		color: white;
+	}
+	
+	#modal .content {
+		margin-top: 20px;
+		padding: 0px 10px;
+		text-shadow: 1px 1px 2px gray;
+		color: white;
+	}
+
+	/* 채팅방 만드는 모달 */
+
+	#room.room-overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.25);
+		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+		backdrop-filter: blur(1.5px);
+		-webkit-backdrop-filter: blur(1.5px);
+		border-radius: 10px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+	}
+	#room .room-window {
+		background: rgba( 69, 139, 197, 0.70 );
+		box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+		backdrop-filter: blur( 13.5px );
+		-webkit-backdrop-filter: blur( 13.5px );
+		border-radius: 10px;
+		border: 1px solid rgba( 255, 255, 255, 0.18 );
+		width: 400px;
+		height: 680px;
+		position: relative;
+		padding: 10px;
+		position: fixed;
+		top: 43%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		-moz-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+	#room .title {
+		padding-left: 10px;
+		display: inline;
+		text-shadow: 1px 1px 2px gray;
+		color: white;
+		
+	}
+	#room .title h2 {
+		display: inline;
+	}
+	#room .close-area {
+		display: inline;
+		float: right;
+		padding-right: 10px;
+		cursor: pointer;
+		text-shadow: 1px 1px 2px gray;
+		color: white;
+	}
+	
+	#room .content {
+		margin-top: 20px;
+		padding: 0px 10px;
+		text-shadow: 1px 1px 2px gray;
+		color: white;
+	}
 </style>
 </head>
-<!-- body ID 작성 -->
-    <div id="modal" class="modal-overlay" style="z-index: 100;">
-        <div class="modal-window">
-            <div class="close-area">X</div>
-            <div class="content">
-                <div class="profile">
-					<img id="proImg" src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
-					<div class="proArea" style="background: transparent; border: none; box-shadow: none !important;">
-						<p id="proName">이름</p>
-						<p id="proDep">부서/직급</p>
-						<p id="proEmail">이메일</p>
-						<p id="proPhone">전화번호</p>
-						<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">채팅</a>
-						<a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
-					</div>
-				  </div>
-            </div>
-        </div>
-    </div>
+						<div id="modal" class="modal-overlay" style="z-index: 100;">
+							<div class="modal-window">
+								<div class="close-area">X</div>
+								<div class="content">
+									<div class="profile">
+										<img id="proImg" src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
+										<div class="proArea" style="background: transparent; border: none; box-shadow: none !important;">
+											<p id="proName">이름</p>
+											<p id="proDep">부서/직급</p>
+											<p id="proEmail">이메일</p>
+											<p id="proPhone">전화번호</p>
+											<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">채팅</a>
+											<a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- 채팅방 만드는 폼 -->
+						<div id="room" class="room-overlay" style="z-index: 100;">
+							<div class="room-window">
+								<div class="close-area">X</div>
+								<div class="content">
+									<div class="profile">
+										<img id="proImg" src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
+										<div class="proArea" style="background: transparent; border: none; box-shadow: none !important;">
+											<p id="proName">이름</p>
+											<p id="proDep">부서/직급</p>
+											<p id="proEmail">이메일</p>
+											<p id="proPhone">전화번호</p>
+											<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">채팅</a>
+											<a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
 							<!-- Topbar Search -->
 						<div>
@@ -268,7 +357,11 @@
 								</div>
 							</form>
 						</div>
-	
+						<!-- 채팅방생성 모달 버튼 -->
+						<div class="btnArea d-flex flex-row-reverse">
+							<!-- <a href="" class="btn"><img class="roomImg" src="/img/messenger/chatAdd.png"></a> -->
+							<button type="button" id="roomBtn"><img class="roomImg" src="/img/messenger/chatAdd.png"></button>
+						</div>
 						<ul class="chatUl" style="overflow-y: scroll; overflow-x: hidden; height: 560px;">
 							<li class="titleLi">
 								<span style="margin-left: 20px;">즐겨찾기</span>
