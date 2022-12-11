@@ -12,6 +12,8 @@
   		
   		
   		<typeAlias type="com.app.home.report.UserVO" alias="UserVO"/>
+  		<typeAlias type="com.app.home.report.RoleVO" alias="RoleVO"/>
+  		<typeAlias type="com.app.home.report.DepartmentVO" alias="DepartmentVO"/>
   		
   	</typeAliases>
   </configuration>

@@ -1,5 +1,7 @@
 package com.app.home.report;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,11 @@ public class ReportService {
 		int result = reportMapper.setLstatusUpdate(reportVO);
 		
 		return result;
+	}
+	
+	public List<UserVO> getReportList (UserVO userVO) throws Exception{
+		
+		return reportMapper.getReportList(userVO);
 	}
 	
 	
