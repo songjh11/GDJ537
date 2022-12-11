@@ -1,5 +1,9 @@
 package com.app.home.report;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+@Mapper
 public interface ReportMapper {
 	
 	
@@ -61,7 +65,7 @@ public interface ReportMapper {
 	//=======================류형민===================
 	
 	
-	
+	public List<ReportVO> getMyReportList() throws Exception;
 	
 	
 	
