@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,9 +21,12 @@ public class UserVO implements UserDetails {
 	private int id;
 	private int roleNum;
 	private int depNum;
+	@Size(min =8,max = 20)
 	private String pw;
 	private String name;
+	@NotBlank
 	private String email;
+	@NotBlank
 	private String phone;
 	private Date entDate;
 	private String profile;

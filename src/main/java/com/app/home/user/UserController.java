@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -261,8 +262,25 @@ public class UserController {
 	@PostMapping("join")
 	public ModelAndView setJoin(@Valid UserVO userVO, BindingResult bindingResult, String email, String address, MultipartFile file) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+		//사용자 검증 메서드
+		boolean check = userService.getUserError(userVO, bindingResult);
+		
+		// check=false : 검증 성공(에러없음)
+		// check=true : 검증 실패(에러있음)
+		if(check) {
+			mv.setViewName("user/join");
+			List<FieldError> errors = bindingResult.getFieldErrors();
+			for(FieldError fieldError:errors) {
+				mv.addObject(fieldError.getField(), fieldError.getDefaultMessage());
+			}
+			return mv;
+		}
+		
 		int result = userService.setJoin(userVO, email, address);
-		mv.setViewName("redirect:./login");
+		if(result == 1) {
+			mv.setViewName("redirect:./login");
+		} 
 		return mv;
 	}
 
@@ -273,6 +291,14 @@ public class UserController {
 		userVO = userService.getIdCheck(userVO);
 		log.info("사원번호조회 : {}", userVO);
 		return userVO;
+	}
+	
+	// 인증된 사원번호조회
+	@PostMapping("idStatus1")
+	@ResponseBody
+	public int getIdStatus1(UserVO userVO) throws Exception {
+		int result = userService.getIdStatus1(userVO);
+		return result;
 	}
 
 	@GetMapping("login")

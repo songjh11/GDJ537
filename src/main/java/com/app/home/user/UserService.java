@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.home.user.util.FileManager;
@@ -22,13 +23,12 @@ public class UserService {
 
 	@Autowired
 	private FileManager fileManager;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Value("${app.profile}") // C:/user/profile/
 	private String path;
-	
 
 	public UserVO setUserID(UserVO userVO) throws Exception {
 		userMapper.setUser(userVO);
@@ -170,17 +170,21 @@ public class UserService {
 		return result;
 	}
 
-
 	// 사원번호 조회
 	public UserVO getIdCheck(UserVO userVO) throws Exception {
 		return userMapper.getIdCheck(userVO);
 	}
 
+	//인증된 사원번호 조회
+	public int getIdStatus1(UserVO userVO) throws Exception {
+		return userMapper.getIdStatus1(userVO);
+	}
+		
 	// 회원가입
 	public int setJoin(UserVO userVO, String email, String address) throws Exception {
-		//패스워드 암호화
+		// 패스워드 암호화
 		userVO.setPw(passwordEncoder.encode(userVO.getPw()));
-		
+
 		// 이메일
 		userVO.setEmail(email + "@" + address);
 
@@ -189,18 +193,43 @@ public class UserService {
 		if (!file.exists()) {
 			file.mkdirs();
 		}
-		
+
 		if (userVO.getFile() != null) {
 			MultipartFile f = userVO.getFile();
 			String fileName = fileManager.saveFile(f, path);
 			userVO.setProfile(fileName);
-			log.info("=====userVO : {}", userVO);
-			return userMapper.setJoin(userVO);
-			
-		} else {
-			userVO.setProfile("user.webp");
+			log.info("=====회원가입 : {}", userVO);
 			return userMapper.setJoin(userVO);
 		}
-		
+		return userMapper.setJoin(userVO);
+	}
+
+	// 사용자 검증 메서드(인증된 사원번호 체크, 이메일 입력 체크, 비번 일치 검증, 휴대번호 입력 검증)
+	public boolean getUserError(UserVO userVO, BindingResult bindingResult) throws Exception {
+		// check=false : 검증 성공(에러없음)
+		// check=true : 검증 실패(에러있음)
+		boolean check = false;
+
+		// annotation검증
+		check = bindingResult.hasErrors();
+
+		// 비번 일치 검증
+		if (!userVO.getPw().equals(userVO.getPw2())) {
+			check = true;
+			bindingResult.rejectValue("pw2", "user.password.notEqual");
+		}
+
+		// 이메일 입력 검증
+		if (userVO.getAddress().equals("선택")) {
+			check = true;
+			bindingResult.rejectValue("address", "user.email.req");
+		}
+
+		// 휴대번호 입력 검증
+		if (userVO.getPhone().length() > 11 || userVO.getPhone().length() < 11) {
+			check = true;
+			bindingResult.rejectValue("phone", "user.phone.req");
+		}
+		return check;
 	}
 }

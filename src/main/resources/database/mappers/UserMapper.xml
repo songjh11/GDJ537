@@ -172,6 +172,12 @@
       WHERE U.ID=#{id} AND U.NAME=#{name}
    </select>
    
+   <!-- 인증된 사원번호 조회 -->
+   <select id="getIdStatus1" parameterType="UserVO" resultMap="Integer">
+		SELECT COUNT(ID) FROM USER WHERE ID=#{id} AND STATUS=1
+   </select>
+   
+   
    <!-- 회원가입 -->
    <update id="setJoin" parameterType="UserVO">
       UPDATE USER SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, PROFILE=#{profile}, STATUS=0 WHERE ID=#{id}

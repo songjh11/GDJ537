@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/user/boot.jsp"></c:import>
+<style type="text/css">
+#idBtn:focus {
+	border: solid skyblue 2px;
+}
+</style>
 </head>
 <body>
    <div class="container-fluid">
@@ -25,10 +30,10 @@
                </div>
                   <div class="modal-body">
                   <div class="d-flex my-3">
-                      <label style="margin: auto 0"><b>ID</b></label>
+                      <label style="margin: auto 0"><b>사원번호</b></label>
                     <input type="text" id="idCheck" class="form-control w-25 mx-2">
                    
-                    <label style="margin: auto 0"><b>NAME</b></label>
+                    <label style="margin: auto 0"><b>이름</b></label>
                     <input type="text" id="nameCheck" class="form-control w-25 mx-2">
                    
                    <button id="search" class="btn btn-primary ms-2"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -53,7 +58,7 @@
                   </div>
                <div class="modal-footer">
                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary" id="add" disabled="disabled">등록</button>
+                 <button type="button" class="btn btn-primary" id="add" disabled="disabled">적용</button>
                </div>
              </div>
            </div>
@@ -66,11 +71,12 @@
                <div style="margin: auto 0; width: 45%">
                   <b>사원번호</b>
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#idCheckModal">
-                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <button type="button" id="idBtn" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#idCheckModal">
+                  <i class="fa-solid fa-magnifying-glass" style="outline-color: red" ></i>
                   </button>
                </div>
                <input type="text" class="form-control" name="id" id="addId" readonly="readonly" style="width: 65%; height: 35px;">
+               <div id="idError"></div>
             </div>
             
             <div class="d-flex my-3">

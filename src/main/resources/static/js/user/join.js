@@ -1,3 +1,8 @@
+$("#addId, #addName, #addDep").click(function(){
+    alert("사원번호를 먼저 조회해주세요")
+    $("#idBtn").focus();
+})
+
 
 //사원번호조회
 $("#search").click(function () {
@@ -21,6 +26,7 @@ $("#search").click(function () {
             name: name,
         },
         success: function (data) {
+            alert(data)
             if (data == "") {
                 $("#noDate").attr("style", "display:")
                 $(".table").attr("style", "display:none")
@@ -78,3 +84,6 @@ $("#file").on("change", function () {
         $("#file").attr("name", "file")
     }
 });
+
+
+

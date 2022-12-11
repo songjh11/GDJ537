@@ -66,8 +66,13 @@ public interface UserMapper {
 	
 	public int setRoleDel(RoleVO roleVO) throws Exception;
 	
+	//사원번호 조회
 	public UserVO getIdCheck(UserVO userVO) throws Exception;
+	
+	//인증된 사원번호 조회
+	public int getIdStatus1(UserVO userVO) throws Exception;
 	   
+	//회원가입
 	public int setJoin(UserVO userVO) throws Exception;
 	   
 	public UserVO getLogin(String username)throws UsernameNotFoundException;
