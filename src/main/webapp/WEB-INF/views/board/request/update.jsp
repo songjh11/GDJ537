@@ -36,15 +36,15 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<!-- 공지사항 작성 -->
+	            	<!-- 요청사항 작성 -->
 	            	<div class="card mb-3">
 		            	<form action="./update" method="post" enctype="multipart/form-data" id="boardForm">
 		            		<div class="card-header bg-white">
 		            			<div class="row">
 		            				<div class="col-auto align-self-center">
-					                  <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">공지사항 수정</h5>
+					                  <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">요청게시판 수정</h5>
 					                  <div class="alt-option"></div>
-					                  <p class="mb-0 pt-1 mt-2 mb-0">공지사항 수정 페이지입니다.</p>
+					                  <p class="mb-0 pt-1 mt-2 mb-0">요청게시판 수정 페이지입니다.</p>
 					                </div>
 					             </div>
 					         </div>

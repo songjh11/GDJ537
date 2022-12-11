@@ -1,8 +1,11 @@
 package com.app.home.board.request;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.home.board.BoardDAO;
@@ -10,11 +13,11 @@ import com.app.home.board.BoardVO;
 import com.app.home.file.FileDAO;
 import com.app.home.file.FileVO;
 import com.app.home.util.FileManager;
+import com.app.home.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class RequestService {
 	
 	@Autowired
@@ -42,6 +45,13 @@ public class RequestService {
 		return chkId&chkTitle&chkContents;
 	}
 	
+	public int setRequestDelete(BoardVO boardVO) throws Exception{
+		int result = boardDAO.setDelete(boardVO);
+		
+		return result;
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
 	public int setRequest(BoardVO boardVO) throws Exception{
 		//sort에 2 (Request) 세팅
 		boardVO.setSort(2);
@@ -72,6 +82,7 @@ public class RequestService {
 		return boardVO;
 	}
 	
+	@Transactional(rollbackFor = Exception.class)
 	public int setUpdate(BoardVO boardVO) throws Exception{
 		int result = boardDAO.setUpdate(boardVO);
 		
@@ -92,4 +103,16 @@ public class RequestService {
 		return result;
 	}
 
+	public List<BoardVO> getRequestList(Pager pager) throws Exception {
+		
+		Long totalCount = boardDAO.getTotalCount(pager);
+		pager.getRowNum();
+		pager.getNum(totalCount);
+		
+		return boardDAO.getList(pager);
+	}
+	
+	public int setHit(BoardVO boardVO) throws Exception {
+		return boardDAO.setHit(boardVO);
+	}
 }

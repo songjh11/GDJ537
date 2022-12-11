@@ -5,9 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.board.BoardVO;
+import com.app.home.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,12 +41,10 @@ public class RequestController {
 		return "redirect:/request/detail?num="+boardVO.getNum();
 	}
 	
-	@GetMapping("detail")
-	public ModelAndView getDetail(BoardVO boardVO, ModelAndView mv) throws Exception{
-		boardVO = requestService.getDetail(boardVO);
-		mv.addObject("boardVO", boardVO);
-		mv.setViewName("/board/request/detail");
-		return mv;
+	@PostMapping("delete")
+	@ResponseBody
+	public int setUnknownDelete(BoardVO boardVO) throws Exception {
+		return requestService.setRequestDelete(boardVO);
 	}
 	
 	@GetMapping("update")
@@ -64,4 +64,26 @@ public class RequestController {
 		return "redirect:/request/detail?num="+boardVO.getNum();
 	}
 
+	@GetMapping("list")
+	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
+		
+		pager.setSort(2);
+		mv.addObject("requestList", requestService.getRequestList(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("/board/request/list");
+		
+		return mv;
+	}
+	
+	@GetMapping("hit")
+	public ModelAndView setHit(BoardVO boardVO) throws Exception {
+		int result = requestService.setHit(boardVO);
+		
+		ModelAndView mv = new ModelAndView();
+		boardVO = requestService.getDetail(boardVO);
+		mv.addObject("boardVO", boardVO);
+		mv.setViewName("board/request/detail");
+		
+		return mv;
+	}
 }
