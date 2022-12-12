@@ -37,9 +37,9 @@
                 <div id="collapseBoard" class="collapse" aria-labelledby="headingBoard" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Board List</h6>
-                        <a class="collapse-item" href="#">공지사항</a>
-                        <a class="collapse-item" href="#">요청게시판</a>
-                        <a class="collapse-item" href="#">익명게시판</a>
+                        <a class="collapse-item" href="/notice/list">공지사항</a>
+                        <a class="collapse-item" href="/request/list">요청게시판</a>
+                        <a class="collapse-item" href="/unknown/list">익명게시판</a>
                     </div>
                 </div>
             </li>
