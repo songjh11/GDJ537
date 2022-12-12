@@ -1,10 +1,9 @@
 
 $("#idbtn").click(()=>{
-    let param = { "entDate" : $("#regdate").val(), "id" : 13414 };
+    let param = { "entDate" : $("#regdate").val(), "id" : 13414, "name" : $("#getName").val() };
     commonAjax('/user/setID', param , "post",function(res){
-        console.log(res.id);
         $("#getID").attr("value", res.id);
-        $("#addContents").val('당신의 사번은 ['+res.id+'] 입니다.');
+        $("#addContents").val(res.name+'의 사번은 ['+res.id+'] 입니다.');
     })
 
 })

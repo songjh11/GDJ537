@@ -44,6 +44,10 @@
                                 <label>입사 날짜</label><br>
                                 <input type="text" id="regdate" name="regDate">
                             </div>
+                            <div style="float: left;">
+                                <label>이름</label><br>
+                                <input type="text" id="getName" name="name">
+                            </div>
                             <div id="dep" style="float: left;">
                                 <label>사번생성</label><br>
                                 <input type="text" id="getID" readonly>
