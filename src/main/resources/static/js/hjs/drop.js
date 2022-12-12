@@ -75,14 +75,18 @@ $("#tbd").on("click", "#statusBtn", function(event){
     // console.log("아이디:::" ,$("#tbd").find("#tdId").text());
 
     console.log("내 아이디  : ", $(this).attr("data-name"));
+    console.log("내 depNum :  ", $(this).attr("data-depNum"));
 
     let name = $(this).attr("data-name");
+
+    let depNum = $(this).attr("data-depNum");
 
     $.ajax({
         type: 'POST',
         url:  '/report/insa',
         data:{
-            id : name
+            id : name,
+            depNum : depNum
         },
 
         success:function(){

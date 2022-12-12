@@ -79,6 +79,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="#">업무보고서</a>
                         <a class="collapse-item" href="#">휴가신청서</a>
+                        <a class="collapse-item" href="/report/licenserList">승인자 리스트</a>
                         <a class="collapse-item" href="/report/insa">휴가담당 관리자</a>
                     </div>
                 </div>
