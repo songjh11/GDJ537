@@ -10,10 +10,45 @@
 	<!-- ==================================== -->
 	
 	<!-- ============== 한종석 ================ -->
+	
+	<select id="getReportList" parameterType="userVO" resultMap="getListResult">
+		SELECT  U.ID, U.NAME, U.ROLENUM , U.DEPNUM, R.ROLENAME
+			FROM USER U
+			INNER JOIN
+				ROLE R 
+				ON R.ROLENUM = U.ROLENUM 
+				INNER JOIN
+				DEPARTMENT D 
+				ON U.DEPNUM = D.DEPNUM 
+				WHERE U.DEPNUM = #{depNum} AND U.ROLENUM = #{roleNum}
+	</select>
+	
+	<resultMap type="UserVO" id="getListResult">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="roleNum" property="roleNum"/>
+		<result column="depNum" property="depNum"/>
+		
+		<association property="roleVO" javaType="RoleVO">
+			<id column="roleNum" property="roleNum"/>
+			<result column="roleName" property="roleName"/>
+		</association>
+		
+		<association property="departmentVO" javaType="DepartmentVO">
+			<id column="depNum" property="depNum"/>
+		</association>
+		
+	</resultMap>
+	
 	<!-- 권한수정 누구를 부장(lstatus = 2)로 바꿀것인지 ****id를 받아서 -->
 	<update id="setLstatusUpdate" parameterType="ReportVO">
-		UPDATE REPORTLICENCES SET LSTATUS = 2 WHERE ID = #{id}
+		UPDATE REPORTLICENSER SET LSTATUS = 2 WHERE ID = #{id}
 	</update>
+	
+	<!-- 팀장(부장)이 휴가를 가거나 공석일 때 그 팀에서 대표자를 정해야되기 때문에 맴버테이블에서 승인자 테이블로 INSERT해준다 -->
+	<insert id="setLicenserAdd" parameterType="UserVO">
+		INSERT INTO REPORTLICENSER (LICENSERNUM, DEPNUM, ID, LSTATUS) VALUES (#{licenserNum}, #{depNum}, #{id}, #{lstatus})
+	</insert>
 	
 	
 	<!-- ==================================== -->
@@ -97,8 +132,37 @@
 	<!-- ==================================== -->
 	
 	<!-- ============== 류형민 ================ -->
+	<!-- 휴가 신청 목록 가져오기 -->
+	<select id="getMyVacaList" parameterType="UserVO" resultType="ReportVacaVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
 	
+	<!-- 시말서 목록 가져오기 -->
+	<select id="getMySorryList" parameterType="UserVO" resultType="ReportSorryVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
 	
+	<!-- 업무보고서 목록 가져오기 -->
+	<select id="getMyWorkList" parameterType="UserVO" resultType="ReportWorkVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
+	
+	<!-- 지출결의서 목록 가져오기 -->
+	<select id="getMyPayList" parameterType="UserVO" resultType="ReportPayVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
 	
 	<!-- ==================================== -->
 	
