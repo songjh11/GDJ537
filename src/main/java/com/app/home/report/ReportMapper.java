@@ -54,6 +54,15 @@ public interface ReportMapper {
 	
 	//================================================
 	
+	public Integer getLicenseCheck(ReportVO reportVO) throws Exception;
+	
+	public ReportVO getFinishReport(ReportVO reportVO) throws Exception;
+	
+	public ReportVO getReturnsReport(ReportVO reportVO) throws Exception;
+	
+	public ReportVO getDoFirstReport(ReportVO reportVO) throws Exception;
+	
+	public ReportVO getDoFinalReport(ReportVO reportVO) throws Exception;
 	
 	//=======================최근호===================
 	
