@@ -33,7 +33,7 @@
 .number{
     margin-top: 0.2rem;
     font-size: 0.9rem;
-    color: #727272;
+    color: #ffffff;
     display: flex;
     align-items: center;
 }
@@ -52,7 +52,7 @@
 .chating {
     background-color: #4e73df24;
     width: 100%;
-    height: 750px;
+    height: 500px;
     -margin-top: 80px;
     padding: 16px 16px 12px 17px;
     overflow: auto;
@@ -68,25 +68,27 @@
     border-radius: 0.5rem;
 }
 
-.you .name {
-    margin-top: -10px;
+.you-name {
+    margin-top: -5px;
 }
 
 .you-bubble-flex {
     display: flex;
     align-items: flex-end;
     margin-bottom: 0.5rem;
+    margin-top: 0.3rem;
 }
 
 .you-bubble {
     background-color: beige;
     padding: 0.6rem;
+    padding-top : 0.3rem;
     border-radius: 0.5rem;
 }
 
 .you-count {
     color: #727272;
-    margin-left: 0.4rem;
+    margin-left: 0.6rem;
     font-size: smaller;
 }
 
@@ -122,8 +124,8 @@
 
 /* ----- put ----- */
 .put {
-    background-color: #ffffff;
-    width: 100%;
+	background-color : #4e73df;
+	width : 100px;
     height: 85px;
     margin-top: 830px;
     padding: 16px 16px 12px 17px;

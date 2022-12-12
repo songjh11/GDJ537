@@ -4,6 +4,9 @@
 	function wsOpen(){
 		ws = new WebSocket("ws://" + location.host + "/chating");
 		wsEvt();
+		
+		ws.onopen = onOpen; //접속
+		ws.onclose = onClose; //접속해제
 	}
 
 //------------------------------------
@@ -84,3 +87,34 @@
 		ws.send(JSON.stringify(option))
 		$('#chatting').val("");
 	}
+	
+//---------------------------------------------
+
+	//채팅창에서 들어왔을 때
+	function onOpen(evt) {
+		console.log("open event : "+evt);
+		var str = userName + ": 님이 입장하셨습니다.";
+		ws.send(str);
+	}
+
+	//채팅창에서 나갔을 때
+	function onClose(evt) {
+		console.log("close event : "+evt);
+		var str = userName + ": 님이 방을 나가셨습니다.";
+		ws.send(str);
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

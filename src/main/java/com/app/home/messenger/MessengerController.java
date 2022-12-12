@@ -221,8 +221,7 @@ public class MessengerController {
 	@GetMapping("chatroom")
 	public ModelAndView chat3()throws Exception{
 		ModelAndView mv= new ModelAndView();
-	
-		mv.setViewName("redirect:../messenger/chat");
+		mv.setViewName("messenger/chatroom");
 		return mv;
 	}
 
