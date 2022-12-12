@@ -118,15 +118,15 @@
 	
 	
 	<sql id="getFilter">
-		WHERE ID LIKE ''
+		WHERE GOODSID LIKE ''
 			<if test="room">
-				OR ID LIKE '%RO%'
+				OR GOODSID LIKE '%RO%'
 			</if>
 			<if test="car">
-				OR ID LIKE '%CA%'
+				OR GOODSID LIKE '%CA%'
 			</if>
 			<if test="vacation">
-				OR ID LIKE '%VA%'
+				OR GOODSID LIKE '%VA%'
 			</if>
 		
 	</sql>
