@@ -115,6 +115,16 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">시설</h6>
                         <a class="collapse-item" href="/goods/ad_list">시설 관리</a>
+                        <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseReserve" aria-expanded="true" aria-controls="collapseReserve" id="accordionReserve">
+                            <!-- <i class="fas fa-fw fa-table"></i> -->
+                            <span>예약 통계</span>
+                        </a>
+                        <div id="collapseReserve" class="collapse" aria-labelledby="headingReserve" data-parent="#accordionReserve">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="/goods/ad_room">회의실 예약 통계</a>
+                                <a class="collapse-item" href="/goods/ad_car">차량 예약 통계</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </li> 
