@@ -53,7 +53,7 @@
 		</collection>
 	</resultMap>
 
-	<insert id="setRoomReserve" parameterType="RoomVO">
+	<insert id="setRoomReserve" parameterType="GoodsRoomVO">
 		insert into RESERVE
 		values(null, #{goodsId},
 		#{id},

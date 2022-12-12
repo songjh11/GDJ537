@@ -28,18 +28,18 @@ public class RoomService
 		return roomMapper.getRoomTotal(goodsVO);
 	}
 
-	public int setRoomReserve(RoomVO roomVO) throws Exception
+	public int setRoomReserve(GoodsRoomVO goodsRoomVO) throws Exception
 	{
-		return roomMapper.setRoomReserve(roomVO);
+		return roomMapper.setRoomReserve(goodsRoomVO);
 	}
 
-	public List<RoomVO> getReserveStartTime(RoomVO roomVO) throws Exception
+	public List<GoodsRoomVO> getReserveStartTime(GoodsRoomVO goodsRoomVO) throws Exception
 	{
-		return roomMapper.getReserveStartTime(roomVO);
+		return roomMapper.getReserveStartTime(goodsRoomVO);
 	}
 
-	public List<ReserveVO> getResInfo(RoomVO roomVO) throws Exception
+	public List<ReserveVO> getResInfo(GoodsRoomVO goodsRoomVO) throws Exception
 	{
-		return roomMapper.getResInfo(roomVO);
+		return roomMapper.getResInfo(goodsRoomVO);
 	}
 }
