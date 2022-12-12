@@ -21,13 +21,24 @@
 		<!-- 회원관리  4조 -->
 		
 		<!-- 게시판   2조 -->
-		
+		<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
+		<!-- 버전은 최신 버전으로 -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency>
 		<!-- 예약     5조 -->
 		
 		<!-- 보고서   1조 -->
 		
 		<!-- 메신져   3조 -->
-	
+
+		<!-- <dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency>  -->
 	
 		<!-- 메신저 -->
 		<dependency>
@@ -41,7 +52,6 @@
 		  <artifactId>json-simple</artifactId>
 		  <version>1.1.1</version>
 		</dependency>
-		<!-- json simple  -->
 
 		<!-- JSP 연동 -->
 		<dependency>
@@ -62,12 +72,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency> -->
-		
-		<dependency>
-		    <groupId>org.bgee.log4jdbc-log4j2</groupId>
-		    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
-		    <version>1.16</version>
-		</dependency>
+
 		
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -79,7 +84,7 @@
 			<artifactId>mariadb-java-client</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

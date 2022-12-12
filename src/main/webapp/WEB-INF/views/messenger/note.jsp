@@ -203,7 +203,7 @@
 	#noteChoice {
 		display: flex;
 		height: 57px;
-		border: 1px solid #80808042;
+		/* border: 1px solid #80808042; */
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px;
 		/* box-shadow: 0px -5px 7px -4px #80808052; */
@@ -216,10 +216,65 @@
 		justify-content: center;
 	}
 
+	#noteChoiceSearch {
+		height: 57px;
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		margin: 10px 0px 0px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+	}
+
 	#noteContent {
-		height: 700px;
+		/* height: 700px; */
+		
+		height: 500px;
 		overflow-y: scroll;
 	}
+
+	#noteContent::-webkit-scrollbar {
+		display: none;
+	}
+
+	@media screen and (max-width:1024px) {
+		#noteContent {
+			height: 700px;
+			overflow-y: scroll;
+		}
+	}
+
+	@media screen and (max-width:800px) {
+		#noteContent {
+			height: 500px;
+			overflow-y: scroll;
+		}
+
+	}
+
+	@media screen and (max-width:640px) {
+		#noteContent {
+			height: 500px;
+			overflow-y: scroll;
+		}
+
+	}
+
+	@media screen and (max-width:480px) {
+		#noteContent {
+			height: 500px;
+			overflow-y: scroll;
+		}
+	}
+
+	@media screen and (max-width:375px) {
+		#noteContent {
+			height: 500px;
+			overflow-y: scroll;
+		}
+	}
+
 
 	.noteList{
 		border: 1px solid #d8d9f7a1;
@@ -227,14 +282,14 @@
 		background: #fff;
 		margin: 8px 7px;
 		display: flex;
-		height: 73px;
+		height: 54px;
+		/* height: 73px; */
 		align-items: center;
 		padding: 3px;
 		overflow: hidden;
 		border-radius: 10px 10px;
    		font-size: 13px;
 		box-shadow: 2px 2px 5px #8080801f;
-		
 	}
 
 	.noteList:hover {
@@ -242,7 +297,7 @@
 	}
 
 	#listImage{
-		width: 15%;
+		width: 10%;
 		height: 80%;
 		margin: 0px 8px 0px 3px;
 	}
@@ -255,7 +310,7 @@
 
 	#listInfo {
 		margin-bottom: auto;
-		width: 75%;
+		width: 85%;
 	}
 
 	#listInfo div:nth-child(1) {
@@ -266,22 +321,48 @@
 	#listInfo div:nth-child(2) {
 		word-wrap: break-word;
 		text-overflow: ellipsis;
-    	width: 300px;
-	}
-
-	#noteContent::-webkit-scrollbar {
-		display: none;
+    	/* width: 300px; */
+		width: 100%;
 	}
 
 	/* .noteList div:nth-child(3){
 		text-overflow: ellipsis;
 	} */
 
+	#pagination {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 5px;
+	}
+
+	.pagep {
+		background: #ffffffc2;
+		width: 18px;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		margin: 0px 3px;
+		align-items: center;
+		font-size: 13px;
+		border-radius: 11px;
+		box-shadow: 1px 1px 5px -1px #80808054;
+	}
+
+	a:hover {
+		text-decoration: none !important;
+	}
+
+	.pagep:hover {
+		cursor: pointer;
+	}
+
 	
 
 </style>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
+<link href="/css/chat/employeeList.css" rel="stylesheet">
 <c:import url="../temp/layout_header.jsp"></c:import>
 </head>
 
@@ -315,111 +396,8 @@
 
 					<div class="chatDiv">
 						<div class="blank"></div>
-						<div>
-							<!-- Topbar Search -->
-						<form class="form-inline navbar-search" style="display: flex; justify-content: flex-end; margin-right: 10px; margin-bottom: 30px;">
-							<div class="input-group" style="width: 100%;"> 
-								<select class="searchOption form-control" value="">
-									<option vlaue="" selected>정렬</option>
-									<option value="">이름 순</option>
-									<option value="">부서 순</option>
-									<option value="">직급 순</option>
-								</select>
-								<input type="text" class="form-control bg-light border-0 small" style="width: 180px !important;" placeholder="Search for..."
-									aria-label="Search" aria-describedby="basic-addon2">
-								<div class="input-group-append">
-									<button class="btn btn-primary" type="button">
-										<i class="fas fa-search fa-sm"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-						</div>
-						<ul class="chatUl">
-							<li class="titleLi">
-								<span style="margin-left: 20px;">즐겨찾기</span>
-								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
-								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
-							</li>
-							<ul class="acoArea" id="acoArea1">
-								<li class="chatLi">
-									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-										<div>
-											<img class="yourImg" src="/img/undraw_profile_3.svg">
-										</div>
-										<div class="userInfo">
-											<span>김사원</span>
-											<span>(마케팅부/사원)</span>
-										</div>
-										<div class="btnArea">
-											<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
-										</div>
-									</div>
-								</li>
-								<li class="chatLi">
-									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-										<div>
-											<img class="yourImg" src="/img/undraw_profile_3.svg">
-										</div>
-										<div class="userInfo">
-											<span>김사원</span>
-											<span>(마케팅부/사원)</span>
-										</div>
-											<div class="btnArea">
-												<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
-											</div>
-									</div>
-								</li>
-							</ul>
-							<li class="titleLi">
-								<span style="margin-left: 20px;">개발팀</span>
-								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
-								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
-							</li>
-							<ul class="acoArea">
-								<li class="chatLi">
-									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-										<div>
-											<img class="yourImg" src="/img/undraw_profile_3.svg">
-										</div>
-										<div class="userInfo" style="width: 60%;">
-											<span>김사원</span>
-											<span>(마케팅부/사원)</span>
-										</div>
-											<div class="btnArea">
-												<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
-											</div>
-									</div>
-								</li>
-							</ul>
-							<li class="titleLi">
-								<span style="margin-left: 20px;">인사팀</span>
-								<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
-								<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
-							</li>
-							<ul class="acoArea">
-								<li class="chatLi">
-									<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
-										<div>
-											<img class="yourImg" src="/img/undraw_profile_3.svg">
-										</div>
-										<div class="userInfo" style="width: 60%;">
-											<span>김사원</span>
-											<span>(마케팅부/사원)</span>
-										</div>
-											<div class="btnArea">
-												<button type="button" class="pickBtn" userNum="2"><img class="pickImg" src="/img/star (3).png"></button>
-											</div>
-									</div>
-								</li>
-							</ul>
-						</ul>
+							<c:import url="./employeeList.jsp"></c:import>	
 					</div>
-
-
-
-
-
 					<div class="chatDiv">
 
 						<!------------------------------------ YR ------------------------------------------->
@@ -427,10 +405,29 @@
 							<!-- <div id="noteTitle">쪽지함</div> -->
 
 							<div id="noteChoice">
-								<div><button id="receiveNote" onclick="location.href='./note'"><img src="/img/messenger/receive.png" alt=""></button></div>
-								<div><button id="sentNoteList"><img src="/img/messenger/send.png" alt=""></button></div>
-								
+								<div><button id="receiveNote" onclick="location.href='./note'"><img id="rImg" src="/img/messenger/receive.png" alt=""></button></div>
+								<div><button id="sentNoteList" onclick="ajaxPage(1)"><img style="transform: translateY(-4px);" id="sImg" src="/img/messenger/sendX.png" alt=""></button></div>
+								<div><button id="goSearch"><img style="width: 30px;" src="/img/messenger/searchzz.png"></button></div>
 							</div>
+							<form id="ajaxSearchForm" action="./note" method="get">
+								<div id="noteChoiceSearch">
+									<div class="input-group" style="width: 95%;"> 
+										<select class="searchOption form-control" name="kind" id="kindkind">
+											<option value="contents" selected>내용</option>
+											<option id="changeOption" value="sendId">발신ID</option>
+										</select>
+										<input id="searchInput" name="search" type="text" class="form-control bg-light border-0 small" style="width: 120px !important;" placeholder="Search for..."
+											aria-label="Search" aria-describedby="basic-addon2">
+										<div class="input-group-append">
+											<button class="btn btn-primary" id="gogogogo" type="submit">
+												<i class="fas fa-search fa-sm"></i>
+											</button>
+										</div>
+									</div>
+								
+									
+								</div>
+							</form>
 
 							
 
@@ -458,13 +455,16 @@
 							</div>
 
 							<div id="pagination">
-								<p>
-									<a href="">왼쪽</a>
-									<a href="">1</a>
-									<a href="">오른쪽</a>
+								<p style="margin: 0; display: flex; align-items: center;">
+									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startNum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
+									<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                                    
+                                    	<!-- <a href="./simpleresult?search=${pager.search}&kind=${pager.kind}&page=${i}" id="ppaaggee${i}">${i}</a> -->
+                                    	<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${i}" class="pagep" id="ppaaggee${i}">${i}</a>
+                                    
+                                	</c:forEach>
+									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastNum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
 								</p>
-
-
 							</div>
 
 							
@@ -507,28 +507,97 @@
 
 
 	<script>
+		$(document).ready(function() {
+			$('#noteChoice').show(); //페이지를 로드할 때 표시할 요소
+			$('#noteChoiceSearch').hide();
+		})
+
+		$("#goSearch").on("click", function(){
+			$('#noteChoice').hide();
+			$('#noteChoiceSearch').fadeIn();
+
+
+			// $('#topSearchForm').fadeIn();
+			// $('#searchTopClose').show();
+			// $('#searchBoxArea').animate({height:'104px',opacity:'1'},'fast');
+			// $('#topSearchForm .searchBox').attr('tabIndex','0').focus();
+
+		})
+
+		
+
 		$('#sendNote').on("click",function(){
-			console.log("하이");
 			window.open('./note/send?receiveId=2', '_blank', "width=450px, height=500px, location=no, top=100, left=500");
 		})
+
 		function notePop(num) {
 			window.open('./note/detail?noteNum='+num, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
 		};
 
-		$('#sentNoteList').on("click", function(){
-			console.log("일로와");
 
+		function ajaxPage(page, kind, search){
 			$.ajax({
 				type:"GET",
 				url :"./note/sent",
 				traditional:true, //배열을 전송할 때 사용, true
 				data:{
-					ii: 1
+					page: page,
+					kind: kind,
+					search: search
 				},
 				success : function(data){
+					let disabled = "";
+					let disabled2 = "";
 					console.log("나는성공, 나의 데이터는? : ", data);
+					console.log(data.pager.page)
+					console.log(data.pager.startNum)
+					console.log(data.pager.lastNum)
+					console.log(data.pager.pre)
+					console.log(data.pager.next)
+
+					// 검색기능을 위해 기존 폼을 발신전용으로 잠시 수정
+					$("#changeOption").val("receiveId");
+					$("#changeOption").html("수신ID");
+					$("#gogogogo").attr("type","button");
+
+					$("#gogogogo").on("click", function(){
+						console.log("에젝에서만나와");
+						ajaxPage(1, $("#kindkind").val(), $("#searchInput").val())
+						// console.log($("#kindkind").val());
+						// console.log($("#searchInput").val());
+					});
+
+					$("#pagination").empty();
+
+					if(data.pager.pre) {
+						disabled = "";
+					} else {
+						disabled = "disabled";
+					}
+
+					if(data.pager.next) {
+						disabled2 = ""
+					} else {
+						disabled2 = "disabled";
+					}
+
+					let forPage = "";
+					for(let i=data.pager.startNum;i<=data.pager.lastNum;i++) {
+						forPage += '<a onclick="ajaxPage('+i+')" class="pagep" id="ppaaggee'+i+'">'+i+'</a>'
+					}
+
+					console.log(forPage);
+
+					let pageAjax = '<p style="margin: 0; display: flex; align-items: center;"><a onclick="ajaxPage('+(data.pager.startNum-1)+')" style="margin: 0px 5px;" class="'+disabled+'"><img src="/img/messenger/left2.png" alt=""></a>'+forPage+'<a onclick="ajaxPage('+(data.pager.lastNum+1)+')" style="margin: 0px 5px;" class="'+disabled2+'"><img src="/img/messenger/right2.png" alt=""></a></p>';
+
+					$("#pagination").html(pageAjax);
+
 
 					let tempest = '';
+					let src2="/img/messenger/send.png";
+					let src="/img/messenger/receiveX.png";
+					$("#sImg").attr("src",src2);
+					$("#rImg").attr("src",src);
 
 					$.each(data.list, function(index, item) { 
 						// console.log(item);
@@ -536,16 +605,23 @@
 						// console.log(item.noteNum);
 						item.contents = item.contents.replace(/\r\n/g, "</br>");
 
-						tempest += '<div class="noteList" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/messenger/test.png" alt=""></div><div id="listInfo"><div>수신자:'+item.receiveId+'</div><div>'+item.contents+'</div></div></div>'
+						tempest += '<div class="noteList" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/messenger/test.png" alt=""></div><div id="listInfo"><div>'+item.noteNum+'수신자:'+item.receiveId+'</div><div>'+item.contents+'</div></div></div>'
 
 						$('#noteContent').html(tempest);
 					})
+
+					$(".disabled").removeAttr("href");
 				},
 				error   : function(){
 					console.log("나는에러");
 				}
 			});
-		})
+
+			
+			
+		}
+
+		$(".disabled").removeAttr("href");
 	</script>
 
 	<!-- Scroll Top, Login Modal import -->

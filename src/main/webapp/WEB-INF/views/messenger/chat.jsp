@@ -11,6 +11,8 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 </style>
+<link rel="stylesheet" href="/css/chat/groupModal.css">
+<link rel="stylesheet" href="/css/chat/employeeList.css">
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <c:import url="../temp/layout_header.jsp"></c:import>
@@ -37,9 +39,10 @@
 						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"></button></a>
 						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
 					</div>
-					<div class="chatDiv">
+					<div class="chatDiv" id="chatArea">
 						<div class="blank"></div>
-							<c:import url="./employeeList.jsp"></c:import>	
+							<c:import url="./groupModal.jsp"></c:import>
+							<c:import url="./employeeList.jsp"></c:import>
 					</div>
 					<div class="chatDiv">
 						<div class="blank"></div>
@@ -77,5 +80,6 @@
 	<!-- Scroll Top, Login Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 	<script src="/js/messenger/main.js"></script>
+	<script src="/js/messenger/groupModal.js"></script>
 </body>
 </html>

@@ -16,14 +16,19 @@
 </sql>
 
 	<select id="getEmpList" resultMap="getEmpListResult">
-		SELECT E.*, D.DEPNUM,D.DEPNAME, R.ROLENAME FROM EMPLOYEE E
-		INNER JOIN
-			DEPARTMENT D
-			ON E.DEPNUM=D.DEPNUM
-			 INNER JOIN
-			 	ROLE R
-			 	ON E.ROLENUM=R.ROLENUM	
-<!-- 		WHERE E.DEPTNUM=#{deptNum} -->
+		SELECT * FROM EMPLOYEE E
+			LEFT JOIN
+			PICKDETAIL PD 
+			ON E.ID=PD.YOURID 
+				LEFT JOIN
+				PICK P
+				ON P.PICKNUM=PD.PICKNUM 
+					INNER JOIN
+					DEPARTMENT D
+					ON E.DEPNUM=D.DEPNUM
+						INNER JOIN
+					 	ROLE R
+					 	ON E.ROLENUM=R.ROLENUM				 	
 		ORDER BY D.DEPNUM, E.NAME
 	</select>
 	
@@ -34,15 +39,21 @@
 	
 	<select id="getSearchResult" parameterType="Map" resultMap="getEmpListResult">
 		SELECT * FROM EMPLOYEE E
-			INNER JOIN
-			DEPARTMENT D
-			ON E.DEPNUM=D.DEPNUM
-			INNER JOIN
-				 	ROLE R
-				 	ON E.ROLENUM=R.ROLENUM	
-				 	<if test="kind!=null">
-						<include refid="search"></include> 	
-				 	</if>
+			LEFT JOIN
+			PICKDETAIL PD 
+			ON E.ID=PD.YOURID 
+				LEFT JOIN
+				PICK P
+				ON P.PICKNUM=PD.PICKNUM 
+					INNER JOIN
+					DEPARTMENT D
+					ON E.DEPNUM=D.DEPNUM
+					INNER JOIN
+						 	ROLE R
+						 	ON E.ROLENUM=R.ROLENUM	
+						 	<if test="kind!=null">
+								<include refid="search"></include> 	
+						 	</if>
 			ORDER BY D.DEPNUM, E.NAME
 	</select>
 	
@@ -50,8 +61,8 @@
 	<resultMap type="EmployeeVO" id="getEmpListResult">
 		<id column="NUM" property="num"/>
 		<result column="ID" property="id"/>
-		<result column="ROLENUM" property="roleNum"/>
 		<result column="DEPNUM" property="depNum"/>
+		<result column="ROLENUM" property="roleNum"/>
 		<result column="PW" property="pw"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
@@ -67,6 +78,23 @@
 				<id column="DEPNUM" property="depNum"/>
 				<result column="DEPNAME" property="depName"/>
 			</association>
+			<association property="pickVO">
+				<id column="PICKNUM" property="pickNum"/>
+				<result column="MYID" property="myId"/>
+			</association>
 	</resultMap>
+	
+	<!--                       효경                       -->
+	
+	<insert id="setAddRoomUser" parameterType="EmployeeVO">
+		INSERT INTO  ROOMUSER
+		VALUES(NULL, #{id}, #{roomNum})
+	</insert>
+	
+	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum" >
+		INSERT INTO  CHATROOM
+		VALUES(#{roomNum}, now(), #{roomName}, 
+			   (SELECT ID FROM EMPLOYEE WHERE NUM = #{num}), #{pw})
+	</insert>
 	
 </mapper>    

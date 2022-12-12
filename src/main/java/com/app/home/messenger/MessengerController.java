@@ -2,6 +2,7 @@ package com.app.home.messenger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,33 +33,21 @@ public class MessengerController {
 	@Autowired
 	private MessengerService messengerService;
 	
-	// DB저장이 아니라 방의 정보를 담아둘 List<RoomVO>를 생성
-	List<RoomVO> roomVOs =  new ArrayList<RoomVO>();
-	
-	static int roomNum = 0;
+	@Autowired
+	private PickService pickService;
 	
 	@GetMapping("chat")
 	public ModelAndView getMyChat(HttpSession session)throws Exception{
-		int id = 1;
+		Integer id = 10;
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<EmployeeVO> el = messengerService.getEmpList();
+		List<EmployeeVO> pl = pickService.getPickList(id.toString());
+		
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
-		mv.addObject("message", "all");
-		return mv;
-	}
-	
-	@GetMapping("chatTest")
-	public ModelAndView getMyChat2(HttpSession session)throws Exception{
-		int id = 1;
-		ModelAndView mv = new ModelAndView();
-		List<DepartmentVO> dl = messengerService.getDepList();
-		List<EmployeeVO> el = messengerService.getEmpList();
-		mv.addObject("myId", id);
-		mv.addObject("depList", dl);
-		mv.addObject("empList", el);
+		mv.addObject("pickList", pl);
 		mv.addObject("message", "all");
 		return mv;
 	}
@@ -65,7 +55,7 @@ public class MessengerController {
 	@PostMapping("searchEmp")
 	public ModelAndView getSearchResult(HttpSession session, String kind, String keyword) throws Exception{
 		log.info("keyword:{},kind:{}", keyword, kind);
-		int id = 1;
+		int id = 10;
 		Map<String, String> map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("kind", kind);
@@ -79,32 +69,57 @@ public class MessengerController {
 		return mv;
 	}
 	
+	@GetMapping("pickCheck")
+	@ResponseBody
+	public int setPickCheck (String myId, String yourId) throws Exception{
+		int result = pickService.createPick(myId, yourId);
+		log.info("result:{}",result);
+		return result;
+	}
+	
+	@PostMapping("pickCancel")
+	@ResponseBody
+	public int pickCancel (String myId, String yourId) throws Exception{
+		int result = pickService.pickCancel(myId, yourId);
+		log.info("취소 result:{}",result);
+		return result;
+	}
+	
 	//수신함
 	@GetMapping("note")
-	public ModelAndView getReceiveNoteList(EmployeeVO employeeVO)throws Exception{
+	public ModelAndView getReceiveNoteList(EmployeeVO employeeVO, NotePager notePager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		//임시 id
 		employeeVO.setId(20221231);
 
-		List<NoteVO> ar = noteService.getReceiveNoteList(employeeVO);
+		List<NoteVO> ar = noteService.getReceiveNoteList(employeeVO, notePager);
 		
 		mv.addObject("list", ar);
-		return mv;
+		mv.addObject("pager", notePager);
 		
+		int id = 1;
+		List<DepartmentVO> dl = messengerService.getDepList();
+		List<EmployeeVO> el = messengerService.getEmpList();
+		mv.addObject("myId", id);
+		mv.addObject("depList", dl);
+		mv.addObject("empList", el);
+		mv.addObject("message", "all");
+		
+		return mv;
 	}
 	
 	//발신함
 	@GetMapping("note/sent")
 	@ResponseBody
-	public ModelAndView getSendNoteList(EmployeeVO employeeVO)throws Exception{
+	public ModelAndView getSendNoteList(EmployeeVO employeeVO, NotePager notePager)throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		//임시 id
 		employeeVO.setId(20221231);
-		List<NoteVO> ar = noteService.getSendNoteList(employeeVO);
+		List<NoteVO> ar = noteService.getSendNoteList(employeeVO, notePager);
 		
 		mv.addObject("list", ar);
+		mv.addObject("pager", notePager);
 		return mv;
-		
 	}
 	
 	//쪽지 상세
@@ -140,6 +155,59 @@ public class MessengerController {
 		mv.setViewName("messenger/note/sendAfter");
 		return mv;
 	}
+	
+	// --------------------- 효경 ------------------------------
+	
+	// 채팅방 추가
+	@PostMapping("addRoomUser")
+	@ResponseBody
+	public ModelAndView setAddRoomUser(@RequestParam(value = "id") List<Integer> ids)throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		List<EmployeeVO> ar = new ArrayList<>();
+		RoomVO roomVO = new RoomVO();
+		
+		for(Integer id : ids) {
+			log.info("임플로이브이오 => {} ", id);
+			EmployeeVO employeeVO = new EmployeeVO();
+			employeeVO.setId(id);
+			ar.add(employeeVO);
+			roomVO.setEmployeeVOs(ar);
+		}
+		
+		mv.addObject("userList", ar);
+		mv.setViewName("messenger/chat");
+		
+		
+		return mv;
+	}
+	
+	// 채팅방 추가
+	@GetMapping("addRoom")
+	public String setAddRoom(@RequestParam(value = "id") List<String> ids)throws Exception{
+		
+		for(String id : ids) {
+			log.info("임플로이브이오 => {} ", id);
+			
+		}
+		
+		return "messenger/room/addRoom";
+	}
+	
+	// 채팅방 추가
+	@PostMapping("addRoom")
+	public ModelAndView setAddRoom(RoomVO roomVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = messengerService.setAddRoom(roomVO);
+		
+		
+		mv.setViewName("messenger/addRoom");
+		
+		return mv;
+	}
+	// --------------------- 유리 ------------------------------
+	
 	//-----------
 	
 	@GetMapping("chat1")
@@ -154,7 +222,7 @@ public class MessengerController {
 	public ModelAndView chat3()throws Exception{
 		ModelAndView mv= new ModelAndView();
 	
-		mv.setViewName("messenger/chatroom");
+		mv.setViewName("redirect:../messenger/chat");
 		return mv;
 	}
 
