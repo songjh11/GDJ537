@@ -52,6 +52,11 @@
 		    <version>1.1.1</version>
 		</dependency>
 		<!-- 보고서   1조 -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency> 
 		
 		<!-- 메신져   3조 -->
 
