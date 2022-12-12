@@ -17,7 +17,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
+
                 <a class="nav-link" href="/">
+
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Goodee</span></a>
             </li>
@@ -104,7 +106,7 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - 관리자 -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/user/admin/wait">
                     <i class="fas fa-fw fa-table"></i>
                     <span>관리자</span></a>
             </li> 
