@@ -89,14 +89,15 @@ public class MessengerController {
 	
 	//수신함
 	@GetMapping("note")
-	public ModelAndView getReceiveNoteList(EmployeeVO employeeVO)throws Exception{
+	public ModelAndView getReceiveNoteList(EmployeeVO employeeVO, NotePager notePager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		//임시 id
 		employeeVO.setId(20221231);
 
-		List<NoteVO> ar = noteService.getReceiveNoteList(employeeVO);
+		List<NoteVO> ar = noteService.getReceiveNoteList(employeeVO, notePager);
 		
 		mv.addObject("list", ar);
+		mv.addObject("pager", notePager);
 		
 		int id = 1;
 		List<DepartmentVO> dl = messengerService.getDepList();
@@ -107,21 +108,20 @@ public class MessengerController {
 		mv.addObject("message", "all");
 		
 		return mv;
-		
 	}
 	
 	//발신함
 	@GetMapping("note/sent")
 	@ResponseBody
-	public ModelAndView getSendNoteList(EmployeeVO employeeVO)throws Exception{
+	public ModelAndView getSendNoteList(EmployeeVO employeeVO, NotePager notePager)throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		//임시 id
 		employeeVO.setId(20221231);
-		List<NoteVO> ar = noteService.getSendNoteList(employeeVO);
+		List<NoteVO> ar = noteService.getSendNoteList(employeeVO, notePager);
 		
 		mv.addObject("list", ar);
+		mv.addObject("pager", notePager);
 		return mv;
-		
 	}
 	
 	//쪽지 상세
