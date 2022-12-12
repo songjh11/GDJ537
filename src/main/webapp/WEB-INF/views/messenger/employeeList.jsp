@@ -141,7 +141,7 @@
 									</div>
 									<c:choose>
 										<c:when test="${empty empList}">
-											<h1>검색 결과가 없습니다</h1>
+											<h6 style="text-align: center;">검색 결과가 없습니다</h6>
 										</c:when>
 										<c:when test="${not empty empList}">
 											<c:forEach items="${empList}" var="e">

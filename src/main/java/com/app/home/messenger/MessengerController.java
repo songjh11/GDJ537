@@ -96,12 +96,15 @@ public class MessengerController {
 		mv.addObject("list", ar);
 		mv.addObject("pager", notePager);
 		
-		int id = 1;
+		Integer id = 1;
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<EmployeeVO> el = messengerService.getEmpList();
+		List<EmployeeVO> pl = pickService.getPickList(id.toString());
+		
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
+		mv.addObject("pickList", pl);
 		mv.addObject("message", "all");
 		
 		return mv;
