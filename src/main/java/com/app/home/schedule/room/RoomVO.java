@@ -9,6 +9,5 @@ import lombok.Data;
 @Data
 public class RoomVO extends ReserveVO
 {
-
 	private List<ReserveVO> reserveVOs;
 }
