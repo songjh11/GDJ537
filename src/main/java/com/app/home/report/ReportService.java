@@ -38,6 +38,11 @@ public class ReportService {
 		return reportMapper.getReportList(userVO);
 	}
 	
+	public int setLicenserAdd(UserVO userVO) throws Exception{
+		
+		return reportMapper.setLicenserAdd(userVO);
+	}
+	
 	
 	
 	

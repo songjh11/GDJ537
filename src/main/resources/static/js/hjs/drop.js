@@ -87,6 +87,8 @@ $("#tbd").on("click", "#statusBtn", function(event){
 
         success:function(){
             alert("수정에 성공하였습니다.")
+            console.log($(this).attr("data-name"));
+            $(this).text("이미 부여됨");
         },
         error:function(){
             alert("수정에 실패하였습니다");

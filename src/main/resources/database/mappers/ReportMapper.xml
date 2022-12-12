@@ -45,6 +45,11 @@
 		UPDATE REPORTLICENSER SET LSTATUS = 2 WHERE ID = #{id}
 	</update>
 	
+	<!-- 팀장(부장)이 휴가를 가거나 공석일 때 그 팀에서 대표자를 정해야되기 때문에 맴버테이블에서 승인자 테이블로 INSERT해준다 -->
+	<insert id="setLicenserAdd" parameterType="UserVO">
+		INSERT INTO REPORTLICENSER (LICENSERNUM, DEPNUM, ID, LSTATUS) VALUES (#{licenserNum}, #{depNum}, #{id}, #{lstatus})
+	</insert>
+	
 	
 	<!-- ==================================== -->
 	
