@@ -81,7 +81,7 @@ public class MessengerController {
 	@ResponseBody
 	public int pickCancel (String myId, String yourId) throws Exception{
 		int result = pickService.pickCancel(myId, yourId);
-		log.info("result:{}",result);
+		log.info("취소 result:{}",result);
 		return result;
 	}
 	

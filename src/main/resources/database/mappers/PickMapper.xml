@@ -43,7 +43,7 @@
 					 	ROLE R
 					 	ON E.ROLENUM=R.ROLENUM	
 			WHERE P.MYID=#{myId}		 	
-		ORDER BY E.NAME
+		ORDER BY D.DEPNUM, E.NAME
 	</select>
 	
 	<select id="perCheck" parameterType="Map" resultType="int">

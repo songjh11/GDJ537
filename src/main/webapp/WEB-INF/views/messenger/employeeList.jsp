@@ -289,10 +289,10 @@
 															<div class="btnArea">
 																<c:choose>
 																	<c:when test="${e.pickVO.myId eq myId}">
-																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																			<button type="button" class="pickBtn pickNum" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
 																	</c:when>
 																	<c:when test="${e.pickVO.myId ne myId}">
-																		<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																		<button type="button" class="pickBtn pickNum" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
 																	</c:when>
 																</c:choose>
 															</div>
