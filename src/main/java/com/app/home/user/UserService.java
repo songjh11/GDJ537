@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.app.home.user.util.FileManager;
+import com.app.home.user.util.FileUserManager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,7 +22,7 @@ public class UserService {
 	private UserMapper userMapper;
 
 	@Autowired
-	private FileManager fileManager;
+	private FileUserManager fileManager;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
