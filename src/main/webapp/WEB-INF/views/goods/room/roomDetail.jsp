@@ -70,7 +70,7 @@ ul li {
 								<th>위치</th>
 							</tr>
 							<tr>
-								<td>${goodDetail.id }</td>
+								<td>${goodDetail.goodsId }</td>
 								<td>${goodDetail.name }</td>
 								<td>${goodDetail.contents }</td>
 								<td>${goodDetail.max }</td>

@@ -47,7 +47,7 @@
 								</tr>
 							</table>
 
-							<input type="hidden" name="id" value="${goodDetail.id }">
+							<input type="hidden" name="id" value="${goodDetail.goodsId }">
 
 							<div class="mb-3">
 								<label>예약일</label>
