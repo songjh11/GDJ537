@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,12 @@ public class UserService {
 
 	@Autowired
 	private FileManager fileManager;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Value("${app.profile}") // C:/user/profile/
+	private String path;
 
 	public UserVO setUserID(UserVO userVO) throws Exception {
 		userMapper.setUser(userVO);
@@ -32,26 +39,48 @@ public class UserService {
 	public UserVO getMypage(UserVO userVO) throws Exception {
 		return userMapper.getMypage(userVO);
 	}
+	
+	public UserVO setProfileSet(UserVO userVO)throws Exception{
+		
+		File file = new File(path);
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+		
+		if (userVO.getFile() != null) {
+			MultipartFile f = userVO.getFile();
+			String fileName = fileManager.saveFile(f, path);
+			userVO.setProfile(fileName);
+			userVO.setId(userVO.getId());
+			userMapper.setProfileSet(userVO);
+
+		}
+		
+		return userVO;
+	   }
+   
+   public int setProfileUpdate(UserVO userVO)throws Exception{
+      return userMapper.setProfileUpdate(userVO);
+   }
 
 	/* 비밀번호 변경 */
-	public int setChangePw(UserVO userVO) throws Exception {
-//	      userVO.setPw(passwordEncoder.encode(userVO.getPw()));
+	public int setChangePw(UserVO userVO, UserVO sessionVO) throws Exception {
+	    userVO.setPw(passwordEncoder.encode(userVO.getPw()));
 		int result = userMapper.setChangePw(userVO);
-//	      if(result == 1) {
-//	         sessionVO.setPw(userVO.getPw());
-//	      }
+	      if(result == 1) {
+	         sessionVO.setPw(userVO.getPw());
+	      }
 		return result;
 	}
 
 	// 비밀번호 일치 확인(본인확인)
-	public int getPwCheck(UserVO userVO) throws Exception {
+	public int getPwCheck(UserVO userVO, UserVO sessionUserVO) throws Exception {
 		// mathces("평문 비번", "인코딩된 pw")
-//	      log.info("pwCheck :{}",passwordEncoder.matches(memberVO.getPw(), check.getPw()));
 
-//	      if(passwordEncoder.matches(memberVO.getPw(), check.getPw())) {
-//	         memberVO.setPw(check.getPw());
-//	      }else {
-//	      }   
+	      if(passwordEncoder.matches(userVO.getPw(), sessionUserVO.getPw())) {
+	    	  userVO.setPw(sessionUserVO.getPw());
+	      }else {
+	      }   
 
 		return userMapper.getPwCheck(userVO);
 	}
@@ -162,8 +191,7 @@ public class UserService {
 		return result;
 	}
 
-	@Value("${app.profile}") // C:/user/profile/
-	private String path;
+
 
 	// 사원번호 조회
 	public UserVO getIdCheck(UserVO userVO) throws Exception {
@@ -172,6 +200,8 @@ public class UserService {
 
 	// 회원가입
 	public int setJoin(UserVO userVO, String email, String address) throws Exception {
+		userVO.setPw(passwordEncoder.encode(userVO.getPw()));
+		
 		// 이메일
 		userVO.setEmail(email + "@" + address);
 		int result = userMapper.setJoin(userVO);
