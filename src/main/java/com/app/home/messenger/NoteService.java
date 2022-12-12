@@ -23,8 +23,13 @@ public class NoteService {
 	}
 	
 	public List<NoteVO> getSendNoteList(EmployeeVO employeeVO, NotePager notePager)throws Exception {
+		Map<String, Object> countMap = new HashMap<>();
+		countMap.put("id", employeeVO.getId());
+		countMap.put("search", notePager.getSearch());
+		countMap.put("kind", notePager.getKind());
+		
 		notePager.getRowNum();
-		Long totalCount = noteMapper.getSendNoteListCount(employeeVO);
+		Long totalCount = noteMapper.getSendNoteListCount(countMap);
 		notePager.getNum(totalCount);
 		notePager.setPerPage(8L);
 		
@@ -32,6 +37,8 @@ public class NoteService {
 		map.put("id", employeeVO.getId());
 		map.put("startRow", notePager.getStartRow());
 		map.put("perPage", notePager.getPerPage());
+		map.put("search", notePager.getSearch());
+		map.put("kind", notePager.getKind());
 		
 		return noteMapper.getSendNoteList(map);
 	}
@@ -48,6 +55,7 @@ public class NoteService {
 		Long totalCount = noteMapper.getReceiveNoteListCount(countMap);
 		notePager.getNum(totalCount);
 		notePager.setPerPage(8L);
+//		log.info("============= : {}", totalCount);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", employeeVO.getId());

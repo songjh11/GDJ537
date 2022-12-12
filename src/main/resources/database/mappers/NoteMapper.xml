@@ -11,28 +11,45 @@ INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1)
 
 <select id="getSendNoteList" parameterType="Map" resultType="NoteVO">
 SELECT * FROM NOTE WHERE SENDID = #{id}
+AND
+	<choose>
+		<when test="kind == 'contents'">CONTENTS</when>
+		<otherwise>RECEIVEID</otherwise>
+	</choose> 
+	LIKE CONCAT('%', #{search}, '%')
 ORDER BY NOTENUM DESC
 LIMIT #{startRow}, #{perPage}
 </select>
 
-<select id="getSendNoteListCount" parameterType="EmployeeVO" resultType="Long">
+<select id="getSendNoteListCount" parameterType="Map" resultType="Long">
 SELECT COUNT(NOTENUM) FROM NOTE WHERE SENDID = #{id}
+AND
+	<choose>
+		<when test="kind == 'contents'">CONTENTS</when>
+		<otherwise>RECEIVEID</otherwise>
+	</choose> 
+	LIKE CONCAT('%', #{search}, '%')
 </select>
 
 <select id="getReceiveNoteList" parameterType="Map" resultType="NoteVO">
 SELECT * FROM NOTE WHERE RECEIVEID = #{id} 
 AND
-<choose>
-<when test="kind == 'contents'">CONTENTS</when>
+	<choose>
+		<when test="kind == 'contents'">CONTENTS</when>
 		<otherwise>SENDID</otherwise>
-	</choose> LIKE CONCAT('%', #{search}, '%')
+	</choose> 
+	LIKE CONCAT('%', #{search}, '%')
 ORDER BY NOTENUM DESC
 LIMIT #{startRow}, #{perPage}
 </select>
 
 <select id="getReceiveNoteListCount" parameterType="Map" resultType="Long">
 SELECT COUNT(NOTENUM) FROM NOTE WHERE RECEIVEID = #{id}
-AND CONTENTS LIKE CONCAT('%', #{search}, '%')
+AND 
+	<choose>
+		<when test="kind == 'contents'">CONTENTS</when>
+		<otherwise>SENDID</otherwise>
+	</choose> LIKE CONCAT('%', #{search}, '%')
 </select>
 
 <select id="getNoteDetail" resultType="NoteVO" parameterType="NoteVO">
