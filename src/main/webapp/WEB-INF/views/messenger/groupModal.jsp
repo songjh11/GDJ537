@@ -90,8 +90,9 @@
 													</c:choose>
 												</c:when>
 											</c:choose>
-											<p class="mt-4">
-												<a id="roomBtn" href="" class="btn" style="background: #4e73df; color: #FFFFFF;">생성</a>
+											<p class="mt-4 text-center">
+												<a id="roomBtn" href="" class="btn" style="background: #4e73df; color: #FFFFFF;">그룹채팅</a>
+												<a id="roomBtn" href="" class="btn" style="background: #4e73df; color: #FFFFFF;">그룹쪽지</a>
 											</p>
 										</form>
 									</div>

@@ -11,7 +11,8 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 </style>
-<link href="/css/chat/employeeList.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/chat/groupModal.css">
+<link rel="stylesheet" href="/css/chat/employeeList.css">
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <c:import url="../temp/layout_header.jsp"></c:import>
