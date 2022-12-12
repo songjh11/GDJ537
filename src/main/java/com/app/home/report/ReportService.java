@@ -35,8 +35,14 @@ public class ReportService {
 	
 	//=======================한종석===================
 	
-	public int setLstatusUpdate(ReportVO reportVO) throws Exception{
-		int result = reportMapper.setLstatusUpdate(reportVO);
+	public int setLstatusUpdate(ReportVO reportVO, UserVO userVO) throws Exception{
+		
+		
+		int result = reportMapper.setLicenserAdd(userVO);
+		
+		if(result > 0) {
+			reportMapper.setLstatusUpdate(reportVO);
+		}
 		
 		return result;
 	}
@@ -46,11 +52,16 @@ public class ReportService {
 		return reportMapper.getReportList(userVO);
 	}
 	
-	public int setLicenserAdd(UserVO userVO) throws Exception{
+	public List<ReportVO> getLicenserList(ReportVO reportVO) throws Exception{
 		
-		return reportMapper.setLicenserAdd(userVO);
+		return reportMapper.getLicenserList(reportVO);
 	}
 	
+//	public int setLicenserAdd(UserVO userVO) throws Exception{
+//		
+//		return reportMapper.setLicenserAdd(userVO);
+//	}
+//	
 	
 	
 	
