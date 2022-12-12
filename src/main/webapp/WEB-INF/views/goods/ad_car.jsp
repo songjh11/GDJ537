@@ -34,7 +34,35 @@
 
         chart.draw(data, options);
       }
-</script>
+      </script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawChart1);
+  
+        function drawChart1() {
+          var data = google.visualization.arrayToDataTable([
+            ['Year', 'Sales', 'Expenses', 'Profit'],
+            ['2014', 1000, 400, 200],
+            ['2015', 1170, 460, 250],
+            ['2016', 660, 1120, 300],
+            ['2017', 1030, 540, 350]
+          ]);
+  
+          var options = {
+            chart: {
+              title: 'Company Performance',
+              subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            }
+          };
+  
+          var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+  
+          chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+      </script>
+
+
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <c:import url="../temp/layout_header.jsp"></c:import>
@@ -66,7 +94,53 @@
 	            	<h1 class="h3 mb-4 text-gray-800">차량 예약 통계</h1>
 					
                     
-                    <div id="piechart" style="width: 900px; height: 500px;"></div>
+                    <div id="piechart" style="width: 700px; height: 500px; float:left;"></div>
+
+                    <div id="columnchart_material" style="width: 800px; height: 500px; float: left;"></div>
+
+                    <div class="card" id="total">
+                        <div class="card-body">
+                          <div class="row align-items-center gx-0">
+                            <div class="col">
+                              <!-- Title -->
+                              <h6 class="text-uppercase text-muted mb-2">
+                                총 예약 건수
+                              </h6>
+                              <!-- Heading -->
+                              <span class="h2 mb-0">
+                                ${total}
+                              </span>
+                            </div>
+                            <div class="col-auto">
+                              <!-- Icon -->
+                              <span class="h2 fe fe-briefcase text-muted mb-0"></span>
+                            </div>
+                          </div> <!-- / .row -->
+                        </div>
+                      </div>
+
+                    <div class="card" id="total">
+                    <div class="card-body">
+                        <div class="row align-items-center gx-0">
+                        <div class="col">
+                            <!-- Title -->
+                            <h6 class="text-uppercase text-muted mb-2">
+                            금월 예약 건수
+                            </h6>
+                            <!-- Heading -->
+                            <span class="h2 mb-0">
+                            ${total}
+                            </span>
+                        </div>
+                        <div class="col-auto">
+                            <!-- Icon -->
+                            <span class="h2 fe fe-briefcase text-muted mb-0"></span>
+                        </div>
+                        </div> <!-- / .row -->
+                    </div>
+                </div>
+
+                    
 						
 					
 				

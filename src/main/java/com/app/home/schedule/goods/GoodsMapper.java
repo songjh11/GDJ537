@@ -42,4 +42,8 @@ public interface GoodsMapper
 	public List<ReserveVO> getreserveGoods(GoodsVO goodsVO) throws Exception;
 	
 	public int getreserveCount(GoodsVO goodsVO) throws Exception;
+	
+	public int getRoomTotal() throws Exception;
+	
+	public int getCarTotal() throws Exception;
 }

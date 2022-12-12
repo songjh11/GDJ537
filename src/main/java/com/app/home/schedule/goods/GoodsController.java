@@ -176,7 +176,10 @@ public class GoodsController {
 			}
 			result += "['"+key+"', "+map.get(key)+"]";
 		}
+		int total = goodsService.getRoomTotal();
+		
 		System.out.println(result);
+		mv.addObject("total", total);
 		mv.addObject("result", result);
 		mv.setViewName("/goods/ad_room");
 		return mv;
@@ -201,7 +204,10 @@ public class GoodsController {
 			}
 			result += "['"+key+"', "+map.get(key)+"]";
 		}
+		
+		int total = goodsService.getCarTotal();
 		System.out.println(result);
+		mv.addObject("total", total);
 		mv.addObject("result", result);
 		mv.setViewName("/goods/ad_car");
 		return mv;
