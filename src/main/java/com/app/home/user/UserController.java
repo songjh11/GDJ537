@@ -1,5 +1,6 @@
 package com.app.home.user;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -39,10 +40,12 @@ public class UserController {
 
 	@RequestMapping("setID")
 	@ResponseBody
-	public UserVO setID(@RequestBody UserVO userVO) throws Exception {
-		log.info("userdate => {}", userVO.getEntDate());
+	public HashMap<String, String> setID(@RequestBody UserVO userVO) throws Exception {
+		HashMap<String, String> map = new HashMap<>();
 		userVO = userService.setUserID(userVO);
-		return userVO;
+		map.put("id", Integer.toString(userVO.getId()));
+		map.put("name", userVO.getName());
+		return map;
 	}
 
 	@GetMapping("mypage")
