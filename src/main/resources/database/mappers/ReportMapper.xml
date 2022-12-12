@@ -87,8 +87,37 @@
 	<!-- ==================================== -->
 	
 	<!-- ============== 류형민 ================ -->
+	<!-- 휴가 신청 목록 가져오기 -->
+	<select id="getMyVacaList" parameterType="UserVO" resultType="ReportVacaVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
 	
+	<!-- 시말서 목록 가져오기 -->
+	<select id="getMySorryList" parameterType="UserVO" resultType="ReportSorryVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
 	
+	<!-- 업무보고서 목록 가져오기 -->
+	<select id="getMyWorkList" parameterType="UserVO" resultType="ReportWorkVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
+	
+	<!-- 지출결의서 목록 가져오기 -->
+	<select id="getMyPayList" parameterType="UserVO" resultType="ReportPayVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
 	
 	<!-- ==================================== -->
 	
