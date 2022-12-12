@@ -26,4 +26,9 @@ public class MessengerService {
 	public List<EmployeeVO> getSearchResult (Map<String, String> map) throws Exception{
 		return messengerMapper.getSearchResult(map); 
 	}
+	
+	public int setAddRoom(RoomVO roomVO)throws Exception{
+		return 1;
+	}
+	
 }
