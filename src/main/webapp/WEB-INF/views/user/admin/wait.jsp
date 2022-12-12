@@ -87,7 +87,7 @@
 
             </div>
             <!-- End Page Content -->
-
+            <a class="nav-link" href="../usernum">신입사원 메일 발송</a>
          </div>
          <!-- End of Main Content -->
 
