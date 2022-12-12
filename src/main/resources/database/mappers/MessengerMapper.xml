@@ -84,4 +84,17 @@
 			</association>
 	</resultMap>
 	
+	<!--                       효경                       -->
+	
+	<insert id="setAddRoomUser" parameterType="EmployeeVO">
+		INSERT INTO  ROOMUSER
+		VALUES(NULL, #{id}, #{roomNum})
+	</insert>
+	
+	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum" >
+		INSERT INTO  CHATROOM
+		VALUES(#{roomNum}, now(), #{roomName}, 
+			   (SELECT ID FROM EMPLOYEE WHERE NUM = #{num}), #{pw})
+	</insert>
+	
 </mapper>    
