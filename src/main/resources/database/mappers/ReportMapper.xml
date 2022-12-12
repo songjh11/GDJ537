@@ -55,17 +55,14 @@
 	
 	<!-- ============== 장민석 ================ -->
 	
-	<select id="selectList" parameterType="ReportApplyVO">
-		SELECT * FROM REPORT WHERE ID = #{id}
-	</select>
 	
-	<!-- <insert id="insertList" parameterType="ReportApplyVO">
-		INSERT INTO REPORTAPPLY VALUES ()
+	<insert id="selectPay" parameterType="ReportPayVO">
+		SELECT * FROM REPORTPAY VALUES() WHERE APPLYNUM = #{applyNum}
+	</insert>
+	<insert id="selectSorry" parameterType="ReportSorryVO">
+		SELECT * FROM REPORTSORRY VALUES() WHERE APPLYNUM = #{applyNum}
 	</insert>
 	
-	<select id="selectDetail" parameterType="ReportApplyVO">
-		SELECT * FROM WHERE 
-	</select> -->
 	
 	<!-- ==================================== -->
 	
