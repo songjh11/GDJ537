@@ -47,4 +47,5 @@ ul.tabs li.current{
 #total{
 	width: 300px;
 	text-align: center;
+	float : left;
 }

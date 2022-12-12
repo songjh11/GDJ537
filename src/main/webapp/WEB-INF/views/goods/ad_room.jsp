@@ -35,6 +35,33 @@
         chart.draw(data, options);
       }
 </script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawChart1);
+  
+        function drawChart1() {
+          //부서명 가지고 오기
+          var data = google.visualization.arrayToDataTable([
+            ['부서명', '전월', '금월'],
+            ['2014', 1000, 400],
+            ['2015', 1170, 460],
+            ['2016', 660, 1120],
+            ['2017', 1030, 540]
+          ]);
+  
+          var options = {
+            chart: {
+              title: '부서별 회의실 예약 통계',
+              subtitle: '전월과 금월 비교',
+            }
+          };
+  
+          var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+  
+          chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+      </script>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <c:import url="../temp/layout_header.jsp"></c:import>
@@ -66,7 +93,10 @@
 	            	<h1 class="h3 mb-4 text-gray-800">회의실 예약 통계</h1>
 					
                     
-                    <div id="piechart" style="width: 700px; height: 500px;"></div>
+                    <div id="piechart" style="width: 700px; height: 500px; float: left; margin-right : 30px;"></div>
+
+                    <div id="columnchart_material" style="width: 800px; height: 500px; float: left;"></div>
+
 
                     <div class="card" id="total">
                         <div class="card-body">
