@@ -50,6 +50,15 @@
       WHERE E.ID=#{id}
    </select>
    
+   <!-- 프로필사진 추가 -->
+   <update id="setProfileSet" parameterType="UserVO">
+      UPDATE USER set profile=#{profile} WHERE id=#{id}
+   </update>
+   <!-- 프로필 사진 삭제 후 default이미지로 업데이트 -->
+   <update id="setProfileUpdate" parameterType="UserVO">
+      UPDATE USER set profile=NULL WHERE id=#{id}
+   </update>
+   
    <!-- 메일주소 변경 -->
    <update id="setChangeEmail" parameterType="UserVO">
       UPDATE USER SET EMAIL=#{email} WHERE ID=#{id}
