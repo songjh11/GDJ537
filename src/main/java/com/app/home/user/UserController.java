@@ -343,7 +343,7 @@ public class UserController {
 		}
 		int result = userService.setJoin(userVO, e, address);
 		if(result == 1) {
-			mv.setViewName("redirect:./joinFinish");
+			mv.setViewName("redirect:./login");
 		} 
 		return mv;
 	}

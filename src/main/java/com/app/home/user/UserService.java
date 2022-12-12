@@ -30,12 +30,6 @@ public class UserService {
 	@Value("${app.profile}") // C:/user/profile/
 	private String path;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
-	@Value("${app.profile}") // C:/user/profile/
-	private String path;
-
 	public UserVO setUserID(UserVO userVO) throws Exception {
 		userMapper.setUser(userVO);
 		userMapper.setUserID(userVO);
@@ -79,7 +73,12 @@ public class UserService {
 	      }
 		return result;
 	}
-
+	
+	public int setChangePw(UserVO userVO) throws Exception {
+		int result = userMapper.setChangePw(userVO);
+		return result;
+	}
+	
 	// 비밀번호 일치 확인(본인확인)
 	public int getPwCheck(UserVO userVO, UserVO sessionUserVO) throws Exception {
 		// mathces("평문 비번", "인코딩된 pw")
