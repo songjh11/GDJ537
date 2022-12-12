@@ -1,7 +1,7 @@
 console.log("user");
 
 $(".dismiss").click(function(){
-    let id=$(this).prev().prev().prev().prev().prev().prev().prev().prev().text();
+    let id=$(this).prev().prev().prev().prev().prev().prev().prev().text();
     Swal.fire({
         
       title:'퇴사처리 하시겠습니까?',
@@ -45,6 +45,15 @@ $(".dismiss").click(function(){
     $(this).css('color','#858796');
     $(this).css('cursor','default');
   })
+  $('.showUser1').mouseenter(function(){
+    $(this).css('color','blue');
+    $(this).css('cursor','pointer');
+  })
+
+  $('.showUser1').mouseleave(function(){
+    $(this).css('color','#858796');
+    $(this).css('cursor','default');
+  })
 
   $('.showUser').click(function(){
     let id = $(this).parent().children().first().text(); //id
@@ -70,10 +79,28 @@ $(".dismiss").click(function(){
                 break;
                 case 'phone':phoneUpdate(id,getName);
                 break;
+                case 'entDate':entDateUpdate(id,getName);
+                break;
             }
         }
     })()   
-  })
+})
+let updateId;
+$('.showUser1').click(function(){
+    updateId = $(this).parent().children().first().text();
+    console.log(updateId);
+})
+
+$('.roleNumUpdate').click(function(){
+    let roleNum = $(this).data().rolenum;
+    roleNumUpdate(updateId,roleNum);
+})
+
+$('.depNumUpdate').click(function(){
+    let depNum = $(this).data().depnum;
+    depNumUpdate(updateId,depNum);
+})
+
 
 function roleNumUpdate(id,roleNum){
     $.ajax({
@@ -162,6 +189,25 @@ function phoneUpdate(id,phone){
         data:{
             id:id,
             phone:phone
+        },
+        success:function(){
+            Swal.fire('번호를 변경하였습니다.','','success');
+            setTimeout(function(){
+                location.reload();
+            },1000);
+        },
+        error:function(error){
+            Swal.fire('실패하였습니다.','','error');
+        }
+    })
+};
+function entDateUpdate(id,entDate){
+    $.ajax({
+        type:"post",
+        url:"/user/admin/entDateUpdate",
+        data:{
+            id:id,
+            entDate:entDate
         },
         success:function(){
             Swal.fire('번호를 변경하였습니다.','','success');
