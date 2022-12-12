@@ -7,7 +7,7 @@ import com.app.home.schedule.goods.ReserveVO;
 import lombok.Data;
 
 @Data
-public class RoomVO extends ReserveVO
+public class GoodsRoomVO extends ReserveVO
 {
 	private List<ReserveVO> reserveVOs;
 }
