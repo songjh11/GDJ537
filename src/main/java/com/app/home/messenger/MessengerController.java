@@ -196,13 +196,23 @@ public class MessengerController {
 	
 	// 채팅방 추가
 	@PostMapping("addRoom")
-	public ModelAndView setAddRoom(RoomVO roomVO)throws Exception{
+	public ModelAndView setAddRoom(HttpSession session, RoomVO roomVO, @RequestParam(value = "id") List<Integer> ids)throws Exception{
+		
+		roomVO.setHostId(1234);
 		ModelAndView mv = new ModelAndView();
+		List<EmployeeVO> ar = new ArrayList<>();
+		
+		for(Integer id : ids) {
+			EmployeeVO employeeVO = new EmployeeVO();
+			employeeVO.setId(id);
+			ar.add(employeeVO);
+			roomVO.setEmployeeVOs(ar);
+		}
 		
 		int result = messengerService.setAddRoom(roomVO);
 		
 		
-		mv.setViewName("messenger/addRoom");
+		mv.setViewName("messenger/room/addRoom");
 		
 		return mv;
 	}
