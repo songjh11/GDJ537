@@ -99,7 +99,8 @@ $(".titleLi").click(function() {
     $(this).next(".acoArea").siblings(".acoArea").slideUp(300); // 1개씩 펼치기
  });
 
-$(".userInfo").on("click", ".empName", function(){
+$(".pickRemove").on("click", ".empName", function(){
+    console.log("didjkfjld");
     console.log($(this).attr("value"));
     let id = $(this).attr("empId");
     let name = $(this).attr("value");
@@ -107,14 +108,13 @@ $(".userInfo").on("click", ".empName", function(){
     let phone = $('#phone'+id).val();
     let img = $('#yourImg'+id).attr("src");
     let dep = $('#depN'+id).attr("value");
-    console.log(id, email, phone, img, dep);
     modalChat.style.display = "flex";
     $("#proImg").attr("src", img);
     $("#proName").text(name);
     $("#proDep").text(dep);
     $("#proEmail").text(email);
     $("#proPhone").text(phone);
-})
+});
 
  $("#chatBtn").click(function(){
     console.log("채팅함");
