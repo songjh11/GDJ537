@@ -126,12 +126,13 @@ public class GoodsController {
 	public List<Map<String, Object>> getCalendar(Model model,GoodsReserveVO goodsReserveVO) throws Exception{
 		
 		
-		List<ReserveVO> list = goodsService.getReserveList();
+		List<ReserveVO> list = goodsService.getReserveList(goodsReserveVO);
 		JSONObject jsonObj = new JSONObject();
         JSONArray jsonArr = new JSONArray();
  
         HashMap<String, Object> hash = new HashMap<>();
         log.info("list -> {}",list.size());
+        log.info("goodsReserveVO -> room : {}, car : {}, vacation : {}",goodsReserveVO.isRoom(),goodsReserveVO.isCar(),goodsReserveVO.isVacation());
         for (int i = 0; i < list.size(); i++) {
             hash.put("title", list.get(i).getId());
             hash.put("start", list.get(i).getStartTime());

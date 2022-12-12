@@ -116,8 +116,32 @@
 		</collection>
 	</resultMap>
 	
-	<select id="getReserveList" parameterType="ReserveVO" resultType="ReserveVO">
-		select * from RESERVE;
+	
+	<sql id="getFilter">
+		
+		<choose>
+			<when test="room  || car || vacation">
+				WHERE ID LIKE '%%' AND
+				<if test="room">
+						ID LIKE '%RO%'
+				</if>
+				<if test="car">
+						OR ID LIKE '%CA%'
+				</if>
+				<if test="vacation">
+						OR ID LIKE '%VA%'
+				</if>
+			
+			</when>
+			<otherwise>
+				WHERE ID LIKE ''
+			</otherwise>
+			
+		</choose>
+	</sql>
+	
+	<select id="getReserveList" parameterType="goodsReserveVO" resultType="ReserveVO">
+		select * from RESERVE   <include refid="getFilter"></include> 
 	</select>
 	
 	

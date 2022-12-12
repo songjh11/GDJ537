@@ -33,5 +33,5 @@ public interface GoodsMapper
 
 	public int setGoodsFileDelete(GoodsVO goodsVO) throws Exception;
 	
-	public List<ReserveVO> getReserveList() throws Exception;
+	public List<ReserveVO> getReserveList(GoodsReserveVO goodsReserveVO) throws Exception;
 }

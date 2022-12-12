@@ -53,6 +53,10 @@
 	
 	            	<!-- Page Heading -->
 	            	<div id='calendar-container'>
+		            	<input class="filter" id="room" type="checkbox" name="room"  checked>회의실
+						<input class="filter" id="car" type="checkbox" name="car" >차량
+						<input class="filter" id="vacation" type="checkbox" name="vacation">휴가
+						<!-- Calendar -->
 					    <div id='calendar'></div>
 					 </div>
 	
@@ -73,16 +77,33 @@
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 	
 	<script>
-  (function(){
-    $(function() {
+	
+	
+	
+	
+  var loadCalendar = function() {
       // calendar element 취득
       var calendarEl = $('#calendar')[0];
       console.log("rr");
+      
+      
+      var params = {
+				room : $("#room").is(':checked') ,
+				car : $("#car").is(':checked'),
+				vacation : $("#vacation").is(':checked')
+			}
+      
+      
+      
+      
       var request = $.ajax({
           url: "/goods/calendar", // 변경하기
           method: "POST",
+      	  data : params,
           dataType: "json"
       });
+      
+      
       
       request.done(function (data) {
           console.log(data); // log 로 데이터 찍어주기.
@@ -142,6 +163,7 @@
           });
 
           calendar.render();
+          
       });
 
       request.fail(function( jqXHR, textStatus ) {
@@ -211,9 +233,18 @@
         ]  
       });
       // 캘린더 랜더링
-      calendar.render();*/
-    }); 
-   })(); 
+      calendar.render();
+    }); */
+   }; 
+   
+   loadCalendar();
+   
+   $('.filter').click(function(){
+	   
+	   loadCalendar();
+   });
+   
+
 </script>
 </body>
 </html>
