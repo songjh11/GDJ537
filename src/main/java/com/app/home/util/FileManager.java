@@ -65,13 +65,13 @@ public class FileManager extends AbstractView {
 	}
 
 	public String saveFile(MultipartFile multipartFile, String path)throws Exception {
-		
+
 		//0. 저장경로에 폴더(directory)가 없으면 만든다.
 		File file = new File(path);
 		if(!file.exists()) {
 			file.mkdirs();
 		}
-		
+
 		//1. 중복되지 않는 파일명 생성(UUID, Date)
 		String boardFileName = UUID.randomUUID().toString();
 
@@ -96,14 +96,14 @@ public class FileManager extends AbstractView {
 
 		return boardFileName;
 	}
-	
+
 	//파일 삭제 (label 값과 FileName 필수)//
 	public boolean deleteFile(FileVO fileVO, String path)throws Exception{
-		
+
 		File file = new File(base + path, fileVO.getFileName());
-		
+
 		boolean result = file.delete();
-		
+
 		return result;
 	}
 }
