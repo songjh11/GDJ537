@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+          PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.home.user.UserMapper">
+	
+   <resultMap type="UserVO" id="getUserVO">
+      <id column="ID" property="id"/>
+      <result column="ROLENUM" property="roleNum"/>
+      <result column="DEPNUM" property="depNum"/>
+      <result column="PW" property="pw"/>
+      <result column="NAME" property="name"/>
+      <result column="EMAIL" property="email"/>
+      <result column="PHONE" property="phone"/>
+      <result column="ENTDATE" property="entDate"/>
+      <result column="PROFILE" property="profile"/>
+      <result column="STATUS" property="status"/>
+      <association property="roleVO" javaType="RoleVO">
+         <id column="ROLENUM" property="roleNum"/>
+         <result column="ROLENAME" property="roleName"/>
+      </association>
+      <association property="departmentVO" javaType="DepartmentVO">
+         <id column="DEPNUM" property="depNum"/>
+         <result column="DEPNAME" property="depName"/>
+         <result column="ID" property="id"/>
+      </association>
+   </resultMap>
+   
+   
+	<select id="getUserID" resultType="UserVO">
+		SELECT * FROM USER WHERE NUM = LAST_INSERT_ID()
+	</select>
+	
+	<update id="setUserID" parameterType="UserVO">
+		UPDATE USER SET ID = CONCAT(DATE_FORMAT(#{entDate}, '%Y'),LPAD(LAST_INSERT_ID(),3,0)) WHERE NUM = LAST_INSERT_ID()
+	</update>
+	
+	<insert id="setUser" parameterType="UserVO">
+		INSERT INTO USER VALUES(NULL, 1111111, 1, 1, '1111', #{name}, 'TESTEAMIL', 'TESTPHONE', #{entDate} , 'TESTPROFILE', 0)
+	</insert>
+	
+	<select id="getMypage" parameterType="UserVO" resultMap="getUserVO">
+      SELECT * FROM USER E
+         INNER JOIN
+         ROLE R
+         ON (E.ROLENUM = R.ROLENUM)
+         INNER JOIN 
+         DEPARTMENT D
+         ON (E.DEPNUM=D.DEPNUM)
+      WHERE E.ID=#{id}
+   </select>
+   
+   <!-- 프로필사진 추가 -->
+   <update id="setProfileSet" parameterType="UserVO">
+      UPDATE USER set profile=#{profile} WHERE id=#{id}
+   </update>
+   <!-- 프로필 사진 삭제 후 default이미지로 업데이트 -->
+   <update id="setProfileUpdate" parameterType="UserVO">
+      UPDATE USER set profile=NULL WHERE id=#{id}
+   </update>
+   
+   <!-- 메일주소 변경 -->
+   <update id="setChangeEmail" parameterType="UserVO">
+      UPDATE USER SET EMAIL=#{email} WHERE ID=#{id}
+   </update>
+   <!-- 폰번호 변경 -->
+   <update id="setChangePhone" parameterType="UserVO">
+      UPDATE USER SET PHONE=#{phone} WHERE ID=#{id}
+   </update>
+   <!-- 비밀번호 변경 -->
+   <update id="setChangePw" parameterType="UserVO">
+      UPDATE USER SET PW=#{pw} WHERE ID=#{id}
+   </update>
+   
+   <select id="getPwCheck" parameterType="UserVO" resultType="Integer">
+      SELECT COUNT(ID) FROM USER WHERE ID=#{id} AND PW=#{pw}
+   </select>
+   
+   <select id="getRole" resultType="RoleVO">
+      SELECT * FROM ROLE
+   </select>
+   
+   <select id="getDepartment" resultType="DepartmentVO">
+      SELECT * FROM DEPARTMENT
+   </select>
+   
+   <select id="getUser" resultType="UserVO" resultMap="getUserVO">
+   
+      SELECT U.*,R.*,D.*
+      FROM USER U
+      LEFT OUTER JOIN ROLE R
+      USING(ROLENUM)
+      LEFT OUTER JOIN DEPARTMENT D
+      USING(DEPNUM)
+      WHERE STATUS=1
+      
+   </select>
+   
+   
+   
+   <select id="getWait" resultType="UserVO" resultMap="getUserVO">
+            SELECT U.*,R.*,D.*
+      FROM USER U
+      LEFT OUTER JOIN ROLE R
+      USING(ROLENUM)
+      LEFT OUTER JOIN DEPARTMENT D
+      USING(DEPNUM)
+      WHERE STATUS=0
+   </select>
+   
+   <update id="setAllow" parameterType="UserVO">
+      UPDATE USER SET STATUS=1 WHERE ID=#{id}
+   </update>
+   
+   <delete id="setAllowNot" parameterType="UserVO">
+      DELETE FROM USER WHERE ID=#{id}
+   </delete>
+   
+   <delete id="setDismiss" parameterType="UserVO">
+      DELETE FROM USER WHERE ID=#{id}
+   </delete>
+   
+   <update id="setRoleNumUpdate" parameterType="UserVO">
+      UPDATE USER SET ROLENUM=#{roleNum} WHERE ID=#{id}
+   </update>
+   
+   <update id="setDepNumUpdate" parameterType="UserVO">
+      UPDATE USER SET DEPNUM=#{depNum} WHERE ID=#{id}
+   </update>
+   
+   <update id="setNameUpdate" parameterType="UserVO">
+      UPDATE USER SET NAME=#{name} WHERE ID=#{id}
+   </update>
+   
+   <update id="setEmailUpdate" parameterType="UserVO">
+      UPDATE USER SET EMAIL=#{email} WHERE ID=#{id}
+   </update>
+   
+   <update id="setPhoneUpdate" parameterType="UserVO">
+      UPDATE USER SET PHONE=#{phone} WHERE ID=#{id}
+   </update>
+   
+   <update id="setEntDateUpdate" parameterType="UserVO">
+      UPDATE USER SET ENTDATE=#{entDate} WHERE ID=#{id}
+   </update>
+   
+   <insert id="setDepartmentInsert" parameterType="DepartmentVO">
+      INSERT INTO DEPARTMENT VALUES(NULL,#{depName},NULL)
+   </insert>
+   
+   <update id="setDepNameUpdate" parameterType="DepartmentVO">
+      UPDATE DEPARTMENT SET DEPNAME=#{depName} WHERE DEPNUM=#{depNum}
+   </update>
+   
+   <update id="setIdUpdate" parameterType="DepartmentVO">
+      UPDATE DEPARTMENT SET ID=#{id} WHERE DEPNUM=#{depNum}
+   </update>
+   
+   <delete id="setDepartmentDel" parameterType="DepartmentVO">
+      DELETE FROM DEPARTMENT WHERE DEPNUM=#{depNum}
+   </delete>
+   
+   <insert id="setRoleAdd" parameterType="RoleVO">
+      INSERT INTO ROLE VALUES(NULL,#{roleName})
+   </insert>
+   
+   <update id="setRoleNameUpdate" parameterType="RoleVO">
+      UPDATE ROLE SET ROLENAME=#{roleName} WHERE ROLENUM=#{roleNum}
+   </update>
+   
+   <delete id="setRoleDel" parameterType="RoleVO">
+      DELETE FROM ROLE WHERE ROLENUM=#{roleNum}
+   </delete>
+   
+   <select id="getDepCheck" parameterType="UserVO" resultType="UserVO">
+      SELECT * FROM USER WHERE DEPNUM=#{depNum};
+   </select>
+   
+   <select id="getRoleCheck" parameterType="UserVO" resultType="UserVO">
+      SELECT * FROM USER WHERE ROLENUM=#{roleNum};
+   </select>
+	
+	<!-- 사원번호 조회 -->
+   <select id="getIdCheck" parameterType="UserVO" resultMap="getUserVO">
+      SELECT *
+      FROM USER U
+      LEFT JOIN
+      DEPARTMENT D
+      USING(DEPNUM)
+      LEFT JOIN
+      ROLE R
+      USING(ROLENUM)
+      WHERE U.ID=#{id} AND U.NAME=#{name}
+   </select>
+   
+   <!-- 회원가입 -->
+   <update id="setJoin" parameterType="UserVO">
+      UPDATE USER SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, PROFILE=#{profile}, STATUS=0 WHERE ID=#{id}
+   </update>
+
+   <select id="getLogin" parameterType="String" resultMap="getUserVO">
+      SELECT U.*, R.*
+      FROM USER U
+         INNER JOIN
+         ROLE R
+         ON U.ROLENUM = R.ROLENUM
+      WHERE U.id=#{username}
+   </select>
+   
+	
+	
+</mapper>
