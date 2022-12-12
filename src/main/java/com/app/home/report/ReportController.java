@@ -111,6 +111,7 @@ public class ReportController {
 //		userVO.setName("hjs1");
 //		userVO.setRoleNum(3);	//과장급 roleNum
 		
+		
 		int result = reportService.setLstatusUpdate(reportVO);
 		
 		
