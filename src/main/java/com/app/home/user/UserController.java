@@ -1,14 +1,18 @@
 package com.app.home.user;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,15 +40,19 @@ public class UserController {
 
 	@RequestMapping("setID")
 	@ResponseBody
-	public UserVO setID(@RequestBody UserVO userVO) throws Exception {
-		log.info("userdate => {}", userVO.getEntDate());
+	public HashMap<String, String> setID(@RequestBody UserVO userVO) throws Exception {
+		HashMap<String, String> map = new HashMap<>();
 		userVO = userService.setUserID(userVO);
-		return userVO;
+		map.put("id", Integer.toString(userVO.getId()));
+		map.put("name", userVO.getName());
+		return map;
 	}
 
 	@GetMapping("mypage")
-	public ModelAndView getMypage(UserVO userVO, ModelAndView mv) throws Exception {
-		userVO.setId(1234);
+	public ModelAndView getMypage(HttpSession session, UserVO userVO, ModelAndView mv) throws Exception {
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
 		userVO = userService.getMypage(userVO);
 		mv.addObject("userVO", userVO);
 		mv.setViewName("/user/mypage");
@@ -52,26 +60,54 @@ public class UserController {
 	}
 
 	@GetMapping("setting")
-	public ModelAndView getSet_up(UserVO userVO, ModelAndView mv) throws Exception {
-		userVO.setId(1234);
+	public ModelAndView getSet_up(HttpSession session, UserVO userVO, ModelAndView mv) throws Exception {
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
 		userVO = userService.getMypage(userVO);
 		mv.addObject("userVO", userVO);
 		mv.setViewName("/user/setting");
 		return mv;
 
 	}
+	
+	@PostMapping("setting")
+	public ModelAndView setProfileSet(HttpSession session, UserVO userVO, MultipartFile file, ModelAndView mv)throws Exception {
+      SecurityContextImpl context = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+      Authentication authentication = context.getAuthentication();
+      userVO  =(UserVO)authentication.getPrincipal();
+      userVO.setFile(file);
+      userVO = userService.setProfileSet(userVO);
+      
+      mv.setViewName("redirect:/user/setting");
+      mv.addObject("userVO", userVO);
+
+      return mv;
+   }
+	
+	// 프로필사진 삭제 - profile null로 update
+   @PostMapping("profile_delete")
+   @ResponseBody
+   public int setProfileDelete(HttpSession session, UserVO userVO, ModelAndView mv)throws Exception {
+	   SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
+      
+      int result = userService.setProfileUpdate(userVO);
+
+      return result;
+   }
 
 	/* 내 설정 - 비밀번호 변경 */
 	@PostMapping("changePw")
 	@ResponseBody
 	public int setChangePw(UserVO userVO, HttpSession session) throws Exception {
-//	      SecurityContextImpl context = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
-//	      Authentication authentication = context.getAuthentication();
-//	      MemberVO sessionMemberVO = (MemberVO) authentication.getPrincipal();
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    UserVO sessionUserVO  =(UserVO)authentication.getPrincipal();
 
-		userVO.setId(1234);
-
-		int result = userService.setChangePw(userVO);
+	    userVO.setId(sessionUserVO.getId());
+		int result = userService.setChangePw(userVO, sessionUserVO);
 
 		return result;
 	}
@@ -79,18 +115,22 @@ public class UserController {
 	@PostMapping("pwCheck")
 	@ResponseBody
 	public int getPwCheck(HttpSession session, UserVO userVO) throws Exception {
-
-		userVO.setId(1234);
-		return userService.getPwCheck(userVO);
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    UserVO sessionUserVO  =(UserVO)authentication.getPrincipal();
+	    userVO.setId(sessionUserVO.getId());
+		return userService.getPwCheck(userVO, sessionUserVO);
 	}
 
 	/* 내 설정 - 이메일 변경 */
 	@PostMapping("changeEmail")
 	@ResponseBody
 	public int setChangeEmail(UserVO userVO, HttpSession session, String e, String mailOption) throws Exception {
-
-		userVO.setId(1234);
-		userVO.setEmail(userVO.getEmail());
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    UserVO sessionUserVO  =(UserVO)authentication.getPrincipal();
+	    
+		userVO.setId(sessionUserVO.getId());
 
 		int result = userService.setChangeEmail(userVO, e, mailOption);
 
@@ -101,8 +141,10 @@ public class UserController {
 	@PostMapping("changePhone")
 	@ResponseBody
 	public int setChangePhone(UserVO userVO, HttpSession session) throws Exception {
-
-		userVO.setId(1234);
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    UserVO sessionUserVO  =(UserVO)authentication.getPrincipal();
+	    userVO.setId(sessionUserVO.getId());
 		int result = userService.setChangePhone(userVO);
 
 		return result;
@@ -121,7 +163,11 @@ public class UserController {
 	public ModelAndView getUser() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<UserVO> list = userService.getUser();
+		List<DepartmentVO> listD = userService.getDepartment();
+		List<RoleVO> listR = userService.getRole();
 		mv.addObject("list", list);
+		mv.addObject("listD", listD);
+		mv.addObject("listR", listR);
 		mv.setViewName("/user/admin/user");
 		return mv;
 	}
@@ -200,6 +246,13 @@ public class UserController {
 		int result = userService.setPhoneUpdate(userVO);
 		return result;
 	}
+	
+	@PostMapping("admin/entDateUpdate")
+	@ResponseBody
+	public int setEntDateUpdate(UserVO userVO) throws Exception {
+		int result = userService.setEntDateUpdate(userVO);
+		return result;
+	}
 
 	@PostMapping("admin/departmentInsert")
 	@ResponseBody
@@ -251,6 +304,22 @@ public class UserController {
 		int result = userService.setRoleDel(roleVO);
 		return result;
 	}
+	
+	@PostMapping("admin/depCheck")
+	@ResponseBody
+	public int getDepCheck(UserVO userVO) throws Exception {
+		List<UserVO> userVOs = userService.getDepCheck(userVO);
+		int result = userVOs.size();
+		return result;
+	}
+	
+	@PostMapping("admin/roleCheck")
+	@ResponseBody
+	public int getroleCheck(UserVO userVO) throws Exception {
+		List<UserVO> userVOs = userService.getRoleCheck(userVO);
+		int result = userVOs.size();
+		return result;
+	}
 
 	@GetMapping("join")
 	public void setJoin(@ModelAttribute UserVO userVO) throws Exception {
@@ -259,23 +328,36 @@ public class UserController {
 
 	// 회원가입
 	@PostMapping("join")
-	public ModelAndView setJoin(@Valid UserVO userVO, BindingResult bindingResult, String email, String address,
-			MultipartFile file) throws Exception {
+	public ModelAndView setJoin(@Valid UserVO userVO, BindingResult bindingResult, String e, String address, MultipartFile file) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = userService.setJoin(userVO, email, address);
 
-		mv.setViewName("redirect:/");
+		//사용자 검증 메서드
+		boolean check = userService.getUserError(userVO, bindingResult);
+		
+		// check=false : 검증 성공(에러없음)
+		// check=true : 검증 실패(에러있음)
+		if(check) {
+			mv.setViewName("user/join");
+			List<FieldError> errors = bindingResult.getFieldErrors();
+			for(FieldError fieldError:errors) {
+				mv.addObject(fieldError.getField(), fieldError.getDefaultMessage());
+			}
+			return mv;
+		}
+		int result = userService.setJoin(userVO, e, address);
+		if(result == 1) {
+			mv.setViewName("redirect:./login");
+		} 
 		return mv;
 	}
-
+	
+	
 	// 사원번호조회
 	@PostMapping("idCheck")
 	@ResponseBody
 	public UserVO getIdCheck(UserVO userVO) throws Exception {
 		userVO = userService.getIdCheck(userVO);
-		UserVO info = new UserVO(userVO.getId(), userVO.getName(), userVO.getRoleVO(), userVO.getDepartmentVO(),
-				userVO.getEntDate());
-		log.info("사원번호조회 : {}", info);
+		log.info("사원번호조회 : {}", userVO);
 		return userVO;
 	}
 

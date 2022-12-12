@@ -17,7 +17,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/user/mypage">
+
+                <a class="nav-link" href="/">
+
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Goodee</span></a>
             </li>
@@ -37,9 +39,9 @@
                 <div id="collapseBoard" class="collapse" aria-labelledby="headingBoard" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Board List</h6>
-                        <a class="collapse-item" href="#">공지사항</a>
-                        <a class="collapse-item" href="#">요청게시판</a>
-                        <a class="collapse-item" href="#">익명게시판</a>
+                        <a class="collapse-item" href="/notice/list">공지사항</a>
+                        <a class="collapse-item" href="/request/list">요청게시판</a>
+                        <a class="collapse-item" href="/unknown/list">익명게시판</a>
                     </div>
                 </div>
             </li>
@@ -88,9 +90,9 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - Messanger -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/messenger/chat">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Messanger</span></a>
+                    <span>Messenger</span></a>
             </li>
 
             <!-- Nav Item - Tables -->

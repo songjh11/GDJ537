@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+
 @Mapper
 public interface UserMapper {
 	
@@ -16,6 +17,11 @@ public interface UserMapper {
 	
 	//프로필 조회
 	public UserVO getMypage(UserVO userVO)throws Exception;
+	
+	/* 프로필 사진 */
+	public int setProfileSet(UserVO userVO)throws Exception;
+   
+   public int setProfileUpdate(UserVO userVO)throws Exception;
 
 	/* 메일주소 변경 */
 	public int setChangeEmail(UserVO userVO)throws Exception;
@@ -52,6 +58,8 @@ public interface UserMapper {
 	
 	public int setPhoneUpdate(UserVO userVO) throws Exception;
 	
+	public int setEntDateUpdate(UserVO userVO) throws Exception;
+	
 	public int setDepartmentInsert(DepartmentVO departmentVO) throws Exception;
 	
 	public int setDepNameUpdate(DepartmentVO departmentVO) throws Exception;
@@ -66,11 +74,15 @@ public interface UserMapper {
 	
 	public int setRoleDel(RoleVO roleVO) throws Exception;
 	
+	public List<UserVO> getDepCheck(UserVO userVO) throws Exception;
+	
+	public List<UserVO> getRoleCheck(UserVO userVO) throws Exception;
+	
+	//사원번호 조회
 	public UserVO getIdCheck(UserVO userVO) throws Exception;
-	   
+	
+	//회원가입
 	public int setJoin(UserVO userVO) throws Exception;
-	   
-	public int setProfile(UserVO userVO) throws Exception;
 	   
 	public UserVO getLogin(String username)throws UsernameNotFoundException;
 }

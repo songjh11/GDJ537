@@ -47,12 +47,12 @@ public class MailController {
             idx = sr.nextInt(len);    // 강력한 난수를 발생시키기 위해 SecureRandom을 사용한다.
             sb.append(charSet[idx]);
         }
-        log.info("새비번 {}",sb.toString());
+
         userVO.setPw(sb.toString());
         mailService.sendPw(userVO);
         
         userVO.setPw(passwordEncoder.encode(sb.toString()));
-        int result =  userService.setChangePw(userVO);
+        userService.setChangePw(userVO);
         return "redirect:/user/login";
 	}
 	

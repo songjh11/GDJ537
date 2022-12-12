@@ -48,20 +48,23 @@
                                 </form>
                             </div>
                         </li>
+
                         <sec:authorize access="!isAuthenticated()">   
                             <!-- 로그인 전 -->
                             <li class="nav-item dropdown no-arrow mx-1">
-                                <a href="/user/login">로그인</a>
+                                <a href="/user/login">login</a>
                             </li>
                             <li class="nav-item dropdown no-arrow mx-1">
-                                <a href="/user/add">회원가입</a>
+                                <a href="/user/join">Join</a>
                             </li>
                         </sec:authorize>
                       
 
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
+
                         <sec:authorize access="isAuthenticated()">
                             <sec:authentication property="Principal" var="user"/>
                             <li class="nav-item dropdown no-arrow">                            
@@ -70,15 +73,17 @@
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">${user.name}</span>
                                     <img class="img-profile rounded-circle"
                                         src="img/undraw_profile.svg">
+
+
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="/user/mypage">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="/user/setting">
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Settings
                                     </a>

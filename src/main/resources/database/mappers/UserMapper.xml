@@ -36,7 +36,7 @@
 	</update>
 	
 	<insert id="setUser" parameterType="UserVO">
-		INSERT INTO USER VALUES(NULL, 1111111, 1, 1, '1111', 'TESTNAME', 'TESTEAMIL', 'TESTPHONE', #{entDate} , 'TESTPROFILE', 0)
+		INSERT INTO USER VALUES(NULL, 1111111, 1, 1, '1111', #{name}, 'TESTEAMIL', 'TESTPHONE', #{entDate} , 'TESTPROFILE', 0)
 	</insert>
 	
 	<select id="getMypage" parameterType="UserVO" resultMap="getUserVO">
@@ -49,6 +49,15 @@
          ON (E.DEPNUM=D.DEPNUM)
       WHERE E.ID=#{id}
    </select>
+   
+   <!-- 프로필사진 추가 -->
+   <update id="setProfileSet" parameterType="UserVO">
+      UPDATE USER set profile=#{profile} WHERE id=#{id}
+   </update>
+   <!-- 프로필 사진 삭제 후 default이미지로 업데이트 -->
+   <update id="setProfileUpdate" parameterType="UserVO">
+      UPDATE USER set profile=NULL WHERE id=#{id}
+   </update>
    
    <!-- 메일주소 변경 -->
    <update id="setChangeEmail" parameterType="UserVO">
@@ -131,6 +140,10 @@
       UPDATE USER SET PHONE=#{phone} WHERE ID=#{id}
    </update>
    
+   <update id="setEntDateUpdate" parameterType="UserVO">
+      UPDATE USER SET ENTDATE=#{entDate} WHERE ID=#{id}
+   </update>
+   
    <insert id="setDepartmentInsert" parameterType="DepartmentVO">
       INSERT INTO DEPARTMENT VALUES(NULL,#{depName},NULL)
    </insert>
@@ -158,6 +171,14 @@
    <delete id="setRoleDel" parameterType="RoleVO">
       DELETE FROM ROLE WHERE ROLENUM=#{roleNum}
    </delete>
+   
+   <select id="getDepCheck" parameterType="UserVO" resultType="UserVO">
+      SELECT * FROM USER WHERE DEPNUM=#{depNum};
+   </select>
+   
+   <select id="getRoleCheck" parameterType="UserVO" resultType="UserVO">
+      SELECT * FROM USER WHERE ROLENUM=#{roleNum};
+   </select>
 	
 	<!-- 사원번호 조회 -->
    <select id="getIdCheck" parameterType="UserVO" resultMap="getUserVO">
@@ -174,12 +195,7 @@
    
    <!-- 회원가입 -->
    <update id="setJoin" parameterType="UserVO">
-      UPDATE USER SET PW=#{pw}, NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}, PROFILE=#{profile}, STATUS=0 WHERE ID=#{id}
-   </update>
-   
-   <!-- 프로필사진 추가 -->
-   <update id="setProfile" parameterType="UserVO">
-       UPDATE USER SET PROFILE=#{profile} WHERE ID=#{id}
+      UPDATE USER SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, PROFILE=#{profile}, STATUS=0 WHERE ID=#{id}
    </update>
 
    <select id="getLogin" parameterType="String" resultMap="getUserVO">
