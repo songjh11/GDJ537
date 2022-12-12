@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.home.report.util.Pager;
+
 @Service
 public class ReportService {
 	
@@ -43,11 +45,18 @@ public class ReportService {
 	//=======================장민석===================
 	
 	
+	public List<ReportVO> selectList(Pager pager) throws Exception{
+		pager.getStartRow();
+		return reportMapper.selectList(pager);
+	}
 	
+	public int insertList(ReportApplyVO reportApplyVO) throws Exception{
+		return reportMapper.insertList(reportApplyVO);
+	}
 	
-	
-	
-	
+	public ReportApplyVO selectDetail(ReportApplyVO reportApplyVO) throws Exception{
+		return reportMapper.selectDetail(reportApplyVO);
+	}
 	
 	
 	

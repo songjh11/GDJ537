@@ -13,6 +13,12 @@ public class ReportVO {
 	private int id;
 	private int lstatus;
 	
+	//=====
+	private int report_Num;
+	private String report_ID;
+	private String report_Contents;
+	private Date report_Date;
+	
 	private List<ReportApplyVO> reportApplyVOs;
 	
 	
