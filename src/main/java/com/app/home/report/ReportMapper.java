@@ -61,17 +61,27 @@ public interface ReportMapper {
 	
 	//================================================
 	
+	//=======================최근호===================
+	
+	
 	public Integer getLicenseCheck(ReportVO reportVO) throws Exception;
 	
-	public ReportVO getFinishReport(ReportVO reportVO) throws Exception;
+	public ReportVacaVO getLicenseVacaReportDetail(ReportApplyVO reportApplyVO) throws Exception;
 	
-	public ReportVO getReturnsReport(ReportVO reportVO) throws Exception;
+	public ReportVacaVO getLicenseWorkReportDetail(ReportApplyVO reportApplyVO) throws Exception;
 	
-	public ReportVO getDoFirstReport(ReportVO reportVO) throws Exception;
+	public ReportVacaVO getLicensePayReportDetail(ReportApplyVO reportApplyVO) throws Exception;
 	
-	public ReportVO getDoFinalReport(ReportVO reportVO) throws Exception;
+	public ReportVacaVO getLicenseSorryReportDetail(ReportApplyVO reportApplyVO) throws Exception;
 	
-	//=======================최근호===================
+	public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception;
+	
+	public ReportVO getReturnsReport(ReportApplyVO reportApplyVO) throws Exception;
+	
+	public ReportVO getDoFirstReport(ReportApplyVO reportApplyVO) throws Exception;
+	
+	public ReportVO getDoFinalReport(ReportApplyVO reportApplyVO) throws Exception;
+	
 	
 	
 	
