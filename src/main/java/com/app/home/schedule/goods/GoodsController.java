@@ -142,7 +142,7 @@ public class GoodsController {
         HashMap<String, Object> hash = new HashMap<>();
         log.info("list -> {}",list.size());
         for (int i = 0; i < list.size(); i++) {
-            hash.put("title", list.get(i).getId());
+            hash.put("title", list.get(i).getGoodsId());
             hash.put("start", list.get(i).getStartTime());
             hash.put("end", list.get(i).getEndTime());
             log.info("---");
