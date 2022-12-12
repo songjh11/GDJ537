@@ -55,11 +55,12 @@
 
 	<insert id="setRoomReserve" parameterType="RoomVO">
 		insert into RESERVE
-		values(#{reserveNum}, #{goodsId}, now(),
-		#{memberNum},
-		#{usePurpose},
+		values(null, #{goodsId},
+		#{id},
 		#{startTime},
-		#{endTime})
+		#{endTime},
+		#{usePurpose},
+		now())
 	</insert>
 
 	<select id="getReserveStartTime" parameterType="List"
@@ -84,7 +85,7 @@
 		<id column="reserveNum" property="reserveNum" />
 		<result column="goodsId" property="goodsId" />
 		<result column="date" property="date" />
-		<result column="memberNum" property="memberNum" />
+		<result column="id" property="id" />
 		<result column="usePurpose" property="usePurpose" />
 		<result column="startTime" property="startTime" />
 		<result column="endTime" property="endTime" />

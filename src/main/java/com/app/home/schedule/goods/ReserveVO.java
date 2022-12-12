@@ -11,7 +11,7 @@ public class ReserveVO {
 	private Long reserveNum;
 	private String goodsId;
 	private String date;
-	private Long memberNum;
+	private Long id;
 	private String usePurpose;
 	private String startTime;
 	private String endTime;
