@@ -40,6 +40,7 @@
 					</div>
 					<div class="chatDiv" id="chatArea">
 						<div class="blank"></div>
+							<c:import url="./groupModal.jsp"></c:import>
 							<c:import url="./employeeList.jsp"></c:import>
 					</div>
 					<div class="chatDiv">
