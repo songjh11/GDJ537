@@ -89,8 +89,8 @@
 		<result column="usePurpose" property="usePurpose" />
 		<result column="startTime" property="startTime" />
 		<result column="endTime" property="endTime" />
-		<collection property="goodsVO" ofType="GoodsVO"
-			javaType="String">
+		<collection property="goodsVOs" ofType="GoodsVO"
+			javaType="List">
 			<id column="goodsId" property="goodsId" />
 			<result column="name" property="name" />
 			<result column="max" property="max" />

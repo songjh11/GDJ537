@@ -48,7 +48,7 @@ ul li {
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
-						<h1 class="h3 mb-4 text-gray-800">${roomInfo} 회의실 예약정보</h1>
+						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVOs[0].name} 회의실 예약정보</h1>
 						<table class="table table-hover">
 							<tr>
 								<th>예약자</th>
@@ -59,7 +59,7 @@ ul li {
 							</tr>
 							<c:forEach items="${roomInfo }" var="ro">
 								<tr>
-									<td>${ro.memberNum }</td>
+									<td>${ro.id }</td>
 									<td>${ro.date }</td>
 									<td>${ro.usePurpose }</td>
 									<td>${ro.startTime }</td>

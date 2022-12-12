@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.home.schedule.goods.GoodsMapper;
 import com.app.home.schedule.goods.GoodsVO;
+import com.app.home.schedule.goods.ReserveVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,7 +38,7 @@ public class RoomService
 		return roomMapper.getReserveStartTime(roomVO);
 	}
 
-	public List<RoomVO> getResInfo(RoomVO roomVO) throws Exception
+	public List<ReserveVO> getResInfo(RoomVO roomVO) throws Exception
 	{
 		return roomMapper.getResInfo(roomVO);
 	}

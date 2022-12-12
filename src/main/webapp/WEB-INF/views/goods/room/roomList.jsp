@@ -40,7 +40,7 @@
 								<th>위치</th>
 								<th>상세정보</th>
 								<th>예약하기</th>
-								<!-- <th>예약된 정보 보기</th> -->
+								<th>예약된 정보 보기</th>
 							</tr>
 							<c:forEach items="${goodVO }" var="good">
 								<input type="hidden" value="${good.goodsId}" class="ROID">
@@ -57,11 +57,11 @@
 											<button type="button" class="btn btn-outline-none">예약</button>
 										</a>
 									</td>
-<%-- 									<td>
-										<a href="./roomResInfo?id=${good.goodsId }">
+									<td>
+										<a href="./roomResInfo?goodsId=${good.goodsId }">
 											<button type="button" class="btn btn-outline-none">보기</button>
 										</a>
-									</td> --%>
+									</td>
 								</tr>
 							</c:forEach>
 						</table>

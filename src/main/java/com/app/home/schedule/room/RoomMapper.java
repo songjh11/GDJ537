@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.app.home.schedule.goods.GoodsVO;
+import com.app.home.schedule.goods.ReserveVO;
 
 @Mapper
 public interface RoomMapper
@@ -17,5 +18,5 @@ public interface RoomMapper
 	
 	public List<RoomVO> getReserveStartTime(RoomVO roomVO) throws Exception;
 	
-	public List<RoomVO> getResInfo(RoomVO roomVO) throws Exception;
+	public List<ReserveVO> getResInfo(RoomVO roomVO) throws Exception;
 }
