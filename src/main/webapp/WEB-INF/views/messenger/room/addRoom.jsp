@@ -252,7 +252,7 @@
 		position: absolute;
 		left: 0;
 		top: 0;
-		display: none;
+		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
@@ -351,15 +351,29 @@
 							<div class="room-window">
 								<div class="close-area">X</div>
 								<div class="content">
-									<div class="profile">
-										<img id="proImg" src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
-										<div class="proArea" style="background: transparent; border: none; box-shadow: none !important;">
-											<p id="proName">이름</p>
-											<p id="proDep">부서/직급</p>
-											<p id="proEmail">이메일</p>
-											<p id="proPhone">전화번호</p>
-											<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">채팅</a>
-											<a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
+									<div class="roomInfo">
+										<div class="row">
+											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
+											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
+										</div>
+										<div class="row">
+											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
+											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
+										</div>
+										<div class="infoArea" style="background: transparent; border: none; box-shadow: none !important;">
+											<form action="./addRoom">
+												<div class="mb-3">
+													<label for="exampleFormControlTextarea1" class="form-label">채팅방 이름</label>
+													<input type="text" name="roomName" class="form-control form-control-sm" placeholder="방이름을 입력해 주세요">
+												</div>
+												<div class="mb-3">
+													<label for="exampleFormControlTextarea1" class="form-label">비밀번호</label>
+													<input type="password" name="pw" class="form-control form-control-sm" placeholder="숫자를 입력해 주세요">
+												</div>
+												<p class="mt-4">
+													<button type="submit" class="btn" style="background: #4e73df; color: #FFFFFF;">생성</button>
+												</p>
+											</form>
 										</div>
 									</div>
 								</div>

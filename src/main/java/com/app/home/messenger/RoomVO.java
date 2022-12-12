@@ -22,7 +22,7 @@ public class RoomVO {
 	private Integer pw;
 	
 	// 방장 한명
-	private Integer num;
+	private EmployeeVO employeeVO;
 	// 방인원 여러명
 	private List<EmployeeVO> employeeVOs;
 	
