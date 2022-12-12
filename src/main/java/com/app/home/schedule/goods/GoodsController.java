@@ -139,11 +139,11 @@ public class GoodsController {
             hash.put("end", list.get(i).getEndTime());
             log.info("---");
 //            hash.put("time", listAll.get(i).getScheduleTime());
- 
             jsonObj = new JSONObject(hash);
-            
             jsonArr.add(jsonObj);
+           
         }
+        
         log.info("jsonArrCheck: {}", jsonArr);
         return jsonArr;
 	}

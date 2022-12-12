@@ -118,26 +118,17 @@
 	
 	
 	<sql id="getFilter">
+		WHERE ID LIKE ''
+			<if test="room">
+				OR ID LIKE '%RO%'
+			</if>
+			<if test="car">
+				OR ID LIKE '%CA%'
+			</if>
+			<if test="vacation">
+				OR ID LIKE '%VA%'
+			</if>
 		
-		<choose>
-			<when test="room  || car || vacation">
-				WHERE ID LIKE '%%' AND
-				<if test="room">
-						ID LIKE '%RO%'
-				</if>
-				<if test="car">
-						OR ID LIKE '%CA%'
-				</if>
-				<if test="vacation">
-						OR ID LIKE '%VA%'
-				</if>
-			
-			</when>
-			<otherwise>
-				WHERE ID LIKE ''
-			</otherwise>
-			
-		</choose>
 	</sql>
 	
 	<select id="getReserveList" parameterType="goodsReserveVO" resultType="ReserveVO">
