@@ -81,7 +81,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="#">업무보고서</a>
                         <a class="collapse-item" href="#">휴가신청서</a>
-                        <a class="collapse-item" href="/report/licenserList">승인자 리스트</a>
+                        <a class="collapse-item" href="/report/licenserList">전체 승인자 리스트</a>
                         <a class="collapse-item" href="/kdy/reportAdd">보고서 작성</a>
                         <a class="collapse-item" href="/report/doreport">결제/반려 승인</a>
                         <a class="collapse-item" href="/report/finishreport">결제 승인 내역</a>
