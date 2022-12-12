@@ -121,5 +121,18 @@ public class ReportService {
 		return reportMapper.getMyPayList(pager);
 	}
 	
+	public ReportVacaVO getMyVacaDetail(ReportApplyVO reportApplyVO) throws Exception{
+		return reportMapper.getMyVacaDetail(reportApplyVO);
+	}
+	public ReportPayVO getMyPayDetail(ReportApplyVO reportApplyVO) throws Exception{
+		return reportMapper.getMyPayDetail(reportApplyVO);
+	}
+	public ReportWorkVO getMyWorkDetail(ReportApplyVO reportApplyVO) throws Exception{
+		return reportMapper.getMyWorkDetail(reportApplyVO);
+	}
+	public ReportSorryVO getMySorryDetail(ReportApplyVO reportApplyVO) throws Exception{
+		return reportMapper.getMySorryDetail(reportApplyVO);
+	}
+	
 	//================================================
 }
