@@ -73,7 +73,7 @@ public class GoodsController {
 		String id = (String) session.getAttribute("id");
 		goodsVO.setGoodsId(id);
 		int result = goodsService.setUpdate(goodsVO,files,session.getServletContext(),fileUpdateNumber);
-		return "/goods/update";
+		return "redirect:./ad_list";
 	}
 	
 	@PostMapping("fileUpdateNumber")
