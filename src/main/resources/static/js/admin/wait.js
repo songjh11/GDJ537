@@ -1,7 +1,7 @@
 console.log("wait");
 
 $(".allow").click(function(){
-  let id=$(this).prev().prev().prev().prev().prev().prev().prev().text();
+  let id=$(this).prev().prev().prev().prev().prev().prev().text();
   Swal.fire({
     title:'회원가입을 승인하시겠습니까?',
     text:id,
@@ -36,7 +36,7 @@ $(".allow").click(function(){
 })
 
 $(".allowNot").click(function(){
-    let id=$(this).prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+    let id=$(this).prev().prev().prev().prev().prev().prev().prev().text();
     Swal.fire({
       title:'회원가입을 거절하시겠습니까?',
       text:id,

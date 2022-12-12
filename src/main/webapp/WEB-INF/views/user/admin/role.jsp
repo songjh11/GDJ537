@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <meta charset="UTF-8">
 <!-- meta tag 추가 -->
 <meta name="viewport"
@@ -12,6 +13,7 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="/css/admin/admin.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
@@ -47,16 +49,16 @@
                      id="department">부서</a></li>
                   <li class="nav-item"><a class="nav-link active" href="./role"
                      id="role">직급</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#" id="roleAdd">+</a></li>
+                  <!-- <li class="nav-item"><a class="nav-link" href="#" id="roleAdd">+</a></li> -->
                </ul>
 
                <!-- <table class="table table-bordered w-auto"> -->
                <table class="table table-bordered">
                   <thead>
                      <tr>
-                        <th scope="col">직급번호</th>
-                        <th scope="col">직급이름</th>
-                        <th scope="col"></th>
+                        <th class="table-light" scope="col">직급번호</th>
+                        <th class="table-light" scope="col">직급이름</th>
+                        <th class="table-light" scope="col"></th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">
@@ -64,13 +66,13 @@
                      <tr>
                         <th scope="row">${roleVO.roleNum}</th>
                         <td class="showRole" data-role="roleName">${roleVO.roleName}</td>
-                        <td class="roleDel"><a href="#">X</a></td>
+                        <td class="roleDel"><a href="#">삭제</a></td>
                      </tr>
                      </c:forEach>
 
                   </tbody>
                </table>
-
+				<a class="nav-link" href="#" id="roleAdd">직급 추가</a>
 
             </div>
             <!-- End Page Content -->

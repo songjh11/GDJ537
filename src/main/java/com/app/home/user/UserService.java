@@ -23,6 +23,12 @@ public class UserService {
 
 	@Autowired
 	private FileManager fileManager;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Value("${app.profile}") // C:/user/profile/
+	private String path;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -40,26 +46,48 @@ public class UserService {
 	public UserVO getMypage(UserVO userVO) throws Exception {
 		return userMapper.getMypage(userVO);
 	}
+	
+	public UserVO setProfileSet(UserVO userVO)throws Exception{
+		
+		File file = new File(path);
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+		
+		if (userVO.getFile() != null) {
+			MultipartFile f = userVO.getFile();
+			String fileName = fileManager.saveFile(f, path);
+			userVO.setProfile(fileName);
+			userVO.setId(userVO.getId());
+			userMapper.setProfileSet(userVO);
+
+		}
+		
+		return userVO;
+	   }
+   
+   public int setProfileUpdate(UserVO userVO)throws Exception{
+      return userMapper.setProfileUpdate(userVO);
+   }
 
 	/* 비밀번호 변경 */
-	public int setChangePw(UserVO userVO) throws Exception {
-//	      userVO.setPw(passwordEncoder.encode(userVO.getPw()));
+	public int setChangePw(UserVO userVO, UserVO sessionVO) throws Exception {
+	    userVO.setPw(passwordEncoder.encode(userVO.getPw()));
 		int result = userMapper.setChangePw(userVO);
-//	      if(result == 1) {
-//	         sessionVO.setPw(userVO.getPw());
-//	      }
+	      if(result == 1) {
+	         sessionVO.setPw(userVO.getPw());
+	      }
 		return result;
 	}
 
 	// 비밀번호 일치 확인(본인확인)
-	public int getPwCheck(UserVO userVO) throws Exception {
+	public int getPwCheck(UserVO userVO, UserVO sessionUserVO) throws Exception {
 		// mathces("평문 비번", "인코딩된 pw")
-//	      log.info("pwCheck :{}",passwordEncoder.matches(memberVO.getPw(), check.getPw()));
 
-//	      if(passwordEncoder.matches(memberVO.getPw(), check.getPw())) {
-//	         memberVO.setPw(check.getPw());
-//	      }else {
-//	      }   
+	      if(passwordEncoder.matches(userVO.getPw(), sessionUserVO.getPw())) {
+	    	  userVO.setPw(sessionUserVO.getPw());
+	      }else {
+	      }   
 
 		return userMapper.getPwCheck(userVO);
 	}
@@ -134,6 +162,11 @@ public class UserService {
 		int result = userMapper.setPhoneUpdate(userVO);
 		return result;
 	}
+	
+	public int setEntDateUpdate(UserVO userVO) throws Exception {
+		int result = userMapper.setEntDateUpdate(userVO);
+		return result;
+	}
 
 	public int setDepartmentInsert(DepartmentVO departmentVO) throws Exception {
 		int result = userMapper.setDepartmentInsert(departmentVO);
@@ -169,6 +202,17 @@ public class UserService {
 		int result = userMapper.setRoleAdd(roleVO);
 		return result;
 	}
+	
+	public List<UserVO> getDepCheck(UserVO userVO) throws Exception {
+		List<UserVO> userVOs = userMapper.getDepCheck(userVO);
+		return userVOs;
+	}
+	
+	public List<UserVO> getRoleCheck(UserVO userVO) throws Exception {
+		List<UserVO> userVOs = userMapper.getRoleCheck(userVO);
+		return userVOs;
+	}
+
 
 	// 사원번호 조회
 	public UserVO getIdCheck(UserVO userVO) throws Exception {

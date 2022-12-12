@@ -151,9 +151,16 @@
                   <div class="d-flex" style="margin-bottom: 60px">
                   <div class="mt-4" style="width: 500px">
                     <div class="flex-column">
-                    <form action="./profile" method="post" enctype="multipart/form-data">
+                    <form action="./setting" method="post" enctype="multipart/form-data">
                     <div id="image_container"></div>
-                    <img id="profile_image" src="/img/user.webp" class="rounded" alt="..." style="width: 180px; margin-right: 1.3em">
+                    <c:choose>
+                    	<c:when test="${userVO.profile eq null}">
+                    		<img id="profile_image" src="/img/user/user.webp" class="rounded" alt="..." style="width: 180px; height:180px; margin-right: 1.3em">
+                    	</c:when>
+                    	<c:otherwise>
+		                    <img id="profile_image" src="/file/profile/${userVO.profile}" class="rounded" alt="..." style="width: 180px; height:180px; margin-right: 1.3em">            	
+                    	</c:otherwise>
+                    </c:choose>
                        <div class="d-flex pt-3">
                           <label for="file" class="profile_btn me-2" id="profile_change" style="padding: 7px 5px 0px 5px">변경</label>
                          <input type="file" name="file" id="file" style="display: none" onchange="setThumbnail(event)"/>
@@ -161,7 +168,7 @@
                          <button class="profile_btn ms-1" id="profile_save">완료</button>
                        </div>
                     <input type="text" id="sessionId" name="id" value="${userVO.id}" style="display: none"/>
-                    <input type="file" id="profile_file">
+                    <input type="file" id="profile_file" name="file" style="display: none;">
                     </form>
                       <div class="pb-2 mt-4" style="font-size: 14.5px">사원번호</div>
                       <input class="setUp_form" type="text" value="${userVO.id}" disabled />
@@ -331,7 +338,7 @@
                           class="btn btn-success"
                           style="border-radius: 18px; padding: 6px 18px"
                           data-bs-dismiss="modal"
-                          onclick="location.href='/member/setting'"
+                          onclick="location.href='/user/setting'"
                         >
                           확인
                         </button>

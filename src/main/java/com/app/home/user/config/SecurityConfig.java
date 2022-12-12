@@ -49,6 +49,7 @@ public class SecurityConfig {
                .csrf()
                .disable()
             .authorizeRequests()
+               .antMatchers("/mail/findpw").permitAll()
                .antMatchers("/admin").hasRole("ADMIN")
                .antMatchers("/manager").hasRole("MANAGER")
                .antMatchers("/user").permitAll()
