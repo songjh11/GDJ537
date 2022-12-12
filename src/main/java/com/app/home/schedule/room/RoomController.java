@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.schedule.goods.GoodsService;
 import com.app.home.schedule.goods.GoodsVO;
+import com.app.home.schedule.goods.ReserveVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -53,12 +54,12 @@ public class RoomController
 	}
 
 	@GetMapping("/room/roomReserve")
-	public ModelAndView setRoomReserve(GoodsVO goodsVO, RoomVO roomVO) throws Exception
+	public ModelAndView setRoomReserve(GoodsVO goodsVO, GoodsRoomVO goodsRoomVO) throws Exception
 	{
 		log.info("======= get roomReserve =======");
 		ModelAndView modelAndView = new ModelAndView();
 		goodsVO = roomService.getRoomTotal(goodsVO);
-		List<RoomVO> roomVOs = roomService.getReserveStartTime(roomVO);
+		List<GoodsRoomVO> roomVOs = roomService.getReserveStartTime(goodsRoomVO);
 		log.info("roomVOs: {}", roomVOs);
 
 		// log.info("goodVO 1 : {}", goodsVO);
@@ -71,11 +72,11 @@ public class RoomController
 	}
 
 	@PostMapping("/room/roomReserve")
-	public ModelAndView setRoomReserve(RoomVO roomVO) throws Exception
+	public ModelAndView setRoomReserve(GoodsRoomVO goodsRoomVO) throws Exception
 	{
 		log.info("======= post roomReserve =======");
 		ModelAndView modelAndView = new ModelAndView();
-		int rs = roomService.setRoomReserve(roomVO);
+		int rs = roomService.setRoomReserve(goodsRoomVO);
 
 		log.info("room reserve: {}", rs);
 
@@ -85,16 +86,16 @@ public class RoomController
 	}
 
 	@GetMapping("/room/roomResInfo")
-	public ModelAndView getRoomResInfo(RoomVO roomVO) throws Exception
+	public ModelAndView getRoomResInfo(GoodsRoomVO goodsRoomVO) throws Exception
 	{
 		log.info("====== get Info =====");
 		ModelAndView modelAndView = new ModelAndView();
-		List<RoomVO> roomVOs = roomService.getResInfo(roomVO);
+		List<ReserveVO> reserveVOs = roomService.getResInfo(goodsRoomVO);
 
-		log.info("roomVOs: {}", roomVOs);
+		log.info("roomVOs: {}", reserveVOs);
 
-		modelAndView.addObject("roomInfo", roomVOs);
-		modelAndView.setViewName("/goods/room/roomResInfo");
+		modelAndView.addObject("roomInfo", reserveVOs);
+		modelAndView.setViewName("goods/room/roomResInfo");
 
 		return modelAndView;
 	}
