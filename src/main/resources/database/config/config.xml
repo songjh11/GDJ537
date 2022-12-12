@@ -6,14 +6,22 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="java.util.List" alias="List"/>
+  		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		
-  		
-  		<typeAlias type="com.app.home.report.ReportVO" alias="ReportVO"/>
-  		
+
+  		<typeAlias type="com.app.home.report.ReportApplyVO" alias="ReportApplyVO"/>
+
   		
   		<typeAlias type="com.app.home.report.UserVO" alias="UserVO"/>
   		<typeAlias type="com.app.home.report.RoleVO" alias="RoleVO"/>
   		<typeAlias type="com.app.home.report.DepartmentVO" alias="DepartmentVO"/>
   		
+
+  		<typeAlias type="com.app.home.report.ReportVO" alias="ReportVO"/>
+  		<typeAlias type="com.app.home.report.sorry.ReportSorryVO" alias="ReportSorryVO"/>
+  		<typeAlias type="com.app.home.report.work.ReportWorkVO" alias="ReportWorkVO"/>
+  		<typeAlias type="com.app.home.report.pay.ReportPayVO" alias="ReportPayVO"/>
+  		<typeAlias type="com.app.home.report.vaca.ReportVacaVO" alias="ReportVacaVO"/>
+
   	</typeAliases>
   </configuration>

@@ -62,13 +62,97 @@
 	
 	<!-- ============== 최근호 ================ -->
 	
+	<select id="getLicenseCheck" parameterType="ReportVO" resultType="Integer">
+		SELECT LSTATUS FROM REPORTLICENSER WHERE ID = #{id}
+	</select>
+	
+	<select id="getFinishReport" parameterType="ReportVO" resultMap="getFinishReportResult">
+		SELECT RL.*,RA.* FROM
+		REPORTLICENCES RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=#{id}
+	</select>
+	
+	<select id="getReturnReport" parameterType="ReportVO" resultMap="getFinishReportResult">
+		SELECT RL.*,RA.* FROM
+		REPORTLICENCES RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=#{id}
+	</select>
+	
+	<select id="getDoFirstReport" parameterType="ReportVO" resultMap="getFinishReportResult">
+		SELECT RL.*,RA.* FROM
+		REPORTLICENCES RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		WHERE RA.STATUS = 0 AND RL.ID=#{id}
+	</select>
+	
+	<select id="getDoFinalReport" parameterType="ReportVO" resultMap="getFinishReportResult">
+		SELECT RL.*,RA.* FROM
+		REPORTLICENCES RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		WHERE RA.STATUS = 2 AND RL.ID=#{id}
+	</select>
+	
+	<resultMap type="ReportVO" id="getFinishReportResult">
+		<id column="LICENSERNUM" property="licenserNum"/>
+		<result column="DEPNUM" property="depNum"/>
+		<result column="ID" property="id"/>
+		<result column="STATUS" property="lstatus"/>
+			<collection property="reportApplyVOs" javaType="List" ofType="ReportApplyVO">
+				<id column="APPLYNUM" property="applyNum"/>
+				<result column="ID" property="id"/>
+				<result column="DEPNUM" property="depNum"/>
+				<result column="REPORTNUM" property="reportNum"/>
+				<result column="STATUS" property="status"/>
+				<result column="RETURNS" property="returns"/>
+				<result column="APDATE" property="apDate"/>
+			</collection>
+	</resultMap>
 	
 	
 	<!-- ==================================== -->
 	
 	<!-- ============== 류형민 ================ -->
+	<!-- 휴가 신청 목록 가져오기 -->
+	<select id="getMyVacaList" parameterType="UserVO" resultType="ReportVacaVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
 	
+	<!-- 시말서 목록 가져오기 -->
+	<select id="getMySorryList" parameterType="UserVO" resultType="ReportSorryVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
 	
+	<!-- 업무보고서 목록 가져오기 -->
+	<select id="getMyWorkList" parameterType="UserVO" resultType="ReportWorkVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
+	
+	<!-- 지출결의서 목록 가져오기 -->
+	<select id="getMyPayList" parameterType="UserVO" resultType="ReportPayVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		where r.id = #{id};
+	</select>
 	
 	<!-- ==================================== -->
 	
