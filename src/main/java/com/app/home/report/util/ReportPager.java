@@ -1,7 +1,5 @@
 package com.app.home.report.util;
 
-import com.app.home.report.UserVO;
-
 import lombok.Data;
 
 @Data

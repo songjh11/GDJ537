@@ -10,6 +10,7 @@ import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
 import com.app.home.report.work.ReportWorkVO;
+import com.app.home.user.UserVO;
 
 @Service
 public class ReportService {
@@ -61,19 +62,13 @@ public class ReportService {
 	//=======================장민석===================
 	
 	
-	public List<ReportVO> selectList(ReportPager pager) throws Exception{
-		pager.getStartRow();
-		return reportMapper.selectList(pager);
+	public ReportPayVO selectPay(ReportPayVO reportPayVO) throws Exception{
+		return reportMapper.selectPay(reportPayVO);
 	}
 	
-	public int insertList(ReportApplyVO reportApplyVO) throws Exception{
-		return reportMapper.insertList(reportApplyVO);
+	public ReportSorryVO selectSorry(ReportSorryVO reportSorryVO) throws Exception{
+		return reportMapper.selectSorry(reportSorryVO);
 	}
-	
-	public ReportApplyVO selectDetail(ReportApplyVO reportApplyVO) throws Exception{
-		return reportMapper.selectDetail(reportApplyVO);
-	}
-	
 	
 	
 	//================================================
@@ -119,6 +114,19 @@ public class ReportService {
 	}
 	public List<ReportPayVO> getMyPayList(ReportPager pager) throws Exception{
 		return reportMapper.getMyPayList(pager);
+	}
+	
+	public ReportVacaVO getMyVacaDetail(ReportApplyVO reportApplyVO) throws Exception{
+		return reportMapper.getMyVacaDetail(reportApplyVO);
+	}
+	public ReportPayVO getMyPayDetail(ReportApplyVO reportApplyVO) throws Exception{
+		return reportMapper.getMyPayDetail(reportApplyVO);
+	}
+	public ReportWorkVO getMyWorkDetail(ReportApplyVO reportApplyVO) throws Exception{
+		return reportMapper.getMyWorkDetail(reportApplyVO);
+	}
+	public ReportSorryVO getMySorryDetail(ReportApplyVO reportApplyVO) throws Exception{
+		return reportMapper.getMySorryDetail(reportApplyVO);
 	}
 	
 	//================================================
