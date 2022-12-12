@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
-public class FileManager {
+public class FileUserManager {
    
    //파일업로드
    public String saveFile(MultipartFile multipartFile, String path)throws Exception{
