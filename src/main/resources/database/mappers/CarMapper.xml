@@ -15,7 +15,7 @@
 	<update id="setUpdate" parameterType="ReserveVO">
 		UPDATE RESERVE R
 		INNER JOIN GOODS G
-		ON R.ID = G.ID 
+		ON R.GOODSID = G.GOODSID 
 		SET R.STARTTIME = #{startTime}, R.ENDTIME = #{endTime}, R.USEPURPOSE = #{usePurpose}
 		WHERE R.RESERVENUM = #{reserveNum}
 	</update>
@@ -33,20 +33,20 @@
 
 	<!-- 예약 -->
 	<insert id="setReserve" parameterType="ReserveVO">
-		INSERT INTO RESERVE(RESERVENUM, ID, DATE, STARTTIME, ENDTIME, MEMBERNUM, USEPURPOSE)
-		VALUES(null, #{id}, #{date}, #{startTime}, #{endTime}, '아이유', #{usePurpose})
+		INSERT INTO RESERVE(RESERVENUM, GOODSID, DATE, STARTTIME, ENDTIME, MEMBERNUM, USEPURPOSE)
+		VALUES(null, #{goodsId}, #{date}, #{startTime}, #{endTime}, '아이유', #{usePurpose})
 	</insert>
 
 	<!-- 상세보기 -->
 	<select id="getGoods" parameterType="GoodsVO" resultMap="getGoodsDetail">
 		SELECT * FROM GOODS G
 		LEFT JOIN GOODSFILE F
-		ON G.ID = F.ID
-		WHERE G.ID = #{id}
+		ON G.GOODSID = F.GOODSID
+		WHERE G.GOODSID = #{goodsId}
 	</select>
 
 	<resultMap type="GoodsVO" id="getGoodsDetail">
-		<id column="ID" property="id"></id>
+		<id column="GOODSID" property="goodsId"></id>
 		<result column="NAME" property="name"></result>
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
@@ -65,11 +65,11 @@
 		resultMap="getGoods">
 		SELECT * FROM GOODS G
 		left JOIN GOODSFILE F
-		ON G.ID = F.ID
+		ON G.GOODSID = F.GOODSID
 	</select>
 
 	<resultMap type="GoodsVO" id="getGoods">
-		<id column="ID" property="id"></id>
+		<id column="GOODSID" property="goodsId"></id>
 		<result column="NAME" property="name"></result>
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
