@@ -13,4 +13,8 @@ public class ReportApplyVO {
 	private int status;
 	private int returns;
 	private Date apDate;
+	
+	private String name;
+	private String depName;
+	private String roleName;
 }

@@ -33,11 +33,6 @@
   		<typeAlias type="com.app.home.report.ReportApplyVO" alias="ReportApplyVO"/>
 
   		
-  		<typeAlias type="com.app.home.report.UserVO" alias="UserVO"/>
-  		<typeAlias type="com.app.home.report.RoleVO" alias="RoleVO"/>
-  		<typeAlias type="com.app.home.report.DepartmentVO" alias="DepartmentVO"/>
-  		
-
   		<typeAlias type="com.app.home.report.ReportVO" alias="ReportVO"/>
   		<typeAlias type="com.app.home.report.sorry.ReportSorryVO" alias="ReportSorryVO"/>
   		<typeAlias type="com.app.home.report.work.ReportWorkVO" alias="ReportWorkVO"/>

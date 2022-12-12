@@ -13,6 +13,7 @@ import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
 import com.app.home.report.work.ReportWorkVO;
+import com.app.home.user.UserVO;
 
 @Mapper
 public interface ReportMapper {
