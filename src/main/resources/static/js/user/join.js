@@ -3,7 +3,6 @@ $("#addId, #addName, #addDep").click(function(){
     $("#idBtn").focus();
 })
 
-
 //사원번호조회
 $("#search").click(function () {
     $("#addId").val("");
@@ -26,7 +25,6 @@ $("#search").click(function () {
             name: name,
         },
         success: function (data) {
-            alert(data)
             if (data == "") {
                 $("#noDate").attr("style", "display:")
                 $(".table").attr("style", "display:none")
@@ -47,9 +45,9 @@ $("#search").click(function () {
                     $("#addId").val(data.id)
                     $("#addName").val(data.name)
                     $("#addDep").val(data.departmentVO.depName)
+                    $("#submit").attr("type", "");
                 })
             }
-
         }
     })
 })
@@ -84,6 +82,3 @@ $("#file").on("change", function () {
         $("#file").attr("name", "file")
     }
 });
-
-
-

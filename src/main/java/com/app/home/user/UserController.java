@@ -260,9 +260,9 @@ public class UserController {
 
 	// 회원가입
 	@PostMapping("join")
-	public ModelAndView setJoin(@Valid UserVO userVO, BindingResult bindingResult, String email, String address, MultipartFile file) throws Exception {
+	public ModelAndView setJoin(@Valid UserVO userVO, BindingResult bindingResult, String e, String address, MultipartFile file) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
+
 		//사용자 검증 메서드
 		boolean check = userService.getUserError(userVO, bindingResult);
 		
@@ -276,14 +276,14 @@ public class UserController {
 			}
 			return mv;
 		}
-		
-		int result = userService.setJoin(userVO, email, address);
+		int result = userService.setJoin(userVO, e, address);
 		if(result == 1) {
-			mv.setViewName("redirect:./login");
+			mv.setViewName("redirect:./joinFinish");
 		} 
 		return mv;
 	}
-
+	
+	
 	// 사원번호조회
 	@PostMapping("idCheck")
 	@ResponseBody
@@ -291,14 +291,6 @@ public class UserController {
 		userVO = userService.getIdCheck(userVO);
 		log.info("사원번호조회 : {}", userVO);
 		return userVO;
-	}
-	
-	// 인증된 사원번호조회
-	@PostMapping("idStatus1")
-	@ResponseBody
-	public int getIdStatus1(UserVO userVO) throws Exception {
-		int result = userService.getIdStatus1(userVO);
-		return result;
 	}
 
 	@GetMapping("login")

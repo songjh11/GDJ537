@@ -10,14 +10,14 @@
 <c:import url="../temp/user/boot.jsp"></c:import>
 <style type="text/css">
 #idBtn:focus {
-	border: solid skyblue 2px;
+	border: solid #C8DEFF 4px;
 }
 </style>
 </head>
 <body>
    <div class="container-fluid">
       <div class="row justify-content-center" style="height: 100vh;">
-         <div class="col-3 py-4 px-5" style="border: solid 1px black; position: relative; margin: auto 0">
+         <div class="py-4 px-5" style="width:500px; box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px; position: relative; margin: auto 0">
          
          <h1 class="text-center pb-3"><b>Sign up</b></h1>
          
@@ -76,8 +76,8 @@
                   </button>
                </div>
                <input type="text" class="form-control" name="id" id="addId" readonly="readonly" style="width: 65%; height: 35px;">
-               <div id="idError"></div>
             </div>
+               <div id="idError" style="font: 13px; color: red"></div>
             
             <div class="d-flex my-3">
                <b style="margin: auto 0; width: 45%">이름</b>
@@ -89,24 +89,24 @@
                <input type="text" class="form-control" id="addDep" readonly="readonly" style="width: 65%; height: 35px">
             </div>
             
-            <hr class="mt-4 mb-3">
+            <hr class="my-4">
             
             <div class="d-flex">
-               <div class="w-40 me-4" style="margin: auto 0">
+               <div class="me-4" style="margin: auto 0; width: 60%">
                   <div>
                      <b><span style="color: red">*</span>비밀번호</b>
                      <form:password path="pw" cssClass="form-control" id="pw" />
-                     <form:errors path="pw"></form:errors>
+                     <div style="font-size: 13px"><form:errors path="pw"></form:errors></div>
                   </div>
                   
-                  <div class="mt-3">
+                  <div class="mt-4">
                      <b><span style="color: red">*</span>비밀번호 확인</b>
                      <form:password path="pw2" cssClass="form-control" id="pw2" />
-                     <form:errors path="pw2"></form:errors>
+                     <div style="font-size: 13px"><form:errors path="pw2"></form:errors></div>
                   </div>
                </div>
                
-               <div class="w-50" style="margin: auto 0">
+               <div style="margin: auto 0">
                   <input type="file" id="file" accept="image/*" onchange="setThumbnail(event);" style="display: none">
                   <label id="fileAdd" for="file" class="border border-black rounded-3" style="color:#8b95a1; width: 140px; height: 160px; text-align: center">
 						<span id="default">
@@ -117,10 +117,10 @@
                </div>
             </div>
             
-            <div class="mt-2 mb-3">
+            <div class="my-4">
                <b><span style="color: red">*</span>이메일</b>
                <div class="d-flex">
-               <form:input path="email" cssClass="form-control" id="email" cssStyle="height:38px"/>
+               <form:input path="e" cssClass="form-control" id="email" cssStyle="height:38px"/>
                <span class="px-1" style="margin: auto 0;">@</span>
                <form:select path="address" class="form-select" id="address">
                   <option selected hidden>선택</option>
@@ -130,18 +130,19 @@
                   <option value="nate.com">nate.com</option>
                </form:select>
                </div>
-               <form:errors path="email"></form:errors>
-               <form:errors path="address"></form:errors>
+               <div style="font-size: 13px">
+               <form:errors path="e"></form:errors>
+               <form:errors path="address"></form:errors></div>
             </div>
             
-            <div class="my-3">
+            <div class="my-4">
                <b><span style="color: red">*</span>휴대전화</b>
-               <form:input path="phone" cssClass="form-control" id="phone" placeholder="숫자만 입력해주세요"/>
-               <form:errors path="phone"></form:errors>
+               <form:input path="phone" cssClass="form-control" id="phone" placeholder="숫자만 입력"/>
+               <div style="font-size: 13px"><form:errors path="phone"></form:errors></div>
             </div>
             
             <div class="text-center py-3">
-               <button type="submit" id="joinBtn" class="btn btn-primary w-50">회원가입</button>
+               <button id="submit" class="btn btn-primary w-50">회원가입</button>
             </div>
          </form:form>
       </div>

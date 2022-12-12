@@ -174,19 +174,14 @@ public class UserService {
 	public UserVO getIdCheck(UserVO userVO) throws Exception {
 		return userMapper.getIdCheck(userVO);
 	}
-
-	//인증된 사원번호 조회
-	public int getIdStatus1(UserVO userVO) throws Exception {
-		return userMapper.getIdStatus1(userVO);
-	}
 		
 	// 회원가입
-	public int setJoin(UserVO userVO, String email, String address) throws Exception {
+	public int setJoin(UserVO userVO, String e, String address) throws Exception {
 		// 패스워드 암호화
 		userVO.setPw(passwordEncoder.encode(userVO.getPw()));
 
 		// 이메일
-		userVO.setEmail(email + "@" + address);
+		userVO.setEmail(e + "@" + address);
 
 		// 프로필사진 등록
 		File file = new File(path);
@@ -204,7 +199,7 @@ public class UserService {
 		return userMapper.setJoin(userVO);
 	}
 
-	// 사용자 검증 메서드(인증된 사원번호 체크, 이메일 입력 체크, 비번 일치 검증, 휴대번호 입력 검증)
+	//사용자 검증 메서드(인증된 사원번호 체크, 이메일 입력 체크, 비번 일치 검증, 휴대번호 입력 검증)
 	public boolean getUserError(UserVO userVO, BindingResult bindingResult) throws Exception {
 		// check=false : 검증 성공(에러없음)
 		// check=true : 검증 실패(에러있음)
@@ -225,11 +220,6 @@ public class UserService {
 			bindingResult.rejectValue("address", "user.email.req");
 		}
 
-		// 휴대번호 입력 검증
-		if (userVO.getPhone().length() > 11 || userVO.getPhone().length() < 11) {
-			check = true;
-			bindingResult.rejectValue("phone", "user.phone.req");
-		}
 		return check;
 	}
 }
