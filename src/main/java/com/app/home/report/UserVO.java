@@ -31,6 +31,7 @@ public class UserVO{
    private RoleVO roleVO;
    private DepartmentVO departmentVO;
    private List<DepartmentVO> departmentVOs;
+   private ReportVO reportVO;
    private List<ReportVO> reportVOs;
 
    public UserVO() {

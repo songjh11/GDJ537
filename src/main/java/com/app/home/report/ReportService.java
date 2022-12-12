@@ -17,7 +17,7 @@ public class ReportService {
 	@Autowired
 	private ReportMapper reportMapper;
 	
-	
+
 	//=======================김도영===================
 	
 	
@@ -34,9 +34,21 @@ public class ReportService {
 	
 	//=======================한종석===================
 	
+	public int setLstatusUpdate(ReportVO reportVO) throws Exception{
+		int result = reportMapper.setLstatusUpdate(reportVO);
+		
+		return result;
+	}
 	
+	public List<UserVO> getReportList (UserVO userVO) throws Exception{
+		
+		return reportMapper.getReportList(userVO);
+	}
 	
-	
+	public int setLicenserAdd(UserVO userVO) throws Exception{
+		
+		return reportMapper.setLicenserAdd(userVO);
+	}
 	
 	
 	
