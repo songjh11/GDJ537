@@ -4,7 +4,7 @@ deleteBtn.on("click", function(){
     let deleteFlag = confirm("정말 삭제합니까?");
 
     // 삭제할 게시글 번호
-    let deleteNum = deleteBtn.attr("data-boardnum");
+    let deleteNum = deleteBtn.attr("data-boardNum");
 
     if(deleteFlag){
         
