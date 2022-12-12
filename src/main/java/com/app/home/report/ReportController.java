@@ -146,30 +146,38 @@ public class ReportController {
 		return mv;
 	}
 	
-	@GetMapping("/detail")
-	public ModelAndView selectDetail(ReportApplyVO reportApplyVO) throws Exception{
+	@GetMapping("/detailPay")
+	public ModelAndView selectPay(ReportPayVO reportPayVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		reportApplyVO = reportService.selectDetail(reportApplyVO);
-		mv.addObject("vo", reportApplyVO);
-		mv.setViewName("board/detail");
+		
+		reportPayVO = reportService.selectPay(reportPayVO);
+		mv.addObject("vo",reportPayVO);
+		mv.setViewName("list/detailPay");
 		
 		return mv;
 	}
 	
-	@GetMapping("add")
-	public String insertList() throws Exception{
-		return "/insertList";
+	@GetMapping("/detailSorry")
+	public ModelAndView selectSorry(ReportSorryVO reportSorryVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		reportSorryVO = reportService.selectSorry(reportSorryVO);
+		mv.addObject("vo", reportSorryVO);
+		mv.setViewName("list/detailSorry");
+		
+		return mv;
 	}
 	
-	@PostMapping("add")
-	public String insertList(ReportApplyVO reportApplyVO, RedirectAttributes redirectAttributes)throws Exception{
+	@GetMapping("/detailVaca")
+	public ModelAndView selectVaca(ReportVacaVO reportVacaVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		
-		int result = reportService.insertList(reportApplyVO);
-		redirectAttributes.addAttribute("result", result);
+		reportVacaVO = reportService.selectVaca(reportVacaVO);
+		mv.addObject("vo", reportVacaVO);
+		mv.setViewName("list/detailVaca");
 		
-		return "redirect:./list";
+		return mv;
 	}
-	
 	
 	//================================================
 	

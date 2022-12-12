@@ -70,10 +70,17 @@ public class ReportService {
 		return reportMapper.insertList(reportApplyVO);
 	}
 	
-	public ReportApplyVO selectDetail(ReportApplyVO reportApplyVO) throws Exception{
-		return reportMapper.selectDetail(reportApplyVO);
+	public ReportPayVO selectPay(ReportPayVO reportPayVO) throws Exception{
+		return reportMapper.selectPay(reportPayVO);
 	}
 	
+	public ReportSorryVO selectSorry(ReportSorryVO reportSorryVO) throws Exception{
+		return reportMapper.selectSorry(reportSorryVO);
+	}
+	
+	public ReportVacaVO selectVaca(ReportVacaVO reportVacaVO) throws Exception{
+		return reportMapper.selectVaca(reportVacaVO);
+	}
 	
 	
 	//================================================
