@@ -122,4 +122,4 @@ $(".empName").click(function(){
 
  $("#msgBtn").click(function(){
     console.log("메세지함");
- })
+})

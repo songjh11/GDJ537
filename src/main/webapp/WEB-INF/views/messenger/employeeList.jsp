@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-						<div id="proModal" class="modal-overlay" style="z-index: 100;">
+						
+
+						<div id="modal" class="modal-overlay" style="z-index: 100;">
 							<div class="modal-window">
 								<div class="close-area">X</div>
 								<div class="content">
@@ -18,7 +20,9 @@
 									</div>
 								</div>
 							</div>
-						</div>				
+						</div>
+						
+										
 						
 						<!-- Topbar Search -->
 						<div>
@@ -173,4 +177,3 @@
 								</c:when>
 							</c:choose>
 						</ul>		
-	<script src="/js/messenger/main.js"></script>											

@@ -32,16 +32,6 @@
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
 																				<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 																			</div>
-																			<div class="btnArea">
-																				<c:choose>
-																					<c:when test="${e.pickVO.myId eq myId}">
-																							<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
-																					</c:when>
-																					<c:when test="${e.pickVO.myId ne myId}">
-																						<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
-																					</c:when>
-																				</c:choose>
-																			</div>
 																		</div>
 																	</li>
 																	</c:if>
@@ -72,16 +62,7 @@
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
 																				<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 																			</div>
-																			<div class="btnArea">
-																				<c:choose>
-																					<c:when test="${e.pickVO.myId eq myId}">
-																							<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
-																					</c:when>
-																					<c:when test="${e.pickVO.myId ne myId}">
-																						<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
-																					</c:when>
-																				</c:choose>
-																			</div>
+																			
 																		</div>
 																	</li>
 																</c:if>
@@ -100,3 +81,37 @@
 							</div>
 						</div>
 						<!-- 체크박스 생성 모달 끝 -->
+
+						<!-- 채팅방 만드는 폼 -->
+						<div id="room" class="room-overlay" style="z-index: 100;">
+							<div class="room-window">
+								<div class="close-area">X</div>
+								<div class="content">
+									<div class="roomInfo">
+										<div class="row">
+											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
+											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
+										</div>
+										<div class="row">
+											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
+											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
+										</div>
+										<div class="infoArea" style="background: transparent; border: none; box-shadow: none !important;">
+											<form action="./addRoom">
+												<div class="mb-3">
+													<label for="exampleFormControlTextarea1" class="form-label">채팅방 이름</label>
+													<input type="text" name="roomName" class="form-control form-control-sm" placeholder="방이름을 입력해 주세요">
+												</div>
+												<div class="mb-3">
+													<label for="exampleFormControlTextarea1" class="form-label">비밀번호</label>
+													<input type="password" name="pw" class="form-control form-control-sm" placeholder="숫자를 입력해 주세요">
+												</div>
+												<p class="mt-4">
+													<button type="submit" class="btn" style="background: #4e73df; color: #FFFFFF;">생성</button>
+												</p>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
