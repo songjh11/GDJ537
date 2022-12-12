@@ -148,7 +148,7 @@
                 		
               
                 			
-	                	$("#tbd").append('<tr><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-name="'+dd[i].id+'">부여</button></td></tr>')
+	                	$("#tbd").append('<tr><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+dd[i].depNum+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'">부여</button></td></tr>')
                 	
                 		
                 		

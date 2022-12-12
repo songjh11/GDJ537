@@ -42,6 +42,7 @@ public interface ReportMapper {
 	
 	public int setLicenserAdd(UserVO userVO) throws Exception;
 	
+	public List<ReportVO> getLicenserList(ReportVO reportVO) throws Exception;
 	
 	
 	
