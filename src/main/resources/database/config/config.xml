@@ -27,6 +27,19 @@
   		<typeAlias type="com.app.home.board.BoardVO" alias="BoardVO"/>	
   		<typeAlias type="com.app.home.board.comment.CommentVO" alias="CommentVO"/>	
 
+  		<typeAlias type="java.lang.Integer" alias="Integer"/>
+  		
+
+  		<typeAlias type="com.app.home.report.ReportApplyVO" alias="ReportApplyVO"/>
+
+  		
+  		<typeAlias type="com.app.home.report.ReportVO" alias="ReportVO"/>
+  		<typeAlias type="com.app.home.report.sorry.ReportSorryVO" alias="ReportSorryVO"/>
+  		<typeAlias type="com.app.home.report.work.ReportWorkVO" alias="ReportWorkVO"/>
+  		<typeAlias type="com.app.home.report.pay.ReportPayVO" alias="ReportPayVO"/>
+  		<typeAlias type="com.app.home.report.vaca.ReportVacaVO" alias="ReportVacaVO"/>
+  		
+  		<typeAlias type="com.app.home.report.util.ReportPager" alias="ReportPager"/>
 
   	</typeAliases>
   </configuration>
