@@ -26,7 +26,7 @@
 								<div class="close-area">X</div>
 								<div class="content">
 									<div class="checkInfo">
-										<form action="./addRoomUser" method="post">
+										<form action="./addRoom" method="post">
 											<c:choose>
 												<c:when test="${not empty depList}">
 													<c:forEach items="${depList}" var="d">
@@ -110,7 +110,7 @@
 												</c:when>
 											</c:choose>
 											<p class="mt-4">
-												<button type="submit" id="roomBtn" class="btn" style="background: #4e73df; color: #FFFFFF;">생성</button>
+												<a id="roomBtn" href="" class="btn" style="background: #4e73df; color: #FFFFFF;">생성</a>
 											</p>
 										</form>
 									</div>
