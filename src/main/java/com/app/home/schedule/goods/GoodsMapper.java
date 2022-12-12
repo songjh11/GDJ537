@@ -40,4 +40,6 @@ public interface GoodsMapper
 	public List<GoodsVO> getCarNameList() throws Exception;
 	
 	public List<ReserveVO> getreserveGoods(GoodsVO goodsVO) throws Exception;
+	
+	public int getreserveCount(GoodsVO goodsVO) throws Exception;
 }

@@ -132,5 +132,9 @@
 		SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
 	</select>
 	
+	<select id="getreserveCount" parameterType="GoodsVO" resultType="int">
+		SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
+	</select>
+	
 	
 </mapper> 

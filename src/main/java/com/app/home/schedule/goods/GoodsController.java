@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -156,19 +157,55 @@ public class GoodsController {
         return jsonArr;
 	}
 	
-	@GetMapping("ad_goods")
-	public ModelAndView getGoodsAdmin() throws Exception{
+	@GetMapping("ad_room")
+	public ModelAndView getRoomAdmin() throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<GoodsVO> room = goodsService.getRoomNameList();
-		List<GoodsVO> car = goodsService.getCarNameList();
-		List<Double> roomx = new ArrayList<>();
+		Map<String, Integer> map = new HashMap<>();
+		
 		for(int i=0;i<room.size();i++) {
-			roomx.add((23.133333841959637 * i));
+			map.put(room.get(i).getGoodsId(), goodsService.getreserveCount(room.get(i)));
 		}
-		mv.addObject("room", room);
-		mv.addObject("roomx", roomx);
-		mv.setViewName("/goods/ad_goods");
+		
+		String result ="";
+		Set<String> reasonKeys = map.keySet();
+		
+		for(String key : reasonKeys) {
+			if(result != "") {
+				result += ",";
+			}
+			result += "['"+key+"', "+map.get(key)+"]";
+		}
+		System.out.println(result);
+		mv.addObject("result", result);
+		mv.setViewName("/goods/ad_room");
 		return mv;
+	}
+	
+	@GetMapping("ad_car")
+	public ModelAndView getCarAdmin()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<GoodsVO> car = goodsService.getCarNameList();
+		Map<String, Integer> map = new HashMap<>();
+		
+		for(int i=0;i<car.size();i++) {
+			map.put(car.get(i).getGoodsId(), goodsService.getreserveCount(car.get(i)));
+		}
+		
+		String result ="";
+		Set<String> reasonKeys = map.keySet();
+		
+		for(String key : reasonKeys) {
+			if(result != "") {
+				result += ",";
+			}
+			result += "['"+key+"', "+map.get(key)+"]";
+		}
+		System.out.println(result);
+		mv.addObject("result", result);
+		mv.setViewName("/goods/ad_car");
+		return mv;
+		
 	}
 
 }
