@@ -65,7 +65,7 @@
 
 							<div class="mb-5">
 								<label>예약자</label>
-								<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1">
+								<input type="text" name="id" class="form-control" id="exampleFormControlInput1">
 							</div>
 
 							<div class="mb-5">
