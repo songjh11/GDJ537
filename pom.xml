@@ -33,12 +33,6 @@
 		<!-- 보고서   1조 -->
 		
 		<!-- 메신져   3조 -->
-
-		<!-- <dependency>
-			<groupId>org.bgee.log4jdbc-log4j2</groupId>
-			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
-			<version>1.16</version>
-		</dependency>  -->
 	
 		<!-- 메신저 -->
 		<dependency>

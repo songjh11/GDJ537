@@ -60,7 +60,6 @@ public class MessengerController {
 		map.put("keyword", keyword);
 		map.put("kind", kind);
 		List<EmployeeVO> el = messengerService.getSearchResult(map);
-		log.info("el:{}", el);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("myId", id);
 		mv.addObject("empList", el);

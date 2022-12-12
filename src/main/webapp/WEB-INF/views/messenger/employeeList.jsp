@@ -21,9 +21,6 @@
 								</div>
 							</div>
 						</div>
-						
-										
-						
 						<!-- Topbar Search -->
 						<div>
 							<form action="searchEmp" method="POST" class="form-inline navbar-search" style="display: flex; justify-content: flex-end; margin-right: 10px; margin-bottom: 30px;">
@@ -102,6 +99,7 @@
 											<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
 										</li>
 										<ul class="acoArea">
+											<div class="userList">
 											<c:forEach items="${empList}" var="e">
 												<c:if test="${e.departmentVO.depNum eq d.depNum}">
 													<c:if test="${e.id ne myId}">
@@ -133,6 +131,7 @@
 													</c:if>
 												</c:if> 
 											</c:forEach>
+											</div>
 										</ul>
 									</c:forEach>
 								</c:when>
