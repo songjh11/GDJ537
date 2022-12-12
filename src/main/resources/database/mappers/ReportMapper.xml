@@ -169,7 +169,11 @@
 	<select id="getMyVacaDetail" parameterType="ReportApplyVO" resultType="ReportVacaVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM
+		INNER JOIN (SELECT rv.*,vg.CATEGORYNAME
+					FROM REPORTVACA rv
+					INNER JOIN 	
+					VACATEGORY vg ON rv.CATEGORYNUM = vg.CATEGORYNUM
+							) r2 ON r.APPLYNUM = r2.APPLYNUM
 		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
 	</select>
 	
