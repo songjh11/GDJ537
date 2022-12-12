@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.app.home.report.util.Pager;
-
 import com.app.home.report.pay.ReportPayVO;
 import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
@@ -139,7 +137,7 @@ public class ReportController {
 	//=======================장민석===================
 	
 	@GetMapping("/reportList")
-	public ModelAndView selectList(Pager pager) throws Exception{
+	public ModelAndView selectList(ReportPager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<ReportVO> ar = reportService.selectList(pager);
 		mv.addObject("list", ar);
