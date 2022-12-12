@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ReportApplyVO {
 	private Long applyNum;
-	private int ID;
+	private int id;
 	private int depNum;
 	private int reportNum;
 	private int status;

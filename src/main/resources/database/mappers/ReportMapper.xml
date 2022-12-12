@@ -164,6 +164,36 @@
 		where r.id = #{id};
 	</select>
 	
+	
+	<!-- 보고서 디테일 -->
+	<select id="getMyVacaDetail" parameterType="ReportApplyVO" resultType="ReportVacaVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r 
+		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+	</select>
+	
+	<select id="getMyPayDetail" parameterType="ReportApplyVO" resultType="ReportPayVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r 
+		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+	</select>
+	
+	<select id="getMyWorkDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r 
+		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+	</select>
+	
+	<select id="getMySorryDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r 
+		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+	</select>
+	
 	<!-- ==================================== -->
 	
 </mapper>
