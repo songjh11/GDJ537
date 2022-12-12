@@ -61,8 +61,9 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">예약 List</h6>
-                        <a class="collapse-item" href="#">회의실 예약</a>
-                        <a class="collapse-item" href="#">출장자동차 예약</a>
+                        <a class="collapse-item" href="/goods/room/roomList">회의실 예약</a>
+                        <a class="collapse-item" href="/goods/car/carList">출장자동차 예약</a>
+						<a class="collapse-item" href="/goods/calendar">캘린더</a>  
                     </div>
                 </div>
             </li>
@@ -106,9 +107,28 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - 관리자 -->
             <li class="nav-item">
-                <a class="nav-link" href="/user/admin/wait">
+                <a class="nav-link collapsed" href="/user/admin/wait" data-toggle="collapse" data-target="#collapseAdmin"
+                aria-expanded="true" aria-controls="collapseAdmin">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>관리자</span></a>
+                    <span>관리자</span>
+                </a>
+                <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">시설</h6>
+                        <a class="collapse-item" href="/goods/ad_list">시설 관리</a>
+                        <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseReserve" aria-expanded="true" aria-controls="collapseReserve" id="accordionReserve">
+                            <!-- <i class="fas fa-fw fa-table"></i> -->
+                            <span>예약 통계</span>
+                        </a>
+                        <div id="collapseReserve" class="collapse" aria-labelledby="headingReserve" data-parent="#accordionReserve">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="/goods/ad_room">회의실 예약 통계</a>
+                                <a class="collapse-item" href="/goods/ad_car">차량 예약 통계</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </li> 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

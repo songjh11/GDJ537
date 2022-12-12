@@ -45,7 +45,12 @@
 			<version>1.16</version>
 		</dependency>
 		<!-- 예약     5조 -->
-		
+		<!-- JSON MAVEN 추가 -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
 		<!-- 보고서   1조 -->
 		
 		<!-- 메신져   3조 -->
