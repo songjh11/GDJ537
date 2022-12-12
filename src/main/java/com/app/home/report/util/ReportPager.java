@@ -1,9 +1,11 @@
 package com.app.home.report.util;
 
+import com.app.home.report.UserVO;
+
 import lombok.Data;
 
 @Data
-public class Pager {
+public class ReportPager {
 	private Long page;
 	private Long startNum;
 	private Long lastNum;
@@ -18,6 +20,8 @@ public class Pager {
 	private String kind;
 	private String search;
 	
+	private int id;
+	
 	public String getSearch() {
 		if(this.search == null) {
 			this.search = "";
@@ -25,7 +29,7 @@ public class Pager {
 		return search;
 	}
 	
-	public Pager() {
+	public ReportPager() {
 		this.perPage = 10L;
 		this.perBlock = 5L;
 	}
