@@ -17,27 +17,27 @@ import com.app.home.util.Pager;
 
 @Service
 public class UnknownService {
-	
+
 	@Autowired
 	private BoardDAO boardDAO;
-	
+
 	@Value("${app.file.base.board}")
 	private String path;
 	@Autowired
 	private FileManager fileManager;
 	@Autowired
 	private FileDAO fileDAO;
-	
+
 	public int setUnknownDelete(BoardVO boardVO) throws Exception{
 		int result = boardDAO.setDelete(boardVO);
-		
+
 		return result;
 	}
-	
+
 	@Transactional(rollbackFor = Exception.class)
 	public int setUnknownUpdate(BoardVO boardVO) throws Exception{
 		int result = boardDAO.setUpdate(boardVO);
-		
+
 		if(result == 1 && boardVO.getMultipartFiles() !=null) {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(file.getOriginalFilename()!="") {
@@ -46,25 +46,25 @@ public class UnknownService {
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setNum(boardVO.getNum());
-					
+
 					int result2 =fileDAO.setFile(fileVO);
 				}
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	public BoardVO getUnknownDetail(BoardVO boardVO) throws Exception {
 		return boardDAO.getDetail(boardVO);
 	}
-	
+
 	@Transactional(rollbackFor = Exception.class)
 	public int setUnknownAdd(BoardVO boardVO) throws Exception {
 		boardVO.setSort(3);
-		
+
 		int result = boardDAO.setBoard(boardVO);
-		
+
 		if(result == 1 && boardVO.getMultipartFiles() != null) {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(!file.isEmpty()) {
@@ -73,26 +73,26 @@ public class UnknownService {
 					fileVO.setFileName(fileName);
 					fileVO.setNum(boardVO.getNum());
 					fileVO.setOriName(file.getOriginalFilename());
-					
+
 					int result2 = fileDAO.setFile(fileVO);
 				}
 			}
 		}
-		
+
 		return result;
 	}
 
 	public List<BoardVO> getUnknownList(Pager pager) throws Exception {
-		
+
 		Long totalCount = boardDAO.getTotalCount(pager);
 		pager.getRowNum();
 		pager.getNum(totalCount);
-		
+
 		return boardDAO.getList(pager);
 	}
-	
+
 	public int setHit(BoardVO boardVO) throws Exception {
 		return boardDAO.setHit(boardVO);
 	}
-	
+
 }
