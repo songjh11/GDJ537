@@ -15,7 +15,7 @@
 <c:import url="../temp/user/boot.jsp"></c:import>
 <style type="text/css">
 #idBtn:focus {
-	border: solid #C8DEFF 4px;
+	border: solid;
 }
 </style>
 </head>
@@ -44,8 +44,8 @@
 						<div class="row justify-content-center" >
 							<div class="py-4 px-5" style="width: 500px;">
 
-								<h1 class="text-center pb-3">
-									<b>Sign up</b>
+								<h1 class="text-center pb-4">
+									<b>회원가입</b>
 								</h1>
 
 								<!-- Modal -->
@@ -90,7 +90,7 @@
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary"
-													data-bs-dismiss="modal">Close</button>
+													data-bs-dismiss="modal">닫기</button>
 												<button type="button" class="btn btn-primary" id="add"
 													disabled="disabled">적용</button>
 											</div>
@@ -113,20 +113,20 @@
 											</button>
 										</div>
 										<input type="text" class="form-control" name="id" id="addId"
-											readonly="readonly" style="width: 65%; height: 35px;">
+											readonly="readonly" style="width: 65%; height: 35px; cursor: not-allowed">
 									</div>
 									<div id="idError" style="font: 13px; color: red"></div>
 
 									<div class="d-flex my-3">
 										<b style="margin: auto 0; width: 45%">이름</b> <input
 											type="text" class="form-control" name="name" id="addName"
-											readonly="readonly" style="width: 65%; height: 35px">
+											readonly="readonly" style="width: 65%; height: 35px; cursor: not-allowed">
 									</div>
 
 									<div class="d-flex my-3">
 										<b style="margin: auto 0; width: 45%">부서</b> <input
 											type="text" class="form-control" id="addDep"
-											readonly="readonly" style="width: 65%; height: 35px">
+											readonly="readonly" style="width: 65%; height: 35px; cursor: not-allowed">
 									</div>
 
 									<hr class="my-4">
@@ -157,9 +157,7 @@
 												class="border border-black rounded-3"
 												style="color: #8b95a1; width: 140px; height: 160px; text-align: center">
 												<span id="default"> <i
-													class="fa-solid fa-circle-user"
-													style="font-size: 50px; margin: 35px 0;"><p
-															class="pt-2 mb-0" style="font-size: 14px">이미지등록</p></i>
+													class="fa-solid fa-circle-user" class="pt-2 mb-0" style="font-size: 14px">이미지등록</p></i>
 											</span> <span id="profile"></span>
 											</label>
 										</div>
