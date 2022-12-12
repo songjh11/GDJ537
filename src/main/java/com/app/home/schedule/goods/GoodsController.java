@@ -118,9 +118,7 @@ public class GoodsController {
 	}
 	@GetMapping("calendar")
 	public void getCalendar(Model model) throws Exception{
-		
-		
-	
+
 	}
 	
 	@PostMapping("calendar")
@@ -137,9 +135,12 @@ public class GoodsController {
         for (int i = 0; i < list.size(); i++) {
             hash.put("title", list.get(i).getId());
             hash.put("start", list.get(i).getStartTime());
+            hash.put("end", list.get(i).getEndTime());
+            log.info("---");
 //            hash.put("time", listAll.get(i).getScheduleTime());
  
             jsonObj = new JSONObject(hash);
+            
             jsonArr.add(jsonObj);
         }
         log.info("jsonArrCheck: {}", jsonArr);

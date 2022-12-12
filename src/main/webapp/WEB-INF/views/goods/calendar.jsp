@@ -133,6 +133,12 @@
                * data 로 값이 넘어온다. log 값 전달.
                */
               events: data
+              /* [{
+                  title: 'All Day Event',
+                  start: '2022-12-01',
+                  end: '2022-12-02',
+                }] */
+              
           });
 
           calendar.render();
