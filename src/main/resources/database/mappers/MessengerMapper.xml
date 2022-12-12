@@ -86,15 +86,20 @@
 	
 	<!--                       효경                       -->
 	
-	<insert id="setAddRoomUser" parameterType="EmployeeVO">
+	<select id="getRoomList" resultType="RoomVO">
+		SELECT * FROM CHATROOM
+	</select>
+	
+	<insert id="setAddRoomUser" parameterType="RoomVO" ><!-- useGeneratedKeys="true" keyProperty="userNum" -->
 		INSERT INTO  ROOMUSER
-		VALUES(NULL, #{id}, #{roomNum})
+		VALUES(null, #{employeeVO.id}, 
+			   (SELECT ROOMNUM FROM  CHATROOM  WHERE ROOMNUM = #{roomNum}))
 	</insert>
 	
 	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum" >
 		INSERT INTO  CHATROOM
 		VALUES(#{roomNum}, now(), #{roomName}, 
-			   (SELECT ID FROM EMPLOYEE WHERE NUM = #{num}), #{pw})
+			   (SELECT ID FROM EMPLOYEE WHERE ID = #{hostId}), #{pw})
 	</insert>
 	
 </mapper>    

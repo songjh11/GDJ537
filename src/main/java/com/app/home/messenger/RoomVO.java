@@ -19,15 +19,13 @@ public class RoomVO {
 	// 채팅방 방장
 	private Integer hostId;
 	// 채팅방 비밀번호
-	private Integer pw;
+	private String pw;
 	
+	// 유저목록
+	private Integer userNum;
 	// 방장 한명
 	private EmployeeVO employeeVO;
-	// 방인원 여러명
-	private List<EmployeeVO> employeeVOs;
-	
-//	public String toString() {
-//		return "Room[roomNum="+roomNum+", roomName="+roomName+"]";
-//	}
+	// 방인원의 id를 받을 배열선언
+	private int [] id;
 	
 }
