@@ -6,9 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.app.home.report.util.Pager;
 
 @Controller
 public class ReportController {
@@ -53,13 +57,39 @@ public class ReportController {
 	
 	//=======================장민석===================
 	
+	@GetMapping("/reportList")
+	public ModelAndView selectList(Pager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<ReportVO> ar = reportService.selectList(pager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("board/list");
+		return mv;
+	}
 	
+	@GetMapping("/detail")
+	public ModelAndView selectDetail(ReportApplyVO reportApplyVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		reportApplyVO = reportService.selectDetail(reportApplyVO);
+		mv.addObject("vo", reportApplyVO);
+		mv.setViewName("board/detail");
+		
+		return mv;
+	}
 	
+	@GetMapping("add")
+	public String insertList() throws Exception{
+		return "/insertList";
+	}
 	
-	
-	
-	
-	
+	@PostMapping("add")
+	public String insertList(ReportApplyVO reportApplyVO, RedirectAttributes redirectAttributes)throws Exception{
+		
+		int result = reportService.insertList(reportApplyVO);
+		redirectAttributes.addAttribute("result", result);
+		
+		return "redirect:./list";
+	}
 	
 	
 	//================================================

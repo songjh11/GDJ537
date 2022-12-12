@@ -3,6 +3,8 @@ package com.app.home.report;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.app.home.report.util.Pager;
 @Mapper
 public interface ReportMapper {
 	
@@ -37,13 +39,11 @@ public interface ReportMapper {
 	
 	//=======================장민석===================
 	
+	public List<ReportVO> selectList(Pager pager) throws Exception;
 	
+	public int insertList(ReportApplyVO reportApplyVO) throws Exception;
 	
-	
-	
-	
-	
-	
+	public ReportApplyVO selectDetail(ReportApplyVO reportApplyVO) throws Exception;
 	
 	
 	//================================================

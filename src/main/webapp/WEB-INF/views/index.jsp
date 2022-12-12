@@ -35,7 +35,25 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800">여기에 상세페이지 작성</h1>
+	            	<h1 class="h3 mb-4 text-gray-800">상세페이지 작성</h1>
+	            	<table>
+	            		<thead>
+	            			<tr>
+	            				<th>번호</th>
+	            				<th>제목</th>
+	            				<th>날짜</th>
+	            				<th>승인상태</th>
+	            			</tr>
+	            		</thead>
+	            		<tbody>
+	            			<c:forEach items="${list}" var="vo">
+	            				<td>${vo.report_Num}</td>
+	            				<td><a href="">${vo.report_ID}</td>
+	            				<td>${vo.report_Date}</td>
+	            				<td>${vo.lstatus}</td>
+	            			</c:forEach>
+	            		</tbody>
+	            	</table>
 	
 	            </div>
 	            <!-- End Page Content -->

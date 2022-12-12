@@ -20,7 +20,17 @@
 	
 	<!-- ============== 장민석 ================ -->
 	
+	<select id="selectList" parameterType="ReportApplyVO">
+		SELECT * FROM REPORT WHERE ID = #{id}
+	</select>
 	
+	<!-- <insert id="insertList" parameterType="ReportApplyVO">
+		INSERT INTO REPORTAPPLY VALUES ()
+	</insert>
+	
+	<select id="selectDetail" parameterType="ReportApplyVO">
+		SELECT * FROM WHERE 
+	</select> -->
 	
 	<!-- ==================================== -->
 	
