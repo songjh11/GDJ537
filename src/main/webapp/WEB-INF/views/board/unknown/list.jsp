@@ -13,6 +13,19 @@
       <!-- 파일 다운로드 아이콘 -->
       <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style type="text/css">
+	.card-header {
+		font-size: 16px;
+		height: 100px;
+		margin-bottom: 10px;
+		border: 1px solid #e3e6f0;
+	}
+	
+	.card {
+		background-color: #f8f9fc;
+		border: 0;
+	}
+</style>
     </head>
 
     <!-- body ID 작성 -->
@@ -39,21 +52,27 @@
 
             <div class="container-fluid">
               <form class="row g-3" action="./list" method="get">
-                <div class="col-auto">
-                  <select class="form-select" name="kind">
-                    <option value="title">제목</option>
-                    <option value="contents">내용</option>
-                  </select>
-                </div>
-                <div class="col-auto">
-                  <input type="text" class="form-control" id="searchInput" name="search">
-                </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn btn-primary mb-3">검색</button>
-                </div>
+                <div class="d-flex justify-content-center">
+					  	<div class="col-auto">
+						    <select class="form-control" name="kind" aria-label="Default select example">
+						    	<option value="title">제목</option>
+						    	<option value="contents">내용</option>
+						    </select>
+						  </div>
+						  <div class="input-group">
+	                         <input type="text" id="searchInput" name="search" class="form-control bg-light border-0 small"
+	                             placeholder="Search for..." aria-label="Search"
+	                             aria-describedby="basic-addon2" style="background-color:white !important">
+	                         <div class="input-group-append">
+	                             <button class="btn btn-primary" type="submit">
+	                                 <i class="fas fa-search fa-sm"></i>
+	                             </button>
+	                         </div>
+	                      </div>
+					  </div>
               </form>
 
-              <a href="/unknown/add" class="btn btn-danger">글 작성</a>
+              <a href="/unknown/add" class="btn btn-danger" style="margin:10px 0;">글 작성</a>
               <!-- 공지사항 작성 -->
               <div class="card mb-3">
                 <c:forEach items="${unknownList }" var="unknown">
@@ -61,7 +80,7 @@
                     <div class="row justify-content-between">
                       <div class="col-auto align-self-center">
                         <a href="/unknown/hit?num=${unknown.num }">
-                          <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">[익명] ${unknown.title
+                          <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 17px">[익명] ${unknown.title
                             }</h5>
                         </a>
                       </div>
