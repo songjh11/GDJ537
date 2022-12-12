@@ -133,6 +133,23 @@
                * data 로 값이 넘어온다. log 값 전달.
                */
               events: data
+              ,eventClick:function(data) {
+                  if(data) {
+     
+                	  console.log(data.event.title)
+                	  var startTimeCheck = new Date(data.event.start);
+                	  var endTimeCheck = new Date(data.event.end);
+                	  /* var hours1 = moment.getHours();
+                	  var minutes1 = moment.getMinutes();
+                	  var hours2 = moment.getHours();
+                	  var minutes2 = moment.getMinutes(); */
+                      alert(data.event.title + "\n" +(startTimeCheck.toLocaleDateString('ko-kr'))+startTimeCheck.toLocaleTimeString('ko-kr') + "\n"  
+                    		  						+(endTimeCheck.toLocaleDateString('ko-kr'))+endTimeCheck.toLocaleTimeString('ko-kr') + "\n", "wicked", "width=700,height=2000");
+                     
+                      return false;
+                  }
+              }
+              
               /* [{
                   title: 'All Day Event',
                   start: '2022-12-01',
