@@ -131,13 +131,18 @@ public class ReportController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-//		userVO.setId(2209);
-//		userVO.setName("hjs1");
-//		userVO.setRoleNum(3);	//과장급 roleNum
+
+//		int result1 = reportService.setLicenserAdd(userVO);
+
+
 		
-		int result = reportService.setLstatusUpdate(reportVO);
 		
+		int result = reportService.setLstatusUpdate(reportVO, userVO);
+		log.info("아이디 : {} " , userVO.getId());
+		log.info("depNum : {} ", reportVO.getDepNum());
 		
+//		mv.addObject("result1", result1);
+//		mv.addObject("result", result);
 //		mv.addObject("UserVO", userVO);
 //		mv.addObject("ReportVO", reportVO);
 //		
@@ -146,6 +151,21 @@ public class ReportController {
 		return result;
 	}
 	
+	
+	
+	//승인권한을 가진사람 모두 보는 리스트 목록
+	@RequestMapping(value = "/report/licenserList", method = RequestMethod.GET)
+	public ModelAndView getLicenserList(ReportVO reportVO) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		List<ReportVO> ar = reportService.getLicenserList(reportVO);
+		
+		mv.addObject("list", ar);
+		mv.setViewName("/report/licenserList");
+		
+		return mv;
+	}
 	
 	
 	

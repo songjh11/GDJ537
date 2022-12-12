@@ -15,6 +15,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.home.report.ReportVO;
+import com.nimbusds.oauth2.sdk.Role;
+
 import lombok.Data;
 
 @Data
@@ -47,6 +50,9 @@ public class UserVO implements UserDetails {
 	@NotBlank
 	private String address;
 	private MultipartFile file;
+	
+	private ReportVO reportVO;
+	private List<ReportVO> reportVOs;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
