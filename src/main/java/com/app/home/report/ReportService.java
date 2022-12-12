@@ -62,19 +62,13 @@ public class ReportService {
 	//=======================장민석===================
 	
 	
-	public List<ReportVO> selectList(ReportPager pager) throws Exception{
-		pager.getStartRow();
-		return reportMapper.selectList(pager);
+	public ReportPayVO selectPay(ReportPayVO reportPayVO) throws Exception{
+		return reportMapper.selectPay(reportPayVO);
 	}
 	
-	public int insertList(ReportApplyVO reportApplyVO) throws Exception{
-		return reportMapper.insertList(reportApplyVO);
+	public ReportSorryVO selectSorry(ReportSorryVO reportSorryVO) throws Exception{
+		return reportMapper.selectSorry(reportSorryVO);
 	}
-	
-	public ReportApplyVO selectDetail(ReportApplyVO reportApplyVO) throws Exception{
-		return reportMapper.selectDetail(reportApplyVO);
-	}
-	
 	
 	
 	//================================================

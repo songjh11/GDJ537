@@ -40,7 +40,30 @@ public class ReportController {
 
 	
 	//=======================김도영===================
-	
+	@GetMapping("/kdy/reportAdd")
+	public String reportAdd()throws Exception{
+		return "/kdy/reportAdd";
+	}
+	//휴가신청서
+	@GetMapping("/kdy/vacationApplication")
+	public String vacationApplication()throws Exception{
+		return "/kdy/vacationApplication";
+	}
+	//업무보고서
+	@GetMapping("/kdy/workReport")
+	public String workReport()throws Exception{
+		return "/kdy/workReport";
+	}
+	//지출 결의서
+	@GetMapping("/kdy/cashDisbursementVoucher")
+	public String cashDisbursementVoucher()throws Exception{
+		return "/kdy/cashDisbursementVoucher";
+	}
+	//시말서
+	@GetMapping("/kdy/writtenApology")
+	public String writtenApology()throws Exception{
+		return "/kdy/writtenApology";
+	}
 	
 	
 	
@@ -137,38 +160,27 @@ public class ReportController {
 	
 	//=======================장민석===================
 	
-	@GetMapping("/reportList")
-	public ModelAndView selectList(ReportPager pager) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		List<ReportVO> ar = reportService.selectList(pager);
-		mv.addObject("list", ar);
-		mv.addObject("pager", pager);
-		mv.setViewName("board/list");
-		return mv;
-	}
 	
-	@GetMapping("/detail")
-	public ModelAndView selectDetail(ReportApplyVO reportApplyVO) throws Exception{
+	@GetMapping("/detailPay")
+	public ModelAndView selectPay(ReportPayVO reportPayVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		reportApplyVO = reportService.selectDetail(reportApplyVO);
-		mv.addObject("vo", reportApplyVO);
-		mv.setViewName("board/detail");
+		
+		reportPayVO = reportService.selectPay(reportPayVO);
+		mv.addObject("vo",reportPayVO);
+		mv.setViewName("list/detailPay");
 		
 		return mv;
 	}
 	
-	@GetMapping("add")
-	public String insertList() throws Exception{
-		return "/insertList";
-	}
-	
-	@PostMapping("add")
-	public String insertList(ReportApplyVO reportApplyVO, RedirectAttributes redirectAttributes)throws Exception{
+	@GetMapping("/detailSorry")
+	public ModelAndView selectSorry(ReportSorryVO reportSorryVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		
-		int result = reportService.insertList(reportApplyVO);
-		redirectAttributes.addAttribute("result", result);
+		reportSorryVO = reportService.selectSorry(reportSorryVO);
+		mv.addObject("vo", reportSorryVO);
+		mv.setViewName("list/detailSorry");
 		
-		return "redirect:./list";
+		return mv;
 	}
 	
 	

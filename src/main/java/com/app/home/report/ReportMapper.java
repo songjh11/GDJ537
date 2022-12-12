@@ -54,12 +54,9 @@ public interface ReportMapper {
 	
 	//=======================장민석===================
 	
-	public List<ReportVO> selectList(ReportPager pager) throws Exception;
+	public ReportPayVO selectPay(ReportPayVO reportPayVO) throws Exception;
 	
-	public int insertList(ReportApplyVO reportApplyVO) throws Exception;
-	
-	public ReportApplyVO selectDetail(ReportApplyVO reportApplyVO) throws Exception;
-	
+	public ReportSorryVO selectSorry(ReportSorryVO reportSorryVO) throws Exception;
 	
 	//================================================
 	
