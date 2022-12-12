@@ -30,6 +30,8 @@ public interface ReportMapper {
 	
 	public List<UserVO> getReportList(UserVO userVO) throws Exception;
 	
+	public int setLicenserAdd(UserVO userVO) throws Exception;
+	
 	
 	
 	
