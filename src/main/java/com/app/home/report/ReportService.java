@@ -87,24 +87,42 @@ public class ReportService {
 	
 	//=======================최근호===================
 	
+	
+
 	public Integer getLicenseCheck(ReportVO reportVO) throws Exception{
-		return reportMapper.getLicenseCheck(reportVO);
+			return reportMapper.getLicenseCheck(reportVO);
 	}
-	
-	public ReportVO getFinishReport(ReportVO reportVO) throws Exception{
-		return reportMapper.getFinishReport(reportVO);
+		
+	public ReportApplyVO getLicenseSorryReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+			return reportMapper.getLicenseSorryReportDetail(reportApplyVO);
 	}
-	
-	public ReportVO getReturnReport(ReportVO reportVO) throws Exception{
-		return reportMapper.getReturnsReport(reportVO);
+		
+	public ReportApplyVO getLicensePayReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+			return reportMapper.getLicensePayReportDetail(reportApplyVO);
+		}
+		
+	public ReportApplyVO getLicenseWorkReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+			return reportMapper.getLicenseWorkReportDetail(reportApplyVO);
 	}
-	
-	public ReportVO getDoFirstReport(ReportVO reportVO) throws Exception{
-		return reportMapper.getDoFirstReport(reportVO);
+		
+	public ReportApplyVO getLicenseVacaReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+			return reportMapper.getLicenseVacaReportDetail(reportApplyVO);
 	}
-	
-	public ReportVO getDoFinalReport(ReportVO reportVO) throws Exception{
-		return reportMapper.getDoFinalReport(reportVO);
+		
+	public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception{
+			return reportMapper.getFinishReport(reportApplyVO);
+	}
+		
+	public ReportVO getReturnReport(ReportApplyVO reportApplyVO) throws Exception{
+			return reportMapper.getReturnsReport(reportApplyVO);
+	}
+		
+	public ReportVO getDoFirstReport(ReportApplyVO reportApplyVO) throws Exception{
+			return reportMapper.getDoFirstReport(reportApplyVO);
+	}
+		
+	public ReportVO getDoFinalReport(ReportApplyVO reportApplyVO) throws Exception{
+			return reportMapper.getDoFinalReport(reportApplyVO);
 	}
 	
 	
