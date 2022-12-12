@@ -51,10 +51,10 @@
                         <sec:authorize access="!isAuthenticated()">   
                             <!-- 로그인 전 -->
                             <li class="nav-item dropdown no-arrow mx-1">
-                                <a href="./user/login">login</a>
+                                <a href="/user/login">로그인</a>
                             </li>
                             <li class="nav-item dropdown no-arrow mx-1">
-                                <a href="./user/add">Join</a>
+                                <a href="/user/add">회원가입</a>
                             </li>
                         </sec:authorize>
                       
