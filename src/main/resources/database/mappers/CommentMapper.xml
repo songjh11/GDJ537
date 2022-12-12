@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.app.home.board.comment.CommentDAO">
+
+	<insert id="setCommentAdd" parameterType="CommentVO">
+		INSERT INTO COMMENT
+		(ID,NUM,CONTENTS)
+		VALUES(#{id},#{num},#{contents})
+	</insert>
+
+	<select id="getCommentList" resultType="CommentVO"
+		parameterType="CommentPager">
+		SELECT * FROM COMMENT
+		WHERE NUM = #{num}
+		ORDER BY COMMENTNUM DESC
+		LIMIT #{startRow}, #{perPage}
+	</select>
+
+	<select id="getCommentListTotalCount" resultType="Long"
+		parameterType="CommentPager">
+		SELECT COUNT(COMMENTNUM) FROM COMMENT
+		WHERE NUM = #{num}
+	</select>
+
+	<insert id="setCommentUpdate" parameterType="CommentVO">
+		UPDATE COMMENT
+		SET
+		CONTENTS=#{contents} WHERE COMMENTNUM=#{commentNum}
+	</insert>
+
+	<delete id="setCommentDelete" parameterType="CommentVO">
+		DELETE FROM COMMENT
+		WHERE
+		COMMENTNUM=#{commentNum}
+	</delete>
+
+</mapper>
+	
+	
+	
+	
+	

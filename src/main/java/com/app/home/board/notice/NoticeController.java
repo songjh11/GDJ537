@@ -17,30 +17,30 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("notice")
 @Slf4j
 public class NoticeController {
-	
+
 	@Autowired
 	private NoticeService noticeService;
-	
+
 	@GetMapping("add")
 	public String setNotice() {
 		return "board/notice/add";
 	}
-	
+
 	@PostMapping("add")
 	public String setNotice(BoardVO boardVO) throws Exception{
-		
+
 		boolean chk = noticeService.checkValid(boardVO);
-		
+
 		if(chk) {
 			//DB에 저장 진행
 			int result = noticeService.setNotice(boardVO);
-			
+
 		}else {
 			return "redirect:/notice/add?error=1";
 		}
 		return "redirect:/notice/list";
 	}
-	
+
 	@GetMapping("detail")
 	public ModelAndView getDetail(BoardVO boardVO, ModelAndView mv) throws Exception{
 		boardVO = noticeService.getDetail(boardVO);
@@ -48,21 +48,21 @@ public class NoticeController {
 		mv.setViewName("/board/notice/detail");
 		return mv;
 	}
-	
+
 	@GetMapping("update")
 	public ModelAndView setUpdate(BoardVO boardVO, ModelAndView mv)throws Exception{
 		boardVO = noticeService.getDetail(boardVO);
 		mv.addObject("boardVO", boardVO);
 		mv.setViewName("/board/notice/update");
 		return mv;
-		
+
 	}
-	
+
 	@PostMapping("update")
 	public String setUpdate(BoardVO boardVO) throws Exception{
 		log.info("update boardVO {}", boardVO);
 		int result = noticeService.setUpdate(boardVO);
-		
+
 		return "redirect:/notice/detail?num="+boardVO.getNum();
 	}
 
