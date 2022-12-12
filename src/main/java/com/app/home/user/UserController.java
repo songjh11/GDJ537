@@ -159,7 +159,11 @@ public class UserController {
 	public ModelAndView getUser() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<UserVO> list = userService.getUser();
+		List<DepartmentVO> listD = userService.getDepartment();
+		List<RoleVO> listR = userService.getRole();
 		mv.addObject("list", list);
+		mv.addObject("listD", listD);
+		mv.addObject("listR", listR);
 		mv.setViewName("/user/admin/user");
 		return mv;
 	}
@@ -238,6 +242,13 @@ public class UserController {
 		int result = userService.setPhoneUpdate(userVO);
 		return result;
 	}
+	
+	@PostMapping("admin/entDateUpdate")
+	@ResponseBody
+	public int setEntDateUpdate(UserVO userVO) throws Exception {
+		int result = userService.setEntDateUpdate(userVO);
+		return result;
+	}
 
 	@PostMapping("admin/departmentInsert")
 	@ResponseBody
@@ -287,6 +298,22 @@ public class UserController {
 	@ResponseBody
 	public int setRoleDel(RoleVO roleVO) throws Exception {
 		int result = userService.setRoleDel(roleVO);
+		return result;
+	}
+	
+	@PostMapping("admin/depCheck")
+	@ResponseBody
+	public int getDepCheck(UserVO userVO) throws Exception {
+		List<UserVO> userVOs = userService.getDepCheck(userVO);
+		int result = userVOs.size();
+		return result;
+	}
+	
+	@PostMapping("admin/roleCheck")
+	@ResponseBody
+	public int getroleCheck(UserVO userVO) throws Exception {
+		List<UserVO> userVOs = userService.getRoleCheck(userVO);
+		int result = userVOs.size();
 		return result;
 	}
 
