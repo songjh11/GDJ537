@@ -300,14 +300,29 @@ public class ReportController {
 	}
 	
 	@GetMapping("/report/detail")
-	public void getMyReportDetail(ReportApplyVO reportApplyVO,String cat) throws Exception{
+	public ModelAndView getMyReportDetail(ModelAndView mv,ReportApplyVO reportApplyVO) throws Exception{
 		
 		reportApplyVO.setId(1209);
 		
-		if(cat.equals("1")) {
-			
-		}
+//		int result = reportApplyVO.getReportNum();
+//		
+//		if(result == 1) {
+//			ReportVacaVO reportVacaVO = reportService.getMyVacaDetail(reportApplyVO);
+//			mv.addObject("vo", reportVacaVO);
+//		}else if(result == 2) {
+//			ReportWorkVO reportWorkVO = reportService.getMyWorkDetail(reportApplyVO);
+//			mv.addObject("vo", reportWorkVO);
+//		}else if(result == 3) {
+//			ReportPayVO reportPayVO = reportService.getMyPayDetail(reportApplyVO);
+//			mv.addObject("vo", reportPayVO);
+//		}else if(result == 4) {
+//			ReportSorryVO reportSorryVO = reportService.getMySorryDetail(reportApplyVO);
+//			mv.addObject("vo", reportSorryVO);
+//		}
 		
+		mv.setViewName("report/mydetail");
+		
+		return mv;
 		
 	}
 	
