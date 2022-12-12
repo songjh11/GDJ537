@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.schedule.goods.GoodsService;
 import com.app.home.schedule.goods.GoodsVO;
+import com.app.home.schedule.goods.ReserveVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -89,12 +90,12 @@ public class RoomController
 	{
 		log.info("====== get Info =====");
 		ModelAndView modelAndView = new ModelAndView();
-		List<RoomVO> roomVOs = roomService.getResInfo(roomVO);
+		List<ReserveVO> reserveVOs = roomService.getResInfo(roomVO);
 
-		log.info("roomVOs: {}", roomVOs);
+		log.info("roomVOs: {}", reserveVOs);
 
-		modelAndView.addObject("roomInfo", roomVOs);
-		modelAndView.setViewName("/goods/room/roomResInfo");
+		modelAndView.addObject("roomInfo", reserveVOs);
+		modelAndView.setViewName("goods/room/roomResInfo");
 
 		return modelAndView;
 	}

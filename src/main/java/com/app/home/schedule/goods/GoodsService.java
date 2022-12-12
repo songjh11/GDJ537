@@ -168,5 +168,13 @@ public class GoodsService
 	public int getreserveCount(GoodsVO goodsVO) throws Exception{
 		return goodsMapper.getreserveCount(goodsVO);
 	}
+	
+	public int getRoomTotal() throws Exception{
+		return goodsMapper.getRoomTotal();	
+	}
+	
+	public int getCarTotal() throws Exception{
+		return goodsMapper.getCarTotal();	
+	}
 
 }

@@ -47,30 +47,30 @@
 								</tr>
 							</table>
 
-							<input type="hidden" name="id" value="${goodDetail.goodsId }">
+							<input type="hidden" name="goodsId" value="${goodDetail.goodsId }">
 
 							<div class="mb-3">
-								<label>예약일</label>
-								<input type="date" name="date" class="form-control" id="reserveDate">
+								<label>예약날짜</label>
+								<input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1"
+									placeholder="시작시간">
 								<br>
 							</div>
 
 							<div class="mb-3">
-								<label>예약시간</label>
-								<input type="time" name="startTime" class="form-control mb-2" id="start" placeholder="시작시간">
-								<input type="time" name="endTime" class="form-control" id="end"
-									placeholder="종료시간">
+								<label>반납날짜</label>
+								<input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput2"
+									placeholder="시작시간">
 								<br>
 							</div>
 
 							<div class="mb-5">
 								<label>예약자</label>
-								<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="아이폰">
+								<input type="text" name="id" class="form-control" id="exampleFormControlInput1">
 							</div>
 
 							<div class="mb-5">
 								<label>부서명</label>
-								<input type="text" class="form-control" id="exampleFormControlInput1" value="애플">
+								<input type="text" class="form-control" id="exampleFormControlInput1" value="인사과">
 							</div>
 
 							<div class="mb-5">
@@ -78,9 +78,8 @@
 								<input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1">
 							</div>
 
-							<div style="text-align: center;">
-								<button type="button" class="btn btn-success" id="resBtn">예약하기</button>
-							</div>
+							<button type="submit" class="btn btn-success">예약하기</button>
+
 							<br>
 						</form>
 
@@ -104,5 +103,5 @@
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="/js/room/reserve.js"></script>
+<!-- <script src="/js/room/reserve.js"></script> -->
 </html>

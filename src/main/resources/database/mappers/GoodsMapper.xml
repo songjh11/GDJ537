@@ -151,5 +151,13 @@
 		SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
 	</select>
 	
+	<select id="getRoomTotal" resultType="int">
+		SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'RO%'
+	</select>
+	
+	<select id="getCarTotal" resultType="int">
+		SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'CA%'
+	</select>
+	
 	
 </mapper> 

@@ -43,3 +43,8 @@ ul.tabs li.current{
 .white{
 	background-color: white;
 }
+
+#total{
+	width: 300px;
+	text-align: center;
+}
