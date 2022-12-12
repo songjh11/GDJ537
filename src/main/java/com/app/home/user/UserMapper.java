@@ -58,6 +58,8 @@ public interface UserMapper {
 	
 	public int setPhoneUpdate(UserVO userVO) throws Exception;
 	
+	public int setEntDateUpdate(UserVO userVO) throws Exception;
+	
 	public int setDepartmentInsert(DepartmentVO departmentVO) throws Exception;
 	
 	public int setDepNameUpdate(DepartmentVO departmentVO) throws Exception;
@@ -71,6 +73,10 @@ public interface UserMapper {
 	public int setRoleNameUpdate(RoleVO roleVO) throws Exception;
 	
 	public int setRoleDel(RoleVO roleVO) throws Exception;
+	
+	public List<UserVO> getDepCheck(UserVO userVO) throws Exception;
+	
+	public List<UserVO> getRoleCheck(UserVO userVO) throws Exception;
 	
 	public UserVO getIdCheck(UserVO userVO) throws Exception;
 	   

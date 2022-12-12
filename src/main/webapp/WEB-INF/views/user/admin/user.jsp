@@ -13,7 +13,7 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-<link rel="stylesheet" href="/css/admin/user.css">
+<link rel="stylesheet" href="/css/admin/admin.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
@@ -56,33 +56,72 @@
                <table class="table table-bordered">
                   <thead>
                      <tr>
-                        <th class="id" scope="col">사원번호<i class="fas fa-bell"></i></th>
-                        <th class="roleName" scope="col">직급</th>
-                        <th class="depName" scope="col">부서</th>
-                        <th class="name" scope="col">이름</th>
-                        <th scope="email">이메일</th>
-                        <th scope="phone">전화번호</th>
-                        <th class="entDate" scope="col">입사일</th>
-                        <th scope="col"></th>
+                        <th class="table-light id" scope="col">사원번호</th>
+                        <th class="table-light roleName" scope="col">직급</th>
+                        <th class="table-light depName" scope="col">부서</th>
+                        <th class="table-light name" scope="col">이름</th>
+                        <th class="table-light" scope="col">이메일</th>
+                        <th class="table-light" scope="col">전화번호</th>
+                        <th class="table-light entDate" scope="col">입사일</th>
+                        <th class="table-light" scope="col"></th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">
                      <c:forEach items="${list}" var="userVO">
                      <tr>
                         <th scope="row">${userVO.id}</th>
-                        <td class="showUser" data-user="roleNum">${userVO.roleVO.roleName}</td>
-                        <td class="showUser" data-user="depNum">${userVO.departmentVO.depName}</td>
+                        <td class="showUser1" data-user="roleNum" data-bs-toggle="modal" data-bs-target="#exampleModalR" >${userVO.roleVO.roleName}</td>
+                        <td class="showUser1" data-user="depNum"  data-bs-toggle="modal" data-bs-target="#exampleModalD" >${userVO.departmentVO.depName}</td>
                         <td class="showUser" data-user="name">${userVO.name}</td>
                         <td class="showUser" data-user="email">${userVO.email}</td>
                         <td class="showUser" data-user="phone">${userVO.phone}</td>
-                        <td>${userVO.entDate}</td>
-                        <td class="dismiss"><a href="#">X</a></td>
+                        <td class="showUser" data-user="entDate">${userVO.entDate}</td>
+                        <td class="dismiss"><a href="#">퇴사</a></td>
                      </tr>
                      </c:forEach>
 
                   </tbody>
                </table>
 
+				<!-- Modal R -->
+				<div class="modal fade" id="exampleModalR" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h1 class="modal-title fs-5" id="exampleModalLabel">변경할 직급을 선택해주세요</h1>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				      	<c:forEach items="${listR}" var="roleVO">
+				        <center><button type="button" class="btn btn-primary roleNumUpdate" data-bs-dismiss="modal" data-rolenum=${roleVO.roleNum }>${roleVO.roleName}</button><br><br></center>
+				        </c:forEach>
+				      </div>
+				      <div class="modal-footer">
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<!-- Modal End -->
+				
+				<!-- Modal D -->
+				<div class="modal fade" id="exampleModalD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h1 class="modal-title fs-5" id="exampleModalLabel">변경할 부서를 선택해주세요</h1>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				      	<c:forEach items="${listD}" var="departmentVO">
+				        <center><button type="button" class="btn btn-primary depNumUpdate" data-bs-dismiss="modal" data-depnum=${departmentVO.depNum }>${departmentVO.depName}</button><br><br></center>
+				        </c:forEach>
+				      </div>
+				      <div class="modal-footer">
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<!-- Modal End -->
 
             </div>
             <!-- End Page Content -->

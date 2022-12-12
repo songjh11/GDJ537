@@ -39,7 +39,7 @@ $('.showDepartment').click(function(){
     (async () => {
         const { value: getName } = await Swal.fire({
             title: '수정할 내용을 입력하세요.',
-            text: select,
+            text: content,
             input: 'text',
             inputPlaceholder: content
         })
@@ -105,36 +105,58 @@ $('.showDepartment').mouseenter(function(){
 
   $(".departmentDel").click(function(){
     let depNum=$(this).prev().prev().prev().text();
-    Swal.fire({
+    let depName=$(this).prev().prev().text();
+
+    $.ajax({
+        type:"post",
+        url:"/user/admin/depCheck",
+        data:{
+            "depNum":depNum
+        },
+        success:function(data){
+            if(data==0){
+                Swal.fire({
         
-      title:'부서를 삭제 하시겠습니까?',
-      text:depNum,
-      icon:'warning',
-  
-      showCancelButton: true, // cancel버튼
-      confirmButtonText: '확인', // confirm 버튼 텍스트 지정
-      cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-    }).then(result=>{
-      if(result.isConfirmed){
-  
-          $.ajax({
-              type:"post",
-              url:"/user/admin/departmentDel",
-              data:{
-                  "depNum":depNum
-              },
-              success:function(success){
-                  Swal.fire('부서를 삭제하였습니다.', '', 'success');
-                  setTimeout(function() {
-                      location.reload();
-                    }, 1000);
-              },
-              error:function(error){
-                  Swal.fire('실패하였습니다.', '', 'error');
-              }
-          })
-      }else{
-          Swal.fire('취소하였습니다.','','warning');
-      }
+                    title:'부서를 정말 삭제 하시겠습니까?',
+                    text:depName,
+                    icon:'warning',
+                
+                    showCancelButton: true, // cancel버튼
+                    confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+                    cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+                  }).then(result=>{
+                    if(result.isConfirmed){
+                
+                        $.ajax({
+                            type:"post",
+                            url:"/user/admin/departmentDel",
+                            data:{
+                                "depNum":depNum
+                            },
+                            success:function(success){
+                                Swal.fire('부서를 삭제하였습니다.', '', 'success');
+                                setTimeout(function() {
+                                    location.reload();
+                                  }, 1000);
+                            },
+                            error:function(error){
+                                Swal.fire('실패하였습니다.', '', 'error');
+                            }
+                        })
+                    }else{
+                        Swal.fire('취소하였습니다.','','warning');
+                    }
+                  })
+            }else{
+                Swal.fire('삭제할수 없습니다.','해당 부서의 사원들을 다른부서로 변경해주세요','error');
+            }
+        }
+        
     })
+
+
+
+
+    
+    
   })
