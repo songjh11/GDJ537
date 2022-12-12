@@ -44,11 +44,11 @@ ul li {
 				<!-- Topbar import-->
 				<c:import url="../../temp/layout_topbar.jsp"></c:import>
 				<!-- End of Topbar -->
-				<%-- ${goodDetail.goodsFileVO } --%>
 				<!-- Begin Page Content -->
+				<input type="hidden" value="${roomInfo[0].goodsVOs[0].name}">
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
-						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVOs[0].name} 회의실 예약정보</h1>
+						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVOs[0].name}회의실 예약정보</h1>
 						<table class="table table-hover">
 							<tr>
 								<th>예약자</th>

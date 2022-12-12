@@ -1,13 +1,117 @@
-// const btn = document.getElementById("resBtn");
-// const frm = document.getElementById("frm");
-// const startTime = document.getElementById("start");
-// const endTime = document.getElementById("end");
-// const date = document.getElementById("reserveDate");
-// let today = new Date();
+const btn = document.getElementById("resBtn");
+const frm = document.getElementById("frm");
+const startTime = document.getElementById("start");
+const endTime = document.getElementById("end");
+const memberClick = document.getElementById("member");
 
-// startCheck = true;
-// endCheck = true;
-// dateCheck = true;
+let today = new Date();
+
+startCheck = true;
+endCheck = true;
+
+startTime.addEventListener("blur", function () {
+    console.log(startTime.value);
+
+    var startDate = startTime.value.toString().substr(0, 10);
+    console.log(startDate);
+
+    let y = parseFloat(startDate.split('-')[0]);
+    let m = parseFloat(startDate.split('-')[1]);
+    let d = parseFloat(startDate.split('-')[2]);
+    if (d < 10) {
+        d = d % 10;
+    }
+
+    let year = parseFloat(today.getFullYear()); // 년도
+    let month = parseFloat(today.getMonth() + 1);  // 월
+    let da = parseFloat(today.getDate());  // 날짜
+
+    // 선택할 수 없는 것 만들기
+
+    // 연도 - 선택한 연도가 현재 연도보다 작아야 함
+    // 달 - 현 연도 에서 이전 달은 선택 못함
+    // 일 - 현 연도, 달에서 이전 일은 선택 못함
+    // console.log(y < year);
+    // console.log(m < month && y == year);
+    // console.log(d < da && m == month && y == year);
+
+    if (y < year || (m < month && y == year) || (d < da && m == month && y == year)) {
+        alert("선택할 수 없는 날입니다.");
+        dateCheck = false;
+    }
+    else {
+        dateCheck = true;
+    }
+    if (startTime.value != '' && dateCheck == true) {
+        endTime.disabled = false;
+    }
+    if (dateCheck == false) {
+        endTime.disabled = true;
+    }
+})
+
+endTime.addEventListener("blur", function () {
+    var startDate = startTime.value.toString().substr(0, 10);
+    var endDate = endTime.value.toString().substr(0, 10);
+
+    console.log(endDate);
+
+    let y = parseFloat(endDate.split('-')[0]);
+    let m = parseFloat(endDate.split('-')[1]);
+    let d = parseFloat(endDate.split('-')[2]);
+    if (d < 10) {
+        d = d % 10;
+    }
+
+    let year = parseFloat(startDate.split('-')[0]);
+    let month = parseFloat(startDate.split('-')[1]);
+    let da = parseFloat(startDate.split('-')[2]);
+
+    // 선택할 수 없는 것 만들기
+
+    // 연도 - 선택한 연도가 현재 연도보다 작아야 함
+    // 달 - 현 연도 에서 이전 달은 선택 못함
+    // 일 - 현 연도, 달에서 이전 일은 선택 못함
+    // console.log(y < year);
+    // console.log(m < month && y == year);
+    // console.log(d < da && m == month && y == year);
+
+    if (y < year || (m < month && y == year) || (d < da && m == month && y == year)) {
+        alert("선택할 수 없는 날입니다.");
+        dateCheck = false;
+    }
+    else {
+        dateCheck = true;
+    }
+
+    console.log(endTime.value);
+    let st = parseInt(startTime.value.substr(11, 14));
+    if (st == 0) {
+        st = 12;
+    }
+    console.log("st: " + st); // 시작 숫자
+
+    let end = parseInt(endTime.value.substr(11, 13))
+    if (end == 0) {
+        end = 12;
+    }
+    console.log("endTime: " + end); // 종료 숫자
+
+    if (end < st) {
+        alert("유효하지 않은 시간대입니다.");
+        endCheck = false;
+    }
+    else {
+        endCheck = true;
+    }
+})
+
+memberClick.addEventListener("click", function () {
+    var startDate = startTime.value.toString().substr(0, 10);
+    var endDate = endTime.value.toString().substr(0, 10);
+    console.log(startDate);
+    console.log(endDate);
+})
 
 // date.addEventListener("blur", function () {
 //     console.log(date.value);
@@ -82,15 +186,16 @@
 //     }
 // })
 
-// btn.addEventListener("click", function () {
-//     let a = confirm("정말 예약하시겠습니까?");
-//     // console.log(a);
+btn.addEventListener("click", function () {
+    let a = confirm("정말 예약하시겠습니까?");
+    // console.log(a);
 
-//     if (a == true && startCheck == true && endCheck == true && dateCheck == true) {
-//         frm.submit();
-//     }
-//     else {
-//         alert("조건을 충족하지 못하였습니다.");
-//     }
-// })
+    if (a == true && startCheck == true && endCheck == true) {
+        frm.submit();
+    }
+    else {
+        alert("조건을 충족하지 못하였습니다.");
+    }
+})
+
 
