@@ -1,7 +1,8 @@
 body{
 	margin-top: 100px;
 	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6
+	line-height: 1.6;
+	color : black;
 }
 .container{
 	width: 500px;
@@ -32,8 +33,13 @@ ul.tabs li.current{
 	display: none;
 	background: #ededed;
 	padding: 15px;
+	color: black;
 }
 
 .tab-content.current{
 	display: inherit;
+}
+
+.white{
+	background-color: white;
 }

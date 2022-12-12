@@ -105,9 +105,18 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - 관리자 -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin"
+                aria-expanded="true" aria-controls="collapseAdmin">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>관리자</span></a>
+                    <span>관리자</span>
+                </a>
+                <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">시설</h6>
+                        <a class="collapse-item" href="/goods/ad_list">시설 관리</a>
+                    </div>
+                </div>
             </li> 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

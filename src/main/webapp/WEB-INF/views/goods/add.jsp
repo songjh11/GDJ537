@@ -11,6 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="/css/goods/add.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
@@ -40,12 +41,12 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800">공용 시설 추가</h1>
+	            	<h1 class="h3 mb-4 text-gray-800" >공용 시설 추가</h1>
 	            	
-	            	<form action="add" method="post" enctype="multipart/form-data">
+	            	<form action="add" method="post" enctype="multipart/form-data" >
 	            	 <div class="mb-3">
 	            	 	<div>
-					    	<label for="exampleInputName" class="form-label">kind</label>
+					    	<label for="exampleInputName" class="form-label">종류</label>
 					    </div>
 					    <label class="test_obj">
 						    <input type="radio" name="goodsId" value="RO">
@@ -58,23 +59,23 @@
 						</label>
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputName" class="form-label">name</label>
+					    <label for="exampleInputName" class="form-label">시설 이름</label>
 					    <input type="text" class="form-control" id="name" name="name">
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputContents" class="form-label">contents</label>
+					    <label for="exampleInputContents" class="form-label">시설 설명</label>
 			            <textarea  class="form-control add_ele" id="contents" name="contents"></textarea>
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputMax" class="form-label">max</label>
+					    <label for="exampleInputMax" class="form-label">최대 인원</label>
 					    <input type="text" class="form-control" id="max" name="max">
 					  </div>
 					  <div class="mb-3">
-						<label for="exampleInputLocation" class="form-label">location</label>
+						<label for="exampleInputLocation" class="form-label">시설 위치</label>
 						<input type="text" class="form-control" id="location" name="location">
 					  </div>
 					  <div class="mb-3" style="display: none;" id="carChecked">
-						<label for="exampleInputLocation" class="form-label">CarNumber</label>
+						<label for="exampleInputLocation" class="form-label">차량 번호</label>
 						<input type="text" class="form-control" id="carNum" name="carNum">
 					  </div>
 					  <div class="board-filetitle">이미지 첨부  
@@ -84,7 +85,7 @@
 			          <div class="mb-3">
 			          	<button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
 			          </div>
-					  <button type="submit" class="btn btn-primary">Submit</button>
+					  <button type="submit" class="btn btn-primary">시설 추가</button>
 					  </form>
 	
 	            </div>

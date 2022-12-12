@@ -120,5 +120,17 @@
 		select * from RESERVE;
 	</select>
 	
+	<select id="getRoomNameList" resultType="GoodsVO">
+		SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'RO%'
+	</select>
+	
+	<select id="getCarNameList" resultType="GoodsVO">
+		SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'CA%'
+	</select>
+	
+	<select id="getreserveGoods" parameterType="GoodsVO" resultType="ReserveVO">
+		SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
+	</select>
+	
 	
 </mapper> 

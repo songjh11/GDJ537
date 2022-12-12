@@ -16,7 +16,7 @@ $("#fileAdd").click(function(){
     if($(".files").length<5){
         let r = '<div class="file_form mt-2">';
         /* r = r+'<label for="contents" class="form-label">Files</label>'; label 여부 체크 */
-        r = r+'<input type="file" name="files" class="files form-control">';
+        r = r+'<input type="file" name="files" class="files form-control" id="files">';
         r = r+'<span class="text">선택된 파일 없음</span> ';
         r = r+'<button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>'
         r = r+'<div id="see"></div>'
@@ -196,6 +196,7 @@ $("#delete").click(function(){
             location.href="/goods/ad_list";
         },
         error:function(){
+            alert("[삭제실패] 예약된 건이 있습니다.");
             console.log("Error 발생");
         }
 

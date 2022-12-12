@@ -1,5 +1,6 @@
 package com.app.home.schedule.goods;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +48,7 @@ public class GoodsController {
 			throws Exception
 	{
 		int result = goodsService.setAdd(goodsVO, files, session.getServletContext());
-		return "redirect:/goods/add";
+		return "redirect:/goods/ad_list";
 	}
 
 	@GetMapping("update")
@@ -99,7 +100,15 @@ public class GoodsController {
 	@GetMapping("delete")
 	@ResponseBody
 	public ModelAndView setGoodsDelete(GoodsVO goodsVO,ModelAndView mv) throws Exception{
-		int result = goodsService.setGoodsDelete(goodsVO);
+		ReserveVO reserveVO = new ReserveVO();
+		int result = 0;
+		List<ReserveVO> reserve = goodsService.getreserveGoods(goodsVO);
+		if(reserve.size() == 0) {
+			result = 0;
+		}else {
+			result = goodsService.setGoodsDelete(goodsVO);			
+		}
+		
 		//리스트 페이지로
 		mv.setViewName("/goods/ad_list");
 		return mv;
@@ -133,7 +142,7 @@ public class GoodsController {
         HashMap<String, Object> hash = new HashMap<>();
         log.info("list -> {}",list.size());
         for (int i = 0; i < list.size(); i++) {
-            hash.put("title", list.get(i).getId());
+            hash.put("title", list.get(i).getGoodsId());
             hash.put("start", list.get(i).getStartTime());
             hash.put("end", list.get(i).getEndTime());
             log.info("---");
@@ -145,6 +154,21 @@ public class GoodsController {
         }
         log.info("jsonArrCheck: {}", jsonArr);
         return jsonArr;
+	}
+	
+	@GetMapping("ad_goods")
+	public ModelAndView getGoodsAdmin() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<GoodsVO> room = goodsService.getRoomNameList();
+		List<GoodsVO> car = goodsService.getCarNameList();
+		List<Double> roomx = new ArrayList<>();
+		for(int i=0;i<room.size();i++) {
+			roomx.add((23.133333841959637 * i));
+		}
+		mv.addObject("room", room);
+		mv.addObject("roomx", roomx);
+		mv.setViewName("/goods/ad_goods");
+		return mv;
 	}
 
 }
