@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class ReportApplyVO {
-	
 	private Long applyNum;
 	private int ID;
 	private int depNum;
@@ -14,5 +13,4 @@ public class ReportApplyVO {
 	private int status;
 	private int returns;
 	private Date apDate;
-	
 }

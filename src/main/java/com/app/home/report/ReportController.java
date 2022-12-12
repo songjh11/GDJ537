@@ -1,5 +1,6 @@
 package com.app.home.report;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,87 @@ public class ReportController {
 	
 	//=======================최근호===================
 	
+	@GetMapping("/report/finishreport")
+	public ModelAndView getFinishReport(Principal principal) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String id = principal.getName();
+		int num = Integer.parseInt(id);
+		ReportVO reportVO = new ReportVO();
+		reportVO.setId(num);
+		Integer check = reportService.getLicenseCheck(reportVO);
+		if(check == 0) {
+			String message = "승인자만 볼수 있습니다.";
+			String url = "/";
+			mv.addObject("message", message);
+			mv.addObject("url", url);
+			mv.setViewName("redirect:report/redirect");
+			return mv;
+		}
+		else{
+			reportVO = reportService.getFinishReport(reportVO);
+			List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
+			mv.addObject("reportApplyVOs", reportApplyVOs);
+			mv.setViewName("report/finishreport");
+			return mv;
+		}
+	}
 	
+	@GetMapping("/report/returnreport")
+	public ModelAndView getReturnReport(Principal principal) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String id = principal.getName();
+		int num = Integer.parseInt(id);
+		ReportVO reportVO = new ReportVO();
+		reportVO.setId(num);
+		Integer check = reportService.getLicenseCheck(reportVO);
+		if(check == 0) {
+			String message = "승인자만 볼수 있습니다.";
+			String url = "/";
+			mv.addObject("message", message);
+			mv.addObject("url", url);
+			mv.setViewName("redirect:report/redirect");
+			return mv;
+		}
+		else{
+			reportVO = reportService.getReturnReport(reportVO);
+			List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
+			mv.addObject("reportApplyVOs", reportApplyVOs);
+			mv.setViewName("report/returnreport");
+			return mv;
+		}
+	}
+	
+	@GetMapping("/report/doreport")
+	public ModelAndView getDoReport(Principal principal) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String id = principal.getName();
+		int num = Integer.parseInt(id);
+		ReportVO reportVO = new ReportVO();
+		reportVO.setId(num);
+		Integer check = reportService.getLicenseCheck(reportVO);
+		if(check == 0) {
+			String message = "승인자만 볼수 있습니다.";
+			String url = "/";
+			mv.addObject("message", message);
+			mv.addObject("url", url);
+			mv.setViewName("redirect:report/redirect");
+			return mv;
+		}
+		else if(check == 2) {
+			reportVO = reportService.getDoFirstReport(reportVO);
+			List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
+			mv.addObject("reportApplyVOs", reportApplyVOs);
+			mv.setViewName("report/doreport");
+			return mv;
+		}
+		else{
+			reportVO = reportService.getDoFinalReport(reportVO);
+			List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
+			mv.addObject("reportApplyVOs", reportApplyVOs);
+			mv.setViewName("report/doreport");
+			return mv;
+		}
+	}
 	
 	
 	
