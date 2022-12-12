@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <meta charset="UTF-8">
 <!-- meta tag 추가 -->
 <meta name="viewport"
@@ -12,6 +13,7 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="/css/admin/admin.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
@@ -54,15 +56,14 @@
                <table class="table table-bordered">
                   <thead>
                      <tr>
-                        <th scope="col">사원번호</th>
-                        <th scope="col">직급</th>
-                        <th scope="col">부서</th>
-                        <th scope="col">이름</th>
-                        <th scope="col">이메일</th>
-                        <th scope="col">전화번호</th>
-                        <th scope="col">입사일</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
+                        <th class="table-light" scope="col">사원번호</th>
+                        <th class="table-light" scope="col">직급</th>
+                        <th class="table-light" scope="col">부서</th>
+                        <th class="table-light" scope="col">이름</th>
+                        <th class="table-light" scope="col">이메일</th>
+                        <th class="table-light" scope="col">전화번호</th>
+                        <th class="table-light" scope="col"></th>
+                        <th class="table-light" scope="col"></th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">
@@ -74,9 +75,8 @@
                         <td>${userVO.name}</td>
                         <td>${userVO.email}</td>
                         <td>${userVO.phone}</td>
-                        <td>${userVO.entDate}</td>
-                        <td class="allow" ><a href="#">O</a></td>
-                        <td class="allowNot"><a href="#">X</a></td>
+                        <td class="allow" ><a href="#">승인</a></td>
+                        <td class="allowNot"><a href="#">미승인</a></td>
                      </tr>
                      </c:forEach>
                      
