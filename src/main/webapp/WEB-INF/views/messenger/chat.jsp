@@ -11,6 +11,7 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 </style>
+<link href="/css/chat/employeeList.css" rel="stylesheet">
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <c:import url="../temp/layout_header.jsp"></c:import>
@@ -39,7 +40,7 @@
 					</div>
 					<div class="chatDiv" id="chatArea">
 						<div class="blank"></div>
-							<c:import url="./employeeList.jsp"></c:import>	
+							<c:import url="./employeeList.jsp"></c:import>
 					</div>
 					<div class="chatDiv">
 						<div class="blank"></div>

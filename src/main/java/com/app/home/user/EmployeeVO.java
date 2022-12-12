@@ -1,8 +1,10 @@
 package com.app.home.user;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.app.home.messenger.PickVO;
+import com.app.home.messenger.RoomVO;
 
 import lombok.Data;
 
@@ -24,4 +26,5 @@ public class EmployeeVO {
 	private RoleVO roleVO;
 	private DepartmentVO departmentVO; 
 	private PickVO pickVO;
+	private List<RoomVO> roomVOs;
 }
