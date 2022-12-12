@@ -48,6 +48,7 @@
                                 </form>
                             </div>
                         </li>
+
                         <sec:authorize access="!isAuthenticated()">   
                             <!-- 로그인 전 -->
                             <li class="nav-item dropdown no-arrow mx-1">
@@ -59,9 +60,11 @@
                         </sec:authorize>
                       
 
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
+
                         <sec:authorize access="isAuthenticated()">
                             <sec:authentication property="Principal" var="user"/>
                             <li class="nav-item dropdown no-arrow">                            
@@ -70,6 +73,8 @@
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">${user.name}</span>
                                     <img class="img-profile rounded-circle"
                                         src="img/undraw_profile.svg">
+
+
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
