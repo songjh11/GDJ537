@@ -4,14 +4,14 @@ import lombok.Data;
 
 @Data
 public class Pager {
-	
+
 	private Long page;
 	private Long startNum;
 	private Long lastNum;
 	private Long startRow;
 	private Long perPage;
 	private Long perBlock;
-	
+
 	// 게시판 구분
 	private Integer sort;
 
@@ -67,7 +67,7 @@ public class Pager {
 		if(curBlock==totalBlock) {
 			this.lastNum=totalPage;
 		}
-		
+
 		if(totalPage == 0) {
 			this.lastNum = 1L;
 		}

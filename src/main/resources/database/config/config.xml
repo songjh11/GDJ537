@@ -6,6 +6,11 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="java.util.List" alias="List"/>
-  		
+  		<typeAlias type="java.lang.Long" alias="Long"/>
+  		<typeAlias type="com.app.home.util.Pager" alias="Pager"/>
+  		<typeAlias type="com.app.home.board.comment.CommentPager" alias="CommentPager"/>
+  		<typeAlias type="com.app.home.file.FileVO" alias="FileVO"/>
+  		<typeAlias type="com.app.home.board.BoardVO" alias="BoardVO"/>	
+  		<typeAlias type="com.app.home.board.comment.CommentVO" alias="CommentVO"/>	
   	</typeAliases>
   </configuration>

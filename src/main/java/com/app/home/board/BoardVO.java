@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 public class BoardVO {
-	
+
 	private Integer num; // Auto_increment PK
 	private Integer id; //사원번호
 	private String title; //제목
@@ -23,5 +23,5 @@ public class BoardVO {
 	private MultipartFile[] multipartFiles;
 	private List<FileVO> fileVOs;
 
-	
+
 }
