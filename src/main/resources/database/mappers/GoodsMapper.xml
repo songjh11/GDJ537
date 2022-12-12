@@ -135,5 +135,21 @@
 		select * from RESERVE   <include refid="getFilter"></include> 
 	</select>
 	
+	<select id="getRoomNameList" resultType="GoodsVO">
+		SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'RO%'
+	</select>
+	
+	<select id="getCarNameList" resultType="GoodsVO">
+		SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'CA%'
+	</select>
+	
+	<select id="getreserveGoods" parameterType="GoodsVO" resultType="ReserveVO">
+		SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
+	</select>
+	
+	<select id="getreserveCount" parameterType="GoodsVO" resultType="int">
+		SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
+	</select>
+	
 	
 </mapper> 

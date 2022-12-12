@@ -1,8 +1,10 @@
 package com.app.home.schedule.goods;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -47,7 +49,7 @@ public class GoodsController {
 			throws Exception
 	{
 		int result = goodsService.setAdd(goodsVO, files, session.getServletContext());
-		return "redirect:/goods/add";
+		return "redirect:/goods/ad_list";
 	}
 
 	@GetMapping("update")
@@ -71,7 +73,7 @@ public class GoodsController {
 		String id = (String) session.getAttribute("id");
 		goodsVO.setGoodsId(id);
 		int result = goodsService.setUpdate(goodsVO,files,session.getServletContext(),fileUpdateNumber);
-		return "/goods/update";
+		return "redirect:./ad_list";
 	}
 	
 	@PostMapping("fileUpdateNumber")
@@ -99,7 +101,15 @@ public class GoodsController {
 	@GetMapping("delete")
 	@ResponseBody
 	public ModelAndView setGoodsDelete(GoodsVO goodsVO,ModelAndView mv) throws Exception{
-		int result = goodsService.setGoodsDelete(goodsVO);
+		ReserveVO reserveVO = new ReserveVO();
+		int result = 0;
+		List<ReserveVO> reserve = goodsService.getreserveGoods(goodsVO);
+		if(reserve.size() == 0) {
+			result = 0;
+		}else {
+			result = goodsService.setGoodsDelete(goodsVO);			
+		}
+		
 		//리스트 페이지로
 		mv.setViewName("/goods/ad_list");
 		return mv;
@@ -134,7 +144,7 @@ public class GoodsController {
         log.info("list -> {}",list.size());
         log.info("goodsReserveVO -> room : {}, car : {}, vacation : {}",goodsReserveVO.isRoom(),goodsReserveVO.isCar(),goodsReserveVO.isVacation());
         for (int i = 0; i < list.size(); i++) {
-            hash.put("title", list.get(i).getId());
+            hash.put("title", list.get(i).getGoodsId());
             hash.put("start", list.get(i).getStartTime());
             hash.put("end", list.get(i).getEndTime());
             log.info("---");
@@ -146,6 +156,57 @@ public class GoodsController {
         
         log.info("jsonArrCheck: {}", jsonArr);
         return jsonArr;
+	}
+	
+	@GetMapping("ad_room")
+	public ModelAndView getRoomAdmin() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<GoodsVO> room = goodsService.getRoomNameList();
+		Map<String, Integer> map = new HashMap<>();
+		
+		for(int i=0;i<room.size();i++) {
+			map.put(room.get(i).getGoodsId(), goodsService.getreserveCount(room.get(i)));
+		}
+		
+		String result ="";
+		Set<String> reasonKeys = map.keySet();
+		
+		for(String key : reasonKeys) {
+			if(result != "") {
+				result += ",";
+			}
+			result += "['"+key+"', "+map.get(key)+"]";
+		}
+		System.out.println(result);
+		mv.addObject("result", result);
+		mv.setViewName("/goods/ad_room");
+		return mv;
+	}
+	
+	@GetMapping("ad_car")
+	public ModelAndView getCarAdmin()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<GoodsVO> car = goodsService.getCarNameList();
+		Map<String, Integer> map = new HashMap<>();
+		
+		for(int i=0;i<car.size();i++) {
+			map.put(car.get(i).getGoodsId(), goodsService.getreserveCount(car.get(i)));
+		}
+		
+		String result ="";
+		Set<String> reasonKeys = map.keySet();
+		
+		for(String key : reasonKeys) {
+			if(result != "") {
+				result += ",";
+			}
+			result += "['"+key+"', "+map.get(key)+"]";
+		}
+		System.out.println(result);
+		mv.addObject("result", result);
+		mv.setViewName("/goods/ad_car");
+		return mv;
+		
 	}
 
 }

@@ -41,8 +41,8 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800">공용 시설 관리</h1>
-					<input type="button" id="add" class="btn btn-primary" value="추가"></button>
+	            	<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">공용 시설 관리</h1>
+					<input type="button" id="add" class="btn btn-primary" value="추가" style="margin-left: 1300px; width: 70px; height: 40px;"></button>
 					<div class="container">
 
 						<ul class="tabs">
@@ -55,13 +55,16 @@
 								<c:forEach items="${room}" var="ro">
 								<div class="col-md-6" data-item-num="${ro.goodsId}">
 								  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-item-num="${ro.goodsId}">
-									<div class="col p-4 d-flex flex-column position-static" data-item-num="${ro.goodsId}">
-									  <h3 class="mb-0" data-item-num="${ro.goodsId}">${ro.name}</h3>
-									  <div class="mb-1 text-muted" data-item-num="${ro.goodsId}">최대 정원 : ${ro.max}명</div>
-									  <p class="card-text mb-auto" data-item-num="${ro.goodsId}">상세설명 : ${ro.contents}</p>
-									  <p class="card-text mb-auto" data-item-num="${ro.goodsId}">위치 : ${ro.location}</p>
+									<div class="col p-4 d-flex flex-column position-static white" data-item-num="${ro.goodsId}">
+										<p class="card-text mb-auto" data-item-num="${ro.goodsId}">시설 번호 : ${ro.goodsId}</p>
+									  	<h3 class="mb-0" data-item-num="${ro.goodsId}">${ro.name}</h3>
+										<br>
+										<p class="mb-1 text-muted" data-item-num="${ro.goodsId}">최대 정원 : ${ro.max}명</p>
+										<p class="card-text mb-auto" data-item-num="${ro.goodsId}">상세설명 : ${ro.contents}</p>
+										<p class="card-text mb-auto" data-item-num="${ro.goodsId}">위치 : ${ro.location}</p>
+										
 									</div>
-									<div class="col-auto d-none d-lg-block" data-item-num="${ro.goodsId}">
+									<div class="col-auto d-none d-lg-block white" data-item-num="${ro.goodsId}">
 									  <img src="/resources/upload/goods/${ro.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ro.goodsId}">
 									</div>
 								  </div>
@@ -75,14 +78,17 @@
 								<c:forEach items="${car}" var="ca">
 								<div class="col-md-6" data-item-num="${ca.goodsId}">
 								  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-item-num="${ca.goodsId}">
-									<div class="col p-4 d-flex flex-column position-static" data-item-num="${ca.goodsId}">
-									  <h3 class="mb-0" data-item-num="${ca.goodsId}">${ca.name}</h3>
-									  <div class="mb-1 text-muted" data-item-num="${ca.goodsId}">최대 정원 : ${ca.max}명</div>
+									<div class="col p-4 d-flex flex-column position-static white" data-item-num="${ca.goodsId}">
+										<p class="card-text mb-auto" data-item-num="${ca.goodsId}">시설 번호 : ${ca.goodsId}</p>
+										<h3 class="mb-0" data-item-num="${ca.goodsId}">${ca.name}</h3>
+										<br>
+									  <p class="mb-1 text-muted" data-item-num="${ca.goodsId}">최대 정원 : ${ca.max}명</p>
 									  <p class="card-text mb-auto" data-item-num="${ca.goodsId}">상세설명 : ${ca.contents}</p>
 									  <p class="card-text mb-auto" data-item-num="${ca.goodsId}">위치 : ${ca.location}</P>
 									  <p class="card-text mb-auto" data-item-num="${ca.goodsId}">차량 번호 : ${ca.carNum}</P>
+									  
 									</div>
-									<div class="col-auto d-none d-lg-block" data-item-num="${ca.goodsId}">
+									<div class="col-auto d-none d-lg-block white" data-item-num="${ca.goodsId}">
 										<img src="/resources/upload/goods/${ca.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ca.goodsId}">
 									</div>
 								  </div>

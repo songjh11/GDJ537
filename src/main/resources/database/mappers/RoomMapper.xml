@@ -10,11 +10,12 @@
 		resultMap="getGoods">
 		SELECT * FROM GOODS G
 		left JOIN GOODSFILE F
-		ON G.ID = F.ID
+		ON G.GOODSID =
+		F.GOODSID
 	</select>
 
 	<resultMap type="GoodsVO" id="getGoods">
-		<id column="ID" property="id"></id>
+		<id column="goodsId" property="goodsId"></id>
 		<result column="NAME" property="name"></result>
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
@@ -32,12 +33,13 @@
 		resultMap="getRoom">
 		SELECT * FROM GOODS G
 		left JOIN GOODSFILE F
-		ON G.ID = F.ID
-		where G.ID = #{id}
+		ON G.GOODSID =
+		F.GOODSID
+		where G.GOODSID = #{goodsId}
 	</select>
 
 	<resultMap type="GoodsVO" id="getRoom">
-		<id column="ID" property="id"></id>
+		<id column="goodsId" property="goodsId"></id>
 		<result column="NAME" property="name"></result>
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
@@ -69,11 +71,12 @@
 		select g.*, r.*
 		FROM
 		GOODS g
-		inner join
+		left join
 		RESERVE r
-		on g.ID =r.ID
-		where g.ID =
-		#{id}
+		on g.GOODSID =
+		r.GOODSID
+		where g.GOODSID =
+		#{goodsId}
 	</select>
 
 	<resultMap type="ReserveVO" id="info">
@@ -86,7 +89,7 @@
 		<result column="endTime" property="endTime" />
 		<collection property="goodsVO" ofType="GoodsVO"
 			javaType="String">
-			<id column="id" property="id" />
+			<id column="goodsId" property="goodsId" />
 			<result column="name" property="name" />
 			<result column="max" property="max" />
 			<result column="contents" property="contents" />

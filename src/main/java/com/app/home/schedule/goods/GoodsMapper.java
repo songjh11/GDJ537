@@ -33,5 +33,14 @@ public interface GoodsMapper
 
 	public int setGoodsFileDelete(GoodsVO goodsVO) throws Exception;
 	
+	public List<ReserveVO> getReserveList() throws Exception;
+	
+	public List<GoodsVO> getRoomNameList() throws Exception;
+	
+	public List<GoodsVO> getCarNameList() throws Exception;
+	
+	public List<ReserveVO> getreserveGoods(GoodsVO goodsVO) throws Exception;
+	
+	public int getreserveCount(GoodsVO goodsVO) throws Exception;
 	public List<ReserveVO> getReserveList(GoodsReserveVO goodsReserveVO) throws Exception;
 }

@@ -72,10 +72,42 @@
 		</div>
 		<!-- End of Content Wrapper -->
 	</div>
+<div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">일정을 확인하세요.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="taskId" class="col-form-label">일정 내용</label>
+                        <input type="text" class="form-control" id="calendar_content" >
+                        <label for="taskId" class="col-form-label">시작 날짜</label>
+                        <input type="text" class="form-control" id="calendar_start_date" >
+                        <label for="taskId" class="col-form-label">종료 날짜</label>
+                        <input type="text" class="form-control" id="calendar_end_date" >
+                         <label for="taskId" class="col-form-label">부서명</label>
+                        <input type="text" class="form-control" id="calendar_end_date" >
+                         <label for="taskId" class="col-form-label">사원명</label>
+                        <input type="text" class="form-control" id="calendar_end_date"  >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal"
+                        id="sprintSettingModalClose">확인</button>
+                   
+                </div>
+    
+            </div>
+        </div>
+    </div>
 
 	<!-- Scroll Top, Logout Modal import -->
-	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
-	
+	<%-- <c:import url="../temp/layout_top_logoutModal.jsp"></c:import> --%>
 	<script>
 	
 	
@@ -154,6 +186,20 @@
                * data 로 값이 넘어온다. log 값 전달.
                */
               events: data
+              ,eventClick:function(data) {
+                  if(data) {
+                	  var startTimeCheck = new Date(data.event.start);
+                	  var endTimeCheck = new Date(data.event.end);
+
+                	  $('.modal').modal("show");
+                	  $('#calendar_content').val(data.event.title);
+					  $('#calendar_start_date').val(startTimeCheck.toLocaleDateString('ko-kr')+startTimeCheck.toLocaleTimeString('ko-kr'));
+					  $('#calendar_end_date').val(endTimeCheck.toLocaleDateString('ko-kr')+endTimeCheck.toLocaleTimeString('ko-kr'));
+                      
+                      return false;
+                  }
+              }
+              
               /* [{
                   title: 'All Day Event',
                   start: '2022-12-01',
