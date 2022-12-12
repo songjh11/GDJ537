@@ -26,10 +26,6 @@ public class WebConfig implements WebMvcConfigurer{
         registry.setOrder(1);
 	}
 
-	@Bean
-    MappingJackson2JsonView jsonView(){
-        return new MappingJackson2JsonView();
-    }
 	
 	@Bean
     MappingJackson2JsonView jsonView(){
