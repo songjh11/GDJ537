@@ -48,53 +48,56 @@
 									</tr>
 								</table>
 								
-								<input type="hidden" name="id" value="${goods.goodsId}">
-								
-								<div class="mb-3">
-									<label>예약날짜</label>
-									<input type="date" name="startTime" class="form-control" id="exampleFormControlInput1" placeholder="시작시간">
-									<br>
-								</div>
-								
-								<div class="mb-3">
-									<label>반납날짜</label>
-									<input type="date" name="endTime" class="form-control" id="exampleFormControlInput1" placeholder="시작시간">
-									<br>
-								</div> 
-								
-								<div class="mb-5">
-									<label>예약자</label>
-									<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="아이유">
-								</div>
-								
-								<div class="mb-5">
-									<label>부서명</label>
-									<input type="text" class="form-control" id="exampleFormControlInput1" value="인사과">
-								</div>	
-																																	
-								<div class="mb-5">
-								  <label>사용 목적</label>
-								  <input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1">
-								</div>
-								
-								<button type="submit" class="btn btn-success">예약하기</button>
-							</form>
-					</section>
+						<input type="hidden" name="goodsId" value="${goods.goodsId}">
+						
+						<div class="mb-3">
+                           <label>예약날짜</label>
+                           <input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1" placeholder="시작시간">
+                           <br>
+                        </div>
+                        
+                        <div class="mb-3">
+                           <label>반납날짜</label>
+                           <input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput2" placeholder="시작시간">
+                           <br>
+                        </div> 
+                        
+                        <div class="mb-5">
+                           <label>예약자</label>
+                           <input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="7">
+                        </div>
+                        
+                        <div class="mb-5">
+                           <label>부서명</label>
+                           <input type="text" class="form-control" id="exampleFormControlInput1" value="인사과">
+                        </div>   
+                                                                                                   
+                        <div class="mb-5">
+                          <label>사용 목적</label>
+                          <input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success">예약하기</button>
+                     </form>
+               </section>
 
-				</div>
-				<!-- End Page Content -->
+            </div>
+            <!-- End Page Content -->
 
-			</div>
-			<!-- End of Main Content -->
+         </div>
+         <!-- End of Main Content -->
 
-			<!-- Footer import -->
-			<c:import url="../../temp/layout_footer.jsp"></c:import>
-			<!-- End of Footer -->
-		</div>
-		<!-- End of Content Wrapper -->
-	</div>
+         <!-- Footer import -->
+         <c:import url="../../temp/layout_footer.jsp"></c:import>
+         <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+   </div>
+<script type="text/javascript">
 
-	<!-- Scroll Top, Logout Modal import -->
-	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
+document.getElementById('exampleFormControlInput1').value= new Date().toISOString().slice(0, 8);
+document.getElementById('exampleFormControlInput2').value= new Date().toISOString().slice(0, 8);
+</script>
 </body>
 </html>
+								

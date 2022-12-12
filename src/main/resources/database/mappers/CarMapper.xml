@@ -33,8 +33,8 @@
 
 	<!-- 예약 -->
 	<insert id="setReserve" parameterType="ReserveVO">
-		INSERT INTO RESERVE(RESERVENUM, GOODSID, DATE, STARTTIME, ENDTIME, MEMBERNUM, USEPURPOSE)
-		VALUES(null, #{goodsId}, #{date}, #{startTime}, #{endTime}, '아이유', #{usePurpose})
+		INSERT INTO RESERVE(RESERVENUM, GOODSID, DATE, STARTTIME, ENDTIME, ID, USEPURPOSE)
+		VALUES(RESERVENUM, #{goodsId}, now(), #{startTime}, #{endTime}, '7', #{usePurpose})
 	</insert>
 
 	<!-- 상세보기 -->

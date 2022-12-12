@@ -1,5 +1,8 @@
 package com.app.home.schedule.car;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -118,7 +121,7 @@ public class CarController {
 		
 		return mv;
 	}
-	
+
 	// 차량 리스트
 	@GetMapping("/car/carList")
 	public ModelAndView getCarList(GoodsVO goodsVO, ModelAndView mv, HttpSession session) throws Exception {
