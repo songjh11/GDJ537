@@ -55,15 +55,16 @@
 
 	<insert id="setRoomReserve" parameterType="RoomVO">
 		insert into RESERVE
-		values(#{reserveNum}, #{id}, #{date}, #{startTime},
-		#{endTime},
+		values(#{reserveNum}, #{goodsId}, now(),
 		#{memberNum},
-		#{usePurpose})
+		#{usePurpose},
+		#{startTime},
+		#{endTime})
 	</insert>
 
 	<select id="getReserveStartTime" parameterType="List"
 		resultType="ReserveVO">
-		select STARTTIME from RESERVE where ID = #{id}
+		select STARTTIME from RESERVE where GOODSID = #{goodsId}
 	</select>
 
 	<select id="getResInfo" parameterType="ReserveVO"
@@ -71,7 +72,7 @@
 		select g.*, r.*
 		FROM
 		GOODS g
-		left join
+		inner join
 		RESERVE r
 		on g.GOODSID =
 		r.GOODSID
@@ -81,7 +82,7 @@
 
 	<resultMap type="ReserveVO" id="info">
 		<id column="reserveNum" property="reserveNum" />
-		<result column="id" property="id" />
+		<result column="goodsId" property="goodsId" />
 		<result column="date" property="date" />
 		<result column="memberNum" property="memberNum" />
 		<result column="usePurpose" property="usePurpose" />

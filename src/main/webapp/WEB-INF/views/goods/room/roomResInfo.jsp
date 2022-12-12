@@ -48,7 +48,7 @@ ul li {
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
-						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVO.name}회의실 예약정보</h1>
+						<h1 class="h3 mb-4 text-gray-800">${roomInfo} 회의실 예약정보</h1>
 						<table class="table table-hover">
 							<tr>
 								<th>예약자</th>

@@ -94,7 +94,7 @@ public class RoomController
 		log.info("roomVOs: {}", roomVOs);
 
 		modelAndView.addObject("roomInfo", roomVOs);
-		modelAndView.setViewName("/goods/room/roomResInfo");
+		modelAndView.setViewName("goods/room/roomResInfo");
 
 		return modelAndView;
 	}

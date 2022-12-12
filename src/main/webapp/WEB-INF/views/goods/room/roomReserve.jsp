@@ -47,25 +47,25 @@
 								</tr>
 							</table>
 
-							<input type="hidden" name="id" value="${goodDetail.goodsId }">
+							<input type="hidden" name="goodsId" value="${goodDetail.goodsId }">
 
-							<div class="mb-3">
+<!-- 							<div class="mb-3">
 								<label>예약일</label>
 								<input type="date" name="date" class="form-control" id="reserveDate">
 								<br>
-							</div>
+							</div> -->
 
 							<div class="mb-3">
 								<label>예약시간</label>
-								<input type="time" name="startTime" class="form-control mb-2" id="start" placeholder="시작시간">
-								<input type="time" name="endTime" class="form-control" id="end"
+								<input type="datetime-local" step="2" name="startTime" class="form-control mb-2" id="start" placeholder="시작시간">
+								<input type="datetime-local" step="2" name="endTime" class="form-control" id="end"
 									placeholder="종료시간">
 								<br>
 							</div>
 
 							<div class="mb-5">
 								<label>예약자</label>
-								<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="아이폰">
+								<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1">
 							</div>
 
 							<div class="mb-5">
@@ -79,7 +79,7 @@
 							</div>
 
 							<div style="text-align: center;">
-								<button type="button" class="btn btn-success" id="resBtn">예약하기</button>
+								<button type="submit" class="btn btn-success" id="resBtn">예약하기</button>
 							</div>
 							<br>
 						</form>
@@ -104,5 +104,5 @@
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="/js/room/reserve.js"></script>
+<!-- <script src="/js/room/reserve.js"></script> -->
 </html>
