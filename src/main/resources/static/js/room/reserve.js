@@ -98,19 +98,20 @@ endTime.addEventListener("blur", function () {
 
     console.log(endTime.value);
     console.log(startTime.value);
-    var startSub = parseInt((startTime.value.substr(11)).substr(3, 4));
+    let startSub = parseInt((startTime.value.substr(11)).substr(3, 4));
     console.log(startSub);
-    var endSub = parseInt((endTime.value.substr(11)).substr(3, 4));
+    let endSub = parseInt((endTime.value.substr(11)).substr(3, 4));
     console.log(endSub);
 
     // 분 계산
-    if (end == st && startsub < endSub) {
-        alert("유효하지 않은 시간대입니다.");
-        endCheck = false;
-    }
-    else {
-        endCheck = true;
-    }
+    console.log(startsub < endSub);
+    // if (end == st && startsub < endSub) {
+    //     alert("유효하지 않은 시간대입니다.");
+    //     endCheck = false;
+    // }
+    // else {
+    //     endCheck = true;
+    // }
 })
 
 // date.addEventListener("blur", function () {
