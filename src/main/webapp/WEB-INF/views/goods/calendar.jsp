@@ -89,11 +89,12 @@
                          <label for="taskId" class="col-form-label">부서명</label>
                         <input type="text" class="form-control" id="calendar_end_date" >
                          <label for="taskId" class="col-form-label">사원명</label>
-                        <input type="text" class="form-control" id="calendar_end_date" >
+                        <input type="text" class="form-control" id="calendar_end_date"  >
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" id="addCalendar">확인</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal"
+                        id="sprintSettingModalClose">확인</button>
                    
                 </div>
     
