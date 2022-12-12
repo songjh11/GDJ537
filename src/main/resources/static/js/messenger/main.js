@@ -99,7 +99,7 @@ $(".titleLi").click(function() {
     $(this).next(".acoArea").siblings(".acoArea").slideUp(300); // 1개씩 펼치기
  });
 
-$(".pickRemove").on("click", ".empName", function(){
+$(".acoArea").on("click", ".empName", function(){
     console.log("didjkfjld");
     console.log($(this).attr("value"));
     let id = $(this).attr("empId");
