@@ -6,6 +6,28 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="java.util.List" alias="List"/>
+
+  		<typeAlias type="com.app.home.user.UserVO" alias="UserVO"/>
+  		<typeAlias type="com.app.home.user.RoleVO" alias="RoleVO"/>
+  		<typeAlias type="com.app.home.user.DepartmentVO" alias="DepartmentVO"/>
+
+
+  		<typeAlias type="com.app.home.user.EmployeeVO" alias="EmployeeVO"/>
+  		<typeAlias type="com.app.home.user.DepartmentVO" alias="DepartmentVO"/>
+		<typeAlias type="com.app.home.messenger.NoteVO" alias="NoteVO"/>
+		<typeAlias type="com.app.home.messenger.RoomVO" alias="RoomVO"/>
+		<typeAlias type="com.app.home.messenger.PickVO" alias="PickVO"/>
+		
+		<typeAlias type="java.util.Map" alias="Map"/>
+
+  		<typeAlias type="java.lang.Long" alias="Long"/>
+  		<typeAlias type="com.app.home.util.Pager" alias="Pager"/>
+  		<typeAlias type="com.app.home.board.comment.CommentPager" alias="CommentPager"/>
+  		<typeAlias type="com.app.home.file.FileVO" alias="FileVO"/>
+  		<typeAlias type="com.app.home.board.BoardVO" alias="BoardVO"/>	
+  		<typeAlias type="com.app.home.board.comment.CommentVO" alias="CommentVO"/>	
+
+
   		<typeAlias type="java.lang.Integer" alias="int"/>
   		<typeAlias type="java.lang.String" alias="String"/>
   		
