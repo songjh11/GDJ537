@@ -47,6 +47,11 @@ public class UserVO implements UserDetails {
 	@NotBlank
 	private String address;
 	private MultipartFile file;
+	
+	public String phone_format(String number) {
+	   String regEx = "(\\d{3})(\\d{3,4})(\\d{4})";
+	   return number.replaceAll(regEx, "$1-$2-$3");
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

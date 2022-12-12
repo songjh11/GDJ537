@@ -1,5 +1,6 @@
 console.log("user");
 
+
 $(".dismiss").click(function(){
     let id=$(this).prev().prev().prev().prev().prev().prev().prev().text();
     Swal.fire({
@@ -55,6 +56,18 @@ $(".dismiss").click(function(){
     $(this).css('cursor','default');
   })
 
+
+  $('.roleNumSelect').change(function(){
+    let roleNum = $("option:selected",this).val();
+    let id = $(this).parent().parent().children().first().text();
+    roleNumUpdate(id,roleNum);
+  })
+  $('.depNumSelect').change(function(){
+    let depNum = $("option:selected",this).val();
+    let id = $(this).parent().parent().children().first().text();
+    depNumUpdate(id,depNum);
+  })
+
   $('.showUser').click(function(){
     let id = $(this).parent().children().first().text(); //id
     let content = $(this).text();//
@@ -93,8 +106,9 @@ $('.showUser1').click(function(){
 
 $('.roleNumUpdate').click(function(){
     let roleNum = $(this).data().rolenum;
-    roleNumUpdate(updateId,roleNum);
+    // roleNumUpdate(updateId,roleNum);
 })
+
 
 $('.depNumUpdate').click(function(){
     let depNum = $(this).data().depnum;
