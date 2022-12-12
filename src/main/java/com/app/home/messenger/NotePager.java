@@ -3,13 +3,12 @@ package com.app.home.messenger;
 import lombok.Data;
 
 @Data
-public class Pager {
+public class NotePager {
 	
 	private Long page;
 	private Long startNum;
 	private Long lastNum;
 	private Long startRow;
-	private Long lastRow;
 	private Long perPage;
 	private Long perBlock;
 	private Long totalPage1;
@@ -97,14 +96,14 @@ public class Pager {
 	
 	public Long getPerPage() {
 		if(this.perPage==null) {
-			this.perPage=10L;
+			this.perPage=8L;
 		}
 		return perPage;
 	}
 	
 	public Long getPerBlock() {
 		if(this.perBlock==null) {
-			this.perBlock=10L;
+			this.perBlock=5L;
 		}
 		
 		return perBlock;
@@ -119,7 +118,7 @@ public class Pager {
 	
 	public String getKind() {
 		if(this.kind==null) {
-			this.kind="";
+			this.kind="contents";
 		}
 		return kind;
 	}
