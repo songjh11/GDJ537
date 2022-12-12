@@ -21,7 +21,7 @@ public class EmployeeVO {
 	private String phone;
 	private Date entDate;
 	private String profile;
-	private int status;
+	private String status;
 	
 	private RoleVO roleVO;
 	private DepartmentVO departmentVO; 
