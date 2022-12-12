@@ -51,9 +51,42 @@
 	</insert>
 	
 	<!-- 승인권한을 가진사람들 모두 조회 -->
-	<select id="getLicenserList" parameterType="ReportVO" resultType="ReportVO">
-		SELECT * FROM REPORTLICENSER WHERE LSTATUS = 2 OR LSTATUS = 3;
+	<select id="getLicenserList" parameterType="ReportVO" resultMap="getLicenserListResult">
+		SELECT U.ID, U.NAME, D.DEPNAME, R.ROLENAME 
+		FROM REPORTLICENSER RL
+		INNER JOIN
+		USER U 
+		ON U.ID = RL.ID
+		INNER JOIN
+		ROLE R
+		ON U.ROLENUM = R.ROLENUM 
+		INNER JOIN 
+		DEPARTMENT D 
+		ON D.DEPNUM = U.DEPNUM 
+		WHERE RL.LSTATUS = 2 OR RL.LSTATUS = 3;
 	</select>
+	
+	<resultMap type="ReportVO" id="getLicenserListResult">
+		<id column="licenserNum" property="licenserNum"/>
+		<result column="id" property="id"/>
+		
+		<association property="userVO" javaType="UserVO">
+			<id column="num" property="num"/>
+			<result column="id" property="id"/>
+			<result column="name" property="name"/>
+		</association>
+		
+		<association property="departmentVO" javaType="DepartmentVO">
+			<id column="depNum" property="depNum"/>
+			<result column="depName" property="depName"/>
+		</association>
+		
+		<association property="roleVO" javaType="RoleVO">
+			<id column="roleNum" property="roleNum"/>
+			<result column="roleName" property="roleName"/>
+		</association>
+		
+	</resultMap>
 	
 	
 	<!-- ==================================== -->

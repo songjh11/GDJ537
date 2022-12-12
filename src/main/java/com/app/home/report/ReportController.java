@@ -155,11 +155,14 @@ public class ReportController {
 	
 	//승인권한을 가진사람 모두 보는 리스트 목록
 	@RequestMapping(value = "/report/licenserList", method = RequestMethod.GET)
-	public ModelAndView getLicenserList(ReportVO reportVO) throws Exception{
+	public ModelAndView getLicenserList(ReportVO reportVO, UserVO userVO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		
 		List<ReportVO> ar = reportService.getLicenserList(reportVO);
+		
+		log.info("내 승인자 테이블 아이디 :: {} " , reportVO.getId());
+//		log.info("내 승인자 테이블 이름 :: {} " , reportVO.getUserVO().getName());
 		
 		mv.addObject("list", ar);
 		mv.setViewName("/report/licenserList");
