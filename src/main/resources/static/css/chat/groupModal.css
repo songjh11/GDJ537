@@ -1,4 +1,103 @@
 
+/* 채팅방 만드는 모달 */
+
+.roomImg{
+	width: 30px;
+	margin-right: 12px;
+}
+
+#room.room-overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(1.5px);
+	-webkit-backdrop-filter: blur(1.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#room .room-window {
+	background: rgba( 69, 139, 197, 0.70 );
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 13.5px );
+	-webkit-backdrop-filter: blur( 13.5px );
+	border-radius: 10px;
+	border: 1px solid rgba( 255, 255, 255, 0.18 );
+	width: 400px;
+	height: 600px;
+	position: relative;
+	padding: 10px;
+	position: fixed;
+	top: 40%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+#room .title {
+	padding-left: 10px;
+	display: inline;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+	
+}
+#room .title h2 {
+	display: inline;
+}
+#room .close-area {
+	display: inline;
+	float: right;
+	padding-right: 10px;
+	cursor: pointer;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+}
+
+#room .content {
+	margin-top: 20px;
+	padding: 0px 10px;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+}
+
+/* 채팅방 정보 */
+.roomInfo{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 21%;
+	width: 100%;
+}	
+
+.roomInfo p{
+	font-size: 18px;
+}
+
+.h2title{
+	font-weight: bold; 
+	background: linear-gradient(#4e73df 10%,#224abe 100%);
+	color: transparent; 
+	-webkit-background-clip: text;
+}
+
+.infoArea{
+	width: 80%;
+	padding: 20px;
+	background-color: #FFFFFF;
+	border-radius: 20px;
+	box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+	text-align: center;
+}
+
 /* 유저체크 모달 */
 
 #check.check-overlay {
