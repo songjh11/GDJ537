@@ -130,7 +130,7 @@
 	
 	<!-- ============== 류형민 ================ -->
 	<!-- 휴가 신청 목록 가져오기 -->
-	<select id="getMyVacaList" parameterType="UserVO" resultType="ReportVacaVO">
+	<select id="getMyVacaList" parameterType="ReportPager" resultType="ReportVacaVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
 		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM 
@@ -138,7 +138,7 @@
 	</select>
 	
 	<!-- 시말서 목록 가져오기 -->
-	<select id="getMySorryList" parameterType="UserVO" resultType="ReportSorryVO">
+	<select id="getMySorryList" parameterType="ReportPager" resultType="ReportSorryVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
 		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM 
@@ -146,7 +146,7 @@
 	</select>
 	
 	<!-- 업무보고서 목록 가져오기 -->
-	<select id="getMyWorkList" parameterType="UserVO" resultType="ReportWorkVO">
+	<select id="getMyWorkList" parameterType="ReportPager" resultType="ReportWorkVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
 		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM 
@@ -154,11 +154,41 @@
 	</select>
 	
 	<!-- 지출결의서 목록 가져오기 -->
-	<select id="getMyPayList" parameterType="UserVO" resultType="ReportPayVO">
+	<select id="getMyPayList" parameterType="ReportPager" resultType="ReportPayVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
 		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM 
 		where r.id = #{id};
+	</select>
+	
+	
+	<!-- 보고서 디테일 -->
+	<select id="getMyVacaDetail" parameterType="ReportApplyVO" resultType="ReportVacaVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r 
+		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+	</select>
+	
+	<select id="getMyPayDetail" parameterType="ReportApplyVO" resultType="ReportPayVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r 
+		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+	</select>
+	
+	<select id="getMyWorkDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r 
+		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+	</select>
+	
+	<select id="getMySorryDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
+		SELECT r.*,r2.*
+		FROM REPORTAPPLY r 
+		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
 	</select>
 	
 	<!-- ==================================== -->

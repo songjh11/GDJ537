@@ -13,6 +13,7 @@ import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
 import com.app.home.report.work.ReportWorkVO;
+import com.app.home.user.UserVO;
 
 @Mapper
 public interface ReportMapper {
@@ -90,9 +91,10 @@ public interface ReportMapper {
 	public List<ReportSorryVO> getMySorryList(ReportPager pager) throws Exception;
 	public List<ReportPayVO> getMyPayList(ReportPager pager) throws Exception;
 	
-	
-	
-	
+	public ReportVacaVO getMyVacaDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportPayVO getMyPayDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportWorkVO getMyWorkDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportSorryVO getMySorryDetail(ReportApplyVO reportApplyVO) throws Exception;
 	//================================================
 	
 }

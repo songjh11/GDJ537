@@ -26,6 +26,7 @@ import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
 import com.app.home.report.work.ReportWorkVO;
+import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,29 +40,6 @@ public class ReportController {
 
 	
 	//=======================김도영===================
-	@GetMapping("/kdy/reportAdd")
-	public String reportAdd()throws Exception{
-		return "/kdy/reportAdd";
-	}
-	@GetMapping("/kdy/vacationApplication")
-	public String vacationApplication()throws Exception{
-		return "/kdy/vacationApplication";
-	}
-	
-	@GetMapping("/kdy/workReport")
-	public String workReport()throws Exception{
-		return "/kdy/workReport";
-	}
-	
-	@GetMapping("/kdy/cashDisbursementVoucher")
-	public String cashDisbursementVoucher()throws Exception{
-		return "/kdy/cashDisbursementVoucher";
-	}
-	
-	@GetMapping("/kdy/writtenApology")
-	public String writtenApology()throws Exception{
-		return "/kdy/writtenApology";
-	}
 	
 	
 	
@@ -307,6 +285,18 @@ public class ReportController {
 		mv.setViewName("report/mylist");
 		
 		return mv;
+		
+	}
+	
+	@GetMapping("/report/detail")
+	public void getMyReportDetail(ReportApplyVO reportApplyVO,String cat) throws Exception{
+		
+		reportApplyVO.setId(1209);
+		
+		if(cat.equals("1")) {
+			
+		}
+		
 		
 	}
 	
