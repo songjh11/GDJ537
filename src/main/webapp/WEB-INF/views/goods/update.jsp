@@ -11,6 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="/css/goods/add.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
@@ -61,23 +62,23 @@
 						<input type="hidden" id="goodId" name="goodsId" value="${goods.goodsId}">
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputName" class="form-label">name</label>
+					    <label for="exampleInputName" class="form-label">시설 이름</label>
 					    <input type="text" class="form-control" id="name" name="name" value="${goods.name}">
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputContents" class="form-label">contents</label>
+					    <label for="exampleInputContents" class="form-label">시설 설명</label>
 			            <textarea  class="form-control add_ele" id="contents" name="contents">${goods.contents}</textarea>
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputMax" class="form-label">max</label>
+					    <label for="exampleInputMax" class="form-label">최대 인원</label>
 					    <input type="text" class="form-control" id="max" name="max" value="${goods.max}" >
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputLocation" class="form-label">location</label>
+					    <label for="exampleInputLocation" class="form-label">시설 위치</label>
 					    <input type="text" class="form-control" id="location" name="location" value="${goods.location}">
 					  </div>
 					  <div class="mb-3" <c:if test="${str == 'RO'}">style ="display:none;"</c:if>>
-					    <label for="exampleInputLocation" class="form-label">carNumber</label>
+					    <label for="exampleInputLocation" class="form-label">차량 번호</label>
 					    <input type="text" class="form-control" id="carNum" name="carNum" value="${goods.carNum}">
 					  </div>
 					  <div>
@@ -85,7 +86,7 @@
 							<c:forEach items="${list}" var="li">
 								<div class="file_form mt-2">
 									<img src="/resources/upload/goods/${li.fileName}"  width="300" height="300">
-									<input type="file" name="files" class="files form-control">
+									<input type="file" name="files" class="files form-control" id="files">
 									<span class="text" >${li.oriName}</span> 
 									<button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>
 								</div>
@@ -95,7 +96,7 @@
 							<button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
 				 		</div>
 					  </div>
-					  <button type="submit" class="btn btn-primary">Submit</button>
+					  <button type="submit" class="btn btn-primary">수정</button>
 					  <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}">
 					</form>
 	

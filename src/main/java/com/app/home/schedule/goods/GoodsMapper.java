@@ -38,4 +38,6 @@ public interface GoodsMapper
 	public List<GoodsVO> getRoomNameList() throws Exception;
 	
 	public List<GoodsVO> getCarNameList() throws Exception;
+	
+	public List<ReserveVO> getreserveGoods(GoodsVO goodsVO) throws Exception;
 }

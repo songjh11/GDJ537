@@ -48,7 +48,7 @@ public class GoodsController {
 			throws Exception
 	{
 		int result = goodsService.setAdd(goodsVO, files, session.getServletContext());
-		return "redirect:/goods/add";
+		return "redirect:/goods/ad_list";
 	}
 
 	@GetMapping("update")
@@ -100,7 +100,15 @@ public class GoodsController {
 	@GetMapping("delete")
 	@ResponseBody
 	public ModelAndView setGoodsDelete(GoodsVO goodsVO,ModelAndView mv) throws Exception{
-		int result = goodsService.setGoodsDelete(goodsVO);
+		ReserveVO reserveVO = new ReserveVO();
+		int result = 0;
+		List<ReserveVO> reserve = goodsService.getreserveGoods(goodsVO);
+		if(reserve.size() == 0) {
+			result = 0;
+		}else {
+			result = goodsService.setGoodsDelete(goodsVO);			
+		}
+		
 		//리스트 페이지로
 		mv.setViewName("/goods/ad_list");
 		return mv;

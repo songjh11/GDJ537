@@ -128,5 +128,9 @@
 		SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'CA%'
 	</select>
 	
+	<select id="getreserveGoods" parameterType="GoodsVO" resultType="ReserveVO">
+		SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
+	</select>
+	
 	
 </mapper> 
