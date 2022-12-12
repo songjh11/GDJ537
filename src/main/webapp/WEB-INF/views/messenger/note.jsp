@@ -508,31 +508,25 @@
 								<div><button id="sentNoteList" onclick="ajaxPage(1)"><img style="transform: translateY(-4px);" id="sImg" src="/img/messenger/sendX.png" alt=""></button></div>
 								<div><button id="goSearch"><img style="width: 30px;" src="/img/messenger/searchzz.png"></button></div>
 							</div>
-							<div id="noteChoiceSearch">
-								<div class="input-group" style="width: 100%;"> 
-									<select class="searchOption form-control" value="">
-										<option vlaue="" selected>정렬</option>
-										<option value="">이름 순</option>
-										<option value="">부서 순</option>
-										<option value="">직급 순</option>
-									</select>
-									<input type="text" class="form-control bg-light border-0 small" style="width: 120px !important;" placeholder="Search for..."
-										aria-label="Search" aria-describedby="basic-addon2">
-									<div class="input-group-append">
-										<button class="btn btn-primary" type="button">
-											<i class="fas fa-search fa-sm"></i>
-										</button>
+							<form id="ajaxSearchForm" action="./note" method="get">
+								<div id="noteChoiceSearch">
+									<div class="input-group" style="width: 95%;"> 
+										<select class="searchOption form-control" name="kind" id="kindkind">
+											<option value="contents" selected>내용</option>
+											<option id="changeOption" value="sendId">발신ID</option>
+										</select>
+										<input id="searchInput" name="search" type="text" class="form-control bg-light border-0 small" style="width: 120px !important;" placeholder="Search for..."
+											aria-label="Search" aria-describedby="basic-addon2">
+										<div class="input-group-append">
+											<button class="btn btn-primary" id="gogogogo" type="submit">
+												<i class="fas fa-search fa-sm"></i>
+											</button>
+										</div>
 									</div>
+								
+									
 								</div>
-								<!-- <form action="./note">
-									<select class="form-control" name="kind" id="kindkind">
-										<option value="contents">내용</option>
-										<option value="sendId">보낸사람</option>
-									</select>
-									<input class="form-control" type="text" id="searchInput" name="search">
-									<button class="btn" type="submit">검색</button>
-								</form> -->
-							</div>
+							</form>
 
 							
 
@@ -561,14 +555,14 @@
 
 							<div id="pagination">
 								<p style="margin: 0; display: flex; align-items: center;">
-									<a href="./note?page=${pager.startNum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left.png" alt=""></a>
+									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startNum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left.png" alt=""></a>
 									<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
                                     
                                     	<!-- <a href="./simpleresult?search=${pager.search}&kind=${pager.kind}&page=${i}" id="ppaaggee${i}">${i}</a> -->
-                                    	<a href="./note?page=${i}" class="pagep" id="ppaaggee${i}">${i}</a>
+                                    	<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${i}" class="pagep" id="ppaaggee${i}">${i}</a>
                                     
                                 	</c:forEach>
-									<a href="./note?page=${pager.lastNum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right.png" alt=""></a>
+									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastNum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right.png" alt=""></a>
 								</p>
 							</div>
 
@@ -640,13 +634,15 @@
 		};
 
 
-		function ajaxPage(page){
+		function ajaxPage(page, kind, search){
 			$.ajax({
 				type:"GET",
 				url :"./note/sent",
 				traditional:true, //배열을 전송할 때 사용, true
 				data:{
-					page: page
+					page: page,
+					kind: kind,
+					search: search
 				},
 				success : function(data){
 					let disabled = "";
@@ -657,6 +653,18 @@
 					console.log(data.pager.lastNum)
 					console.log(data.pager.pre)
 					console.log(data.pager.next)
+
+					// 검색기능을 위해 기존 폼을 발신전용으로 잠시 수정
+					$("#changeOption").val("receiveId");
+					$("#changeOption").html("수신ID");
+					$("#gogogogo").attr("type","button");
+
+					$("#gogogogo").on("click", function(){
+						console.log("에젝에서만나와");
+						ajaxPage(1, $("#kindkind").val(), $("#searchInput").val())
+						// console.log($("#kindkind").val());
+						// console.log($("#searchInput").val());
+					});
 
 					$("#pagination").empty();
 
