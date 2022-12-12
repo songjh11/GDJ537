@@ -33,8 +33,25 @@
 		<!-- 보고서   1조 -->
 		
 		<!-- 메신져   3조 -->
+
+		<!-- <dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency>  -->
 	
-	
+		<!-- 메신저 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+
+		<!-- json simple  -->
+		<dependency>
+		  <groupId>com.googlecode.json-simple</groupId>
+		  <artifactId>json-simple</artifactId>
+		  <version>1.1.1</version>
+		</dependency>
 
 		<!-- JSP 연동 -->
 		<dependency>
@@ -46,8 +63,8 @@
 		    <artifactId>jstl</artifactId>
 		</dependency>
 	
-<!-- 	
-		<dependency>
+
+<!-- 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
@@ -55,6 +72,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency> -->
+
 		
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>

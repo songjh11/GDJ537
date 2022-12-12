@@ -41,9 +41,19 @@ public class RequestController {
 		return "redirect:/request/detail?num="+boardVO.getNum();
 	}
 	
+	@GetMapping("detail")
+	public ModelAndView getDetail(BoardVO boardVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		boardVO = requestService.getDetail(boardVO);
+		mv.addObject("boardVO", boardVO);
+		mv.setViewName("board/request/detail");
+
+		return mv;
+	}
+	
 	@PostMapping("delete")
 	@ResponseBody
-	public int setUnknownDelete(BoardVO boardVO) throws Exception {
+	public int setDelete(BoardVO boardVO) throws Exception {
 		return requestService.setRequestDelete(boardVO);
 	}
 	

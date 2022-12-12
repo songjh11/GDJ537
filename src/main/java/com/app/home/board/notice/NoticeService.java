@@ -1,5 +1,7 @@
 package com.app.home.board.notice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import com.app.home.board.BoardVO;
 import com.app.home.file.FileDAO;
 import com.app.home.file.FileVO;
 import com.app.home.util.FileManager;
+import com.app.home.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -89,6 +92,25 @@ public class NoticeService {
 			}
 		}
 
+		return result;
+	}
+	
+	public List<BoardVO> getList(Pager pager) throws Exception {
+		
+		Long totalCount = boardDAO.getTotalCount(pager);
+		pager.getRowNum();
+		pager.getNum(totalCount);
+		
+		return boardDAO.getList(pager);
+	}
+	
+	public int setHit(BoardVO boardVO) throws Exception {
+		return boardDAO.setHit(boardVO);
+	}
+	
+	public int setDelete(BoardVO boardVO) throws Exception{
+		int result = boardDAO.setDelete(boardVO);
+		
 		return result;
 	}
 

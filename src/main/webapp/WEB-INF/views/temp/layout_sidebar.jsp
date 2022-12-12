@@ -17,7 +17,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Goodee</span></a>
             </li>
@@ -88,9 +88,9 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - Messanger -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/messenger/chat">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Messanger</span></a>
+                    <span>Messenger</span></a>
             </li>
 
             <!-- Nav Item - Tables -->

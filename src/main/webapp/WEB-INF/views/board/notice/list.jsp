@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <!-- meta tag 추가 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>요청게시판</title>
+<title>공지게시판</title>
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 <!-- 파일 다운로드 아이콘 -->
@@ -69,21 +69,22 @@
 	                      </div>
 					  </div>
 					</form>
-					
-					<a href="/request/add" class="btn btn-danger" style="margin:10px 0;">글 작성</a> 
-	            	<!-- 요청게시판 작성 -->
+					<div>
+					<a href="/notice/add" class="btn btn-danger" style="margin:10px 0;">글 작성</a> 
+					</div>
+	            	<!-- 공지사항 작성 -->
 	            	<div class="card mb-3">
-		            	<c:forEach items="${requestList }" var="request">
+		            	<c:forEach items="${noticeList}" var="notice">
 			            		<div class="card-header bg-white">
 			            			<div class="row justify-content-between">
 			            				<div class="col-auto align-self-center">
-			            				  <a href="/request/hit?num=${request.num }">
-						                  	<h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 17px">[요청] ${request.title }</h5>
+			            				  <a href="/notice/hit?num=${notice.num }">
+						                  	<h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 17px">[공지] ${notice.title }</h5>
 						                  </a>
 						                 </div>
 						                 <div class="col-fill ml-auto align-self-end mr-5">
-						                 	<p >조회수  ${request.hit }  </p>
-											<p class="regdate" data-date="${request.regDate }"> 등록일자  </p>
+						                 	<p >조회수  ${notice.hit }  </p>
+											<p class="regdate" data-date="${notice.regDate }"> 등록일자  </p>
 						                </div>
 						             </div>
 						         </div>

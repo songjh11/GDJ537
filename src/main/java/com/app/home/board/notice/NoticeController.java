@@ -5,9 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.board.BoardVO;
+import com.app.home.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,7 +38,7 @@ public class NoticeController {
 		}else {
 			return "redirect:/notice/add?error=1";
 		}
-		return "redirect:/notice/detail?num="+boardVO.getNum();
+		return "redirect:/notice/list";
 	}
 
 	@GetMapping("detail")
@@ -63,5 +65,35 @@ public class NoticeController {
 
 		return "redirect:/notice/detail?num="+boardVO.getNum();
 	}
+
+	@PostMapping("delete")
+	@ResponseBody
+	public int setUnknownDelete(BoardVO boardVO) throws Exception {
+		return noticeService.setDelete(boardVO);
+	}
+	
+	@GetMapping("list")
+	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
+		
+		pager.setSort(1);
+		mv.addObject("noticeList", noticeService.getList(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("/board/notice/list");
+		
+		return mv;
+	}
+	
+	@GetMapping("hit")
+	public ModelAndView setHit(BoardVO boardVO) throws Exception {
+		int result = noticeService.setHit(boardVO);
+		
+		ModelAndView mv = new ModelAndView();
+		boardVO = noticeService.getDetail(boardVO);
+		mv.addObject("boardVO", boardVO);
+		mv.setViewName("board/notice/detail");
+		
+		return mv;
+	}
+	
 
 }
