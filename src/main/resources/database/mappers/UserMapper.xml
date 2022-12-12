@@ -195,12 +195,7 @@
    
    <!-- 회원가입 -->
    <update id="setJoin" parameterType="UserVO">
-      UPDATE USER SET PW=#{pw}, NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}, PROFILE=#{profile}, STATUS=0 WHERE ID=#{id}
-   </update>
-   
-   <!-- 프로필사진 추가 -->
-   <update id="setProfile" parameterType="UserVO">
-       UPDATE USER SET PROFILE=#{profile} WHERE ID=#{id}
+      UPDATE USER SET PW=#{pw}, EMAIL=#{email}, PHONE=#{phone}, PROFILE=#{profile}, STATUS=0 WHERE ID=#{id}
    </update>
 
    <select id="getLogin" parameterType="String" resultMap="getUserVO">
