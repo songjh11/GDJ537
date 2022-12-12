@@ -83,6 +83,9 @@
                         <a class="collapse-item" href="#">휴가신청서</a>
                         <a class="collapse-item" href="/report/licenserList">승인자 리스트</a>
                         <a class="collapse-item" href="/kdy/reportAdd">보고서 작성</a>
+                        <a class="collapse-item" href="/report/doreport">결제/반려 승인</a>
+                        <a class="collapse-item" href="/report/finishreport">결제 승인 내역</a>
+                        <a class="collapse-item" href="/report/returnreport">반려 승인 내역</a>
                         <a class="collapse-item" href="/report/insa">휴가담당 관리자</a>
                     </div>
                 </div>
