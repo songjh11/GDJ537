@@ -159,15 +159,6 @@ public class ReportController {
 	
 	//=======================장민석===================
 	
-	@GetMapping("/reportList")
-	public ModelAndView selectList(ReportPager pager) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		List<ReportVO> ar = reportService.selectList(pager);
-		mv.addObject("list", ar);
-		mv.addObject("pager", pager);
-		mv.setViewName("board/list");
-		return mv;
-	}
 	
 	@GetMapping("/detailPay")
 	public ModelAndView selectPay(ReportPayVO reportPayVO) throws Exception{
@@ -191,16 +182,6 @@ public class ReportController {
 		return mv;
 	}
 	
-	@GetMapping("/detailVaca")
-	public ModelAndView selectVaca(ReportVacaVO reportVacaVO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		reportVacaVO = reportService.selectVaca(reportVacaVO);
-		mv.addObject("vo", reportVacaVO);
-		mv.setViewName("list/detailVaca");
-		
-		return mv;
-	}
 	
 	//================================================
 	

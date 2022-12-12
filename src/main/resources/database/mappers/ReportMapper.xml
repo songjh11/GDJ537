@@ -55,23 +55,13 @@
 	
 	<!-- ============== 장민석 ================ -->
 	
-	<select id="selectList" parameterType="ReportApplyVO">
-		SELECT * FROM REPORT WHERE ID = #{id}
-	</select>
 	
-	<select id="selectPay" parameterType="ReportPayVO">
-		SELECT * FROM REPORTPAY WHERE APPLYNUM = #{applyNum}
-	</select>
-	<select id="selectSorry" parameterType="ReportSorryVO">
-		SELECT * FROM REPORTSORRY WHERE APPLYNUM = #{applyNum}
-	</select>
-	<select id="selectVaca" parameterType="ReportVacaVO">
-		SELECT * FROM REPORTVACA WHERE APPLYNUM = #{applyNum}
-	</select>
-	
-	<update id="update">
-		UPDATE REPORTAPPLY SET STATUS=STATUS+1 WHERE APPLYNUM = {applyNum} 
-	</update>
+	<insert id="selectPay" parameterType="ReportPayVO">
+		SELECT * FROM REPORTPAY VALUES() WHERE APPLYNUM = #{applyNum}
+	</insert>
+	<insert id="selectSorry" parameterType="ReportSorryVO">
+		SELECT * FROM REPORTSORRY VALUES() WHERE APPLYNUM = #{applyNum}
+	</insert>
 	
 	
 	<!-- ==================================== -->
