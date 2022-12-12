@@ -78,11 +78,11 @@ public interface UserMapper {
 	
 	public List<UserVO> getRoleCheck(UserVO userVO) throws Exception;
 	
+	//사원번호 조회
 	public UserVO getIdCheck(UserVO userVO) throws Exception;
-	   
+	
+	//회원가입
 	public int setJoin(UserVO userVO) throws Exception;
-	   
-	public int setProfile(UserVO userVO) throws Exception;
 	   
 	public UserVO getLogin(String username)throws UsernameNotFoundException;
 }

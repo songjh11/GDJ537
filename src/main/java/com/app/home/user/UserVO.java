@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,9 +23,11 @@ public class UserVO implements UserDetails {
 	private int id;
 	private int roleNum;
 	private int depNum;
+    @Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}")
 	private String pw;
 	private String name;
 	private String email;
+	@Pattern(regexp = "^01(?:0|1|[6-9])(\\d{4})\\d{4}$")
 	private String phone;
 	private Date entDate;
 	private String profile;
@@ -28,26 +35,16 @@ public class UserVO implements UserDetails {
 
 	private String pwCheck;
 	private String newPwCheck;
+	@NotBlank
 	private String e;
 	private String mailOption;
 
 	private RoleVO roleVO;
 	private DepartmentVO departmentVO;
 
-	public UserVO() {
-
-	}
-
-	public UserVO(int id, String name, RoleVO roleVO, DepartmentVO departmentVO, Date entDate) {
-		this.id = id;
-		this.name = name;
-		this.roleVO = roleVO;
-		this.departmentVO = departmentVO;
-		this.entDate = entDate;
-	}
-
 	private String pw2;
 	private String mail;
+	@NotBlank
 	private String address;
 	private MultipartFile file;
 

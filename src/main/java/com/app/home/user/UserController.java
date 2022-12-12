@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -324,23 +325,36 @@ public class UserController {
 
 	// 회원가입
 	@PostMapping("join")
-	public ModelAndView setJoin(@Valid UserVO userVO, BindingResult bindingResult, String email, String address,
-			MultipartFile file) throws Exception {
+	public ModelAndView setJoin(@Valid UserVO userVO, BindingResult bindingResult, String e, String address, MultipartFile file) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = userService.setJoin(userVO, email, address);
 
-		mv.setViewName("redirect:/");
+		//사용자 검증 메서드
+		boolean check = userService.getUserError(userVO, bindingResult);
+		
+		// check=false : 검증 성공(에러없음)
+		// check=true : 검증 실패(에러있음)
+		if(check) {
+			mv.setViewName("user/join");
+			List<FieldError> errors = bindingResult.getFieldErrors();
+			for(FieldError fieldError:errors) {
+				mv.addObject(fieldError.getField(), fieldError.getDefaultMessage());
+			}
+			return mv;
+		}
+		int result = userService.setJoin(userVO, e, address);
+		if(result == 1) {
+			mv.setViewName("redirect:./joinFinish");
+		} 
 		return mv;
 	}
-
+	
+	
 	// 사원번호조회
 	@PostMapping("idCheck")
 	@ResponseBody
 	public UserVO getIdCheck(UserVO userVO) throws Exception {
 		userVO = userService.getIdCheck(userVO);
-		UserVO info = new UserVO(userVO.getId(), userVO.getName(), userVO.getRoleVO(), userVO.getDepartmentVO(),
-				userVO.getEntDate());
-		log.info("사원번호조회 : {}", info);
+		log.info("사원번호조회 : {}", userVO);
 		return userVO;
 	}
 
