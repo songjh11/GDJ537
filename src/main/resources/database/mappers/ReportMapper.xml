@@ -59,13 +59,20 @@
 		SELECT * FROM REPORT WHERE ID = #{id}
 	</select>
 	
-	<!-- <insert id="insertList" parameterType="ReportApplyVO">
-		INSERT INTO REPORTAPPLY VALUES ()
-	</insert>
+	<select id="selectPay" parameterType="ReportPayVO">
+		SELECT * FROM REPORTPAY WHERE APPLYNUM = #{applyNum}
+	</select>
+	<select id="selectSorry" parameterType="ReportSorryVO">
+		SELECT * FROM REPORTSORRY WHERE APPLYNUM = #{applyNum}
+	</select>
+	<select id="selectVaca" parameterType="ReportVacaVO">
+		SELECT * FROM REPORTVACA WHERE APPLYNUM = #{applyNum}
+	</select>
 	
-	<select id="selectDetail" parameterType="ReportApplyVO">
-		SELECT * FROM WHERE 
-	</select> -->
+	<update id="update">
+		UPDATE REPORTAPPLY SET STATUS=STATUS+1 WHERE APPLYNUM = {applyNum} 
+	</update>
+	
 	
 	<!-- ==================================== -->
 	

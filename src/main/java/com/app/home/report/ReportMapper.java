@@ -57,7 +57,11 @@ public interface ReportMapper {
 	
 	public int insertList(ReportApplyVO reportApplyVO) throws Exception;
 	
-	public ReportApplyVO selectDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportPayVO selectPay(ReportPayVO reportPayVO) throws Exception;
+	
+	public ReportSorryVO selectSorry(ReportSorryVO reportSorryVO) throws Exception;
+	
+	public ReportVacaVO selectVaca(ReportVacaVO reportVacaVO) throws Exception;
 	
 	
 	//================================================
