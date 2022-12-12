@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-						<div id="modal" class="modal-overlay" style="z-index: 100;">
+						<div id="proModal" class="modal-overlay" style="z-index: 100;">
 							<div class="modal-window">
 								<div class="close-area">X</div>
 								<div class="content">
@@ -18,41 +18,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						
-						<!-- 채팅방 만드는 폼 -->
-						<div id="room" class="room-overlay" style="z-index: 100;">
-							<div class="room-window">
-								<div class="close-area">X</div>
-								<div class="content">
-									<div class="roomInfo">
-										<div class="row">
-											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
-											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
-										</div>
-										<div class="row">
-											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
-											<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
-										</div>
-										<div class="infoArea" style="background: transparent; border: none; box-shadow: none !important;">
-											<form action="./addRoom">
-												<div class="mb-3">
-													<label for="exampleFormControlTextarea1" class="form-label">채팅방 이름</label>
-													<input type="text" name="roomName" class="form-control form-control-sm" placeholder="방이름을 입력해 주세요">
-												</div>
-												<div class="mb-3">
-													<label for="exampleFormControlTextarea1" class="form-label">비밀번호</label>
-													<input type="password" name="pw" class="form-control form-control-sm" placeholder="숫자를 입력해 주세요">
-												</div>
-												<p class="mt-4">
-													<button type="submit" class="btn" style="background: #4e73df; color: #FFFFFF;">생성</button>
-												</p>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>						
+						</div>				
 						
 						<!-- Topbar Search -->
 						<div>

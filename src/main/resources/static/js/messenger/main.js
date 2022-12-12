@@ -1,8 +1,8 @@
-const modalChat = document.getElementById("modal")
-const closeBtn = modalChat.querySelector(".close-area")
+const proModal = document.getElementById("proModal");
+const closeBtn = proModal.querySelector(".close-area");
 closeBtn.addEventListener("click", e => {
-    modalChat.style.display = "none"
-})
+    proModal.style.display = "none"
+});
 
 
 $(".btnArea").on("click", ".pickBtn", function(){
@@ -14,8 +14,8 @@ $(".btnArea").on("click", ".pickBtn", function(){
     if(src == "/img/star (3).png"){
         src = "/img/star (4).png"
         $(this).children(".pickImg").attr("src", src);
+        console.log($(this).parents(".chatLi"));
         let appendLi = $(this).parents(".chatLi").clone();
-        // appendLi.classList.add('pickNum');
         $.ajax({
             type:"GET",
             url:"/messenger/pickCheck",
@@ -26,7 +26,6 @@ $(".btnArea").on("click", ".pickBtn", function(){
                 if(result>0){
                     console.log("추가됨", result);
                     $("#pickRemove").append(appendLi);
-
                 } else{
                     console.log("실패", result);                
                 }
@@ -49,7 +48,6 @@ $(".btnArea").on("click", ".pickBtn", function(){
                     console.log("취소됨", result); 
                     $(".pickBtn").each(function(index,item){
                         if($(item).attr("value") === pickBtnNum){
-                            console.log("삭제됨",$(item).attr("value")); 
                             $(this).parents(".chatLi").remove();
                             return false;
                         }
@@ -70,7 +68,7 @@ $("#pickRemove").on("click",".pickBtn", function(){
     let myId = 10;
     let yourId = $(this).attr("value");
     let src = "/img/star (3).png"
-    $(this).parents(".chatLi").remove();
+    //$(this).parents(".chatLi").remove();
         $.ajax({
             type:"POST",
             url:"/messenger/pickCancel",
@@ -110,7 +108,7 @@ $(".empName").click(function(){
     let img = $('#yourImg'+id).attr("src");
     let dep = $('#depN'+id).attr("value");
     console.log(id, email, phone, img, dep);
-    modalChat.style.display = "flex";
+    modal.style.display = "flex";
     $("#proImg").attr("src", img);
     $("#proName").text(name);
     $("#proDep").text(dep);
@@ -118,49 +116,10 @@ $(".empName").click(function(){
     $("#proPhone").text(phone);
 })
 
-$("#chatBtn").click(function(){
+ $("#chatBtn").click(function(){
     console.log("채팅함");
-})
+ })
 
-$("#msgBtn").click(function(){
+ $("#msgBtn").click(function(){
     console.log("메세지함");
-})
-
-// 채팅방 생성 모달창 닫기
-// const room = document.getElementById("room")
-// const rmCloseBtn = room.querySelector(".close-area")
-// rmCloseBtn.addEventListener("click", e => {
-//     room.style.display = "none"
-// });
-
-// //  채팅방 생성 모달창 열기
-// $("#roomBtn").click(function(){
-//     console.log("모달창 클릭됨?")
-//     $(".room-overlay").css('display','flex').hide().fadeIn();
-// });
-
-// 채팅방추가 아이콘 누르면 체크박스 생성
-$("#userBtn").click(function(){
-
-    $(".check-overlay").css('display','flex').hide().fadeIn();
-
-    // 다음버튼 클릭
-    $("#roomBtn").click(function(){
-        // 유저 체크창 닫기
-        $(".check-overlay").css('display','none').hide().fadeIn();
-        // 채팅방 생성창 열기
-        $(".room-overlay").css('display','flex').hide().fadeIn();
-
-        // ------------- Ajax -------------
-        $.ajax({
-            type:"POST",
-            url:"addRoomUser",
-            data: id,
-            success:function(result){
-                console.log("result : ", result);
-            }
-        });
-
-    });
-
-});
+ })
