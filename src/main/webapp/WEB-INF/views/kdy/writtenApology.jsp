@@ -8,16 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Document</title>
-    
-    <script>
-        const addBtn = document.getElementById("addSorry");
+    <script defer src="/js/Apology.js"></script>
 
-        addBtn.addEventListener("click", function(){
-            console.log("클릭");
-        });
-
-
-    </script>
 </head>
 <body>
     <div class="container px-4 px-lg-5 my-5">
