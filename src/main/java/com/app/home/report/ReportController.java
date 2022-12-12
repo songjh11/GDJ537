@@ -39,6 +39,29 @@ public class ReportController {
 
 	
 	//=======================김도영===================
+	@GetMapping("/kdy/reportAdd")
+	public String reportAdd()throws Exception{
+		return "/kdy/reportAdd";
+	}
+	@GetMapping("/kdy/vacationApplication")
+	public String vacationApplication()throws Exception{
+		return "/kdy/vacationApplication";
+	}
+	
+	@GetMapping("/kdy/workReport")
+	public String workReport()throws Exception{
+		return "/kdy/workReport";
+	}
+	
+	@GetMapping("/kdy/cashDisbursementVoucher")
+	public String cashDisbursementVoucher()throws Exception{
+		return "/kdy/cashDisbursementVoucher";
+	}
+	
+	@GetMapping("/kdy/writtenApology")
+	public String writtenApology()throws Exception{
+		return "/kdy/writtenApology";
+	}
 	
 	
 	
