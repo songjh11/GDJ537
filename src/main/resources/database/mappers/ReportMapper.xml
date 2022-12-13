@@ -4,11 +4,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.home.report.ReportMapper">
 	<!-- ============== 김도영 ================ -->
-				<!-- 신청보고서 -->
 	<insert id="setReportApply" parameterType="ReportApplyVO">
 	INSERT INTO REPORTAPPLY 
-	<!-- VALUES (NULL, #{id}, #{depNum}, #{reportNum}, 1, 0, SYSDATE(), #{name}, #{roleName}, #{depName}) -->
-	VALUES (NULL, 1209, 4, #{reportNum}, 1, 0, SYSDATE(), 'hjs', 'IT개발팀', 'ROLE_MAKER')
+	VALUES (NULL, #{id}, #{depNum}, #{reportNum}, 1, 0, SYSDATE(), #{name}, #{roleName}, #{depName}) 
+<!-- 	VALUES (NULL, 1209, 4, #{reportNum}, 1, 0, SYSDATE(), 'hjs', 'IT개발팀', 'ROLE_MAKER') -->
+	</insert>
+	<insert id="setWorkReport" parameterType="WorkRepotVO">
+	INSERT INTO REPORTWORK 
+	VALUES (NULL, #{applyNum}, SYSDATE(), #{am}, #{pm}, #{undo}, #{todo}, #{wRong}, #{etc})
 	</insert>
 	
 	
