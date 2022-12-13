@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.app.home.report.pay.ReportPayVO;
 import com.app.home.report.sorry.ReportSorryVO;
@@ -20,7 +22,11 @@ public class ReportService {
 	
 
 	//=======================김도영===================
-	
+	//신청 보고서
+	public int setReportApply(ReportApplyVO reportApplyVO)throws Exception{
+		int result = reportMapper.setReportApply(reportApplyVO);
+		return result;
+	}
 	
 	
 	
@@ -70,17 +76,24 @@ public class ReportService {
 	//================================================
 	
 	
-	//=======================장민석===================
+	//=======================결재 신청 insert===================
 	
 	
-	public ReportPayVO selectPay(ReportPayVO reportPayVO) throws Exception{
-		return reportMapper.selectPay(reportPayVO);
+	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		
+	} 
+	
+	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		
 	}
 	
-	public ReportSorryVO selectSorry(ReportSorryVO reportSorryVO) throws Exception{
-		return reportMapper.selectSorry(reportSorryVO);
+	public void setAddPay(ReportPayVO reportPayVO) throws Exception{
+		
 	}
 	
+	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+		
+	}
 	
 	//================================================
 	
@@ -90,39 +103,39 @@ public class ReportService {
 	
 
 	public Integer getLicenseCheck(ReportVO reportVO) throws Exception{
-			return reportMapper.getLicenseCheck(reportVO);
+		return reportMapper.getLicenseCheck(reportVO);
 	}
-		
-	public ReportApplyVO getLicenseSorryReportDetail(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getLicenseSorryReportDetail(reportApplyVO);
+	
+	public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception{
+		return reportMapper.getLicenseSorryReportDetail(reportSorryVO);
 	}
-		
-	public ReportApplyVO getLicensePayReportDetail(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getLicensePayReportDetail(reportApplyVO);
-		}
-		
-	public ReportApplyVO getLicenseWorkReportDetail(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getLicenseWorkReportDetail(reportApplyVO);
+	
+	public ReportPayVO getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception{
+		return reportMapper.getLicensePayReportDetail(reportPayVO);
 	}
-		
-	public ReportApplyVO getLicenseVacaReportDetail(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getLicenseVacaReportDetail(reportApplyVO);
+	
+	public ReportWorkVO getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception{
+		return reportMapper.getLicenseWorkReportDetail(reportWorkVO);
 	}
-		
+	
+	public ReportVacaVO getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception{
+		return reportMapper.getLicenseVacaReportDetail(reportVacaVO);
+	}
+	
 	public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getFinishReport(reportApplyVO);
+		return reportMapper.getFinishReport(reportApplyVO);
 	}
-		
+	
 	public ReportVO getReturnReport(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getReturnsReport(reportApplyVO);
+		return reportMapper.getReturnsReport(reportApplyVO);
 	}
-		
+	
 	public ReportVO getDoFirstReport(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getDoFirstReport(reportApplyVO);
+		return reportMapper.getDoFirstReport(reportApplyVO);
 	}
-		
+	
 	public ReportVO getDoFinalReport(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getDoFinalReport(reportApplyVO);
+		return reportMapper.getDoFinalReport(reportApplyVO);
 	}
 	
 	

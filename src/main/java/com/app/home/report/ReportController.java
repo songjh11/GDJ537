@@ -41,8 +41,11 @@ public class ReportController {
 	
 	//=======================김도영===================
 	@GetMapping("/kdy/reportAdd")
-	public String reportAdd()throws Exception{
-		return "/kdy/reportAdd";
+	public ModelAndView reportAdd(ReportApplyVO reportApplyVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int reportApply = reportService.setReportApply(reportApplyVO);
+		mv.addObject("reportApply", reportApply);
+		return mv;
 	}
 	//휴가신청서
 	@GetMapping("/kdy/vacationApplication")
@@ -192,29 +195,48 @@ public class ReportController {
 	//================================================
 	
 	
-	//=======================장민석===================
+	//=======================결재신청 insert===================
 	
+	@GetMapping("/report/addvaca")
+	public void setAddVaca() throws Exception{
+		
+	} 
 	
-	@GetMapping("/detailPay")
-	public ModelAndView selectPay(ReportPayVO reportPayVO) throws Exception{
-		ModelAndView mv = new ModelAndView();
+	@GetMapping("/report/addwork")
+	public void setAddWork() throws Exception{
 		
-		reportPayVO = reportService.selectPay(reportPayVO);
-		mv.addObject("vo",reportPayVO);
-		mv.setViewName("list/detailPay");
-		
-		return mv;
 	}
 	
-	@GetMapping("/detailSorry")
-	public ModelAndView selectSorry(ReportSorryVO reportSorryVO) throws Exception{
-		ModelAndView mv = new ModelAndView();
+	@GetMapping("/report/addpay")
+	public void setAddPay() throws Exception{
 		
-		reportSorryVO = reportService.selectSorry(reportSorryVO);
-		mv.addObject("vo", reportSorryVO);
-		mv.setViewName("list/detailSorry");
+	}
+	
+	@GetMapping("/report/addsorry")
+	public void setAddSorry() throws Exception{
 		
-		return mv;
+	}
+	
+	
+	
+	@PostMapping("/report/addvaca")
+	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		
+	} 
+	
+	@PostMapping("/report/addwork")
+	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		
+	}
+	
+	@PostMapping("/report/addpay")
+	public void setAddPay(ReportPayVO reportPayVO) throws Exception{
+		
+	}
+	
+	@PostMapping("/report/addsorry")
+	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+		
 	}
 	
 	
@@ -224,37 +246,33 @@ public class ReportController {
 	//=======================최근호===================
 	
 	@GetMapping("/report/vacadetail")
-	public ModelAndView getLicenseVacaReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+	public ModelAndView getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ReportVacaVO reportVacaVO = new ReportVacaVO();
-		reportVacaVO = (ReportVacaVO)reportService.getLicenseVacaReportDetail(reportApplyVO);
+		reportVacaVO = reportService.getLicenseVacaReportDetail(reportVacaVO);
 		mv.addObject("reportVacaVO", reportVacaVO);
 		return mv;
 	}
 	
 	@GetMapping("/report/workdetail")
-	public ModelAndView getLicenseWorkReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+	public ModelAndView getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ReportWorkVO reportWorkVO = new ReportWorkVO();
-		reportWorkVO = (ReportWorkVO)reportService.getLicenseWorkReportDetail(reportApplyVO);
+		reportWorkVO = reportService.getLicenseWorkReportDetail(reportWorkVO);
 		mv.addObject("reportWorkVO", reportWorkVO);
 		return mv;
 	}
 	
 	@GetMapping("/report/paydetail")
-	public ModelAndView getLicensePayReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+	public ModelAndView getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ReportPayVO reportPayVO = new ReportPayVO();
-		reportPayVO = (ReportPayVO)reportService.getLicensePayReportDetail(reportApplyVO);
+		reportPayVO = reportService.getLicensePayReportDetail(reportPayVO);
 		mv.addObject("reportPayVO", reportPayVO);
 		return mv;
 	}
 	
 	@GetMapping("/report/sorrydetail")
-	public ModelAndView getLicenseSorryReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+	public ModelAndView getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ReportSorryVO reportSorryVO = new ReportSorryVO();
-		reportSorryVO = (ReportSorryVO)reportService.getLicenseSorryReportDetail(reportApplyVO);
+		reportSorryVO = reportService.getLicenseSorryReportDetail(reportSorryVO);
 		mv.addObject("reportSorryVO", reportSorryVO);
 		return mv;
 	}
@@ -394,14 +412,29 @@ public class ReportController {
 	}
 	
 	@GetMapping("/report/detail")
-	public void getMyReportDetail(ReportApplyVO reportApplyVO,String cat) throws Exception{
+	public ModelAndView getMyReportDetail(ModelAndView mv,ReportApplyVO reportApplyVO) throws Exception{
 		
 		reportApplyVO.setId(1209);
 		
-		if(cat.equals("1")) {
-			
-		}
+//		int result = reportApplyVO.getReportNum();
+//		
+//		if(result == 1) {
+//			ReportVacaVO reportVacaVO = reportService.getMyVacaDetail(reportApplyVO);
+//			mv.addObject("vo", reportVacaVO);
+//		}else if(result == 2) {
+//			ReportWorkVO reportWorkVO = reportService.getMyWorkDetail(reportApplyVO);
+//			mv.addObject("vo", reportWorkVO);
+//		}else if(result == 3) {
+//			ReportPayVO reportPayVO = reportService.getMyPayDetail(reportApplyVO);
+//			mv.addObject("vo", reportPayVO);
+//		}else if(result == 4) {
+//			ReportSorryVO reportSorryVO = reportService.getMySorryDetail(reportApplyVO);
+//			mv.addObject("vo", reportSorryVO);
+//		}
 		
+		mv.setViewName("report/mydetail");
+		
+		return mv;
 		
 	}
 	

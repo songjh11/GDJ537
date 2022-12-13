@@ -21,7 +21,8 @@ public interface ReportMapper {
 	
 	
 	//=======================김도영===================
-	
+	//신청보고서
+	public int setReportApply(ReportApplyVO reportApplyVO)throws Exception;
 	
 	
 	
@@ -53,11 +54,18 @@ public interface ReportMapper {
 	//================================================
 	
 	
-	//=======================장민석===================
+	//=======================결재신청 insert===================
 	
-	public ReportPayVO selectPay(ReportPayVO reportPayVO) throws Exception;
+	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception;
 	
-	public ReportSorryVO selectSorry(ReportSorryVO reportSorryVO) throws Exception;
+	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception;
+	
+	public void setAddPay(ReportPayVO reportPayVO) throws Exception;
+	
+	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception;
+	
+	public void setAddApply(ReportApplyVO reportApplyVO) throws Exception;
+
 	
 	//================================================
 	
@@ -66,13 +74,13 @@ public interface ReportMapper {
 	
 	public Integer getLicenseCheck(ReportVO reportVO) throws Exception;
 	
-	public ReportVacaVO getLicenseVacaReportDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportVacaVO getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception;
 	
-	public ReportVacaVO getLicenseWorkReportDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportWorkVO getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception;
 	
-	public ReportVacaVO getLicensePayReportDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportPayVO getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception;
 	
-	public ReportVacaVO getLicenseSorryReportDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception;
 	
 	public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception;
 	
