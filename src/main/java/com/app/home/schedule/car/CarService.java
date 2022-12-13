@@ -55,7 +55,7 @@ public class CarService {
 		return result; 
 	}
 	
-	// 상세보기
+	// 차량 상세보기
 	public GoodsVO getGoods(GoodsVO goodsVO) throws Exception {
 		
 		return carMapper.getGoods(goodsVO);

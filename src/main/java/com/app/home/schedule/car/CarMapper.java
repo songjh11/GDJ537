@@ -25,8 +25,9 @@ public interface CarMapper {
 	// 예약
 	public int setReserve(ReserveVO reserveVO) throws Exception;	
 	
-	// 상세보기
+	// 차량 상세보기
 	public GoodsVO getGoods(GoodsVO goodsVO) throws Exception;
 	
+	// 차량 전체 리스트
 	public List<GoodsVO> getGoodsList(GoodsVO goodsVO) throws Exception;
 }
