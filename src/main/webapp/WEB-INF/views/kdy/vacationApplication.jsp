@@ -60,8 +60,8 @@
                         <div class="row" style="border-bottom: solid 1px black; margin-top: -120px; width: 368px; margin-left: 30px; height: 30px; font-size: 15px;">
                             <div style="padding-top:3px; letter-spacing: 0; margin-left: 30px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
                                                                                                 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
-                            <div class="col-sm my-3" style="align-items:center; display: flex; justify-content:center;" id="ajaaja"><img src="/img/report/sign.png" width="80" height="80"></div>
-                            <div class="col-sm my-3" style="align-items:center; display: flex; justify-content:center;" id="ajaaja"><img src="/img/report/sign.png" width="80" height="80"></div>
+                            <div class="col-sm my-3" style="align-items:center; display: flex; justify-content:center;" id="ajaaja"><img src="/img/report/sign.png" width="50px" height="50px"></div>
+                            <div class="col-sm my-3" style="align-items:center; display: flex; justify-content:center;" id="ajaaja"><img src="/img/report/sign.png" width="50px" height="50px"></div>
                             <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
                             
                         </div>
