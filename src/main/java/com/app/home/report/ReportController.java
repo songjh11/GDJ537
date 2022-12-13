@@ -160,6 +160,17 @@ public class ReportController {
 		ModelAndView mv = new ModelAndView();
 		
 		List<ReportVO> ar = reportService.getLicenserList(reportVO);
+//		
+//		log.info("roleName :: {} ", ar.get(ar.).getRoleVO().getRoleName());
+		
+//		String str = ar.get(ar.size()).getRoleVO().getRoleName();
+		
+		for(ReportVO str: ar) {
+			str.getRoleVO().setRoleName(str.getRoleVO().getRoleName().substring(5));
+			log.info("auth {} " ,str.getRoleVO().getRoleName().substring(5));
+		}
+		
+		
 		
 		log.info("내 승인자 테이블 아이디 :: {} " , reportVO.getId());
 //		log.info("내 승인자 테이블 이름 :: {} " , reportVO.getUserVO().getName());
