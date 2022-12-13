@@ -32,8 +32,8 @@ public class ReportService {
 		return result;
 	}
 	//업무 보고서
-	public int setWorkReport(WorkReportVO workReportVO)throws Exception{
-		int result = reportMapper.setWorkReport(workReportVO);
+	public int setWorkReport(ReportWorkVO reportWorkVO)throws Exception{
+		int result = reportMapper.setWorkReport(reportWorkVO);
 		return result;
 	}
 	

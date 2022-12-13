@@ -53,7 +53,7 @@ public class ReportController {
 	}
 	//업무보고서
 	@GetMapping("/kdy/workReport")
-	public String workReport()throws Exception{
+	public String workReport(ReportWorkVO reportWorkVO, Principal principal)throws Exception{
 		return "/kdy/workReport";
 	}
 	

@@ -25,7 +25,7 @@ public interface ReportMapper {
 	//신청보고서
 	public int setReportApply(ReportApplyVO reportApplyVO)throws Exception;
 	//업무보고서
-	public int setWorkReport(WorkReportVO workReportVO)throws Exception;
+	public int setWorkReport(ReportWorkVO reportWorkVO)throws Exception;
 	
 	
 	
