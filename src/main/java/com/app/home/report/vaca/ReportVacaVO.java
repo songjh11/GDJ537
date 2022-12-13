@@ -3,6 +3,7 @@ package com.app.home.report.vaca;
 import java.sql.Date;
 
 import com.app.home.report.ReportApplyVO;
+import com.app.home.user.UserVO;
 
 public class ReportVacaVO extends ReportApplyVO {
 	
@@ -14,6 +15,10 @@ public class ReportVacaVO extends ReportApplyVO {
 	private String period;
 	private Integer call;
 	private Date date;
+	
+	private int depNum;
+	
+	private UserVO userVO;
 	
 	public Long getRnum() {
 		return rnum;
@@ -62,6 +67,18 @@ public class ReportVacaVO extends ReportApplyVO {
 	}
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+	public int getDepNum() {
+		return depNum;
+	}
+	public void setDepNum(int depNum) {
+		this.depNum = depNum;
+	}
+	public UserVO getUserVO() {
+		return userVO;
+	}
+	public void setUserVO(UserVO userVO) {
+		this.userVO = userVO;
 	}
 	
 	
