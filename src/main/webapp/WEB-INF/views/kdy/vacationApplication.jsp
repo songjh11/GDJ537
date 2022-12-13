@@ -83,7 +83,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 성명
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <textarea value="NAME" style="border: 0; text-align: center; width: 645px; height: 97px;"></textarea>
+                                    <textarea value="NAME" style="border: 0; text-align: center; width: 645px; height: 97px;">${vo.name}</textarea>
                                     <!-- USER.NAME = 이름 -->
                                 </div>
                             </div>
