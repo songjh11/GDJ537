@@ -74,13 +74,13 @@ public interface ReportMapper {
 	
 	public Integer getLicenseCheck(ReportVO reportVO) throws Exception;
 	
-	public ReportVacaVO getLicenseVacaReportDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportVacaVO getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception;
 	
-	public ReportVacaVO getLicenseWorkReportDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportWorkVO getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception;
 	
-	public ReportVacaVO getLicensePayReportDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportPayVO getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception;
 	
-	public ReportVacaVO getLicenseSorryReportDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception;
 	
 	public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception;
 	
