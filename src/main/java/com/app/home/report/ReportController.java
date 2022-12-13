@@ -27,6 +27,7 @@ import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
 import com.app.home.report.work.ReportWorkVO;
 import com.app.home.user.DepartmentVO;
+import com.app.home.user.UserMapper;
 import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,9 @@ public class ReportController {
 	
 	@Autowired
 	private ReportService reportService;
+	
+	@Autowired
+	private UserMapper userMapper;
 
 	
 	//=======================김도영===================
@@ -50,23 +54,60 @@ public class ReportController {
 	}
 	//휴가신청서
 	@GetMapping("/kdy/vacationApplication")
-	public String vacationApplication()throws Exception{
-		return "/kdy/vacationApplication";
+	public ModelAndView vacationApplication(Principal principal)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int id = Integer.parseInt(principal.getName());
+		
+		UserVO userVO = new UserVO();
+		userVO.setId(id);
+		userVO = userMapper.getMypage(userVO);
+		mv.addObject("vo", userVO);
+		mv.setViewName("/kdy/vacationApplication");
+		
+		return mv;
 	}
 	//업무보고서
 	@GetMapping("/kdy/workReport")
-	public String workReport()throws Exception{
-		return "/kdy/workReport";
+	public ModelAndView workReport(Principal principal)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int id = Integer.parseInt(principal.getName());
+		
+		UserVO userVO = new UserVO();
+		userVO.setId(id);
+		userVO = userMapper.getMypage(userVO);
+		mv.addObject("vo", userVO);
+		mv.setViewName("/kdy/workReport");
+		
+		
+		return mv;
 	}
 	//지출 결의서
 	@GetMapping("/kdy/cashDisbursementVoucher")
-	public String cashDisbursementVoucher()throws Exception{
-		return "/kdy/cashDisbursementVoucher";
+	public ModelAndView cashDisbursementVoucher(Principal principal)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int id = Integer.parseInt(principal.getName());
+		
+		UserVO userVO = new UserVO();
+		userVO.setId(id);
+		userVO = userMapper.getMypage(userVO);
+		mv.addObject("vo", userVO);
+		mv.setViewName("/kdy/cashDisbursementVoucher");
+		
+		return mv;
 	}
 	//시말서
 	@GetMapping("/kdy/writtenApology")
-	public String writtenApology()throws Exception{
-		return "/kdy/writtenApology";
+	public ModelAndView writtenApology(Principal principal)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int id = Integer.parseInt(principal.getName());
+		
+		UserVO userVO = new UserVO();
+		userVO.setId(id);
+		userVO = userMapper.getMypage(userVO);
+		mv.addObject("vo", userVO);
+		mv.setViewName("/kdy/writtenApology");
+		
+		return mv;
 	}
 	
 	
