@@ -16,7 +16,8 @@
     <c:import url="../temp/layout_header.jsp"></c:import>
 </head>
 <body>
-	
+	<c:choose>
+		<c:when test="${vo.reportNum eq 1}">
 		<div class="container px-4 px-lg-5 my-5">
 	        <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1150px; border: solid 1px black; text-align: center;">
 	            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 25px; background-color: rgb(255, 255, 249); text-align: center; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
@@ -30,7 +31,7 @@
 	                            <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
 	                                소속
 	                                <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-	                                    <input type="text" style="border: 0; text-align: center; width: 645px; height: 97px;" readonly value="abc">
+	                                    <input type="text" style="border: 0; text-align: center; width: 645px; height: 97px;" readonly value="abc"/>
 	                                    <!-- DEOARTMENT.DEPNAME = 부서번호 -->
 	                                </div>
 	                            </div>
@@ -39,7 +40,7 @@
 	                            <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
 	                                성명
 	                                <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-	                                    <input type="text" style="border: 0; text-align: center; width: 645px; height: 97px;" readonly value="abc">
+	                                    <input type="text" style="border: 0; text-align: center; width: 645px; height: 97px;" readonly value="abc"/>
 	                                    <!-- USER.NAME = 이름 -->
 	                                </div>
 	                            </div>
@@ -49,7 +50,7 @@
 	                            <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
 	                                직위
 	                                <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-	                                    <textarea value="ROLENAME" style="border: 0; text-align: center; width: 645px; height: 97px;"></textarea>
+	                                    <input type="text" style="border: 0; text-align: center; width: 645px; height: 97px;" readonly value="abc"/>
 	                                    <!-- ROLE.ROELNAME = 직급이름  -->
 	                                </div>
 	                            </div>
@@ -78,7 +79,7 @@
 	                            <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
 	                                사유
 	                                <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-	                                    <textarea value="text" style="border: 0; text-align: left; width: 645px; height: 97px;"></textarea>
+	                                    <input type="text" style="border: 0; text-align: center; width: 645px; height: 97px;" readonly value="abc"/>
 	                                </div>
 	                            </div>    
 	                        </div>
@@ -110,7 +111,7 @@
 	                            <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 45px; padding-top: 34px; letter-spacing: 15px;">
 	                                비상연락망
 	                                <div style="margin-left: 205px; width: 650px; height: 100px; margin-top: -64px;">
-	                                    <input type="call" style="border: 0; width: 645px; height: 97px;  text-align:center"/>
+	                                    <input type="call" style="border: 0; width: 645px; height: 97px;  text-align:center" readonly/>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -124,7 +125,7 @@
 	                                <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" value="31"/>일</div>
 	                            </div>
 	                            <div style="font-weight: bold; margin-top: 50px; margin-left: 150px;">
-	                                신청자 : <input type="text" value="홍길동" style="border:0 solid black"/>
+	                                신청자 : <input type="text" readonly value="홍길동" style="border:0 solid black"/>
 	                            </div>
 	                        </div>
 	
@@ -135,5 +136,10 @@
 	        </div>    
 	
 	    </div>
+	    </c:when>
+	    <c:when test="${vo.reportNum eq 2}"></c:when>
+	    <c:when test="${vo.reportNum eq 3}"></c:when>
+	    <c:when test="${vo.reportNum eq 4}"></c:when>
+	</c:choose>
 </body>
 </html>
