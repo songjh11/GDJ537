@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.home.user.EmployeeVO;
+import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,7 +38,7 @@ public class PickService {
 		}
 	}
 	
-	public List<EmployeeVO> getPickList(String myId) throws Exception{
+	public List<UserVO> getPickList(String myId) throws Exception{
 		return pickMapper.getPickList(myId);
 	}
 	

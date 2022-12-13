@@ -58,7 +58,7 @@
 	</select>
 	
 	
-	<resultMap type="EmployeeVO" id="getEmpListResult">
+	<resultMap type="UserVO" id="getEmpListResult">
 		<id column="NUM" property="num"/>
 		<result column="ID" property="id"/>
 		<result column="DEPNUM" property="depNum"/>

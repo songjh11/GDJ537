@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.user.DepartmentVO;
-import com.app.home.user.EmployeeVO;
+import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,8 +41,8 @@ public class MessengerController {
 		Integer id = 10;
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> dl = messengerService.getDepList();
-		List<EmployeeVO> el = messengerService.getEmpList();
-		List<EmployeeVO> pl = pickService.getPickList(id.toString());
+		List<UserVO> el = messengerService.getEmpList();
+		List<UserVO> pl = pickService.getPickList(id.toString());
 		
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
@@ -59,7 +59,7 @@ public class MessengerController {
 		Map<String, String> map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("kind", kind);
-		List<EmployeeVO> el = messengerService.getSearchResult(map);
+		List<UserVO> el = messengerService.getSearchResult(map);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("myId", id);
 		mv.addObject("empList", el);
@@ -86,7 +86,7 @@ public class MessengerController {
 	
 	//수신함
 	@GetMapping("note")
-	public ModelAndView getReceiveNoteList(EmployeeVO employeeVO, NotePager notePager)throws Exception{
+	public ModelAndView getReceiveNoteList(UserVO employeeVO, NotePager notePager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		//임시 id
 		employeeVO.setId(20221231);
@@ -106,8 +106,8 @@ public class MessengerController {
 		
 		Integer id = 1;
 		List<DepartmentVO> dl = messengerService.getDepList();
-		List<EmployeeVO> el = messengerService.getEmpList();
-		List<EmployeeVO> pl = pickService.getPickList(id.toString());
+		List<UserVO> el = messengerService.getEmpList();
+		List<UserVO> pl = pickService.getPickList(id.toString());
 		
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
@@ -121,7 +121,7 @@ public class MessengerController {
 	//발신함
 	@GetMapping("note/sent")
 	@ResponseBody
-	public ModelAndView getSendNoteList(EmployeeVO employeeVO, NotePager notePager)throws Exception{
+	public ModelAndView getSendNoteList(UserVO employeeVO, NotePager notePager)throws Exception{
 		
 		
 		
@@ -156,7 +156,7 @@ public class MessengerController {
 	
 	//쪽지발송
 	@GetMapping("note/send")
-	public ModelAndView setSendNote(EmployeeVO employeeVO)throws Exception{
+	public ModelAndView setSendNote(UserVO employeeVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		employeeVO.setId(20221231);
 		mv.addObject("member", employeeVO);
@@ -205,7 +205,7 @@ public class MessengerController {
 		ModelAndView mv = new ModelAndView();
 		
 		for(Integer id : roomVO.getId()) {
-			EmployeeVO employeeVO = new EmployeeVO();
+			UserVO employeeVO = new UserVO();
 			employeeVO.setId(id);
 		}
 		

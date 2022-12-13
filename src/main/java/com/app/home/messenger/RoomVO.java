@@ -3,7 +3,7 @@ package com.app.home.messenger;
 import java.sql.Date;
 import java.util.List;
 
-import com.app.home.user.EmployeeVO;
+import com.app.home.user.UserVO;
 
 import lombok.Data;
 
@@ -24,7 +24,7 @@ public class RoomVO {
 	// 유저목록
 	private Integer userNum;
 	// 방장 한명
-	private EmployeeVO employeeVO;
+	private UserVO employeeVO;
 	// 방인원의 id를 받을 배열선언
 	private int [] id;
 	

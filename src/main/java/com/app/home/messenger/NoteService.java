@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.home.user.EmployeeVO;
+import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,7 +22,7 @@ public class NoteService {
 		return noteMapper.setSendNote(noteVO);
 	}
 	
-	public List<NoteVO> getSendNoteList(EmployeeVO employeeVO, NotePager notePager)throws Exception {
+	public List<NoteVO> getSendNoteList(UserVO employeeVO, NotePager notePager)throws Exception {
 		Map<String, Object> countMap = new HashMap<>();
 		countMap.put("id", employeeVO.getId());
 		countMap.put("search", notePager.getSearch());
@@ -47,7 +47,7 @@ public class NoteService {
 		return noteMapper.getSendNoteList(map);
 	}
 	
-	public List<NoteVO> getReceiveNoteList(EmployeeVO employeeVO, NotePager notePager)throws Exception {
+	public List<NoteVO> getReceiveNoteList(UserVO employeeVO, NotePager notePager)throws Exception {
 		
 		//카운트 매퍼용 맵
 		Map<String, Object> countMap = new HashMap<>();

@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.home.user.DepartmentVO;
-import com.app.home.user.EmployeeVO;
+
+import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,7 +21,7 @@ public class MessengerService {
 	@Autowired
 	private MessengerMapper messengerMapper; 
 	
-	public List<EmployeeVO> getEmpList () throws Exception{
+	public List<UserVO> getEmpList () throws Exception{
 		return messengerMapper.getEmpList();
 	}
 	
@@ -28,7 +29,7 @@ public class MessengerService {
 		return messengerMapper.getDepList();
 	}
 	
-	public List<EmployeeVO> getSearchResult (Map<String, String> map) throws Exception{
+	public List<UserVO> getSearchResult (Map<String, String> map) throws Exception{
 		return messengerMapper.getSearchResult(map); 
 	}
 	
@@ -44,7 +45,7 @@ public class MessengerService {
 		if(result > 0) {
 				
 			for(int ids : roomVO.getId()) {
-				EmployeeVO employeeVO = new EmployeeVO();
+				UserVO employeeVO = new UserVO();
 				employeeVO.setId(ids);
 				roomVO.setEmployeeVO(employeeVO);
 				

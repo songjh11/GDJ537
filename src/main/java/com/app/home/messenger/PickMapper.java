@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.app.home.user.EmployeeVO;
+import com.app.home.user.UserVO;
 
 @Mapper
 public interface PickMapper {
@@ -18,7 +18,7 @@ public interface PickMapper {
 	
 	public int setPick(Map<String, Object> map) throws Exception;
 	
-	public List<EmployeeVO> getPickList(String myId) throws Exception;
+	public List<UserVO> getPickList(String myId) throws Exception;
 	
 	public int perCheck(Map<String, Object> map) throws Exception;
 	
