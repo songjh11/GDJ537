@@ -46,6 +46,7 @@ $(".roleLi").click(function(){
     console.log("ri ==> " , ri);
 
     $("#roleId").val(ri);
+    console.log($("#roleId").val(ri));
 
 
     $("#roleInput").val($(this).text());
