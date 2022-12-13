@@ -91,14 +91,26 @@
 	
 	<!-- ==================================== -->
 	
-	<!-- ============== 장민석 ================ -->
+	<!-- ============== 결재 신청 insert ================ -->
 	
+	<insert id="setAddApply" parameterType="ReportApplyVO">
 	
-	<insert id="selectPay" parameterType="ReportPayVO">
-		SELECT * FROM REPORTPAY VALUES() WHERE APPLYNUM = #{applyNum}
 	</insert>
-	<insert id="selectSorry" parameterType="ReportSorryVO">
-		SELECT * FROM REPORTSORRY VALUES() WHERE APPLYNUM = #{applyNum}
+	
+	<insert id="setAddPay" parameterType="ReportPayVO">
+		
+	</insert>
+	
+	<insert id="setAddSorry" parameterType="ReportSorryVO">
+		
+	</insert>
+	
+	<insert id="setAddWork" parameterType="ReportWorkVO">
+	
+	</insert>
+	
+	<insert id="setAddVaca" parameterType="ReportVacaVO">
+	
 	</insert>
 	
 	

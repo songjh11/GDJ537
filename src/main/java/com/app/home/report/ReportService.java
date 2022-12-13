@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.app.home.report.pay.ReportPayVO;
 import com.app.home.report.sorry.ReportSorryVO;
@@ -70,17 +72,24 @@ public class ReportService {
 	//================================================
 	
 	
-	//=======================장민석===================
+	//=======================결재 신청 insert===================
 	
 	
-	public ReportPayVO selectPay(ReportPayVO reportPayVO) throws Exception{
-		return reportMapper.selectPay(reportPayVO);
+	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		
+	} 
+	
+	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		
 	}
 	
-	public ReportSorryVO selectSorry(ReportSorryVO reportSorryVO) throws Exception{
-		return reportMapper.selectSorry(reportSorryVO);
+	public void setAddPay(ReportPayVO reportPayVO) throws Exception{
+		
 	}
 	
+	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+		
+	}
 	
 	//================================================
 	

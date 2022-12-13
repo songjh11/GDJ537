@@ -181,29 +181,48 @@ public class ReportController {
 	//================================================
 	
 	
-	//=======================장민석===================
+	//=======================결재신청 insert===================
 	
+	@GetMapping("/report/addvaca")
+	public void setAddVaca() throws Exception{
+		
+	} 
 	
-	@GetMapping("/detailPay")
-	public ModelAndView selectPay(ReportPayVO reportPayVO) throws Exception{
-		ModelAndView mv = new ModelAndView();
+	@GetMapping("/report/addwork")
+	public void setAddWork() throws Exception{
 		
-		reportPayVO = reportService.selectPay(reportPayVO);
-		mv.addObject("vo",reportPayVO);
-		mv.setViewName("list/detailPay");
-		
-		return mv;
 	}
 	
-	@GetMapping("/detailSorry")
-	public ModelAndView selectSorry(ReportSorryVO reportSorryVO) throws Exception{
-		ModelAndView mv = new ModelAndView();
+	@GetMapping("/report/addpay")
+	public void setAddPay() throws Exception{
 		
-		reportSorryVO = reportService.selectSorry(reportSorryVO);
-		mv.addObject("vo", reportSorryVO);
-		mv.setViewName("list/detailSorry");
+	}
+	
+	@GetMapping("/report/addsorry")
+	public void setAddSorry() throws Exception{
 		
-		return mv;
+	}
+	
+	
+	
+	@PostMapping("/report/addvaca")
+	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		
+	} 
+	
+	@PostMapping("/report/addwork")
+	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		
+	}
+	
+	@PostMapping("/report/addpay")
+	public void setAddPay(ReportPayVO reportPayVO) throws Exception{
+		
+	}
+	
+	@PostMapping("/report/addsorry")
+	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+		
 	}
 	
 	
