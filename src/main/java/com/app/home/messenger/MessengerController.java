@@ -180,51 +180,39 @@ public class MessengerController {
 	
 	// --------------------- 효경 ------------------------------
 	
-	// 채팅방 추가
-	@PostMapping("addRoomUser")
-	@ResponseBody
-	public ModelAndView setAddRoomUser(@RequestParam(value = "id") List<Integer> ids)throws Exception{
+	
+	// 채팅방 목록
+	@GetMapping("addRoom")
+	public String setAddRoom()throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		List<EmployeeVO> ar = new ArrayList<>();
-		RoomVO roomVO = new RoomVO();
 		
-		for(Integer id : ids) {
-			log.info("임플로이브이오 => {} ", id);
-			EmployeeVO employeeVO = new EmployeeVO();
-			employeeVO.setId(id);
-			ar.add(employeeVO);
-			roomVO.setEmployeeVOs(ar);
-		}
+		List<RoomVO> roomVOs = new ArrayList<>();
 		
-		mv.addObject("userList", ar);
-		mv.setViewName("messenger/chat");
+		roomVOs = messengerService.getRoomList();
 		
-		
-		return mv;
-	}
-	
-	// 채팅방 추가
-	@GetMapping("addRoom")
-	public String setAddRoom(@RequestParam(value = "id") List<String> ids)throws Exception{
-		
-		for(String id : ids) {
-			log.info("임플로이브이오 => {} ", id);
-			
-		}
+		mv.addObject("roomList", roomVOs);
+		mv.setViewName("messenger/room/addRoom");
 		
 		return "messenger/room/addRoom";
 	}
 	
 	// 채팅방 추가
 	@PostMapping("addRoom")
-	public ModelAndView setAddRoom(RoomVO roomVO)throws Exception{
+	public ModelAndView setAddRoom(HttpSession session, RoomVO roomVO)throws Exception{
+		
+		roomVO.setHostId(5678);
 		ModelAndView mv = new ModelAndView();
+		
+		for(Integer id : roomVO.getId()) {
+			EmployeeVO employeeVO = new EmployeeVO();
+			employeeVO.setId(id);
+		}
 		
 		int result = messengerService.setAddRoom(roomVO);
 		
 		
-		mv.setViewName("messenger/addRoom");
+		mv.setViewName("messenger/chat");
 		
 		return mv;
 	}
