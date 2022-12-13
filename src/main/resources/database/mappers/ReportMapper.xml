@@ -103,25 +103,29 @@
 	
 	<!-- ============== 결재 신청 insert ================ -->
 	
-	<insert id="setAddApply" parameterType="ReportApplyVO">
-	
+	<insert id="setAddApply" parameterType="ReportApplyVO" useGeneratedKeys="true" keyProperty="applyNum">
+		INSERT INTO REPORTAPPLY 
+		VALUES (NULL, #{id}, #{depNum}, #{reportNum}, 1, 0, SYSDATE(), #{name}, #{roleName}, #{depName}
 	</insert>
 	
 	<insert id="setAddPay" parameterType="ReportPayVO">
-		
+		INSERT INTO REPORTPAY
+		VALUES(NULL, #{applyNum}, #{title}, #{wdate}, #{cdate},#{category},#{pay},#{sum},#{payment},#{date})
 	</insert>
 	
 	<insert id="setAddSorry" parameterType="ReportSorryVO">
-		
+		INSERT INTO REPORTSORRY
+		VALUES(NULL, #{applyNum},#{date}, #{text}, #{order})
 	</insert>
 	
 	<insert id="setAddWork" parameterType="ReportWorkVO">
-	
+		INSERT INTO REPORTWORK
+		VALUES(NULL, #{applyNum}, #{date}, #{am}, #{pm}, #{undo}, #{todo}, #{wrong}, #{etc})
 	</insert>
 	
 	<insert id="setAddVaca" parameterType="ReportVacaVO">
 		INSERT INTO REPORTVACA 
-		VALUES(null, #{applyNum}, #{categoryNum}, #{text}, #{period}, #{call}, sysdate())
+		VALUES(NULL, #{applyNum}, #{categoryNum}, #{text}, #{period}, #{call}, sysdate())
 	</insert>
 	
 	

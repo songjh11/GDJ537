@@ -209,13 +209,17 @@ public class ReportController {
 	
 	
 	@PostMapping("/report/addvaca")
-	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+	public String setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		int result = reportService.setAddVaca(reportVacaVO);
 		
+		return "redirect:/report/mylist?cat=2";
 	} 
 	
 	@PostMapping("/report/addwork")
-	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+	public String setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		int result = reportService.setAddWork(reportWorkVO);
 		
+		return "redirect:/report/mylist?cat=3";
 	}
 	
 	@PostMapping("/report/addpay")
@@ -226,8 +230,10 @@ public class ReportController {
 	}
 	
 	@PostMapping("/report/addsorry")
-	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+	public String setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+		int result = reportService.setAddSorry(reportSorryVO);
 		
+		return "redirect:/report/mylist?cat=4";
 	}
 	
 	
