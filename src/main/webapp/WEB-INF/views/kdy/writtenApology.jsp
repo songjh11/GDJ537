@@ -8,14 +8,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Document</title>
+    <style>
+        #ajaaja{
+            border-right: solid 1px black;
+             height: 90px;
+              width: 122px;
+              margin-top: 6px;
+        }
+    </style>
     <script defer src="/js/Apology.js"></script>
 
 </head>
 <body>
     <div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 25px; background-color: rgb(255, 255, 249); text-align: center; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
+            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 45px; background-color: rgb(255, 255, 249); text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
                    시말서
+                   <div style="border: solid 1px black; width: 400px; margin-left: 500px; height: 120px; margin-top: -75px;">
+                    <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
+                        결<br>
+                        재
+                    </div>
+                    <div class="row" style="border-bottom: solid 1px black; margin-top: -120px; width: 368px; margin-left: 30px; height: 30px; font-size: 15px;">
+                        <div style="padding-top:3px; letter-spacing: 0; margin-left: 30px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
+                                                                                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
+                        <div id="ajaaja"></div>
+                        <div id="ajaaja"></div>
+                        <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                        
+                    </div>
+                </div>
             </div>
             <hr >
 
@@ -59,7 +81,7 @@
                 </div>    
             </div>
 
-            <div style="margin-top: 20px; margin-left: 45px; width: 900px; height: 1010px; border: solid 1px black;" >
+            <div style="margin-top: 20px; margin-left: 45px; width: 900px; height: 950px; border: solid 1px black;" >
                 <div style="font-weight: bold; margin-top: 15px;">
                     위 본인은 직원으로서 제 사규를 맡은바 책임과 의무를 다하여 성실히 복무하여야함에도<br>
                     불구하고 아래와 같이 회사의 관련 규정을 위반하였는바 이에 시말서를 제출하고<br>
@@ -90,9 +112,6 @@
 
         </div>    
 
-    </div>
-    <div style=" text-align: center;">
-        <button id="addSorry">제출하기</button>
     </div>
 </body>
 </html>
