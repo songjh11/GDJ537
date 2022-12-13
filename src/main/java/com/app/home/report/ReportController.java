@@ -207,46 +207,33 @@ public class ReportController {
 	
 	//=======================결재신청 insert===================
 	
-	@GetMapping("/report/addvaca")
-	public void setAddVaca() throws Exception{
-		
-	} 
-	
-	@GetMapping("/report/addwork")
-	public void setAddWork() throws Exception{
-		
-	}
-	
-	@GetMapping("/report/addpay")
-	public void setAddPay() throws Exception{
-		
-	}
-	
-	@GetMapping("/report/addsorry")
-	public void setAddSorry() throws Exception{
-		
-	}
-	
-	
 	
 	@PostMapping("/report/addvaca")
-	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+	public String setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		int result = reportService.setAddVaca(reportVacaVO);
 		
+		return "redirect:/report/mylist?cat=2";
 	} 
 	
 	@PostMapping("/report/addwork")
-	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+	public String setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		int result = reportService.setAddWork(reportWorkVO);
 		
+		return "redirect:/report/mylist?cat=3";
 	}
 	
 	@PostMapping("/report/addpay")
-	public void setAddPay(ReportPayVO reportPayVO) throws Exception{
+	public String setAddPay(ReportPayVO reportPayVO) throws Exception{
+		int result = reportService.setAddPay(reportPayVO);
 		
+		return "redirect:/report/mylist?cat=1";
 	}
 	
 	@PostMapping("/report/addsorry")
-	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+	public String setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+		int result = reportService.setAddSorry(reportSorryVO);
 		
+		return "redirect:/report/mylist?cat=4";
 	}
 	
 	
