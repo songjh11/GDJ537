@@ -136,6 +136,7 @@
     	let depNum = $("#dropId").val();
     	let roleNum = $("#roleId").val();
     	let value = $("#roleInput").val();
+    	let tbd = $("#tbd");
             $.ajax({
                 type: 'GET',
                 url:  '/report/insa1?depNum='+depNum+'&roleNum='+roleNum,
@@ -153,6 +154,7 @@
                 		
                 		
                 	}
+
                 	
                 })
         
