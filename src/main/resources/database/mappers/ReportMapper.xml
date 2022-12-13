@@ -9,9 +9,9 @@
 	VALUES (NULL, #{id}, #{depNum}, #{reportNum}, 1, 0, SYSDATE(), #{name}, #{roleName}, #{depName}) 
 <!-- 	VALUES (NULL, 1209, 4, #{reportNum}, 1, 0, SYSDATE(), 'hjs', 'IT개발팀', 'ROLE_MAKER') -->
 	</insert>
-	<insert id="setWorkReport" parameterType="WorkRepotVO">
+	<insert id="setWorkReport" parameterType="ReportWorkVO">
 	INSERT INTO REPORTWORK 
-	VALUES (NULL, #{applyNum}, SYSDATE(), #{am}, #{pm}, #{undo}, #{todo}, #{wRong}, #{etc})
+	VALUES (NULL, #{applyNum}, SYSDATE(), #{am}, #{pm}, #{undo}, #{todo}, #{wrong}, #{etc})
 	</insert>
 	
 	
