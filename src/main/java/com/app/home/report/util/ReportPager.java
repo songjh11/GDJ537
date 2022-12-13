@@ -23,11 +23,11 @@ public class ReportPager {
 	private int roleNum;
 	private int id;
 	
-	public String getSearch() {
-		if(this.search == null) {
-			this.search = "";
+	public String getKind() {
+		if(this.kind == null) {
+			this.kind = "";
 		}
-		return search;
+		return kind;
 	}
 	
 	public ReportPager() {

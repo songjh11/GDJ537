@@ -120,7 +120,8 @@
 	</insert>
 	
 	<insert id="setAddVaca" parameterType="ReportVacaVO">
-	
+		INSERT INTO REPORTVACA 
+		VALUES(null, #{applyNum}, #{categoryNum}, #{text}, #{period}, #{call}, sysdate())
 	</insert>
 	
 	
@@ -242,12 +243,40 @@
 	<!-- ==================================== -->
 	
 	<!-- ============== 류형민 ================ -->
+	<sql id="paging">
+		where r.id = #{id} <choose>
+								<when test="kind == '1'">
+									r.status = 1
+								</when>
+								<when test="kind == '2'">
+									r.status = 2
+								</when>
+								<when test="kind == '3'">
+									r.status = 3
+								</when>
+								<otherwise>
+								</otherwise>
+							</choose>
+	</sql>
+	
 	<!-- 휴가 신청 목록 가져오기 -->
 	<select id="getMyVacaList" parameterType="ReportPager" resultType="ReportVacaVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
+		INNER JOIN (SELECT rv.*,vg.CATEGORYNAME
+					FROM REPORTVACA rv
+					INNER JOIN 	
+					VACATEGORY vg ON rv.CATEGORYNUM = vg.CATEGORYNUM
+							) r2 ON r.APPLYNUM = r2.APPLYNUM
+		<include refid="paging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getMyVacaCount" resultType="Long">
+		SELECT COUNT(r.APPLYNUM)
+		FROM REPORTAPPLY r
 		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM 
-		where r.id = #{id};
+		<include refid="paging"></include>
 	</select>
 	
 	<!-- 시말서 목록 가져오기 -->
@@ -255,7 +284,15 @@
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
 		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM 
-		where r.id = #{id};
+		<include refid="paging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getMySorryCount" resultType="Long">
+		SELECT COUNT(r.APPLYNUM)
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		<include refid="paging"></include>
 	</select>
 	
 	<!-- 업무보고서 목록 가져오기 -->
@@ -263,7 +300,15 @@
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
 		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM 
-		where r.id = #{id};
+		<include refid="paging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getMyWorkCount" resultType="Long">
+		SELECT COUNT(r.APPLYNUM)
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM 
+		<include refid="paging"></include>
 	</select>
 	
 	<!-- 지출결의서 목록 가져오기 -->
@@ -271,7 +316,15 @@
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
 		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM 
-		where r.id = #{id};
+		<include refid="paging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getMyPayCount" resultType="Long">
+		SELECT COUNT(r.APPLYNUM)
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		<include refid="paging"></include>
 	</select>
 	
 	

@@ -183,7 +183,7 @@
                                             <tbody>
 												<c:forEach items="${list}" var="vo">
                                                 	<tr>
-                                                		<td>${vo.category}</td>
+                                                		<td>${vo.categoryName}</td>
                                                 		<td>${vo.text}</td>
                                                 		<td>${vo.period}</td>
                                                 		<td>${vo.date}</td>
@@ -495,6 +495,94 @@
                                     </tfoot> -->
                                 </table>
                             </div>
+                            	
+                            	<c:choose>
+                            		<c:when test="${cat eq 1}">                           		 
+		                            	<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./mylist?cat=1&page=${pager.startNum-1}&kind=${pager.kind}">《</a>
+												</li>
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./mylist?cat=1&page=${i}&kind=${pager.kind}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./mylist?cat=1&page=${pager.lastNum+1}&kind=${pager.kind}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:when test="${cat eq 2}">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./mylist?cat=2&page=${pager.startNum-1}&kind=${pager.kind}">《</a>
+												</li>
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./mylist?cat=2&page=${i}&kind=${pager.kind}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./mylist?cat=2&page=${pager.lastNum+1}&kind=${pager.kind}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:when test="${cat eq 3}">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./mylist?cat=3&page=${pager.startNum-1}&kind=${pager.kind}">《</a>
+												</li>
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./mylist?cat=3&page=${i}&kind=${pager.kind}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./mylist?cat=3&page=${pager.lastNum+1}&kind=${pager.kind}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:when test="${cat eq 4}">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./mylist?cat=4&page=${pager.startNum-1}&kind=${pager.kind}">《</a>
+												</li>
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./mylist?cat=4&page=${i}&kind=${pager.kind}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./mylist?cat=4&page=${pager.lastNum+1}&kind=${pager.kind}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:otherwise>
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./mylist?cat=2&page=${pager.startNum-1}&kind=${pager.kind}">《</a>
+												</li>
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./mylist?cat=2&page=${i}&kind=${pager.kind}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./mylist?cat=2&page=${pager.lastNum+1}&kind=${pager.kind}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:otherwise>
+                            	</c:choose>
                         </div>
                     </div>
 
