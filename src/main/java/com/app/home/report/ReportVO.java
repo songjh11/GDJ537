@@ -1,8 +1,10 @@
+
 package com.app.home.report;
 
 import java.sql.Date;
 import java.util.List;
 
+import com.app.home.report.util.ReportPager;
 import com.app.home.user.DepartmentVO;
 import com.app.home.user.RoleVO;
 import com.app.home.user.UserVO;
@@ -10,7 +12,7 @@ import com.app.home.user.UserVO;
 import lombok.Data;
 
 @Data
-public class ReportVO {
+public class ReportVO extends ReportPager {
 	
 	private int licenserNum;
 	private int depNum;

@@ -37,7 +37,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">결재 처리 목록</h1>
+                    <h1 class="h3 mb-2 text-gray-800">결재 승인 목록</h1>
                     <p class="mb-4">
                     	<a href="./finishreport?cat=1" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
@@ -95,7 +95,6 @@
 		                                            <th>보고서번호</th>
 		                                            <th>사원번호</th>
 		                                            <th>사원이름</th>
-		                                            <th>승인상태</th>
 		                                        </tr>
 	                                        </thead>
                                             <tbody>
@@ -104,31 +103,6 @@
                                                 		<td>${vo.applyNum}</td>
                                                 		<td>${vo.id}</td>
                                                 		<td>${vo.name}</td>
-                                                		<c:choose>
-	                                                		<c:when test="${vo.returns eq 1}">
-		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>팀장 반려</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>최종 관리자 반려</td>
-		                                                			</c:when>
-		                                                		</c:choose>
-		                                                	</c:when>
-		                                                	<c:otherwise>
-		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>팀장 승인 진행중</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>최종 관리자 승인 진행중</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>최종 관리자 승인 완료</td>
-		                                                			</c:when>
-		                                                		</c:choose>		                                                		
-		                                                	</c:otherwise>
-	                                                	</c:choose>
                                                 	</tr>
                                                 </c:forEach>
                                             </tbody>    
@@ -139,7 +113,6 @@
                                                     <th>보고서번호</th>
 		                                            <th>사원번호</th>
 		                                            <th>사원이름</th>
-		                                            <th>승인상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -148,31 +121,6 @@
                                                 		<td>${vo.applyNum}</td>
                                                 		<td>${vo.id}</td>
                                                 		<td>${vo.name}</td>
-                                                		<c:choose>
-	                                                		<c:when test="${vo.returns eq 1}">
-		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>팀장 반려</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>최종 관리자 반려</td>
-		                                                			</c:when>
-		                                                		</c:choose>
-		                                                	</c:when>
-		                                                	<c:otherwise>
-		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>팀장 승인 진행중</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>최종 관리자 승인 진행중</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>최종 관리자 승인 완료</td>
-		                                                			</c:when>
-		                                                		</c:choose>		                                                		
-		                                                	</c:otherwise>
-	                                                	</c:choose>
                                                 	</tr>
                                                 </c:forEach>
                                             </tbody>   
@@ -183,7 +131,6 @@
                                                     <th>보고서번호</th>
 		                                            <th>사원번호</th>
 		                                            <th>사원이름</th>
-		                                            <th>승인상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -192,31 +139,6 @@
                                                 		<td>${vo.applyNum}</td>
                                                 		<td>${vo.id}</td>
                                                 		<td>${vo.name}</td>
-                                                		<c:choose>
-	                                                		<c:when test="${vo.returns eq 1}">
-		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>팀장 반려</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>최종 관리자 반려</td>
-		                                                			</c:when>
-		                                                		</c:choose>
-		                                                	</c:when>
-		                                                	<c:otherwise>
-		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>팀장 승인 진행중</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>최종 관리자 승인 진행중</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>최종 관리자 승인 완료</td>
-		                                                			</c:when>
-		                                                		</c:choose>		                                                		
-		                                                	</c:otherwise>
-	                                                	</c:choose>
                                                 	</tr>
                                                 </c:forEach>
                                             </tbody>
@@ -227,40 +149,14 @@
                                                     <th>보고서번호</th>
 		                                            <th>사원번호</th>
 		                                            <th>사원이름</th>
-		                                            <th>승인상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 												<c:forEach items="${reportApplyVOs}" var="vo">
                                                 	<tr>
-                                                		<td>>${vo.applyNum}</td>
+                                                		<td>${vo.applyNum}</td>
                                                 		<td>${vo.id}</td>
                                                 		<td>${vo.name}</td>
-                                                		<c:choose>
-	                                                		<c:when test="${vo.returns eq 1}">
-		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>팀장 반려</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>최종 관리자 반려</td>
-		                                                			</c:when>
-		                                                		</c:choose>
-		                                                	</c:when>
-		                                                	<c:otherwise>
-		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>팀장 승인 진행중</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>최종 관리자 승인 진행중</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>최종 관리자 승인 완료</td>
-		                                                			</c:when>
-		                                                		</c:choose>		                                                		
-		                                                	</c:otherwise>
-	                                                	</c:choose>
                                                 	</tr>
                                                 </c:forEach>
                                             </tbody>
@@ -271,7 +167,6 @@
                                                     <th>보고서번호</th>
 		                                            <th>사원번호</th>
 		                                            <th>사원이름</th>
-		                                            <th>승인상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -280,31 +175,6 @@
                                                 		<td>${vo.applyNum}</td>
                                                 		<td>${vo.id}</td>
                                                 		<td>${vo.name}</td>
-                                                		<c:choose>
-	                                                		<c:when test="${vo.returns eq 1}">
-		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>팀장 반려</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>최종 관리자 반려</td>
-		                                                			</c:when>
-		                                                		</c:choose>
-		                                                	</c:when>
-		                                                	<c:otherwise>
-		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>팀장 승인 진행중</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>최종 관리자 승인 진행중</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>최종 관리자 승인 완료</td>
-		                                                			</c:when>
-		                                                		</c:choose>		                                                		
-		                                                	</c:otherwise>
-	                                                	</c:choose>
                                                 	</tr>
                                                 </c:forEach>
                                             </tbody>
@@ -312,6 +182,93 @@
                                      </c:choose>  
                                 </table>
                             </div>
+                            <c:choose>
+                            		<c:when test="${cat eq 1}">                           		 
+		                            	<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${reportVO.pre?'':'disabled'}">
+													<a class="page-link" href="./finishreport?cat=1&page=${reportVO.startNum-1}">《</a>
+												</li>
+											<c:forEach begin="${reportVO.startNum}" end="${reportVO.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./finishreport?cat=1&page=${i}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${reportVO.next?'':'disabled'}" href="./finishreport?cat=1&page=${reportVO.lastNum+1}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:when test="${cat eq 2}">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${reportVO.pre?'':'disabled'}">
+													<a class="page-link" href="./finishreport?cat=2&page=${reportVO.startNum-1}">《</a>
+												</li>
+											<c:forEach begin="${reportVO.startNum}" end="${reportVO.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./finishreport?cat=2&page=${i}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${reportVO.next?'':'disabled'}" href="./finishreport?cat=2&page=${reportVO.lastNum+1}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:when test="${cat eq 3}">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${reportVO.pre?'':'disabled'}">
+													<a class="page-link" href="./finishreport?cat=3&page=${reportVO.startNum-1}">《</a>
+												</li>
+											<c:forEach begin="${reportVO.startNum}" end="${reportVO.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./finishreport?cat=3&page=${i}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${reportVO.next?'':'disabled'}" href="./finishreport?cat=3&page=${reportVO.lastNum+1}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:when test="${cat eq 4}">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${reportVO.pre?'':'disabled'}">
+													<a class="page-link" href="./finishreport?cat=4&page=${reportVO.startNum-1}">《</a>
+												</li>
+											<c:forEach begin="${reportVO.startNum}" end="${reportVO.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./finishreport?cat=4&page=${i}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${reportVO.next?'':'disabled'}" href="./finishreport?cat=4&page=${reportVO.lastNum+1}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:otherwise>
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${reportVO.pre?'':'disabled'}">
+													<a class="page-link" href="./finishreport?cat=2&page=${reportVO.startNum-1}">《</a>
+												</li>
+											<c:forEach begin="${reportVO.startNum}" end="${reportVO.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./finishreport?cat=2&page=${i}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${reportVO.next?'':'disabled'}" href="./finishreport?cat=2&page=${reportVO.lastNum+1}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:otherwise>
+                            	</c:choose>
                         </div>
                     </div>
 
