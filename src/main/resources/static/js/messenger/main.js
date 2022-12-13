@@ -99,14 +99,13 @@ $(".titleLi").click(function() {
     $(this).next(".acoArea").siblings(".acoArea").slideUp(300); // 1개씩 펼치기
  });
 
+ let id = "";
+
 $(".acoArea").on("click", ".empName", function(){
     console.log("didjkfjld");
 
- let id = "";
-
-$(".empName").click(function(){
-    console.log($(this).attr("value"));
-    id = $(this).attr("empId");
+        console.log($(this).attr("value"));
+        id = $(this).attr("empId");
     let name = $(this).attr("value");
     let email = $('#email'+id).val();
     let phone = $('#phone'+id).val();
