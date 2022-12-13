@@ -17,4 +17,6 @@ public class ReportApplyVO {
 	 private String name;
 	 private String depName;
 	 private String roleName;
+	 
+	 private int lStatus;
 }
