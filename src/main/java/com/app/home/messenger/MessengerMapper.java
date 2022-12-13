@@ -19,6 +19,9 @@ public interface MessengerMapper {
 	
 	public int setAddRoom(RoomVO roomVO)throws Exception;
 	
-	public int setAddRoomUser(EmployeeVO employeeVO)throws Exception;
+	public int setAddRoomUser(RoomVO roomVO)throws Exception;
+	
+	public List<RoomVO> getRoomList()throws Exception;
+	
 	
 }
