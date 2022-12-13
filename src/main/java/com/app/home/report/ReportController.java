@@ -416,6 +416,7 @@ public class ReportController {
 			mv.addObject("list", list);
 		}
 		
+		mv.addObject("pager", pager);
 		mv.addObject("cat", cat);
 		mv.setViewName("report/mylist");
 		
