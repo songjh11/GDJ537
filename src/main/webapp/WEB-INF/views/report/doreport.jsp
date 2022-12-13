@@ -1,4 +1,3 @@
-doreport jsp
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -38,7 +37,7 @@ doreport jsp
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">결재 승인 목록</h1>
+                    <h1 class="h3 mb-2 text-gray-800">결재 처리 목록</h1>
                     <p class="mb-4">
                     	<a href="./doreport?cat=1" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
@@ -97,7 +96,6 @@ doreport jsp
 		                                            <th>사원번호</th>
 		                                            <th>사원이름</th>
 		                                            <th>승인상태</th>
-		                                            <th>반려여부</th>
 		                                        </tr>
 	                                        </thead>
                                             <tbody>
@@ -109,57 +107,24 @@ doreport jsp
                                                 		<c:choose>
 	                                                		<c:when test="${vo.returns eq 1}">
 		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 0}">
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
-		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
+		                                                				<td>팀장 반려</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>반려</td>
+		                                                				<td>최종 관리자 반려</td>
 		                                                			</c:when>
 		                                                		</c:choose>
 		                                                	</c:when>
 		                                                	<c:otherwise>
 		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 0}">
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
-		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
+		                                                				<td>팀장 승인 진행중</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
+		                                                				<td>최종 관리자 승인 진행중</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>최종 승인</td>
+		                                                				<td>최종 관리자 승인 완료</td>
 		                                                			</c:when>
 		                                                		</c:choose>		                                                		
 		                                                	</c:otherwise>
@@ -175,7 +140,6 @@ doreport jsp
 		                                            <th>사원번호</th>
 		                                            <th>사원이름</th>
 		                                            <th>승인상태</th>
-		                                            <th>반려여부</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -187,57 +151,24 @@ doreport jsp
                                                 		<c:choose>
 	                                                		<c:when test="${vo.returns eq 1}">
 		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 0}">
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
-		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
+		                                                				<td>팀장 반려</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>반려</td>
+		                                                				<td>최종 관리자 반려</td>
 		                                                			</c:when>
 		                                                		</c:choose>
 		                                                	</c:when>
 		                                                	<c:otherwise>
 		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 0}">
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
-		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
+		                                                				<td>팀장 승인 진행중</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
+		                                                				<td>최종 관리자 승인 진행중</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>최종 승인</td>
+		                                                				<td>최종 관리자 승인 완료</td>
 		                                                			</c:when>
 		                                                		</c:choose>		                                                		
 		                                                	</c:otherwise>
@@ -253,7 +184,6 @@ doreport jsp
 		                                            <th>사원번호</th>
 		                                            <th>사원이름</th>
 		                                            <th>승인상태</th>
-		                                            <th>반려여부</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -265,57 +195,24 @@ doreport jsp
                                                 		<c:choose>
 	                                                		<c:when test="${vo.returns eq 1}">
 		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 0}">
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
-		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
+		                                                				<td>팀장 반려</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>반려</td>
+		                                                				<td>최종 관리자 반려</td>
 		                                                			</c:when>
 		                                                		</c:choose>
 		                                                	</c:when>
 		                                                	<c:otherwise>
 		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 0}">
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
-		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
+		                                                				<td>팀장 승인 진행중</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
+		                                                				<td>최종 관리자 승인 진행중</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>최종 승인</td>
+		                                                				<td>최종 관리자 승인 완료</td>
 		                                                			</c:when>
 		                                                		</c:choose>		                                                		
 		                                                	</c:otherwise>
@@ -331,7 +228,6 @@ doreport jsp
 		                                            <th>사원번호</th>
 		                                            <th>사원이름</th>
 		                                            <th>승인상태</th>
-		                                            <th>반려여부</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -343,57 +239,24 @@ doreport jsp
                                                 		<c:choose>
 	                                                		<c:when test="${vo.returns eq 1}">
 		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 0}">
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
-		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
+		                                                				<td>팀장 반려</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>반려</td>
+		                                                				<td>최종 관리자 반려</td>
 		                                                			</c:when>
 		                                                		</c:choose>
 		                                                	</c:when>
 		                                                	<c:otherwise>
 		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 0}">
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
-		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
+		                                                				<td>팀장 승인 진행중</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
+		                                                				<td>최종 관리자 승인 진행중</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>최종 승인</td>
+		                                                				<td>최종 관리자 승인 완료</td>
 		                                                			</c:when>
 		                                                		</c:choose>		                                                		
 		                                                	</c:otherwise>
@@ -409,7 +272,6 @@ doreport jsp
 		                                            <th>사원번호</th>
 		                                            <th>사원이름</th>
 		                                            <th>승인상태</th>
-		                                            <th>반려여부</th> 
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -421,57 +283,24 @@ doreport jsp
                                                 		<c:choose>
 	                                                		<c:when test="${vo.returns eq 1}">
 		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 0}">
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
-		                                                			</c:when>
-		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
-		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>반려</td>
+		                                                				<td>팀장 반려</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>반려</td>
+		                                                				<td>최종 관리자 반려</td>
 		                                                			</c:when>
 		                                                		</c:choose>
 		                                                	</c:when>
 		                                                	<c:otherwise>
 		                                                		<c:choose>
-		                                                			<c:when test="${vo.status eq 0}">
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
-		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 1}">
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
+		                                                				<td>팀장 승인 진행중</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 2}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>x</td>
-		                                                				<td>진행 중</td>
+		                                                				<td>최종 관리자 승인 진행중</td>
 		                                                			</c:when>
 		                                                			<c:when test="${vo.status eq 3}">
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>o</td>
-		                                                				<td>최종 승인</td>
+		                                                				<td>최종 관리자 승인 완료</td>
 		                                                			</c:when>
 		                                                		</c:choose>		                                                		
 		                                                	</c:otherwise>
