@@ -28,6 +28,7 @@ $("#tdiv").ready(function(){
         console.log(arr[i]);
         console.log(arr[i].roleName);
     }
+    
 
 
 });
