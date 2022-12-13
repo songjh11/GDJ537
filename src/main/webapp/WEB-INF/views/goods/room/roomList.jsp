@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,26 +44,29 @@
 								<th>예약된 정보 보기</th>
 							</tr>
 							<c:forEach items="${goodVO }" var="good">
-								<input type="hidden" value="${good.goodsId}" class="ROID">
-								<tr>
-									<td>${good.name }</td>
-									<td>${good.location }</td>
-									<td>
-										<a href="./roomDetail?goodsId=${good.goodsId }">
-											<button type="button" class="btn btn-outline-none">보기</button>
-										</a>
-									</td>
-									<td>
-										<a href="./roomReserve?goodsId=${good.goodsId }">
-											<button type="button" class="btn btn-outline-none">예약</button>
-										</a>
-									</td>
-									<td>
-										<a href="./roomResInfo?goodsId=${good.goodsId }">
-											<button type="button" class="btn btn-outline-none">보기</button>
-										</a>
-									</td>
-								</tr>
+								<c:set var="TextValue" value="${good.goodsId}" />
+								<c:if test="${fn:substring(TextValue,0,2) == 'RO' }">
+									<input type="hidden" value="${good.goodsId}" class="ROID">
+									<tr>
+										<td>${good.name }</td>
+										<td>${good.location }</td>
+										<td>
+											<a href="./roomDetail?goodsId=${good.goodsId }">
+												<button type="button" class="btn btn-outline-none">보기</button>
+											</a>
+										</td>
+										<td>
+											<a href="./roomReserve?goodsId=${good.goodsId }">
+												<button type="button" class="btn btn-outline-none">예약</button>
+											</a>
+										</td>
+										<td>
+											<a href="./roomResInfo?goodsId=${good.goodsId }">
+												<button type="button" class="btn btn-outline-none">보기</button>
+											</a>
+										</td>
+									</tr>
+								</c:if>
 							</c:forEach>
 						</table>
 					</section>
