@@ -56,15 +56,15 @@ public interface ReportMapper {
 	
 	//=======================결재신청 insert===================
 	
-	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception;
+	public int setAddVaca(ReportVacaVO reportVacaVO) throws Exception;
 	
-	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception;
+	public int setAddWork(ReportWorkVO reportWorkVO) throws Exception;
 	
-	public void setAddPay(ReportPayVO reportPayVO) throws Exception;
+	public int setAddPay(ReportPayVO reportPayVO) throws Exception;
 	
-	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception;
+	public int setAddSorry(ReportSorryVO reportSorryVO) throws Exception;
 	
-	public void setAddApply(ReportApplyVO reportApplyVO) throws Exception;
+	public int setAddApply(ReportApplyVO reportApplyVO) throws Exception;
 
 	
 	//================================================
@@ -109,6 +109,11 @@ public interface ReportMapper {
 	public List<ReportWorkVO> getMyWorkList(ReportPager pager) throws Exception;
 	public List<ReportSorryVO> getMySorryList(ReportPager pager) throws Exception;
 	public List<ReportPayVO> getMyPayList(ReportPager pager) throws Exception;
+	
+	public Long getMyVacaCount(ReportPager pager) throws Exception;
+	public Long getMyWorkCount(ReportPager pager) throws Exception;
+	public Long getMySorryCount(ReportPager pager) throws Exception;
+	public Long getMyPayCount(ReportPager pager) throws Exception;
 	
 	public ReportVacaVO getMyVacaDetail(ReportApplyVO reportApplyVO) throws Exception;
 	public ReportPayVO getMyPayDetail(ReportApplyVO reportApplyVO) throws Exception;
