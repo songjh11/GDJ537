@@ -21,7 +21,7 @@ class ReportMapperTest {
 		for(Long i=3L; i<129; i++) {
 			
 			ReportVacaVO reportVacaVO = new ReportVacaVO();
-			reportVacaVO.setCall(01012341234L);
+			reportVacaVO.setCall(01012341234);
 			reportVacaVO.setCategoryNum(1L);
 			reportVacaVO.setDepName("ROLE_MAKER");
 			reportVacaVO.setDepNum(4);
@@ -41,7 +41,7 @@ class ReportMapperTest {
 		for(Long i=1L; i<10; i++) {
 			
 			ReportVacaVO reportVacaVO = new ReportVacaVO();
-			reportVacaVO.setCall(012737334L);
+			reportVacaVO.setCall(012737334);
 			reportVacaVO.setCategoryNum(5L);
 			reportVacaVO.setDepName("1ROLE_하이");
 			reportVacaVO.setDepNum(8);

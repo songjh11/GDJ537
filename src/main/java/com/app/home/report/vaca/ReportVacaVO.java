@@ -12,7 +12,7 @@ public class ReportVacaVO extends ReportApplyVO {
 	private String categoryName;
 	private String text;
 	private String period;
-	private Long call;
+	private Integer call;
 	private Date date;
 	
 	public Long getRnum() {
@@ -39,10 +39,10 @@ public class ReportVacaVO extends ReportApplyVO {
 	public void setPeriod(String period) {
 		this.period = period;
 	}
-	public Long getCall() {
+	public Integer getCall() {
 		return call;
 	}
-	public void setCall(Long call) {
+	public void setCall(Integer call) {
 		this.call = call;
 	}
 	public Date getDate() {
