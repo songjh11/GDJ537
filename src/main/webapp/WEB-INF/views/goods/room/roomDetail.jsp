@@ -12,14 +12,11 @@
 </head>
 <style>
 .de {
-	width: 350px;
-	height: 350px;
+	width: 600px;
+	height: 400px;
+	padding-bottom: 50px;
 	padding-left: 20px;
 	padding-right: 25px;
-}
-
-ul {
-	display: flex;
 }
 
 ul li {
@@ -50,17 +47,6 @@ ul li {
 					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
 						<h1 class="h3 mb-4 text-gray-800">회의실 상세정보</h1>
 						<!-- Page Heading -->
-						<ul>
-							<li>
-								<img class="de" src="/img/undraw_profile_1.svg" alt="">
-							</li>
-							<li>
-								<img class="de" src="/img/undraw_profile_2.svg" alt="">
-							</li>
-							<li>
-								<img class="de" src="/img/undraw_profile_3.svg" alt="">
-							</li>
-						</ul>
 						<table class="table table-hover">
 							<tr>
 								<th>회의실 번호</th>
@@ -77,10 +63,29 @@ ul li {
 								<td>${goodDetail.location }</td>
 							</tr>
 						</table>
-						<a href="./roomList">
-							<button type="button" class="btn btn-outline-none">뒤로가기</button>
-						</a>
+						<br>
+						<br>
+						<ul>
+							<li>
+								<img class="de" src="/resources/upload/goods/${goodDetail.goodsFileVO[0].fileName }"
+									alt="${goodDetail.goodsFileVO[0].oriName }">
+							</li>
+							<li>
+								<img class="de" src="/resources/upload/goods/${goodDetail.goodsFileVO[1].fileName }"
+									alt="${goodDetail.goodsFileVO[1].oriName }">
+							</li>
+							<li>
+								<img class="de" src="/resources/upload/goods/${goodDetail.goodsFileVO[2].fileName }"
+									alt="${goodDetail.goodsFileVO[2].oriName }">
+							</li>
+						</ul>
+						<br>
 					</section>
+					<div style="text-align: center;">
+						<a href="./roomList">
+							<button type="button" class="btn btn-outline-dark">뒤로가기</button>
+						</a>
+					</div>
 
 				</div>
 				<!-- End Page Content -->
