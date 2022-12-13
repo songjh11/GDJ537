@@ -1,5 +1,7 @@
 package com.app.home.report.util;
 
+import com.app.home.user.UserVO;
+
 import lombok.Data;
 
 @Data
@@ -17,7 +19,8 @@ public class ReportPager {
 	
 	private String kind;
 	private String search;
-	
+	private int depNum;
+	private int roleNum;
 	private int id;
 	
 	public String getKind() {
@@ -44,6 +47,7 @@ public class ReportPager {
 		this.startRow = (this.getPage()-1)*this.getPerPage();
 		return startRow;
 	}
+	
 	
 	//jsp 에서 쓸 startnum
 	public void getNum(Long totalCount) throws Exception{

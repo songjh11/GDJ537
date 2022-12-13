@@ -16,7 +16,7 @@
 	
 	<!-- ============== 한종석 ================ -->
 	
-	<select id="getReportList" parameterType="userVO" resultMap="getListResult" >
+	<select id="getReportList" parameterType="UserVO" resultMap="getListResult" >
 		SELECT  U.ID, U.NAME, U.ROLENUM , U.DEPNUM, R.ROLENAME
 			FROM USER U
 			INNER JOIN
@@ -26,6 +26,7 @@
 				DEPARTMENT D 
 				ON U.DEPNUM = D.DEPNUM 
 				WHERE U.DEPNUM = #{depNum} AND U.ROLENUM = #{roleNum}
+
 	</select>
 	
 	<resultMap type="UserVO" id="getListResult">
@@ -44,6 +45,10 @@
 		</association>
 		
 	</resultMap>
+	
+	<select id="getReportListCount" resultType="Long" parameterType="ReportPager">
+		SELECT COUNT(id) FROM USER
+	</select>
 	
 	<!-- 권한수정 누구를 부장(lstatus = 2)로 바꿀것인지 ****id를 받아서 -->
 	<update id="setLstatusUpdate" parameterType="ReportVO">
@@ -68,7 +73,7 @@
 		INNER JOIN 
 		DEPARTMENT D 
 		ON D.DEPNUM = U.DEPNUM 
-		WHERE RL.LSTATUS = 2 OR RL.LSTATUS = 3;
+		WHERE RL.LSTATUS = 2 OR RL.LSTATUS = 3
 	</select>
 	
 	<resultMap type="ReportVO" id="getLicenserListResult">
