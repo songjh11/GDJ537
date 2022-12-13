@@ -16,7 +16,7 @@
 </sql>
 
 	<select id="getEmpList" resultMap="getEmpListResult">
-		SELECT * FROM EMPLOYEE E
+		SELECT * FROM USER E
 			LEFT JOIN
 			PICKDETAIL PD 
 			ON E.ID=PD.YOURID 
@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="getSearchResult" parameterType="Map" resultMap="getEmpListResult">
-		SELECT * FROM EMPLOYEE E
+		SELECT * FROM USER E
 			LEFT JOIN
 			PICKDETAIL PD 
 			ON E.ID=PD.YOURID 
@@ -92,14 +92,14 @@
 	
 	<insert id="setAddRoomUser" parameterType="RoomVO" ><!-- useGeneratedKeys="true" keyProperty="userNum" -->
 		INSERT INTO  ROOMUSER
-		VALUES(null, #{employeeVO.id}, 
+		VALUES(null, #{userVO.id}, 
 			   (SELECT ROOMNUM FROM  CHATROOM  WHERE ROOMNUM = #{roomNum}))
 	</insert>
 	
 	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum" >
 		INSERT INTO  CHATROOM
 		VALUES(#{roomNum}, now(), #{roomName}, 
-			   (SELECT ID FROM EMPLOYEE WHERE ID = #{hostId}), #{pw})
+			   (SELECT ID FROM USER WHERE ID = #{hostId}), #{pw})
 	</insert>
 	
 </mapper>    
