@@ -235,37 +235,33 @@ public class ReportController {
 	//=======================최근호===================
 	
 	@GetMapping("/report/vacadetail")
-	public ModelAndView getLicenseVacaReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+	public ModelAndView getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ReportVacaVO reportVacaVO = new ReportVacaVO();
-		reportVacaVO = (ReportVacaVO)reportService.getLicenseVacaReportDetail(reportApplyVO);
+		reportVacaVO = reportService.getLicenseVacaReportDetail(reportVacaVO);
 		mv.addObject("reportVacaVO", reportVacaVO);
 		return mv;
 	}
 	
 	@GetMapping("/report/workdetail")
-	public ModelAndView getLicenseWorkReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+	public ModelAndView getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ReportWorkVO reportWorkVO = new ReportWorkVO();
-		reportWorkVO = (ReportWorkVO)reportService.getLicenseWorkReportDetail(reportApplyVO);
+		reportWorkVO = reportService.getLicenseWorkReportDetail(reportWorkVO);
 		mv.addObject("reportWorkVO", reportWorkVO);
 		return mv;
 	}
 	
 	@GetMapping("/report/paydetail")
-	public ModelAndView getLicensePayReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+	public ModelAndView getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ReportPayVO reportPayVO = new ReportPayVO();
-		reportPayVO = (ReportPayVO)reportService.getLicensePayReportDetail(reportApplyVO);
+		reportPayVO = reportService.getLicensePayReportDetail(reportPayVO);
 		mv.addObject("reportPayVO", reportPayVO);
 		return mv;
 	}
 	
 	@GetMapping("/report/sorrydetail")
-	public ModelAndView getLicenseSorryReportDetail(ReportApplyVO reportApplyVO) throws Exception{
+	public ModelAndView getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ReportSorryVO reportSorryVO = new ReportSorryVO();
-		reportSorryVO = (ReportSorryVO)reportService.getLicenseSorryReportDetail(reportApplyVO);
+		reportSorryVO = reportService.getLicenseSorryReportDetail(reportSorryVO);
 		mv.addObject("reportSorryVO", reportSorryVO);
 		return mv;
 	}
