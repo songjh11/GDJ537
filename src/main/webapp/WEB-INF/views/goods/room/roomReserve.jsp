@@ -10,7 +10,6 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
-
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -47,6 +46,12 @@
 								</tr>
 							</table>
 
+							<div>
+								<h3>---- 모든 정보를 필수로 입력해야 합니다. ----</h3>
+								<br>
+								<br>
+							</div>
+
 							<input type="hidden" name="goodsId" value="${goodDetail.goodsId }">
 
 							<div class="mb-3">
@@ -60,8 +65,8 @@
 								<label>반납날짜</label>
 								<input type="datetime-local" name="endTime" class="form-control" id="end" placeholder="시작시간"
 									disabled='disabled'>
-									<p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>
-									<br>
+								<p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+								<br>
 							</div>
 
 							<div class="mb-5">
