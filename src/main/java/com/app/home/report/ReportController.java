@@ -251,8 +251,13 @@ public class ReportController {
 	
 	
 	@PostMapping("/report/addvaca")
-	public String setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+	public String setAddVaca(String depNum, ReportVacaVO reportVacaVO, Principal principal) throws Exception{
+		
+		log.info("뎁넘 ::: {} " , principal);
+		
 		int result = reportService.setAddVaca(reportVacaVO);
+		
+		
 		
 		return "redirect:/report/mylist?cat=2";
 	} 
