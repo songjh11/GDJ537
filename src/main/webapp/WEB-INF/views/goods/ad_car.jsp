@@ -43,17 +43,13 @@
         function drawChart1() {
           //부서명 가지고 오기
           var data = google.visualization.arrayToDataTable([
-            ['부서명', '전월', '금월'],
-            ['2014', 1000, 400],
-            ['2015', 1170, 460],
-            ['2016', 660, 1120],
-            ['2017', 1030, 540]
+            ['부서명', 'Count'],
+            ${depart}
           ]);
   
           var options = {
             chart: {
               title: '부서별 차량 예약 통계',
-              subtitle: '전월과 금월 비교',
             }
           };
   
@@ -119,27 +115,6 @@
                           </div> <!-- / .row -->
                         </div>
                       </div>
-
-                    <div class="card" id="total">
-                    <div class="card-body">
-                        <div class="row align-items-center gx-0">
-                        <div class="col">
-                            <!-- Title -->
-                            <h6 class="text-uppercase text-muted mb-2">
-                            금월 예약 건수
-                            </h6>
-                            <!-- Heading -->
-                            <span class="h2 mb-0">
-                            ${total}
-                            </span>
-                        </div>
-                        <div class="col-auto">
-                            <!-- Icon -->
-                            <span class="h2 fe fe-briefcase text-muted mb-0"></span>
-                        </div>
-                        </div> <!-- / .row -->
-                    </div>
-                </div>
 
                     
 						

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.home.user.DepartmentVO;
 import com.app.home.util.FileManager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -175,6 +176,14 @@ public class GoodsService
 	
 	public int getCarTotal() throws Exception{
 		return goodsMapper.getCarTotal();	
+	}
+	
+	public int getDepartmentRoomTotal(DepartmentVO departmentVO) throws Exception{
+		return goodsMapper.getDepartmentRoomTotal(departmentVO);
+	}
+	
+	public int getDepartmentCarTotal(DepartmentVO departmentVO) throws Exception{
+		return goodsMapper.getDepartmentCarTotal(departmentVO);
 	}
 
 }
