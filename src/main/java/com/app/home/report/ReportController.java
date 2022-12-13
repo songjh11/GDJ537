@@ -42,11 +42,9 @@ public class ReportController {
 	
 	//=======================김도영===================
 	@GetMapping("/kdy/reportAdd")
-	public ModelAndView reportAdd(ReportApplyVO reportApplyVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		int reportApply = reportService.setReportApply(reportApplyVO);
-		mv.addObject("reportApply", reportApply);
-		return mv;
+	public String reportAdd(ReportApplyVO reportApplyVO)throws Exception{
+		
+		return "/kdy/reportAdd";
 	}
 	//휴가신청서
 	@GetMapping("/kdy/vacationApplication")
@@ -58,6 +56,7 @@ public class ReportController {
 	public String workReport()throws Exception{
 		return "/kdy/workReport";
 	}
+	
 	//지출 결의서
 	@GetMapping("/kdy/cashDisbursementVoucher")
 	public String cashDisbursementVoucher()throws Exception{
