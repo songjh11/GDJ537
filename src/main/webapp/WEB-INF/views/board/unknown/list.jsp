@@ -69,6 +69,11 @@
 	                             </button>
 	                         </div>
 	                      </div>
+	                      <div class="col-auto">
+	                      	<button type="button" class="btn btn-info" id="fiveBtn"><span class="badge text-bg-info">5</span></button>
+              				<button type="button" class="btn btn-info" id="tenBtn"><span class="badge text-bg-info">10</span></button>
+              				<button type="button" class="btn btn-info" id="twentyBtn"><span class="badge text-bg-info">20</span></button>
+              			  </div>
 					  </div>
               </form>
 
@@ -97,18 +102,18 @@
                 <ul class="pagination">
                   <c:if test="${pager.pre }">
                     <li class="page-item"><a class="page-link"
-                        href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}">Previous</a>
+                        href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Previous</a>
                     </li>
                   </c:if>
 
                   <c:forEach begin="${pager.startNum }" end="${pager.lastNum }" step="1" var="i">
                     <li class="page-item"><a class="page-link"
-                        href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}">${i }</a></li>
+                        href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">${i }</a></li>
                   </c:forEach>
 
                   <c:if test="${pager.next }">
                     <li class="page-item"><a class="page-link"
-                        href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}">Next</a></li>
+                        href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Next</a></li>
                   </c:if>
 
                 </ul>
@@ -132,6 +137,37 @@
         $.each(regDates, function (index, item) {
           let regDate = item.getAttribute("data-date");
           item.append(regDate.slice(0, 16));
+        });
+        
+        const fiveBtn = $("#fiveBtn");		// 5개 버튼
+        const tenBtn = $("#tenBtn");		// 10개 버튼
+        const twentyBtn = $("#twentyBtn");	// 20개 버튼
+        
+        let currentPath = location.pathname;	// 현재 url 경로
+        let currentParam = location.search;		// 현재 url 파라미터
+        
+        // 기존에 perPage 파라미터가 있으면
+        if(currentParam.search("perPage") >= 0){
+        	// 제거
+        	currentParam = currentParam.substring(0, currentParam.search("perPage") - 1);
+        	currentParam = currentParam + "&"
+        }
+        
+        // url 파라미터가 아예 없으면
+        if(currentParam == ""){
+        	currentParam = currentParam + "?";
+        }
+        
+        fiveBtn.on("click", function(){
+        	location.href = currentPath + currentParam + "perPage=5";
+        });
+        
+        tenBtn.on("click", function(){
+        	location.href = currentPath + currentParam + "perPage=10";
+        });
+        
+        twentyBtn.on("click", () => {
+        	location.href = currentPath + currentParam + "perPage=20";
         });
 
       </script>
