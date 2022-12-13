@@ -8,7 +8,8 @@ public class ReportVacaVO extends ReportApplyVO {
 	
 	private Long rnum;
 	private Long applyNum;
-	private Long category;
+	private Long categoryNum;
+	private String categoryName;
 	private String text;
 	private String period;
 	private Long call;
@@ -25,12 +26,6 @@ public class ReportVacaVO extends ReportApplyVO {
 	}
 	public void setApplyNum(Long applyNum) {
 		this.applyNum = applyNum;
-	}
-	public Long getCategory() {
-		return category;
-	}
-	public void setCategory(Long category) {
-		this.category = category;
 	}
 	public String getText() {
 		return text;
@@ -55,6 +50,18 @@ public class ReportVacaVO extends ReportApplyVO {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public Long getCategoryNum() {
+		return categoryNum;
+	}
+	public void setCategoryNum(Long categoryNum) {
+		this.categoryNum = categoryNum;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	
 	

@@ -87,6 +87,7 @@
                         <a class="collapse-item" href="/report/finishreport">결제 승인 내역</a>
                         <a class="collapse-item" href="/report/returnreport">반려 승인 내역</a>
                         <a class="collapse-item" href="/report/insa">휴가담당 관리자</a>
+                        <a class="collapse-item" href="/report/mylist?cat=1">결재 신청 목록</a>
                     </div>
                 </div>
 			</li>

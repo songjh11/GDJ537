@@ -184,29 +184,48 @@ public class ReportController {
 	//================================================
 	
 	
-	//=======================장민석===================
+	//=======================결재신청 insert===================
 	
+	@GetMapping("/report/addvaca")
+	public void setAddVaca() throws Exception{
+		
+	} 
 	
-	@GetMapping("/detailPay")
-	public ModelAndView selectPay(ReportPayVO reportPayVO) throws Exception{
-		ModelAndView mv = new ModelAndView();
+	@GetMapping("/report/addwork")
+	public void setAddWork() throws Exception{
 		
-		reportPayVO = reportService.selectPay(reportPayVO);
-		mv.addObject("vo",reportPayVO);
-		mv.setViewName("list/detailPay");
-		
-		return mv;
 	}
 	
-	@GetMapping("/detailSorry")
-	public ModelAndView selectSorry(ReportSorryVO reportSorryVO) throws Exception{
-		ModelAndView mv = new ModelAndView();
+	@GetMapping("/report/addpay")
+	public void setAddPay() throws Exception{
 		
-		reportSorryVO = reportService.selectSorry(reportSorryVO);
-		mv.addObject("vo", reportSorryVO);
-		mv.setViewName("list/detailSorry");
+	}
+	
+	@GetMapping("/report/addsorry")
+	public void setAddSorry() throws Exception{
 		
-		return mv;
+	}
+	
+	
+	
+	@PostMapping("/report/addvaca")
+	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		
+	} 
+	
+	@PostMapping("/report/addwork")
+	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		
+	}
+	
+	@PostMapping("/report/addpay")
+	public void setAddPay(ReportPayVO reportPayVO) throws Exception{
+		
+	}
+	
+	@PostMapping("/report/addsorry")
+	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+		
 	}
 	
 	
@@ -386,14 +405,29 @@ public class ReportController {
 	}
 	
 	@GetMapping("/report/detail")
-	public void getMyReportDetail(ReportApplyVO reportApplyVO,String cat) throws Exception{
+	public ModelAndView getMyReportDetail(ModelAndView mv,ReportApplyVO reportApplyVO) throws Exception{
 		
 		reportApplyVO.setId(1209);
 		
-		if(cat.equals("1")) {
-			
-		}
+//		int result = reportApplyVO.getReportNum();
+//		
+//		if(result == 1) {
+//			ReportVacaVO reportVacaVO = reportService.getMyVacaDetail(reportApplyVO);
+//			mv.addObject("vo", reportVacaVO);
+//		}else if(result == 2) {
+//			ReportWorkVO reportWorkVO = reportService.getMyWorkDetail(reportApplyVO);
+//			mv.addObject("vo", reportWorkVO);
+//		}else if(result == 3) {
+//			ReportPayVO reportPayVO = reportService.getMyPayDetail(reportApplyVO);
+//			mv.addObject("vo", reportPayVO);
+//		}else if(result == 4) {
+//			ReportSorryVO reportSorryVO = reportService.getMySorryDetail(reportApplyVO);
+//			mv.addObject("vo", reportSorryVO);
+//		}
 		
+		mv.setViewName("report/mydetail");
+		
+		return mv;
 		
 	}
 	

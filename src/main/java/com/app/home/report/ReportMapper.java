@@ -54,11 +54,18 @@ public interface ReportMapper {
 	//================================================
 	
 	
-	//=======================장민석===================
+	//=======================결재신청 insert===================
 	
-	public ReportPayVO selectPay(ReportPayVO reportPayVO) throws Exception;
+	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception;
 	
-	public ReportSorryVO selectSorry(ReportSorryVO reportSorryVO) throws Exception;
+	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception;
+	
+	public void setAddPay(ReportPayVO reportPayVO) throws Exception;
+	
+	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception;
+	
+	public void setAddApply(ReportApplyVO reportApplyVO) throws Exception;
+
 	
 	//================================================
 	
