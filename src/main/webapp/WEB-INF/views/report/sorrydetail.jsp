@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
@@ -17,10 +19,12 @@
         }
     </style>
     <script defer src="/js/Apology.js"></script>
-
+	<script defer="defer" type="text/javascript" src="/js/report/report.js"></script>
 </head>
 <body>
     <div class="container px-4 px-lg-5 my-5">
+    	<input type="text" style="display: none;" value="${result }" data-status="${result }">
+    	<input type="text" style="display: none;" value="${reportSorryVO.applyNum }" data-num="${reportSorryVO.applyNum }">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
             <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 45px; background-color: rgb(255, 255, 249); text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
                    시말서
@@ -111,7 +115,8 @@
             </div>
 
         </div>    
-
+		<button type="button" id="license" class="btn btn-info btn-icon-split">승인</button>
+		<button type="button" id="returns" class="btn btn-info btn-icon-split">반려</button>
     </div>
 </body>
 </html>

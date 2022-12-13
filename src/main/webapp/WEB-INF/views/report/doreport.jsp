@@ -1,4 +1,6 @@
 
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -101,7 +103,7 @@
                                             <tbody>
                                                 <c:forEach items="${reportApplyVOs}" var="vo">
                                                 	<tr>
-                                                		<td href="./vacadetail?applyNum=${vo.applyNum }">${vo.applyNum}</td>
+                                                		<td href="./vacadetail?applyNum=${vo.applyNum }&result=${result}">${vo.applyNum}</td>
                                                 		<td>${vo.id}</td>
                                                 		<td>${vo.name}</td>
                                                 		<c:choose>
@@ -145,7 +147,7 @@
                                             <tbody>
 												<c:forEach items="${reportApplyVOs}" var="vo">
                                                 	<tr>
-                                                		<td href="./workdetail?applyNum=${vo.applyNum }">${vo.applyNum}</td>
+                                                		<td href="./workdetail?applyNum=${vo.applyNum }&result=${result}">${vo.applyNum}</td>
                                                 		<td>${vo.id}</td>
                                                 		<td>${vo.name}</td>
                                                 		<c:choose>
@@ -189,7 +191,7 @@
                                             <tbody>
 												<c:forEach items="${reportApplyVOs}" var="vo">
                                                 	<tr>
-                                                		<td href="./paydetail?applyNum=${vo.applyNum }">${vo.applyNum}</td>
+                                                		<td href="./paydetail?applyNum=${vo.applyNum }&result=${result}">${vo.applyNum}</td>
                                                 		<td>${vo.id}</td>
                                                 		<td>${vo.name}</td>
                                                 		<c:choose>
@@ -233,7 +235,7 @@
                                             <tbody>
 												<c:forEach items="${reportApplyVOs}" var="vo">
                                                 	<tr>
-                                                		<td href="./sorrydetail?applyNum=${vo.applyNum }">${vo.applyNum}</td>
+                                                		<td href="./sorrydetail?applyNum=${vo.applyNum }&result=${result}">${vo.applyNum}</td>
                                                 		<td>${vo.id}</td>
                                                 		<td>${vo.name}</td>
                                                 		<c:choose>
@@ -277,7 +279,7 @@
                                             <tbody>
 												<c:forEach items="${reportApplyVOs}" var="vo">
                                                 	<tr>
-                                                		<td href="./vacadetail?applyNum=${vo.applyNum }">${vo.applyNum}</td>
+                                                		<td href="./vacadetail?applyNum=${vo.applyNum }&result=${result}">${vo.applyNum}</td>
                                                 		<td>${vo.id}</td>
                                                 		<td>${vo.name}</td>
                                                 		<c:choose>

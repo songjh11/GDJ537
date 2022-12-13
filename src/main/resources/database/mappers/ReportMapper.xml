@@ -103,25 +103,29 @@
 	
 	<!-- ============== 결재 신청 insert ================ -->
 	
-	<insert id="setAddApply" parameterType="ReportApplyVO">
-	
+	<insert id="setAddApply" parameterType="ReportApplyVO" useGeneratedKeys="true" keyProperty="applyNum">
+		INSERT INTO REPORTAPPLY 
+		VALUES (NULL, #{id}, #{depNum}, #{reportNum}, 1, 0, SYSDATE(), #{name}, #{roleName}, #{depName}
 	</insert>
 	
 	<insert id="setAddPay" parameterType="ReportPayVO">
-		
+		INSERT INTO REPORTPAY
+		VALUES(NULL, #{applyNum}, #{title}, #{wdate}, #{cdate},#{category},#{pay},#{sum},#{payment},#{date})
 	</insert>
 	
 	<insert id="setAddSorry" parameterType="ReportSorryVO">
-		
+		INSERT INTO REPORTSORRY
+		VALUES(NULL, #{applyNum},#{date}, #{text}, #{order})
 	</insert>
 	
 	<insert id="setAddWork" parameterType="ReportWorkVO">
-	
+		INSERT INTO REPORTWORK
+		VALUES(NULL, #{applyNum}, #{date}, #{am}, #{pm}, #{undo}, #{todo}, #{wrong}, #{etc})
 	</insert>
 	
 	<insert id="setAddVaca" parameterType="ReportVacaVO">
 		INSERT INTO REPORTVACA 
-		VALUES(null, #{applyNum}, #{categoryNum}, #{text}, #{period}, #{call}, sysdate())
+		VALUES(NULL, #{applyNum}, #{categoryNum}, #{text}, #{period}, #{call}, sysdate())
 	</insert>
 	
 	
@@ -130,6 +134,17 @@
 	
 	<!-- ============== 최근호 ================ -->
 	
+
+
+	
+
+<update id="setUpdateApply" parameterType="ReportApplyVO">
+		UPDATE REPORTAPPLY SET STATUS = #{lStatus} WHERE APPLYNUM= #{applyNum}
+	</update>
+	
+	<update id="setUpdateCancelApply" parameterType="ReportApplyVO">
+		UPDATE REPORTAPPLY SET RETURNS = 1, STATUS=#{lStatus} WHERE APPLYNUM = #{applyNum}
+	</update>
 
 
 	<select id="getLicenseCheck" parameterType="ReportVO" resultType="Integer">
@@ -224,7 +239,7 @@
 		<id column="LICENSERNUM" property="licenserNum"/>
 		<result column="DEPNUM" property="depNum"/>
 		<result column="ID" property="id"/>
-		<result column="STATUS" property="lstatus"/>
+		<result column="LSTATUS" property="lStatus"/>
 			<collection property="reportApplyVOs" javaType="List" ofType="ReportApplyVO">
 				<id column="APPLYNUM" property="applyNum"/>
 				<result column="ID" property="id"/>
