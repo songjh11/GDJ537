@@ -43,10 +43,10 @@
 	            	<!-- Page Heading -->
 	            	<h1 class="h3 mb-4 text-gray-800">공용 시설 수정</h1>
 	            	
-	            	<form action="update" method="post" enctype="multipart/form-data">
+	            	<form action="update" method="post" enctype="multipart/form-data" id="addform">
 	            	 <div class="mb-3">
 	            	 	<div>
-					    	<label for="exampleInputName" class="form-label" data-str-num="${str}">kind</label>
+					    	<label for="exampleInputName" class="form-label" data-str-num="${str}" style="font-weight : bold">*종류</label>
 					    </div>
 					    <label class="test_obj">
 						    <input type="radio" <c:if test="${str == 'RO'}">checked</c:if> value=${goods.goodsId} disabled>
@@ -57,13 +57,15 @@
 						    <input type="radio" <c:if test="${str == 'CA'}">checked</c:if> value=${goods.goodsId} disabled>
 						    <span>차량</span>
 						</label>
+						<div id="kinddiv"></div>
 					  </div>
 					  <div>
 						<input type="hidden" id="goodId" name="goodsId" value="${goods.goodsId}">
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputName" class="form-label">시설 이름</label>
+					    <label for="exampleInputName" class="form-label" style="font-weight : bold">*시설 이름</label>
 					    <input type="text" class="form-control" id="name" name="name" value="${goods.name}">
+						<div id="namediv" class="check"></div>
 					  </div>
 					  <div class="mb-3">
 					    <label for="exampleInputContents" class="form-label">시설 설명</label>
@@ -72,14 +74,20 @@
 					  <div class="mb-3">
 					    <label for="exampleInputMax" class="form-label">최대 인원</label>
 					    <input type="text" class="form-control" id="max" name="max" value="${goods.max}" >
+						<div id="maxdiv" class="check"></div>
+
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputLocation" class="form-label">시설 위치</label>
+					    <label for="exampleInputLocation" class="form-label" style="font-weight : bold">*시설 위치</label>
 					    <input type="text" class="form-control" id="location" name="location" value="${goods.location}">
+						<div id="locationdiv" class="check"></div>
+
 					  </div>
 					  <div class="mb-3" <c:if test="${str == 'RO'}">style ="display:none;"</c:if>>
-					    <label for="exampleInputLocation" class="form-label">차량 번호</label>
+					    <label for="exampleInputLocation" class="form-label" style="font-weight : bold">*차량 번호</label>
 					    <input type="text" class="form-control" id="carNum" name="carNum" value="${goods.carNum}">
+						<div id="carNumdiv" class="check"></div>
+
 					  </div>
 					  <div>
 						<div class="mb-3" id="fileAddResult">      
@@ -94,9 +102,10 @@
 						</div>
 						<div class="mb-3">
 							<button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
+							<div id="imgdiv" class="check"></div>
 				 		</div>
 					  </div>
-					  <button type="submit" class="btn btn-primary">수정</button>
+					  <input type="button" class="btn btn-primary" value="수정" id="sub">
 					  <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}">
 					</form>
 	
@@ -114,7 +123,7 @@
 	</div>
 
 	<!-- Scroll Top, Login Modal import -->
-	<script src="/js/goods/addFiles.js"></script>
+	<script src="/js/goods/update.js"></script>
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 	<!-- <script type="text/javascript">
       $(document).ready(function(){
