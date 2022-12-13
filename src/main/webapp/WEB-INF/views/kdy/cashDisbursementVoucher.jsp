@@ -49,6 +49,8 @@
 				<!-- End of Topbar -->
 				
 				<!-- Begin Page Content -->
+		
+		<form action="/report/addpay" method="post" id="frm">
 	            <div class="container-fluid">
 						 <div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
@@ -81,7 +83,7 @@
                             </div>
                         </div>
 
-                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="사무용품 구매 건"/>
+                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" class="check"/>
 
                         <div style="width: 235px; height: 55px; border-right: solid 1px black; border-left: solid 1px black;">
                             <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder;  ">
@@ -89,7 +91,7 @@
                             </div>
                         </div>
 
-                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="사무용품 구매 건"/>
+                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" class="check"/>
 
                     </div>    
                 </div> 
@@ -103,7 +105,7 @@
                                 </div>
                             </div>
     
-                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="사무용품 구매 건"/>
+                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" class="check"/>
     
                             <div style="width: 235px; height: 55px; border-right: solid 1px black; border-left: solid 1px black;">
                                 <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder;  ">
@@ -111,7 +113,7 @@
                                 </div>
                             </div>
     
-                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="사무용품 구매 건"/>
+                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" class="check"/>
     
                         </div> 
                     </div>    
@@ -290,7 +292,7 @@
                             입금 정보 
                         </div>
                         <div style=" width: 735px; height: 45px; margin-left: 160px; margin-top: -35px;">
-                            <input type="text" style="border: 0; width: 735px; height: 47px; text-align: center;" value="우리은행 / 1002647-350-729"/>
+                            <input type="text" style="border: 0; width: 735px; height: 47px; text-align: center;" value="" id="account"/>
                         </div>
                     </div>
                 </div>
@@ -308,6 +310,9 @@
 
     </div>
 	            </div>
+	            
+	       <button type="button" onclick="checkAll()">제출</button>
+	</form>
 	            <!-- End Page Content -->
 					
 			</div>
@@ -322,5 +327,6 @@
 
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+
 </body>
 </html>
