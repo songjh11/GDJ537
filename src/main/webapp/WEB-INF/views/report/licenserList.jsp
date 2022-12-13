@@ -45,7 +45,7 @@
 	            	<h1 class="h3 mb-4 text-gray-800">모든 승인자 리스트</h1>
 	            	
 	            	<table border="1" class="table table-striped table-hover col-lg-16">
-						<thead class="table-secondary">
+						<thead class="table table-dark">
 							<tr>
 								<th>아이디</th>
 								<th>이름</th>
