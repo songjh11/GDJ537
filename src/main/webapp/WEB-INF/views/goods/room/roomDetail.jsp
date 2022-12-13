@@ -50,17 +50,6 @@ ul li {
 					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
 						<h1 class="h3 mb-4 text-gray-800">회의실 상세정보</h1>
 						<!-- Page Heading -->
-						<ul>
-							<li>
-								<img class="de" src="/img/undraw_profile_1.svg" alt="">
-							</li>
-							<li>
-								<img class="de" src="/img/undraw_profile_2.svg" alt="">
-							</li>
-							<li>
-								<img class="de" src="/img/undraw_profile_3.svg" alt="">
-							</li>
-						</ul>
 						<table class="table table-hover">
 							<tr>
 								<th>회의실 번호</th>
@@ -77,6 +66,19 @@ ul li {
 								<td>${goodDetail.location }</td>
 							</tr>
 						</table>
+						<ul>
+							<li>
+							${goodDetail }
+								<img class="de" src="/img/undraw_profile_1.svg" alt="">
+							</li>
+							<li>
+								<img class="de" src="/img/undraw_profile_2.svg" alt="">
+							</li>
+							<li>
+								<img class="de" src="/img/undraw_profile_3.svg" alt="">
+							</li>
+						</ul>
+						<br>
 						<a href="./roomList">
 							<button type="button" class="btn btn-outline-none">뒤로가기</button>
 						</a>
