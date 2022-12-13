@@ -10,7 +10,23 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
+<style>
+.de {
+	width: 1000px;
+	height: 500px;
+	padding-bottom: 50px;
+	padding-left: 20px;
+	padding-right: 25px;
+}
 
+/* ul {
+	display: flex;
+} */
+
+ul li {
+	list-style: none;
+}
+</style>
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -35,6 +51,36 @@
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
 						<h1 class="h3 mb-4 text-gray-800">차량 상세정보</h1>
+						<table class="table table-hover" style="text-align: center;">
+							<tr>
+								<th>차량 번호</th>
+								<th>모델명</th>
+								<th>상세정보</th>
+								<th>최대 인원(명)</th>
+								<th>위치</th>
+							</tr>
+							<tr>
+								<td>${goods.goodsId }</td>
+								<td>${goods.name }</td>
+								<td>${goods.contents }</td>
+								<td>${goods.max }</td>
+								<td>${goods.location }</td>
+							</tr>
+						</table>
+						<ul>
+							<c:forEach items="${goods.goodsFileVO}" var="goods">
+								<li>
+									<img class="de" src="/resources/upload/goods/${goods.fileName}" alt="">
+								</li>
+							</c:forEach>
+						</ul>
+						
+						<div class="test">
+							<a href="./carList">
+								<button type="button" class="btn btn-outline-none">뒤로가기</button>
+							</a>
+						</div>
+						
 
 					</section>
 

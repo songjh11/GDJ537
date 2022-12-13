@@ -51,21 +51,22 @@
 
 							<div class="mb-3">
 								<label>예약날짜</label>
-								<input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1"
-									placeholder="시작시간">
+								<input type="datetime-local" name="startTime" class="form-control" id="start" placeholder="시작시간">
+								<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
 								<br>
 							</div>
 
 							<div class="mb-3">
 								<label>반납날짜</label>
-								<input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput2"
-									placeholder="시작시간">
-								<br>
+								<input type="datetime-local" name="endTime" class="form-control" id="end" placeholder="시작시간"
+									disabled='disabled'>
+									<p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+									<br>
 							</div>
 
 							<div class="mb-5">
 								<label>예약자</label>
-								<input type="text" name="id" class="form-control" id="exampleFormControlInput1">
+								<input type="text" name="id" class="form-control" id="member">
 							</div>
 
 							<div class="mb-5">
@@ -75,11 +76,14 @@
 
 							<div class="mb-5">
 								<label>사용 목적</label>
-								<input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1">
+								<input type="text" name="usePurpose" class="form-control" id="purpose">
+								<p id="purposeText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+								<br>
 							</div>
 
-							<button type="submit" class="btn btn-success">예약하기</button>
-
+							<div style="text-align: center;">
+								<button id="resBtn" type="button" class="btn btn-success">예약하기</button>
+							</div>
 							<br>
 						</form>
 
@@ -103,5 +107,5 @@
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- <script src="/js/room/reserve.js"></script> -->
+<script src="/js/room/reserve.js"></script>
 </html>

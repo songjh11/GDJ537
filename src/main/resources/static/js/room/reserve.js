@@ -1,96 +1,194 @@
-// const btn = document.getElementById("resBtn");
-// const frm = document.getElementById("frm");
-// const startTime = document.getElementById("start");
-// const endTime = document.getElementById("end");
-// const date = document.getElementById("reserveDate");
-// let today = new Date();
+const btn = document.getElementById("resBtn");
+const frm = document.getElementById("frm");
+const startTime = document.getElementById("start");
+const endTime = document.getElementById("end");
+const purpose = document.getElementById("purpose");
+const startText = document.getElementById("startText");
+const endText = document.getElementById("endText");
+const purposeText = document.getElementById("purposeText");
 
-// startCheck = true;
-// endCheck = true;
-// dateCheck = true;
+let today = new Date();
 
-// date.addEventListener("blur", function () {
-//     console.log(date.value);
-//     let y = parseFloat(date.value.split('-')[0]);
-//     let m = parseFloat(date.value.split('-')[1]);
-//     let d = parseFloat(date.value.split('-')[2]);
-//     if (d < 10) {
-//         d = d % 10;
-//     }
+startCheck = false;
+endCheck = false;
+purposeCheck = false;
 
-//     let year = parseFloat(today.getFullYear()); // 년도
-//     let month = parseFloat(today.getMonth() + 1);  // 월
-//     let da = parseFloat(today.getDate());  // 날짜
+startTime.addEventListener("blur", function () {
+    console.log(startTime.value);
 
-//     // 선택할 수 없는 것 만들기
+    var startDate = startTime.value.toString().substr(0, 10);
+    console.log(startDate);
 
-//     // 연도 - 선택한 연도가 현재 연도보다 작아야 함
-//     // 달 - 현 연도 에서 이전 달은 선택 못함
-//     // 일 - 현 연도, 달에서 이전 일은 선택 못함
-//     console.log(y < year);
-//     console.log(m < month && y == year);
-//     console.log(d < da && m == month && y == year);
+    let y = parseFloat(startDate.split('-')[0]);
+    let m = parseFloat(startDate.split('-')[1]);
+    let d = parseFloat(startDate.split('-')[2]);
+    if (d < 10) {
+        d = d % 10;
+    }
 
-//     if (y < year || (m < month && y == year) || (d < da && m == month && y == year)) {
-//         alert("선택할 수 없는 날입니다.");
-//         dateCheck = false;
-//     }
-//     else {
-//         dateCheck = true;
-//     }
-// })
+    let year = parseFloat(today.getFullYear()); // 년도
+    let month = parseFloat(today.getMonth() + 1);  // 월
+    let da = parseFloat(today.getDate());  // 날짜
 
-// startTime.addEventListener("blur", function () {
-//     console.log(startTime.value);
+    // 선택할 수 없는 것 만들기
 
-//     $(".startList").each(function () {
-//         var b = $(this).val();
+    // 연도 - 선택한 연도가 현재 연도보다 작아야 함
+    // 달 - 현 연도 에서 이전 달은 선택 못함
+    // 일 - 현 연도, 달에서 이전 일은 선택 못함
 
-//         // console.log("b: " + b);
+    // console.log(y < year);
+    // console.log(m < month && y == year);
+    // console.log(d < da && m == month && y == year);
 
-//         console.log(b == startTime.value);
-//         if ((b == startTime.value) == true) {
-//             alert("이미 예약된 시간입니다.");
-//             startCheck = false;
-//         }
-//         else {
-//             startCheck = true;
-//         }
-//     })
-// });
+    if (y < year || (m < month && y == year) || (d < da && m == month && y == year)) {
+        alert("선택할 수 없는 날입니다.");
+        console.log("시작 날 선택 - " + startCheck);
+    }
+    else {
+        startCheck = true;
+    }
+    // 반납날짜 disabled 하는 조건
+    if (startTime.value != '' && startCheck == true) {
+        endTime.disabled = false;
+    }
+    if (startCheck == false) {
+        endTime.disabled = true;
+    }
 
-// endTime.addEventListener("blur", function () {
-//     console.log(startTime.value.substr(0, 2));
-//     let st = parseInt(startTime.value.substr(0, 2));
-//     if (st == 0) {
-//         st = 12;
-//     }
-//     console.log("st: " + st); // 시작 숫자
+    // blur 시 빈칸일 때
+    if (startTime.value == '') {
+        startText.style.display = 'block';
+        startCheck = false;
+    }
+    else {
+        startText.style.display = 'none';
+        startCheck = true;
+    }
+})
 
-//     let end = parseInt(endTime.value.substr(0, 2))
-//     if (end == 0) {
-//         end = 12;
-//     }
-//     console.log("endTime: " + end); // 종료 숫자
+function CalculatorEndTime() {
+    var startDate = startTime.value.toString().substr(0, 10);
+    var endDate = endTime.value.toString().substr(0, 10);
 
-//     if (end < st) {
-//         alert("유효하지 않은 시간대입니다.");
-//         endCheck = false;
-//     }
-//     else {
-//         endCheck = true;
-//     }
-// })
+    console.log(endDate);
 
-// btn.addEventListener("click", function () {
-//     let a = confirm("정말 예약하시겠습니까?");
-//     // console.log(a);
+    let y = parseFloat(endDate.split('-')[0]);
+    let m = parseFloat(endDate.split('-')[1]);
+    let d = parseFloat(endDate.split('-')[2]);
+    if (d < 10) {
+        d = d % 10;
+    }
 
-//     if (a == true && startCheck == true && endCheck == true && dateCheck == true) {
-//         frm.submit();
-//     }
-//     else {
-//         alert("조건을 충족하지 못하였습니다.");
-//     }
-// })
+    let year = parseFloat(startDate.split('-')[0]);
+    let month = parseFloat(startDate.split('-')[1]);
+    let da = parseFloat(startDate.split('-')[2]);
+
+    if (y < year || (m < month && y == year) || (d < da && m == month && y == year)) {
+        alert("선택할 수 없는 날입니다.");
+        dateCheck = false;
+        console.log("이전날 선택 - " + dateCheck);
+    }
+    else {
+        dateCheck = true;
+    }
+
+    let st = parseInt(startTime.value.substr(11, 15));
+    if (st == 0) {
+        st = 12;
+    }
+    console.log("st: " + st); // 시작 숫자
+
+    let end = parseInt(endTime.value.substr(11, 15))
+    if (end == 0) {
+        end = 12;
+    }
+    console.log("endTime: " + end); // 종료 숫자
+
+    // 시간 계산
+    if (startTime.value == endTime.value) {
+        alert("동일한 시간은 사용할 수 없습니다.");
+        endCheck = false;
+        console.log("시간 동일 - " + endCheck)
+    }
+    else {
+
+        if (end < st) {
+            alert("유효하지 않은 시간대입니다.");
+            endCheck = false;
+            console.log("종료시간이 시작보다 빠름 - " + endCheck);
+        }
+        else {
+            // console.log(endTime.value);
+            // console.log(startTime.value);
+            let startSub = (startTime.value.substr(11)).substr(3, 4);
+            // console.log(startSub);
+            let endSub = (endTime.value.substr(11)).substr(3, 4);
+            // console.log(endSub);
+
+            // 분 계산
+            let a = parseFloat(startSub)
+            let b = parseFloat(endSub)
+            // console.log(a >= b);
+            if (end == st && a > b) {
+                alert("유효하지 않은 시간대입니다.");
+                endCheck = false;
+                console.log("시간동일 분 계산 - " + endCheck);
+            }
+            else {
+                endCheck = true;
+            }
+        }
+    }
+};
+
+endTime.addEventListener("blur", function () {
+    CalculatorEndTime();
+
+    // blur 시 빈칸일 때
+    if (endTime.value == '') {
+        endText.style.display = 'block';
+        endCheck = false;
+    }
+    else {
+        endText.style.display = 'none';
+        endCheck = true;
+    }
+})
+
+purpose.addEventListener("click", function () {
+    console.log("사용목적 클릭시")
+    CalculatorEndTime();
+    console.log("startTime: " + startCheck);
+    console.log("endTime: " + endCheck);
+})
+
+purpose.addEventListener("blur", function () {
+    if ((purpose.value) != '') {
+        purposeCheck = true;
+    }
+
+    // blur 시 빈칸일 때
+    if (purpose.value == '') {
+        purposeText.style.display = 'block';
+        purposeCheck = false;
+    }
+    else {
+        purposeText.style.display = 'none';
+        purposeCheck = true;
+    }
+})
+
+btn.addEventListener("click", function () {
+    let a = confirm("정말 예약하시겠습니까?");
+
+    if (a == true && startCheck == true && endCheck == true && purposeCheck == true) {
+        frm.submit();
+    }
+    else if (a == false) {
+        alert("취소하였습니다.");
+    }
+    else {
+        alert("조건을 충족하지 못하였습니다.");
+    }
+})
 

@@ -33,11 +33,11 @@
 
 	<!-- 예약 -->
 	<insert id="setReserve" parameterType="ReserveVO">
-		INSERT INTO RESERVE(RESERVENUM, GOODSID, DATE, STARTTIME, ENDTIME, MEMBERNUM, USEPURPOSE)
-		VALUES(null, #{goodsId}, #{date}, #{startTime}, #{endTime}, '아이유', #{usePurpose})
+		INSERT INTO RESERVE(RESERVENUM, GOODSID, DATE, STARTTIME, ENDTIME, ID, USEPURPOSE)
+		VALUES(null, #{goodsId}, now(), #{startTime}, #{endTime}, '7', #{usePurpose})
 	</insert>
 
-	<!-- 상세보기 -->
+	<!-- 차량 상세보기 -->
 	<select id="getGoods" parameterType="GoodsVO" resultMap="getGoodsDetail">
 		SELECT * FROM GOODS G
 		LEFT JOIN GOODSFILE F

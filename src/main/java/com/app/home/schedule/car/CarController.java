@@ -1,5 +1,8 @@
 package com.app.home.schedule.car;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -60,16 +63,15 @@ public class CarController {
 	public ModelAndView setUpdate(ReserveVO reserveVO, ModelAndView mv, HttpSession session) throws Exception {
 		GoodsVO goodsVO = new GoodsVO();
 		
-		List<GoodsVO> goodsVOs = carService.getGoodsList(goodsVO);
-		reserveVO = carService.getReserveDetail(reserveVO);
-		
-		session.setAttribute("reserveNum", reserveVO.getReserveNum());
-		
-		log.info("예약 변경 GET : {}", goodsVOs);
+		reserveVO = carService.getReserveDetail(reserveVO);		
+		goodsVO.setGoodsId(reserveVO.getGoodsId());
+		goodsVO = carService.getGoods(goodsVO);
+
+		log.info("예약 변경 GET : {}", goodsVO);
 		log.info("예약 변경 GET : {}", reserveVO);
-		
-		mv.addObject("goods", goodsVOs);
+
 		mv.addObject("reserve", reserveVO);
+		mv.addObject("goods", goodsVO);
 		mv.setViewName("/goods/car/carReserveChange");
 		
 		return mv;
@@ -92,6 +94,24 @@ public class CarController {
 		
 		return "/goods/car/carList";
 	}
+	
+	// 예약 상세보기
+	@GetMapping("/car/carReserveDetail")
+	public ModelAndView getReserveDetail(ReserveVO reserveVO, ModelAndView mv) throws Exception {
+		GoodsVO goodsVO = new GoodsVO();
+		
+		reserveVO = carService.getReserveDetail(reserveVO);
+		goodsVO.setGoodsId(reserveVO.getGoodsId());
+		goodsVO = carService.getGoods(goodsVO);
+		
+		log.info("예약 상세보기 : {}", reserveVO);
+		
+		mv.addObject("reserve", reserveVO);
+		mv.addObject("goods", goodsVO);
+		
+		return mv;
+	}	
+	
 
 	// 예약 GET
 	@GetMapping("/car/carReserve")
@@ -119,6 +139,20 @@ public class CarController {
 		return mv;
 	}
 	
+	// 차량 상세보기
+	@GetMapping("/car/carDetail")
+	public ModelAndView getGoods(GoodsVO goodsVO, ModelAndView mv) throws Exception {
+		
+		goodsVO = carService.getGoods(goodsVO);
+		
+		log.info("차량 상세보기 : {}", goodsVO);
+		
+		mv.addObject("goods", goodsVO);
+		
+		return mv;
+	}
+	
+
 	// 차량 리스트
 	@GetMapping("/car/carList")
 	public ModelAndView getCarList(GoodsVO goodsVO, ModelAndView mv, HttpSession session) throws Exception {
