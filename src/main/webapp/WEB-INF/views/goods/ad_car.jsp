@@ -26,7 +26,7 @@
         ]);
 
         var options = {
-          title: '차량 통계'
+          title: '차량별 통계'
           
         };
 

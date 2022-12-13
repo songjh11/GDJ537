@@ -26,7 +26,7 @@
         ]);
 
         var options = {
-          title: '회의실 통계'
+          title: '회의실별 통계'
           
         };
 
