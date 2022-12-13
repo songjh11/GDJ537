@@ -21,7 +21,8 @@ public interface ReportMapper {
 	
 	
 	//=======================김도영===================
-	
+	//신청보고서
+	public int setReportApply(ReportApplyVO reportApplyVO)throws Exception;
 	
 	
 	
