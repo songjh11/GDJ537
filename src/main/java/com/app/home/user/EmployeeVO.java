@@ -26,5 +26,4 @@ public class EmployeeVO {
 	private RoleVO roleVO;
 	private DepartmentVO departmentVO; 
 	private List<PickVO> pickVO;
-	private List<RoomVO> roomVOs;
 }
