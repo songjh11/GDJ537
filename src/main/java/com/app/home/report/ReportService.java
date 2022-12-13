@@ -96,18 +96,22 @@ public class ReportService {
 	
 	
 	public int setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		reportMapper.setAddApply(reportVacaVO);
 		return reportMapper.setAddVaca(reportVacaVO);
 	} 
 	
 	public int setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		reportMapper.setAddApply(reportWorkVO);
 		return reportMapper.setAddWork(reportWorkVO);
 	}
 	
 	public int setAddPay(ReportPayVO reportPayVO) throws Exception{
+		reportMapper.setAddApply(reportPayVO);
 		return reportMapper.setAddPay(reportPayVO);
 	}
 	
 	public int setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+		reportMapper.setAddApply(reportSorryVO);
 		return reportMapper.setAddSorry(reportSorryVO);
 	}
 	
@@ -120,7 +124,7 @@ public class ReportService {
 
 	
 
-	public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception{
+		public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception{
 			return reportMapper.setUpdateApply(reportApplyVO);
 		}
 		
