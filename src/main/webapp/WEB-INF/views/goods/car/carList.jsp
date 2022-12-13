@@ -53,7 +53,7 @@
 								<tr>
 									<td>${goods.carNum }</td>
 									<td>${goods.name }</td>
-									<td><a href="./carDetail?goodsId=" ${goods.goodsId}><button type="button" class="btn btn-outline-none">정보 보기</button></a></td>
+									<td><a href="./carDetail?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">정보 보기</button></a></td>
 									<td><a href="./carReserve?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">예약하기</button></a></td>
 								</tr>
 							</c:forEach>
@@ -75,11 +75,10 @@
 								<tr>
 									<td>${reserve.reserveNum}</td>
 									<td>${reserve.startTime}</td>
-									<td>${reserve.memberNum}</td>
-									<td><a href="./carDetail?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">정보 보기</a></td>
+									<td>${reserve.id}</td>
+									<td><a href="./carReserveDetail?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">정보 보기</a></td>
 									<td><a href="./carReserveChange?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">변경</a></td>
 									<td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reserveNum}">취소</button></td>
-									<td><a href="./carReserveDelete?reserveNum=${reserve.reserveNum}" id="delete_btn" class="btn btn-outline-none">취소</a></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -109,7 +108,7 @@
 			if (result) { // 확인 클릭 시
 				$.get("carReserveDelete?reserveNum=" + reserve, function(result) { // controller로 get방식의 보낸다
 					console.log(reserve);
-					/* location.reload(); */
+					location.reload();
 				});
 			}
 		});
