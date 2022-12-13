@@ -51,16 +51,17 @@
 
 							<div class="mb-3">
 								<label>예약날짜</label>
-								<input type="datetime-local" name="startTime" class="form-control" id="start"
-									placeholder="시작시간">
+								<input type="datetime-local" name="startTime" class="form-control" id="start" placeholder="시작시간">
+								<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
 								<br>
 							</div>
 
 							<div class="mb-3">
 								<label>반납날짜</label>
-								<input type="datetime-local" name="endTime" class="form-control" id="end"
-									placeholder="시작시간" disabled='disabled'>
-								<br>
+								<input type="datetime-local" name="endTime" class="form-control" id="end" placeholder="시작시간"
+									disabled='disabled'>
+									<p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+									<br>
 							</div>
 
 							<div class="mb-5">
@@ -75,11 +76,13 @@
 
 							<div class="mb-5">
 								<label>사용 목적</label>
-								<input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1">
+								<input type="text" name="usePurpose" class="form-control" id="purpose">
+								<p id="purposeText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+								<br>
 							</div>
 
 							<div style="text-align: center;">
-								<button id="resBtn" type="submit" class="btn btn-success">예약하기</button>
+								<button id="resBtn" type="button" class="btn btn-success">예약하기</button>
 							</div>
 							<br>
 						</form>
