@@ -29,7 +29,7 @@
 	</insert>
 	
 	<select id="getPickList" parameterType="String" resultMap="pickListResult">
-		SELECT * FROM EMPLOYEE E
+		SELECT * FROM USER E
 			INNER JOIN
 			PICKDETAIL PD 
 			ON E.ID=PD.YOURID 

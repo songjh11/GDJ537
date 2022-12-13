@@ -24,6 +24,7 @@ import lombok.Data;
 @Data
 public class UserVO implements UserDetails {
 
+	private int num;
 	private int id;
 	private int roleNum;
 	private int depNum;
