@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Document</title>
+    <script defer src="/js/kdy/totalPrice.js"></script>
         <style>
         #ajaaja{
             border-right: solid 1px black;
@@ -126,7 +127,7 @@
                         <div style="border-right: solid 1px black; width: 179px; font-weight: bold; padding-top: 12px;">
                             금액(원)
                         </div>
-                        <div style="width: 179px; font-weight: bold; padding-top: 12px;">
+                        <div tyle="width: 179px; font-weight: bold; padding-top: 12px;">
                             비 고
                         </div>
                     </div>
@@ -135,7 +136,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -143,7 +144,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -151,7 +152,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -159,7 +160,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -167,7 +168,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -175,7 +176,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -183,7 +184,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -191,7 +192,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -199,7 +200,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -207,7 +208,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -215,7 +216,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -223,7 +224,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -231,7 +232,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -239,7 +240,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -247,7 +248,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -255,7 +256,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -263,7 +264,7 @@
                             <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -271,7 +272,10 @@
                             합 계
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="text" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input type="number" id="total" disabled style="border: 0; width: 173px; height: 35px; margin-top: 5px;">원
+                        </div>
+                        <div style="border: solid 1px red; width: 179px; margin-left: 550px; height: 50px;">
+
                         </div>
                     </div>
                 </div>
