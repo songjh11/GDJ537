@@ -44,7 +44,7 @@ public class PickService {
 	
 	public int pickCancel(String myId, String yourId) throws Exception{
 		Map<String, Object> map = new HashMap<>();
-		Long pickNum=null;
+		Long pickNum = null;
 		pickNum = pickMapper.findPickNum(myId);
 		map.put("yourId", yourId);
 		map.put("pickNum", pickNum);

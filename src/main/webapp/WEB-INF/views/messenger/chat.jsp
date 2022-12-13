@@ -11,7 +11,8 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 </style>
-<link href="/css/chat/employeeList.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/chat/groupModal.css">
+<link rel="stylesheet" href="/css/chat/employeeList.css">
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <c:import url="../temp/layout_header.jsp"></c:import>
@@ -40,6 +41,7 @@
 					</div>
 					<div class="chatDiv" id="chatArea">
 						<div class="blank"></div>
+							<c:import url="./groupModal.jsp"></c:import>
 							<c:import url="./employeeList.jsp"></c:import>
 					</div>
 					<div class="chatDiv">
@@ -78,5 +80,6 @@
 	<!-- Scroll Top, Login Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 	<script src="/js/messenger/main.js"></script>
+	<script src="/js/messenger/groupModal.js"></script>
 </body>
 </html>

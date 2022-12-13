@@ -363,6 +363,7 @@
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <link href="/css/chat/employeeList.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/chat/groupModal.css">
 <c:import url="../temp/layout_header.jsp"></c:import>
 </head>
 

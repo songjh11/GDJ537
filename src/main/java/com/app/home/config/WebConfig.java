@@ -24,9 +24,13 @@ public class WebConfig implements WebMvcConfigurer{
 				.addResourceLocations("/webjars/")
 				 .resourceChain(false);
         registry.setOrder(1);
-				
-		
 	}
+
+	
+	@Bean
+    MappingJackson2JsonView jsonView(){
+        return new MappingJackson2JsonView();
+    }
 	
 	@Bean
     MappingJackson2JsonView jsonView(){

@@ -43,7 +43,7 @@
 					 	ROLE R
 					 	ON E.ROLENUM=R.ROLENUM	
 			WHERE P.MYID=#{myId}		 	
-		ORDER BY E.NAME
+		ORDER BY D.DEPNUM, E.NAME
 	</select>
 	
 	<select id="perCheck" parameterType="Map" resultType="int">
@@ -118,10 +118,10 @@
 				<id column="DEPNUM" property="depNum"/>
 				<result column="DEPNAME" property="depName"/>
 			</association>
-			<association property="pickVO">
+			<collection javaType="List" ofType="PickVO" property="pickVO">
 				<id column="PICKNUM" property="pickNum"/>
 				<result column="MYID" property="myId"/>
-			</association>
+			</collection>
 	</resultMap>
 	
 </mapper>    
