@@ -207,30 +207,13 @@ public class ReportController {
 	
 	//=======================결재신청 insert===================
 	
-	@GetMapping("/report/addvaca")
-	public void setAddVaca() throws Exception{
-		
-	} 
-	
-	@GetMapping("/report/addwork")
-	public void setAddWork() throws Exception{
-		
-	}
-	
-	@GetMapping("/report/addpay")
-	public void setAddPay() throws Exception{
-		
-	}
-	
-	@GetMapping("/report/addsorry")
-	public void setAddSorry() throws Exception{
-		
-	}
 	
 	
 	
 	@PostMapping("/report/addvaca")
 	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		
+		
 		
 	} 
 	
