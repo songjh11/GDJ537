@@ -2,6 +2,7 @@ package com.app.home.schedule.goods;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Data;
 
@@ -9,11 +10,11 @@ import lombok.Data;
 public class ReserveVO {
 	private Long reserveNum;
 	private String goodsId;
-	private Timestamp date;
-	private Long memberNum;
+	private String date;
+	private Long id;
 	private String usePurpose;
-	private Timestamp startTime;
-	private Timestamp endTime;
+	private String startTime;
+	private String endTime;
 	
-	private GoodsVO goodsVO;
+	private List<GoodsVO> goodsVOs;
 }

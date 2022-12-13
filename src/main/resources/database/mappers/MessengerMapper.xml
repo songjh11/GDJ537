@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.app.home.messenger.MessengerMapper">
+
+<sql id="search">
+			WHERE	
+	 		<choose>
+				<when test="kind==0">E.NAME</when>
+				<when test="kind==1">D.DEPNAME</when>
+				<otherwise>R.ROLENAME</otherwise>
+			 </choose>
+			LIKE CONCAT('%', #{keyword}, '%')
+</sql>
+
+	<select id="getEmpList" resultMap="getEmpListResult">
+		SELECT * FROM EMPLOYEE E
+			LEFT JOIN
+			PICKDETAIL PD 
+			ON E.ID=PD.YOURID 
+				LEFT JOIN
+				PICK P
+				ON P.PICKNUM=PD.PICKNUM 
+					INNER JOIN
+					DEPARTMENT D
+					ON E.DEPNUM=D.DEPNUM
+						INNER JOIN
+					 	ROLE R
+					 	ON E.ROLENUM=R.ROLENUM				 	
+		ORDER BY D.DEPNUM, E.NAME
+	</select>
+	
+	<select id="getDepList" resultType="DepartmentVO">
+		SELECT * FROM DEPARTMENT
+		ORDER BY DEPNUM
+	</select>
+	
+	<select id="getSearchResult" parameterType="Map" resultMap="getEmpListResult">
+		SELECT * FROM EMPLOYEE E
+			LEFT JOIN
+			PICKDETAIL PD 
+			ON E.ID=PD.YOURID 
+				LEFT JOIN
+				PICK P
+				ON P.PICKNUM=PD.PICKNUM 
+					INNER JOIN
+					DEPARTMENT D
+					ON E.DEPNUM=D.DEPNUM
+					INNER JOIN
+						 	ROLE R
+						 	ON E.ROLENUM=R.ROLENUM	
+						 	<if test="kind!=null">
+								<include refid="search"></include> 	
+						 	</if>
+			ORDER BY D.DEPNUM, E.NAME
+	</select>
+	
+	
+	<resultMap type="EmployeeVO" id="getEmpListResult">
+		<id column="NUM" property="num"/>
+		<result column="ID" property="id"/>
+		<result column="DEPNUM" property="depNum"/>
+		<result column="ROLENUM" property="roleNum"/>
+		<result column="PW" property="pw"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="ENTDATE" property="entDate"/>
+		<result column="PROFILES" property="profiles"/>
+		<result column="STATUS" property="status"/>
+			<association property="roleVO">
+				<id column="ROLENUM" property="roleNum"/>
+				<result column="ROLENAME" property="roleName"/>  
+			</association>
+			<association property="departmentVO">
+				<id column="DEPNUM" property="depNum"/>
+				<result column="DEPNAME" property="depName"/>
+			</association>
+			<association property="pickVO">
+				<id column="PICKNUM" property="pickNum"/>
+				<result column="MYID" property="myId"/>
+			</association>
+	</resultMap>
+	
+	<!--                       효경                       -->
+	
+	<insert id="setAddRoomUser" parameterType="EmployeeVO">
+		INSERT INTO  ROOMUSER
+		VALUES(NULL, #{id}, #{roomNum})
+	</insert>
+	
+	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum" >
+		INSERT INTO  CHATROOM
+		VALUES(#{roomNum}, now(), #{roomName}, 
+			   (SELECT ID FROM EMPLOYEE WHERE NUM = #{num}), #{pw})
+	</insert>
+	
+</mapper>    
