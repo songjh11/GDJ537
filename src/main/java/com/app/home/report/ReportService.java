@@ -90,20 +90,20 @@ public class ReportService {
 	//=======================결재 신청 insert===================
 	
 	
-	public void setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
-		
+	public int setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		return reportMapper.setAddVaca(reportVacaVO);
 	} 
 	
-	public void setAddWork(ReportWorkVO reportWorkVO) throws Exception{
-		
+	public int setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		return reportMapper.setAddWork(reportWorkVO);
 	}
 	
-	public void setAddPay(ReportPayVO reportPayVO) throws Exception{
-		
+	public int setAddPay(ReportPayVO reportPayVO) throws Exception{
+		return reportMapper.setAddPay(reportPayVO);
 	}
 	
-	public void setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
-		
+	public int setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+		return reportMapper.setAddSorry(reportSorryVO);
 	}
 	
 	//================================================
@@ -157,15 +157,23 @@ public class ReportService {
 	//=======================류형민===================
 	
 	public List<ReportVacaVO> getMyVacaList(ReportPager pager) throws Exception{
+		pager.getNum(reportMapper.getMyVacaCount(pager));
+		
 		return reportMapper.getMyVacaList(pager);
 	}
 	public List<ReportWorkVO> getMyWorkList(ReportPager pager) throws Exception{
+		pager.getNum(reportMapper.getMyWorkCount(pager));
+		
 		return reportMapper.getMyWorkList(pager);
 	}
 	public List<ReportSorryVO> getMySorryList(ReportPager pager) throws Exception{
+		pager.getNum(reportMapper.getMySorryCount(pager));
+		
 		return reportMapper.getMySorryList(pager);
 	}
 	public List<ReportPayVO> getMyPayList(ReportPager pager) throws Exception{
+		pager.getNum(reportMapper.getMyPayCount(pager));
+		
 		return reportMapper.getMyPayList(pager);
 	}
 	
