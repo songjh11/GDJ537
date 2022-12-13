@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.app.home.user.DepartmentVO;
+import com.app.home.user.UserService;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import ch.qos.logback.classic.Logger;
@@ -37,6 +39,9 @@ public class GoodsController {
 	
 	@Autowired
 	private GoodsService goodsService;
+	
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("add")
 	public String getAdd() throws Exception
@@ -48,6 +53,9 @@ public class GoodsController {
 	public String setAdd(GoodsVO goodsVO, MultipartFile[] files, RedirectAttributes redirectAttributes, HttpSession session)
 			throws Exception
 	{
+		if(goodsVO.getContents().equals("")) {
+			goodsVO.setContents("추가 설명 없습니다.");
+		}
 		int result = goodsService.setAdd(goodsVO, files, session.getServletContext());
 		return "redirect:/goods/ad_list";
 	}
@@ -162,10 +170,16 @@ public class GoodsController {
 	public ModelAndView getRoomAdmin() throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<GoodsVO> room = goodsService.getRoomNameList();
+		List<DepartmentVO> department = userService.getDepartment(); 
 		Map<String, Integer> map = new HashMap<>();
+		Map<String, Integer> departMap = new HashMap<>();
 		
 		for(int i=0;i<room.size();i++) {
 			map.put(room.get(i).getGoodsId(), goodsService.getreserveCount(room.get(i)));
+		}
+		
+		for(int i=0;i<department.size();i++) {
+			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(department.get(i)));
 		}
 		
 		String result ="";
@@ -179,7 +193,19 @@ public class GoodsController {
 		}
 		int total = goodsService.getRoomTotal();
 		
+		String depart ="";
+		Set<String> reasonKey = departMap.keySet();
+		
+		for(String key : reasonKey) {
+			if(depart != "") {
+				depart += ",";
+			}
+			depart += "['"+key+"', "+departMap.get(key)+"]";
+		}
+		
+		
 		System.out.println(result);
+		mv.addObject("depart", depart);
 		mv.addObject("total", total);
 		mv.addObject("result", result);
 		mv.setViewName("/goods/ad_room");
@@ -190,10 +216,16 @@ public class GoodsController {
 	public ModelAndView getCarAdmin()throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<GoodsVO> car = goodsService.getCarNameList();
+		List<DepartmentVO> department = userService.getDepartment(); 
 		Map<String, Integer> map = new HashMap<>();
-		
+		Map<String, Integer> departMap = new HashMap<>();
+
 		for(int i=0;i<car.size();i++) {
 			map.put(car.get(i).getGoodsId(), goodsService.getreserveCount(car.get(i)));
+		}
+		
+		for(int i=0;i<department.size();i++) {
+			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentCarTotal(department.get(i)));
 		}
 		
 		String result ="";
@@ -207,7 +239,18 @@ public class GoodsController {
 		}
 		
 		int total = goodsService.getCarTotal();
+		
+		String depart ="";
+		Set<String> reasonKey = departMap.keySet();
+		
+		for(String key : reasonKey) {
+			if(depart != "") {
+				depart += ",";
+			}
+			depart += "['"+key+"', "+departMap.get(key)+"]";
+		}
 		System.out.println(result);
+		mv.addObject("depart", depart);
 		mv.addObject("total", total);
 		mv.addObject("result", result);
 		mv.setViewName("/goods/ad_car");
