@@ -96,6 +96,14 @@ public class MessengerController {
 		mv.addObject("list", ar);
 		mv.addObject("pager", notePager);
 		
+		if(ar.size()==0) {
+			log.info("=============================비었따");
+			mv.addObject("message5", "검색 결과가 없습니다.");
+		} else {
+			mv.addObject("message5", "");
+		}
+		
+		
 		Integer id = 1;
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<EmployeeVO> el = messengerService.getEmpList();
@@ -114,13 +122,25 @@ public class MessengerController {
 	@GetMapping("note/sent")
 	@ResponseBody
 	public ModelAndView getSendNoteList(EmployeeVO employeeVO, NotePager notePager)throws Exception{
+		
+		
+		
 		ModelAndView mv = new ModelAndView("jsonView");
 		//임시 id
 		employeeVO.setId(20221231);
 		List<NoteVO> ar = noteService.getSendNoteList(employeeVO, notePager);
-		
 		mv.addObject("list", ar);
+		
+		
 		mv.addObject("pager", notePager);
+		
+		
+		if(ar.size()==0) {
+			log.info("=============================발신비었따");
+			mv.addObject("message5", "검색 결과가 없습니다.");
+		} else {
+			mv.addObject("message5", "");
+		}
 		return mv;
 	}
 	

@@ -101,8 +101,12 @@ $(".titleLi").click(function() {
 
 $(".acoArea").on("click", ".empName", function(){
     console.log("didjkfjld");
+
+ let id = "";
+
+$(".empName").click(function(){
     console.log($(this).attr("value"));
-    let id = $(this).attr("empId");
+    id = $(this).attr("empId");
     let name = $(this).attr("value");
     let email = $('#email'+id).val();
     let phone = $('#phone'+id).val();
@@ -116,7 +120,15 @@ $(".acoArea").on("click", ".empName", function(){
     $("#proPhone").text(phone);
 });
 
- $("#chatBtn").click(function(){
+
+$('#sendNote').on("click",function(){
+    console.log("?");
+    window.open('./note/send?receiveId='+id, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+})
+
+
+
+$("#chatBtn").click(function(){
     console.log("채팅함");
  })
 
