@@ -8,12 +8,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Document</title>
+        <style>
+        #ajaaja{
+            border-right: solid 1px black;
+             height: 90px;
+              width: 122px;
+              margin-top: 6px;
+        }
+    </style>
 </head>
 <body>
     <div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 25px; background-color: rgb(255, 255, 249); text-align: center; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
+            <div style="letter-spacing: 70px;margin-top: 45px; background-color: rgb(255, 255, 249); color: black; font-size: 35px; font-weight: bolder; vertical-align: top; margin-right: 380px;" >
                    지출결의서
+                    <div style="border: solid 1px black; width: 400px; margin-left: 570px; height: 120px; margin-top: -65px;">
+                        <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
+                            결<br>
+                            재
+                        </div>
+                        <div class="row" style="border-bottom: solid 1px black; margin-top: -120px; width: 368px; margin-left: 30px; height: 30px; font-size: 15px;">
+                            <div style="padding-top:3px; letter-spacing: 0; margin-left: 5px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
+                                                                                                &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
+                            <div id="ajaaja"></div>
+                            <div id="ajaaja"></div>
+                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            
+                        </div>
+                    </div>
             </div>
             <hr >
 
@@ -240,7 +262,7 @@
                 <div style="text-align: center; font-weight: bold; margin-top: 25px;">
                     위 금액을 청구하오니 결재해 주시기 바랍니다.
                 </div>
-                <div class="d-flex" style="font-weight: bold; margin-left: 240px; margin-top: 45px;">
+                <div class="d-flex" style="font-weight: bold; margin-left: 240px; margin-top: 25px;">
                     <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" value="2022" />년</div>
                     <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" value="12"/>월</div>
                     <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" value="31"/>일</div>
