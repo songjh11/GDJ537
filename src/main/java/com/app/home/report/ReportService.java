@@ -20,7 +20,11 @@ public class ReportService {
 	
 
 	//=======================김도영===================
-	
+	//신청 보고서
+	public int setReportApply(ReportApplyVO reportApplyVO)throws Exception{
+		int result = reportMapper.setReportApply(reportApplyVO);
+		return result;
+	}
 	
 	
 	
