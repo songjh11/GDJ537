@@ -42,51 +42,59 @@
 	
 	            	<!-- Page Heading -->
 	            	<h1 class="h3 mb-4 text-gray-800" >공용 시설 추가</h1>
+					<P>* 표시는 필수항목입니다.</P>
 	            	
-	            	<form action="add" method="post" enctype="multipart/form-data" >
+	            	<form action="add" method="post" enctype="multipart/form-data" id="addform">
 	            	 <div class="mb-3">
 	            	 	<div>
-					    	<label for="exampleInputName" class="form-label">종류</label>
+					    	<label for="exampleInputName" class="form-label" style="font-weight : bold">*종류</label>
 					    </div>
 					    <label class="test_obj">
-						    <input type="radio" name="goodsId" value="RO">
+						    <input type="radio" name="goodsId" value="RO" id="kind">
 						    <span>회의실</span>
 						</label>
-						 
+
 						<label class="test_obj">
-						    <input type="radio" name="goodsId" value="CA">
+						    <input type="radio" name="goodsId" value="CA" id="kind">
 						    <span>차량</span>
 						</label>
+						<div id="kinddiv" class="check"></div>
+
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputName" class="form-label">시설 이름</label>
+					    <label for="exampleInputName" class="form-label" style="font-weight : bold">*시설 이름</label>
 					    <input type="text" class="form-control" id="name" name="name">
+						<div id="namediv" class="check"></div>
 					  </div>
 					  <div class="mb-3">
 					    <label for="exampleInputContents" class="form-label">시설 설명</label>
 			            <textarea  class="form-control add_ele" id="contents" name="contents"></textarea>
 					  </div>
 					  <div class="mb-3">
-					    <label for="exampleInputMax" class="form-label">최대 인원</label>
+					    <label for="exampleInputMax" class="form-label" style="font-weight : bold">*최대 인원</label>
 					    <input type="text" class="form-control" id="max" name="max">
+						<div id="maxdiv" class="check"></div>
 					  </div>
 					  <div class="mb-3">
-						<label for="exampleInputLocation" class="form-label">시설 위치</label>
+						<label for="exampleInputLocation" class="form-label" style="font-weight : bold">*시설 위치</label>
 						<input type="text" class="form-control" id="location" name="location">
+						<div id="locationdiv" class="check"></div>
 					  </div>
 					  <div class="mb-3" style="display: none;" id="carChecked">
-						<label for="exampleInputLocation" class="form-label">차량 번호</label>
+						<label for="exampleInputLocation" class="form-label" style="font-weight : bold">*차량 번호</label>
 						<input type="text" class="form-control" id="carNum" name="carNum">
+						<div id="carNumdiv" class="check"></div>
 					  </div>
-					  <div class="board-filetitle">이미지 첨부  
+					  <div class="board-filetitle" style="font-weight : bold">*이미지 첨부  
 			          	<div class="mb-3" id="fileAddResult">      
 			            </div>
 			          </div>
 			          <div class="mb-3">
 			          	<button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
+						  <div id="imgdiv" class="check"></div>
 			          </div>
-					  <button type="submit" class="btn btn-primary">시설 추가</button>
-					  </form>
+					  <input type="button" class="btn btn-primary" id="sub" value="시설 추가">
+					</form>
 	
 	            </div>
 	            <!-- End Page Content -->
@@ -104,6 +112,5 @@
 	<!-- Scroll Top, Login Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 	<script src="/js/goods/addFiles.js"></script>
-	<script src="/js/goods/add.js"></script>
 </body>
 </html>

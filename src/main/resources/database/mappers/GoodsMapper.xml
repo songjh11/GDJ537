@@ -158,6 +158,17 @@
 	<select id="getCarTotal" resultType="int">
 		SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'CA%'
 	</select>
+
+	<select id="getDepartmentRoomTotal" resultType="int" parameterType="DepartmentVO">
+		 SELECT COUNT(*) FROM RESERVE R
+ 			WHERE R.ID = (SELECT ID FROM DEPARTMENT  WHERE DEPNAME = #{depName}) AND R.GOODSID LIKE 'RO%'
+	</select>
+	
+	<select id="getDepartmentCarTotal" resultType="int" parameterType="DepartmentVO">
+		 SELECT COUNT(*) FROM RESERVE R
+ 			WHERE R.ID = (SELECT ID FROM DEPARTMENT  WHERE DEPNAME = #{depName}) AND R.GOODSID LIKE 'CA%'
+	</select>
+	
 	
 	
 </mapper> 

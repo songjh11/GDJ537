@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.app.home.user.DepartmentVO;
+
 @Repository
 @Mapper
 public interface GoodsMapper
@@ -46,5 +48,10 @@ public interface GoodsMapper
 	public int getRoomTotal() throws Exception;
 	
 	public int getCarTotal() throws Exception;
+	
 	public List<ReserveVO> getReserveList(GoodsReserveVO goodsReserveVO) throws Exception;
+	
+	public int getDepartmentRoomTotal(DepartmentVO departmentVO) throws Exception;
+	
+	public int getDepartmentCarTotal(DepartmentVO departmentVO) throws Exception;
 }
