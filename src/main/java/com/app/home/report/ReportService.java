@@ -12,9 +12,13 @@ import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
 import com.app.home.report.work.ReportWorkVO;
+import com.app.home.user.DepartmentVO;
 import com.app.home.user.UserVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ReportService {
 	
 	@Autowired
@@ -54,6 +58,13 @@ public class ReportService {
 	}
 	
 	public List<UserVO> getReportList (UserVO userVO) throws Exception{
+		
+		/*
+		 * Long totalCount = reportMapper.getReportListCount(reportPager);
+		 * log.info("cc ===>>> {}", totalCount); reportPager.getNum(totalCount);
+		 * reportPager.getStartRow();
+		 */
+
 		
 		return reportMapper.getReportList(userVO);
 	}

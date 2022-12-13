@@ -26,6 +26,7 @@ import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
 import com.app.home.report.work.ReportWorkVO;
+import com.app.home.user.DepartmentVO;
 import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -96,12 +97,21 @@ public class ReportController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/report/insa1")
 	@ResponseBody
-	public List<UserVO> getReportList1(UserVO userVO) throws Exception{
+	public List<UserVO> getReportList1(UserVO userVO, Model model) throws Exception{
 //		UserVO userVO = new UserVO();
+		
+		
+		ModelAndView mv = new ModelAndView();
 
 		
 		
 		List<UserVO> ar = reportService.getReportList(userVO);
+//		model.addAttribute("reportPager", userVO);
+//		log.info("dddd ====>>>> {}", reportPager.getStartNum());
+		
+		
+		
+//		log.info("depNum :: {} " , ar.get(0).getDepartmentVO().getDepName());
 
 		
 		return ar;

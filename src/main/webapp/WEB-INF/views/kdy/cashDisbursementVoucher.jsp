@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
 <!-- 공통 css, js, jquery -->
+    <script defer src="/js/kdy/dafas.js"></script>
 <c:import url="../temp/layout_header.jsp"></c:import>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
