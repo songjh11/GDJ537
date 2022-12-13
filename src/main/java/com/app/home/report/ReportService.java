@@ -122,51 +122,57 @@ public class ReportService {
 	
 	
 
+	public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception{
+				return reportMapper.setUpdateApply(reportApplyVO);
+			}
+			
+			public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception{
+				return reportMapper.setUpdateCancelApply(reportApplyVO);
+			}
+
+			public Integer getLicenseCheck(ReportVO reportVO) throws Exception{
+				return reportMapper.getLicenseCheck(reportVO);
+			}
+			
+			public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception{
+				return reportMapper.getLicenseSorryReportDetail(reportSorryVO);
+			}
+			
+			public ReportPayVO getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception{
+				return reportMapper.getLicensePayReportDetail(reportPayVO);
+			}
+			
+			public ReportWorkVO getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception{
+				return reportMapper.getLicenseWorkReportDetail(reportWorkVO);
+			}
+			
+			public ReportVacaVO getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception{
+				return reportMapper.getLicenseVacaReportDetail(reportVacaVO);
+			}
+			
+			public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception{
+				reportApplyVO.getNum(reportMapper.getCountFinishReport(reportApplyVO));
+				return reportMapper.getFinishReport(reportApplyVO);
+			}
+			
+			public ReportVO getReturnReport(ReportApplyVO reportApplyVO) throws Exception{
+				reportApplyVO.getNum(reportMapper.getCountReturnReport(reportApplyVO));
+				return reportMapper.getReturnReport(reportApplyVO);
+			}
+			
+			public ReportVO getDoFirstReport(ReportApplyVO reportApplyVO) throws Exception{
+				reportApplyVO.getNum(reportMapper.getCountDoFirstReport(reportApplyVO));
+				return reportMapper.getDoFirstReport(reportApplyVO);
+			}
+			
+			public ReportVO getDoFinalReport(ReportApplyVO reportApplyVO) throws Exception{
+				reportApplyVO.getNum(reportMapper.getCountDoFinalReport(reportApplyVO));
+				return reportMapper.getDoFinalReport(reportApplyVO);
+			}
+
 	
 
-		public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.setUpdateApply(reportApplyVO);
-		}
 		
-		public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.setUpdateCancelApply(reportApplyVO);
-		}
-
-		public Integer getLicenseCheck(ReportVO reportVO) throws Exception{
-			return reportMapper.getLicenseCheck(reportVO);
-		}
-		
-		public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception{
-			return reportMapper.getLicenseSorryReportDetail(reportSorryVO);
-		}
-		
-		public ReportPayVO getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception{
-			return reportMapper.getLicensePayReportDetail(reportPayVO);
-		}
-		
-		public ReportWorkVO getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception{
-			return reportMapper.getLicenseWorkReportDetail(reportWorkVO);
-		}
-		
-		public ReportVacaVO getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception{
-			return reportMapper.getLicenseVacaReportDetail(reportVacaVO);
-		}
-		
-		public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getFinishReport(reportApplyVO);
-		}
-		
-		public ReportVO getReturnReport(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getReturnsReport(reportApplyVO);
-		}
-		
-		public ReportVO getDoFirstReport(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getDoFirstReport(reportApplyVO);
-		}
-		
-		public ReportVO getDoFinalReport(ReportApplyVO reportApplyVO) throws Exception{
-			return reportMapper.getDoFinalReport(reportApplyVO);
-		}
 
 
 	
