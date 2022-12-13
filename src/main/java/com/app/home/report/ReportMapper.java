@@ -13,6 +13,7 @@ import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
 import com.app.home.report.work.ReportWorkVO;
+import com.app.home.user.DepartmentVO;
 import com.app.home.user.UserVO;
 
 @Mapper
@@ -44,6 +45,8 @@ public interface ReportMapper {
 	public int setLicenserAdd(UserVO userVO) throws Exception;
 	
 	public List<ReportVO> getLicenserList(ReportVO reportVO) throws Exception;
+	
+	public Long getReportListCount(ReportPager reportPager) throws Exception;
 	
 	
 	
