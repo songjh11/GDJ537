@@ -13,9 +13,10 @@
             background-color:;
         }
     </style>
+    <c:import url="../temp/layout_header.jsp"></c:import>
 </head>
 <body>
-
+	
 		<div class="container px-4 px-lg-5 my-5">
 	        <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1150px; border: solid 1px black; text-align: center;">
 	            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 25px; background-color: rgb(255, 255, 249); text-align: center; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
@@ -29,7 +30,7 @@
 	                            <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
 	                                소속
 	                                <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-	                                    <textarea style="border: 0; text-align: center; width: 645px; height: 97px;" readonly></textarea>
+	                                    <input type="text" style="border: 0; text-align: center; width: 645px; height: 97px;" readonly value="abc">
 	                                    <!-- DEOARTMENT.DEPNAME = 부서번호 -->
 	                                </div>
 	                            </div>
@@ -38,7 +39,7 @@
 	                            <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
 	                                성명
 	                                <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-	                                    <textarea value="NAME" style="border: 0; text-align: center; width: 645px; height: 97px;"></textarea>
+	                                    <input type="text" style="border: 0; text-align: center; width: 645px; height: 97px;" readonly value="abc">
 	                                    <!-- USER.NAME = 이름 -->
 	                                </div>
 	                            </div>
@@ -134,6 +135,5 @@
 	        </div>    
 	
 	    </div>
-
 </body>
 </html>

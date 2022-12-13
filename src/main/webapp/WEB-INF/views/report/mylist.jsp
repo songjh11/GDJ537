@@ -102,7 +102,7 @@
 	                                        </thead>
                                             <tbody>
                                                 <c:forEach items="${list}" var="vo">
-                                                	<tr>
+                                                	<tr onclick="window.open('')">
                                                 		<td>${vo.title}</td>
                                                 		<td>${vo.wdate}</td>
                                                 		<td>${vo.cdate}</td>
