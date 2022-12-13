@@ -71,12 +71,12 @@
 															<span id="depN${p.id}" value="${p.departmentVO.depName}/${p.roleVO.roleName}">(${p.departmentVO.depName}/${p.roleVO.roleName})</span>
 														</div>
 														<c:choose>
-															<c:when test="${p.pickVO.myId eq myId}">
+															<c:when test="${p.pickVO[0].myId eq myId}">
 																<div class="btnArea">
 																	<button type="button" class="pickBtn" value="${p.id}" pickBtnNum="${p.id}"><img class="pickImg" src="/img/star (4).png"></button>
 																</div>
 															</c:when>
-															<c:when test="${p.pickVO.myId ne myId}">
+															<c:when test="${p.pickVO[0].myId ne myId}">
 																<div class="btnArea">
 																	<button type="button" class="pickBtn" value="${p.id}" pickBtnNum="${p.id}"><img class="pickImg" src="/img/star (3).png"></button>
 																</div>
@@ -117,14 +117,18 @@
 																<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 															</div>
 															<div class="btnArea">
-																<c:choose>
-																	<c:when test="${e.pickVO.myId eq myId}">
+																<c:forEach items="${e.pickVO}" var="p">
+																	<c:choose>
+																		<c:when test="${p.myId eq myId and p.pickNum eq 2}">
+																			${e.pickVO[0].myId}
 																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
-																	</c:when>
-																	<c:when test="${e.pickVO.myId ne myId}">
-																		<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
-																	</c:when>
-																</c:choose>
+																		</c:when>
+																		<c:when test="${p.myId ne myId and p.pickNum ne 2}">
+																			${e.pickVO[1].myId}
+																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																		</c:when>
+																	</c:choose>
+																</c:forEach>
 															</div>
 														</div>
 													</li>
@@ -159,10 +163,10 @@
 															</div>
 															<div class="btnArea">
 																<c:choose>
-																	<c:when test="${e.pickVO.myId eq myId}">
+																	<c:when test="${e.pickVO[0].myId eq myId}">
 																			<button type="button" class="pickBtn pickNum" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
 																	</c:when>
-																	<c:when test="${e.pickVO.myId ne myId}">
+																	<c:when test="${e.pickVO[0].myId ne myId}">
 																		<button type="button" class="pickBtn pickNum" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
 																	</c:when>
 																</c:choose>

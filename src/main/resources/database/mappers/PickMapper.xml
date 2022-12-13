@@ -118,10 +118,10 @@
 				<id column="DEPNUM" property="depNum"/>
 				<result column="DEPNAME" property="depName"/>
 			</association>
-			<association property="pickVO">
+			<collection javaType="List" ofType="PickVO" property="pickVO">
 				<id column="PICKNUM" property="pickNum"/>
 				<result column="MYID" property="myId"/>
-			</association>
+			</collection>
 	</resultMap>
 	
 </mapper>    
