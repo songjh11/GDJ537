@@ -12,15 +12,16 @@
 </head>
 <style>
 .de {
-	width: 350px;
-	height: 350px;
+	width: 1000px;
+	height: 500px;
+	padding-bottom: 50px;
 	padding-left: 20px;
 	padding-right: 25px;
 }
 
-ul {
+/* ul {
 	display: flex;
-}
+} */
 
 ul li {
 	list-style: none;
@@ -67,15 +68,11 @@ ul li {
 							</tr>
 						</table>
 						<ul>
-							<li>
-								<img class="de" src="/img/undraw_profile_1.svg" alt="">
-							</li>
-							<li>
-								<img class="de" src="/img/undraw_profile_2.svg" alt="">
-							</li>
-							<li>
-								<img class="de" src="/img/undraw_profile_3.svg" alt="">
-							</li>
+							<c:forEach items="${goods.goodsFileVO}" var="goods">
+								<li>
+									<img class="de" src="/resources/upload/goods/${goods.fileName}" alt="">
+								</li>
+							</c:forEach>
 						</ul>
 						
 						<div class="test">
