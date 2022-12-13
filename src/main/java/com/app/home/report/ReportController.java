@@ -56,6 +56,7 @@ public class ReportController {
 	@GetMapping("/kdy/vacationApplication")
 	public ModelAndView vacationApplication(Principal principal)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		log.info("principal :: {} " , principal);
 		int id = Integer.parseInt(principal.getName());
 		
 		UserVO userVO = new UserVO();
