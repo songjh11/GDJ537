@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.app.home.schedule.goods.util.FileManager;
+import com.app.home.util.FileManager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -148,9 +148,9 @@ public class GoodsService
 	public List<GoodsVO> getCarList() throws Exception{
 		return goodsMapper.getCarList();
 	}
-	public List<ReserveVO> getReserveList() throws Exception{
+	public List<ReserveVO> getReserveList(GoodsReserveVO goodsReserveVO) throws Exception{
 		
-		return goodsMapper.getReserveList();
+		return goodsMapper.getReserveList(goodsReserveVO);
 	}
 	
 	public List<GoodsVO> getRoomNameList() throws Exception{

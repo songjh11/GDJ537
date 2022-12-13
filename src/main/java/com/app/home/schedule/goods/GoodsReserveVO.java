@@ -13,4 +13,10 @@ public class GoodsReserveVO {
 	private String usePurpose;
 	private Timestamp startTime;
 	private Timestamp endTime;
+	
+	
+//	filter
+	private boolean room;
+	private boolean car;
+	private boolean vacation;
 }

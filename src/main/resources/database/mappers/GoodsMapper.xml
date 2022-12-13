@@ -116,8 +116,23 @@
 		</collection>
 	</resultMap>
 	
-	<select id="getReserveList" parameterType="ReserveVO" resultType="ReserveVO">
-		select * from RESERVE;
+	
+	<sql id="getFilter">
+		WHERE GOODSID LIKE ''
+			<if test="room">
+				OR GOODSID LIKE '%RO%'
+			</if>
+			<if test="car">
+				OR GOODSID LIKE '%CA%'
+			</if>
+			<if test="vacation">
+				OR GOODSID LIKE '%VA%'
+			</if>
+		
+	</sql>
+	
+	<select id="getReserveList" parameterType="goodsReserveVO" resultType="ReserveVO">
+		select * from RESERVE   <include refid="getFilter"></include> 
 	</select>
 	
 	<select id="getRoomNameList" resultType="GoodsVO">
