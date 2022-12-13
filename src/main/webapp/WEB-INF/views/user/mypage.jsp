@@ -52,7 +52,7 @@
 			                   	</c:otherwise>
 			                 </c:choose>
                               <div style="margin-top: 10px">
-                                 <h4 style="color: black; margin-bottom: 10px">${userVO.name} <span>사원</span></h4>
+                                 <h4 style="color: black; margin-bottom: 10px">${userVO.name}</h4>
                                  <span>사원번호 : ${userVO.id}</span><br/>
                                  <span>직급 : ${userVO.roleVO.roleName}</span><br/>
                                  <span>부서명 : ${userVO.departmentVO.depName}</span><br/>
