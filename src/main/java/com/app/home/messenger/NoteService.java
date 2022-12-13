@@ -28,10 +28,14 @@ public class NoteService {
 		countMap.put("search", notePager.getSearch());
 		countMap.put("kind", notePager.getKind());
 		
-		notePager.getRowNum();
 		Long totalCount = noteMapper.getSendNoteListCount(countMap);
+		notePager.getRowNum();
 		notePager.getNum(totalCount);
-		notePager.setPerPage(8L);
+		notePager.setPerPage(10L);
+		
+
+		log.info("============= : {}", totalCount);
+		log.info("==============토탈페이지 : {}", notePager.getTotalPage());
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", employeeVO.getId());
@@ -51,11 +55,10 @@ public class NoteService {
 		countMap.put("search", notePager.getSearch());
 		countMap.put("kind", notePager.getKind());
 		
-		notePager.getRowNum();
 		Long totalCount = noteMapper.getReceiveNoteListCount(countMap);
+		notePager.getRowNum();
 		notePager.getNum(totalCount);
-		notePager.setPerPage(8L);
-//		log.info("============= : {}", totalCount);
+		notePager.setPerPage(10L);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", employeeVO.getId());

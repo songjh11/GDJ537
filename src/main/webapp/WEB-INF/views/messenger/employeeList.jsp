@@ -15,7 +15,15 @@
 											<p id="proEmail">이메일</p>
 											<p id="proPhone">전화번호</p>
 											<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">채팅</a>
-											<a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
+											<a class="btn" id="sendNote" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
+
+											<!-- <div>임시쪽지보내기버튼
+												<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
+											</div> -->
+			
+											
+
+
 										</div>
 									</div>
 								</div>

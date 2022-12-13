@@ -216,6 +216,11 @@
 		justify-content: center;
 	}
 
+	#noteChoice p {
+		transform: translate3d(0px, -10px, 10px);
+		font-size: 13px;
+	}
+
 	#noteChoiceSearch {
 		height: 57px;
 		border-top-left-radius: 20px;
@@ -228,9 +233,9 @@
 	}
 
 	#noteContent {
-		/* height: 700px; */
+		height: 700px;
 		
-		height: 500px;
+		/* height: 500px; */
 		overflow-y: scroll;
 	}
 
@@ -406,25 +411,32 @@
 							<!-- <div id="noteTitle">쪽지함</div> -->
 
 							<div id="noteChoice">
-								<div><button id="receiveNote" onclick="location.href='./note'"><img id="rImg" src="/img/messenger/receive.png" alt=""></button></div>
-								<div><button id="sentNoteList" onclick="ajaxPage(1)"><img style="transform: translateY(-4px);" id="sImg" src="/img/messenger/sendX.png" alt=""></button></div>
+								<div><button id="receiveNote" onclick="location.href='./note'"><img id="rImg" src="/img/messenger/receive.png" alt=""><p id="soosin" style="color: #fe4a69;">수신</p></button></div>
+								<div><button id="sentNoteList" onclick="ajaxPage(1)"><img style="transform: translateY(-4px);" id="sImg" src="/img/messenger/sendX.png" alt=""><p id="balsin">발신</p></button></div>
 								<div><button id="goSearch"><img style="width: 30px;" src="/img/messenger/searchzz.png"></button></div>
 							</div>
 							<form id="ajaxSearchForm" action="./note" method="get">
+								
 								<div id="noteChoiceSearch">
-									<div class="input-group" style="width: 95%;"> 
-										<select class="searchOption form-control" name="kind" id="kindkind">
+									<div class="input-group" style="width: 80%; 
+									/* border: 1px solid black; */
+									"> 
+										<select class="searchOption form-control" name="kind" id="kindkind" placeholder="선택하세요">
 											<option value="contents" selected>내용</option>
 											<option id="changeOption" value="sendId">발신ID</option>
 										</select>
-										<input id="searchInput" name="search" type="text" class="form-control bg-light border-0 small" style="width: 120px !important;" placeholder="Search for..."
+										<!-- <input hidden="hidden" /> -->
+										<input id="searchInput" name="search" type="text" class="form-control bg-light border-0 small" style="width: 130px !important;" placeholder="Search for..."
 											aria-label="Search" aria-describedby="basic-addon2">
 										<div class="input-group-append">
 											<button class="btn btn-primary" id="gogogogo" type="submit">
 												<i class="fas fa-search fa-sm"></i>
 											</button>
 										</div>
+										
 									</div>
+									<!-- <a href="javascript:ajaxPage(1);"><img style="width: 30px;" src="/img/messenger/return.png"></a> -->
+									<a id="goBackNote"><img style="width: 44px; margin: 5px;" src="/img/messenger/close.png"></a>
 								
 									
 								</div>
@@ -447,14 +459,16 @@
 									</div>
 
 								</c:forEach>
-
-								<div>임시쪽지보내기버튼
-									<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
-								</div>
-	
+								<c:if test="${empty list}">
+									<div id="imEmpty" style="justify-content: center; margin-top: 5px; display: flex;" value="${message5}">${message5}</div>
+								</c:if>
+								
+								
+								
 								
 							</div>
-
+							
+							<c:if test="${not empty list}">
 							<div id="pagination">
 								<p style="margin: 0; display: flex; align-items: center;">
 									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startNum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
@@ -467,6 +481,7 @@
 									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastNum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
 								</p>
 							</div>
+							</c:if>
 
 							
 
@@ -517,19 +532,17 @@
 			$('#noteChoice').hide();
 			$('#noteChoiceSearch').fadeIn();
 
+		})
 
-			// $('#topSearchForm').fadeIn();
-			// $('#searchTopClose').show();
-			// $('#searchBoxArea').animate({height:'104px',opacity:'1'},'fast');
-			// $('#topSearchForm .searchBox').attr('tabIndex','0').focus();
-
+		$("#goBackNote").on("click", function(){
+			$('#noteChoiceSearch').hide();
+			$('#noteChoice').fadeIn();
+			$("#searchInput").val("");
 		})
 
 		
 
-		$('#sendNote').on("click",function(){
-			window.open('./note/send?receiveId=2', '_blank', "width=450px, height=500px, location=no, top=100, left=500");
-		})
+		
 
 		function notePop(num) {
 			window.open('./note/detail?noteNum='+num, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
@@ -550,16 +563,18 @@
 					let disabled = "";
 					let disabled2 = "";
 					console.log("나는성공, 나의 데이터는? : ", data);
-					console.log(data.pager.page)
-					console.log(data.pager.startNum)
-					console.log(data.pager.lastNum)
-					console.log(data.pager.pre)
-					console.log(data.pager.next)
+
 
 					// 검색기능을 위해 기존 폼을 발신전용으로 잠시 수정
 					$("#changeOption").val("receiveId");
 					$("#changeOption").html("수신ID");
 					$("#gogogogo").attr("type","button");
+
+					$('input[type="text"]').keydown(function() {
+						if (event.keyCode === 13) {
+							event.preventDefault();
+						};
+					});
 
 					$("#gogogogo").on("click", function(){
 						console.log("에젝에서만나와");
@@ -570,28 +585,70 @@
 
 					$("#pagination").empty();
 
-					if(data.pager.pre) {
+					try {
+
+						if(data.pager.pre) {
 						disabled = "";
-					} else {
-						disabled = "disabled";
+						} else {
+							disabled = "disabled";
+						}
+
+						if(data.pager.next) {
+							disabled2 = ""
+						} else {
+							disabled2 = "disabled";
+						}
+
+						let forPage = "";
+						let pageAjax = "";
+
+						if($("#searchInput").val()=="") {
+							console.log("검색아닌중..");
+							// $("#searchInput").val("");
+							// $("#kindkind").val("");
+							let nullll = "";
+
+							for(let i=data.pager.startNum;i<=data.pager.lastNum;i++) {
+								forPage += '<a onclick="ajaxPage('+i+')" class="pagep" id="ppaaggee'+i+'">'+i+'</a>'
+							}
+							
+							pageAjax = '<p style="margin: 0; display: flex; align-items: center;"><a onclick="ajaxPage('+(data.pager.startNum-1)+')" style="margin: 0px 5px;"><img src="/img/messenger/left2.png" alt=""></a>'+forPage+'<a onclick="ajaxPage('+(data.pager.lastNum+1)+')" style="margin: 0px 5px;" id="nextg" class="'+disabled2+'"><img src="/img/messenger/right2.png" alt=""></a></p>';
+						
+							
+						} else {
+							console.log("검색중");
+							let kindval = $("#kindkind").val();
+							let searchval = $("#searchInput").val();
+
+							for(let i=data.pager.startNum;i<=data.pager.lastNum;i++) {
+								forPage += '<a onclick="ajaxPage('+i+', ' +'\'' + kindval+'\'' +', '+ '\'' + $("#searchInput").val()+'\'' +')" class="pagep" id="ppaaggee'+i+'">'+i+'</a>'
+							}
+
+							pageAjax = '<p style="margin: 0; display: flex; align-items: center;"><a onclick="ajaxPage('+(data.pager.startNum-1)+','+ '\'' + $("#kindkind").val()+'\'' +','+ '\'' + $("#searchInput").val()+'\'' +')" style="margin: 0px 5px;" class="'+disabled+'"><img src="/img/messenger/left2.png" alt=""></a>'+forPage+'<a onclick="ajaxPage('+(data.pager.lastNum+1)+','+ '\'' + $("#kindkind").val()+'\'' +','+ '\'' + $("#searchInput").val()+'\'' +')" style="margin: 0px 5px;" id="nextg" class="'+disabled2+'"><img src="/img/messenger/right2.png" alt=""></a></p>';
+						
+						}
+
+						console.log(data.notePager.totalPage);
+						console.log(data.notePager.page);
+						
+
+						console.log($("#kindkind").val());
+						console.log($("#searchInput").val());
+						$("#pagination").html(pageAjax);
+
+						$(".disabled").removeAttr("onclick");
+						// $("#disabled").attr('onclick', '').unbind('click');
+						
+
+						
+					} catch (error) {
+						
 					}
+					
 
-					if(data.pager.next) {
-						disabled2 = ""
-					} else {
-						disabled2 = "disabled";
-					}
+					
 
-					let forPage = "";
-					for(let i=data.pager.startNum;i<=data.pager.lastNum;i++) {
-						forPage += '<a onclick="ajaxPage('+i+')" class="pagep" id="ppaaggee'+i+'">'+i+'</a>'
-					}
-
-					console.log(forPage);
-
-					let pageAjax = '<p style="margin: 0; display: flex; align-items: center;"><a onclick="ajaxPage('+(data.pager.startNum-1)+')" style="margin: 0px 5px;" class="'+disabled+'"><img src="/img/messenger/left2.png" alt=""></a>'+forPage+'<a onclick="ajaxPage('+(data.pager.lastNum+1)+')" style="margin: 0px 5px;" class="'+disabled2+'"><img src="/img/messenger/right2.png" alt=""></a></p>';
-
-					$("#pagination").html(pageAjax);
+					
 
 
 					let tempest = '';
@@ -599,6 +656,12 @@
 					let src="/img/messenger/receiveX.png";
 					$("#sImg").attr("src",src2);
 					$("#rImg").attr("src",src);
+
+					$("#soosin").css("color", "#000000");
+					$("#balsin").css("color", "#4a7bdd");
+
+					
+					
 
 					$.each(data.list, function(index, item) { 
 						// console.log(item);
@@ -611,7 +674,17 @@
 						$('#noteContent').html(tempest);
 					})
 
+					if(data.list.length==0) {
+						$('#noteContent').empty();
+						console.log($("#imEmpty").val());
+						$('#noteContent').html('<div style="justify-content: center; margin-top: 5px; display: flex;">'+data.message5+'</div>');
+						// $("#imEmpty").html(data.message5)
+					} 
+
 					$(".disabled").removeAttr("href");
+
+					
+
 				},
 				error   : function(){
 					console.log("나는에러");
@@ -623,6 +696,9 @@
 		}
 
 		$(".disabled").removeAttr("href");
+
+		
+		
 	</script>
 
 	<!-- Scroll Top, Login Modal import -->
