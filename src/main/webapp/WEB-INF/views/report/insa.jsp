@@ -53,7 +53,7 @@
 						 </button>
 					 
 					  <div class="dropdown-menu">
-			              <input id="dropId" name="depNum" > 
+			              <input type="hidden" id="dropId" name="depNum" > 
 						   <ul>
 						   		<li class="deptLi" data-depNum="1">영업팀</li>
 						   		<li class="deptLi" data-depNum="2">총무팀</li>
@@ -70,7 +70,7 @@
 					   <input type="text" id="roleInput" readonly value="">
 					 </button>
 					  <div class="dropdown-menu">
-					  	<input id="roleId" name="roleNum" value="${userVO.roleNum}"> 
+					  	<input type="hidden" id="roleId" name="roleNum" value="${userVO.roleNum}"> 
 						   <ul>
 						   		<li class="roleLi" data-roleNum="1">사장</li>
 						   		<li class="roleLi" data-roleNum="2">부장</li>
@@ -81,11 +81,11 @@
 						   </ul>
 					  </div>
 				</div>
+						<button type="button" id="listBtn" class="btn btn-primary">
+							조회
+						</button>
 			</form>     
 			
-			<button type="button" id="listBtn">
-				조회
-			</button>
 	            <!-- End Page Content -->
 					
 			</div>
@@ -148,7 +148,7 @@
                 		
               
                 			
-	                	$("#tbd").append('<tr><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+dd[i].depNum+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'">부여</button></td></tr>')
+	                	$("#tbd").append('<tr><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'">부여</button></td></tr>')
                 	
                 		
                 		
