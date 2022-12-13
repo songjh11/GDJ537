@@ -5,27 +5,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-	<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     <link rel="stylesheet" href="/css/chatroom.css">
-    <script type="text/javascript" defer src="/js/messenger/chatroom.js"></script>
+    
     
     <link rel="icon" href="/images/favicon.png">
-	<title>채팅방 💭 </title>
+   <title>채팅방 💭 </title>
 </head>
 
 
 <body>
-    <div class="wrapAll">
-        <div class="contain">
-            
-            <div class="header">
+    <div id="container" class="container">
+      <input type="hidden" id="sessionId" value="">
+   
+      <div class="header">
                 <div class="header-flex">
                     <div class="tinum">
                         <div class="title">
@@ -41,83 +41,32 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="chat">
-                <div class="you">
-                    <div class="you-flex">
-                        <div class="you-profile">
-                            <div class="pic">
-                                <img src="/img/chatroom-profile.jpg" width="35px" height="35px">
-                            </div>
-                        </div>
-                        <div class="namebubble">
-                            <div class="name">
-                                <span><strong>name</strong></span>
-                            </div>
-                            <div class="you-bubble-flex">
-                                <div class="you-bubble">
-                                    상대방이 처음 보낸 채팅
-                                </div>
-                                <div class="you-count">
-                                    <span>1</span>
-                                </div>
-                            </div>
+      
+      <div id="chating" class="chating">
+      
+      </div>
+      
+      <div id="yourName">
+         <table class="inputTable">
+            <tr>
+               <th>사용자명</th>
+               <th><input type="text" name="userName" id="userName"></th>
+               <th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+            </tr>
+         </table>
+      </div>
+      <div id="yourMsg">
+         <table class="inputTable">
+            <tr>
+               <th>메시지</th>
+               <th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+               <th><button onclick="send()" id="sendBtn">보내기</button></th>
+            </tr>
+         </table>
+      </div>
+   </div>
 
-                            <div class="you-bubble-flex">
-                                <div class="you-bubble">
-                                    상대방이 보낸 채팅
-                                </div>
-                                <div class="you-count">
-                                    <span>1</span>
-                                </div>
-                            </div>
-
-                            <div class="you-bubble-flex">
-                                <div class="you-bubble">
-                                    상대방이 보낸 채팅
-                                </div>
-                                <div class="you-count">
-                                    <span>1</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="me">
-                    <div class="me-bubble-flex-first">
-                        <div class="me-bubble">
-                            내가 처음 보낸 채팅
-                        </div>
-                        <div class="me-count">
-                            <span>1</span>
-                        </div>
-                    </div>
-
-                    <div class="me-bubble-flex">
-                        <div class="me-bubble">
-                            내가 보낸 채팅
-                        </div>
-                        <div class="me-count">
-                            <span>1</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="put">
-                <div class="typing">
-                    <input class="text" type="text">
-                </div>
-
-                <div class="button">
-                    <span><strong>전송</strong></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+   <script type="text/javascript" src="/js/messenger/chatroom.js"></script>
 
 </body>
 

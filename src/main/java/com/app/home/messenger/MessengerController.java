@@ -208,23 +208,15 @@ public class MessengerController {
 	}
 	// --------------------- 유리 ------------------------------
 	
-	//-----------
 	
-	@GetMapping("chat1")
-	public ModelAndView chat()throws Exception{
+	@GetMapping("chatroom")
+	public ModelAndView chatroom(HttpSession session, EmployeeVO employeeVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
-	
-		mv.setViewName("messenger/chat1");
+	    	   
+		mv.setViewName("messenger/chatroom");
 		return mv;
 	}
 
-	@GetMapping("chatroom")
-	public ModelAndView chat3()throws Exception{
-		ModelAndView mv= new ModelAndView();
-	
-		mv.setViewName("redirect:../messenger/chat");
-		return mv;
-	}
 
 	
 }
