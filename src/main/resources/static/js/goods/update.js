@@ -2,7 +2,7 @@ let count = 0;
 let goodId = $("#goodId").val();
 let flag=true;
 
-let imgCheck = false;
+let imgCheck = true;
 
 
 $("#fileAdd").click(function(){
@@ -220,11 +220,10 @@ $('input[name=goodsId]').click(function(){
 
 })
 
-let nameCheck = false;
-let maxCheck = false;
-let locationCheck = false;
+let nameCheck = true;
+let maxCheck = true;
+let locationCheck = true;
 let carNumCheck = true;
-let kindCheck = false;
 
 const name = document.getElementById("name");
 const max = document.getElementById("max");
@@ -243,31 +242,24 @@ var pattern_eng = /[a-zA-Z]/;	// 문자
 var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
 var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
 
-$("input[name=goodsId]").blur(function(){
-    if($('input[name=goodsId]:radio:checked').length < 1) {
-        kinddiv.innerHTML = "시설 종류를 선택해주세요.";
-        kindCheck = false;
-    }else{
-        kinddiv.innerHTML ="";
-        kindCheck = true;
-    }
-})
+
 
 name.addEventListener("blur",function(){
     if(name.value.length < 1) {
-        namediv.innerHTML ="시설 이름을 작성해주세요.";
         $("#name").css("border-color","red");
+        namediv.innerHTML ="시설 이름을 작성해주세요.";
         nameCheck = false;
     }else{
         $("#name").css("border-color","green");
+
         namediv.innerHTML ="";
         nameCheck = true;
     }
 })
 max.addEventListener("blur",function(){
     if((pattern_num.test(max.value)) && !(pattern_eng.test(max.value)) && !(pattern_spc.test(max.value)) && !(pattern_kor.test(max.value))) {
-        maxdiv.innerHTML="";
         $("#max").css("border-color","green");
+        maxdiv.innerHTML="";
         maxCheck = true;
     } else{
         $("#max").css("border-color","red");
@@ -291,41 +283,42 @@ loca.addEventListener("blur",function(){
 
 carNum.addEventListener("blur",function(){
     if($('input[name=goodsId]:checked').val() == 'CA') {
-        if(carNum.value.length < 1) {
-            $("#carNum").css("border-color","red");
-            carNumdiv.innerHTML ="차량 위치를 작성해주세요.";
-            carNumCheck = false;
-        }else{
-            $("#carNum").css("border-color","green");
-            carNumdiv.innerHTML ="";
-            carNumCheck = true;
-        }
+       
+    if(carNum.value.length < 1) {
+        $("#carNum").css("border-color","red");
+        carNumdiv.innerHTML ="차량 위치를 작성해주세요.";
+        carNumCheck = false;
+    }else{
+        $("#carNum").css("border-color","green");
+        carNumdiv.innerHTML ="";
+        carNumCheck = true;
     }
+}
 })
 
 
 
+
+
 sub.addEventListener("click",function(){
-    console.log(kindCheck);
     console.log(nameCheck);
     console.log(locationCheck);
     console.log(carNumCheck);
     console.log(imgCheck);
-    if(kindCheck == false) {
-        kinddiv.innerHTML = "시설 종류를 선택해주세요.";
-    }else{
-        kinddiv.innerHTML ="";
+
+    console.log("valuessssd : "+$("#files").val());
+    if($("#files").val() == undefined || $("#files").val() == "") {
+        imgCheck = false;
+        imgdiv.innerHTML ="이미지는 필수입니다.";
+    }else {
+        imgdiv.innerHTML ="";
     }
 
-    if(!(kindCheck && nameCheck && maxCheck && locationCheck && carNumCheck && imgCheck)) {
-        if(imgCheck == false){
-            imgdiv.innerHTML="이미지는 필수입니다"
-        }else{
-            imgdiv.innerHTML="";
-        }
+    if(!(nameCheck && maxCheck && locationCheck && carNumCheck &&imgCheck)) {
+        
         alert("모든 칸을 작성해주세요");
 
     }else{
-        $("#addform").submit();
+       $("#addform").submit();
     }
 })

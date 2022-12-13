@@ -48,6 +48,9 @@ public class GoodsController {
 	public String setAdd(GoodsVO goodsVO, MultipartFile[] files, RedirectAttributes redirectAttributes, HttpSession session)
 			throws Exception
 	{
+		if(goodsVO.getContents().equals("")) {
+			goodsVO.setContents("추가 설명 없습니다.");
+		}
 		int result = goodsService.setAdd(goodsVO, files, session.getServletContext());
 		return "redirect:/goods/ad_list";
 	}
