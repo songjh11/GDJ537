@@ -78,29 +78,38 @@ public interface ReportMapper {
 	
 	
 
-
 	public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception;
-		
-		public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception;
-		
-		public Integer getLicenseCheck(ReportVO reportVO) throws Exception;
-		
-		public ReportVacaVO getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception;
-		
-		public ReportWorkVO getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception;
-		
-		public ReportPayVO getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception;
-		
-		public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception;
-		
-		public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception;
-		
-		public ReportVO getReturnsReport(ReportApplyVO reportApplyVO) throws Exception;
-		
-		public ReportVO getDoFirstReport(ReportApplyVO reportApplyVO) throws Exception;
-		
-		public ReportVO getDoFinalReport(ReportApplyVO reportApplyVO) throws Exception;
-	
+			
+			public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public Integer getLicenseCheck(ReportVO reportVO) throws Exception;
+			
+			public ReportVacaVO getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception;
+			
+			public ReportWorkVO getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception;
+			
+			public ReportPayVO getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception;
+			
+			public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception;
+			
+			public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public Long getCountFinishReport(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public ReportVO getReturnReport(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public Long getCountReturnReport(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public ReportVO getDoFirstReport(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public Long getCountDoFirstReport(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public ReportVO getDoFinalReport(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public Long getCountDoFinalReport(ReportApplyVO reportApplyVO) throws Exception;
+
+
+
 	
 	
 	
