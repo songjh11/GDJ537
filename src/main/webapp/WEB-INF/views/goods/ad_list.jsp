@@ -42,7 +42,7 @@
 	
 	            	<!-- Page Heading -->
 	            	<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">공용 시설 관리</h1>
-					<input type="button" id="add" class="btn btn-primary" value="추가" style="margin-left: 1300px; width: 70px; height: 40px;"></button>
+					<input type="button" id="add" class="btn btn-primary" value="추가" style="margin-left: 80%; width: 70px; height: 40px;"></button>
 					<div class="container">
 
 						<ul class="tabs">
