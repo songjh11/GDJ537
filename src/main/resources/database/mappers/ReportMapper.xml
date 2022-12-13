@@ -132,6 +132,17 @@
 	
 
 
+	
+
+<update id="setUpdateApply" parameterType="ReportApplyVO">
+		UPDATE REPORTAPPLY SET STATUS = #{lStatus} WHERE APPLYNUM= #{applyNum}
+	</update>
+	
+	<update id="setUpdateCancelApply" parameterType="ReportApplyVO">
+		UPDATE REPORTAPPLY SET RETURNS = 1, STATUS=#{lStatus} WHERE APPLYNUM = #{applyNum}
+	</update>
+
+
 	<select id="getLicenseCheck" parameterType="ReportVO" resultType="Integer">
 		SELECT LSTATUS FROM REPORTLICENSER WHERE ID = #{id}
 	</select>
@@ -224,7 +235,7 @@
 		<id column="LICENSERNUM" property="licenserNum"/>
 		<result column="DEPNUM" property="depNum"/>
 		<result column="ID" property="id"/>
-		<result column="STATUS" property="lstatus"/>
+		<result column="LSTATUS" property="lStatus"/>
 			<collection property="reportApplyVOs" javaType="List" ofType="ReportApplyVO">
 				<id column="APPLYNUM" property="applyNum"/>
 				<result column="ID" property="id"/>
