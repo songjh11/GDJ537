@@ -14,13 +14,13 @@ class MessengerServiceTest {
 	@Autowired
 	private MessengerMapper messengerMapper;
 	
-	@Test
+	//@Test
 	void setAddRoomUserTest()throws Exception{
 		RoomVO roomVO = new RoomVO();
 		roomVO.setRoomNum(1);
 		EmployeeVO employeeVO = new EmployeeVO();
 		employeeVO.setId(5678);
-		int result = messengerMapper.setAddRoomUser(employeeVO);
+		int result = messengerMapper.setAddRoomUser(roomVO);
 		
 		assertEquals(result, 0);
 	}
