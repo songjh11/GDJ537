@@ -216,6 +216,11 @@
 		justify-content: center;
 	}
 
+	#noteChoice p {
+		transform: translate3d(0px, -10px, 10px);
+		font-size: 13px;
+	}
+
 	#noteChoiceSearch {
 		height: 57px;
 		border-top-left-radius: 20px;
@@ -405,8 +410,8 @@
 							<!-- <div id="noteTitle">쪽지함</div> -->
 
 							<div id="noteChoice">
-								<div><button id="receiveNote" onclick="location.href='./note'"><img id="rImg" src="/img/messenger/receive.png" alt=""></button></div>
-								<div><button id="sentNoteList" onclick="ajaxPage(1)"><img style="transform: translateY(-4px);" id="sImg" src="/img/messenger/sendX.png" alt=""></button></div>
+								<div><button id="receiveNote" onclick="location.href='./note'"><img id="rImg" src="/img/messenger/receive.png" alt=""><p id="soosin" style="color: #fe4a69;">수신</p></button></div>
+								<div><button id="sentNoteList" onclick="ajaxPage(1)"><img style="transform: translateY(-4px);" id="sImg" src="/img/messenger/sendX.png" alt=""><p id="balsin">발신</p></button></div>
 								<div><button id="goSearch"><img style="width: 30px;" src="/img/messenger/searchzz.png"></button></div>
 							</div>
 							<form id="ajaxSearchForm" action="./note" method="get">
@@ -453,15 +458,16 @@
 									</div>
 
 								</c:forEach>
+								<c:if test="${empty list}">
+									<div id="imEmpty" style="justify-content: center; margin-top: 5px; display: flex;" value="${message5}">${message5}</div>
+								</c:if>
 								
-								<div>임시쪽지보내기버튼
-									<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
-								</div>
+								
 								
 								
 							</div>
-							<div id="imEmpty" value="${message5}"></div>
-
+							
+							<c:if test="${not empty list}">
 							<div id="pagination">
 								<p style="margin: 0; display: flex; align-items: center;">
 									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startNum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
@@ -474,6 +480,7 @@
 									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastNum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
 								</p>
 							</div>
+							</c:if>
 
 							
 
@@ -534,9 +541,7 @@
 
 		
 
-		$('#sendNote').on("click",function(){
-			window.open('./note/send?receiveId=2', '_blank', "width=450px, height=500px, location=no, top=100, left=500");
-		})
+		
 
 		function notePop(num) {
 			window.open('./note/detail?noteNum='+num, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
@@ -650,6 +655,9 @@
 					let src="/img/messenger/receiveX.png";
 					$("#sImg").attr("src",src2);
 					$("#rImg").attr("src",src);
+
+					$("#soosin").css("color", "#000000");
+					$("#balsin").css("color", "#4a7bdd");
 
 					
 					

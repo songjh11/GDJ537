@@ -99,9 +99,12 @@ $(".titleLi").click(function() {
     $(this).next(".acoArea").siblings(".acoArea").slideUp(300); // 1개씩 펼치기
  });
 
+
+ let id = "";
+
 $(".empName").click(function(){
     console.log($(this).attr("value"));
-    let id = $(this).attr("empId");
+    id = $(this).attr("empId");
     let name = $(this).attr("value");
     let email = $('#email'+id).val();
     let phone = $('#phone'+id).val();
@@ -115,6 +118,14 @@ $(".empName").click(function(){
     $("#proEmail").text(email);
     $("#proPhone").text(phone);
 })
+
+
+$('#sendNote').on("click",function(){
+    console.log("?");
+    window.open('./note/send?receiveId='+id, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+})
+
+
 
 $("#chatBtn").click(function(){
     console.log("채팅함");
