@@ -22,6 +22,9 @@
               width: 122px;
               margin-top: 6px;
         }
+        .plus{
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -272,10 +275,10 @@
                             합 계
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="number" id="total" disabled style="border: 0; width: 173px; height: 35px; margin-top: 5px;">원
+                            <input type="number" id="total" disabled style="font-weight: bold; border: 0; width: 173px; height: 35px; margin-top: 5px; text-align: right;">
                         </div>
-                        <div style="border: solid 1px red; width: 179px; margin-left: 550px; height: 50px;">
-
+                        <div style="width: 179px; margin-left: 550px; height: 42px; margin-top: -42px; text-align: left; font-weight: bold; padding-top: 7px;">
+                            만(원)
                         </div>
                     </div>
                 </div>
