@@ -147,15 +147,25 @@
         let currentParam = location.search;		// 현재 url 파라미터
         
         // 기존에 perPage 파라미터가 있으면
-        if(currentParam.search("perPage") >= 0){
+        if(currentParam.search("perPage") > 0){
         	// 제거
         	currentParam = currentParam.substring(0, currentParam.search("perPage") - 1);
-        	currentParam = currentParam + "&"
-        }
-        
-        // url 파라미터가 아예 없으면
-        if(currentParam == ""){
-        	currentParam = currentParam + "?";
+        	
+        	// 제거 후 url 파라미터가 없으면 ? 있으면 & 추가
+        	if(currentParam == ""){
+        		currentParam = currentParam + "?";
+        	} else {
+        		currentParam = currentParam + "&";
+        	}
+        	
+        } else {
+        	// 기존에 perPage 파라미터가 없으면
+        	// url 파라미터가 아예 없으면 ?, 다른 파라미터가 있으면 & 추가
+            if(currentParam == ""){
+            	currentParam = currentParam + "?";
+            } else {
+            	currentParam = currentParam + "&";
+            }
         }
         
         fiveBtn.on("click", function(){
