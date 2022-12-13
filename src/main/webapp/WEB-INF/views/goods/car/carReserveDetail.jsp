@@ -49,22 +49,32 @@ ul li {
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
-						<h1 class="h3 mb-4 text-gray-800">차량 상세정보</h1>
+						<h1 class="h3 mb-4 text-gray-800">예약 상세정보</h1>
 						<table class="table table-hover" style="text-align: center;">
+							<tr>
+								<th>예약 번호</th>
+								<th>예약 날짜</th>
+								<th>반납 날짜</th>
+								<th>예약자</th>
+							</tr>
+							<tr>
+								<td>${reserve.reserveNum }</td>
+								<td>${reserve.startTime }</td>
+								<td>${reserve.endTime }</td>
+								<td>${reserve.id }</td>
+							</tr>
 							<tr>
 								<th>차량 번호</th>
 								<th>모델명</th>
-								<th>상세정보</th>
-								<th>최대 인원(명)</th>
-								<th>위치</th>
+								<th>총 정원</th>
+								<th>현재 위치</th>
 							</tr>
 							<tr>
-								<td>${goods.goodsId }</td>
+								<td>${goods.carNum }</td>
 								<td>${goods.name }</td>
-								<td>${goods.contents }</td>
 								<td>${goods.max }</td>
 								<td>${goods.location }</td>
-							</tr>
+							</tr>							
 						</table>
 						<ul>
 							<li>
