@@ -11,10 +11,11 @@
 											<c:choose>
 												<c:when test="${not empty depList}">
 													<c:forEach items="${depList}" var="d">
-														<li class="titleLi">
-															<span style="margin-left: 20px;">${d.depName}</span>
-															<button type="button" class="showBtn" style="margin-right: 8px;">🔽</button>
-															<button type="button" class="hideBtn" style="margin-right: 8px;">🔼</button>
+														<li class="titleLi" style="justify-content: left !important;">
+															<input type="checkbox" name="id" class="checkTeam" value="${e.id}" style="margin-left: 10px;" dep-num="${d.depNum}">
+															<span style="color: white; margin-left: 6px;">${d.depName}</span>
+															<button type="button" class="showBtn" style="margin-right: 8px; margin-left: auto;">🔽</button>
+															<button type="button" class="hideBtn" style="margin-right: 8px; margin-left: auto;">🔼</button>
 														</li>
 														<ul class="acoArea">
 															<c:forEach items="${empList}" var="e">
@@ -25,10 +26,10 @@
 																		<input type="hidden" id="phone${e.id}" value="${e.phone}">
 																		<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
 																			<div class="userAdd">
-																				<input type="checkbox" name="id" value="${e.id}">
+																				<input type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}>
 																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
 																			</div>
-																			<div class="userInfo" style="width: 60%;">
+																			<div class="userInfo" style="width: 60%; color: white;">
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
 																				<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 																			</div>
@@ -70,7 +71,7 @@
 											</c:choose>
 											<p class="mt-4 text-center">
 												<button type="button" id="roomBtn" class="btn" style="background: #4e73df; color: #FFFFFF;">그룹채팅</button>
-												<a id="roomBtn" href="" class="btn" style="background: #4e73df; color: #FFFFFF;">그룹쪽지</a>
+												<a id="groupNoteGo" href="" class="btn" style="background: #4e73df; color: #FFFFFF;">그룹쪽지</a>
 											</p>										
 										</div>
 									</div>
@@ -110,3 +111,13 @@
 								</div>
 							</div>
 						</form>
+
+
+						<script>
+
+							$.each($(".checkTeam"), function(index, item) {
+								console.log(index)
+								console.log(item)
+							});
+
+						</script>
