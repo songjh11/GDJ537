@@ -201,13 +201,14 @@
 	}
 
 	#noteChoice {
-		display: flex;
 		height: 57px;
-		/* border: 1px solid #80808042; */
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px;
-		/* box-shadow: 0px -5px 7px -4px #80808052; */
 		margin: 10px 0px 0px;
+		display: flex;
+		justify-content: center;
+		/* align-items: center; */
+		border-bottom: 1px solid #80808057;
 	}
 
 	#noteChoice div {
@@ -638,7 +639,7 @@
 			// 	type:"GET",
 			// 	url :"./note/check",
 			// 	traditional:true, //배열을 전송할 때 사용, true
-			// 	data:{
+			// 	data:{v
 			// 		noteNum: num
 			// 	},
 			// 	success : function(data){
