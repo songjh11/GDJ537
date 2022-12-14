@@ -61,7 +61,7 @@
                     <div class="mb-3 row">
                       <label class="col-sm-2 col-form-label" for="title">제목</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="title" name="title" type="text" value="${boardVO.title }" />
+                        <input class="form-control" id="title" name="title" type="text" value="<c:out value="${boardVO.title }"></c:out>" />
                       </div>
                     </div>
                     <div class="mb-3 row">
@@ -115,7 +115,8 @@
         <!-- End of Content Wrapper -->
       </div>
       <script type="text/javascript">
-        $('#contents').summernote('pasteHTML', '${boardVO.contents}',
+      $('#contents').html('${boardVO.contents}')
+      $('#contents').summernote(
           {
             placeholder: '내용을 입력해주세요',
             tabsize: 2,

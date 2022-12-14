@@ -44,27 +44,29 @@
                 <div class="card-header bg-white">
                   <div class="row justify-content-between">
                     <div class="col-auto align-self-center">
-                      <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">[공지사항] ${boardVO.title}
+                    
+                      <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">[공지사항] <c:out value="${boardVO.title }"></c:out>
                       </h5>
                     </div>
                     <div class="col-fill ml-auto align-self-end mr-5">
                       <div>
-                      	<p>작성자 ${boardVO.id }</p>
-                      	<p>조회수 ${boardVO.hit} </p>
+                      	<p>작성자 <c:out value="${boardVO.id }"></c:out></p>
+                      	<p>조회수 <c:out value="${boardVO.hit}"></c:out> </p>
                       </div>
-                      <p id="regdate" data-date="${boardVO.regDate}"> 등록일자 </p>
+                      <p id="regdate" data-date="<c:out value="${boardVO.regDate}"></c:out>"> 등록일자 </p>
                     </div>
                   </div>
                 </div>
                 <div class="card-body" style="min-height: 500px">
                   <div class="mb-1 row justify-content-end">
                     <div class="col-3">
+                    
                       <c:forEach items="${boardVO.fileVOs}" var="files">
                         <p>
-                          <a href="/fileDown/board/${files.fileNum}">
+                          <a href="/fileDown/board/<c:out value="${files.fileNum}"></c:out>">
                             <span class="material-symbols-outlined">
                               download
-                            </span> ${files.oriName}</a>
+                            </span> <c:out value="${files.oriName}"></c:out></a>
                         </p>
                       </c:forEach>
                     </div>
@@ -77,7 +79,7 @@
                 </div>
 
               </div>
-              <a href="/notice/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a>
+              <a href="/notice/update?num=<c:out value="${boardVO.num}"></c:out>" class="btn btn-danger">글 수정</a>
               <button type="button" class="btn btn-danger">글 삭제</button>
             </div>
             <!-- End Page Content -->
