@@ -38,6 +38,7 @@ public class MessengerController {
 	
 	@GetMapping("chat")
 	public ModelAndView getMyChat(HttpSession session)throws Exception{
+		
 		Integer id = 10;
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> dl = messengerService.getDepList();
