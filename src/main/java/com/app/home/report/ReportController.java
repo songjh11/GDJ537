@@ -290,6 +290,18 @@ public class ReportController {
 	}
 	
 	
+	//승인자 테이블에서 권한을 다시 회수하기 위해 승인자 테이블에서 delete
+	@RequestMapping(value = "/report/deleteLicenser", method = RequestMethod.POST)
+	@ResponseBody
+	public int setLicenserDelete(UserVO userVO, Model model) throws Exception{
+		
+		int result = reportService.setLicenserDelete(userVO);
+		model.addAttribute("result", result);
+		
+		return result;
+	}
+	
+	
 	
 	
 	

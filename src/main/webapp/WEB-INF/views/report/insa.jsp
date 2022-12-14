@@ -184,12 +184,12 @@
                 	$("#thd").empty();
                 	$("#tbd").empty();
                 	$("#pageDiv").empty();
-                		$("#thd").append('<tr class="text-success"><th>아이디</th><th>이름</th><th>직급</th><th>승인부여</th></tr>')
+                		$("#thd").append('<tr class="text-success"><th>아이디</th><th>이름</th><th>직급</th><th>승인부여</th><th>권한 회수</th></tr>')
                 	for(var i=0; i<dd.length; i++){
                 		
               
                 			
-	                	$("#tbd").append('<tr><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'">부여</button></td></tr>')
+	                	$("#tbd").append('<tr id="trId"><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'">부여</button></td><td><button id="deleteBtn" type="button" class="btn btn-danger" data-name="'+dd[i].id+'">권한회수</button></td></tr>')
                 		
                 	}
                 		
