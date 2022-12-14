@@ -2,7 +2,7 @@ package com.app.home.report;
 
 
 import java.security.Principal;
-
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +57,18 @@ public class ReportController {
 		log.info("principal :: {} " , principal);
 		int id = Integer.parseInt(principal.getName());
 		
+		
+		//현재시간 구하기========================
+		LocalDate now = LocalDate.now();
+								
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int dayOfMonth = now.getDayOfMonth();
+								
+		mv.addObject("year", year);
+		mv.addObject("month", month);
+		mv.addObject("day", dayOfMonth);
+		//===================================
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
 		userVO = userMapper.getMypage(userVO);
@@ -70,6 +82,19 @@ public class ReportController {
 	public ModelAndView workReport(Principal principal)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int id = Integer.parseInt(principal.getName());
+		
+		//현재시간 구하기========================
+		LocalDate now = LocalDate.now();
+								
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int dayOfMonth = now.getDayOfMonth();
+								
+		mv.addObject("year", year);
+		mv.addObject("month", month);
+		mv.addObject("day", dayOfMonth);
+		//===================================
+		
 		
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
@@ -88,6 +113,18 @@ public class ReportController {
 		ModelAndView mv = new ModelAndView();
 		int id = Integer.parseInt(principal.getName());
 		
+		//현재시간 구하기========================
+		LocalDate now = LocalDate.now();
+						
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int dayOfMonth = now.getDayOfMonth();
+						
+		mv.addObject("year", year);
+		mv.addObject("month", month);
+		mv.addObject("day", dayOfMonth);
+		//===================================
+		
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
 		userVO = userMapper.getMypage(userVO);
@@ -101,6 +138,18 @@ public class ReportController {
 	public ModelAndView writtenApology(Principal principal)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int id = Integer.parseInt(principal.getName());
+		
+		//현재시간 구하기========================
+		LocalDate now = LocalDate.now();
+								
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int dayOfMonth = now.getDayOfMonth();
+								
+		mv.addObject("year", year);
+		mv.addObject("month", month);
+		mv.addObject("day", dayOfMonth);
+		//===================================
 		
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
