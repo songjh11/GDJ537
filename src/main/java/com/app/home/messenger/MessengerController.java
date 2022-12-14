@@ -126,6 +126,7 @@ public class MessengerController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
+	    userVO = userService.getMypage(userVO);
 		Integer id = userVO.getId();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", userVO);
