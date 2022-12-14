@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import com.app.home.report.pay.ReportPayVO;
+import com.app.home.report.pay.RepriceVO;
 import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
 import com.app.home.report.work.ReportWorkVO;
+import com.app.home.user.DepartmentVO;
 import com.app.home.user.UserVO;
 
 @Mapper
@@ -21,7 +23,10 @@ public interface ReportMapper {
 	
 	
 	//=======================김도영===================
-	
+	//신청보고서
+	public int setReportApply(ReportApplyVO reportApplyVO)throws Exception;
+	//업무보고서
+	public int setWorkReport(ReportWorkVO reportWorkVO)throws Exception;
 	
 	
 	
@@ -44,34 +49,68 @@ public interface ReportMapper {
 	
 	public List<ReportVO> getLicenserList(ReportVO reportVO) throws Exception;
 	
+	public Long getReportListCount(ReportPager reportPager) throws Exception;
 	
 	
 	
 	
 	
 	
-	//================================================
-	
-	
-	//=======================장민석===================
-	
-	public ReportPayVO selectPay(ReportPayVO reportPayVO) throws Exception;
-	
-	public ReportSorryVO selectSorry(ReportSorryVO reportSorryVO) throws Exception;
 	
 	//================================================
 	
-	public Integer getLicenseCheck(ReportVO reportVO) throws Exception;
 	
-	public ReportVO getFinishReport(ReportVO reportVO) throws Exception;
+	//=======================결재신청 insert===================
 	
-	public ReportVO getReturnsReport(ReportVO reportVO) throws Exception;
+	public int setAddVaca(ReportVacaVO reportVacaVO) throws Exception;
 	
-	public ReportVO getDoFirstReport(ReportVO reportVO) throws Exception;
+	public int setAddWork(ReportWorkVO reportWorkVO) throws Exception;
 	
-	public ReportVO getDoFinalReport(ReportVO reportVO) throws Exception;
+	public int setAddPay(ReportPayVO reportPayVO) throws Exception;
+	
+	public int setAddSorry(ReportSorryVO reportSorryVO) throws Exception;
+	
+	public int setAddApply(ReportApplyVO reportApplyVO) throws Exception;
+
+	public int setAddItem(RepriceVO repriceVO) throws Exception;
+	//================================================
 	
 	//=======================최근호===================
+	
+	
+
+	public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public Integer getLicenseCheck(ReportVO reportVO) throws Exception;
+			
+			public ReportVacaVO getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception;
+			
+			public ReportWorkVO getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception;
+			
+			public ReportPayVO getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception;
+			
+			public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception;
+			
+			public ReportVO getFinishReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountFinishReport(ReportPager reportPager) throws Exception;
+			
+			public ReportVO getReturnReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountReturnReport(ReportPager reportPager) throws Exception;
+			
+			public ReportVO getDoFirstReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountDoFirstReport(ReportPager reportPager) throws Exception;
+			
+			public ReportVO getDoFinalReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountDoFinalReport(ReportPager reportPager) throws Exception;
+
+
+
 	
 	
 	
@@ -91,6 +130,11 @@ public interface ReportMapper {
 	public List<ReportWorkVO> getMyWorkList(ReportPager pager) throws Exception;
 	public List<ReportSorryVO> getMySorryList(ReportPager pager) throws Exception;
 	public List<ReportPayVO> getMyPayList(ReportPager pager) throws Exception;
+	
+	public Long getMyVacaCount(ReportPager pager) throws Exception;
+	public Long getMyWorkCount(ReportPager pager) throws Exception;
+	public Long getMySorryCount(ReportPager pager) throws Exception;
+	public Long getMyPayCount(ReportPager pager) throws Exception;
 	
 	public ReportVacaVO getMyVacaDetail(ReportApplyVO reportApplyVO) throws Exception;
 	public ReportPayVO getMyPayDetail(ReportApplyVO reportApplyVO) throws Exception;
