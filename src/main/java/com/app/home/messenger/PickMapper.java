@@ -10,7 +10,8 @@ import com.app.home.user.UserVO;
 @Mapper
 public interface PickMapper {
 	
-	public int firstCheckPick(String myId) throws Exception;
+	//중복체크
+	public int firstCheckPick(Map<String, Object> map) throws Exception;
 	
 	public Long findPickNum(String myId) throws Exception;
 

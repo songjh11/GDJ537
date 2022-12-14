@@ -26,7 +26,7 @@
 																		<input type="hidden" id="phone${e.id}" value="${e.phone}">
 																		<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
 																			<div class="userAdd">
-																				<input type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}>
+																				<input type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
 																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
 																			</div>
 																			<div class="userInfo" style="width: 60%; color: white;">

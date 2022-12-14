@@ -6,9 +6,9 @@
 <mapper namespace="com.app.home.messenger.PickMapper">
 
 
-	<select id="firstCheckPick" parameterType="String" resultType="int">
+	<select id="firstCheckPick" parameterType="Map" resultType="int">
 		SELECT COUNT(*) FROM PICK
-		WHERE MYID=#{myId}
+		WHERE MYID=#{myId} AND YOURID=#{yourId}
 	</select>
 	
 	<select id="findPickNum" parameterType="String" resultType="Long">
