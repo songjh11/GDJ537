@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +46,9 @@
 	            	<h1 class="h3 mb-4 text-gray-800">모든 승인자 리스트</h1>
 	            	
 	            	<table border="1" class="table table-striped table-hover col-lg-16">
+	            	
+	            	<sec:authentication property="Principal" var="user"/>
+	            	
 						<thead class="table table-dark">
 							<tr>
 								<th>아이디</th>
