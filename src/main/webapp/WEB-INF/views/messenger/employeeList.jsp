@@ -51,7 +51,6 @@
 							</form>
 						</div>
 						<!-- 채팅방생성 모달 버튼 -->
-						<h1>${myId}</h1>
 						<div class="btnArea d-flex flex-row-reverse">
 							<button type="button" id="userBtn"><img class="roomImg" src="/img/messenger/chatAdd.png"></button>
 						</div>
