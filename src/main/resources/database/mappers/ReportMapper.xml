@@ -127,7 +127,7 @@
 	
 	<insert id="setAddVaca" parameterType="ReportVacaVO">
 		INSERT INTO REPORTVACA 
-		VALUES(NULL, #{applyNum}, #{categoryNum}, #{text}, #{period}, #{call}, sysdate(),#{startDate}, #{endDate})
+		VALUES(NULL, #{applyNum}, #{categoryNum}, #{text}, #{call}, sysdate(),#{startDate}, #{endDate})
 	</insert>
 	
 	

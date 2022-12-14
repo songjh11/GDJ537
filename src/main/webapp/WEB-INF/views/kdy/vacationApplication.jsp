@@ -54,8 +54,9 @@
 			<sec:authentication property="Principal" var="user"/>
 
 
-            <input type="hidden" name="id" value="${user.id}">
-            <input type="hidden" name="depNum" value="${vo.depNum}">
+            <input type="hidden" name="id" value="${user.id}"/>
+            <input type="hidden" name="depNum" value="${vo.depNum}"/>
+            <input type="hidden" name="reportNum" value="1"/>
 
 	            <div class="container-fluid">
 						<div class="container px-4 px-lg-5 my-5">
@@ -114,16 +115,16 @@
                                 종류
                                     <div style="margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
                                         <div style="margin-left: 29px; margin-top: 0px;">
-                                            <input type="hidden" name="categoryNum" id="checkRadio"/>
-                                            <input type="radio" class="mail" name="category" value="1" data-radio="1"/>
+                                            <!--<input type="hidden" name="categoryNum" id="checkRadio"/> --> 
+                                            <input type="radio" class="mail" value="1" name="categoryNum" data-radio="1"/>
                                             <label for="mail">연차</label>
-                                            <input type="radio" class="mail" name="category" value="2" data-radio="2"/>
+                                            <input type="radio" class="mail" value="2" name="categoryNum" data-radio="2"/>
                                             <label for="mail">월차</label>
-                                            <input type="radio" class="mail" name="category" value="3" data-radio="3"/>
+                                            <input type="radio" class="mail" value="3" name="categoryNum" data-radio="3"/>
                                             <label for="mail">병가</label>
-                                            <input type="radio" class="mail" name="category" value="4" data-radio="4"/>
+                                            <input type="radio" class="mail" value="4" name="categoryNum" data-radio="4"/>
                                             <label for="mail">반차</label>
-                                            <input type="radio" class="mail" name="category" value="5" data-radio="5"/>
+                                            <input type="radio" class="mail" value="5" name="categoryNum" data-radio="5"/>
                                             <label for="mail">기타</label>
                                         </div>
                                     </div>   
@@ -133,7 +134,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 사유
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <textarea id="textArea" name="text" value="text" style="border: 0; text-align: left; width: 645px; height: 97px;"></textarea>
+                                    <textarea id="textArea" name="text" style="border: 0; text-align: left; width: 645px; height: 97px;"></textarea>
                                     <span id="textAreaHelp"></span>
                                 </div>
                             </div>    
@@ -159,9 +160,9 @@
                                         <div>월</div>
                                         <input type="number" id="d2" style="width: 40px; border:0 solid black; text-align:right" value="30"/>
                                         <div>일</div> -->
-                                        <input type="datetime-local">
+                                        <input type="datetime-local" name="startDate">
                                             <div>~</div>
-                                        <input type="datetime-local">
+                                        <input type="datetime-local" name="endDate">
                                     </div>
                                 </div>
                             </div>
@@ -180,13 +181,13 @@
                                 위와 같이 휴가를 신청하오니 허락하여 주시기 바랍니다.
                             </div>
                             <div class="d-flex" style="font-weight: bold; margin-left: 240px; margin-top: 35px;">
-                                <input type="hidden" name="date" id="dateParse">
-                                <div><input type="number" id="y3" style="width: 100px; border:0 solid black; text-align:right" value="2022"/>년</div>
-                                <div><input type="number" id="m3" style="width: 100px; border:0 solid black; text-align:right" value="12"/>월</div>
-                                <div><input type="number" id="d3" style="width: 100px; border:0 solid black; text-align:right" value="31"/>일</div>
+                                <input type="hidden" name="date" id="dateParse" value="${year}/${month}/${day}">
+                                <div><input type="number" id="y3" style="width: 100px; border:0 solid black; text-align:right" readonly value="${year}"/>년</div>
+                                <div><input type="number" id="m3" style="width: 100px; border:0 solid black; text-align:right" readonly value="${month}"/>월</div>
+                                <div><input type="number" id="d3" style="width: 100px; border:0 solid black; text-align:right" value="${day}"/>일</div>
                             </div>
                             <div style="font-weight: bold; margin-top: 20px; margin-left: 150px;">
-                                신청자 : <input type="text" name="id" value=${vo.name} readonly style="border:0 solid black"/>
+                                신청자 : <input type="text" name="name" value=${vo.name} readonly style="border:0 solid black"/>
                             </div>
                         </div>
                     </div>
@@ -194,7 +195,7 @@
         </div>    
     </div>
 </form>
-        <button type="button" style="float: right;" onclick="allCheck()" class="btn btn-secondary" id="vcaBtn">제출</button>
+        <button type="submit" style="float: right;" class="btn btn-secondary" id="vcaBtn">제출</button>
 	            </div>
 	            <!-- End Page Content -->
 					
