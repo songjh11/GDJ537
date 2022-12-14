@@ -55,6 +55,7 @@
 						    <select class="form-control" name="kind" aria-label="Default select example">
 						    	<option value="title">제목</option>
 						    	<option value="contents">내용</option>
+						    	<option value="id">작성자</option>
 						    </select>
 						  </div>
 						  <div class="input-group">
@@ -83,11 +84,11 @@
 			            			<div class="row justify-content-between">
 			            				<div class="col-auto align-self-center">
 			            				  <a href="/request/hit?num=${request.num }">
-						                  	<h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 17px">[요청] ${request.title }</h5>
+						                  	<h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 17px">[요청] ${request.title }  (${request.cntComment})</h5>
 						                  </a>
 						                 </div>
 						                 <div class="col-fill ml-auto align-self-end mr-5">
-						                 	<p >조회수  ${request.hit }  </p>
+						                 	<p >작성자 ${request.id}             조회수  ${request.hit }  </p>
 											<p class="regdate" data-date="${request.regDate }"> 등록일자  </p>
 						                </div>
 						             </div>
