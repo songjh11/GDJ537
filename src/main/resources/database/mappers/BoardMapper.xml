@@ -14,8 +14,8 @@
 
 	<select id="getDetail" parameterType="BoardVO"
 		resultMap="resultBoardAddfiles">
-		select b.*,f.filenum, f.filename, f.oriname from board b
-		left join file f on b.num = f.num where b.num=#{num}
+		SELECT b.*,f.filenum, f.filename, f.oriname FROM BOARD b
+		LEFT JOIN FILE f ON b.num = f.num WHERE b.num=#{num}
 	</select>
 
 	<resultMap type="BoardVO" id="resultBoardAddfiles">
