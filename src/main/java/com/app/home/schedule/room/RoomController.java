@@ -38,15 +38,10 @@ public class RoomController
 		log.info("------- get room List -------");
 		ModelAndView modelAndView = new ModelAndView();
 		List<GoodsVO> goodsVOs = roomService.getRoomList(goodsVO);
-		// List<ReserveVO> reserveVOs = carService.getReserveList(reserveVO);
 
-		// log.info("auth: {}", authentication.getPrincipal());
 		log.info("goodVO list: {}", goodsVOs);
-		// log.info("reserve: {}", reserveVOs);
 
 		modelAndView.addObject("goodVO", goodsVOs);
-		// modelAndView.addObject("reserveVO", reserveVOs);
-		// modelAndView.addObject("userInfo", authentication.getPrincipal());
 		modelAndView.setViewName("/goods/room/roomList");
 
 		return modelAndView;

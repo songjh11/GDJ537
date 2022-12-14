@@ -59,6 +59,46 @@ startTime.addEventListener("blur", function () {
         endTime.disabled = true;
     }
 
+    // -------------------------------------------------------------
+    // 이미 예약된 시간 확인
+    var restart = startTime.value.replace('T', '');
+    var restar = restart.replace(/-/gi, '');
+    var rest = restar.replace(':', '');
+    var selectStartTime = parseFloat(rest);
+
+    console.log("선택한 시작 시간: " + rest);
+
+
+
+    $(".timeCheck").each(function () {
+        var a = $(this).children('.startTimeCheck').val().replace('T', '');
+        var a1 = a.replace(/-/gi, '');
+        var stTime = a1.replace(':', '');
+        var startTimeNumber = parseFloat(stTime);
+
+        var b = $(this).children('.endTimeCheck').val().replace('T', '');
+        var b1 = b.replace(/-/gi, '');
+        var eTime = b1.replace(':', '');
+        var endTimeNumber = parseFloat(eTime);
+
+        console.log("예약된 시간: " + startTimeNumber);
+        console.log("예약된 종료 시간: " + endTimeNumber);
+
+        console.log("예약시작시간보다 선택한 시간이 클때: ", startTimeNumber < selectStartTime);
+        console.log("선택한 시간이 예약 종료 시간보다 작을때: ", selectStartTime <= endTimeNumber);
+        console.log("if에 들어감: " + (startTimeNumber < selectStartTime || selectStartTime <= endTimeNumber) == true);
+
+        if ((startTimeNumber < selectStartTime && selectStartTime <= endTimeNumber) == true) {
+            alert("예약 불가능한 시간입니다.");
+        }
+        else {
+            timeCheck = true;
+        }
+        console.log("timeCheck: " + timeCheck);
+        console.log("----------------------");
+    })
+
+
     // blur 시 빈칸일 때
     if (startTime.value == '') {
         startText.style.display = 'block';
@@ -69,30 +109,6 @@ startTime.addEventListener("blur", function () {
         startText.style.display = 'none';
         startValueCheck = true;
     }
-
-    // -----------------------------------------
-    // 이미 예약된 시간 확인
-    var re = startTime.value.replace('T', ' ');
-    let replaceText = re + ':00';
-    console.log(replaceText);
-
-    $(".timeCheck").each(function () {
-        var a = $(this).val();
-
-        // console.log("선택시간: " + a);
-        // console.log(a == replaceText);
-
-        if (a == replaceText) {
-            alert("이미 예약된 시간입니다.");
-            timeCheck = false;
-            console.log(timeCheck);
-            return false;
-        }
-        else {
-            timeCheck = true;
-            console.log(timeCheck);
-        }
-    })
 })
 
 function CalculatorEndTime() {

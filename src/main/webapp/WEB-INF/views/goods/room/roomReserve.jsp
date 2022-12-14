@@ -31,6 +31,9 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
+					<h3 style="text-align: center;">---- 모든 정보를 필수로 입력해야 합니다. ----</h3>
+					<br>
+					<br>
 					<section class="container col-lg-6 justify-content-center">
 						<c:forEach items="${stTime }" var="st">
 							<input type="hidden" value="${st.startTime }" class="startList">
@@ -46,15 +49,14 @@
 								</tr>
 							</table>
 
-							<div>
-								<h3>---- 모든 정보를 필수로 입력해야 합니다. ----</h3>
-								<br>
-								<br>
-							</div>
-
 							<input type="hidden" name="goodsId" value="${goodDetail.goodsId }">
 							<c:forEach items="${timeNotEqual }" var="t">
-								<input type="text" value="${t.startTime }" class="timeCheck">
+								<br>
+								<div class="timeCheck">
+								<input type="text" value="${t.startTime }" class="startTimeCheck">
+								<input type="text" value="${t.endTime }" class="endTimeCheck">
+								</div>
+								<br>
 							</c:forEach>
 
 							<div class="mb-3">
@@ -95,9 +97,7 @@
 							</div>
 							<br>
 						</form>
-
 					</section>
-
 				</div>
 				<!-- End Page Content -->
 
