@@ -51,13 +51,6 @@ startTime.addEventListener("blur", function () {
     else {
         startCheck = true;
     }
-    // 반납날짜 disabled 하는 조건
-    if (startTime.value != '' && startCheck == true) {
-        endTime.disabled = false;
-    }
-    if (startCheck == false) {
-        endTime.disabled = true;
-    }
 
     // -------------------------------------------------------------
     // 이미 예약된 시간 확인
@@ -67,8 +60,6 @@ startTime.addEventListener("blur", function () {
     var selectStartTime = parseFloat(rest);
 
     console.log("선택한 시작 시간: " + rest);
-
-
 
     $(".timeCheck").each(function () {
         var a = $(this).children('.startTimeCheck').val().replace('T', '');
@@ -87,18 +78,29 @@ startTime.addEventListener("blur", function () {
         // console.log("예약시작시간보다 선택한 시간이 클때: ", startTimeNumber < selectStartTime);
         // console.log("선택한 시간이 예약 종료 시간보다 작을때: ", selectStartTime <= endTimeNumber);
         // console.log("if에 들어감: " + (startTimeNumber < selectStartTime || selectStartTime <= endTimeNumber) == true);
+        console.log(startTimeNumber < selectStartTime && selectStartTime <= endTimeNumber);
 
-        if ((startTimeNumber < selectStartTime && selectStartTime <= endTimeNumber) == true) {
-            alert("예약된 시간입니다.");
+        if (startTimeNumber < selectStartTime && selectStartTime <= endTimeNumber) {
+            alert("이미 예약된 시간입니다.");
+            timeCheck = false;
             return false;
         }
         else {
+            // alert("사용 가능한 시간입니다.");
             timeCheck = true;
         }
-        // console.log("timeCheck: " + timeCheck);
-        // console.log("----------------------");
+        console.log("timeCheck: " + timeCheck);
+        console.log("----------------------");
     })
 
+    // 반납날짜 disabled 하는 조건
+    // 이미 예약된 시간일때 종료일 선택 못하게 설정
+    if (startCheck == true && timeCheck == true) {
+        endTime.disabled = false;
+    }
+    else {
+        endTime.disabled = true;
+    }
 
     // blur 시 빈칸일 때
     if (startTime.value == '') {
@@ -130,7 +132,7 @@ function CalculatorEndTime() {
     let da = parseFloat(startDate.split('-')[2]);
 
     if (y < year || (m < month && y == year) || (d < da && m == month && y == year)) {
-        alert("선택할 수 없는 날입니다.");
+        alert("날짜와 시간을 다시 선택해주세요");
         endCheck = false;
         console.log("이전날 선택 - " + endCheck);
         return false;
@@ -139,6 +141,48 @@ function CalculatorEndTime() {
         endCheck = true;
     }
 
+    // -------------------------------------------------------------
+    // 이미 예약된 시간 확인
+    var reend = endTime.value.replace('T', '');
+    var reen = reend.replace(/-/gi, '');
+    var ree = reen.replace(':', '');
+    var selectEndTime = parseFloat(ree);
+
+    console.log("선택한 시작 시간: " + ree);
+
+    $(".timeCheck").each(function () {
+        var a = $(this).children('.startTimeCheck').val().replace('T', '');
+        var a1 = a.replace(/-/gi, '');
+        var stTime = a1.replace(':', '');
+        var startTimeNumber = parseFloat(stTime);
+
+        var b = $(this).children('.endTimeCheck').val().replace('T', '');
+        var b1 = b.replace(/-/gi, '');
+        var eTime = b1.replace(':', '');
+        var endTimeNumber = parseFloat(eTime);
+
+        // console.log("예약된 시간: " + startTimeNumber);
+        // console.log("예약된 종료 시간: " + endTimeNumber);
+
+        // console.log("예약시작시간보다 선택한 시간이 클때: ", startTimeNumber < selectStartTime);
+        // console.log("선택한 시간이 예약 종료 시간보다 작을때: ", selectStartTime <= endTimeNumber);
+        // console.log("if에 들어감: " + (startTimeNumber < selectStartTime || selectStartTime <= endTimeNumber) == true);
+        console.log(startTimeNumber < selectEndTime && selectEndTime <= endTimeNumber);
+
+        if (startTimeNumber < selectEndTime && selectEndTime <= endTimeNumber) {
+            alert("예약된 시간과 중복됩니다.");
+            timeCheck = false;
+            return false;
+        }
+        else {
+            // alert("사용 가능한 시간입니다.");
+            timeCheck = true;
+        }
+        console.log("end timeCheck: " + timeCheck);
+        console.log("----------------------");
+    })
+
+    // 마감시간 점검 - 시간만 계산
     let st = parseInt(startTime.value.substr(11, 15));
     if (st == 0) {
         st = 12;
@@ -151,42 +195,29 @@ function CalculatorEndTime() {
     }
     console.log("endTime: " + end); // 종료 숫자
 
-    // 시간 계산
+    // 분 계산
+    let startSub = (startTime.value.substr(11)).substr(3, 4);
+    let endSub = (endTime.value.substr(11)).substr(3, 4);
+    let a = parseFloat(startSub)
+    let b = parseFloat(endSub)
+
+    // 조건 주기
     if (startTime.value == endTime.value) {
         alert("동일한 시간은 사용할 수 없습니다.");
         endCheck = false;
         console.log("시간 동일 - " + endCheck)
         return false;
     }
-    else {
-
-        if (end < st) {
-            alert("유효하지 않은 시간대입니다.");
+    else { // 날짜, 시간이 동일하지 않을때
+        // 동일한 날에 종료 시간이 시작 시간보다 커야 함
+        if (d == da && end < st || (end == st && a > b)) {
+            alert("시작 시간보다 빨리 끝날 수 없습니다.");
             endCheck = false;
             console.log("종료시간이 시작보다 빠름 - " + endCheck);
             return false;
         }
         else {
-            // console.log(endTime.value);
-            // console.log(startTime.value);
-            let startSub = (startTime.value.substr(11)).substr(3, 4);
-            // console.log(startSub);
-            let endSub = (endTime.value.substr(11)).substr(3, 4);
-            // console.log(endSub);
-
-            // 분 계산
-            let a = parseFloat(startSub)
-            let b = parseFloat(endSub)
-            // console.log(a >= b);
-            if (end == st && a > b) {
-                alert("유효하지 않은 시간대입니다.");
-                endCheck = false;
-                console.log("시간동일 분 계산 - " + endCheck);
-                return false;
-            }
-            else {
-                endCheck = true;
-            }
+            endCheck = true;
         }
     }
 };
@@ -202,7 +233,6 @@ endTime.addEventListener("blur", function () {
         endValueCheck = true;
     }
     CalculatorEndTime();
-
 })
 
 purpose.addEventListener("blur", function () {
@@ -239,19 +269,15 @@ btn.addEventListener("click", function () {
         return false;
     }
     else {
-        
-        
+
         let a = confirm("정말 예약하시겠습니까?");
-        
+
         if ((a && startCheck && endCheck && purposeCheck && startValueCheck && endValueCheck && timeCheck) == true) {
             frm.submit();
         }
         else if (a == false) {
             alert("취소하였습니다.");
         }
-        // if ((startCheck == false || endCheck == false || purposeCheck == false || startValueCheck == false || endValueCheck == false || timeCheck == false)) {
-        //     alert("조건을 충족하지 못하였습니다.");
-        // }
     }
 })
 // -----------------------------------------
@@ -261,3 +287,6 @@ var memNum = $("#member").val();
 let tt = parseFloat(memNum);
 
 $("#member").val(tt);
+
+
+// 전체 예약시간 안에 예약된 날짜 있으면 안되게 하기
