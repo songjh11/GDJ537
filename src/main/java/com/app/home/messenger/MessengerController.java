@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.user.DepartmentVO;
+import com.app.home.user.UserService;
 import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,14 +39,23 @@ public class MessengerController {
 	@Autowired
 	private PickService pickService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@GetMapping("chat")
-	public ModelAndView getMyChat(HttpSession session)throws Exception{
-		Integer id = 10;
+	public ModelAndView getMyChat(HttpSession session, UserVO userVO)throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  = (UserVO)authentication.getPrincipal();
+	    log.info("uv:{}", userVO);
+	    userVO = userService.getMypage(userVO);
+		Integer id = userVO.getId();
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<UserVO> el = messengerService.getEmpList();
 		List<UserVO> pl = pickService.getPickList(id.toString());
 		
+		// ----------------- 채팅목록 -----------------
 		List<RoomVO> roomVOs = new ArrayList<>();
 		
 		log.info("찍힘?");
@@ -56,7 +68,9 @@ public class MessengerController {
 		
 		mv.addObject("roomList", roomVOs);
 		mv.setViewName("messenger/chat");
+		// ----------------- 채팅목록 -----------------
 		
+		mv.addObject("user", userVO);
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
@@ -66,9 +80,11 @@ public class MessengerController {
 	}
 	
 	@PostMapping("searchEmp")
-	public ModelAndView getSearchResult(HttpSession session, String kind, String keyword) throws Exception{
-		log.info("keyword:{},kind:{}", keyword, kind);
-		int id = 10;
+	public ModelAndView getSearchResult(HttpSession session, UserVO userVO, String kind, String keyword) throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
+		Integer id = userVO.getId();
 		Map<String, String> map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("kind", kind);
@@ -97,27 +113,37 @@ public class MessengerController {
 		return result;
 	}
 	
+	// --------------------- 유리 ------------------------------
+	
 	//수신함
 	@GetMapping("note")
-	public ModelAndView getReceiveNoteList(UserVO employeeVO, NotePager notePager)throws Exception{
+	public ModelAndView getReceiveNoteList(HttpSession session,UserVO userVO, NotePager notePager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		//임시 id
-		employeeVO.setId(20221231);
+		userVO.setId(2022001);
 
-		List<NoteVO> ar = noteService.getReceiveNoteList(employeeVO, notePager);
+		List<NoteVO> ar = noteService.getReceiveNoteList(userVO, notePager);
 		
+		Long getNotReadCount = noteService.getNotReadCount(userVO);
 		mv.addObject("list", ar);
 		mv.addObject("pager", notePager);
-		
-		if(ar.size()==0) {
-			log.info("=============================비었따");
-			mv.addObject("message5", "검색 결과가 없습니다.");
+		if(getNotReadCount==0L) {
+			mv.addObject("getNotReadCount", "");
 		} else {
-			mv.addObject("message5", "");
+			mv.addObject("getNotReadCount", getNotReadCount);
 		}
 		
 		
-		Integer id = 1;
+		if(ar.size()==0) {
+			log.info("=============================비었따");
+			mv.addObject("message5", "쪽지가 없습니다.");
+		} else {
+			mv.addObject("message5", "");
+		}
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
+		Integer id = userVO.getId();
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<UserVO> el = messengerService.getEmpList();
 		List<UserVO> pl = pickService.getPickList(id.toString());
@@ -134,23 +160,17 @@ public class MessengerController {
 	//발신함
 	@GetMapping("note/sent")
 	@ResponseBody
-	public ModelAndView getSendNoteList(UserVO employeeVO, NotePager notePager)throws Exception{
-		
-		
-		
+	public ModelAndView getSendNoteList(UserVO userVO, NotePager notePager)throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
 		//임시 id
-		employeeVO.setId(20221231);
-		List<NoteVO> ar = noteService.getSendNoteList(employeeVO, notePager);
+		userVO.setId(2022001);
+		List<NoteVO> ar = noteService.getSendNoteList(userVO, notePager);
 		mv.addObject("list", ar);
-		
-		
 		mv.addObject("pager", notePager);
-		
 		
 		if(ar.size()==0) {
 			log.info("=============================발신비었따");
-			mv.addObject("message5", "검색 결과가 없습니다.");
+			mv.addObject("message5", "쪽지가 없습니다.");
 		} else {
 			mv.addObject("message5", "");
 		}
@@ -159,20 +179,31 @@ public class MessengerController {
 	
 	//쪽지 상세
 	@GetMapping("note/detail")
-	public ModelAndView getNoteDetail(NoteVO noteVO)throws Exception{
+	public ModelAndView getNoteDetail(NoteVO noteVO, UserVO userVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		noteVO = noteService.getNoteDetail(noteVO);
 		mv.addObject("detail", noteVO);
+		
+		userVO.setId(2022001);
+		Long reid = new Long(userVO.getId());
+		
+		noteVO.setReceiveId(reid);
+		if(noteVO.getReadCheck()==1) {
+			int result = noteService.updateCheck(noteVO);
+		} else {
+			
+		}
+		
 		mv.setViewName("messenger/note/detail");
 		return mv;
 	}
 	
 	//쪽지발송
 	@GetMapping("note/send")
-	public ModelAndView setSendNote(UserVO employeeVO)throws Exception{
+	public ModelAndView setSendNote(UserVO userVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		employeeVO.setId(20221231);
-		mv.addObject("member", employeeVO);
+		userVO.setId(2022001);
+		mv.addObject("member", userVO);
 		return mv;
 	}
 	
@@ -190,6 +221,21 @@ public class MessengerController {
 		mv.setViewName("messenger/note/sendAfter");
 		return mv;
 	}
+	
+//	@GetMapping("note/check")
+//	@ResponseBody
+//	public int updateCheck(NoteVO noteVO)throws Exception{
+//		return noteService.updateCheck(noteVO);
+//	}
+	
+	@GetMapping("note/delete")
+	@ResponseBody
+	public int setDeleteNote(NoteVO noteVO)throws Exception{
+		return noteService.setDeleteNote(noteVO);
+	}
+	
+	
+	// --------------------- 유리 끝------------------------------
 	
 	// --------------------- 효경 ------------------------------
 	
@@ -230,7 +276,7 @@ public class MessengerController {
 		
 		return mv;
 	}
-	// --------------------- 유리 ------------------------------
+	
 	
 	//-----------
 	

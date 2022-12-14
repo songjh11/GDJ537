@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,12 @@
 </style>
 <link rel="stylesheet" href="/css/chat/groupModal.css">
 <link rel="stylesheet" href="/css/chat/employeeList.css">
+<style>
+	.iconMsg {
+		font-size: 13px;
+		color: #4c6ac4;
+	}
+</style>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <c:import url="../temp/layout_header.jsp"></c:import>
@@ -36,8 +43,8 @@
 	            <div class="container-fluid" style="display: flex; height: 100%;">
 	            	<!-- Page Heading -->
 					<div class="miniBar">
-						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"></button></a>
-						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
+						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/messenger/m_chat.png"><p class="iconMsg">채팅</p></button></a>
+						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/messenger/m_noteX.png"><p class="iconMsg" style="color: white; margin-top: -4px;">쪽지</p></button></a>
 					</div>
 					<div class="chatDiv" id="chatArea">
 						<div class="blank"></div>
@@ -55,11 +62,11 @@
 							<img src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
 							<h2 class="h2title">Goodee Company</h2>
 							<div class="proArea">
-								<p>이름</p>
-								<p>부서</p>
-								<p>직급</p>
-								<p>이메일</p>
-								<p>전화번호</p>
+								<p>${user.id}</p>
+								<p>${user.departmentVO.depName}</p>
+								<p>${user.roleVO.roleName}</p>
+								<p>${user.email}</p>
+								<p>${user.phone}</p>
 								<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">개인 정보 수정 »</a></p>
 							</div>
 						  </div>

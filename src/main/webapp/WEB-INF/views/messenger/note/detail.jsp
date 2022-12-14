@@ -69,7 +69,7 @@
 
         #line {
             border-bottom: 1px solid #cecec59c;
-            width: 381px;
+            width: 388px;
             height: 2px;
             margin: 12px 20px 0px;
         }
@@ -78,6 +78,8 @@
             padding: 21px 25px 0 25px;
             font-size: 13px;
             color: #4579e1d1;
+            display: flex;
+            justify-content: space-between;
         }
 
         #realContents {
@@ -121,9 +123,20 @@
             <div style="margin: 15px;">수신자 : 박수신 (${detail.receiveId})</div>
         </div>
         <div id="contents">
-            <div id="time">보낸시간 : 
-                <fmt:formatDate value="${detail.regDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+            <div id="time">
+                <div>
+                    보낸시간 : 
+                    <fmt:formatDate value="${detail.regDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                </div>
+                <div>
+                    <c:choose>
+                        <c:when test="${detail.readCheck eq 0}"> 읽음 </c:when>
+                        <c:when test="${detail.readCheck eq 1}"> 읽지않음 </c:when>
+                        <c:otherwise> 오류 </c:otherwise>
+                    </c:choose>
+                </div>
             </div>
+            
             <div id="line"></div>
             <div id="realContents">${fn:replace(detail.contents, replaceChar, "<br/>")}</div>
             

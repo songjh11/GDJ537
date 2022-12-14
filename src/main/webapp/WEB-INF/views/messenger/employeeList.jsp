@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 						
 
 						<div id="modal" class="modal-overlay" style="z-index: 100;">
@@ -50,6 +51,7 @@
 							</form>
 						</div>
 						<!-- 채팅방생성 모달 버튼 -->
+						<h1>${myId}</h1>
 						<div class="btnArea d-flex flex-row-reverse">
 							<button type="button" id="userBtn"><img class="roomImg" src="/img/messenger/chatAdd.png"></button>
 						</div>
@@ -125,16 +127,18 @@
 																<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 															</div>
 															<div class="btnArea">
-																<c:forEach items="${e.pickVO}" var="p">
-																	<c:choose>
-																		<c:when test="${p.myId eq myId and p.pickNum eq 2}">
-																			${e.pickVO[0].myId}
+																<c:if test="${empty e.pickVO}">
+																	<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>	
+															</c:if>
+
+																	<c:forEach items="${e.pickVO}" var="p">
+																		<c:choose>
+																			<c:when test="${not empty p}">
+																			<c:if test="${p.myId eq '2022001'}">
 																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
-																		</c:when>
-																		<c:when test="${p.myId ne myId and p.pickNum ne 2}">
-																			${e.pickVO[1].myId}
-																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
-																		</c:when>
+																			</c:if>
+																			</c:when>
+															
 																	</c:choose>
 																</c:forEach>
 															</div>

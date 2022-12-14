@@ -47,9 +47,11 @@ public class MessengerService {
 			List<UserVO> userVOs = new ArrayList<>();
 			
 			for(int ids : roomVO.getId()) {
+				
 				UserVO userVO = new UserVO();
 				userVO.setId(ids);					
 				userVOs.add(userVO);
+				
 				roomVO.setUserVOs(userVOs);
 				
 				result = messengerMapper.setAddRoomUser(roomVO);
