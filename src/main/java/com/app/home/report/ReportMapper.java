@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import com.app.home.report.pay.ReportPayVO;
+import com.app.home.report.pay.RepriceVO;
 import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
@@ -69,7 +70,7 @@ public interface ReportMapper {
 	
 	public int setAddApply(ReportApplyVO reportApplyVO) throws Exception;
 
-	
+	public int setAddItem(RepriceVO repriceVO) throws Exception;
 	//================================================
 	
 	//=======================최근호===================
