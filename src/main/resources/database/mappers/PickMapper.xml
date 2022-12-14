@@ -10,22 +10,11 @@
 		SELECT COUNT(*) FROM PICK
 		WHERE MYID=#{myId} AND YOURID=#{yourId}
 	</select>
-	
-	<select id="findPickNum" parameterType="String" resultType="Long">
-		SELECT PICKNUM FROM PICK
-		WHERE MYID=#{myId}
-	</select>
 
-	<insert id="createPick" parameterType="String">
-		INSERT INTO PICK
-		(MYID, YOURID)
-		VALUES(#{myId}, #{yourId})
-	</insert>
-	
 	<insert id="setPick" parameterType="Map">
 		INSERT INTO PICK
-		(YOURID)
-		VALUES(#{yourId});
+		(MYID, YOURID)
+		VALUES(#{myId}, #{yourId});
 	</insert>
 	
 	<select id="getPickList" parameterType="String" resultMap="pickListResult">
@@ -43,14 +32,9 @@
 		ORDER BY D.DEPNUM, E.NAME
 	</select>
 	
-	<select id="perCheck" parameterType="Map" resultType="int">
-		SELECT COUNT(*) FROM PICK
-		WHERE PICKNUM=#{pickNum} AND YOURID=#{yourId}
-	</select>
-	
 	<delete id="pickCancel" parameterType="Map">
 		DELETE FROM PICK
-		WHERE PICKNUM=#{pickNum} AND YOURID=#{yourId}
+		WHERE MYID=#{myId} AND YOURID=#{yourId}
 	</delete>
 	
 	<resultMap type="UserVO" id="pickListResult">

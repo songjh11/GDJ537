@@ -87,7 +87,6 @@ public class MessengerController {
 	@GetMapping("pickCheck")
 	@ResponseBody
 	public int setPickCheck (String myId, String yourId) throws Exception{
-		log.info(myId);
 		int result = pickService.createPick(myId, yourId);
 		log.info("result:{}",result);
 		return result;
@@ -97,7 +96,6 @@ public class MessengerController {
 	@ResponseBody
 	public int pickCancel (String myId, String yourId) throws Exception{
 		int result = pickService.pickCancel(myId, yourId);
-		log.info("취소 result:{}",result);
 		return result;
 	}
 	
@@ -110,8 +108,9 @@ public class MessengerController {
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
 		Integer id = userVO.getId();
-		
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", userVO);
+		
 		//임시 id
 		userVO.setId(id);
 

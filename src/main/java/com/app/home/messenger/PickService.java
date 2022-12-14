@@ -24,12 +24,7 @@ public class PickService {
 		map.put("myId", myId);
 		int result = pickMapper.firstCheckPick(map);
 		if(result>0) {
-			log.info("이미 픽 테이블이 만들어짐!");
-		}else {
-			pickMapper.createPick(myId);
-		}
-		int perResult = pickMapper.perCheck(map);
-		if(perResult>0) {
+			log.info("이미 픽!");
 			return 0;
 		}else {
 			return pickMapper.setPick(map);
@@ -42,10 +37,8 @@ public class PickService {
 	
 	public int pickCancel(String myId, String yourId) throws Exception{
 		Map<String, Object> map = new HashMap<>();
-		Long pickNum = null;
-		pickNum = pickMapper.findPickNum(myId);
 		map.put("yourId", yourId);
-		map.put("pickNum", pickNum);
+		map.put("myId", myId);
 		return pickMapper.pickCancel(map);
 	}
 
