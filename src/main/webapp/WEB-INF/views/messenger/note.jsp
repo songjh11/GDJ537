@@ -813,5 +813,6 @@
 	<!-- Scroll Top, Login Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 	<script src="/js/messenger/main.js"></script>
+	<script src="/js/messenger/groupModal.js"></script>
 </body>
 </html>

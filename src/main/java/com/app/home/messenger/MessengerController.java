@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.user.DepartmentVO;
+import com.app.home.user.UserService;
 import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,17 +39,23 @@ public class MessengerController {
 	@Autowired
 	private PickService pickService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@GetMapping("chat")
 	public ModelAndView getMyChat(HttpSession session, UserVO userVO)throws Exception{
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
-	    userVO  =(UserVO)authentication.getPrincipal();
+	    userVO  = (UserVO)authentication.getPrincipal();
+	    log.info("uv:{}", userVO);
+	    userVO = userService.getMypage(userVO);
 		Integer id = userVO.getId();
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<UserVO> el = messengerService.getEmpList();
 		List<UserVO> pl = pickService.getPickList(id.toString());
 		
+		mv.addObject("user", userVO);
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);

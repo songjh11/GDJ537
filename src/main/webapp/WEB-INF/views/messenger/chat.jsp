@@ -62,11 +62,11 @@
 							<img src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
 							<h2 class="h2title">Goodee Company</h2>
 							<div class="proArea">
-								<p>${myId}</p>
-								<p>부서</p>
-								<p>직급</p>
-								<p>이메일</p>
-								<p>전화번호</p>
+								<p>${user.id}</p>
+								<p>${user.departmentVO.depName}</p>
+								<p>${user.roleVO.roleName}</p>
+								<p>${user.email}</p>
+								<p>${user.phone}</p>
 								<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">개인 정보 수정 »</a></p>
 							</div>
 						  </div>
