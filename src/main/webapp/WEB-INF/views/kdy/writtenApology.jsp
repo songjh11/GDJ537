@@ -76,14 +76,14 @@
                                 성명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" id="ApologyName" value="홍길동"/>
+                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" id="ApologyName" value="${vo.name}"/>
 
                         <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
                             <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
                                 부서명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; text-align: center; border: 0;" id="ApologyPartname" value="구디아카데미"/>
+                        <input style="width: 220px; height: 50px; text-align: center; border: 0;" id="ApologyPartname" value="${vo.departmentVO.depName}"/>
                     </div>    
                 </div> 
 
@@ -95,14 +95,14 @@
                                     직책
                                 </div>
                             </div>
-                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" id="ApologyRes" value="홍길동"/>
+                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" id="ApologyRes" value="${vo.roleVO.roleName}"/>
     
                             <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
                                 <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
                                     작성일
                                 </div>
                             </div>
-                            <input style="width: 220px; height: 50px; text-align: center; border: 0;" id="ApologyWDate" value="구디아카데미"/>
+                            <input style="width: 220px; height: 50px; text-align: center; border: 0;" id="ApologyWDate" value=""/>
                         </div> 
                     </div>    
                 </div>    
