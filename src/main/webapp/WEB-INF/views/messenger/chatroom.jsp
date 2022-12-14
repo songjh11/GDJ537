@@ -45,23 +45,27 @@
 		
 		<div class="put">
 			<div id="yourName">
-				<table class="inputTable">
+				<!-- <table class="inputTable">
 					<tr>
 						<th>사용자명</th>
-						<th><input type="text" name="userName" id="userName" value="bb"></th>
+						<th><input type="text" name="userName" id="userName" value="gg"></th>
 						<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
 					</tr>
-				</table>
+				</table> -->
 			</div>
 			<div id="msg">
-				<!-- <input type="text" name="userName" id="userName" value="bb"> -->
-				<textarea class="typing-chat" id="chatting" placeholder="보내실 메시지를 입력하세요." cols="70"></textarea>
+				<input type="hidden" name="userName" id="userName" value="bb">
+				<input type="text" class="typing-chat" id="msg" placeholder="보내실 메시지를 입력하세요.">
 				<button onclick="send()" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript" src="/js/messenger/group_chatroom.js"></script>
+	<script type="text/javascript">
+		wsOpen();
+		wsEvt();
+	</script>
 
 </body>
 
