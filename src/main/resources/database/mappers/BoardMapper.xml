@@ -69,6 +69,7 @@
 		<choose>
 			<when test="kind == 'title'">TITLE</when>
 			<when test="kind == 'contents'">CONTENTS</when>
+			<when test="kind == 'id'">ID</when>
 			<otherwise>CONTENTS</otherwise>
 		</choose>
 		LIKE CONCAT('%', #{search}, '%')

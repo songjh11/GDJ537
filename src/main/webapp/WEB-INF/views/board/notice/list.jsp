@@ -55,6 +55,7 @@
 						    <select class="form-control" name="kind" aria-label="Default select example">
 						    	<option value="title">제목</option>
 						    	<option value="contents">내용</option>
+						    	<option value="id">작성자</option>
 						    </select>
 						  </div>
 						  <div class="input-group">
@@ -88,7 +89,7 @@
 						                  </a>
 						                 </div>
 						                 <div class="col-fill ml-auto align-self-end mr-5">
-						                 	<p >조회수  ${notice.hit }  </p>
+						                 	<p >작성자 ${notice.id}         조회수  ${notice.hit }  </p>
 											<p class="regdate" data-date="${notice.regDate }"> 등록일자  </p>
 						                </div>
 						             </div>
