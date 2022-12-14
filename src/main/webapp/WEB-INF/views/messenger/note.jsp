@@ -436,6 +436,7 @@
 					<div class="chatDiv">
 						<div class="blank"></div>
 							<c:import url="./employeeList.jsp"></c:import>
+							<c:import url="./groupModal.jsp"></c:import>
 					</div>
 					<div class="chatDiv">
 						<!------------------------------------ YR ------------------------------------------->

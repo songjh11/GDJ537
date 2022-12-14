@@ -4,11 +4,12 @@ closeBtn.addEventListener("click", e => {
     modalChat.style.display = "none"
 });
 
+let myId = "";
 
 $(".userList").on("click", ".pickBtn", function(){
     console.log($(this).attr("value"));
     console.log($(this).children(".pickImg"));
-    let myId = 10;
+    myId = $("#loginUserId").val();
     let yourId = $(this).attr("value");
     let src = $(this).children(".pickImg").attr("src");
     if(src == "/img/star (3).png"){
