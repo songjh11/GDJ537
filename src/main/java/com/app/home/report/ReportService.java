@@ -196,7 +196,6 @@ public class ReportService {
 	
 	public List<ReportVacaVO> getMyVacaList(ReportPager pager) throws Exception{
 		pager.getNum(reportMapper.getMyVacaCount(pager));
-		
 		return reportMapper.getMyVacaList(pager);
 	}
 	public List<ReportWorkVO> getMyWorkList(ReportPager pager) throws Exception{
