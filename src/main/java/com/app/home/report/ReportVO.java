@@ -28,6 +28,8 @@ public class ReportVO {
 	private DepartmentVO departmentVO;
 	private RoleVO roleVO;
 	
+	private String roleName;
+	
 	
 	
 	
