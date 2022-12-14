@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,7 +21,8 @@ public class GoodsService
 
 	@Autowired
 	private GoodsMapper goodsMapper;
-
+	@Value("${app.upload.goods}")
+	private String path;
 	@Autowired
 	private FileManager fileManager;
 
@@ -42,7 +44,6 @@ public class GoodsService
 		goodsVO.setGoodsId(goodsVO.getGoodsId().concat(String.valueOf(count)));
 		
 		int result = goodsMapper.setAdd(goodsVO);
-		String path = "resources/upload/goods";
 
 		if (files.length != 0)
 		{
@@ -53,6 +54,7 @@ public class GoodsService
 				if (!file.isEmpty())
 				{
 
+					System.out.println(path);
 					String fileName = fileManager.saveFile(path, servletContext, file);
 					GoodsFileVO goodsFileVO = new GoodsFileVO();
 					goodsFileVO.setFileName(fileName);
@@ -80,7 +82,6 @@ public class GoodsService
 //		}
 //		goodsVO.setId(goodsVO.getId().concat(String.valueOf(count)));
 		int result =  goodsMapper.setUpdate(goodsVO);
-		String path = "resources/upload/goods" ;
 		int count = 0;
 		GoodsFileVO goodsFileVO = new GoodsFileVO();
 		if(files.length != 0) {
