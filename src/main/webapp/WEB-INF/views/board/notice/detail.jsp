@@ -48,7 +48,10 @@
                       </h5>
                     </div>
                     <div class="col-fill ml-auto align-self-end mr-5">
-                      <p>조회수 ${boardVO.hit} </p>
+                      <div>
+                      	<p>작성자 ${boardVO.id }</p>
+                      	<p>조회수 ${boardVO.hit} </p>
+                      </div>
                       <p id="regdate" data-date="${boardVO.regDate}"> 등록일자 </p>
                     </div>
                   </div>
