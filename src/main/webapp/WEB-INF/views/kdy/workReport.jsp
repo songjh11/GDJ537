@@ -55,7 +55,7 @@
                                 성명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" />
+                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" readonly value="${vo.name}"/>
                         <!-- USER.NAME -->
 
                         <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
@@ -63,7 +63,7 @@
                                 부서명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; text-align: center; border: 0;" />
+                        <input style="width: 220px; height: 50px; text-align: center; border: 0;" readonly value="${vo.departmentVO.depName}"/>
                          <!-- DEPARTMENT.DEPNAME -->
 
                     </div>    
@@ -77,7 +77,7 @@
                                     직책
                                 </div>
                             </div>
-                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" />
+                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" readonly value="${vo.roleVO.roleName}"/>
                             <!-- ROLE.ROLENAME -->
     
                             <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
@@ -85,7 +85,7 @@
                                     작성일
                                 </div>
                             </div>
-                            <input style="width: 220px; height: 50px; text-align: center; border: 0;" />
+                            <input style="width: 220px; height: 50px; text-align: center; border: 0;" value=""/>
                             <!-- DATE -->
                         </div> 
                     </div>    
