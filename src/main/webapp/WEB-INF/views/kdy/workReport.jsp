@@ -37,6 +37,7 @@
 				<!-- End of Topbar -->
 				
 				<!-- Begin Page Content -->
+                ${vo}
                 <form action="/report/addwork" method="post" id="frm">
 	            <div class="container-fluid">
 	 <div class="container px-4 px-lg-5 my-5">
@@ -49,13 +50,17 @@
             <div  style="border: solid 1px black; margin-top: 25px; margin-left: 45px; width: 900px; height: 110px; ">
                 <div style="height: 55px; border-bottom: solid 1px black;">
                     <div class="d-flex">
+                        <input style="display: none;" value="${vo.id}" name="id">
+                        <input style="display: none;" value="${vo.depNum}" name="depNum">
+                        <input style="display: none;" value="2" name="reportNum">
                         
                         <div style="width: 225px; height: 55px; border-right: solid 1px black;">
-                            <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 70px; padding-left: 50px;">
+                            <div style="font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 70px; padding-left: 50px;">
                                 성명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" />
+                        
+                        <input value="${vo.name}" name="name" style="width: 220px; height: 50px; border: 0; text-align: center;" />
                         <!-- USER.NAME -->
 
                         <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
@@ -63,7 +68,7 @@
                                 부서명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; text-align: center; border: 0;" />
+                        <input value="${vo.departmentVO.depName}" name="depName" style="width: 220px; height: 50px; text-align: center; border: 0;" />
                          <!-- DEPARTMENT.DEPNAME -->
 
                     </div>    
@@ -77,11 +82,11 @@
                                     직책
                                 </div>
                             </div>
-                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" />
+                            <input value="${vo.roleVO.roleName}" name="roleName" style="width: 220px; height: 50px; border: 0; text-align: center;" />
                             <!-- ROLE.ROLENAME -->
     
                             <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
-                                <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
+                                <div style="font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
                                     작성일
                                 </div>
                             </div>
@@ -104,7 +109,7 @@
                                             전
                                         </div>
                                         <div style=" margin-left: 100px; width: 800px; height: 107px; margin-top: -77px;">
-                                            <textarea id="am" style=" width: 780px; height: 100px; text-align: left; border: 0; margin-top: 5px;" value="AM"></textarea>
+                                            <textarea id="am" name="am" style=" width: 780px; height: 100px; text-align: left; border: 0; margin-top: 5px;" value="AM"></textarea>
                                         </div>
                                     </div>
                                     <div style="border-right: solid 1px black; width: 100px; height: 107px;">
@@ -113,7 +118,7 @@
                                             후
                                         </div>
                                         <div style=" margin-left: 100px; width: 800px; height: 107px; margin-top: -77px;">
-                                            <textarea id="pm" style=" width: 780px; height: 100px; text-align: left; border: 0; margin-top: 5px;" value="PM"></textarea>
+                                            <textarea id="pm" name="pm" style=" width: 780px; height: 100px; text-align: left; border: 0; margin-top: 5px;" value="PM"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -122,23 +127,23 @@
                                     미처리내역 및 개선사항
                             </div>
                         <div style="height: 212px; border-bottom: solid 1px black;">
-                            <textarea  style="width:895px; height: 209px; text-align: left; border: 0;"></textarea>
+                            <textarea name="undo" style="width:895px; height: 209px; text-align: left; border: 0;"></textarea>
                         </div>
                             <div style="height: 40px; border-bottom: solid 1px black; padding-top: 5px;">
                                 내일 예정업무
                             </div>
                         <div style="height: 212px; border-bottom: solid 1px black;">
-                            <textarea  style="width:895px; height: 209px; text-align: left; border: 0;"></textarea>
+                            <textarea name="todo" style="width:895px; height: 209px; text-align: left; border: 0;"></textarea>
                         </div>
                             <div style="height: 40px; border-bottom: solid 1px black; padding-top: 5px;">
                                 문제점 및 특이사항 보고
                             </div>
                         <div class="d-flex" style="height: 212px; border-bottom: solid 1px black; ">
                             <div style="border-right: solid 1px black; height: 212px; width: 450px;">
-                                <textarea  style="border: 0; width: 445px; height: 212px; text-align: left;"></textarea>
+                                <textarea name="wrong" style="border: 0; width: 445px; height: 212px; text-align: left;"></textarea>
                             </div>
                             <div style=" height: 212px; width: 450px;">
-                                <textarea  style="border: 0; width: 445px; height: 212px; text-align: left;"></textarea>
+                                <textarea name="etc" style="border: 0; width: 445px; height: 212px; text-align: left;"></textarea>
                             </div>
                         </div>
                         
@@ -154,6 +159,7 @@
 	            </div>
 	            <!-- End Page Content -->
                 <button type="button" onclick="checkAll()">제출</button>
+                <!-- <button type="submit" >제출</button> -->
             </form>
 					
 			</div>
