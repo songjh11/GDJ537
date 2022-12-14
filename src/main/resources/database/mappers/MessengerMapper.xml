@@ -81,7 +81,7 @@
 	
 	<!--                          효경                          -->
 	
-	<select id="getUerCount" resultType="Integer">
+	<select id="getUserCount" resultType="Integer">
 		SELECT COUNT(ID) FROM ROOMUSER
 	</select>
 	

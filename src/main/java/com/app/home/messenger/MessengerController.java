@@ -284,6 +284,21 @@ public class MessengerController {
 		return mv;
 	}
 	
+	// 채팅 인원
+	@GetMapping("userCount")
+	@ResponseBody
+	public ModelAndView getUserCount()throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		int userCount = messengerService.getUserCount();
+		
+		mv.addObject("userCount", userCount);
+		mv.setViewName("messenger/chat");
+		
+		return mv;
+	}
+	
 	
 	// --------------------- 효경 끝 ------------------------------
 	
