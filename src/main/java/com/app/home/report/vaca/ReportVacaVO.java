@@ -52,7 +52,7 @@ public class ReportVacaVO extends ReportApplyVO {
 	public Long getCall() {
 		return call;
 	}
-	public void setCall(Integer call) {
+	public void setCall(Long call) {
 		this.call = call;
 	}
 	public Date getDate() {
@@ -73,18 +73,7 @@ public class ReportVacaVO extends ReportApplyVO {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	public int getDepNum() {
-		return depNum;
-	}
-	public void setDepNum(int depNum) {
-		this.depNum = depNum;
-	}
-	public UserVO getUserVO() {
-		return userVO;
-	}
-	public void setUserVO(UserVO userVO) {
-		this.userVO = userVO;
-	}
+
 	
 	
 	
