@@ -36,11 +36,7 @@ public class MessengerService {
 	// 채팅방 생성
 	public int setAddRoom(RoomVO roomVO)throws Exception{
 		
-		log.info("방장 아이디 => {} ", roomVO.getHostId());
-		
 		int result = messengerMapper.setAddRoom(roomVO);
-		
-		log.info("채팅방번호 => {} ", roomVO.getRoomNum());
 		
 		if(result > 0) {
 			
@@ -62,6 +58,10 @@ public class MessengerService {
 	// 채팅방 목록
 	public List<RoomVO> getRoomList(RoomVO roomVO)throws Exception{
 		return messengerMapper.getRoomList(roomVO);
+	}
+	
+	public int getUserCount()throws Exception{
+		return messengerMapper.getUserCount();
 	}
 	
 }

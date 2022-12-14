@@ -63,13 +63,7 @@ public class MessengerController {
 		
 		roomVO.setHostId(userVO.getId());
 		
-		log.info("찍힘?");
-		
 		roomVOs = messengerService.getRoomList(roomVO);
-		
-		for(RoomVO roomVO2 : roomVOs) {
-			log.info("채팅방이름 => {} ", roomVO2.getRoomName());
-		}
 		
 		mv.addObject("roomList", roomVOs);
 		mv.setViewName("messenger/chat");
@@ -266,16 +260,6 @@ public class MessengerController {
 	
 	// --------------------- 효경 ------------------------------
 	
-	
-	// 채팅방 목록
-	@GetMapping("addRoom")
-	public String setAddRoom()throws Exception{
-		
-		
-		
-		return "messenger/chat";
-	}
-	
 	// 채팅방 추가
 	@PostMapping("addRoom")
 	public ModelAndView setAddRoom(HttpSession session, UserVO userVO, RoomVO roomVO)throws Exception{
@@ -295,13 +279,28 @@ public class MessengerController {
 			log.info("===========채팅방 생성 성공===========");
 		}
 		
+		mv.setViewName("redirect:../messenger/chat");
+		
+		return mv;
+	}
+	
+	// 채팅 인원
+	@GetMapping("userCount")
+	@ResponseBody
+	public ModelAndView getUserCount()throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		int userCount = messengerService.getUserCount();
+		
+		mv.addObject("userCount", userCount);
 		mv.setViewName("messenger/chat");
 		
 		return mv;
 	}
 	
 	
-	//-----------
+	// --------------------- 효경 끝 ------------------------------
 	
 	@GetMapping("chat1")
 	public ModelAndView chat()throws Exception{
