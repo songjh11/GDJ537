@@ -60,13 +60,16 @@ public class MessengerController {
 		
 		// ------------------ 채팅목록 ------------------
 		List<RoomVO> roomVOs = new ArrayList<>();
+		RoomVO roomVO = new RoomVO();
+		
+		roomVO.setHostId(userVO.getId());
 		
 		log.info("찍힘?");
 		
-		roomVOs = messengerService.getRoomList();
+		roomVOs = messengerService.getRoomList(roomVO);
 		
-		for(RoomVO roomVO : roomVOs) {
-			log.info("채팅방이름 => {} ", roomVO.getRoomName());
+		for(RoomVO roomVO2 : roomVOs) {
+			log.info("채팅방이름 => {} ", roomVO2.getRoomName());
 		}
 		
 		mv.addObject("roomList", roomVOs);
@@ -266,18 +269,11 @@ public class MessengerController {
 	
 	// 채팅방 목록
 	@GetMapping("addRoom")
-	public ModelAndView setAddRoom()throws Exception{
+	public String setAddRoom()throws Exception{
 		
-		ModelAndView mv = new ModelAndView();
 		
-		List<RoomVO> roomVOs = new ArrayList<>();
 		
-		roomVOs = messengerService.getRoomList();
-		
-		mv.addObject("roomList", roomVOs);
-		mv.setViewName("messenger/chat");
-		
-		return mv;
+		return "messenger/chat";
 	}
 	
 	// 채팅방 추가

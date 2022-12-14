@@ -50,6 +50,7 @@ public class MessengerService {
 				UserVO userVO = new UserVO();
 				userVO.setId(ids);					
 				userVOs.add(userVO);
+				
 				roomVO.setUserVOs(userVOs);
 				
 				result = messengerMapper.setAddRoomUser(roomVO);
@@ -62,8 +63,8 @@ public class MessengerService {
 	}
 	
 	// 채팅방 목록
-	public List<RoomVO> getRoomList()throws Exception{
-		return messengerMapper.getRoomList();
+	public List<RoomVO> getRoomList(RoomVO roomVO)throws Exception{
+		return messengerMapper.getRoomList(roomVO);
 	}
 	
 }
