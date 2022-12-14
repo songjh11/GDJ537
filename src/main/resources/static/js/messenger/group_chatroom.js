@@ -12,6 +12,10 @@
 		
 	function wsEvt() {
 		
+		ws.onopen = function(data){
+			//소켓이 열리면 초기화 세팅하기
+		}
+		
 		ws.onmessage = function(data) {
 			//메세지를 받으면 동작
 			let msg = data.data;
@@ -86,7 +90,7 @@
 				msg : $("#msg").val()
 			}
 		ws.send(JSON.stringify(option))
-		$('#chatting').val("");
+		$('#msg').val("");
 		
 		console.log("s : ", sessionId);
 		console.log("u : ", userName);
@@ -98,10 +102,10 @@
 	//채팅창에서 들어왔을 때
 	function wsOpen () {
 		//입장
-		console.log("입장");
-		console.log("open/ sessionId : ", sessionId);
+		//console.log("입장");
+		//console.log("open/ sessionId : ", sessionId);
 
-		let str = userName + ": 님이 입장하셨습니다.";
+		let str = userName + " 님이 입장하셨습니다.";
 		
 		$("#chating").append("<div class='me'>"
 	  						+"<div class='me-bubble-flex-first'><div class='me-bubble'>" +str+"</div>"
