@@ -125,14 +125,15 @@
 																<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 															</div>
 															<div class="btnArea">
+																<h1>${e.pickVO}</h1>
 																<c:forEach items="${e.pickVO}" var="p">
 																	<c:choose>
-																		<c:when test="${p.myId eq myId and p.pickNum eq 2}">
-																			${e.pickVO[0].myId}
+																		<c:when test="${not empty p}">
+																			<c:if test="${p.myId eq myId and p.pickNum eq 2}">
 																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																			</c:if>
 																		</c:when>
-																		<c:when test="${p.myId ne myId and p.pickNum ne 2}">
-																			${e.pickVO[1].myId}
+																		<c:when test="${empty p}">
 																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
 																		</c:when>
 																	</c:choose>
