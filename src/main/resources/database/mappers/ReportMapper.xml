@@ -4,11 +4,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.home.report.ReportMapper">
 	<!-- ============== 김도영 ================ -->
-				<!-- 신청보고서 -->
 	<insert id="setReportApply" parameterType="ReportApplyVO">
 	INSERT INTO REPORTAPPLY 
-	<!-- VALUES (NULL, #{id}, #{depNum}, #{reportNum}, 1, 0, SYSDATE(), #{name}, #{roleName}, #{depName}) -->
-	VALUES (NULL, 1209, 4, #{reportNum}, 1, 0, SYSDATE(), 'hjs', 'IT개발팀', 'ROLE_MAKER')
+	VALUES (NULL, #{id}, #{depNum}, #{reportNum}, 1, 0, SYSDATE(), #{name}, #{roleName}, #{depName}) 
+<!-- 	VALUES (NULL, 1209, 4, #{reportNum}, 1, 0, SYSDATE(), 'hjs', 'IT개발팀', 'ROLE_MAKER') -->
+	</insert>
+	<insert id="setWorkReport" parameterType="ReportWorkVO">
+	INSERT INTO REPORTWORK 
+	VALUES (NULL, #{applyNum}, SYSDATE(), #{am}, #{pm}, #{undo}, #{todo}, #{wrong}, #{etc})
 	</insert>
 	
 	
@@ -142,10 +145,7 @@
 	<!-- ============== 최근호 ================ -->
 	
 
-
-	
-
-<update id="setUpdateApply" parameterType="ReportApplyVO">
+	<update id="setUpdateApply" parameterType="ReportApplyVO">
 		UPDATE REPORTAPPLY SET STATUS = #{lStatus} WHERE APPLYNUM= #{applyNum}
 	</update>
 	
@@ -155,7 +155,7 @@
 
 
 	<select id="getLicenseCheck" parameterType="ReportVO" resultType="Integer">
-		SELECT LSTATUS FROM REPORTLICENSER WHERE ID = #{id}
+		SELECT LSTATUS FROM REPORTLICENSER WHERE ID = 1209
 	</select>
 	
 	<select id="getLicenseVacaReportDetail" parameterType="ReportVacaVO" resultType="ReportVacaVO">
@@ -194,59 +194,120 @@
 		WHERE RS.APPLYNUM = #{applyNum}
 	</select>
 	
-	<select id="getFinishReport" parameterType="ReportApplyVO" resultMap="getFinishReportResult">
-		SELECT RL.*,RA.*,U.* FROM
-		REPORTLICENCES RL
+	<select id="getCountFinishReport" parameterType="ReportApplyVO" resultType="Long">
+		SELECT COUNT(*) FROM
+		REPORTLICENSER RL
 		INNER JOIN
 		REPORTAPPLY RA
 		ON RL.DEPNUM = RA.DEPNUM
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=#{id} AND RA.REPORTNUM=#{reportNum}
+		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="licensepaging"></include>
 	</select>
+	
+	<select id="getFinishReport" parameterType="ReportApplyVO" resultMap="getFinishReportResult">
+		SELECT RL.*,RA.*,U.* FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="licensepaging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+
 	
 	<select id="getReturnReport" parameterType="ReportApplyVO" resultMap="getFinishReportResult">
 		SELECT RL.*,RA.*,U.* FROM
-		REPORTLICENCES RL
+		REPORTLICENSER RL
 		INNER JOIN
 		REPORTAPPLY RA
 		ON RL.DEPNUM = RA.DEPNUM
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=#{id} AND RA.REPORTNUM=#{reportNum}
+		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="licensepaging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getCountReturnReport" parameterType="ReportApplyVO" resultType="Long">
+		SELECT COUNT(*) FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="licensepaging"></include>
 	</select>
 	
 	<select id="getDoFirstReport" parameterType="ReportApplyVO" resultMap="getFinishReportResult">
 		SELECT RL.*,RA.*,U.* FROM
-		REPORTLICENCES RL
+		REPORTLICENSER RL
 		INNER JOIN
 		REPORTAPPLY RA
 		ON RL.DEPNUM = RA.DEPNUM
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RA.STATUS = 1 AND RL.ID=#{id} AND RA.REPORTNUM=#{reportNum}
+		WHERE RA.STATUS = 1 AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="licensepaging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getCountDoFirstReport" parameterType="ReportApplyVO" resultType="Long">
+		SELECT COUNT(*) FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RA.STATUS = 1 AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="licensepaging"></include>
 	</select>
 	
 	<select id="getDoFinalReport" parameterType="ReportApplyVO" resultMap="getFinishReportResult">
 		SELECT RL.*,RA.*,U.* FROM
-		REPORTLICENCES RL
+		REPORTLICENSER RL
 		INNER JOIN
 		REPORTAPPLY RA
 		ON RL.DEPNUM = RA.DEPNUM
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RA.STATUS = 2 AND RL.ID=#{id} AND RA.REPORTNUM=#{reportNum}
+		WHERE RA.STATUS = 2 AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="licensepaging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getCountDoFinalReport" parameterType="ReportApplyVO" resultType="Long">
+		SELECT COUNT(*) FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RA.STATUS = 2 AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="licensepaging"></include>
 	</select>
 	
 	<resultMap type="ReportVO" id="getFinishReportResult">
 		<id column="LICENSERNUM" property="licenserNum"/>
 		<result column="DEPNUM" property="depNum"/>
 		<result column="ID" property="id"/>
-		<result column="LSTATUS" property="lStatus"/>
+		<result column="LSTATUS" property="lstatus"/>
 			<collection property="reportApplyVOs" javaType="List" ofType="ReportApplyVO">
 				<id column="APPLYNUM" property="applyNum"/>
 				<result column="ID" property="id"/>
@@ -255,11 +316,28 @@
 				<result column="STATUS" property="status"/>
 				<result column="RETURNS" property="returns"/>
 				<result column="APDATE" property="apDate"/>
+				<result column=""/>
 				<association property="userVO" javaType="UserVO">
 					<result column="NAME" property="name"/>
 				</association>
 			</collection>
 	</resultMap>
+	
+	<sql id="licensepaging">
+		AND RA.id = 1209 <choose>
+								<when test="kind == '1'">
+									RA.status = 1
+								</when>
+								<when test="kind == '2'">
+									RA.status = 2
+								</when>
+								<when test="kind == '3'">
+									RA.status = 3
+								</when>
+								<otherwise>
+								</otherwise>
+							</choose>
+	</sql>
 	
 	
 	<!-- ==================================== -->
