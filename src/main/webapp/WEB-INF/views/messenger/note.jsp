@@ -244,45 +244,7 @@
 	#noteContent::-webkit-scrollbar {
 		display: none;
 	}
-
-	@media screen and (max-width:1024px) {
-		#noteContent {
-			height: 700px;
-			overflow-y: scroll;
-		}
-	}
-
-	@media screen and (max-width:800px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-
-	}
-
-	@media screen and (max-width:640px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-
-	}
-
-	@media screen and (max-width:480px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-	}
-
-	@media screen and (max-width:375px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-	}
-
-
+	
 	.noteList{
 		border: 1px solid #d8d9f7a1;
 		/* background: #3b4bbd0f; */
