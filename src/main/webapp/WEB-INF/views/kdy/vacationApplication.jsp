@@ -159,9 +159,9 @@
                                         <div>월</div>
                                         <input type="number" id="d2" style="width: 40px; border:0 solid black; text-align:right" value="30"/>
                                         <div>일</div> -->
-                                        <input type="datetime-local">
+                                        <input type="datetime-local" name="startDate" id="startInput">
                                             <div>~</div>
-                                        <input type="datetime-local">
+                                        <input type="datetime-local" name="endDate" id="endInput">
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +194,7 @@
         </div>    
     </div>
 </form>
-        <button type="button" style="float: right;" onclick="allCheck()" class="btn btn-secondary" id="vcaBtn">제출</button>
+        <button type="submit" style="float: right;"  class="btn btn-secondary">제출</button>
 	            </div>
 	            <!-- End Page Content -->
 					
