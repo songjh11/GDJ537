@@ -537,6 +537,7 @@ public class ReportController {
 			mv.addObject("list", list);
 		}
 		
+		
 		mv.addObject("pager", pager);
 		mv.addObject("cat", cat);
 		mv.setViewName("report/mylist");
@@ -550,21 +551,26 @@ public class ReportController {
 		
 		reportApplyVO.setId(1209);
 		
-//		int result = reportApplyVO.getReportNum();
-//		
-//		if(result == 1) {
-//			ReportVacaVO reportVacaVO = reportService.getMyVacaDetail(reportApplyVO);
-//			mv.addObject("vo", reportVacaVO);
-//		}else if(result == 2) {
-//			ReportWorkVO reportWorkVO = reportService.getMyWorkDetail(reportApplyVO);
-//			mv.addObject("vo", reportWorkVO);
-//		}else if(result == 3) {
-//			ReportPayVO reportPayVO = reportService.getMyPayDetail(reportApplyVO);
-//			mv.addObject("vo", reportPayVO);
-//		}else if(result == 4) {
-//			ReportSorryVO reportSorryVO = reportService.getMySorryDetail(reportApplyVO);
-//			mv.addObject("vo", reportSorryVO);
-//		}
+		int result = reportApplyVO.getReportNum();
+		
+		if(result == 1) {
+			ReportVacaVO reportVacaVO = reportService.getMyVacaDetail(reportApplyVO);
+			
+			log.info("==============================================================");
+			log.info("날짜 찍어보기 : {}", reportVacaVO.getDate());
+			log.info("날짜 찍어보기 ap : {}", reportVacaVO.getApDate());
+			log.info("==============================================================");
+			mv.addObject("vo", reportVacaVO);
+		}else if(result == 2) {
+			ReportWorkVO reportWorkVO = reportService.getMyWorkDetail(reportApplyVO);
+			mv.addObject("vo", reportWorkVO);
+		}else if(result == 3) {
+			ReportPayVO reportPayVO = reportService.getMyPayDetail(reportApplyVO);
+			mv.addObject("vo", reportPayVO);
+		}else if(result == 4) {
+			ReportSorryVO reportSorryVO = reportService.getMySorryDetail(reportApplyVO);
+			mv.addObject("vo", reportSorryVO);
+		}
 		
 		mv.setViewName("report/mydetail");
 		
