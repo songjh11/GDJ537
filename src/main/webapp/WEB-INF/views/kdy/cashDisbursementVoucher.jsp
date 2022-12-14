@@ -136,7 +136,7 @@
                         <div style="border-right: solid 1px black; width: 179px; font-weight: bold; padding-top: 12px;">
                             금액(원)
                         </div>
-                        <div tyle="width: 179px; font-weight: bold; padding-top: 12px;">
+                        <div style="width: 179px; font-weight: bold; padding-top: 12px;">
                             비 고
                         </div>
                     </div>
