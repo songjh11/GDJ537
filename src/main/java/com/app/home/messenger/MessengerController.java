@@ -245,12 +245,13 @@ public class MessengerController {
 	@PostMapping("addRoom")
 	public ModelAndView setAddRoom(HttpSession session, RoomVO roomVO)throws Exception{
 		
+		//임시 ID
 		roomVO.setHostId(5678);
 		ModelAndView mv = new ModelAndView();
 		
 		for(Integer id : roomVO.getId()) {
-			UserVO employeeVO = new UserVO();
-			employeeVO.setId(id);
+			UserVO userVO = new UserVO();
+			userVO.setId(id);
 		}
 		
 		int result = messengerService.setAddRoom(roomVO);
