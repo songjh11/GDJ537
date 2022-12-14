@@ -5,30 +5,19 @@
 						<table class="table">
 						  <thead>
 						    <tr>
-						      <th scope="col">#</th>
 						      <th scope="col">인원</th>
 						      <th scope="col">채팅방이름</th>
 						      <th scope="col">참여</th>
 						    </tr>
 						  </thead>
 						  <tbody>
+						  	<c:forEach items="${roomList}" var="roomVO">
 						    <tr>
-						      <th scope="row">1</th>
-						      <td>Mark</td>
-						      <td>Otto</td>
-						      <td>@mdo</td>
+						      <th scope="row">${roomVO.roomNum}</th>
+						      <td>${roomVO.roomName}</td>
+						      <td scope="row"><a>참여하기</a></td>
 						    </tr>
-						    <tr>
-						      <th scope="row">2</th>
-						      <td>Jacob</td>
-						      <td>Thornton</td>
-						      <td>@fat</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">3</th>
-						      <td colspan="2">Larry the Bird</td>
-						      <td>@twitter</td>
-						    </tr>
+						  	</c:forEach>
 						  </tbody>
 						</table>
 						<p class="mt-4 text-center">

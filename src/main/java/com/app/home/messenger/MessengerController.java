@@ -265,36 +265,39 @@ public class MessengerController {
 	
 	
 	// 채팅방 목록
-//	@GetMapping("addRoom")
-//	public ModelAndView setAddRoom()throws Exception{
-//		
-//		ModelAndView mv = new ModelAndView();
-//		
-//		List<RoomVO> roomVOs = new ArrayList<>();
-//		
-//		roomVOs = messengerService.getRoomList();
-//		
-//		mv.addObject("roomList", roomVOs);
-//		mv.setViewName("messenger/chat");
-//		
-//		return mv;
-//	}
+	@GetMapping("addRoom")
+	public ModelAndView setAddRoom()throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		List<RoomVO> roomVOs = new ArrayList<>();
+		
+		roomVOs = messengerService.getRoomList();
+		
+		mv.addObject("roomList", roomVOs);
+		mv.setViewName("messenger/chat");
+		
+		return mv;
+	}
 	
 	// 채팅방 추가
 	@PostMapping("addRoom")
-	public ModelAndView setAddRoom(HttpSession session, RoomVO roomVO)throws Exception{
+	public ModelAndView setAddRoom(HttpSession session, UserVO userVO, RoomVO roomVO)throws Exception{
 		
-		//임시 ID
-		roomVO.setHostId(1111111);
 		ModelAndView mv = new ModelAndView();
 		
-		for(Integer id : roomVO.getId()) {
-			UserVO userVO = new UserVO();
-			userVO.setId(id);
-		}
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  = (UserVO)authentication.getPrincipal();
+	    userVO = userService.getMypage(userVO);
+	    
+		roomVO.setHostId(userVO.getId());
 		
 		int result = messengerService.setAddRoom(roomVO);
 		
+		if(result > 0 ) {
+			log.info("===========채팅방 생성 성공===========");
+		}
 		
 		mv.setViewName("messenger/chat");
 		
