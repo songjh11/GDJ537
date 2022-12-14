@@ -69,12 +69,14 @@ public class MessengerController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
+	    userVO = userService.getMypage(userVO);
 		Integer id = userVO.getId();
 		Map<String, String> map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("kind", kind);
 		List<UserVO> el = messengerService.getSearchResult(map);
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", userVO);
 		mv.addObject("myId", id);
 		mv.addObject("empList", el);
 		mv.addObject("message", "search");
@@ -85,6 +87,7 @@ public class MessengerController {
 	@GetMapping("pickCheck")
 	@ResponseBody
 	public int setPickCheck (String myId, String yourId) throws Exception{
+		log.info(myId);
 		int result = pickService.createPick(myId, yourId);
 		log.info("result:{}",result);
 		return result;
