@@ -2,7 +2,7 @@ package com.app.home.report;
 
 
 import java.security.Principal;
-
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,8 @@ public class ReportController {
 	
 	@Autowired
 	private UserMapper userMapper;
-
+	@Autowired
+	private ReportMapper reportMapper;
 	
 	//=======================김도영===================
 	@GetMapping("/kdy/reportAdd")
@@ -54,8 +55,21 @@ public class ReportController {
 	@GetMapping("/kdy/vacationApplication")
 	public ModelAndView vacationApplication(Principal principal)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		log.info("principal :: {} " , principal);
 		int id = Integer.parseInt(principal.getName());
 		
+		
+		//현재시간 구하기========================
+		LocalDate now = LocalDate.now();
+								
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int dayOfMonth = now.getDayOfMonth();
+								
+		mv.addObject("year", year);
+		mv.addObject("month", month);
+		mv.addObject("day", dayOfMonth);
+		//===================================
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
 		userVO = userMapper.getMypage(userVO);
@@ -69,6 +83,19 @@ public class ReportController {
 	public ModelAndView workReport(Principal principal)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int id = Integer.parseInt(principal.getName());
+		
+		//현재시간 구하기========================
+		LocalDate now = LocalDate.now();
+								
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int dayOfMonth = now.getDayOfMonth();
+								
+		mv.addObject("year", year);
+		mv.addObject("month", month);
+		mv.addObject("day", dayOfMonth);
+		//===================================
+		
 		
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
@@ -87,6 +114,18 @@ public class ReportController {
 		ModelAndView mv = new ModelAndView();
 		int id = Integer.parseInt(principal.getName());
 		
+		//현재시간 구하기========================
+		LocalDate now = LocalDate.now();
+						
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int dayOfMonth = now.getDayOfMonth();
+						
+		mv.addObject("year", year);
+		mv.addObject("month", month);
+		mv.addObject("day", dayOfMonth);
+		//===================================
+		
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
 		userVO = userMapper.getMypage(userVO);
@@ -100,6 +139,18 @@ public class ReportController {
 	public ModelAndView writtenApology(Principal principal)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int id = Integer.parseInt(principal.getName());
+		
+		//현재시간 구하기========================
+		LocalDate now = LocalDate.now();
+								
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int dayOfMonth = now.getDayOfMonth();
+								
+		mv.addObject("year", year);
+		mv.addObject("month", month);
+		mv.addObject("day", dayOfMonth);
+		//===================================
 		
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
@@ -181,7 +232,7 @@ public class ReportController {
 	//권한수정 페이지 POST
 	@RequestMapping(value = "/report/insa", method = RequestMethod.POST)
 	@ResponseBody
-	public int setLstatusUpdate(ReportVO reportVO, UserVO userVO) throws Exception{
+	public int setLstatusUpdate(ReportVO reportVO, UserVO userVO, Model model) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -194,6 +245,8 @@ public class ReportController {
 		int result = reportService.setLstatusUpdate(reportVO, userVO);
 		log.info("아이디 : {} " , userVO.getId());
 		log.info("depNum : {} ", reportVO.getDepNum());
+		
+		model.addAttribute("result", result);
 		
 //		mv.addObject("result1", result1);
 //		mv.addObject("result", result);
@@ -219,6 +272,7 @@ public class ReportController {
 		
 //		String str = ar.get(ar.size()).getRoleVO().getRoleName();
 		
+		// 예를들어 ROLE_ADMIN => ROLE_을 파싱해서 ADMIN만 추출
 		for(ReportVO str: ar) {
 			str.getRoleVO().setRoleName(str.getRoleVO().getRoleName().substring(5));
 			log.info("auth {} " ,str.getRoleVO().getRoleName().substring(5));
@@ -250,8 +304,13 @@ public class ReportController {
 	
 	
 	@PostMapping("/report/addvaca")
-	public String setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+	public String setAddVaca(String depNum, ReportVacaVO reportVacaVO, Principal principal) throws Exception{
+		
+		log.info("뎁넘 ::: {} " , principal);
+		
 		int result = reportService.setAddVaca(reportVacaVO);
+		
+		
 		
 		return "redirect:/report/mylist?cat=2";
 	} 
@@ -282,166 +341,178 @@ public class ReportController {
 	
 	
 	//=======================최근호===================
-	
-	
+
 
 	@PostMapping("/report/updateapply")
-		@ResponseBody
-		public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception{
-			int result = reportService.setUpdateApply(reportApplyVO);
-			return result;
-		}
-		
-		@PostMapping("/report/updatecancelapply")
-		@ResponseBody
-		public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception{
-			int result = reportService.setUpdateCancelApply(reportApplyVO);
-			return result;
-		}
-		
-		@GetMapping("/report/vacadetail")
-		public ModelAndView getLicenseVacaReportDetail(ReportVacaVO reportVacaVO,String result) throws Exception{
-			ModelAndView mv = new ModelAndView();
-			reportVacaVO = reportService.getLicenseVacaReportDetail(reportVacaVO);
-			mv.addObject("reportVacaVO", reportVacaVO);
-			mv.addObject("result", result);
-			return mv;
-		}
-		
-		@GetMapping("/report/workdetail")
-		public ModelAndView getLicenseWorkReportDetail(ReportWorkVO reportWorkVO,String result) throws Exception{
-			ModelAndView mv = new ModelAndView();
-			reportWorkVO = reportService.getLicenseWorkReportDetail(reportWorkVO);
-			mv.addObject("reportWorkVO", reportWorkVO);
-			mv.addObject("result", result);
-			return mv;
-		}
-		
-		@GetMapping("/report/paydetail")
-		public ModelAndView getLicensePayReportDetail(ReportPayVO reportPayVO,String result) throws Exception{
-			ModelAndView mv = new ModelAndView();
-			reportPayVO = reportService.getLicensePayReportDetail(reportPayVO);
-			mv.addObject("reportPayVO", reportPayVO);
-			mv.addObject("result", result);
-			return mv;
-		}
-		
-		@GetMapping("/report/sorrydetail")
-		public ModelAndView getLicenseSorryReportDetail(ReportSorryVO reportSorryVO,String result) throws Exception{
-			ModelAndView mv = new ModelAndView();
-			reportSorryVO = reportService.getLicenseSorryReportDetail(reportSorryVO);
-			mv.addObject("reportSorryVO", reportSorryVO);
-			mv.addObject("result", result);
-			return mv;
-		}
-		
-		@GetMapping("/report/finishreport")
-		public ModelAndView getFinishReport(Principal principal,String cat) throws Exception{
-			ModelAndView mv = new ModelAndView();
-			if(principal == null) {
-				mv.setViewName("/user/login");
-				return mv;
+			@ResponseBody
+			public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception{
+				int result = reportService.setUpdateApply(reportApplyVO);
+				return result;
 			}
-//			String id = principal.getName();
-//			int num = Integer.parseInt(id);
-			int category = Integer.parseInt(cat);
-			ReportVO reportVO = new ReportVO();
-//			reportVO.setId(num);
-			ReportApplyVO reportApplyVO = new ReportApplyVO();
-			reportApplyVO.setReportNum(category);
-//			reportApplyVO.setId(num);
-//			Integer check = reportService.getLicenseCheck(reportVO);
-//			if(check == 0) {
-//				String message = "승인자만 볼수 있습니다.";
-//				String url = "/";
-//				mv.addObject("message", message);
-//				mv.addObject("url", url);
-//				mv.setViewName("redirect:report/redirect");
-//				return mv;
-//			}
-//			else{
-				reportVO = reportService.getFinishReport(reportApplyVO);
-				List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
-				mv.addObject("reportApplyVOs", reportApplyVOs);
-				mv.setViewName("report/finishreport");
-				return mv;
-			//}
-		}
-		
-		@GetMapping("/report/returnreport")
-		public ModelAndView getReturnReport(Principal principal,String cat) throws Exception{
-			ModelAndView mv = new ModelAndView();
-			if(principal == null) {
-				mv.setViewName("/user/login");
-				return mv;
+			
+			@PostMapping("/report/updatecancelapply")
+			@ResponseBody
+			public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception{
+				int result = reportService.setUpdateCancelApply(reportApplyVO);
+				return result;
 			}
-//			String id = principal.getName();
-//			int num = Integer.parseInt(id);
-			int category = Integer.parseInt(cat);
-			ReportVO reportVO = new ReportVO();
-//			reportVO.setId(num);
-			ReportApplyVO reportApplyVO = new ReportApplyVO();
-			reportApplyVO.setReportNum(category);
-//			reportApplyVO.setId(num);
-//			Integer check = reportService.getLicenseCheck(reportVO);
-//			if(check == 0) {
-//				String message = "승인자만 볼수 있습니다.";
-//				String url = "/";
-//				mv.addObject("message", message);
-//				mv.addObject("url", url);
-//				mv.setViewName("report/redirect");
-//				return mv;
-//			}
-//			else{
-				reportVO = reportService.getReturnReport(reportApplyVO);
-				List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
-				mv.addObject("reportApplyVOs", reportApplyVOs);
-				mv.setViewName("report/returnreport");
-				return mv;
-			//}
-		}
-		
-		@GetMapping("/report/doreport")
-		public ModelAndView getDoReport(Principal principal,String cat) throws Exception{
-			ModelAndView mv = new ModelAndView();
-			if(principal == null) {
-				mv.setViewName("/user/login");
-				return mv;
-			}
-			//String id = principal.getName();
-			//int num = Integer.parseInt(id);
-			int category = Integer.parseInt(cat);
-			ReportVO reportVO = new ReportVO();
-//			reportVO.setId(num);
-			ReportApplyVO reportApplyVO = new ReportApplyVO();
-			reportApplyVO.setReportNum(category);
-//			reportApplyVO.setId(num);
-//			Integer check = reportService.getLicenseCheck(reportVO);
-//			if(check == 0) {
-//				String message = "승인자만 볼수 있습니다.";
-//				String url = "/";
-//				mv.addObject("message", message);
-//				mv.addObject("url", url);
-//				mv.setViewName("report/redirect");
-//				return mv;
-//			}
-//			else if(check == 2) {
-//				reportVO = reportService.getDoFirstReport(reportApplyVO);
-//				List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
-//				mv.addObject("reportApplyVOs", reportApplyVOs);
-//				mv.setViewName("report/doreport");
-//				return mv;
-//			}
-//			else{
-				reportVO = reportService.getDoFinalReport(reportApplyVO);
-				int result = reportVO.getLstatus();
-				List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
-				mv.addObject("reportApplyVOs", reportApplyVOs);
+			
+			@GetMapping("/report/vacadetail")
+			public ModelAndView getLicenseVacaReportDetail(ReportVacaVO reportVacaVO,String result) throws Exception{
+				ModelAndView mv = new ModelAndView();
+				reportVacaVO = reportService.getLicenseVacaReportDetail(reportVacaVO);
+				mv.addObject("reportVacaVO", reportVacaVO);
 				mv.addObject("result", result);
-				mv.setViewName("report/doreport");
 				return mv;
+			}
+			
+			@GetMapping("/report/workdetail")
+			public ModelAndView getLicenseWorkReportDetail(ReportWorkVO reportWorkVO,String result) throws Exception{
+				ModelAndView mv = new ModelAndView();
+				reportWorkVO = reportService.getLicenseWorkReportDetail(reportWorkVO);
+				mv.addObject("reportWorkVO", reportWorkVO);
+				mv.addObject("result", result);
+				return mv;
+			}
+			
+			@GetMapping("/report/paydetail")
+			public ModelAndView getLicensePayReportDetail(ReportPayVO reportPayVO,String result) throws Exception{
+				ModelAndView mv = new ModelAndView();
+				reportPayVO = reportService.getLicensePayReportDetail(reportPayVO);
+				mv.addObject("reportPayVO", reportPayVO);
+				mv.addObject("result", result);
+				return mv;
+			}
+			
+			@GetMapping("/report/sorrydetail")
+			public ModelAndView getLicenseSorryReportDetail(ReportSorryVO reportSorryVO,String result) throws Exception{
+				ModelAndView mv = new ModelAndView();
+				reportSorryVO = reportService.getLicenseSorryReportDetail(reportSorryVO);
+				mv.addObject("reportSorryVO", reportSorryVO);
+				mv.addObject("result", result);
+				return mv;
+			}
+			
+			@GetMapping("/report/finishreport")
+			public ModelAndView getFinishReport(Principal principal,String cat,ReportPager reportPager) throws Exception{
+				ModelAndView mv = new ModelAndView();
+//				if(principal == null) {
+//					mv.setViewName("/user/login");
+//					return mv;
+//				}
+//				String id = principal.getName();
+//				int num = Integer.parseInt(id);
+				int category = 0;
+				if(cat != null) {
+					category = Integer.parseInt(cat);
+				}
+				ReportVO reportVO = new ReportVO();
+//				reportVO.setId(num);
+				reportPager.setReportNum(category);
+//				Integer check = reportService.getLicenseCheck(reportVO);
+//				if(check == 0) {
+//					String message = "승인자만 볼수 있습니다.";
+//					String url = "/";
+//					mv.addObject("message", message);
+//					mv.addObject("url", url);
+//					mv.setViewName("redirect:report/redirect");
+//					return mv;
+//				}
+//				else{
+				
+					reportVO = reportService.getFinishReport(reportPager);
+					List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
+					mv.addObject("pager", reportPager);
+					mv.addObject("reportApplyVOs", reportApplyVOs);
+					mv.setViewName("report/finishreport");
+					return mv;
+				//}
+			}
+			
+			@GetMapping("/report/returnreport")
+			public ModelAndView getReturnReport(Principal principal,String cat,ReportPager reportPager) throws Exception{
+				ModelAndView mv = new ModelAndView();
+//				if(principal == null) {
+//					mv.setViewName("/user/login");
+//					return mv;
+//				}
+//				String id = principal.getName();
+//				int num = Integer.parseInt(id);
+				int category = 0;
+				if(cat != null) {
+					category = Integer.parseInt(cat);
+				}
+				ReportVO reportVO = new ReportVO();
+//				reportVO.setId(num);
+				reportPager.setReportNum(category);
+//				Integer check = reportService.getLicenseCheck(reportVO);
+//				if(check == 0) {
+//					String message = "승인자만 볼수 있습니다.";
+//					String url = "/";
+//					mv.addObject("message", message);
+//					mv.addObject("url", url);
+//					mv.setViewName("report/redirect");
+//					return mv;
+//				}
+//				else{
+					reportVO = reportService.getReturnReport(reportPager);
+					List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
+					mv.addObject("pager", reportPager);
+					mv.addObject("reportApplyVOs", reportApplyVOs);
+					mv.setViewName("report/returnreport");
+					return mv;
+				//}
+			}
+			
+			@GetMapping("/report/doreport")
+			public ModelAndView getDoReport(Principal principal,String cat,ReportPager reportPager) throws Exception{
+				ModelAndView mv = new ModelAndView();
+//				if(principal == null) {
+//					mv.setViewName("/user/login");
+//					return mv;
+//				}
+				//String id = principal.getName();
+				//int num = Integer.parseInt(id);
+				int category = 0;
+				if(cat != null) {
+					category = Integer.parseInt(cat);
+				}
+				
+//				reportVO.setId(num);
+				ReportVO reportVO = new ReportVO();
+				reportPager.setReportNum(category);
+//				Integer check = reportService.getLicenseCheck(reportVO);
+//				if(check == 0) {
+//					String message = "승인자만 볼수 있습니다.";
+//					String url = "/";
+//					mv.addObject("message", message);
+//					mv.addObject("url", url);
+//					mv.setViewName("report/redirect");
+//					return mv;
+//				}
+			//else if (check == 2){
+					reportVO = reportService.getDoFirstReport(reportPager);
+					
+					int result = reportVO.getLstatus();
+					List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
+					mv.addObject("pager", reportPager);
+					mv.addObject("reportApplyVOs", reportApplyVOs);
+					mv.addObject("result", result);
+					mv.setViewName("report/doreport");
+					return mv;
 			//}
-		}
+//				else{
+//					reportVO = reportService.getDoFinalReport(reportPager);
+//					
+//					int result = reportVO.getLstatus();
+//					List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
+//					mv.addObject("pager", reportPager);
+//					mv.addObject("reportApplyVOs", reportApplyVOs);
+//					mv.addObject("result", result);
+//					mv.setViewName("report/doreport");
+//					return mv;
+				//}
+			}
 	
 	
 	
@@ -476,6 +547,7 @@ public class ReportController {
 			mv.addObject("list", list);
 		}
 		
+		
 		mv.addObject("pager", pager);
 		mv.addObject("cat", cat);
 		mv.setViewName("report/mylist");
@@ -489,21 +561,26 @@ public class ReportController {
 		
 		reportApplyVO.setId(1209);
 		
-//		int result = reportApplyVO.getReportNum();
-//		
-//		if(result == 1) {
-//			ReportVacaVO reportVacaVO = reportService.getMyVacaDetail(reportApplyVO);
-//			mv.addObject("vo", reportVacaVO);
-//		}else if(result == 2) {
-//			ReportWorkVO reportWorkVO = reportService.getMyWorkDetail(reportApplyVO);
-//			mv.addObject("vo", reportWorkVO);
-//		}else if(result == 3) {
-//			ReportPayVO reportPayVO = reportService.getMyPayDetail(reportApplyVO);
-//			mv.addObject("vo", reportPayVO);
-//		}else if(result == 4) {
-//			ReportSorryVO reportSorryVO = reportService.getMySorryDetail(reportApplyVO);
-//			mv.addObject("vo", reportSorryVO);
-//		}
+		int result = reportApplyVO.getReportNum();
+		
+		if(result == 1) {
+			ReportVacaVO reportVacaVO = reportService.getMyVacaDetail(reportApplyVO);
+			
+			log.info("==============================================================");
+			log.info("날짜 찍어보기 : {}", reportVacaVO.getDate());
+			log.info("날짜 찍어보기 ap : {}", reportVacaVO.getApDate());
+			log.info("==============================================================");
+			mv.addObject("vo", reportVacaVO);
+		}else if(result == 2) {
+			ReportWorkVO reportWorkVO = reportService.getMyWorkDetail(reportApplyVO);
+			mv.addObject("vo", reportWorkVO);
+		}else if(result == 3) {
+			ReportPayVO reportPayVO = reportService.getMyPayDetail(reportApplyVO);
+			mv.addObject("vo", reportPayVO);
+		}else if(result == 4) {
+			ReportSorryVO reportSorryVO = reportService.getMySorryDetail(reportApplyVO);
+			mv.addObject("vo", reportSorryVO);
+		}
 		
 		mv.setViewName("report/mydetail");
 		

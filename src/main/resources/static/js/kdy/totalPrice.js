@@ -32,11 +32,12 @@ function abc(sum){
 function checkAll(){
     let result = nullCheck(total.value);
     let result2 = nullCheck(account.value);
-    if(result&&result){
+    let result3 = nullCheck($("#cdate").val());
+    let result4 = nullCheck($("#title").val());
+    let result5 = nullCheck($("#account").val());
+    if(result&&result2&&result3&&result4&&result5){
         frm.submit();
     }else{
         alert("정보를 입력해주세요");
     }
 }
-
-

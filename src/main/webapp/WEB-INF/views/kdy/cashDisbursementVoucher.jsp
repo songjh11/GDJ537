@@ -51,6 +51,9 @@
 				<!-- Begin Page Content -->
 		
 		<form action="/report/addpay" method="post" id="frm">
+	            <input style="display: none;" value="${vo.id}" name="id">
+                 <input style="display: none;" value="${vo.depNum}" name="depNum">
+                 <input style="display: none;" value="3" name="reportNum">
 	            <div class="container-fluid">
 						 <div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
@@ -83,7 +86,7 @@
                             </div>
                         </div>
 
-                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" class="check"/>
+                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" id="title" name="title"/>
 
                         <div style="width: 235px; height: 55px; border-right: solid 1px black; border-left: solid 1px black;">
                             <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder;  ">
@@ -91,7 +94,7 @@
                             </div>
                         </div>
 
-                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" class="check"/>
+                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" readonly value="${year}-${month}-${day}" name="date"/>
 
                     </div>    
                 </div> 
@@ -105,7 +108,7 @@
                                 </div>
                             </div>
     
-                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" class="check"/>
+                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" id="cdate" name="cdate"/>
     
                             <div style="width: 235px; height: 55px; border-right: solid 1px black; border-left: solid 1px black;">
                                 <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder;  ">
@@ -113,7 +116,7 @@
                                 </div>
                             </div>
     
-                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" class="check"/>
+                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" readonly value="${vo.departmentVO.depName}" name="depName"/>
     
                         </div> 
                     </div>    
@@ -139,138 +142,138 @@
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[0].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[0].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[1].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[1].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[2].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[2].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[3].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[3].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[4].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[4].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[5].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[5].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[6].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[6].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[7].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[7].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[8].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[8].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[9].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[9].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[10].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[10].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[11].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[11].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[12].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[12].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[13].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[3].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[14].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[14].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[15].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[15].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
                         <div style="border-right: solid 1px black; width: 366px; height: 42px; font-weight: bold; padding-top: 12px;">
-                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;">
+                            <input type="text" style="border: 0; width: 360px; height: 35px; margin-top: -40px;" name="repriceVOs[16].item">
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;">
+                            <input class="plus" type="number" style="border: 0; width: 173px; height: 35px; margin-top: 5px;" name="repriceVOs[16].price">
                         </div>
                     </div>
                     <div style="border-bottom: solid 1px black; height: 42px; margin-left: 160px; width: 738px;">
@@ -278,7 +281,7 @@
                             합 계
                         </div>
                         <div style="border-right: solid 1px black; width: 179px; margin-left: 366px; height: 42px; margin-top: -42px;">
-                            <input type="number" id="total" disabled style="font-weight: bold; border: 0; width: 173px; height: 35px; margin-top: 5px; text-align: right;">
+                            <input type="number" id="total" readonly style="font-weight: bold; border: 0; width: 173px; height: 35px; margin-top: 5px; text-align: right;" name="sum">
                         </div>
                         <div style="width: 179px; margin-left: 550px; height: 42px; margin-top: -42px; text-align: left; font-weight: bold; padding-top: 7px;">
                             만(원)
@@ -292,7 +295,7 @@
                             입금 정보 
                         </div>
                         <div style=" width: 735px; height: 45px; margin-left: 160px; margin-top: -35px;">
-                            <input type="text" style="border: 0; width: 735px; height: 47px; text-align: center;" value="" id="account"/>
+                            <input type="text" style="border: 0; width: 735px; height: 47px; text-align: center;" value="" id="account" name="payment"/>
                         </div>
                     </div>
                 </div>
@@ -300,9 +303,9 @@
                     위 금액을 청구하오니 결재해 주시기 바랍니다.
                 </div>
                 <div class="d-flex" style="font-weight: bold; margin-left: 240px; margin-top: 25px;">
-                    <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" value="2022" />년</div>
-                    <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" value="12"/>월</div>
-                    <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" value="31"/>일</div>
+                    <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" readonly value="${year}" />년</div>
+                    <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" readonly value="${month}"/>월</div>
+                    <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" readonly value="${day}"/>일</div>
                 </div>
             </div>
 

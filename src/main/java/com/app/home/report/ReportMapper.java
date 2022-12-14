@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import com.app.home.report.pay.ReportPayVO;
+import com.app.home.report.pay.RepriceVO;
 import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
@@ -71,36 +72,45 @@ public interface ReportMapper {
 	
 	public int setAddApply(ReportApplyVO reportApplyVO) throws Exception;
 
-	
+	public int setAddItem(RepriceVO repriceVO) throws Exception;
 	//================================================
 	
 	//=======================최근호===================
 	
 	
 
-
 	public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception;
-		
-		public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception;
-		
-		public Integer getLicenseCheck(ReportVO reportVO) throws Exception;
-		
-		public ReportVacaVO getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception;
-		
-		public ReportWorkVO getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception;
-		
-		public ReportPayVO getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception;
-		
-		public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception;
-		
-		public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception;
-		
-		public ReportVO getReturnsReport(ReportApplyVO reportApplyVO) throws Exception;
-		
-		public ReportVO getDoFirstReport(ReportApplyVO reportApplyVO) throws Exception;
-		
-		public ReportVO getDoFinalReport(ReportApplyVO reportApplyVO) throws Exception;
-	
+			
+			public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception;
+			
+			public Integer getLicenseCheck(ReportVO reportVO) throws Exception;
+			
+			public ReportVacaVO getLicenseVacaReportDetail(ReportVacaVO reportVacaVO) throws Exception;
+			
+			public ReportWorkVO getLicenseWorkReportDetail(ReportWorkVO reportWorkVO) throws Exception;
+			
+			public ReportPayVO getLicensePayReportDetail(ReportPayVO reportPayVO) throws Exception;
+			
+			public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception;
+			
+			public ReportVO getFinishReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountFinishReport(ReportPager reportPager) throws Exception;
+			
+			public ReportVO getReturnReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountReturnReport(ReportPager reportPager) throws Exception;
+			
+			public ReportVO getDoFirstReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountDoFirstReport(ReportPager reportPager) throws Exception;
+			
+			public ReportVO getDoFinalReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountDoFinalReport(ReportPager reportPager) throws Exception;
+
+
+
 	
 	
 	
