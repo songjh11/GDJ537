@@ -86,7 +86,7 @@
                             </div>
                         </div>
 
-                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" class="check" name="title"/>
+                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" id="title" name="title"/>
 
                         <div style="width: 235px; height: 55px; border-right: solid 1px black; border-left: solid 1px black;">
                             <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder;  ">
@@ -94,7 +94,7 @@
                             </div>
                         </div>
 
-                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" readonly value="${year}-${month}-${day}" class="check" name="date"/>
+                        <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" readonly value="${year}-${month}-${day}" name="date"/>
 
                     </div>    
                 </div> 
@@ -108,7 +108,7 @@
                                 </div>
                             </div>
     
-                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" class="check" name="cdate"/>
+                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" value="" id="cdate" name="cdate"/>
     
                             <div style="width: 235px; height: 55px; border-right: solid 1px black; border-left: solid 1px black;">
                                 <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder;  ">
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
     
-                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" class="check" readonly value="${vo.departmentVO.depName}" name="depName"/>
+                            <input style="margin-left: 2px; width: 210px; height: 50px; border: 0; text-align: center;" readonly value="${vo.departmentVO.depName}" name="depName"/>
     
                         </div> 
                     </div>    

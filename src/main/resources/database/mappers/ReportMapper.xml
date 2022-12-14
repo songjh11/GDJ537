@@ -4,16 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.home.report.ReportMapper">
 	<!-- ============== 김도영 ================ -->
-	<insert id="setReportApply" parameterType="ReportApplyVO">
-	INSERT INTO REPORTAPPLY 
-	VALUES (NULL, #{id}, #{depNum}, #{reportNum}, 1, 0, SYSDATE(), #{name}, #{roleName}, #{depName}) 
-<!-- 	VALUES (NULL, 1209, 4, #{reportNum}, 1, 0, SYSDATE(), 'hjs', 'IT개발팀', 'ROLE_MAKER') -->
-	</insert>
-	<insert id="setWorkReport" parameterType="ReportWorkVO">
-	INSERT INTO REPORTWORK 
-	VALUES (NULL, #{applyNum}, SYSDATE(), #{am}, #{pm}, #{undo}, #{todo}, #{wrong}, #{etc})
-	</insert>
-	
 	
 	<!-- ==================================== -->
 	
@@ -137,7 +127,7 @@
 	
 	<insert id="setAddVaca" parameterType="ReportVacaVO">
 		INSERT INTO REPORTVACA 
-		VALUES(NULL, #{applyNum}, #{categoryNum}, #{text}, #{period}, #{call}, sysdate())
+		VALUES(NULL, #{applyNum}, #{categoryNum}, #{text}, #{period}, #{call}, sysdate(),#{startDate}, #{endDate})
 	</insert>
 	
 	
@@ -325,15 +315,18 @@
 	
 	<!-- ============== 류형민 ================ -->
 	<sql id="paging">
-		where r.id = #{id} <choose>
-								<when test="kind == '1'">
-									r.status = 1
+		where r.id = #{id}  <choose>
+								<when test="kind == 1">
+									and r.status = 1
 								</when>
-								<when test="kind == '2'">
-									r.status = 2
+								<when test="kind == 2">
+									and r.status = 2
 								</when>
-								<when test="kind == '3'">
-									r.status = 3
+								<when test="kind == 3">
+									and r.status = 3
+								</when>
+								<when test="kind == 4">
+									and r.returns = 1
 								</when>
 								<otherwise>
 								</otherwise>
@@ -350,6 +343,7 @@
 					VACATEGORY vg ON rv.CATEGORYNUM = vg.CATEGORYNUM
 							) r2 ON r.APPLYNUM = r2.APPLYNUM
 		<include refid="paging"></include>
+		ORDER BY r.APPLYNUM DESC
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
@@ -424,7 +418,11 @@
 	<select id="getMyPayDetail" parameterType="ReportApplyVO" resultType="ReportPayVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM
+		INNER JOIN (SELECT 
+					FROM REPORTPAY rp
+					INNER JOIN 
+					REPRICE vg ON rp.rnum = vg.rnum	
+						)r2 ON r.APPLYNUM = r2.APPLYNUM
 		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
 	</select>
 	

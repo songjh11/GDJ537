@@ -197,5 +197,11 @@ public class ReportPager {
 		if(curBlock<totalBlock) {
 			next = true;
 		}
+		
+		if(totalCount == 0) {
+			this.startNum = 1L;
+			this.lastNum = 1L;
+		}
+		
 	}
 }
