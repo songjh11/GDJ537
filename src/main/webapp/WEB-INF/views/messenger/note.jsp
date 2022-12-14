@@ -435,6 +435,7 @@
 
 					<div class="chatDiv">
 						<div class="blank"></div>
+							<c:import url="./groupModal.jsp"></c:import>
 							<c:import url="./employeeList.jsp"></c:import>
 							<c:import url="./groupModal.jsp"></c:import>
 					</div>
@@ -813,6 +814,7 @@
 
 	<!-- Scroll Top, Login Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+	
 	<script src="/js/messenger/main.js"></script>
 	<script src="/js/messenger/groupModal.js"></script>
 </body>
