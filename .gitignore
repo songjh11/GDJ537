@@ -213,6 +213,7 @@ application-dev.properties
 # 2조 추가
 
 # 3조 추가
+application-secret.properties
 
 # 4조 추가
 
