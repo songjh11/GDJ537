@@ -233,7 +233,8 @@
 	}
 
 	#noteContent {
-		height: 700px;
+		/* height: 700px; */
+		height: 650px;
 		
 		/* height: 500px; */
 		overflow-y: scroll;
@@ -318,16 +319,17 @@
 		width: 85%;
 	}
 
-	#listInfo div:nth-child(1) {
+	#previewId {
 		margin: 3px 0px 4px;
 		font-weight: bold;
 	}
 
-	#listInfo div:nth-child(2) {
+	#previewNote {
 		word-wrap: break-word;
 		text-overflow: ellipsis;
-    	/* width: 300px; */
-		width: 100%;
+    	width: 300px;
+		/* width: 100%; */
+		padding-right: 37px;
 	}
 
 	/* .noteList div:nth-child(3){
@@ -360,6 +362,36 @@
 
 	.pagep:hover {
 		cursor: pointer;
+	}
+
+	#noteDelete {
+		width: 20px;
+    	height: 20px;
+		margin: 0px;
+	
+		display: flex;
+		float: right;
+		margin-left: auto;
+	}
+
+	#countse {
+		width: 18px;
+		/* margin: auto 0px; */
+		transform: translate3d(24px, 32px, 10px) !important;
+		background: red;
+		height: 17px;
+		border-radius: 83px;
+		margin-bottom: 0px;
+		position: absolute;
+		color: white;
+		font-size: 11px;
+		display: flex;
+	    justify-content: center;
+	}
+
+	.iconMsg {
+		font-size: 13px;
+		color: #4c6ac4;
 	}
 
 	
@@ -396,22 +428,30 @@
 	
 	            	<!-- Page Heading -->
 					<div class="miniBar">
-						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"></button></a>
-						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
+						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/messenger/m_chatX.png"><p class="iconMsg" style="color: white;">채팅</p></button></a>
+						
+						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/messenger/m_note.png"><p class="iconMsg" style="margin-top: -4px;">쪽지</p></button></a>
 					</div>
 
 					<div class="chatDiv">
 						<div class="blank"></div>
-							<c:import url="./employeeList.jsp"></c:import>	
+							<c:import url="./employeeList.jsp"></c:import>
 					</div>
 					<div class="chatDiv">
-
 						<!------------------------------------ YR ------------------------------------------->
 						<div class="noteStart">
 							<!-- <div id="noteTitle">쪽지함</div> -->
 
 							<div id="noteChoice">
-								<div><button id="receiveNote" onclick="location.href='./note'"><img id="rImg" src="/img/messenger/receive.png" alt=""><p id="soosin" style="color: #fe4a69;">수신</p></button></div>
+								<div>
+									<button id="receiveNote" onclick="location.href='./note'">
+										<img id="rImg" src="/img/messenger/receive.png" alt="">
+										<p id="soosin" style="color: #fe4a69;">수신</p>
+									</button>
+									<c:if test="${not empty getNotReadCount}">
+										<span id="countse">${getNotReadCount}</span>
+									</c:if>
+								</div>
 								<div><button id="sentNoteList" onclick="ajaxPage(1)"><img style="transform: translateY(-4px);" id="sImg" src="/img/messenger/sendX.png" alt=""><p id="balsin">발신</p></button></div>
 								<div><button id="goSearch"><img style="width: 30px;" src="/img/messenger/searchzz.png"></button></div>
 							</div>
@@ -446,13 +486,17 @@
 
 							<div id="noteContent">
 								<c:forEach items="${list}" var="list">
-									<div class="noteList" onclick="notePop(${list.noteNum})">
+									<div class="noteList" id="noteNum${list.noteNum}" onclick="notePop(${list.noteNum})" read-check="${list.readCheck}">
 										<div id="listImage">
-											<img src="/img/messenger/test.png" alt="">
+											<img src="/img/undraw_profile_3.svg" alt="">
 										</div>
 										<div id="listInfo">
-											<div>발신자:${list.sendId}</div>
-											<div>${fn:replace(list.contents, replaceChar, "<br/>")}
+											<div style="display: flex;">
+											<div id="previewId">발신자 : <strong>${list.sendId}</strong></div>
+											<img id="noteDelete" onclick="noteDelete(${list.noteNum})" src="/img/messenger/close.png">
+											</div>
+											
+											<div id="previewNote">${fn:replace(list.contents, replaceChar, "<br/>")}
 												<!-- ${list.contents} -->
 											</div>
 										</div>
@@ -463,12 +507,17 @@
 									<div id="imEmpty" style="justify-content: center; margin-top: 5px; display: flex;" value="${message5}">${message5}</div>
 								</c:if>
 								
+								<script>
+
+									
+
+								</script>
 								
 								
 								
 							</div>
 							
-							<c:if test="${not empty list}">
+							<!-- <c:if test="${not empty list}"> -->
 							<div id="pagination">
 								<p style="margin: 0; display: flex; align-items: center;">
 									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startNum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
@@ -481,7 +530,7 @@
 									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastNum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
 								</p>
 							</div>
-							</c:if>
+							<!-- </c:if> -->
 
 							
 
@@ -523,6 +572,20 @@
 
 
 	<script>
+
+		//읽은 아이들은 회색으로 표시..
+		$($(".noteList")).each(function(index, item) {
+			console.log("이게머지",item);
+
+			if($(this).attr("read-check")==0) {
+				console.log("나는~읽음이랍니다")
+				$(this).css("color","lightgrey");
+			}
+		});	
+
+
+
+		
 		$(document).ready(function() {
 			$('#noteChoice').show(); //페이지를 로드할 때 표시할 요소
 			$('#noteChoiceSearch').hide();
@@ -540,12 +603,58 @@
 			$("#searchInput").val("");
 		})
 
-		
 
+		// 쪽지 삭제
+		function noteDelete(num) {
+			event.stopPropagation();
+			if(confirm("쪽지를 삭제하시겠습니까?")) {
+				$.ajax({
+					type:"GET",
+					url :"./note/delete",
+					traditional:true, //배열을 전송할 때 사용, true
+					data:{
+						noteNum: num
+					},
+					success : function(data){
+						console.log(data);
+						$("#noteNum"+num).remove();
+						// console.log($("#noteNum"+num).attr("id"))
+						
+						
+					},
+					error : function(){
+					}
+				})
+			} else {
+				
+			}
+		}
 		
-
+		// 쪽지 상세보기
 		function notePop(num) {
+			// $.ajax({
+			// 	type:"GET",
+			// 	url :"./note/check",
+			// 	traditional:true, //배열을 전송할 때 사용, true
+			// 	data:{
+			// 		noteNum: num
+			// 	},
+			// 	success : function(data){
+			// 		console.log(data);
+			// 	},
+			// 	error : function(){
+			// 	}
+			// })
+			
 			window.open('./note/detail?noteNum='+num, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+			
+
+			//수신함일때만 새로고침하게... (읽은거 표시하려면 새로고침해야 반영되는데 읽은거 표시는 수신함만 하려고함.... 맘에안든다....)
+			if($("#sImg").attr("src")=="/img/messenger/sendX.png") {
+				setTimeout(function(){
+				location.reload();
+			},50);
+			}
 		};
 
 
@@ -669,7 +778,7 @@
 						// console.log(item.noteNum);
 						item.contents = item.contents.replace(/\r\n/g, "</br>");
 
-						tempest += '<div class="noteList" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/messenger/test.png" alt=""></div><div id="listInfo"><div>'+item.noteNum+'수신자:'+item.receiveId+'</div><div>'+item.contents+'</div></div></div>'
+						tempest += '<div class="noteList" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId">'+item.noteNum+' 수신자 : <strong>'+item.receiveId+'</strong></div><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png"></div><div id="previewNote">'+item.contents+'</div></div></div>'
 
 						$('#noteContent').html(tempest);
 					})
