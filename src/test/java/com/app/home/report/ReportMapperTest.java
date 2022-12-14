@@ -16,18 +16,38 @@ class ReportMapperTest {
 	@Autowired
 	private ReportService reportService;
 	
-	@Test
+	//@Test
 	void test() throws Exception {
 		for(Long i=3L; i<129; i++) {
 			
 			ReportVacaVO reportVacaVO = new ReportVacaVO();
-			reportVacaVO.setCall(01012341234L);
+			reportVacaVO.setCall(01012341234);
 			reportVacaVO.setCategoryNum(1L);
 			reportVacaVO.setDepName("ROLE_MAKER");
 			reportVacaVO.setDepNum(4);
 			reportVacaVO.setApplyNum(i);
 			reportVacaVO.setText("사유"+i);
 			reportVacaVO.setPeriod("3일");
+			
+			if(i == 50L) {
+				Thread.sleep(50000);
+			}
+			reportService.setAddVaca(reportVacaVO);
+		}
+	}
+	
+	@Test
+	void test2() throws Exception {
+		for(Long i=1L; i<10; i++) {
+			
+			ReportVacaVO reportVacaVO = new ReportVacaVO();
+			reportVacaVO.setCall(012737334);
+			reportVacaVO.setCategoryNum(5L);
+			reportVacaVO.setDepName("1ROLE_하이");
+			reportVacaVO.setDepNum(8);
+			reportVacaVO.setApplyNum(i);
+			reportVacaVO.setText("기타"+i);
+			reportVacaVO.setPeriod("10일");
 			
 			if(i == 50L) {
 				Thread.sleep(50000);

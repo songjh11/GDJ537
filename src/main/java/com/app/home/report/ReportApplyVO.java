@@ -110,6 +110,18 @@ public class ReportApplyVO extends ReportPager {
 	public void setlStatus(int lStatus) {
 		this.lStatus = lStatus;
 	}
+	
+	
+
+	public UserVO getUserVO() {
+		return userVO;
+	}
+
+	public void setUserVO(UserVO userVO) {
+		this.userVO = userVO;
+	}
+
+
 
 	private int lStatus;
 }
