@@ -121,8 +121,13 @@ $(".acoArea").on("click", ".empName", function(){
 
 
 $('#sendNote').on("click",function(){
-    console.log("?");
+    modalChat.style.display = "none";
+
     window.open('./note/send?receiveId='+id, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+    // setTimeout(function(){
+    //     location.reload();
+    // },50);
+    
 })
 
 

@@ -86,7 +86,8 @@
 
     <script>
         $('#sendBtn').on("click", function(){
-            console.log("닫자");
+            //부모페이지 새로고침
+            opener.location.reload();
             window.close();
         })
     </script>
