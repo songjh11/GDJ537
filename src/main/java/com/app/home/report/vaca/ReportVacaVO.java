@@ -1,6 +1,7 @@
 package com.app.home.report.vaca;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import com.app.home.report.ReportApplyVO;
 import com.app.home.user.UserVO;
@@ -12,14 +13,24 @@ public class ReportVacaVO extends ReportApplyVO {
 	private Long categoryNum;
 	private String categoryName;
 	private String text;
-	private String period;
-	private Integer call;
+	private String startDate;
+	private String endDate;
+	private Long call;
 	private Date date;
 	
-	private int depNum;
 	
-	private UserVO userVO;
-	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	public Long getRnum() {
 		return rnum;
 	}
@@ -38,13 +49,7 @@ public class ReportVacaVO extends ReportApplyVO {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public String getPeriod() {
-		return period;
-	}
-	public void setPeriod(String period) {
-		this.period = period;
-	}
-	public Integer getCall() {
+	public Long getCall() {
 		return call;
 	}
 	public void setCall(Integer call) {
