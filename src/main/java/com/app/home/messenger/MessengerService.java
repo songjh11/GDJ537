@@ -45,9 +45,9 @@ public class MessengerService {
 		if(result > 0) {
 				
 			for(int ids : roomVO.getId()) {
-				UserVO employeeVO = new UserVO();
-				employeeVO.setId(ids);
-				roomVO.setEmployeeVO(employeeVO);
+				UserVO userVO = new UserVO();
+				userVO.setId(ids);
+				roomVO.setUserVO(userVO);
 				
 				result = messengerMapper.setAddRoomUser(roomVO);
 				

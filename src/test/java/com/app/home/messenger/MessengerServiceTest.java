@@ -32,7 +32,7 @@ class MessengerServiceTest {
 		userVO.setId(5);
 		RoomVO roomVO = new RoomVO();
 		roomVO.setRoomName("채팅방");
-		roomVO.setEmployeeVO(userVO);;
+		roomVO.setUserVO(userVO);;
 		
 		
 		int result = messengerMapper.setAddRoom(roomVO);
