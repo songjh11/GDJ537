@@ -97,8 +97,10 @@
 	<!-- ============== 결재 신청 insert ================ -->
 	
 	<insert id="setAddApply" parameterType="ReportApplyVO" useGeneratedKeys="true" keyProperty="applyNum">
+
 		INSERT INTO REPORTAPPLY 
 		VALUES (NULL, #{id}, #{depNum}, #{reportNum}, 1, 0, SYSDATE(), #{name}, #{roleName}, #{depName})
+
 	</insert>
 	
 	<insert id="setAddPay" parameterType="ReportPayVO" useGeneratedKeys="true" keyProperty="rnum">
@@ -184,7 +186,7 @@
 		WHERE RS.APPLYNUM = #{applyNum}
 	</select>
 	
-	<select id="getCountFinishReport" parameterType="ReportApplyVO" resultType="Long">
+	<select id="getCountFinishReport" parameterType="ReportPager" resultType="Long">
 		SELECT COUNT(*) FROM
 		REPORTLICENSER RL
 		INNER JOIN
@@ -194,10 +196,9 @@
 		USER U
 		ON RA.ID = U.ID
 		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=1209 AND RA.REPORTNUM=1
-		<include refid="licensepaging"></include>
 	</select>
 	
-	<select id="getFinishReport" parameterType="ReportApplyVO" resultMap="getFinishReportResult">
+	<select id="getFinishReport" parameterType="ReportPager" resultMap="getFinishReportResult">
 		SELECT RL.*,RA.*,U.* FROM
 		REPORTLICENSER RL
 		INNER JOIN
@@ -207,12 +208,11 @@
 		USER U
 		ON RA.ID = U.ID
 		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=1209 AND RA.REPORTNUM=1
-		<include refid="licensepaging"></include>
 		LIMIT #{startRow},#{perPage}
 	</select>
 
 	
-	<select id="getReturnReport" parameterType="ReportApplyVO" resultMap="getFinishReportResult">
+	<select id="getReturnReport" parameterType="ReportPager" resultMap="getFinishReportResult">
 		SELECT RL.*,RA.*,U.* FROM
 		REPORTLICENSER RL
 		INNER JOIN
@@ -222,11 +222,10 @@
 		USER U
 		ON RA.ID = U.ID
 		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=1209 AND RA.REPORTNUM=1
-		<include refid="licensepaging"></include>
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
-	<select id="getCountReturnReport" parameterType="ReportApplyVO" resultType="Long">
+	<select id="getCountReturnReport" parameterType="ReportPager" resultType="Long">
 		SELECT COUNT(*) FROM
 		REPORTLICENSER RL
 		INNER JOIN
@@ -236,10 +235,9 @@
 		USER U
 		ON RA.ID = U.ID
 		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=1209 AND RA.REPORTNUM=1
-		<include refid="licensepaging"></include>
 	</select>
 	
-	<select id="getDoFirstReport" parameterType="ReportApplyVO" resultMap="getFinishReportResult">
+	<select id="getDoFirstReport" parameterType="ReportPager" resultMap="getFinishReportResult">
 		SELECT RL.*,RA.*,U.* FROM
 		REPORTLICENSER RL
 		INNER JOIN
@@ -249,11 +247,10 @@
 		USER U
 		ON RA.ID = U.ID
 		WHERE RA.STATUS = 1 AND RL.ID=1209 AND RA.REPORTNUM=1
-		<include refid="licensepaging"></include>
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
-	<select id="getCountDoFirstReport" parameterType="ReportApplyVO" resultType="Long">
+	<select id="getCountDoFirstReport" parameterType="ReportPager" resultType="Long">
 		SELECT COUNT(*) FROM
 		REPORTLICENSER RL
 		INNER JOIN
@@ -263,10 +260,9 @@
 		USER U
 		ON RA.ID = U.ID
 		WHERE RA.STATUS = 1 AND RL.ID=1209 AND RA.REPORTNUM=1
-		<include refid="licensepaging"></include>
 	</select>
 	
-	<select id="getDoFinalReport" parameterType="ReportApplyVO" resultMap="getFinishReportResult">
+	<select id="getDoFinalReport" parameterType="ReportPager" resultMap="getFinishReportResult">
 		SELECT RL.*,RA.*,U.* FROM
 		REPORTLICENSER RL
 		INNER JOIN
@@ -276,11 +272,10 @@
 		USER U
 		ON RA.ID = U.ID
 		WHERE RA.STATUS = 2 AND RL.ID=1209 AND RA.REPORTNUM=1
-		<include refid="licensepaging"></include>
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
-	<select id="getCountDoFinalReport" parameterType="ReportApplyVO" resultType="Long">
+	<select id="getCountDoFinalReport" parameterType="ReportPager" resultType="Long">
 		SELECT COUNT(*) FROM
 		REPORTLICENSER RL
 		INNER JOIN
@@ -290,7 +285,6 @@
 		USER U
 		ON RA.ID = U.ID
 		WHERE RA.STATUS = 2 AND RL.ID=1209 AND RA.REPORTNUM=1
-		<include refid="licensepaging"></include>
 	</select>
 	
 	<resultMap type="ReportVO" id="getFinishReportResult">
@@ -306,28 +300,15 @@
 				<result column="STATUS" property="status"/>
 				<result column="RETURNS" property="returns"/>
 				<result column="APDATE" property="apDate"/>
-				<result column=""/>
+				
 				<association property="userVO" javaType="UserVO">
 					<result column="NAME" property="name"/>
 				</association>
 			</collection>
+			
 	</resultMap>
 	
-	<sql id="licensepaging">
-		AND RA.id = 1209 <choose>
-								<when test="kind == '1'">
-									RA.status = 1
-								</when>
-								<when test="kind == '2'">
-									RA.status = 2
-								</when>
-								<when test="kind == '3'">
-									RA.status = 3
-								</when>
-								<otherwise>
-								</otherwise>
-							</choose>
-	</sql>
+	
 	
 	
 	<!-- ==================================== -->

@@ -12,12 +12,14 @@ import com.app.home.user.UserVO;
 import lombok.Data;
 
 @Data
-public class ReportVO extends ReportPager {
+public class ReportVO {
 	
 	private int licenserNum;
 	private int depNum;
 	private int id;
 	private int lstatus;
+	
+	private int reportNum;
 	
 
 	private List<ReportApplyVO> reportApplyVOs;
