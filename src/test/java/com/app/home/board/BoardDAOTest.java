@@ -19,7 +19,7 @@ class BoardDAOTest {
 		fail("Not yet implemented");
 	}
 	
-	//@Test
+	@Test
 	void pagingTest() throws Exception {
 		int result = 0;
 		for(int i = 0; i < 10; i++) {

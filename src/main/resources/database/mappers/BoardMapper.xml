@@ -27,6 +27,7 @@
 		<result column="hit" property="hit" />
 		<result column="sort" property="sort" />
 		<result column="regdate" property="regDate" />
+		<result column="updatedate" property="updateDate"/>
 
 		<collection property="fileVOs" javaType="List"
 			ofType="FileVO">

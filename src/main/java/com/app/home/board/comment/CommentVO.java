@@ -13,5 +13,9 @@ public class CommentVO {
 	private Integer id;
 	//댓글 내용
 	private String contents;
+	//날짜 timestamp 지저분해짐
+	private String regDate;
+	//수정날짜 timestamp 지저분해짐
+	private String updateDate;
 
 }
