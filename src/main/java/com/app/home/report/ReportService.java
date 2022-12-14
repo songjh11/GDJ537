@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.app.home.report.pay.ReportPayVO;
+import com.app.home.report.pay.RepriceVO;
 import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
@@ -107,7 +108,17 @@ public class ReportService {
 	
 	public int setAddPay(ReportPayVO reportPayVO) throws Exception{
 		reportMapper.setAddApply(reportPayVO);
-		return reportMapper.setAddPay(reportPayVO);
+		int result = reportMapper.setAddPay(reportPayVO);
+		
+		for(RepriceVO repriceVO : reportPayVO.getRepriceVOs()) {
+			if(repriceVO.getItem().equals("")) {
+				continue;
+			}
+			repriceVO.setRnum(reportPayVO.getRnum());
+			reportMapper.setAddItem(repriceVO);
+		}
+		
+		return result;
 	}
 	
 	public int setAddSorry(ReportSorryVO reportSorryVO) throws Exception{

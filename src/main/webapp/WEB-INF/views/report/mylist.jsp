@@ -95,7 +95,6 @@
 		                                            <th>제목</th>
 		                                            <th>작성일자</th>
 		                                            <th>결재일자</th>
-		                                            <th>항목</th>
 		                                            <th>합계 금액</th>
 		                                            <th colspan="4">승인상태</th>
 		                                        </tr>
@@ -104,9 +103,8 @@
                                                 <c:forEach items="${list}" var="vo">
                                                 	<tr onclick="window.open('')">
                                                 		<td>${vo.title}</td>
-                                                		<td>${vo.wdate}</td>
+                                                		<td>${vo.date}</td>
                                                 		<td>${vo.cdate}</td>
-                                                		<td>${vo.category}</td>
                                                 		<td>${vo.sum}</td>
                                                 		<c:choose>
 	                                                		<c:when test="${vo.returns eq 1}">
