@@ -92,6 +92,7 @@
 			<!-- End of Main Content -->
 			
 			<form action="insa1" method="post">
+				<div id="tdiv">
 					<table class="table table-striped">
 		                            <thead id="thd">
 		                                <tr class="text-success">
@@ -114,7 +115,8 @@
 											</tr>
 		                                </c:forEach>  --%>
 		                            </tbody>
-		                        </table>
+		                       </table>
+		                    </div>
 		                     <%-- <nav aria-label="Page navigation example">
                         		
                       		  <ul class="pagination">
@@ -189,7 +191,7 @@
                 		
               
                 			
-	                	$("#tbd").append('<tr id="trId"><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'">부여</button></td><td><button id="deleteBtn" type="button" class="btn btn-danger" data-name="'+dd[i].id+'">권한회수</button></td></tr>')
+	                	$("#tbd").append('<tr class="trId"><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'" data-btn="1">부여</button></td><td><button id="deleteBtn" type="button" class="btn btn-danger" data-name="'+dd[i].id+'" data-btn="2">권한회수</button></td></tr>')
                 		
                 	}
                 		

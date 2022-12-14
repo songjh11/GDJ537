@@ -98,14 +98,16 @@ $("#tbd").on("click", "#statusBtn", function(event){
             console.log($("#statusBtn").text('부여됨'));
             if(result == 1){
                 $("#statusBtn").text('부여됨');
-                $("#statusBtn").attr("disabled", "disabled");
+
             }
         },
         error:function(){
             alert("수정에 실패하였습니다");
         }
 
-    })
+
+
+    });
 
 });
 
@@ -131,7 +133,6 @@ $("#tbd").on('click', "#deleteBtn", function(event){
             alert("ID가" + name + "인 직원의 권한을 회수 하였습니다.");
             if(result == 1){
                 $("#deleteBtn").text('회수 완료');
-                $("#deleteBtn").attr("disabled", "disabled");
             }
         },
         error:function(){
@@ -139,5 +140,27 @@ $("#tbd").on('click', "#deleteBtn", function(event){
         }
 
     })
+
+});
+
+let d1 = $("#statusBtn").click();
+let d2 = $("#deleteBtn").click();
+
+let a1 = $("#statusBtn").attr("data-btn");
+let a2 = $("#deleteBtn").attr("data-btn");
+
+// if(d1){     //부여 버튼이 눌렸다면 부여버튼을 disabled한다
+//     $("#statusBtn").disabled(true);
+// }
+// if(d2){     //권한회수 버튼을 눌렀다면 권한회수 버튼을 disabled하고, 부여버튼을 다시 활성화 시킨다
+//     $("#deleteBtn").disabled(true);
+//     $("#statusBtn").disabled(false);
+// }
+
+
+$(".tdId").on('each', '.btn', function(){
+
+
+    console.log("하이");
 
 });
