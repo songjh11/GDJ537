@@ -435,10 +435,10 @@
 
 					<div class="chatDiv">
 						<div class="blank"></div>
-							<c:import url="./groupModal.jsp"></c:import>
-							<c:import url="./employeeList.jsp"></c:import>
-							<c:import url="./groupModal.jsp"></c:import>
+						<c:import url="./groupModal.jsp"></c:import>
+						<c:import url="./employeeList.jsp"></c:import>
 					</div>
+
 					<div class="chatDiv">
 						<!------------------------------------ YR ------------------------------------------->
 						<div class="noteStart">
@@ -577,10 +577,8 @@
 
 		//읽은 아이들은 회색으로 표시..
 		$($(".noteList")).each(function(index, item) {
-			console.log("이게머지",item);
 
 			if($(this).attr("read-check")==0) {
-				console.log("나는~읽음이랍니다")
 				$(this).css("color","lightgrey");
 			}
 		});	
@@ -621,7 +619,9 @@
 						console.log(data);
 						$("#noteNum"+num).remove();
 						// console.log($("#noteNum"+num).attr("id"))
-						
+						setTimeout(function(){
+							location.reload();
+						},20);
 						
 					},
 					error : function(){
@@ -654,8 +654,8 @@
 			//수신함일때만 새로고침하게... (읽은거 표시하려면 새로고침해야 반영되는데 읽은거 표시는 수신함만 하려고함.... 맘에안든다....)
 			if($("#sImg").attr("src")=="/img/messenger/sendX.png") {
 				setTimeout(function(){
-				location.reload();
-			},50);
+					location.reload();
+				},20);
 			}
 		};
 

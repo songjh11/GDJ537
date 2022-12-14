@@ -26,7 +26,7 @@
 																		<input type="hidden" id="phone${e.id}" value="${e.phone}">
 																		<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
 																			<div class="userAdd">
-																				<input type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}>
+																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
 																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
 																			</div>
 																			<div class="userInfo" style="width: 60%; color: white;">
@@ -54,10 +54,10 @@
 																		<input type="hidden" id="phone${e.id}" value="${e.phone}">
 																		<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
 																			<div>
+																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
 																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
 																			</div>
 																			<div class="userAdd" style="width: 60%;">
-																				<input type="checkbox" name="id" value="${e.id}">
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
 																				<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 																			</div>																			
@@ -71,7 +71,7 @@
 											</c:choose>
 											<p class="mt-4 text-center">
 												<button type="button" id="roomBtn" class="btn" style="background: #4e73df; color: #FFFFFF;">그룹채팅</button>
-												<a id="groupNoteGo" href="" class="btn" style="background: #4e73df; color: #FFFFFF;">그룹쪽지</a>
+												<a id="groupNoteGo" class="btn" style="background: #4e73df; color: #FFFFFF;">그룹쪽지</a>
 											</p>										
 										</div>
 									</div>
@@ -112,12 +112,117 @@
 							</div>
 						</form>
 
+						
 
 						<script>
+							//팀 선택시 전체팀원도 선택되게...
+							$(".checkTeam").on("change", function(){
+								event.stopPropagation();
+								let Mastdep = '';
+								$('input:checkbox[class=checkTeam]').each(function (index) {
+									// console.log("이상한아이",$(this))
 
-							$.each($(".checkTeam"), function(index, item) {
-								console.log(index)
-								console.log(item)
+									if($(this).is(":checked")==true){
+										Mastdep = $(this).attr("dep-num");
+										$.each($(".checkUser"), function(index, item){
+											// console.log("췍유저의뎁넘",$(this).attr("dep-num"));
+											// console.log(Mastdep);
+											if($(this).attr("dep-num")==Mastdep) {
+												// console.log("같으면뜨셈",$(this));
+												// $(this).prop("checked","true");
+												item.checked=true;
+
+											} 
+										})
+									} else {
+										Mastdep = $(this).attr("dep-num");
+										$.each($(".checkUser"), function(index, item){
+											// console.log("췍유저의뎁넘",$(this).attr("dep-num"));
+											// console.log(Mastdep);
+											if($(this).attr("dep-num")==Mastdep) {
+												// console.log("같으면뜨셈",$(this));
+												// $(this).prop("checked","true");
+												item.checked=false;
+											} 
+										})
+									}
+								})
+							})
+
+							//개인 선택하면 팀 체크칸 불켜지게
+							$(".checkUser").click(function(e) {
+								
+								let checkCount = 0;
+								let totalCount = 0;
+								$("input[class=checkUser]").each(function(index, item) {
+									if($(item).attr("dep-num")==$(e.target).attr("dep-num")) {
+										totalCount += 1;
+										if($(item).prop("checked")) {
+											checkCount += 1;
+										}
+									}
+								})
+
+								console.log("체크된이부서의사원은몇명",checkCount);
+								console.log("이부서의사원은총몇명",totalCount);
+
+								if(totalCount==checkCount) {
+									console.log("위에꺼체크하자");
+									$("input[class=checkTeam]").each(function(index, item) {
+										if($(item).attr("dep-num")==$(e.target).attr("dep-num")) {
+											// $(item).prop("checked","true")
+											console.log($(item));
+											item.checked=true;
+										}
+									})
+									
+								} else {
+									console.log("위에꺼해제하자")
+									$("input[class=checkTeam]").each(function(index, item) {
+										if ($(item).attr("dep-num")==$(e.target).attr("dep-num")) {
+											// $(item).prop("checked","false")
+											console.log($(item));
+											item.checked=false;
+										}
+									})
+								}
+								
 							});
+
+
+							//그룹쪽지 발송
+							$("#groupNoteGo").on("click", function(){
+								let arr = [];
+
+								$(".checkUser").each(function(index, item) {
+									if($(item).prop("checked")) {
+										// console.log($(item).val())
+										arr[index] = $(item).val();
+									}
+								})
+
+								
+
+								console.log(arr);
+
+								$.ajax({
+									type:"GET",
+									url :"note/group",
+									traditional:true, //배열을 전송할 때 사용, true
+									data:{
+										arr: arr
+									},
+									success : function(data){
+
+									},
+									error   : function(){
+
+									}
+								})
+							})
+								
+
+							
+							
 
 						</script>
