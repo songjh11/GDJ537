@@ -54,6 +54,7 @@
                       	<p>조회수 <c:out value="${boardVO.hit}"></c:out> </p>
                       </div>
                       <p id="regdate" data-date="<c:out value="${boardVO.regDate}"></c:out>"> 등록일자 </p>
+                    
                     </div>
                   </div>
                 </div>
@@ -63,7 +64,8 @@
                     
                       <c:forEach items="${boardVO.fileVOs}" var="files">
                         <p>
-                          <a href="/fileDown/board/<c:out value="${files.fileNum}"></c:out>">
+                    	<img src="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/<c:out value="${files.fileName}"></c:out>"/>
+                          <a href="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/<c:out value="${files.fileName}"></c:out>">
                             <span class="material-symbols-outlined">
                               download
                             </span> <c:out value="${files.oriName}"></c:out></a>

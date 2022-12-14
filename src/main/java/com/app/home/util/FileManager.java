@@ -20,6 +20,8 @@ import org.springframework.web.servlet.view.AbstractView;
 import com.app.home.file.FileVO;
 
 import lombok.extern.slf4j.Slf4j;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.model.CompleteMultipartUploadResponse;
 
 @Component
 @Slf4j
@@ -97,6 +99,30 @@ public class FileManager extends AbstractView {
 
 		return boardFileName;
 	}
+
+	public String saveFileS3(MultipartFile multipartFile, String path)throws Exception {
+
+		//amazons3Service 객체를 만든다.
+		AmazonS3Service amazonS3Service = new AmazonS3Service();
+		
+		RequestBody requestBody = RequestBody.fromInputStream(multipartFile.getInputStream(), multipartFile.getSize());
+
+		//1. 중복되지 않는 파일명 생성(UUID, Date)
+		String boardFileName = UUID.randomUUID().toString();
+		//파일명과 확장자 분리
+		String ex = multipartFile.getOriginalFilename();
+		ex = ex.substring(ex.lastIndexOf("."));
+		StringBuffer bf = new StringBuffer(boardFileName);
+		bf.append(ex);
+		boardFileName = bf.toString();
+
+		CompleteMultipartUploadResponse rr = amazonS3Service.upload(requestBody, boardFileName, "gdj537-yeyey");
+		
+		
+		return rr.key();//오브젝트 키 리턴
+	}
+	
+
 	
 	public String saveFile(String path,ServletContext servletContext,MultipartFile multipartFile) throws Exception{
 		
