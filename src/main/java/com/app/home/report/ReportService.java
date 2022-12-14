@@ -133,7 +133,7 @@ public class ReportService {
 	
 	
 
-	public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception{
+			public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception{
 				return reportMapper.setUpdateApply(reportApplyVO);
 			}
 			
@@ -161,27 +161,25 @@ public class ReportService {
 				return reportMapper.getLicenseVacaReportDetail(reportVacaVO);
 			}
 			
-			public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception{
-				reportApplyVO.getNum(reportMapper.getCountFinishReport(reportApplyVO));
-				return reportMapper.getFinishReport(reportApplyVO);
+			public ReportVO getFinishReport(ReportPager reportPager) throws Exception{
+				reportPager.getNum(reportMapper.getCountFinishReport(reportPager));
+				return reportMapper.getFinishReport(reportPager);
 			}
 			
-			public ReportVO getReturnReport(ReportApplyVO reportApplyVO) throws Exception{
-				reportApplyVO.getNum(reportMapper.getCountReturnReport(reportApplyVO));
-				return reportMapper.getReturnReport(reportApplyVO);
+			public ReportVO getReturnReport(ReportPager reportPager) throws Exception{
+				reportPager.getNum(reportMapper.getCountReturnReport(reportPager));
+				return reportMapper.getReturnReport(reportPager);
 			}
 			
-			public ReportVO getDoFirstReport(ReportApplyVO reportApplyVO) throws Exception{
-				reportApplyVO.getNum(reportMapper.getCountDoFirstReport(reportApplyVO));
-				return reportMapper.getDoFirstReport(reportApplyVO);
+			public ReportVO getDoFirstReport(ReportPager reportPager) throws Exception{
+				reportPager.getNum(reportMapper.getCountDoFirstReport(reportPager));
+				return reportMapper.getDoFirstReport(reportPager);
 			}
 			
-			public ReportVO getDoFinalReport(ReportApplyVO reportApplyVO) throws Exception{
-				reportApplyVO.getNum(reportMapper.getCountDoFinalReport(reportApplyVO));
-				return reportMapper.getDoFinalReport(reportApplyVO);
+			public ReportVO getDoFinalReport(ReportPager reportPager) throws Exception{
+				reportPager.getNum(reportMapper.getCountDoFinalReport(reportPager));
+				return reportMapper.getDoFinalReport(reportPager);
 			}
-
-	
 
 		
 
