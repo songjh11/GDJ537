@@ -19,6 +19,10 @@
 	</properties>
 	<dependencies>
 		<!-- 회원관리  4조 -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+	</dependency>
 
 		<!-- 메일발송 api -->
 		<dependency>

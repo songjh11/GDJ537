@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 						
 
 						<div id="modal" class="modal-overlay" style="z-index: 100;">
@@ -50,6 +51,7 @@
 							</form>
 						</div>
 						<!-- 채팅방생성 모달 버튼 -->
+						<h1>${myId}</h1>
 						<div class="btnArea d-flex flex-row-reverse">
 							<button type="button" id="userBtn"><img class="roomImg" src="/img/messenger/chatAdd.png"></button>
 						</div>

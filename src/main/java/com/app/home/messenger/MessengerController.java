@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,9 +39,11 @@ public class MessengerController {
 	private PickService pickService;
 	
 	@GetMapping("chat")
-	public ModelAndView getMyChat(HttpSession session)throws Exception{
-		
-		Integer id = 10;
+	public ModelAndView getMyChat(HttpSession session, UserVO userVO)throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
+		Integer id = userVO.getId();
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<UserVO> el = messengerService.getEmpList();
@@ -54,9 +58,11 @@ public class MessengerController {
 	}
 	
 	@PostMapping("searchEmp")
-	public ModelAndView getSearchResult(HttpSession session, String kind, String keyword) throws Exception{
-		log.info("keyword:{},kind:{}", keyword, kind);
-		int id = 10;
+	public ModelAndView getSearchResult(HttpSession session, UserVO userVO, String kind, String keyword) throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
+		Integer id = userVO.getId();
 		Map<String, String> map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("kind", kind);
@@ -89,7 +95,7 @@ public class MessengerController {
 	
 	//수신함
 	@GetMapping("note")
-	public ModelAndView getReceiveNoteList(UserVO userVO, NotePager notePager)throws Exception{
+	public ModelAndView getReceiveNoteList(HttpSession session,UserVO userVO, NotePager notePager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		//임시 id
 		userVO.setId(2022001);
@@ -112,9 +118,10 @@ public class MessengerController {
 		} else {
 			mv.addObject("message5", "");
 		}
-		
-		
-		Integer id = 1;
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
+		Integer id = userVO.getId();
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<UserVO> el = messengerService.getEmpList();
 		List<UserVO> pl = pickService.getPickList(id.toString());

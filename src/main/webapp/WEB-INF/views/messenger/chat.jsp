@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +62,7 @@
 							<img src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
 							<h2 class="h2title">Goodee Company</h2>
 							<div class="proArea">
-								<p>이름</p>
+								<p>${myId}</p>
 								<p>부서</p>
 								<p>직급</p>
 								<p>이메일</p>
