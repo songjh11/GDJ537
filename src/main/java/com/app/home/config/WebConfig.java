@@ -22,8 +22,8 @@ public class WebConfig implements WebMvcConfigurer{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		
 		log.info("test22222222222");
-		registry.addResourceHandler(filePath)
-				.addResourceLocations(urlPath);
+		registry.addResourceHandler(urlPath)
+				.addResourceLocations(filePath);
 		registry.addResourceHandler("/webjars/**")
 				.addResourceLocations("/webjars/")
 				 .resourceChain(false);
