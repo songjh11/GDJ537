@@ -428,17 +428,16 @@
 	
 	            	<!-- Page Heading -->
 					<div class="miniBar">
-						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"><p class="iconMsg">채팅</p></button></a>
+						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/messenger/m_chatX.png"><p class="iconMsg" style="color: white;">채팅</p></button></a>
 						
-						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/email.png"><p class="iconMsg">쪽지</p></button></a>
+						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/messenger/m_note.png"><p class="iconMsg" style="margin-top: -4px;">쪽지</p></button></a>
 					</div>
 
 					<div class="chatDiv">
 						<div class="blank"></div>
-							<c:import url="./employeeList.jsp"></c:import>	
+							<c:import url="./employeeList.jsp"></c:import>
 					</div>
 					<div class="chatDiv">
-
 						<!------------------------------------ YR ------------------------------------------->
 						<div class="noteStart">
 							<!-- <div id="noteTitle">쪽지함</div> -->

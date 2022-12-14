@@ -13,6 +13,12 @@
 </style>
 <link rel="stylesheet" href="/css/chat/groupModal.css">
 <link rel="stylesheet" href="/css/chat/employeeList.css">
+<style>
+	.iconMsg {
+		font-size: 13px;
+		color: #4c6ac4;
+	}
+</style>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <c:import url="../temp/layout_header.jsp"></c:import>
@@ -36,8 +42,8 @@
 	            <div class="container-fluid" style="display: flex; height: 100%;">
 	            	<!-- Page Heading -->
 					<div class="miniBar">
-						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"></button></a>
-						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
+						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/messenger/m_chat.png"><p class="iconMsg">채팅</p></button></a>
+						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/messenger/m_noteX.png"><p class="iconMsg" style="color: white; margin-top: -4px;">쪽지</p></button></a>
 					</div>
 					<div class="chatDiv" id="chatArea">
 						<div class="blank"></div>
