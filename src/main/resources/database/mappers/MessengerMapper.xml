@@ -87,7 +87,7 @@
 	<!--                       효경                       -->
 	
 	<select id="getRoomList" parameterType="RoomVO" resultMap="getRoomListResult">
-		SELECT CR.ROOMNUM, CR.REGDATE, CR.ROOMNAME, CR.HOSTID, CR.PW, R.USERNUM, R.ID
+		SELECT CR.ROOMNUM, CR.REGDATE, CR.ROOMNAME, CR.HOSTID, CR.PW, R.ID
 		FROM CHATROOM CR
 			INNER JOIN
 			ROOMUSER R 
@@ -101,7 +101,7 @@
 		<result column="ROOMNAME" property="roomName"/>
 		<result column="HOSTID" property="hostId"/>
 		<collection property="userVOs" javaType="UserVO" ofType="List">
-			<id column="USERNUM" property="userNum"/>
+			<!-- <id column="USERNUM" property="userNum"/> -->
 			<result column="ID" property="id"/>
 		</collection>
 	</resultMap>
