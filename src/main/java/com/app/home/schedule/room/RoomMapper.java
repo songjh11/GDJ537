@@ -13,10 +13,12 @@ public interface RoomMapper
 	public List<GoodsVO> getRoomList(GoodsVO goodsVO) throws Exception;
 
 	public GoodsVO getRoomTotal(GoodsVO goodsVO) throws Exception;
-	
+
 	public int setRoomReserve(GoodsRoomVO goodsRoomVO) throws Exception;
-	
+
 	public List<GoodsRoomVO> getReserveStartTime(GoodsRoomVO goodsRoomVO) throws Exception;
-	
+
 	public List<ReserveVO> getResInfo(GoodsRoomVO goodsRoomVO) throws Exception;
+
+	public List<ReserveVO> getStartTime(ReserveVO reserveVO) throws Exception;
 }

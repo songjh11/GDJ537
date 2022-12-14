@@ -99,4 +99,19 @@
 		</collection>
 	</resultMap>
 
+	<select id="getStartTime" parameterType="List" resultType="ReserveVO">
+		select GOODSID, STARTTIME from RESERVE where GOODSID =
+		#{goodsId}
+	</select>
+
+<!-- 	<resultMap type="ReserveVO" id="StartTime">
+		<id column="reserveNum" property="reserveNum" />
+		<result column="goodsId" property="goodsId" />
+		<result column="date" property="date" />
+		<result column="id" property="id" />
+		<result column="usePurpose" property="usePurpose" />
+		<result column="startTime" property="startTime" />
+		<result column="endTime" property="endTime" />
+	</resultMap> -->
+
 </mapper>    

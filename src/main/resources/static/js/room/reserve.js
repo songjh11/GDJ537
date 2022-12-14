@@ -10,14 +10,16 @@ const purposeText = document.getElementById("purposeText");
 let today = new Date();
 
 startCheck = false;
+startValueCheck = false;
 endCheck = false;
+endValueCheck = false;
 purposeCheck = false;
+timeCheck = false;
 
 startTime.addEventListener("blur", function () {
     console.log(startTime.value);
 
     var startDate = startTime.value.toString().substr(0, 10);
-    console.log(startDate);
 
     let y = parseFloat(startDate.split('-')[0]);
     let m = parseFloat(startDate.split('-')[1]);
@@ -42,7 +44,9 @@ startTime.addEventListener("blur", function () {
 
     if (y < year || (m < month && y == year) || (d < da && m == month && y == year)) {
         alert("선택할 수 없는 날입니다.");
+        startCheck = false;
         console.log("시작 날 선택 - " + startCheck);
+        return false;
     }
     else {
         startCheck = true;
@@ -58,12 +62,37 @@ startTime.addEventListener("blur", function () {
     // blur 시 빈칸일 때
     if (startTime.value == '') {
         startText.style.display = 'block';
-        startCheck = false;
+        startValueCheck = false;
+        return false;
     }
     else {
         startText.style.display = 'none';
-        startCheck = true;
+        startValueCheck = true;
     }
+
+    // -----------------------------------------
+    // 이미 예약된 시간 확인
+    var re = startTime.value.replace('T', ' ');
+    let replaceText = re + ':00';
+    console.log(replaceText);
+
+    $(".timeCheck").each(function () {
+        var a = $(this).val();
+
+        // console.log("선택시간: " + a);
+        // console.log(a == replaceText);
+
+        if (a == replaceText) {
+            alert("이미 예약된 시간입니다.");
+            timeCheck = false;
+            console.log(timeCheck);
+            return false;
+        }
+        else {
+            timeCheck = true;
+            console.log(timeCheck);
+        }
+    })
 })
 
 function CalculatorEndTime() {
@@ -85,11 +114,12 @@ function CalculatorEndTime() {
 
     if (y < year || (m < month && y == year) || (d < da && m == month && y == year)) {
         alert("선택할 수 없는 날입니다.");
-        dateCheck = false;
-        console.log("이전날 선택 - " + dateCheck);
+        endCheck = false;
+        console.log("이전날 선택 - " + endCheck);
+        return false;
     }
     else {
-        dateCheck = true;
+        endCheck = true;
     }
 
     let st = parseInt(startTime.value.substr(11, 15));
@@ -109,6 +139,7 @@ function CalculatorEndTime() {
         alert("동일한 시간은 사용할 수 없습니다.");
         endCheck = false;
         console.log("시간 동일 - " + endCheck)
+        return false;
     }
     else {
 
@@ -116,6 +147,7 @@ function CalculatorEndTime() {
             alert("유효하지 않은 시간대입니다.");
             endCheck = false;
             console.log("종료시간이 시작보다 빠름 - " + endCheck);
+            return false;
         }
         else {
             // console.log(endTime.value);
@@ -133,6 +165,7 @@ function CalculatorEndTime() {
                 alert("유효하지 않은 시간대입니다.");
                 endCheck = false;
                 console.log("시간동일 분 계산 - " + endCheck);
+                return false;
             }
             else {
                 endCheck = true;
@@ -142,24 +175,35 @@ function CalculatorEndTime() {
 };
 
 endTime.addEventListener("blur", function () {
-    CalculatorEndTime();
-
     // blur 시 빈칸일 때
     if (endTime.value == '') {
         endText.style.display = 'block';
-        endCheck = false;
+        endValueCheck = false;
     }
     else {
         endText.style.display = 'none';
-        endCheck = true;
+        endValueCheck = true;
     }
+    CalculatorEndTime();
+
 })
 
 purpose.addEventListener("click", function () {
     console.log("사용목적 클릭시")
-    CalculatorEndTime();
+    // CalculatorEndTime();
+    if (endTime.value == '') {
+        endText.style.display = 'block';
+        endValueCheck = false;
+    }
+    else {
+        endText.style.display = 'none';
+        endValueCheck = true;
+    }
     console.log("startTime: " + startCheck);
     console.log("endTime: " + endCheck);
+    console.log("startValueCheck: " + startValueCheck);
+    console.log("endValueCheck: " + endValueCheck);
+    console.log("timeCheck: " + timeCheck);
 })
 
 purpose.addEventListener("blur", function () {
@@ -171,24 +215,33 @@ purpose.addEventListener("blur", function () {
     if (purpose.value == '') {
         purposeText.style.display = 'block';
         purposeCheck = false;
+        console.log("purpost check: " + purposeCheck);
+        return false;
     }
     else {
         purposeText.style.display = 'none';
         purposeCheck = true;
+        console.log("purpost check: " + purposeCheck);
     }
 })
 
 btn.addEventListener("click", function () {
     let a = confirm("정말 예약하시겠습니까?");
 
-    if (a == true && startCheck == true && endCheck == true && purposeCheck == true) {
+    if ((a && startCheck && endCheck && purposeCheck && startValueCheck && endValueCheck && timeCheck) == true) {
         frm.submit();
     }
     else if (a == false) {
         alert("취소하였습니다.");
     }
-    else {
+    if ((startCheck == false || endCheck == false || purposeCheck == false || startValueCheck == false || endValueCheck == false || timeCheck == false)) {
         alert("조건을 충족하지 못하였습니다.");
     }
 })
+// -----------------------------------------
+// 예약자 번호 숫자형으로 변환
+var memNum = $("#member").val();
 
+let tt = parseFloat(memNum);
+
+$("#member").val(tt);

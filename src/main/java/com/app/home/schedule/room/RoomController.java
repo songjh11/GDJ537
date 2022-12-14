@@ -2,18 +2,25 @@ package com.app.home.schedule.room;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.schedule.car.CarService;
 import com.app.home.schedule.goods.GoodsService;
 import com.app.home.schedule.goods.GoodsVO;
 import com.app.home.schedule.goods.ReserveVO;
+import com.app.home.user.UserService;
+import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,21 +31,22 @@ public class RoomController
 {
 	@Autowired
 	private RoomService roomService;
-	@Autowired
-	private CarService carService;
 
 	@GetMapping("/room/roomList")
-	public ModelAndView getRoomList(GoodsVO goodsVO, ReserveVO reserveVO) throws Exception
+	public ModelAndView getRoomList(GoodsVO goodsVO, ReserveVO reserveVO, Authentication authentication) throws Exception
 	{
+		log.info("------- get room List -------");
 		ModelAndView modelAndView = new ModelAndView();
 		List<GoodsVO> goodsVOs = roomService.getRoomList(goodsVO);
 		// List<ReserveVO> reserveVOs = carService.getReserveList(reserveVO);
 
+		// log.info("auth: {}", authentication.getPrincipal());
 		log.info("goodVO list: {}", goodsVOs);
 		// log.info("reserve: {}", reserveVOs);
 
 		modelAndView.addObject("goodVO", goodsVOs);
 		// modelAndView.addObject("reserveVO", reserveVOs);
+		// modelAndView.addObject("userInfo", authentication.getPrincipal());
 		modelAndView.setViewName("/goods/room/roomList");
 
 		return modelAndView;
@@ -60,17 +68,19 @@ public class RoomController
 	}
 
 	@GetMapping("/room/roomReserve")
-	public ModelAndView setRoomReserve(GoodsVO goodsVO, GoodsRoomVO goodsRoomVO) throws Exception
+	public ModelAndView setRoomReserve(GoodsVO goodsVO, GoodsRoomVO goodsRoomVO, Authentication authentication, ReserveVO reserveVO)
+			throws Exception
 	{
 		log.info("======= get roomReserve =======");
 		ModelAndView modelAndView = new ModelAndView();
 		goodsVO = roomService.getRoomTotal(goodsVO);
-		List<GoodsRoomVO> roomVOs = roomService.getReserveStartTime(goodsRoomVO);
-		log.info("roomVOs: {}", roomVOs);
+		List<ReserveVO> reserveVOs = roomService.getStartTime(reserveVO);
 
 		// log.info("goodVO 1 : {}", goodsVO);
+		log.info("reserveVO: {}", reserveVOs);
 
-		modelAndView.addObject("stTime", roomVOs);
+		modelAndView.addObject("timeNotEqual", reserveVOs);
+		modelAndView.addObject("userInfo", authentication.getPrincipal());
 		modelAndView.addObject("goodDetail", goodsVO);
 		modelAndView.setViewName("/goods/room/roomReserve");
 
@@ -78,7 +88,7 @@ public class RoomController
 	}
 
 	@PostMapping("/room/roomReserve")
-	public ModelAndView setRoomReserve(GoodsRoomVO goodsRoomVO) throws Exception
+	public ModelAndView setRoomReserve(GoodsRoomVO goodsRoomVO, Authentication authentication) throws Exception
 	{
 		log.info("======= post roomReserve =======");
 		ModelAndView modelAndView = new ModelAndView();
