@@ -47,7 +47,6 @@ public class MessengerController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  = (UserVO)authentication.getPrincipal();
-	    log.info("uv:{}", userVO);
 	    userVO = userService.getMypage(userVO);
 		Integer id = userVO.getId();
 		ModelAndView mv = new ModelAndView();
@@ -73,7 +72,6 @@ public class MessengerController {
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
 		mv.addObject("pickList", pl);
-		mv.addObject("message", "all");
 		return mv;
 	}
 	
@@ -88,11 +86,12 @@ public class MessengerController {
 		map.put("keyword", keyword);
 		map.put("kind", kind);
 		List<UserVO> el = messengerService.getSearchResult(map);
+		List<UserVO> pl = pickService.getPickList(id.toString());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", userVO);
 		mv.addObject("myId", id);
 		mv.addObject("empList", el);
-		mv.addObject("message", "search");
+		mv.addObject("pickList", pl);
 		mv.setViewName("/messenger/chat");
 		return mv;
 	}

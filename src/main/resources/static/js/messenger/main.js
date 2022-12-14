@@ -100,9 +100,21 @@ $(".titleLi").click(function() {
  let id = "";
 
 $(".acoArea").on("click", ".empName", function(){
-    console.log("didjkfjld");
+    id = $(this).attr("empId");
+    let name = $(this).attr("value");
+    let email = $('#email'+id).val();
+    let phone = $('#phone'+id).val();
+    let img = $('#yourImg'+id).attr("src");
+    let dep = $('#depN'+id).attr("value");
+    modalChat.style.display = "flex";
+    $("#proImg").attr("src", img);
+    $("#proName").text(name);
+    $("#proDep").text(dep);
+    $("#proEmail").text(email);
+    $("#proPhone").text(phone);
+});
 
-    console.log($(this).attr("value"));
+$(".searchArea").on("click", ".empName", function(){
     id = $(this).attr("empId");
     let name = $(this).attr("value");
     let email = $('#email'+id).val();
