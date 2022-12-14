@@ -37,11 +37,12 @@
 
 	</resultMap>
 
-	<update id="setUpdate" parameterType="BoardVO">
+	<update id="setUpdate" parameterType="BoardVO" >
 		UPDATE BOARD set
-		title=#{title}, CONTENTS =#{contents}
+		title=#{title}, CONTENTS =#{contents}, UPDATEDATE = SYSDATE()
 		WHERE NUM =#{num};
 	</update>
+
 
 	<delete id="setDelete" parameterType="BoardVO">
 		DELETE FROM BOARD WHERE NUM

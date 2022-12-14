@@ -20,6 +20,7 @@ public class BoardVO {
 	private Integer hit; //조회수
 	private Integer sort; // 게시판 구분자 - 1: 공지사항
 	private Timestamp regDate; //등록일자
+	private Timestamp updateDate; //수정일자
 	private MultipartFile[] multipartFiles;
 	private List<FileVO> fileVOs;
 
