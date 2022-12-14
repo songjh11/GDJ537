@@ -13,7 +13,7 @@
 	<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
-    <link rel="stylesheet" href="/css/chatroom.css">
+    <link rel="stylesheet" href="/css/chat/chatroom.css">
     
     
     <link rel="icon" href="/images/favicon.png">
@@ -23,7 +23,7 @@
 
 <body>
     <div id="container" class="container">
-		<input type="hidden" id="sessionId" value="">
+		<input type="hidden" id="sessionId" value="bb">
 	
 		<div class="header">
                 <div class="header-flex">
@@ -36,9 +36,6 @@
                             <span>2</span>
                         </div>
                     </div>
-                    <div class="search">
-                        <img src="/img/chatroom-search.png" width="15px" height="15px">
-                    </div>
                 </div>
             </div>
 		
@@ -46,23 +43,21 @@
 		
 		</div>
 		
-		<div id="yourName">
-			<table class="inputTable">
-				<tr>
-					<th>사용자명</th>
-					<th><input type="text" name="userName" id="userName"></th>
-					<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
-				</tr>
-			</table>
-		</div>
-		<div id="yourMsg">
-			<table class="inputTable">
-				<tr>
-					<th>메시지</th>
-					<th><textarea id="chatting" placeholder="보내실 메시지를 입력하세요." rows="5" cols=""></textarea></th>
-					<th><button onclick="send()" id="sendBtn">보내기</button></th>
-				</tr>
-			</table>
+		<div class="put">
+			<div id="yourName">
+				<table class="inputTable">
+					<tr>
+						<th>사용자명</th>
+						<th><input type="text" name="userName" id="userName" value="bb"></th>
+						<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+					</tr>
+				</table>
+			</div>
+			<div id="msg">
+				<!-- <input type="text" name="userName" id="userName" value="bb"> -->
+				<textarea class="typing-chat" id="chatting" placeholder="보내실 메시지를 입력하세요." cols="70"></textarea>
+				<button onclick="send()" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
+			</div>
 		</div>
 	</div>
 

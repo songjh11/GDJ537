@@ -2,12 +2,14 @@
 	let ws;
 
 	function wsOpen(){
-		ws = new WebSocket("ws://" + location.host + "/chating");
+		ws = new WebSocket("ws://" + location.host + "/chatroom");
 		wsEvt();
 		
 		ws.onopen = onOpen; //접속
 		ws.onclose = onClose; //접속해제
 	}
+	
+	console.log("1. sessionId : ", $("#sessionId").val());
 
 //------------------------------------
 		
@@ -28,6 +30,10 @@
 					  $("#sessionId").val(si); 
 				  }
 			  }else if (d.type =="message"){
+				
+				console.log("d.sessionId : ", d.sessionId);
+				console.log("sessionId : ", $("#sessionId").val());
+				
 				  //내가 보냈을 때
 				  if(d.sessionId==$("#sessionId").val()){
 					  $("#chating").append("<div class='me'>"
@@ -70,7 +76,7 @@
 		}else{
 			wsOpen();
 			$("#yourName").hide();
-			$("#yourMsg").show();
+			$("#msg").show();
 		}
 	}
 
@@ -86,6 +92,8 @@
 			}
 		ws.send(JSON.stringify(option))
 		$('#chatting').val("");
+		
+		console.log("seeeeeeeeee : ", sessionId);
 	}
 	
 //---------------------------------------------

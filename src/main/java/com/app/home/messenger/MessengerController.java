@@ -218,11 +218,12 @@ public class MessengerController {
 		return mv;
 	}
 
+	
+	//--- 소영 ---
+	// 그룹 채팅방
 	@GetMapping("chatroom")
-	public ModelAndView chat3()throws Exception{
-		ModelAndView mv= new ModelAndView();
-		mv.setViewName("messenger/chatroom");
-		return mv;
+	public String chat3()throws Exception{
+		return "messenger/chatroom";
 	}
 
 	
