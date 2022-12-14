@@ -22,8 +22,6 @@
 																<c:if test="${e.departmentVO.depNum eq d.depNum}">
 																	<c:if test="${e.id ne myId}">
 																	<li class="chatLi">
-																		<input type="hidden" id="email${e.id}" value="${e.email}">
-																		<input type="hidden" id="phone${e.id}" value="${e.phone}">
 																		<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
 																			<div class="userAdd">
 																				<input type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
@@ -42,16 +40,11 @@
 													</c:forEach>
 												</c:when>
 												<c:when test="${empty depList}">
-													<div>
-														<a href="../messenger/chat"><img style="width: 30px;" src="/img/messenger/left.png"></a>
-													</div>
 													<c:choose>
 														<c:when test="${not empty empList}">
 															<c:forEach items="${empList}" var="e">
 																<c:if test="${e.id ne myId}">
 																	<li class="chatLi">
-																		<input type="hidden" id="email${e.id}" value="${e.email}">
-																		<input type="hidden" id="phone${e.id}" value="${e.phone}">
 																		<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
 																			<div>
 																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">

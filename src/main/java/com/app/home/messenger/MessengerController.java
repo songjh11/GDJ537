@@ -60,8 +60,9 @@ public class MessengerController {
 		// ------------------ 채팅목록 ------------------
 		List<RoomVO> roomVOs = new ArrayList<>();
 		RoomVO roomVO = new RoomVO();
-		
-		roomVO.setHostId(userVO.getId());
+		UserVO userVO2 = new UserVO();
+		userVO.setId(userVO.getId());
+		roomVO.setUserVO(userVO);
 		
 		roomVOs = messengerService.getRoomList(roomVO);
 		
@@ -271,8 +272,12 @@ public class MessengerController {
 	    userVO  = (UserVO)authentication.getPrincipal();
 	    userVO = userService.getMypage(userVO);
 	    
+	    // 로그인 회원을 방장으로
 		roomVO.setHostId(userVO.getId());
-		
+		UserVO userVO2 = new UserVO();
+		// 방장도 유저이기 때문에 넣어줌
+		userVO2.setId(userVO.getId());
+		roomVO.setUserVO(userVO2);
 		int result = messengerService.setAddRoom(roomVO);
 		
 		if(result > 0 ) {
