@@ -152,12 +152,12 @@
             </div>
 
         </div>    
+        <button type="submit" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;">제 출</button>
 
     </div>
 	            </div>
 	            <!-- End Page Content -->
                 <!-- <button type="button" onclick="checkAll()">제출</button> -->
-                <button type="submit">제출</button>
             </form>
 					
 			</div>
