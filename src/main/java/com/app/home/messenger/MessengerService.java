@@ -43,12 +43,13 @@ public class MessengerService {
 		log.info("채팅방번호 => {} ", roomVO.getRoomNum());
 		
 		if(result > 0) {
-			
+
 			List<UserVO> userVOs = new ArrayList<>();
 			
 			for(int ids : roomVO.getId()) {
+				
 				UserVO userVO = new UserVO();
-				userVO.setId(ids);					
+				userVO.setId(ids);
 				userVOs.add(userVO);
 				
 				roomVO.setUserVOs(userVOs);
