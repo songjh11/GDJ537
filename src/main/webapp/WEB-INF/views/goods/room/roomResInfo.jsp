@@ -51,7 +51,7 @@ ul li {
 						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVOs[0].name}회의실예약정보</h1>
 						<table class="table table-hover">
 							<tr>
-								<th>예약자</th>
+								<th>예약자 ID</th>
 								<th>날짜</th>
 								<th>사용 목적</th>
 								<th>시작 시간</th>

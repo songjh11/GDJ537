@@ -55,7 +55,7 @@
 												<button type="button" class="btn btn-outline-none">보기</button>
 											</a>
 										</td>
-										<td>
+										<td> <!-- &id=${userInfo.id} -->
 											<a href="./roomReserve?goodsId=${good.goodsId }">
 												<button type="button" class="btn btn-outline-none">예약</button>
 											</a>

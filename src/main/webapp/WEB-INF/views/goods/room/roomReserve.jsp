@@ -53,6 +53,9 @@
 							</div>
 
 							<input type="hidden" name="goodsId" value="${goodDetail.goodsId }">
+							<c:forEach items="${timeNotEqual }" var="t">
+								<input type="text" value="${t.startTime }" class="timeCheck">
+							</c:forEach>
 
 							<div class="mb-3">
 								<label>예약날짜</label>
@@ -71,12 +74,13 @@
 
 							<div class="mb-5">
 								<label>예약자</label>
-								<input type="text" name="id" class="form-control" id="member">
+								<input type="text" name="id" class="form-control" id="member" value="${userInfo.id }" readonly>
 							</div>
 
 							<div class="mb-5">
 								<label>부서명</label>
-								<input type="text" class="form-control" id="exampleFormControlInput1" value="인사과">
+								<input type="text" class="form-control" id="exampleFormControlInput1"
+									value="${userInfo.departmentVO.depNum }" readonly>
 							</div>
 
 							<div class="mb-5">
