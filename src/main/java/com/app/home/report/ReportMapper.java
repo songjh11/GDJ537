@@ -93,21 +93,21 @@ public interface ReportMapper {
 			
 			public ReportSorryVO getLicenseSorryReportDetail(ReportSorryVO reportSorryVO) throws Exception;
 			
-			public ReportVO getFinishReport(ReportApplyVO reportApplyVO) throws Exception;
+			public ReportVO getFinishReport(ReportPager reportPager) throws Exception;
 			
-			public Long getCountFinishReport(ReportApplyVO reportApplyVO) throws Exception;
+			public Long getCountFinishReport(ReportPager reportPager) throws Exception;
 			
-			public ReportVO getReturnReport(ReportApplyVO reportApplyVO) throws Exception;
+			public ReportVO getReturnReport(ReportPager reportPager) throws Exception;
 			
-			public Long getCountReturnReport(ReportApplyVO reportApplyVO) throws Exception;
+			public Long getCountReturnReport(ReportPager reportPager) throws Exception;
 			
-			public ReportVO getDoFirstReport(ReportApplyVO reportApplyVO) throws Exception;
+			public ReportVO getDoFirstReport(ReportPager reportPager) throws Exception;
 			
-			public Long getCountDoFirstReport(ReportApplyVO reportApplyVO) throws Exception;
+			public Long getCountDoFirstReport(ReportPager reportPager) throws Exception;
 			
-			public ReportVO getDoFinalReport(ReportApplyVO reportApplyVO) throws Exception;
+			public ReportVO getDoFinalReport(ReportPager reportPager) throws Exception;
 			
-			public Long getCountDoFinalReport(ReportApplyVO reportApplyVO) throws Exception;
+			public Long getCountDoFinalReport(ReportPager reportPager) throws Exception;
 
 
 
