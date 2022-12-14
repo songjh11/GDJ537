@@ -53,8 +53,8 @@
 							<c:forEach items="${timeNotEqual }" var="t">
 								<br>
 								<div class="timeCheck">
-								<input type="text" value="${t.startTime }" class="startTimeCheck">
-								<input type="text" value="${t.endTime }" class="endTimeCheck">
+									<input type="hidden" value="${t.startTime }" class="startTimeCheck">
+									<input type="hidden" value="${t.endTime }" class="endTimeCheck">
 								</div>
 								<br>
 							</c:forEach>
@@ -93,7 +93,10 @@
 							</div>
 
 							<div style="text-align: center;">
-								<button id="resBtn" type="button" class="btn btn-success">예약하기</button>
+								<a href="./roomList">
+									<button type="button" class="btn btn-outline-none">뒤로가기</button>
+								</a>
+								<button id="resBtn" type="button" class="btn btn-outline-none">예약하기</button>
 							</div>
 							<br>
 						</form>
