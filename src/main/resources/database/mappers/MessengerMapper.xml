@@ -81,9 +81,25 @@
 	
 	<!--                       효경                       -->
 	
-	<select id="getRoomList" resultType="RoomVO">
-		SELECT * FROM CHATROOM
+	<select id="getRoomList" parameterType="RoomVO" resultMap="getRoomListResult">
+		SELECT CR.ROOMNUM, CR.REGDATE, CR.ROOMNAME, CR.HOSTID, CR.PW, R.ID
+		FROM CHATROOM CR
+			INNER JOIN
+			ROOMUSER R 
+			ON CR.ROOMNUM = R.ROOMNUM
+		WHERE CR.HOSTID = #{hostId}
+		ORDER BY CR.ROOMNUM ASC
 	</select>
+	<resultMap type="RoomVO" id="getRoomListResult">
+		<id column="ROOMNUM" property="roomNum" />
+		<result column="REGDATE" property="regDate"/>
+		<result column="ROOMNAME" property="roomName"/>
+		<result column="HOSTID" property="hostId"/>
+		<result column="PW" property="pw"/>
+		<collection property="userVOs" javaType="List" ofType="UserVO">
+			<result column="ID" property="id"/>
+		</collection>
+	</resultMap>
 	
 	<insert id="setAddRoomUser" parameterType="RoomVO" ><!-- useGeneratedKeys="true" keyProperty="userNum" -->
 		INSERT INTO  ROOMUSER

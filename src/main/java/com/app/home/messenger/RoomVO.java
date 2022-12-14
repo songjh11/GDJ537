@@ -23,8 +23,10 @@ public class RoomVO {
 	
 	// 유저목록
 	private Integer userNum;
-	// 방장 한명
+	// 유저한명
 	private UserVO userVO;
+	// 유저 여러명
+	private List<UserVO> userVOs;
 	// 방인원의 id를 받을 배열선언
 	private int [] id;
 	

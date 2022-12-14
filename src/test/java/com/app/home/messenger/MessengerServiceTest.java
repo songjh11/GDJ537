@@ -2,6 +2,9 @@ package com.app.home.messenger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +16,20 @@ class MessengerServiceTest {
 
 	@Autowired
 	private MessengerMapper messengerMapper;
+	
+	@Test
+	void getRoomListTest()throws Exception{
+		List<RoomVO> roomVOs = new ArrayList<>();
+		
+		RoomVO roomVO = new RoomVO();
+
+		roomVO.setHostId(2022001);
+		
+		roomVOs = messengerMapper.getRoomList(roomVO);
+		
+		assertNotEquals(0,roomVOs.size());
+		
+	}
 	
 	//@Test
 	void setAddRoomUserTest()throws Exception{
@@ -28,11 +45,9 @@ class MessengerServiceTest {
 	//@Test
 	void setAddRoomTest()throws Exception {
 		
-		UserVO userVO = new UserVO();
-		userVO.setId(5);
 		RoomVO roomVO = new RoomVO();
+		roomVO.setHostId(5);
 		roomVO.setRoomName("채팅방");
-		roomVO.setUserVO(userVO);;
 		
 		
 		int result = messengerMapper.setAddRoom(roomVO);

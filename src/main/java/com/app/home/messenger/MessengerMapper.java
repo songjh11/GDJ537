@@ -22,7 +22,7 @@ public interface MessengerMapper {
 	
 	public int setAddRoomUser(RoomVO roomVO)throws Exception;
 	
-	public List<RoomVO> getRoomList()throws Exception;
+	public List<RoomVO> getRoomList(RoomVO roomVO)throws Exception;
 	
 	
 }

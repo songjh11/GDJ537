@@ -56,6 +56,25 @@ public class MessengerController {
 		List<UserVO> pl = pickService.getPickList(id.toString());
 		
 		mv.addObject("user", userVO);
+		
+		// ------------------ 채팅목록 ------------------
+		List<RoomVO> roomVOs = new ArrayList<>();
+		RoomVO roomVO = new RoomVO();
+		
+		roomVO.setHostId(userVO.getId());
+		
+		log.info("찍힘?");
+		
+		roomVOs = messengerService.getRoomList(roomVO);
+		
+		for(RoomVO roomVO2 : roomVOs) {
+			log.info("채팅방이름 => {} ", roomVO2.getRoomName());
+		}
+		
+		mv.addObject("roomList", roomVOs);
+		mv.setViewName("messenger/chat");
+		// ------------------ 채팅목록 ------------------
+		
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
@@ -251,33 +270,29 @@ public class MessengerController {
 	@GetMapping("addRoom")
 	public String setAddRoom()throws Exception{
 		
-		ModelAndView mv = new ModelAndView();
 		
-		List<RoomVO> roomVOs = new ArrayList<>();
 		
-		roomVOs = messengerService.getRoomList();
-		
-		mv.addObject("roomList", roomVOs);
-		mv.setViewName("messenger/room/addRoom");
-		
-		return "messenger/room/addRoom";
+		return "messenger/chat";
 	}
 	
 	// 채팅방 추가
 	@PostMapping("addRoom")
-	public ModelAndView setAddRoom(HttpSession session, RoomVO roomVO)throws Exception{
+	public ModelAndView setAddRoom(HttpSession session, UserVO userVO, RoomVO roomVO)throws Exception{
 		
-		//임시 ID
-		roomVO.setHostId(5678);
 		ModelAndView mv = new ModelAndView();
 		
-		for(Integer id : roomVO.getId()) {
-			UserVO userVO = new UserVO();
-			userVO.setId(id);
-		}
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  = (UserVO)authentication.getPrincipal();
+	    userVO = userService.getMypage(userVO);
+	    
+		roomVO.setHostId(userVO.getId());
 		
 		int result = messengerService.setAddRoom(roomVO);
 		
+		if(result > 0 ) {
+			log.info("===========채팅방 생성 성공===========");
+		}
 		
 		mv.setViewName("messenger/chat");
 		
