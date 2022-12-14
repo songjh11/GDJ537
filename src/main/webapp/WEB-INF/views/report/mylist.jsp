@@ -267,7 +267,8 @@
                                                 <tr>
                                                     <th>휴가 종류</th>
                                                     <th>휴가 사유</th>
-                                                    <th>휴가 기간</th>
+                                                    <th>휴가 시작일</th>
+                                                    <th>휴가 종료일</th>
                                                     <th>작성일자</th>
                                                     <th colspan="4">승인 상태</th> 
                                                 </tr>
@@ -277,7 +278,8 @@
                                                 	<tr onclick="location.href='/report/detail?reportNum=1&applyNum=${vo.applyNum}';">
                                                 		<td>${vo.categoryName}</td>
                                                 		<td>${vo.text}</td>
-                                                		<td>${vo.period}</td>
+                                                		<td>${vo.startDate}</td>
+                                                		<td>${vo.endDate}</td>
                                                 		<td>${vo.date}</td>
                                                 		<c:choose>
 	                                                		<c:when test="${vo.returns eq 1}">
