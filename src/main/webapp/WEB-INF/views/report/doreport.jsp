@@ -186,16 +186,16 @@
                             		<c:when test="${cat eq 1}">                           		 
 		                            	<nav aria-label="Page navigation example">
 											<ul class="pagination justify-content-center">
-												<li class="page-item ${reportVO.pre?'':'disabled'}">
-													<a class="page-link" href="./doreport?cat=1&page=${reportVO.startNum-1}">《</a>
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./doreport?cat=1&page=${pager.startNum-1}">《</a>
 												</li>
-											<c:forEach begin="${reportVO.startNum}" end="${reportVO.lastNum}" var="i">
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 												<li class="page-item">
 													<a class="page-link" href="./doreport?cat=1&page=${i}">${i}</a>
 												</li>	
 											</c:forEach>
 												<li>
-													<a class="page-link ${reportVO.next?'':'disabled'}" href="./doreport?cat=1&page=${reportVO.lastNum+1}">》</a>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./doreport?cat=1&page=${pager.lastNum+1}">》</a>
 												</li>
 											</ul>
 										</nav>
@@ -203,16 +203,16 @@
 									<c:when test="${cat eq 2}">
 										<nav aria-label="Page navigation example">
 											<ul class="pagination justify-content-center">
-												<li class="page-item ${reportVO.pre?'':'disabled'}">
-													<a class="page-link" href="./doreport?cat=2&page=${reportVO.startNum-1}">《</a>
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./doreport?cat=2&page=${pager.startNum-1}">《</a>
 												</li>
-											<c:forEach begin="${reportVO.startNum}" end="${reportVO.lastNum}" var="i">
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 												<li class="page-item">
 													<a class="page-link" href="./doreport?cat=2&page=${i}">${i}</a>
 												</li>	
 											</c:forEach>
 												<li>
-													<a class="page-link ${reportVO.next?'':'disabled'}" href="./doreport?cat=2&page=${reportVO.lastNum+1}">》</a>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./doreport?cat=2&page=${pager.lastNum+1}">》</a>
 												</li>
 											</ul>
 										</nav>
@@ -220,16 +220,16 @@
 									<c:when test="${cat eq 3}">
 										<nav aria-label="Page navigation example">
 											<ul class="pagination justify-content-center">
-												<li class="page-item ${reportVO.pre?'':'disabled'}">
-													<a class="page-link" href="./doreport?cat=3&page=${reportVO.startNum-1}">《</a>
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./doreport?cat=3&page=${pager.startNum-1}">《</a>
 												</li>
-											<c:forEach begin="${reportVO.startNum}" end="${reportVO.lastNum}" var="i">
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 												<li class="page-item">
 													<a class="page-link" href="./doreport?cat=3&page=${i}">${i}</a>
 												</li>	
 											</c:forEach>
 												<li>
-													<a class="page-link ${reportVO.next?'':'disabled'}" href="./doreport?cat=3&page=${reportVO.lastNum+1}">》</a>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./doreport?cat=3&page=${pager.lastNum+1}">》</a>
 												</li>
 											</ul>
 										</nav>
@@ -237,16 +237,16 @@
 									<c:when test="${cat eq 4}">
 										<nav aria-label="Page navigation example">
 											<ul class="pagination justify-content-center">
-												<li class="page-item ${reportVO.pre?'':'disabled'}">
-													<a class="page-link" href="./doreport?cat=4&page=${reportVO.startNum-1}">《</a>
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./doreport?cat=4&page=${pager.startNum-1}">《</a>
 												</li>
-											<c:forEach begin="${reportVO.startNum}" end="${reportVO.lastNum}" var="i">
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 												<li class="page-item">
 													<a class="page-link" href="./doreport?cat=4&page=${i}">${i}</a>
 												</li>	
 											</c:forEach>
 												<li>
-													<a class="page-link ${reportVO.next?'':'disabled'}" href="./doreport?cat=4&page=${reportVO.lastNum+1}">》</a>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./doreport?cat=4&page=${pager.lastNum+1}">》</a>
 												</li>
 											</ul>
 										</nav>
@@ -254,16 +254,16 @@
 									<c:otherwise>
 										<nav aria-label="Page navigation example">
 											<ul class="pagination justify-content-center">
-												<li class="page-item ${reportVO.pre?'':'disabled'}">
-													<a class="page-link" href="./doreport?cat=2&page=${reportVO.startNum-1}">《</a>
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./doreport?cat=1&page=${pager.startNum-1}">《</a>
 												</li>
-											<c:forEach begin="${reportVO.startNum}" end="${reportVO.lastNum}" var="i">
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 												<li class="page-item">
-													<a class="page-link" href="./doreport?cat=2&page=${i}">${i}</a>
+													<a class="page-link" href="./doreport?cat=1&page=${i}">${i}</a>
 												</li>	
 											</c:forEach>
 												<li>
-													<a class="page-link ${reportVO.next?'':'disabled'}" href="./doreport?cat=2&page=${reportVO.lastNum+1}">》</a>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./doreport?cat=1&page=${pager.lastNum+1}">》</a>
 												</li>
 											</ul>
 										</nav>
