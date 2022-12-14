@@ -86,7 +86,7 @@
 		FROM CHATROOM CR
 			INNER JOIN
 			ROOMUSER R 
-			ON  CR.ROOMNUM = R.ROOMNUM
+			ON CR.ROOMNUM = R.ROOMNUM
 		WHERE CR.HOSTID = #{hostId}
 		ORDER BY CR.ROOMNUM ASC
 	</select>
@@ -95,8 +95,8 @@
 		<result column="REGDATE" property="regDate"/>
 		<result column="ROOMNAME" property="roomName"/>
 		<result column="HOSTID" property="hostId"/>
-		<collection property="userVOs" javaType="UserVO" ofType="List">
-			<!-- <id column="USERNUM" property="userNum"/> -->
+		<result column="PW" property="pw"/>
+		<collection property="userVOs" javaType="List" ofType="UserVO">
 			<result column="ID" property="id"/>
 		</collection>
 	</resultMap>

@@ -44,15 +44,15 @@ public class MessengerService {
 		
 		if(result > 0) {
 			
-			List<UserVO> userVOs = new ArrayList<>();
+//			List<UserVO> userVOs = new ArrayList<>();
 			
 			for(int ids : roomVO.getId()) {
 				
 				UserVO userVO = new UserVO();
 				userVO.setId(ids);					
-				userVOs.add(userVO);
+//				userVOs.add(userVO);
 				
-				roomVO.setUserVOs(userVOs);
+				roomVO.setUserVO(userVO);
 				
 				result = messengerMapper.setAddRoomUser(roomVO);
 				
@@ -64,8 +64,8 @@ public class MessengerService {
 	}
 	
 	// 채팅방 목록
-	public List<RoomVO> getRoomList()throws Exception{
-		return messengerMapper.getRoomList();
+	public List<RoomVO> getRoomList(RoomVO roomVO)throws Exception{
+		return messengerMapper.getRoomList(roomVO);
 	}
 	
 }
