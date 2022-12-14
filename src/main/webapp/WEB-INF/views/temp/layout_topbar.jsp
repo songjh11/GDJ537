@@ -52,10 +52,10 @@
                         <sec:authorize access="!isAuthenticated()">   
                             <!-- 로그인 전 -->
                             <li class="nav-item dropdown no-arrow mx-1">
-                                <a href="/user/login">login</a>
+                                <a href="/user/login">로그인</a>
                             </li>
                             <li class="nav-item dropdown no-arrow mx-1">
-                                <a href="/user/join">Join</a>
+                                <a href="/user/join">회원가입</a>
                             </li>
                         </sec:authorize>
                       
@@ -73,8 +73,6 @@
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">${user.name}</span>
                                     <img class="img-profile rounded-circle"
                                         src="/file/profile/${user.profile}">
-
-
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
