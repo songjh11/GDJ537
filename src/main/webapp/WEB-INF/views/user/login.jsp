@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,16 +12,21 @@ pageEncoding="UTF-8"%>
   rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
   crossorigin="anonymous">
-
+<c:import url="../temp/layout_header.jsp"></c:import>
 </head>
 <body>
+<div id="wrapper">
+<!-- Sidebar import -->
+<c:import url="../temp/layout_sidebar.jsp"></c:import>
+<!-- End of Sidebar -->
+
 <section class="container-fluid col-lg-4 mt-5 min-vh-100">
     <div class="row">
      <div class="container-fluid">
         <h1>로그인</h1>
         <form action="./login" method="post">
             <div class="form-group">
-                <label th:for="username">아이디</label>
+                <label th:for="username">사원번호</label>
                 <input type="text" name="id" class="form-control" placeholder="아이디 입력해주세요">
             </div>
             <div class="form-group">
@@ -35,6 +41,8 @@ pageEncoding="UTF-8"%>
         </form>
      </div>
     </div>
+</section>
+</div>
 <div class="modal fade" id="findPwModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -45,7 +53,7 @@ pageEncoding="UTF-8"%>
       <div class="modal-body">
         <form action="/mail/findpw" method="post">
          <div class="mb-3">
-             <label for="member-email" class="col-form-label"><strong>가입한 ID를 입력하세요</strong>:</label>
+             <label for="member-email" class="col-form-label"><strong>사원번호를 입력하세요</strong>:</label>
              <input type="text" class="form-control" id="member-email" name="id"></input>
           </div>
           <div class="mb-3">
@@ -54,7 +62,7 @@ pageEncoding="UTF-8"%>
           </div>
   
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
         <button type="submit" class="btn btn-primary">비밀번호 찾기</button>
       </div>
         </form>
@@ -62,7 +70,7 @@ pageEncoding="UTF-8"%>
     </div>
   </div>
 </div>
-</section>
+
 
 
 <script
