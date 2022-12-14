@@ -18,11 +18,8 @@
 	<select id="getEmpList" resultMap="getEmpListResult">
 		SELECT * FROM USER E
 			LEFT JOIN
-			PICKDETAIL PD 
-			ON E.ID=PD.YOURID 
-				LEFT JOIN
-				PICK P
-				ON P.PICKNUM=PD.PICKNUM 
+			PICK P
+			ON E.ID=P.YOURID 
 					INNER JOIN
 					DEPARTMENT D
 					ON E.DEPNUM=D.DEPNUM
@@ -40,11 +37,8 @@
 	<select id="getSearchResult" parameterType="Map" resultMap="getEmpListResult">
 		SELECT * FROM USER E
 			LEFT JOIN
-			PICKDETAIL PD 
-			ON E.ID=PD.YOURID 
-				LEFT JOIN
 				PICK P
-				ON P.PICKNUM=PD.PICKNUM 
+				ON E.ID=P.YOURID 
 					INNER JOIN
 					DEPARTMENT D
 					ON E.DEPNUM=D.DEPNUM
@@ -81,6 +75,7 @@
 			<collection javaType="List" ofType="PickVO" property="pickVO">
 				<id column="PICKNUM" property="pickNum"/>
 				<result column="MYID" property="myId"/>
+				<result column="YOURID" property="yourId"/>
 			</collection>
 	</resultMap>
 	

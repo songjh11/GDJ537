@@ -4,17 +4,15 @@ closeBtn.addEventListener("click", e => {
     modalChat.style.display = "none"
 });
 
+let myId = "";
 
 $(".userList").on("click", ".pickBtn", function(){
-    console.log($(this).attr("value"));
-    console.log($(this).children(".pickImg"));
-    let myId = 10;
+    myId = $("#loginUserId").val();
     let yourId = $(this).attr("value");
     let src = $(this).children(".pickImg").attr("src");
     if(src == "/img/star (3).png"){
         src = "/img/star (4).png"
         $(this).children(".pickImg").attr("src", src);
-        console.log($(this).parents(".chatLi"));
         let appendLi = $(this).parents(".chatLi").clone();
         $.ajax({
             type:"GET",
@@ -65,7 +63,7 @@ $(".userList").on("click", ".pickBtn", function(){
 $("#pickRemove").on("click",".pickBtn", function(){
     let pickBtnNum = $(this).attr("value");
     let pr = $(this).parents(".chatLi");
-    let myId = 10;
+    myId = $("#loginUserId").val();
     let yourId = $(this).attr("value");
     let src = "/img/star (3).png"
     //$(this).parents(".chatLi").remove();
@@ -104,8 +102,8 @@ $(".titleLi").click(function() {
 $(".acoArea").on("click", ".empName", function(){
     console.log("didjkfjld");
 
-        console.log($(this).attr("value"));
-        id = $(this).attr("empId");
+    console.log($(this).attr("value"));
+    id = $(this).attr("empId");
     let name = $(this).attr("value");
     let email = $('#email'+id).val();
     let phone = $('#phone'+id).val();

@@ -55,11 +55,12 @@
 						<div class="blank"></div>
 						<h1>채팅목록 자리</h1>
 						<c:import url="./addRoom.jsp"></c:import>
+
 					</div>
 					<div class="chatDiv">
 						<div class="blank"></div>
 						<div class="profile">
-							<img src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
+							<img src="/img/${user.profile}" width="200" height="200" style="border-radius: 50%;">
 							<h2 class="h2title">Goodee Company</h2>
 							<div class="proArea">
 								<p>${user.id}</p>

@@ -21,10 +21,6 @@
 											<!-- <div>임시쪽지보내기버튼
 												<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
 											</div> -->
-			
-											
-
-
 										</div>
 									</div>
 								</div>
@@ -51,10 +47,10 @@
 							</form>
 						</div>
 						<!-- 채팅방생성 모달 버튼 -->
-						<h1>${myId}</h1>
 						<div class="btnArea d-flex flex-row-reverse">
 							<button type="button" id="userBtn"><img class="roomImg" src="/img/messenger/chatAdd.png"></button>
 						</div>
+						<input type="hidden" id="loginUserId" value="${user.id}">
 						<ul class="chatUl" style="overflow-y: scroll; overflow-x: hidden; height: 560px;">
 							<li class="titleLi">
 								<span style="margin-left: 20px;">즐겨찾기</span>
@@ -130,15 +126,16 @@
 																<c:if test="${empty e.pickVO}">
 																	<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>	
 															</c:if>
-
 																	<c:forEach items="${e.pickVO}" var="p">
 																		<c:choose>
 																			<c:when test="${not empty p}">
-																			<c:if test="${p.myId eq '2022001'}">
-																			<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																			<c:if test="${p.myId eq myId}">
+																				<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (4).png"></button>
 																			</c:if>
-																			</c:when>
-															
+																			<c:if test="${p.myId ne myId}">
+																				<button type="button" class="pickBtn" value="${e.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																			</c:if>
+																			</c:when>															
 																	</c:choose>
 																</c:forEach>
 															</div>

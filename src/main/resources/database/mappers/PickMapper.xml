@@ -18,85 +18,40 @@
 
 	<insert id="createPick" parameterType="String">
 		INSERT INTO PICK
-		(MYID)
-		VALUES(#{myId})
+		(MYID, YOURID)
+		VALUES(#{myId}, #{yourId})
 	</insert>
 	
 	<insert id="setPick" parameterType="Map">
-		INSERT INTO PICKDETAIL
-		(YOURID, PICKNUM)
-		VALUES(#{yourId}, #{pickNum});
+		INSERT INTO PICK
+		(YOURID)
+		VALUES(#{yourId});
 	</insert>
 	
 	<select id="getPickList" parameterType="String" resultMap="pickListResult">
 		SELECT * FROM USER E
 			INNER JOIN
-			PICKDETAIL PD 
-			ON E.ID=PD.YOURID 
-				INNER JOIN
-				PICK P
-				ON P.PICKNUM=PD.PICKNUM 
+			PICK P
+			ON E.ID=P.YOURID 
 					INNER JOIN
 					DEPARTMENT D
 					ON E.DEPNUM=D.DEPNUM
 						INNER JOIN
 					 	ROLE R
 					 	ON E.ROLENUM=R.ROLENUM	
-			WHERE P.MYID=#{myId}		 	
+			WHERE P.MYID=#{myId}	 	
 		ORDER BY D.DEPNUM, E.NAME
 	</select>
 	
 	<select id="perCheck" parameterType="Map" resultType="int">
-		SELECT COUNT(*) FROM PICKDETAIL
+		SELECT COUNT(*) FROM PICK
 		WHERE PICKNUM=#{pickNum} AND YOURID=#{yourId}
 	</select>
 	
 	<delete id="pickCancel" parameterType="Map">
-		DELETE FROM PICKDETAIL
+		DELETE FROM PICK
 		WHERE PICKNUM=#{pickNum} AND YOURID=#{yourId}
 	</delete>
-	
-	<!-- <select id="getDepList" resultType="DepartmentVO">
-		SELECT * FROM DEPARTMENT
-		ORDER BY DEPNUM
-	</select>
-	
-	<select id="getSearchResult" parameterType="Map" resultMap="getEmpListResult">
-		SELECT * FROM EMPLOYEE E
-			INNER JOIN
-			DEPARTMENT D
-			ON E.DEPNUM=D.DEPNUM
-			INNER JOIN
-				 	ROLE R
-				 	ON E.ROLENUM=R.ROLENUM	
-				 	<if test="kind!=null">
-						<include refid="search"></include> 	
-				 	</if>
-			ORDER BY D.DEPNUM, E.NAME
-	</select>
-	
-	
-	<resultMap type="EmployeeVO" id="getEmpListResult">
-		<id column="NUM" property="num"/>
-		<result column="ID" property="id"/>
-		<result column="ROLENUM" property="roleNum"/>
-		<result column="DEPNUM" property="depNum"/>
-		<result column="PW" property="pw"/>
-		<result column="NAME" property="name"/>
-		<result column="EMAIL" property="email"/>
-		<result column="PHONE" property="phone"/>
-		<result column="ENTDATE" property="entDate"/>
-		<result column="PROFILES" property="profiles"/>
-		<result column="STATUS" property="status"/>
-			<association property="roleVO">
-				<id column="ROLENUM" property="roleNum"/>
-				<result column="ROLENAME" property="roleName"/>  
-			</association>
-			<association property="departmentVO">
-				<id column="DEPNUM" property="depNum"/>
-				<result column="DEPNAME" property="depName"/>
-			</association>
-	</resultMap> -->
 	
 	<resultMap type="UserVO" id="pickListResult">
 		<id column="NUM" property="num"/>
@@ -121,6 +76,7 @@
 			<collection javaType="List" ofType="PickVO" property="pickVO">
 				<id column="PICKNUM" property="pickNum"/>
 				<result column="MYID" property="myId"/>
+				<result column="YOURID" property="yourId"/>
 			</collection>
 	</resultMap>
 	
