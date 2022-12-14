@@ -47,7 +47,7 @@
 					<div class="chatDiv">
 						<div class="blank"></div>
 						<h1>채팅목록 자리</h1>
-						<c:import url="./room/addRoom.jsp"></c:import>
+						<c:import url="./addRoom.jsp"></c:import>
 					</div>
 					<div class="chatDiv">
 						<div class="blank"></div>
