@@ -84,7 +84,7 @@
 			            			<div class="row justify-content-between">
 			            				<div class="col-auto align-self-center">
 			            				  <a href="/request/hit?num=${request.num }">
-						                  	<h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 17px">[요청] ${request.title }</h5>
+						                  	<h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 17px">[요청] ${request.title }  (${request.cntComment})</h5>
 						                  </a>
 						                 </div>
 						                 <div class="col-fill ml-auto align-self-end mr-5">

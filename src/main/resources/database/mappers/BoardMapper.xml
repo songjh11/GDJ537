@@ -49,10 +49,13 @@
 	</delete>
 
 	<select id="getList" parameterType="Pager" resultType="BoardVO">
-		SELECT * FROM BOARD
+		SELECT B.*, COUNT(C.COMMENTNUM) as cntComment FROM BOARD B
+		LEFT JOIN COMMENT C
+		ON B.NUM = C.NUM
 		WHERE SORT = #{sort}
 		AND
-		<include refid="search"></include>
+		B.<include refid="search"></include>
+		GROUP BY B.NUM
 		ORDER BY NUM DESC
 		LIMIT ${startRow}, ${perPage}
 	</select>

@@ -85,8 +85,8 @@
                     <div class="row justify-content-between">
                       <div class="col-auto align-self-center">
                         <a href="/unknown/hit?num=${unknown.num }">
-                          <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 17px">[익명] ${unknown.title
-                            }</h5>
+                          <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 17px">
+                          [익명] ${unknown.title} (${unknown.cntComment})</h5>
                         </a>
                       </div>
                       <div class="col-fill ml-auto align-self-end mr-5">
