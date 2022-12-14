@@ -145,8 +145,8 @@
                                 <div style="margin-left: 150px; width: 650px; height: 100px; margin-top: -64px; letter-spacing: 25px;">
                                     <div class="d-flex" style="font-weight: bold; margin-left: 90px; margin-top: 35px; font-size: 15px;">
                                         <!-- 아래 시작 날 ~ 끝 날이 뺄셈을 해서 몇일이 나오는지 값을 담아줌 -->
-                                        <input type="hidden" id="dayGap" name="period"/>
-                                        <input type="number" id="y1" style="width: 60px; border:0 solid black; text-align:right" value="2022"/>
+                                        <!-- <input type="hidden" id="dayGap" name="period"/>
+                                        <input type="datetime-local" id="y1" style="width: 60px; border:0 solid black; text-align:right" value="2022"/>
                                         <div>년</div>
                                         <input type="number" id="m1" style="width: 40px; border:0 solid black; text-align:right" value="12"/>
                                         <div>월</div>
@@ -158,7 +158,10 @@
                                         <input type="number" id="m2" style="width: 40px; border:0 solid black; text-align:right" value="12"/>
                                         <div>월</div>
                                         <input type="number" id="d2" style="width: 40px; border:0 solid black; text-align:right" value="30"/>
-                                        <div>일</div>
+                                        <div>일</div> -->
+                                        <input type="datetime-local">
+                                            <div>~</div>
+                                        <input type="datetime-local">
                                     </div>
                                 </div>
                             </div>
