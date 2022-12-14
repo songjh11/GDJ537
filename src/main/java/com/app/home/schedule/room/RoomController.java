@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.home.schedule.car.CarService;
 import com.app.home.schedule.goods.GoodsService;
 import com.app.home.schedule.goods.GoodsVO;
 import com.app.home.schedule.goods.ReserveVO;
@@ -23,16 +24,21 @@ public class RoomController
 {
 	@Autowired
 	private RoomService roomService;
+	@Autowired
+	private CarService carService;
 
 	@GetMapping("/room/roomList")
-	public ModelAndView getRoomList(GoodsVO goodsVO) throws Exception
+	public ModelAndView getRoomList(GoodsVO goodsVO, ReserveVO reserveVO) throws Exception
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		List<GoodsVO> goodsVOs = roomService.getRoomList(goodsVO);
+		// List<ReserveVO> reserveVOs = carService.getReserveList(reserveVO);
 
 		log.info("goodVO list: {}", goodsVOs);
+		// log.info("reserve: {}", reserveVOs);
 
 		modelAndView.addObject("goodVO", goodsVOs);
+		// modelAndView.addObject("reserveVO", reserveVOs);
 		modelAndView.setViewName("/goods/room/roomList");
 
 		return modelAndView;
