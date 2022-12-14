@@ -12,6 +12,7 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 </style>
+<link rel="stylesheet" href="/css/chat/chatRoom.css">
 <link rel="stylesheet" href="/css/chat/groupModal.css">
 <link rel="stylesheet" href="/css/chat/employeeList.css">
 <style>
@@ -48,8 +49,12 @@
 					</div>
 					<div class="chatDiv" id="chatArea">
 						<div class="blank"></div>
-							<c:import url="./groupModal.jsp"></c:import>
-							<c:import url="./employeeList.jsp"></c:import>
+						<c:import url="./groupModal.jsp"></c:import>
+						<c:import url="./employeeList.jsp"></c:import>
+						<!-- 채팅방생성 모달 버튼 -->
+						<div class="d-grid gap-2 col-6 mx-auto">
+							<button class="btn btn-primary" id="userBtn" type="button">그룹채팅 & 그룹쪽지</button>
+						</div>
 					</div>
 					<div class="chatDiv">
 						<div class="blank"></div>
