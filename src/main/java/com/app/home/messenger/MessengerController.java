@@ -54,26 +54,7 @@ public class MessengerController {
 		List<DepartmentVO> dl = messengerService.getDepList();
 		List<UserVO> el = messengerService.getEmpList();
 		List<UserVO> pl = pickService.getPickList(id.toString());
-
-		// ----------------- 채팅목록 -----------------
-		List<RoomVO> roomVOs = new ArrayList<>();
-		RoomVO roomVO = new RoomVO();
 		
-		roomVO.setHostId(userVO.getId());
-		
-		log.info("찍힘?");
-		
-		roomVOs = messengerService.getRoomList(roomVO);
-		
-		for(RoomVO roomVO2 : roomVOs) {
-			log.info("채팅방이름 => {} ", roomVO2.getRoomName());
-		}
-		
-		mv.addObject("roomList", roomVOs);
-		mv.setViewName("messenger/chat");
-		// ----------------- 채팅목록 -----------------
-		
->>>>>>> chatRoomList
 		mv.addObject("user", userVO);
 		
 		// ------------------ 채팅목록 ------------------
