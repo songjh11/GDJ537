@@ -111,12 +111,28 @@ $("#dateParse").val(sumD.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3'));
 console.log("dateParse : ", sumD.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3'));
 
 
-$("#vcaBtn").click(function(){
+// $("#vcaBtn").click(function(){
 
-    console.log("제출 버튼 클릭");
-    $("#vcaFrm").submit();
+//     console.log("제출 버튼 클릭");
+//     $("#vcaFrm").submit();
 
-});
+// });
 
+
+let checkRadio = document.querySelector("#checkRadio");
+let textArea = document.querySelector("#textArea");
+let callInput = document.querySelector("#callInput");
+
+
+function allCheck(){
+    let result = nullCheck(checkRadio.value);
+    let result2 = nullCheck(textArea.value);
+    let result3 = nullCheck(callInput.value);
+    if(result&&result2&&result3){
+        $("#vcaFrm").submit();
+    }else{
+        alert("빈칸이 있습니다.");
+    }
+}
 
 

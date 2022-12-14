@@ -55,6 +55,7 @@
 
 
             <input type="hidden" name="id" value="${user.id}">
+            <input type="hidden" name="depNum" value="${vo.depNum}">
 
 	            <div class="container-fluid">
 						<div class="container px-4 px-lg-5 my-5">
@@ -190,7 +191,7 @@
         </div>    
     </div>
 </form>
-        <button type="button" style="float: right;" class="btn btn-secondary" id="vcaBtn">제출</button>
+        <button type="button" style="float: right;" onclick="allCheck()" class="btn btn-secondary" id="vcaBtn">제출</button>
 	            </div>
 	            <!-- End Page Content -->
 					
