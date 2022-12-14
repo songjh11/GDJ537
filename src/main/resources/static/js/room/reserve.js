@@ -81,21 +81,22 @@ startTime.addEventListener("blur", function () {
         var eTime = b1.replace(':', '');
         var endTimeNumber = parseFloat(eTime);
 
-        console.log("예약된 시간: " + startTimeNumber);
-        console.log("예약된 종료 시간: " + endTimeNumber);
+        // console.log("예약된 시간: " + startTimeNumber);
+        // console.log("예약된 종료 시간: " + endTimeNumber);
 
-        console.log("예약시작시간보다 선택한 시간이 클때: ", startTimeNumber < selectStartTime);
-        console.log("선택한 시간이 예약 종료 시간보다 작을때: ", selectStartTime <= endTimeNumber);
-        console.log("if에 들어감: " + (startTimeNumber < selectStartTime || selectStartTime <= endTimeNumber) == true);
+        // console.log("예약시작시간보다 선택한 시간이 클때: ", startTimeNumber < selectStartTime);
+        // console.log("선택한 시간이 예약 종료 시간보다 작을때: ", selectStartTime <= endTimeNumber);
+        // console.log("if에 들어감: " + (startTimeNumber < selectStartTime || selectStartTime <= endTimeNumber) == true);
 
         if ((startTimeNumber < selectStartTime && selectStartTime <= endTimeNumber) == true) {
-            alert("예약 불가능한 시간입니다.");
+            alert("예약된 시간입니다.");
+            return false;
         }
         else {
             timeCheck = true;
         }
-        console.log("timeCheck: " + timeCheck);
-        console.log("----------------------");
+        // console.log("timeCheck: " + timeCheck);
+        // console.log("----------------------");
     })
 
 
@@ -204,24 +205,6 @@ endTime.addEventListener("blur", function () {
 
 })
 
-purpose.addEventListener("click", function () {
-    console.log("사용목적 클릭시")
-    // CalculatorEndTime();
-    if (endTime.value == '') {
-        endText.style.display = 'block';
-        endValueCheck = false;
-    }
-    else {
-        endText.style.display = 'none';
-        endValueCheck = true;
-    }
-    console.log("startTime: " + startCheck);
-    console.log("endTime: " + endCheck);
-    console.log("startValueCheck: " + startValueCheck);
-    console.log("endValueCheck: " + endValueCheck);
-    console.log("timeCheck: " + timeCheck);
-})
-
 purpose.addEventListener("blur", function () {
     if ((purpose.value) != '') {
         purposeCheck = true;
@@ -242,16 +225,33 @@ purpose.addEventListener("blur", function () {
 })
 
 btn.addEventListener("click", function () {
-    let a = confirm("정말 예약하시겠습니까?");
+    console.log("버튼 클릭시")
+    CalculatorEndTime();
 
-    if ((a && startCheck && endCheck && purposeCheck && startValueCheck && endValueCheck && timeCheck) == true) {
-        frm.submit();
-    }
-    else if (a == false) {
-        alert("취소하였습니다.");
-    }
+    console.log("startTime: " + startCheck);
+    console.log("endTime: " + endCheck);
+    console.log("startValueCheck: " + startValueCheck);
+    console.log("endValueCheck: " + endValueCheck);
+    console.log("timeCheck: " + timeCheck);
+
     if ((startCheck == false || endCheck == false || purposeCheck == false || startValueCheck == false || endValueCheck == false || timeCheck == false)) {
-        alert("조건을 충족하지 못하였습니다.");
+        alert("조건을 충족하지 못하였습니다. (다시 입력하세요~)");
+        return false;
+    }
+    else {
+        
+        
+        let a = confirm("정말 예약하시겠습니까?");
+        
+        if ((a && startCheck && endCheck && purposeCheck && startValueCheck && endValueCheck && timeCheck) == true) {
+            frm.submit();
+        }
+        else if (a == false) {
+            alert("취소하였습니다.");
+        }
+        // if ((startCheck == false || endCheck == false || purposeCheck == false || startValueCheck == false || endValueCheck == false || timeCheck == false)) {
+        //     alert("조건을 충족하지 못하였습니다.");
+        // }
     }
 })
 // -----------------------------------------

@@ -1,9 +1,7 @@
-$(".startTime").each(function () {
-    // var a = $(this).val().replace('T', ' ');
-    // console.log(a);
 
-    var a = $("#info").find('td:eq(3)').text();
+$("#info").each(function () {
+    var a = $(this).find('td:eq(3)');
     
     console.log(a);
-
 })
+

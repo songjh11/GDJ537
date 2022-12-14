@@ -63,7 +63,7 @@ ul li {
 									<td>${ro.id }</td>
 									<td>${ro.date }</td>
 									<td>${ro.usePurpose }</td>
-									<td class="startTime">${ro.startTime }</td>
+									<td>${ro.startTime }</td>
 									<td>${ro.endTime }</td>
 								</tr>
 							</c:forEach>
