@@ -6,9 +6,9 @@
 						  <thead>
 						    <tr>
 						      <th scope="col">#</th>
-						      <th scope="col">First</th>
-						      <th scope="col">Last</th>
-						      <th scope="col">Handle</th>
+						      <th scope="col">인원</th>
+						      <th scope="col">채팅방이름</th>
+						      <th scope="col">참여</th>
 						    </tr>
 						  </thead>
 						  <tbody>
