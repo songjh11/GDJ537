@@ -38,65 +38,78 @@
 				<!-- End of Topbar -->
 				
 				<!-- Begin Page Content -->
-	            <div class="container-fluid">
-	
-	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800" id="title" >공용 시설 추가</h1>
-					<P>* 표시는 필수항목입니다.</P>
-	            	
-	            	<form action="add" method="post" enctype="multipart/form-data" id="addform">
-	            	 <div class="mb-3">
-	            	 	<div>
-					    	<label for="exampleInputName" class="form-label" style="font-weight : bold">*종류</label>
-					    </div>
-					    <label class="test_obj">
-						    <input type="radio" name="goodsId" value="RO" id="kind">
-						    <span>회의실</span>
-						</label>
+	            <div class="container-fluid justify-content-center">
+					<section class="container col-lg-4 justify-content-center" style="text-align: center;">
+						<!-- Page Heading -->
+						<h1 class="h3 mb-4 text-gray-800" id="title" >공용 시설 추가</h1>
+						<P>* 표시는 필수항목입니다.</P>
+						
+						<form action="add" method="post" enctype="multipart/form-data" id="addform">
+						<div class="mb-3">
+							<div>
+								<label for="exampleInputName" class="form-label" style="font-weight : bold">*종류</label>
+							</div>
+							<label class="test_obj">
+								<input type="radio" name="goodsId" value="RO" id="kind">
+								<span>회의실</span>
+							</label>
 
-						<label class="test_obj">
-						    <input type="radio" name="goodsId" value="CA" id="kind">
-						    <span>차량</span>
-						</label>
-						<div id="kinddiv" class="check"></div>
+							<label class="test_obj">
+								<input type="radio" name="goodsId" value="CA" id="kind">
+								<span>차량</span>
+							</label>
+							<div id="kinddiv" class="check"></div>
 
-					  </div>
-					  <div class="mb-3">
-					    <label for="exampleInputName" class="form-label" style="font-weight : bold">*시설 이름</label>
-					    <input type="text" class="form-control" id="name" name="name">
-						<div id="namediv" class="check"></div>
-					  </div>
-					  <div class="mb-3">
-					    <label for="exampleInputContents" class="form-label">시설 설명</label>
-			            <textarea  class="form-control add_ele" id="contents" name="contents"></textarea>
-					  </div>
-					  <div class="mb-3">
-					    <label for="exampleInputMax" class="form-label" style="font-weight : bold">*최대 인원</label>
-					    <input type="text" class="form-control" id="max" name="max">
-						<div id="maxdiv" class="check"></div>
-					  </div>
-					  <div class="mb-3">
-						<label for="exampleInputLocation" class="form-label" style="font-weight : bold">*시설 위치</label>
-						<input type="text" class="form-control" id="location" name="location">
-						<div id="locationdiv" class="check"></div>
-					  </div>
-					  <div class="mb-3" style="display: none;" id="carChecked">
-						<label for="exampleInputLocation" class="form-label" style="font-weight : bold">*차량 번호</label>
-						<input type="text" class="form-control" id="carNum" name="carNum">
-						<div id="carNumdiv" class="check"></div>
-					  </div>
-					  <div class="board-filetitle" style="font-weight : bold">*이미지 첨부  
-			          	<div class="mb-3" id="fileAddResult">      
-			            </div>
-			          </div>
-			          <div class="mb-3">
-			          	<button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
-						  <div id="imgdiv" class="check"></div>
-			          </div>
-					  <input type="button" class="btn btn-primary" id="sub" value="시설 추가">
-					</form>
-	
-	            </div>
+						</div>
+						<div class="mb-3">
+							<label for="exampleInputName" class="form-label" style="font-weight : bold">*시설 이름</label>
+							<div style="text-align: center;">
+								<input type="text" class="form-control" id="name" name="name" >
+							</div>
+							<div id="namediv" class="check"></div>
+						</div>
+						<div class="mb-3">
+							<label for="exampleInputContents" class="form-label">시설 설명</label>
+							<div style="text-align: center;">
+								<textarea  class="form-control add_ele" id="contents" name="contents"></textarea>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="exampleInputMax" class="form-label" style="font-weight : bold">*최대 인원</label>
+							<div style="text-align: center;">
+								<input type="text" class="form-control" id="max" name="max">
+							</div>
+							<div id="maxdiv" class="check"></div>
+						</div>
+						<div class="mb-3">
+							<label for="exampleInputLocation" class="form-label" style="font-weight : bold">*시설 위치</label>
+							<div style="text-align: center;">
+								<input type="text" class="form-control" id="location" name="location">
+							</div>
+							<div id="locationdiv" class="check"></div>
+						</div>
+						<div class="mb-3" style="display: none;" id="carChecked">
+							<label for="exampleInputLocation" class="form-label" style="font-weight : bold">*차량 번호</label>
+							<div style="text-align: center;">
+								<input type="text" class="form-control" id="carNum" name="carNum">
+							</div>
+							<div id="carNumdiv" class="check"></div>
+						</div>
+						<div style="text-align: center;">
+							<div class="board-filetitle" style="font-weight : bold">*이미지 첨부  
+								<div class="mb-3" id="fileAddResult">      
+								</div>
+							</div>
+						</div>
+						<div class="mb-3">
+							<button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
+							<div id="imgdiv" class="check"></div>
+						</div>
+						<input type="button" class="btn btn-primary" id="sub" value="시설 추가" style="margin-top: 50px;">
+						</form>
+		
+					</div>
+				</section>
 	            <!-- End Page Content -->
 					
 			</div>
