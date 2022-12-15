@@ -81,6 +81,12 @@
 	
 	<!--                          효경                          -->
 	
+	<!--                       비밀번호가 있는지 없는지 조회                       -->
+	<select id="getRoomPw" parameterType="RoomVO" resultType="RoomVO">
+		SELECT PW FROM CHATROOM WHERE ROOMNUM = #{roomNum}
+	</select>
+	
+	<!--                       채팅방 인원 수 조회                       -->
 	<select id="getUserCount" parameterType="RoomVO" resultType="Integer">
 		SELECT COUNT(ID) 
 		FROM ROOMUSER RU

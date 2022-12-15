@@ -11,11 +11,31 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.app.home.user.UserVO;
 
+import lombok.extern.slf4j.Slf4j;
+import software.amazon.awssdk.crt.Log;
+
 @SpringBootTest
+@Slf4j
 class MessengerServiceTest {
 
 	@Autowired
 	private MessengerMapper messengerMapper;
+	
+	//@Test
+	void getPw()throws Exception{
+		
+		RoomVO roomVO = new RoomVO();
+		roomVO.setRoomNum(26);
+		
+		roomVO = messengerMapper.getRoomPw(roomVO);
+		
+		int result = roomVO.getPw();
+		
+		log.info("비밀번호 나오닝? ====> {} ", roomVO.getPw());
+		
+		assertNotEquals(result, 0);
+		
+	}
 	
 	//@Test
 	void getUserCount()throws Exception{

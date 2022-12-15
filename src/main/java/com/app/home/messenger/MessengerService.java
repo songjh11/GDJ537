@@ -65,13 +65,19 @@ public class MessengerService {
 		return result;
 	}
 	
-	// 채팅방 목록
+	// 채팅방 목록 조회
 	public List<RoomVO> getRoomList(RoomVO roomVO)throws Exception{
 		return messengerMapper.getRoomList(roomVO);
 	}
 	
+	// 채팅방 인원 수 조회
 	public int getUserCount(RoomVO roomVO)throws Exception{
 		return messengerMapper.getUserCount(roomVO);
+	}
+	
+	// 비밀번호가 있는지 없는지 조회
+	public RoomVO getRoomPw(RoomVO roomVO)throws Exception{
+		return messengerMapper.getRoomPw(roomVO);
 	}
 	
 }

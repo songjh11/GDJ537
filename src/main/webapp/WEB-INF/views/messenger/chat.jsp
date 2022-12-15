@@ -76,5 +76,6 @@
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 	<script src="/js/messenger/main.js"></script>
 	<script src="/js/messenger/groupModal.js"></script>
+	<script src="/js/messenger/roomPw.js"></script>
 </body>
 </html>

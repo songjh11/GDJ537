@@ -24,7 +24,7 @@
 										<img class="yourImg" src="/img/undraw_profile_3.svg">
 									</div>
 									<div class="col text-center" style="margin-left: 3%;">
-										<a href="./chatroom?roomNum=${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+										<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
 									</div>
 									<div class="col text-center">
 										${roomVO.roomName}
