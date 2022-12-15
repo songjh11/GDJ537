@@ -25,8 +25,8 @@
 						</div>
 						<!-- 사원 검색 -->
 						<div style="display: flex; align-items: center; height: 57px;">
-							<form action="searchEmp" method="POST" class="form-inline navbar-search" style="width: 100%; display: flex; justify-content: flex-end; margin-right: 10px;">
-								<div class="input-group" style="width: 100%;"> 
+							<form action="searchEmp" method="POST" class="form-inline navbar-search" style="width: 100%; display: flex; margin-right: 10px;">
+								<div class="input-group" style="width: 92%;"> 
 									<select class="searchOption form-control" id="kind" name="kind" value="">
 										<option value="0" selected>선택</option>
 										<option value="0">이름</option>
@@ -36,10 +36,13 @@
 									<input type="text" id="keyword" name="keyword" class="form-control bg-light border-0 small" style="width: 180px !important;" placeholder="Search for..."
 									aria-label="Search" aria-describedby="basic-addon2">
 									<div class="input-group-append">
-										<button class="btn btn-primary" type="submit">
+										<button class="btn btn-primary" type="submit" id="searchBtn">
 											<i class="fas fa-search fa-sm"></i>
 										</button>
 									</div>
+								</div>
+								<div style="margin-left: 12px;">
+									<a href="../messenger/chat"><img style="width: 32px;" src="/img/messenger/left.png"></a>
 								</div>
 							</form>
 						</div>
@@ -149,9 +152,7 @@
 								</c:when>
 								<c:when test="${empty depList}">
 									<!-- 검색 시 사원 목록(부서목록X) -->
-									<div>
-										<a href="../messenger/chat"><img style="width: 30px;" src="/img/messenger/left.png"></a>
-									</div>
+									
 									<!-- 즐찾 시작 -->
 									<li class="titleLi">
 										<span style="margin-left: 20px;">즐겨찾기</span>

@@ -6,6 +6,10 @@ closeBtn.addEventListener("click", e => {
 
 let myId = "";
 
+$("#searchBtn").click(function(){
+    console.log("ddsfds");
+})
+
 $(".userList").on("click", ".pickBtn", function(){
     myId = $("#loginUserId").val();
     let yourId = $(this).attr("value");
