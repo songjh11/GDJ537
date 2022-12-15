@@ -192,7 +192,7 @@ public class ReportController {
 	public List<UserVO> getReportList1(UserVO userVO, Model model) throws Exception{
 //		UserVO userVO = new UserVO();
 		
-		
+		log.info("userVO :::: {} " ,userVO);
 		ModelAndView mv = new ModelAndView();
 
 		
@@ -201,7 +201,7 @@ public class ReportController {
 //		model.addAttribute("reportPager", userVO);
 //		log.info("dddd ====>>>> {}", reportPager.getStartNum());
 		
-		
+		log.info("lsttst====== > {} " , ar.get(0).getLstatus());
 		
 //		log.info("depNum :: {} " , ar.get(0).getDepartmentVO().getDepName());
 
@@ -293,9 +293,9 @@ public class ReportController {
 	//승인자 테이블에서 권한을 다시 회수하기 위해 승인자 테이블에서 delete
 	@RequestMapping(value = "/report/deleteLicenser", method = RequestMethod.POST)
 	@ResponseBody
-	public int setLicenserDelete(UserVO userVO, Model model) throws Exception{
+	public int setLicenserUpdate(UserVO userVO, Model model) throws Exception{
 		
-		int result = reportService.setLicenserDelete(userVO);
+		int result = reportService.setLicenserUpdate(userVO);
 		model.addAttribute("result", result);
 		
 		return result;

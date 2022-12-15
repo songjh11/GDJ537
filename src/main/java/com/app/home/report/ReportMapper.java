@@ -51,7 +51,7 @@ public interface ReportMapper {
 	
 	public Long getReportListCount(ReportPager reportPager) throws Exception;
 	
-	public int setLicenserDelete(UserVO userVO) throws Exception;
+	public int setLicenserUpdate(UserVO userVO) throws Exception;
 	
 	
 	
