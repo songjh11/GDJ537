@@ -56,11 +56,11 @@
 	<insert id="setRoomReserve" parameterType="GoodsRoomVO">
 		insert into RESERVE
 		values(null, #{goodsId},
-		#{id},
-		#{startTime},
-		#{endTime},
+		now(), #{id},
 		#{usePurpose},
-		now())
+		#{startTime},
+		#{endTime}
+		)
 	</insert>
 
 	<select id="getReserveStartTime" parameterType="List"
@@ -98,5 +98,11 @@
 			<result column="location" property="location" />
 		</collection>
 	</resultMap>
+
+	<select id="getStartTime" parameterType="List"
+		resultType="ReserveVO">
+		select STARTTIME, ENDTIME from RESERVE where GOODSID =
+		#{goodsId}
+	</select>
 
 </mapper>    
