@@ -1,3 +1,10 @@
+
+// 예약자 번호 숫자형으로 변환
+var memNum = $("#member").val();
+let tt = parseFloat(memNum);
+$("#member").val(tt);
+
+// -----------------------------------------
 const btn = document.getElementById("resBtn");
 const frm = document.getElementById("frm");
 const startTime = document.getElementById("start");
@@ -15,9 +22,11 @@ endCheck = false;
 endValueCheck = false;
 purposeCheck = false;
 timeCheck = false;
+holidayCheck = false;
+betweenDayCheck = false;
 
 startTime.addEventListener("blur", function () {
-    console.log(startTime.value);
+    // console.log(startTime.value);
 
     var startDate = startTime.value.toString().substr(0, 10);
 
@@ -53,13 +62,19 @@ startTime.addEventListener("blur", function () {
     }
 
     // -------------------------------------------------------------
-    // 이미 예약된 시간 확인
+    // 이미 예약된 시간 확인 - 선택한 시작 시간
     var restart = startTime.value.replace('T', '');
     var restar = restart.replace(/-/gi, '');
     var rest = restar.replace(':', '');
     var selectStartTime = parseFloat(rest);
 
-    console.log("선택한 시작 시간: " + rest);
+    // 선택한 종료시간
+    var reend = endTime.value.replace('T', '');
+    var reen = reend.replace(/-/gi, '');
+    var ree = reen.replace(':', '');
+    var selectEndTime = parseFloat(ree);
+
+    // console.log("선택한 시작 시간: " + rest);
 
     $(".timeCheck").each(function () {
         var a = $(this).children('.startTimeCheck').val().replace('T', '');
@@ -78,7 +93,7 @@ startTime.addEventListener("blur", function () {
         // console.log("예약시작시간보다 선택한 시간이 클때: ", startTimeNumber < selectStartTime);
         // console.log("선택한 시간이 예약 종료 시간보다 작을때: ", selectStartTime <= endTimeNumber);
         // console.log("if에 들어감: " + (startTimeNumber < selectStartTime || selectStartTime <= endTimeNumber) == true);
-        console.log(startTimeNumber < selectStartTime && selectStartTime <= endTimeNumber);
+        // console.log(startTimeNumber < selectStartTime && selectStartTime <= endTimeNumber);
 
         if (startTimeNumber < selectStartTime && selectStartTime <= endTimeNumber) {
             alert("이미 예약된 시간입니다.");
@@ -89,13 +104,52 @@ startTime.addEventListener("blur", function () {
             // alert("사용 가능한 시간입니다.");
             timeCheck = true;
         }
-        console.log("timeCheck: " + timeCheck);
-        console.log("----------------------");
+
+        // 전체 예약시간 안에 예약된 날짜 있으면 안되게 하기
+        // -> 선택한 예약 시작날과 종료날 사이에 예약된 날짜가 있으면 alert
+        // 내가 선택 - 예약 시작 startDate || 예약 종료일 endDate
+        // 예약된 시간 - startTimeNumber, endTimeNumber
+        // startDate <  startTimeNumber  < endDate ?
+        // -> alert("중간에 예약된 날이 존재합니다.");
+
+        var imchooseStartDate = startTime.value.toString().replace('T', '').replace(/-/gi, '').replace(':', '');
+        var imchooseStartDateFloat = parseFloat(imchooseStartDate);
+        var imchooseEndDate = endTime.value.toString().replace('T', '').replace(/-/gi, '').replace(':', '');
+        var imchooseEndDateFloat = parseFloat(imchooseEndDate);
+
+        // console.log("내가 선택한 시작 시간: " + imchooseStartDate);
+        // console.log("내가 선택한 종료 시간: " + imchooseEndDate);
+        // console.log("시작 시간: " + startTimeNumber);
+
+        if (imchooseStartDateFloat < startTimeNumber && endTimeNumber < imchooseEndDateFloat) {
+            // console.log("내가 선택한 시작 시간 < 예약된 시작시간 || 내가 선택한 종료 시간 < 예약된 시작시간");
+            alert("중간에 예약된 날이 존재합니다.");
+            betweenDayCheck = false;
+            return false;
+        }
+        else {
+            betweenDayCheck = true;
+        }
     })
 
+    // 날짜의 요일 구하기
+    var week = new Array('일', '월', '화', '수', '목', '금', '토');
+    var dayWeek = new Date(startDate).getDay();
+    var todayLabel = week[dayWeek];
+
+    console.log("선택한 요일은 : " + todayLabel);
+    if (todayLabel == '일' || todayLabel == '토') {
+        alert("주말은 선택할 수 없습니다.");
+        holidayCheck = false;
+        return false;
+    }
+    else {
+        holidayCheck = true;
+    }
+
     // 반납날짜 disabled 하는 조건
-    // 이미 예약된 시간일때 종료일 선택 못하게 설정
-    if (startCheck == true && timeCheck == true) {
+    // 이미 예약된 시간일 때 종료일 선택 못하게 설정
+    if ((startCheck && timeCheck && holidayCheck) == true) {
         endTime.disabled = false;
     }
     else {
@@ -112,13 +166,21 @@ startTime.addEventListener("blur", function () {
         startText.style.display = 'none';
         startValueCheck = true;
     }
+
+    // 시작 시간이 종료 시간보다 크면 종료시간을 초기화
+    if (selectStartTime >= selectEndTime) {
+        endTime.value = '';
+        endCheck = false;
+        endValueCheck = false;
+        return false;
+    }
 })
 
 function CalculatorEndTime() {
     var startDate = startTime.value.toString().substr(0, 10);
     var endDate = endTime.value.toString().substr(0, 10);
 
-    console.log(endDate);
+    // console.log(endDate);
 
     let y = parseFloat(endDate.split('-')[0]);
     let m = parseFloat(endDate.split('-')[1]);
@@ -142,20 +204,22 @@ function CalculatorEndTime() {
     }
 
     // -------------------------------------------------------------
-    // 이미 예약된 시간 확인
+    // 이미 예약된 시간 확인하기
     var reend = endTime.value.replace('T', '');
     var reen = reend.replace(/-/gi, '');
     var ree = reen.replace(':', '');
     var selectEndTime = parseFloat(ree);
 
-    console.log("선택한 시작 시간: " + ree);
+    // console.log("선택한 종료 시간: " + ree);
 
     $(".timeCheck").each(function () {
+        // 이미 예약되어 있는 시작시간
         var a = $(this).children('.startTimeCheck').val().replace('T', '');
         var a1 = a.replace(/-/gi, '');
         var stTime = a1.replace(':', '');
         var startTimeNumber = parseFloat(stTime);
 
+        // 이미 예약되어 있는 종료시간
         var b = $(this).children('.endTimeCheck').val().replace('T', '');
         var b1 = b.replace(/-/gi, '');
         var eTime = b1.replace(':', '');
@@ -167,7 +231,7 @@ function CalculatorEndTime() {
         // console.log("예약시작시간보다 선택한 시간이 클때: ", startTimeNumber < selectStartTime);
         // console.log("선택한 시간이 예약 종료 시간보다 작을때: ", selectStartTime <= endTimeNumber);
         // console.log("if에 들어감: " + (startTimeNumber < selectStartTime || selectStartTime <= endTimeNumber) == true);
-        console.log(startTimeNumber < selectEndTime && selectEndTime <= endTimeNumber);
+        // console.log(startTimeNumber < selectEndTime && selectEndTime <= endTimeNumber);
 
         if (startTimeNumber < selectEndTime && selectEndTime <= endTimeNumber) {
             alert("예약된 시간과 중복됩니다.");
@@ -178,8 +242,32 @@ function CalculatorEndTime() {
             // alert("사용 가능한 시간입니다.");
             timeCheck = true;
         }
-        console.log("end timeCheck: " + timeCheck);
-        console.log("----------------------");
+
+        // 전체 예약시간 안에 예약된 날짜 있으면 안되게 하기
+        // -> 선택한 예약 시작날과 종료날 사이에 예약된 날짜가 있으면 alert
+        // 내가 선택 - 예약 시작 startDate || 예약 종료일 endDate
+        // 예약된 시간 - startTimeNumber, endTimeNumber
+        // startDate <  startTimeNumber  < endDate ?
+        // -> alert("중간에 예약된 날이 존재합니다.");
+
+        var imchooseStartDate = startTime.value.toString().replace('T', '').replace(/-/gi, '').replace(':', '');
+        var imchooseStartDateFloat = parseFloat(imchooseStartDate);
+        var imchooseEndDate = endTime.value.toString().replace('T', '').replace(/-/gi, '').replace(':', '');
+        var imchooseEndDateFloat = parseFloat(imchooseEndDate);
+
+        // console.log("내가 선택한 시작 시간: " + imchooseStartDate);
+        // console.log("내가 선택한 종료 시간: " + imchooseEndDate);
+        // console.log("시작 시간: " + startTimeNumber);
+
+        if (imchooseStartDateFloat < startTimeNumber && endTimeNumber < imchooseEndDateFloat) {
+            // console.log("내가 선택한 시작 시간 < 예약된 시작시간 || 내가 선택한 종료 시간 < 예약된 시작시간");
+            alert("중간에 예약된 날이 존재합니다.");
+            betweenDayCheck = false;
+            return false;
+        }
+        else {
+            betweenDayCheck = true;
+        }
     })
 
     // 마감시간 점검 - 시간만 계산
@@ -187,13 +275,13 @@ function CalculatorEndTime() {
     if (st == 0) {
         st = 12;
     }
-    console.log("st: " + st); // 시작 숫자
+    // console.log("st: " + st); // 시작 숫자
 
     let end = parseInt(endTime.value.substr(11, 15))
     if (end == 0) {
         end = 12;
     }
-    console.log("endTime: " + end); // 종료 숫자
+    // console.log("endTime: " + end); // 종료 숫자
 
     // 분 계산
     let startSub = (startTime.value.substr(11)).substr(3, 4);
@@ -219,6 +307,21 @@ function CalculatorEndTime() {
         else {
             endCheck = true;
         }
+    }
+
+    // 날짜의 요일 구하기
+    var week = new Array('일', '월', '화', '수', '목', '금', '토');
+    var dayWeek = new Date(endDate).getDay();
+    var todayLabel = week[dayWeek];
+
+    console.log("선택한 요일은 : " + todayLabel);
+    if (todayLabel == '일' || todayLabel == '토') {
+        alert("주말은 선택할 수 없습니다.");
+        holidayCheck = false;
+        return false;
+    }
+    else {
+        holidayCheck = true;
     }
 };
 
@@ -256,15 +359,18 @@ purpose.addEventListener("blur", function () {
 
 btn.addEventListener("click", function () {
     console.log("버튼 클릭시")
-    CalculatorEndTime();
+    // CalculatorEndTime();
 
     console.log("startTime: " + startCheck);
     console.log("endTime: " + endCheck);
     console.log("startValueCheck: " + startValueCheck);
     console.log("endValueCheck: " + endValueCheck);
     console.log("timeCheck: " + timeCheck);
+    console.log("purposeCheck: " + purposeCheck);
+    console.log("holidayCheck: " + holidayCheck);
+    console.log("betweenCheck: " + betweenDayCheck);
 
-    if ((startCheck == false || endCheck == false || purposeCheck == false || startValueCheck == false || endValueCheck == false || timeCheck == false)) {
+    if ((startCheck == false || endCheck == false || purposeCheck == false || startValueCheck == false || endValueCheck == false || timeCheck == false || holidayCheck == false || betweenDayCheck == false)) {
         alert("조건을 충족하지 못하였습니다. (다시 입력하세요~)");
         return false;
     }
@@ -272,7 +378,7 @@ btn.addEventListener("click", function () {
 
         let a = confirm("정말 예약하시겠습니까?");
 
-        if ((a && startCheck && endCheck && purposeCheck && startValueCheck && endValueCheck && timeCheck) == true) {
+        if ((a && startCheck && endCheck && purposeCheck && startValueCheck && endValueCheck && timeCheck && holidayCheck && betweenDayCheck) == true) {
             frm.submit();
         }
         else if (a == false) {
@@ -280,13 +386,4 @@ btn.addEventListener("click", function () {
         }
     }
 })
-// -----------------------------------------
-// 예약자 번호 숫자형으로 변환
-var memNum = $("#member").val();
 
-let tt = parseFloat(memNum);
-
-$("#member").val(tt);
-
-
-// 전체 예약시간 안에 예약된 날짜 있으면 안되게 하기

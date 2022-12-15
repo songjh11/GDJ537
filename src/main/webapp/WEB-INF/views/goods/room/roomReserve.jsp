@@ -53,10 +53,10 @@
 							<c:forEach items="${timeNotEqual }" var="t">
 								<br>
 								<div class="timeCheck">
-									<input type="hidden" value="${t.startTime }" class="startTimeCheck">
-									<input type="hidden" value="${t.endTime }" class="endTimeCheck">
+									<input type="text" value="${t.startTime }" class="startTimeCheck">
+									<input type="text" value="${t.endTime }" class="endTimeCheck">
+									<br>
 								</div>
-								<br>
 							</c:forEach>
 
 							<div class="mb-3">
