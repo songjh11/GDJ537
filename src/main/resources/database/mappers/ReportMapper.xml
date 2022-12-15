@@ -214,7 +214,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="license"></include>
 		LIMIT #{startRow},#{perPage}
 	</select>
 
@@ -228,7 +228,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="license"></include>
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
@@ -253,7 +253,8 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RA.STATUS = 1 AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="license"></include>
+		AND RA.STATUS = 1 
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
@@ -278,7 +279,8 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RA.STATUS = 2 AND RL.ID=1209 AND RA.REPORTNUM=1
+		<include refid="license"></include>
+		AND RA.STATUS = 2
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
@@ -307,13 +309,28 @@
 				<result column="STATUS" property="status"/>
 				<result column="RETURNS" property="returns"/>
 				<result column="APDATE" property="apDate"/>
-				
-				<association property="userVO" javaType="UserVO">
-					<result column="NAME" property="name"/>
-				</association>
+				<result column="NAME" property="name"/>
+				<result column="DEPNAME" property="depName"/>
+				<result column="APDATE" property="apDate"/>
 			</collection>
-			
 	</resultMap>
+	
+	<sql id="license">
+		where RL.ID=1209 AND RA.REPORTNUM=1  <choose>
+												<when test="kind == 1">
+												
+												</when>
+												<when test="kind == 2">
+													AND RL.LSTATUS = RA.STATUS
+												</when>
+												<when test="kind == 3">
+													AND RL.LSTATUS = RA.RETURNS
+												</when>
+												<otherwise>
+													
+												</otherwise>
+											</choose>
+	</sql>
 	
 	
 	
