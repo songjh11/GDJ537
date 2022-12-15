@@ -8,11 +8,12 @@
 									<div class="close-area">X</div>
 									<div class="content">
 										<div class="checkInfo">
+											<input class="checkUser" type="hidden" name="id" value="${user.id}" dep-num="${user.depNum}">
 											<c:choose>
 												<c:when test="${not empty depList}">
 													<c:forEach items="${depList}" var="d">
 														<li class="titleLi" style="justify-content: left !important;">
-															<input type="checkbox" name="id" class="checkTeam" value="${e.id}" style="margin-left: 10px;" dep-num="${d.depNum}">
+															<input type="checkbox" class="checkTeam" style="margin-left: 10px;" dep-num="${d.depNum}">
 															<span style="color: white; margin-left: 6px;">${d.depName}</span>
 															<button type="button" class="showBtn" style="margin-right: 8px; margin-left: auto;">🔽</button>
 															<button type="button" class="hideBtn" style="margin-right: 8px; margin-left: auto;">🔼</button>
@@ -203,11 +204,12 @@
 							//그룹쪽지 발송
 							$("#groupNoteGo").on("click", function(){
 								let arr = [];
-
 								$(".checkUser").each(function(index, item) {
 									if($(item).prop("checked")) {
 										// console.log($(item).val())
-										arr[index] = $(item).val();
+										if($(item).val().length>0) {
+											arr.push($(item).val());
+										}
 									}
 								})
 
@@ -223,7 +225,7 @@
 										arr: arr
 									},
 									success : function(data){
-
+										console.log(data);
 									},
 									error   : function(){
 

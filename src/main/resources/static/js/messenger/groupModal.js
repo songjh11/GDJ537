@@ -33,7 +33,16 @@ $("#userBtn").click(function(){
         //         console.log("result : ", result);
         //     }
         // });
+        let arr = [];
 
+        $(".checkUser").each(function(index, item) {
+            if($(item).prop("checked")) {
+                console.log($(item).val())
+               if($(item).val().length>0) {
+                  arr.push($(item).val());
+               }
+            }
+         })
         
 
         $("#roomAddBtn").click(function(){
