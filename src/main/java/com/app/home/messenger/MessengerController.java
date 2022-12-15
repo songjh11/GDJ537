@@ -333,7 +333,7 @@ public class MessengerController extends Socket {
 		
 		int result = messengerService.setAddRoom(roomVO);
 		
-		if(result > 0 ) {
+		if(result > 0) {
 			log.info("===========채팅방 생성 성공===========");
 		}
 		
@@ -345,11 +345,11 @@ public class MessengerController extends Socket {
 	// 채팅 인원
 	@GetMapping("userCount")
 	@ResponseBody
-	public ModelAndView getUserCount()throws Exception{
+	public ModelAndView getUserCount(RoomVO roomVO)throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		
-		int userCount = messengerService.getUserCount();
+		int userCount = messengerService.getUserCount(roomVO);
 		
 		log.info("Count =========> {} ", userCount);
 		
@@ -374,7 +374,7 @@ public class MessengerController extends Socket {
 	//--------------------- 소영 ------------------------------
 	// 그룹 채팅방
 	@GetMapping("chatroom")
-	public ModelAndView chat3(HttpSession session, UserVO userVO)throws Exception{
+	public ModelAndView chat3(HttpSession session, UserVO userVO, RoomVO roomVO)throws Exception{
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  = (UserVO)authentication.getPrincipal();
@@ -382,7 +382,7 @@ public class MessengerController extends Socket {
 		ModelAndView mv = new ModelAndView();
 		
 		//인원 수
-		int count = messengerService.getUserCount();
+		int count = messengerService.getUserCount(roomVO);
 		mv.addObject("count", count);
 		
 		//유저 정보
