@@ -103,22 +103,29 @@ $(".titleLi").click(function() {
 
  let id = "";
 
-$(".acoArea").on("click", ".empName", function(){
-    id = $(this).attr("empId");
-    let name = $(this).attr("value");
-    let email = $('#email'+id).val();
-    let phone = $('#phone'+id).val();
-    let img = $('#yourImg'+id).attr("src");
-    let dep = $('#depN'+id).attr("value");
-    modalChat.style.display = "flex";
-    $("#proImg").attr("src", img);
-    $("#proName").text(name);
-    $("#proDep").text(dep);
-    $("#proEmail").text(email);
-    $("#proPhone").text(phone);
+$(".acoArea").on("click", ".rrrr", function(e){
+    if($(e.target).hasClass("pickImg")) {
+	} else {
+		id = $(this).attr("empId");
+        let name = $(this).attr("value");
+        let email = $('#email'+id).val();
+        let phone = $('#phone'+id).val();
+        let img = $('#yourImg'+id).attr("src");
+        let dep = $('#depN'+id).attr("value");
+        modalChat.style.display = "flex";
+        $("#proImg").attr("src", img);
+        $("#proName").text(name);
+        $("#proDep").text(dep);
+        $("#proEmail").text(email);
+        $("#proPhone").text(phone);
+    }
+    
 });
 
-$(".searchArea").on("click", ".empName", function(){
+$(".searchArea").on("click", ".rrrr", function(e){
+    console.log(e.target)
+    if($(e.target).hasClass("pickImg")) {
+	} else {
     id = $(this).attr("empId");
     let name = $(this).attr("value");
     let email = $('#email'+id).val();
@@ -131,6 +138,7 @@ $(".searchArea").on("click", ".empName", function(){
     $("#proDep").text(dep);
     $("#proEmail").text(email);
     $("#proPhone").text(phone);
+    }
 });
 
 

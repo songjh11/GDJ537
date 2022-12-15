@@ -64,7 +64,9 @@ public class MessengerController extends Socket {
 		// ------------------ 채팅목록 ------------------
 		List<RoomVO> roomVOs = new ArrayList<>();
 		RoomVO roomVO = new RoomVO();
+		UserVO userVO2 = new UserVO();
 		userVO.setId(userVO.getId());
+		roomVO.setUserVO(userVO);
 		
 		roomVOs = messengerService.getRoomList(roomVO);
 		
@@ -291,14 +293,28 @@ public class MessengerController extends Socket {
 		userVO.setId(id);
 		mv.addObject("member", userVO);
 		mv.addObject("yourId", arr);
-		
+		mv.setViewName("messenger/note/group");
 		return mv;
 	}
+	
+	@GetMapping("note/groupSend")
+	public String setGroupSend(HttpSession session, UserVO userVO, int[] arr)throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
+	    userVO = userService.getMypage(userVO);
+	    
+		return "messenger/note/groupSend";
+	}
+	
 	
 	
 	// --------------------- 유리 끝------------------------------
 	
 	// --------------------- 효경 ------------------------------
+	
+	// 채팅방 인원
+	
 	
 	// 채팅방 추가
 	@PostMapping("addRoom")
@@ -311,19 +327,9 @@ public class MessengerController extends Socket {
 	    userVO  = (UserVO)authentication.getPrincipal();
 	    userVO = userService.getMypage(userVO);
 	    
-	    int [] id = roomVO.getId();
-	    
-	    for(int ids : id) {
-	    	log.info("아이디에 뭐가있나? =====> {} ", id);
-	    }
-	    
 	    // 로그인 회원을 방장으로
 		roomVO.setHostId(userVO.getId());
-//		UserVO userVO2 = new UserVO();
-//		log.info("유저야아아 => {} ", userVO.getId());
-//		// 방장도 유저이기 때문에 넣어줌
-//		userVO2.setId(userVO.getId());
-//		roomVO.setUserVO(userVO2);
+		
 		int result = messengerService.setAddRoom(roomVO);
 		
 		if(result > 0 ) {
