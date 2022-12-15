@@ -54,8 +54,8 @@
 							<c:set var="TextValue" value="${goods.goodsId}" />
 							<c:if test="${fn:substring(TextValue,0,2) == 'CA' }">
 								<tr>
-									<td>${goods.carNum }</td>
-									<td>${goods.name }</td>
+									<td>${goods.carNum}</td>
+									<td>${goods.name}</td>
 									<td><a href="./carDetail?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">정보 보기</button></a></td>
 									<td><a href="./carReserve?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">예약하기</button></a></td>
 								</tr>
