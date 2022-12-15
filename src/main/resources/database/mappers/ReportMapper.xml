@@ -9,6 +9,7 @@
 	
 	<!-- ============== 한종석 ================ -->
 	
+	
 	<select id="getReportList" parameterType="UserVO" resultMap="getListResult" >
 		SELECT DISTINCT  U.ID, U.NAME, R.ROLENUM , U.DEPNUM, R.ROLENAME, RL.LSTATUS 
 			FROM USER U
@@ -104,6 +105,26 @@
 			</association>
 		
 		
+	</resultMap>
+	
+	<!-- 신청자 입장에서 보이는 결재선 페이지 -->
+	<select id="getReportMyPage" parameterType="userVO" resultMap="getReportMyPageResult">
+		SELECT U.ID, U.DEPNUM, RL.LSTATUS 
+		FROM USER U
+		INNER JOIN
+		REPORTLICENSER RL 
+		ON U.ID = RL.ID 
+		WHERE U.ID = #{id} 
+	</select>
+	
+	<resultMap type="userVO" id="getReportMyPageResult">
+		<id column="id" property="id"/>
+		<result column="depNum" property="depNum"/>
+		
+		<association property="reportVO" javaType="ReportVO">
+			<id column="licenserNum" property="licenserNum"/>
+			<result column="lstatus" property="lstatus"/>
+		</association>
 	</resultMap>
 	
 	

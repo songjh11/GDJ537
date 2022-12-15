@@ -82,6 +82,7 @@
                 <div id="collapseReport" class="collapse" aria-labelledby="headingReport" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/report/licenserList">전체 승인자 리스트</a>
+                        <a class="collapse-item" href="/report/reportMyPage">나의 결재선</a>
                         <a class="collapse-item" href="/kdy/reportAdd">보고서 작성</a>
                       
                         <sec:authorize access="isAuthenticated()">

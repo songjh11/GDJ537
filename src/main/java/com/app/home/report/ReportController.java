@@ -304,6 +304,19 @@ public class ReportController {
 	}
 	
 	
+	//신청자 입장에서 결재받을 사람 나오게 하기
+	@RequestMapping(method = RequestMethod.GET, value = "/report/reportMyPage")
+	public ModelAndView getReportMyPage(UserVO userVO) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("userVO", userVO);
+		mv.setViewName("/report/reportMyPage");
+		
+		return mv;
+	}
+	
+	
 	
 	
 	
