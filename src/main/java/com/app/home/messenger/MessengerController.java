@@ -362,7 +362,9 @@ public class MessengerController extends Socket {
 	
 	// --------------------- 효경 끝 ------------------------------
 	
-	
+
+	// --------------------- 다은 ------------------------------
+
 	@GetMapping("oneChat")
 	public ModelAndView chatroom(HttpSession session, UserVO userVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
