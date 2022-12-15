@@ -26,9 +26,6 @@ public class GoodsService
 	@Autowired
 	private FileManager fileManager;
 	
-	@Value("${app.upload.goods}")
-	private String path;
-	
 
 	public int setAdd(GoodsVO goodsVO, MultipartFile[] files, ServletContext servletContext) throws Exception
 	{
