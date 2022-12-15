@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Document</title>
-    <script defer src="/js/hjs/vacation.js"></script>
+    <script defer src="/js/kdy/vacation.js"></script>
     <style>
         #bc{
             background-color ;
@@ -49,7 +49,7 @@
 				<!-- End of Topbar -->
 		
 				<!-- Begin Page Content -->
-        <form action="/report/addvaca" method="post" id="vcaFrm">
+        <form action="/report/addvaca" method="post" id="frm">
 	
 			<sec:authentication property="Principal" var="user"/>
 
@@ -114,17 +114,17 @@
                             <div  id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 종류
                                     <div style="margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                        <div style="margin-left: 29px; margin-top: 0px;">
+                                        <div style="margin-left: 29px; margin-top: 0px;" id="cate">
                                             <!--<input type="hidden" name="categoryNum" id="checkRadio"/> --> 
-                                            <input type="radio" class="mail" name="categoryNum" value="1" name="categoryNum" data-radio="1"/>
+                                            <input type="radio" class="mail" id="s1" name="categoryNum" value="1" name="categoryNum" data-radio="1"/>
                                             <label for="mail">연차</label>
-                                            <input type="radio" class="mail" name="categoryNum" value="2" name="categoryNum" data-radio="2"/>
+                                            <input type="radio" class="mail" id="s2" name="categoryNum" value="2" name="categoryNum" data-radio="2"/>
                                             <label for="mail">월차</label>
-                                            <input type="radio" class="mail" name="categoryNum" value="3" name="categoryNum" data-radio="3"/>
+                                            <input type="radio" class="mail" id="s3" name="categoryNum" value="3" name="categoryNum" data-radio="3"/>
                                             <label for="mail">병가</label>
-                                            <input type="radio" class="mail" name="categoryNum" value="4" name="categoryNum" data-radio="4"/>
+                                            <input type="radio" class="mail" id="s4" name="categoryNum" value="4" name="categoryNum" data-radio="4"/>
                                             <label for="mail">반차</label>
-                                            <input type="radio" class="mail" name="categoryNum" value="5" name="categoryNum" data-radio="5"/>
+                                            <input type="radio" class="mail" id="s5" name="categoryNum" value="5" name="categoryNum" data-radio="5"/>
                                             <label for="mail">기타</label>
                                         </div>
                                     </div>   
@@ -134,7 +134,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 사유
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <textarea id="textArea" name="text" style="border: 0; text-align: left; width: 645px; height: 97px;"></textarea>
+                                    <textarea id="sasa" name="text" style="border: 0; text-align: left; width: 645px; height: 97px;"></textarea>
                                     <span id="textAreaHelp"></span>
                                 </div>
                             </div>    
@@ -161,9 +161,9 @@
                                         <input type="number" id="d2" style="width: 40px; border:0 solid black; text-align:right" value="30"/>
                                         <div>일</div> -->
 
-                                        <input type="datetime-local" name="startDate" id="startInput">
+                                        <input  id="start" type="datetime-local" name="startDate" >
                                             <div>~</div>
-                                        <input type="datetime-local" name="endDate" id="endInput">
+                                        <input id="stop" type="datetime-local" name="endDate" >
 
 
                                     </div>
@@ -196,11 +196,12 @@
                     </div>
             </div>
         </div>    
+        <button  type="button" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;" onclick="vacaNullCheck()">제 출</button>
     </div>
 </form>
 
 
-        <button type="submit" style="float: right;" class="btn btn-secondary" id="vcaBtn">제출</button>
+        
 
 	            </div>
 	            <!-- End Page Content -->
