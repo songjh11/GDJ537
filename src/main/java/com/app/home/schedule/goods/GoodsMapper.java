@@ -53,4 +53,9 @@ public interface GoodsMapper
 	public int getDepartmentRoomTotal(DepartmentVO departmentVO) throws Exception;
 	
 	public int getDepartmentCarTotal(DepartmentVO departmentVO) throws Exception;
+	
+	public int setFileUpdate(GoodsFileVO goodsFileVO) throws Exception;
+	
+	public int getRoomNowTotal(String month) throws Exception;
+	public int getCarNowTotal(String month) throws Exception;
 }

@@ -41,7 +41,7 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">공용 시설 관리</h1>
+	            	<h1 class="h3 mb-4 text-gray-800" style="text-align: center; font-weight: bold;">공용 시설 관리</h1>
 					<input type="button" id="add" class="btn btn-primary" value="추가" style="margin-left: 80%; width: 70px; height: 40px;"></button>
 					<div class="container">
 
@@ -66,7 +66,6 @@
 									</div>
 									<div class="col-auto d-none d-lg-block white" data-item-num="${ro.goodsId}">
 									  <img src="/file/goods/${ro.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ro.goodsId}">
-									  <h1>${ro.goodsFileVO[0].fileName}</h1>
 									</div>
 								  </div>
 								</div> 
@@ -90,7 +89,6 @@
 									</div>
 									<div class="col-auto d-none d-lg-block white" data-item-num="${ca.goodsId}">
 										<img src="/file/goods/${ca.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ca.goodsId}">
-										<h1>${ca.goodsFileVO[0].fileName}</h1>
 									</div>
 								  </div>
 								</div>  
