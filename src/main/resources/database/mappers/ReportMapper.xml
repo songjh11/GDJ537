@@ -124,7 +124,7 @@
 	
 	<insert id="setAddSorry" parameterType="ReportSorryVO">
 		INSERT INTO REPORTSORRY
-		VALUES(NULL, #{applyNum},#{date}, #{text}, #{order})
+		VALUES(NULL, #{applyNum},sysdate(), #{text}, #{order})
 	</insert>
 	
 	<insert id="setAddWork" parameterType="ReportWorkVO">
