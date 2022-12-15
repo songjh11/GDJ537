@@ -135,6 +135,7 @@ public class MessengerController {
 		
 		Long getNotReadCount = noteService.getNotReadCount(userVO);
 		mv.addObject("list", ar);
+		log.info("수신함AR {}",ar);
 		mv.addObject("pager", notePager);
 		if(getNotReadCount==0L) {
 			mv.addObject("getNotReadCount", "");
@@ -231,20 +232,26 @@ public class MessengerController {
 	
 	//쪽지발송
 	@GetMapping("note/send")
-	public ModelAndView setSendNote(HttpSession session, UserVO userVO)throws Exception{
+	public ModelAndView setSendNote(HttpSession session, UserVO userVO, NoteVO noteVO)throws Exception{
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
 	    userVO = userService.getMypage(userVO);
-		
+	    
+	    UserVO receiveUser = new UserVO();
+	    receiveUser.setId(noteVO.getReceiveId().intValue());
+	    receiveUser = userService.getMypage(receiveUser);
+	    
 		ModelAndView mv = new ModelAndView();
 		userVO.setId(userVO.getId());
 		mv.addObject("member", userVO);
+		mv.addObject("receiveUser", receiveUser);
 		return mv;
 	}
 	
 	@PostMapping("note/send")
 	public ModelAndView setSendNote(HttpSession session, NoteVO noteVO)throws Exception{
+		
 		
 		ModelAndView mv = new ModelAndView();
 		String message = "";
@@ -271,35 +278,87 @@ public class MessengerController {
 		return noteService.setDeleteNote(noteVO);
 	}
 	
-	@GetMapping("note/group")
+	private ArrayList<Long> arrr = new ArrayList<>();
+	
+	@PostMapping("note/group1")
 	@ResponseBody
-	public ModelAndView setGroup(HttpSession session, UserVO userVO, int[] arr)throws Exception{
+	public ModelAndView setGroup1(HttpSession session, UserVO userVO, Long [] arr)throws Exception{
+		arrr = new ArrayList<>();
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  = (UserVO)authentication.getPrincipal();
-		Integer id = userVO.getId();
+	    userVO = userService.getMypage(userVO);
 		
 		ModelAndView mv = new ModelAndView("jsonView");
 		log.info("인트배열을받으세염 {}",arr);
 		
+		for(Long arrrdd : arr) {
+			arrr.add(arrrdd);
+		}
 		
-		
-		
-		userVO.setId(id);
 		mv.addObject("member", userVO);
 		mv.addObject("yourId", arr);
 		mv.setViewName("messenger/note/group");
+		
 		return mv;
 	}
 	
-	@GetMapping("note/groupSend")
-	public String setGroupSend(HttpSession session, UserVO userVO, int[] arr)throws Exception{
+	@GetMapping("note/group")
+	@ResponseBody
+	public ModelAndView setGroup(HttpSession session, UserVO userVO)throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  = (UserVO)authentication.getPrincipal();
+	    userVO = userService.getMypage(userVO);
+		
+		ModelAndView mv = new ModelAndView("jsonView");
+		
+		mv.addObject("member", userVO);
+		mv.addObject("yourId", arrr);
+		
+		UserVO daepyo = new UserVO();
+		daepyo.setId(arrr.get(0).intValue());
+		daepyo = userService.getMypage(daepyo);
+		
+		mv.addObject("daepyo", daepyo);
+		mv.addObject("count", arrr.size()-1);
+		log.info("새로운아이배열죽어 {}",arrr);
+		
+		mv.setViewName("messenger/note/group");
+		
+		return mv;
+	}
+	
+	@PostMapping("note/group")
+	public ModelAndView setGroup(HttpSession session, UserVO userVO, NoteVO noteVO, ModelAndView mv)throws Exception{
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
 	    userVO = userService.getMypage(userVO);
 	    
-		return "messenger/note/groupSend";
+		log.info("쪽지보내자 {}",arrr);
+
+	    
+	    int result = 0;
+		String message = "";
+
+	    for(Long arrrdd : arrr) {
+	    	noteVO.setReceiveId(arrrdd);
+	    	result = noteService.setSendNote(noteVO);
+	    	log.info("쪽지내용 {}",noteVO);
+		}
+	    
+	    if(result==1) {
+			message = "쪽지가 발송되었습니다.";
+		} else {
+			message = "쪽지 발송에 실패했습니다.";
+		}
+	    
+		mv.addObject("message", message);
+		mv.setViewName("messenger/note/sendAfter");
+	    
+	    
+		return mv;
 	}
 	
 	

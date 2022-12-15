@@ -48,7 +48,7 @@
         }
 
         #contents {
-            height: 380px;
+            height: 384px;
             background-color: #fff;
             width: 430px;
             margin: 0 auto 7px;
@@ -118,7 +118,7 @@
             <input type="hidden" name="receiveId" value="${param.receiveId}">
             <div id="title">
                 <div style="margin: 15px;">발신자 : ${member.name} (${member.id})</div>
-                <div style="margin: 15px;">수신자 : 수신자 (${param.receiveId})</div>
+                <div style="margin: 15px;">수신자 : ${receiveUser.name} (${param.receiveId})</div>
             </div>
             <div id="contents">
                 <div id="realContents">
