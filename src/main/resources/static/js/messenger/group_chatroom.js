@@ -1,23 +1,15 @@
 
-	//console.log("js");
-	
-	//let ws = new WebSocket("ws://" + location.host + "/chatroom");
-
 	let sessionId = $("#sessionId").val();
 	let userName = $("#userName").val();
 	let userId = $("#userId").val();
 	let chat = "";
-	//let inputChat = document.getElementById('inputChat').value;
 
 
 //------------------------------------
 
 	function wsOpen(){
 		ws = new WebSocket("ws://" + location.host + "/chatroom");
-		//wsEvt();
-		
-		//send()
-		
+
 		ws.onmessage=function(data){
 			let da = data.data;
 			console.log("Opennnnnn : ", da);
@@ -25,25 +17,12 @@
 			$("#chating").append("<div class='al'>"
 	  						+"<div class='al-bubble'>" +str+"</div></div>"
 	 						);	
-		}
-		
-		//ws.onopen = function(data){
-			//소켓이 열리면 초기화 세팅하기
-		//let str = userName + " 님이 입장하셨습니다.";
-		//$("#chating").append("<div class='al'>"
-	  	//					+"<div class='al-bubble'>" +str+"</div></div>"
-	 	//					);	
-		//}
-		
+		}	
 	}
 		
 		
 		
-	function wsEvt() {
-	//	ws.onopen = function(data){
-			//소켓이 열리면 초기화 세팅하기
-	//	}
-		
+	function wsEvt() {		
 		ws.onmessage = function(data) {
 			let msg = data.data;
 			if(msg != null && msg.trim() != ''){
@@ -113,7 +92,8 @@
 	//채팅창에서 나갔을 때
 	function onClose() {
 		console.log("퇴장");
-		let str = userName + ": 님이 방을 나가셨습니다.";
+		let da = data.data;
+		let str = da + " 님이 방을 나가셨습니다.";
 		
 		$("#chating").append("<div class='al0'>"
 	  						+"<div class='alo-bubble'>" +str+"</div></div>"

@@ -44,9 +44,8 @@ public class SocketHandler extends TextWebSocketHandler{
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		 SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
-		
-		 UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
+		SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
+		UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
 		 
 		System.out.println("UserName : "+userVO.getName());
 		
@@ -75,6 +74,9 @@ public class SocketHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 	
+	SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
+	UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
+		
 	// 소켓 종료	
 	sessionMap.remove(session.getId());
 	super.afterConnectionClosed(session, status);
