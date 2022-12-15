@@ -38,7 +38,7 @@ public class RequestController {
 		}else {
 			return "redirect:/request/add?error=1";
 		}
-		return "redirect:/request/detail?num="+boardVO.getNum();
+		return "redirect:/request/detail?id="+boardVO.getId();
 	}
 	
 	@GetMapping("detail")
@@ -71,13 +71,13 @@ public class RequestController {
 		log.info("update boardVO {}", boardVO);
 		int result = requestService.setUpdate(boardVO);
 		
-		return "redirect:/request/detail?num="+boardVO.getNum();
+		return "redirect:/request/detail?id="+boardVO.getId();
 	}
 
 	@GetMapping("list")
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
 		
-		pager.setSort(2);
+		pager.setSort("요청");
 		mv.addObject("requestList", requestService.getRequestList(pager));
 		mv.addObject("pager", pager);
 		mv.setViewName("/board/request/list");

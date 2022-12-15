@@ -5,64 +5,67 @@
 
 <mapper namespace="com.app.home.board.BoardDAO">
 	<insert id="setBoard" parameterType="BoardVO"
-		useGeneratedKeys="true" keyProperty="num">
-		INSERT INTO BOARD (NUM, ID, TITLE,
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO BOARD (ID, CREATOR, TITLE,
 		CONTENTS, DEPNUM, HIT, SORT)
-		VALUES (0, #{id}, #{title}, #{contents},
+		VALUES (0, #{creator}, #{title}, #{contents},
 		#{depnum}, 0, #{sort})
 	</insert>
 
 	<select id="getDetail" parameterType="BoardVO"
 		resultMap="resultBoardAddfiles">
-		SELECT b.*,f.filenum, f.filename, f.oriname FROM BOARD b
-		LEFT JOIN FILE f ON b.num = f.num WHERE b.num=#{num}
+		SELECT b.*,f.id, f.filename, f.oriname FROM BOARD b
+		LEFT JOIN FILE f ON b.id = f.boardId WHERE b.id=#{id}
 	</select>
 
 	<resultMap type="BoardVO" id="resultBoardAddfiles">
-		<id column="num" property="num" />
+		<id column="id" property="id" />
 		<result column="title" property="title" />
 		<result column="contents" property="contents" />
-		<result column="id" property="id" />
+		<result column="creator" property="creator" />
 		<result column="depnum" property="depnum" />
 		<result column="hit" property="hit" />
 		<result column="sort" property="sort" />
 		<result column="regdate" property="regDate" />
+		<result column="updatedate" property="updateDate"/>
+		<result column="updater" property="updater"/>
 
 		<collection property="fileVOs" javaType="List"
 			ofType="FileVO">
-			<id column="filenum" property="fileNum" />
+			<id column="id" property="id" />
 			<result column="filename" property="fileName" />
 			<result column="oriname" property="oriName" />
 		</collection>
 
 	</resultMap>
 
-	<update id="setUpdate" parameterType="BoardVO">
+	<update id="setUpdate" parameterType="BoardVO" >
 		UPDATE BOARD set
-		title=#{title}, CONTENTS =#{contents}
-		WHERE NUM =#{num};
+		title=#{title}, CONTENTS =#{contents}, UPDATEDATE = SYSDATE()
+		WHERE ID =#{id};
 	</update>
 
+
 	<delete id="setDelete" parameterType="BoardVO">
-		DELETE FROM BOARD WHERE NUM
-		= #{num}
+		DELETE FROM BOARD WHERE ID
+		= #{id}
 	</delete>
 
 	<select id="getList" parameterType="Pager" resultType="BoardVO">
-		SELECT B.*, COUNT(C.COMMENTNUM) as cntComment FROM BOARD B
+		SELECT B.*, COUNT(C.ID) as cntComment FROM BOARD B
 		LEFT JOIN COMMENT C
-		ON B.NUM = C.NUM
+		ON B.ID = C.BOARDID
 		WHERE SORT = #{sort}
 		AND
 		B.<include refid="search"></include>
-		GROUP BY B.NUM
-		ORDER BY NUM DESC
+		GROUP BY B.ID
+		ORDER BY ID DESC
 		LIMIT ${startRow}, ${perPage}
 	</select>
 
 	<select id="getTotalCount" parameterType="Pager"
 		resultType="Long">
-		SELECT COUNT(NUM) FROM BOARD
+		SELECT COUNT(ID) FROM BOARD
 		WHERE SORT = #{sort}
 		AND
 		<include refid="search"></include>
@@ -71,8 +74,7 @@
 	<sql id="search">
 		<choose>
 			<when test="kind == 'title'">TITLE</when>
-			<when test="kind == 'contents'">CONTENTS</when>
-			<when test="kind == 'id'">ID</when>
+			<when test="kind == 'creator'">ID</when>
 			<otherwise>CONTENTS</otherwise>
 		</choose>
 		LIKE CONCAT('%', #{search}, '%')
@@ -80,7 +82,17 @@
 
 	<update id="setHit" parameterType="BoardVO">
 		UPDATE BOARD SET HIT = HIT + 1
-		WHERE NUM = #{num}
+		WHERE ID = #{id}
 	</update>
+	
+	<!-- 요청카테고리 -->
+	<select id="findReqCategory" parameterType="ReqCategoryVO" resultType="ReqCategoryVO">
+		SELECT RC.CATEGORYNAME,RC.CATEGORYFORM  
+		FROM DEPARTMENT D
+			 JOIN
+			 REQCATEGORY RC 
+			 ON D.DEPNUM = RC.DEPNUM
+		WHERE RC.DEPNUM = #{depNum}
+	</select>
 
 </mapper>    

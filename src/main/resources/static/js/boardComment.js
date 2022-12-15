@@ -29,7 +29,7 @@ b1.addEventListener("click", function () {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   //4. 파라미터 전송 요청 발생 (메서드 post일 경우 파라미터 추가)
-  xhttp.send("num=" + boardNum + "&contents=" + cv + "&id=" + commentWriter);
+  xhttp.send("boardId=" + boardNum + "&contents=" + cv + "&creator=" + commentWriter);
 
   //5. 응답 처리
   xhttp.onreadystatechange = function () {
@@ -59,7 +59,7 @@ function getCommentList(p, bn) {
   const xhttp = new XMLHttpRequest();
 
   //2. Method URL 준비
-  xhttp.open("GET", "/comment/list?page=" + p + "&num=" + bn); // GET
+  xhttp.open("GET", "/comment/list?page=" + p + "&boardId=" + bn); // GET
 
   //3. 요청 전송 enctype x
   xhttp.send();
@@ -85,15 +85,25 @@ function getCommentList(p, bn) {
         td.appendChild(tdText);
         tr.appendChild(td);
 
+        // //익명작성자
+        // td = document.createElement("td");
+        // tdText = document.createTextNode(ar[i].id);
+        // td.appendChild(tdText);
+        // tr.appendChild(td); 
+
         td = document.createElement("td");
-        tdText = document.createTextNode(ar[i].id);
+        tdText = document.createTextNode(ar[i].regDate);
         td.appendChild(tdText);
         tr.appendChild(td);
 
-        /*td = document.createElement("td");
-        tdText = document.createTextNode(ar[i].regDate);
+        td = document.createElement("td");
+        if(ar[i].updateDate == null){
+          tdText = document.createTextNode(ar[i].regDate);
+        } else {
+          tdText = document.createTextNode(ar[i].updateDate);
+        }
         td.appendChild(tdText);
-        tr.appendChild(td);*/
+        tr.appendChild(td);
 
         td = document.createElement("td");
         tdText = document.createTextNode("수정");
@@ -104,7 +114,7 @@ function getCommentList(p, bn) {
         tr.appendChild(td);
 
         tdAttr = document.createAttribute("data-commentnum");
-        tdAttr.value = ar[i].commentNum;
+        tdAttr.value = ar[i].id;
         td.setAttributeNode(tdAttr);
         tr.appendChild(td);
 
@@ -116,7 +126,7 @@ function getCommentList(p, bn) {
         td.appendChild(tdText);
 
         tdAttr = document.createAttribute("data-commentnum");
-        tdAttr.value = ar[i].commentNum;
+        tdAttr.value = ar[i].id;
         td.setAttributeNode(tdAttr);
         tr.appendChild(td);
 
@@ -161,7 +171,7 @@ commentList.addEventListener("click", function (event) {
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
       //4. 요청 (파라미터와 함께)
-      xhttp.send("commentNum=" + commentNum);
+      xhttp.send("id=" + commentNum);
 
       //5. 응답처리
       xhttp.onreadystatechange = function () {
@@ -196,7 +206,9 @@ update.addEventListener("click", function(){
   // 요청 header 정보
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   // 요청 실행
-  xhttp.send("commentNum="+commentNumber+"&contents="+contents);
+  xhttp.send("id="+commentNumber+"&contents="+contents);
+  console.log('id= ', commentNumber)
+  console.log('contents =',contents)
   // 응답 처리
   xhttp.onreadystatechange=function() {
       if(xhttp.readyState==4 && this.status==200) {

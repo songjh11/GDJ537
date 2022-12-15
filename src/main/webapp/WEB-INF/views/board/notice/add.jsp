@@ -54,7 +54,7 @@
                     <div class="mb-0 row">
                       <label class="col-sm-2 col-form-label" for="id">작성자 사번</label>
                       <div class="col-sm-10">
-                        <input class="form-control-plaintext outline-none" id="id" name="id" type="text" value="1234" />
+                        <input class="form-control-plaintext outline-none" id="id" name="creator" type="text" value="1234" />
                       </div>
                     </div>
                     <div class="mb-3 row">
