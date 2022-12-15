@@ -217,5 +217,7 @@ application-dev.properties
 # 4조 추가
 
 # 5조 추가
+###my file ###
+application-secret.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse,maven,macos
