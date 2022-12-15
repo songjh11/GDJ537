@@ -54,6 +54,8 @@
 	            <input style="display: none;" value="${vo.id}" name="id">
                  <input style="display: none;" value="${vo.depNum}" name="depNum">
                  <input style="display: none;" value="3" name="reportNum">
+                 <input style="display: none;" value="${vo.name}" name="name">
+                 <input style="display: none;" value="${vo.roleVO.roleName}" name="roleName">
 	            <div class="container-fluid">
 						 <div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
