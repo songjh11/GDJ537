@@ -1,9 +1,15 @@
 
+	function chatPop(roomNum){
+		let win = window.open("./chatroom?roomNum=" +roomNum, "단체 채팅방", strOption);	
+		win.focus();
+	}
+
+//------------------------------------
+
 	let sessionId = $("#sessionId").val();
 	let userName = $("#userName").val();
 	let userId = $("#userId").val();
 	let chat = "";
-
 
 //------------------------------------
 

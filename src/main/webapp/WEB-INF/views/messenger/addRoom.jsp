@@ -24,7 +24,8 @@
 										<img class="yourImg" src="/img/undraw_profile_3.svg">
 									</div>
 									<div class="col text-center" style="margin-left: 3%;">
-										<a href="./chatroom?roomNum=${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+										<input type="hidden" id="roomNum" value="${roomVO.roomNum}">
+										<a href="" onclick="javascript:chatPop('${roomVO.roomNum}'); return false;"><b>${roomVO.roomName}</b></a>
 									</div>
 									<div class="col text-center">
 										${roomVO.roomName}
