@@ -140,8 +140,8 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;" onclick="sorryNullCheck()">제 출</button>
         </div>    
+        <button type="button" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;" onclick="sorryNullCheck()">제 출</button>
 
     </div>
 	            </div>
