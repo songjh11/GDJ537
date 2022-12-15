@@ -108,14 +108,14 @@
 	
 	<!--                       채팅방 유저 추가                        -->
 	<insert id="setAddRoomUser" parameterType="RoomVO" ><!-- useGeneratedKeys="true" keyProperty="userNum" -->
-		INSERT INTO  ROOMUSER
+		INSERT INTO ROOMUSER
 		VALUES(null, #{userVO.id}, 
 			   (SELECT ROOMNUM FROM  CHATROOM  WHERE ROOMNUM = #{roomNum}))
 	</insert>
 	
 	<!--                       채팅방 생성                        -->
 	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum" >
-		INSERT INTO  CHATROOM
+		INSERT INTO CHATROOM
 		VALUES(#{roomNum}, now(), #{roomName}, 
 			   (SELECT ID FROM USER WHERE ID = #{hostId}), #{pw})
 	</insert>

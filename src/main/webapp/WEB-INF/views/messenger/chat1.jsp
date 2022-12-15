@@ -1,13 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-	<title> 채팅방 💭 </title>
+	<title>Chating</title>
 	<style>
 		*{
 			margin:0;
@@ -43,42 +41,14 @@
 			display: none;
 		}
 	</style>
-	
-	 <link rel="stylesheet" href="/css/chatroom.css">
-	 <script type="text/javascript" defer src="/js/messenger/chatroom.js"></script>
-	
-</head>
 
+</head>
 
 <body>
 	<div id="container" class="container">
+		<h1>채팅</h1>
 		<input type="hidden" id="sessionId" value="">
-	
-		<div class="header">
-                <div class="header-flex">
-                    <div class="tinum">
-                        <div class="title">
-                            <span><strong>채팅방 이름</strong></span>
-                        </div>
-                        <div class="number">
-                            <img src="/img/chatroom-number.png" width="15px" height="15px">
-                            <span>2</span>
-                        </div>
-                    </div>
-                    <div class="search">
-                        <img src="/img/chatroom-search.png" width="15px" height="15px">
-                    </div>
-                </div>
-            </div>
-		
 		<div id="chating" class="chating">
-			<div class="you-flex">
-			
-			</div>
-			
-			<div class="me">
-				
-			</div>
 		</div>
 		
 		<div id="yourName">
@@ -100,5 +70,43 @@
 			</table>
 		</div>
 	</div>
+	
+	<script type="text/javascript" src="/js/messenger/chat1.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="you">
+	<div class="you-flex">
+	    <div class="you-profile">
+	        <div class="pic">
+	            <img src="/img/chatroom-profile.jpg" width="35px" height="35px">
+	        </div>
+	    </div>
+	    <div class="namebubble">
+	        <div class="name">
+	            <span><strong>name</strong></span>
+	        </div>
+	        <div class="you-bubble-flex">
+	            <div class="you-bubble">
+	                상대방이 처음 보낸 채팅
+	            </div>
+	            <div class="you-count">
+	                <span>1</span>
+	            </div>
+	        </div>
