@@ -18,6 +18,7 @@ public class ReserveVO {
 	private String startTime;
 	private String endTime;
 	
+	private List<GoodsVO> goodsVOs;
 	private GoodsVO goodsVO;
 	private UserVO userVO;
 //	filter
