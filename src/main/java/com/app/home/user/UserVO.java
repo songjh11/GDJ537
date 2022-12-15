@@ -56,7 +56,7 @@ public class UserVO implements UserDetails {
 
 	private List<DepartmentVO> departmentVOs;
 	
-	private int lstatus;
+
 
 
 	@Override
