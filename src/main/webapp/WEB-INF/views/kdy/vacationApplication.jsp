@@ -196,11 +196,11 @@
                     </div>
             </div>
         </div>    
+        <button  type="button" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;" onclick="vacaNullCheck()">제 출</button>
     </div>
 </form>
 
 
-        <button  type="button" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;" onclick="vacaNullCheck()">제 출</button>
         
 
 	            </div>
