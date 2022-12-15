@@ -7,4 +7,5 @@ public class PickVO {
 	
 	private Long pickNum;
 	private Long myId;
+	private Long yourId;
 }

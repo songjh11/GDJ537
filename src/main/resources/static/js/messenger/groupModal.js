@@ -1,16 +1,16 @@
 
 // 채팅방 생성 모달창 닫기
-// const room = document.getElementById("room")
-// const rmCloseBtn = room.querySelector(".close-area")
-// rmCloseBtn.addEventListener("click", e => {
-//     room.style.display = "none"
-// });
+const room = document.getElementById("room")
+const rmCloseBtn = room.querySelector(".close-area")
+rmCloseBtn.addEventListener("click", e => {
+    room.style.display = "none"
+});
 
-// //  채팅방 생성 모달창 열기
-// $("#roomBtn").click(function(){
-//     console.log("모달창 클릭됨?")
-//     $(".room-overlay").css('display','flex').hide().fadeIn();
-// });
+const check = document.getElementById("check")
+const usCloseBtn = check.querySelector(".close-area")
+usCloseBtn.addEventListener("click", e => {
+    check.style.display = "none"
+});
 
 // 채팅방추가 아이콘 누르면 체크박스 생성
 $("#userBtn").click(function(){
@@ -24,16 +24,30 @@ $("#userBtn").click(function(){
         // 채팅방 생성창 열기
         $(".room-overlay").css('display','flex').hide().fadeIn();
 
-        // ------------- Ajax -------------
-        $.ajax({
-            type:"POST",
-            url:"addRoomUser",
-            data: id,
-            success:function(result){
-                console.log("result : ", result);
-            }
-        });
+        // // ------------- Ajax -------------
+        // $.ajax({
+        //     type:"POST",
+        //     url:"addRoom",
+        //     data: id,
+        //     success:function(result){
+        //         console.log("result : ", result);
+        //     }
+        // });
+
+        
+
+        $("#roomAddBtn").click(function(){
+
+
+
+        })
 
     });
 
+});
+
+//  채팅방 생성 모달창 열기
+$("#roomBtn").click(function(){
+    // console.log("모달창 클릭됨?")
+    $(".room-overlay").css('display','flex').hide().fadeIn();
 });
