@@ -59,8 +59,14 @@
 								<div class="mb-0 row">
 								  	<label class="col-sm-2 col-form-label" for="id">요청 부서</label>
 								  	<div class="col-sm-10">
-								  		<select>
-								  			<option>부서명</option>
+								  		<select name="depnum">
+								  			<option selected disabled>부서명</option>
+								  			<option value="1">영업팀</option>
+								  			<option value="2">총무팀</option>
+								  			<option value="3">인사팀</option>
+								  			<option value="4">IT개발팀</option>
+								  			<option value="5">생산팀</option>
+								  			
 								  		</select>
 								  	</div>
 								</div>

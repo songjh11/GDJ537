@@ -12,10 +12,12 @@
 		#{depnum}, 0, #{sort})
 	</insert>
 
-	<select id="getDetail" parameterType="BoardVO"
-		resultMap="resultBoardAddfiles">
-		select b.*,f.filenum, f.filename, f.oriname from board b
-		left join file f on b.num = f.num where b.num=#{num}
+	<select id="getDetail" parameterType="BoardVO" resultMap="resultBoardAddfiles">
+		SELECT B.*,F.FILENUM, F.FILENAME, F.ORINAME
+		FROM BOARD B
+		LEFT JOIN FILE F
+		ON B.NUM = F.NUM
+		WHERE B.NUM = #{num}
 	</select>
 
 	<resultMap type="BoardVO" id="resultBoardAddfiles">
@@ -78,5 +80,4 @@
 		UPDATE BOARD SET HIT = HIT + 1
 		WHERE NUM = #{num}
 	</update>
-
 </mapper>    
