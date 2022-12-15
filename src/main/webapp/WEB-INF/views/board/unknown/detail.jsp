@@ -146,8 +146,8 @@
               </div>
 
               <!-- 나중에 로그인한 사용자와 작성자가 일치하는지 검증 -->
-              <a href="/unknown/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a>
-              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.num}">글 삭제</button>
+              <a href="/unknown/update?id=${boardVO.id}" class="btn btn-danger">글 수정</a>
+              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>
             </div>
             <!-- End Page Content -->
 

@@ -39,7 +39,7 @@ deleteBtn.on("click", function(){
             type: "POST",
             url: "/" + boardName + "/delete",
             data: {
-                num: deleteNum
+                id: deleteNum
             },
             success: result => {
                 if(result == 1){

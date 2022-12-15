@@ -94,7 +94,7 @@
 	            	</div>
 	            	
               <!-- 댓글 -->
-              <input type="hidden" name="id" id="commentIdInput" value="4321">
+              <input type="hidden" name="creator" id="commentIdInput" value="4321">
               <div class="mb-5">
                 <label for="contents" class="form-label">[요청] 댓글 쓰기</label>
                 <textarea class="form-control" id="contents" style="height: 100px"
@@ -144,8 +144,8 @@
               </div>
 
               <!-- 나중에 로그인한 사용자와 작성자가 일치하는지 검증 -->
-              <a href="/unknown/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a>
-              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.num}">글 삭제</button>
+              <a href="/request/update?id=${boardVO.id}" class="btn btn-danger">글 수정</a>
+              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>
             </div>
             <!-- End Page Content -->
 
