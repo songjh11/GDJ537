@@ -83,7 +83,8 @@ $("#tbd").on("click", "#statusBtn", function(event){
 
     let depNum = $(this).attr("data-depNum");
 
-
+    
+    
     $.ajax({
         type: 'POST',
         url:  '/report/insa',
@@ -91,7 +92,7 @@ $("#tbd").on("click", "#statusBtn", function(event){
             id : name,
             depNum : depNum
         },
-
+        
         success:function(result){
             alert("수정에 성공하였습니다.");
             console.log($("#statusBtn").text());
@@ -158,3 +159,8 @@ $(".tdId").on('each', '.btn', function(){
     console.log("하이");
 
 });
+
+
+
+
+
