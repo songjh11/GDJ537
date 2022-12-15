@@ -171,11 +171,11 @@ public class MessengerController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
-		Integer id = userVO.getId();
+	    userVO = userService.getMypage(userVO);
 		
 		ModelAndView mv = new ModelAndView("jsonView");
 		//임시 id
-		userVO.setId(id);
+		userVO.setId(userVO.getId());
 		List<NoteVO> ar = noteService.getSendNoteList(userVO, notePager);
 		mv.addObject("list", ar);
 		mv.addObject("pager", notePager);
@@ -195,13 +195,27 @@ public class MessengerController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
-		Integer id = userVO.getId();
+	    userVO = userService.getMypage(userVO);
 		
 		ModelAndView mv = new ModelAndView();
 		noteVO = noteService.getNoteDetail(noteVO);
-		mv.addObject("detail", noteVO);
 		
-		userVO.setId(id);
+		
+		UserVO sendUser = new UserVO();
+		sendUser.setId(noteVO.getSendId().intValue());
+		sendUser = userService.getMypage(sendUser);
+		
+		UserVO receiveUser = new UserVO();
+		receiveUser.setId(noteVO.getReceiveId().intValue());
+		receiveUser = userService.getMypage(receiveUser);
+		
+		mv.addObject("detail", noteVO);
+		log.info("노트의 인포는 {}", noteVO);
+		mv.addObject("sendUser", sendUser);
+		mv.addObject("receiveUser", receiveUser);
+		mv.addObject("session", userVO);
+		
+		userVO.setId(userVO.getId());
 		Long reid = new Long(userVO.getId());
 		
 		noteVO.setReceiveId(reid);
@@ -221,10 +235,10 @@ public class MessengerController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
-		Integer id = userVO.getId();
+	    userVO = userService.getMypage(userVO);
 		
 		ModelAndView mv = new ModelAndView();
-		userVO.setId(id);
+		userVO.setId(userVO.getId());
 		mv.addObject("member", userVO);
 		return mv;
 	}
@@ -258,9 +272,22 @@ public class MessengerController {
 	}
 	
 	@GetMapping("note/group")
-	public ModelAndView setGroup(int[] arr)throws Exception{
-		ModelAndView mv = new ModelAndView();
+	@ResponseBody
+	public ModelAndView setGroup(HttpSession session, UserVO userVO, int[] arr)throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  = (UserVO)authentication.getPrincipal();
+		Integer id = userVO.getId();
 		
+		ModelAndView mv = new ModelAndView("jsonView");
+		log.info("인트배열을받으세염 {}",arr);
+		
+		
+		
+		
+		userVO.setId(id);
+		mv.addObject("member", userVO);
+		mv.addObject("yourId", arr);
 		
 		return mv;
 	}
