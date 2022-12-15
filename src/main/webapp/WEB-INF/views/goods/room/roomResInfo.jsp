@@ -48,16 +48,17 @@ ul li {
 				<input type="hidden" value="${roomInfo[0].goodsVOs[0].name}">
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
-						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVOs[0].name}회의실예약정보</h1>
-						<table class="table table-hover">
+						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVOs[0].name} 예약정보</h1>
+						<table class="table table-hover" id="info">
 							<tr>
-								<th>예약자</th>
+								<th>예약자 ID</th>
 								<th>날짜</th>
 								<th>사용 목적</th>
 								<th>시작 시간</th>
 								<th>종료 시간</th>
 							</tr>
 							<c:forEach items="${roomInfo }" var="ro">
+								<input type="hidden" value="${ro.startTime}" class="startTime">
 								<tr>
 									<td>${ro.id }</td>
 									<td>${ro.date }</td>

@@ -10,10 +10,12 @@
 <title>Insert title here</title>
 <!-- 공통 css, js, jquery -->
 <c:import url="../temp/layout_header.jsp"></c:import>
+
 <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <!-- jquery CDN -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!-- jQuery -->
   <c:import url="../temp/fullcalendar.jsp"></c:import>
 <style>
   /* body 스타일 */
@@ -54,8 +56,17 @@
 	            	<!-- Page Heading -->
 	            	<div id='calendar-container'>
 		            	<input class="filter" id="room" type="checkbox" name="room"  checked>회의실
-						<input class="filter" id="car" type="checkbox" name="car" >차량
-						<input class="filter" id="vacation" type="checkbox" name="vacation">휴가
+                  <input class="filter" id="car" type="checkbox" name="car" >차량
+                  <input class="filter" id="vacation" type="checkbox" name="vacation">휴가
+                  <label for="pl" hidden >카테고리</label>
+                  <select name="depNum" id="depNum" class="filter">
+                    <option value="">부서별</option>
+                    <option value="1">영업팀</option>
+                    <option value="2">총무팀</option>
+                    <option value="3">인사팀</option>
+                    <option value="4">IT개발팀</option>
+                    <option value="5">생산팀</option>
+                  </select>
 						<!-- Calendar -->
 					    <div id='calendar'></div>
 					 </div>
@@ -84,16 +95,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="taskId" class="col-form-label">일정 내용</label>
+                        <label for="taskId" class="col-form-label">공공 시설 예약</label>
                         <input type="text" class="form-control" id="calendar_content" >
                         <label for="taskId" class="col-form-label">시작 날짜</label>
                         <input type="text" class="form-control" id="calendar_start_date" >
                         <label for="taskId" class="col-form-label">종료 날짜</label>
                         <input type="text" class="form-control" id="calendar_end_date" >
-                         <label for="taskId" class="col-form-label">부서명</label>
-                        <input type="text" class="form-control" id="calendar_end_date" >
+                         <label for="taskId" class="col-form-label">직급</label>
+                        <input type="text" class="form-control" id="calendar_user_roleName" >
                          <label for="taskId" class="col-form-label">사원명</label>
-                        <input type="text" class="form-control" id="calendar_end_date"  >
+                        <input type="text" class="form-control" id="calendar_user_name">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -117,17 +128,14 @@
       // calendar element 취득
       var calendarEl = $('#calendar')[0];
       console.log("rr");
-      
-      
       var params = {
 				room : $("#room").is(':checked') ,
 				car : $("#car").is(':checked'),
-				vacation : $("#vacation").is(':checked')
+				vacation : $("#vacation").is(':checked'),
+        depNum : $("#depNum").val()
 			}
       
-      
-      
-      
+
       var request = $.ajax({
           url: "/goods/calendar", // 변경하기
           method: "POST",
@@ -170,41 +178,38 @@
               eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트
                 console.log(obj);
               },
-              select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-                var title = prompt('Event Title:');
-                if (title) {
-                  calendar.addEvent({
-                    title: title,
-                    start: arg.start,
-                    end: arg.end,
-                    allDay: arg.allDay
-                  })
-                }
-                calendar.unselect()
-              },
+              
               /**
                * data 로 값이 넘어온다. log 값 전달.
                */
-              events: data
-              ,eventClick:function(data) {
+               events: data
+              
+               ,eventClick:function(data) {
+                
                   if(data) {
+                    $('#calendarModal').modal("show");    
                 	  var startTimeCheck = new Date(data.event.start);
                 	  var endTimeCheck = new Date(data.event.end);
+                    console.log(data.event)
+                    console.log(data.event.extendedProps.content);
+                	  
 
-                	  $('.modal').modal("show");
                 	  $('#calendar_content').val(data.event.title);
-					  $('#calendar_start_date').val(startTimeCheck.toLocaleDateString('ko-kr')+startTimeCheck.toLocaleTimeString('ko-kr'));
-					  $('#calendar_end_date').val(endTimeCheck.toLocaleDateString('ko-kr')+endTimeCheck.toLocaleTimeString('ko-kr'));
-                      
-                      return false;
+			        		  $('#calendar_start_date').val(startTimeCheck.toLocaleDateString('ko-kr')+startTimeCheck.toLocaleTimeString('ko-kr'));
+				        	  $('#calendar_end_date').val(endTimeCheck.toLocaleDateString('ko-kr')+endTimeCheck.toLocaleTimeString('ko-kr'));
+                    $('#calendar_user_roleName').val(data.event.extendedProps.test1);
+				        	  $('#calendar_user_name').val(data.event.extendedProps.test2);
+                    
+                    
                   }
               }
               
-              /* [{
-                  title: 'All Day Event',
-                  start: '2022-12-01',
-                  end: '2022-12-02',
-                }] */
+              //  [{
+              //     title: 'All Day Event',
+              //     start: '2022-12-01 12:30:00',
+              //     end: '2022-12-03',
+              //     content : '메롱'
+              //   }] 
               
           });
 
