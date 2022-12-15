@@ -53,6 +53,12 @@ public interface ReportMapper {
 	
 	public int setLicenserUpdate(UserVO userVO) throws Exception;
 	
+	//신청자입장에서 자기가 첫번째(팀장) 결재선 
+	public ReportVO getFirstList(ReportVO reportVO) throws Exception;
+	
+	//신청자입장에서 자기가 두번째(최종결재관리자) 결재선
+	public ReportVO getlastlist(ReportVO reportVO) throws Exception;
+	
 	
 	
 	

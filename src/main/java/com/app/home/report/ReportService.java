@@ -93,6 +93,19 @@ public class ReportService {
 		return reportMapper.setLicenserUpdate(userVO);
 	}
 	
+	//결재 신청자 입장에서 자기가 결재를 해야할 목록 리스트
+	public ReportVO getFirstList(ReportVO reportVO) throws Exception{
+			
+		
+		return reportMapper.getFirstList(reportVO);
+	}
+	
+	//결재 신청자 입장에서 자기가 결재를 해야할 목록 리스트
+	public ReportVO getlastlist(ReportVO reportVO) throws Exception{
+		
+		return reportMapper.getlastlist(reportVO);
+	}
+	
 	
 	
 	

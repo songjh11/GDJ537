@@ -107,26 +107,59 @@
 		
 	</resultMap>
 	
-	<!-- 신청자 입장에서 보이는 결재선 페이지 -->
-	<select id="getReportMyPage" parameterType="userVO" resultMap="getReportMyPageResult">
-		SELECT U.ID, U.DEPNUM, RL.LSTATUS 
-		FROM USER U
+	<!-- 신청자 입장에서 보이는 첫번째 결재선 페이지 -->
+	<select id="getFirstList" parameterType="ReportVO" resultMap="getFirstResult">
+		SELECT RL.ID, D.DEPNAME , R.ROLENAME 
+		FROM REPORTLICENSER RL
 		INNER JOIN
-		REPORTLICENSER RL 
-		ON U.ID = RL.ID 
-		WHERE U.ID = #{id} 
+		DEPARTMENT D 
+		ON D.DEPNUM  = RL.DEPNUM 
+		INNER JOIN 
+		USER U 
+		ON D.ID = U.ID 
+		INNER JOIN 
+		ROLE R
+		ON R.ROLENUM = U.ROLENUM 
+		WHERE RL.ID = #{id} AND RL.DEPNUM = #{depNum} AND RL.LSTATUS = 2
 	</select>
 	
-	<resultMap type="userVO" id="getReportMyPageResult">
+	<!-- 팀장, 최종결재관리자 뽑는 resultMap -->
+	<resultMap type="reportVO" id="getFirstResult">
 		<id column="id" property="id"/>
 		<result column="depNum" property="depNum"/>
+		<result column="lstatus" property="lstatus"/>
 		
-		<association property="reportVO" javaType="ReportVO">
-			<id column="licenserNum" property="licenserNum"/>
-			<result column="lstatus" property="lstatus"/>
+		<association property="departmentVO" javaType="DepartmentVO">
+			<id column="depNum" property="depNum"/>
+			<result column="depName" property="depName"/>
+		</association>
+		
+		<association property="userVO" javaType="UserVO">
+			<id column="num" property="num"/>
+			<result column="roleNum" property="roleNum"/>
+		</association>
+		
+		<association property="roleVO" javaType="RoleVO">
+			<id column="roleNum" property="roleNum"/>
+			<result column="roleName" property="roleName"/>
 		</association>
 	</resultMap>
 	
+	<!-- 신청자 입장에서 두번째 승인자 (최종 결재관리자)가 보여야하는 결재선  -->
+	<select id="getlastlist" parameterType="ReportVO" resultMap="getFirstResult">
+			SELECT RL.ID, D.DEPNAME , R.ROLENAME 
+			FROM REPORTLICENSER RL
+			INNER JOIN
+			DEPARTMENT D 
+			ON D.DEPNUM  = RL.DEPNUM 
+			INNER JOIN 
+			USER U 
+			ON D.ID = U.ID 
+			INNER JOIN 
+			ROLE R
+			ON R.ROLENUM = U.ROLENUM 
+			WHERE RL.ID = #{id} AND RL.DEPNUM = #{depNum} AND RL.LSTATUS = 3
+	</select>
 	
 	<!-- ==================================== -->
 	

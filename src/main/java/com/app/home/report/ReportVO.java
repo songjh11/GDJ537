@@ -29,6 +29,7 @@ public class ReportVO {
 	private RoleVO roleVO;
 	
 	private String roleName;
+	private String depName;
 	
 	
 	
