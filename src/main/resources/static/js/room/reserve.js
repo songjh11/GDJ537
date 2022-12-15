@@ -87,8 +87,8 @@ startTime.addEventListener("blur", function () {
         var eTime = b1.replace(':', '');
         var endTimeNumber = parseFloat(eTime);
 
-        // console.log("예약된 시간: " + startTimeNumber);
-        // console.log("예약된 종료 시간: " + endTimeNumber);
+        console.log("예약된 시간: " + startTimeNumber);
+        console.log("예약된 종료 시간: " + endTimeNumber);
 
         // console.log("예약시작시간보다 선택한 시간이 클때: ", startTimeNumber < selectStartTime);
         // console.log("선택한 시간이 예약 종료 시간보다 작을때: ", selectStartTime <= endTimeNumber);
