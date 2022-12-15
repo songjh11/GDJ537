@@ -224,7 +224,7 @@ function entDateUpdate(id,entDate){
             entDate:entDate
         },
         success:function(){
-            Swal.fire('번호를 변경하였습니다.','','success');
+            Swal.fire('입사일을 변경하였습니다.','','success');
             setTimeout(function(){
                 location.reload();
             },1000);

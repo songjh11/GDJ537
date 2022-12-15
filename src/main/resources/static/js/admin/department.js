@@ -4,7 +4,7 @@ $("#addDepartment").click(function(){
     console.log("click");
     (async () => {
         const { value: getName } = await Swal.fire({
-            title: '추가할 부서를 입력하세요.',
+            title: '추가할 직급을 입력하세요.',
             text: '',
             input: 'text',
             inputPlaceholder: '영업팀'
@@ -18,7 +18,7 @@ $("#addDepartment").click(function(){
                     depName:getName
                 },
                 success:function(){
-                    Swal.fire('부서를 추가하였습니다.','','success');
+                    Swal.fire('직급을 추가하였습니다.','','success');
                     setTimeout(function(){
                         location.reload();
                     },1000);

@@ -64,7 +64,6 @@
                         <th class="table-light" scope="col">전화번호</th>
                         <th class="table-light entDate" scope="col">입사일</th>
                         <th class="table-light" scope="col"></th>
-                        <th class="table-light" scope="col">Test</th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">
@@ -103,7 +102,6 @@
                         <td class="" data-user="phone">${userVO.phone}</td>
                         <td class="showUser" data-user="entDate">${userVO.entDate}</td>
                         <td class="dismiss"><a href="#">퇴사</a></td>
-                        <td class="">
                         
 	                        	 
                         </td>
