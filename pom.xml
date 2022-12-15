@@ -37,6 +37,20 @@
       	</dependency>
 		
 		<!-- 게시판   2조 -->
+	  <dependency>
+        <groupId>software.amazon.awssdk</groupId>
+        <artifactId>bom</artifactId>
+        <version>2.18.36</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      
+	   <dependency>
+	      <groupId>software.amazon.awssdk</groupId>
+	      <artifactId>s3-transfer-manager</artifactId>
+	      <version>2.18.36-PREVIEW</version>
+	   </dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
 		<!-- 버전은 최신 버전으로 -->
 		<dependency>
@@ -52,6 +66,11 @@
 		    <version>1.1.1</version>
 		</dependency>
 		<!-- 보고서   1조 -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency> 
 		
 		<!-- 메신져   3조 -->
 
