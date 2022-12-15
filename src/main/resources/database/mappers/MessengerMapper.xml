@@ -94,7 +94,7 @@
 			ROOMUSER R 
 			ON CR.ROOMNUM = R.ROOMNUM
 		WHERE R.ID = #{userVO.id}
-		ORDER BY CR.ROOMNUM ASC
+		ORDER BY CR.ROOMNUM DESC
 	</select>
 	<resultMap type="RoomVO" id="getRoomListResult">
 		<id column="ROOMNUM" property="roomNum" />

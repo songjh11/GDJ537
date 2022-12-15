@@ -39,19 +39,25 @@ public class MessengerService {
 		int result = messengerMapper.setAddRoom(roomVO);
 		
 		if(result > 0) {
-			
-			// 그 후 유저들 인서트
-			if(result > 0) {
-				for(int ids : roomVO.getId()) {
-					
-					UserVO userVO = new UserVO();
-					userVO.setId(ids);
-					roomVO.setUserVO(userVO);
-					
-					result = messengerMapper.setAddRoomUser(roomVO);
+			UserVO hostVO = roomVO.getUserVO();
+			if(hostVO != null) {
+				
+				// 방장을 유저에 추가
+				result = messengerMapper.setAddRoomUser(roomVO);
+				
+				// 그 후 유저들 인서트
+				if(result > 0) {
+					for(int ids : roomVO.getId()) {
+						
+						UserVO userVO = new UserVO();
+						userVO.setId(ids);
+						roomVO.setUserVO(userVO);
+						
+						result = messengerMapper.setAddRoomUser(roomVO);
+						
+					}
 					
 				}
-				
 			}
 			
 		}

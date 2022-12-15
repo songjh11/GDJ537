@@ -19,7 +19,7 @@ public class RoomVO {
 	// 채팅방 방장
 	private Integer hostId;
 	// 채팅방 비밀번호
-	private String pw;
+	private Integer pw;
 	
 	// 유저목록
 	private Integer userNum;
