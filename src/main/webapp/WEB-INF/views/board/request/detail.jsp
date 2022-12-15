@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,12 @@
 <c:import url="../../temp/layout_header.jsp"></c:import>
 <!-- 파일 다운로드 아이콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      <style type="text/css">
+      	.dropdown-toggle::after{
+      		vertical-align:inherit;
+      	}
+      </style>
+
 </head>
 
 <!-- body ID 작성 -->
@@ -45,23 +52,32 @@
 					                  <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">[요청사항] ${boardVO.title}</h5>
 					                 </div>
 					                 <div class="col-fill ml-auto align-self-end mr-5">
-					                 	<p >조회수  ${boardVO.hit}  </p>
+					                 	<div>
+					                      <p>작성자 ${boardVO.id }</p>
+					                      <p>조회수 ${boardVO.hit} </p>
+					                    </div>
 										<p id="regdate" data-date="${boardVO.regDate}"> 등록일자  </p>
 					                </div>
 					             </div>
 					         </div>
 				         	<div class="card-body" style="min-height: 500px">
 				         		<div class="mb-1 row justify-content-end">
-				         			<div class="col-3">
-				         				<c:forEach items="${boardVO.fileVOs}" var="files">
-						         			<p>
-						         				<a href="/fileDown/board/${files.fileNum}"> 
-						         					<span class="material-symbols-outlined">
-													download
-													</span> ${files.oriName}</a>
-						         			</p>
-				         				</c:forEach>
-				         			</div>
+			                    <div class="col-2">
+			                    <c:if test="${!empty boardVO.fileVOs}">
+			                  	<button class="btn btn-outline-dark btn-block  dropdown-toggle dropdown-toggle-split"  data-toggle="dropdown" aria-expanded="false" type="button">
+			                            <span class="material-symbols-outlined my-auto" style="vertical-align: middle;"></span>
+			                            
+                            			<span style="vertical-align: middle;"> 첨부파일 (${fn:length(boardVO.fileVOs) }) </span>
+			                    </button>
+					              <div class="dropdown-menu dropdown-menu-right">
+		                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
+			                        <a class="dropdown-item" href="/fileDown/board/${file.fileNum}">${file.oriName } </a>
+			                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
+			                      </c:forEach>
+		
+								  </div>
+								  </c:if>
+				         		</div>
 				         		</div>
 				                <div class="mb-5 row">
 								  	<div class="col">
@@ -71,12 +87,64 @@
 		            		</div>
 	            		
 	            	</div>
-	            					<a href="/request/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a> 
-					                <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.num }">글 삭제</button>
-	            </div>
-	            <!-- End Page Content -->
-					
-			</div>
+	            	
+              <!-- 댓글 -->
+              <input type="hidden" name="id" id="commentIdInput" value="4321">
+              <div class="mb-5">
+                <label for="contents" class="form-label">[요청] 댓글 쓰기</label>
+                <textarea class="form-control" id="contents" style="height: 100px"
+                  placeholder="Leave a comment here"></textarea>
+              </div>
+              <div class="mb-5">
+                <button type="button" id="b1" data-boardNum="${boardVO.num}" class="btn btn-success">댓글등록</button>
+              </div>
+              <!-- 댓글 목록 -->
+              <div>
+                <table id="commentList" class="table table-striped"></table>
+              </div>
+
+              <div>
+                <!-- modal -->
+                <button type="button" style="display: none;" class="btn btn-primary" id="up" data-toggle="modal"
+                  data-target="#updateModal" data-whatever="@getbootstrap">Open modal for
+                  @getbootstrap</button>
+
+                <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">댓글수정</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                      </div>
+
+                      <div class="modal-body">
+                        <form>
+                          <div class="mb-3">
+                            <label for="message-text" class="col-form-label">내용:</label>
+                            <textarea class="form-control" id="updateContents"></textarea>
+                          </div>
+                        </form>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" id="update">수정하기</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 나중에 로그인한 사용자와 작성자가 일치하는지 검증 -->
+              <a href="/unknown/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a>
+              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.num}">글 삭제</button>
+            </div>
+            <!-- End Page Content -->
+
+          </div>
 			<!-- End of Main Content -->
 			
 			<!-- Footer import -->
@@ -86,6 +154,7 @@
 		<!-- End of Content Wrapper -->
 	</div>
 	<script src="/js/boardDelete.js"></script>
+	<script src="/js/boardComment.js"></script>
 	<script type="text/javascript">
 		let regDate = $("#regdate").attr("data-date")
 		$("#regdate").append(regDate.slice(0,16))

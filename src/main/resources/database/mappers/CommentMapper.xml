@@ -15,7 +15,8 @@
 		parameterType="CommentPager">
 		SELECT * FROM COMMENT
 		WHERE NUM = #{num}
-		ORDER BY COMMENTNUM DESC
+		ORDER BY
+		COMMENTNUM DESC
 		LIMIT #{startRow}, #{perPage}
 	</select>
 
@@ -28,7 +29,8 @@
 	<insert id="setCommentUpdate" parameterType="CommentVO">
 		UPDATE COMMENT
 		SET
-		CONTENTS=#{contents} WHERE COMMENTNUM=#{commentNum}
+		CONTENTS=#{contents}, UPDATEDATE=current_timestamp() WHERE
+		COMMENTNUM=#{commentNum}
 	</insert>
 
 	<delete id="setCommentDelete" parameterType="CommentVO">

@@ -10,4 +10,5 @@ public class FileVO {
 	private Integer num;
 	private String fileName;
 	private String oriName;
+	private Integer fileSize;
 }

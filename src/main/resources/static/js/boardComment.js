@@ -85,15 +85,25 @@ function getCommentList(p, bn) {
         td.appendChild(tdText);
         tr.appendChild(td);
 
+        // //익명작성자
+        // td = document.createElement("td");
+        // tdText = document.createTextNode(ar[i].id);
+        // td.appendChild(tdText);
+        // tr.appendChild(td); 
+
         td = document.createElement("td");
-        tdText = document.createTextNode(ar[i].id);
+        tdText = document.createTextNode(ar[i].regDate);
         td.appendChild(tdText);
         tr.appendChild(td);
 
-        /*td = document.createElement("td");
-        tdText = document.createTextNode(ar[i].regDate);
+        td = document.createElement("td");
+        if(ar[i].updateDate == null){
+          tdText = document.createTextNode(ar[i].regDate);
+        } else {
+          tdText = document.createTextNode(ar[i].updateDate);
+        }
         td.appendChild(tdText);
-        tr.appendChild(td);*/
+        tr.appendChild(td);
 
         td = document.createElement("td");
         tdText = document.createTextNode("수정");

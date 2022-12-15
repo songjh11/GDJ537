@@ -118,7 +118,8 @@
       <!-- End of Content Wrapper -->
       </div>
       <script type="text/javascript">
-        $('#contents').summernote('pasteHTML', '${boardVO.contents}',
+      $('#contents').html('${boardVO.contents}')
+      $('#contents').summernote(
           {
             placeholder: '내용을 입력해주세요',
             tabsize: 2,
