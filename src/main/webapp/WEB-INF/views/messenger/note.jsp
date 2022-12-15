@@ -265,7 +265,7 @@
 	}
 
 	#listImage{
-		width: 10%;
+		width: 7%;
 		height: 80%;
 		margin: 0px 8px 0px 3px;
 	}
@@ -278,7 +278,7 @@
 
 	#listInfo {
 		margin-bottom: auto;
-		width: 89%;
+		width: 92%;
 	}
 
 	#previewId {
@@ -526,15 +526,12 @@
 
 		//읽은 아이들은 회색으로 표시..
 		$($(".noteList")).each(function(index, item) {
-
 			if($(this).attr("read-check")==0) {
 				$(this).css("color","lightgrey");
 			}
 		});	
-
-
-
 		
+		//검색아이콘 클릭시
 		$(document).ready(function() {
 			$('#noteChoice').show(); //페이지를 로드할 때 표시할 요소
 			$('#noteChoiceSearch').hide();
@@ -583,19 +580,6 @@
 		
 		// 쪽지 상세보기
 		function notePop(num) {
-			// $.ajax({
-			// 	type:"GET",
-			// 	url :"./note/check",
-			// 	traditional:true, //배열을 전송할 때 사용, true
-			// 	data:{v
-			// 		noteNum: num
-			// 	},
-			// 	success : function(data){
-			// 		console.log(data);
-			// 	},
-			// 	error : function(){
-			// 	}
-			// })
 			
 			window.open('./note/detail?noteNum='+num, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
 			
@@ -705,12 +689,6 @@
 						
 					}
 					
-
-					
-
-					
-
-
 					let tempest = '';
 					let src2="/img/messenger/send.png";
 					let src="/img/messenger/receiveX.png";

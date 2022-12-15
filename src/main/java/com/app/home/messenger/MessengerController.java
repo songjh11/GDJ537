@@ -1,5 +1,7 @@
 package com.app.home.messenger;
 
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -7,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -28,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("messenger")
 @Slf4j
-public class MessengerController {
+public class MessengerController extends Socket {
 	
 	@Autowired
 	private NoteService noteService;
@@ -288,18 +293,25 @@ public class MessengerController {
 		userVO.setId(id);
 		mv.addObject("member", userVO);
 		mv.addObject("yourId", arr);
-		
+		mv.setViewName("messenger/note/group");
 		return mv;
 	}
+	
+	@GetMapping("note/groupSend")
+	public String setGroupSend(HttpSession session, UserVO userVO, int[] arr)throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
+	    userVO = userService.getMypage(userVO);
+	    
+		return "messenger/note/groupSend";
+	}
+	
 	
 	
 	// --------------------- 유리 끝------------------------------
 	
-	// --------------------- 효경 ------------------------------
-	
-	// 채팅방 인원
-	
-	
+	// --------------------- 효경 ------------------------------	
 	// 채팅방 추가
 	@PostMapping("addRoom")
 	public ModelAndView setAddRoom(HttpSession session, UserVO userVO, RoomVO roomVO)throws Exception{
@@ -313,6 +325,11 @@ public class MessengerController {
 	    
 	    // 로그인 회원을 방장으로
 		roomVO.setHostId(userVO.getId());
+		
+		// 방장도 유저
+		UserVO hostVO = new UserVO();
+		hostVO.setId(userVO.getId());
+		roomVO.setUserVO(hostVO);
 		
 		int result = messengerService.setAddRoom(roomVO);
 		
@@ -333,6 +350,8 @@ public class MessengerController {
 		ModelAndView mv = new ModelAndView();
 		
 		int userCount = messengerService.getUserCount();
+		
+		log.info("Count =========> {} ", userCount);
 		
 		mv.addObject("userCount", userCount);
 		mv.setViewName("messenger/chat");
@@ -355,6 +374,31 @@ public class MessengerController {
 		
 		return mv;
 	}
+
+	
+	//--------------------- 소영 ------------------------------
+	// 그룹 채팅방
+	@GetMapping("chatroom")
+	public ModelAndView chat3(HttpSession session, UserVO userVO)throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  = (UserVO)authentication.getPrincipal();
+		
+		ModelAndView mv = new ModelAndView();
+		
+		//인원 수
+		int count = messengerService.getUserCount();
+		mv.addObject("count", count);
+		
+		//유저 정보
+		userVO = userService.getMypage(userVO);
+		mv.addObject("user", userVO);
+		log.info("&&&&& &&&&& : {}", userVO);
+		
+		mv.setViewName("messenger/chatroom");
+		return mv;
+	}
+
 	
 }
 
