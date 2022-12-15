@@ -5,6 +5,7 @@ closeBtn.addEventListener("click", e => {
 });
 
 let myId = "";
+let proId = "";
 
 $("#searchBtn").click(function(){
     console.log("ddsfds");
@@ -107,6 +108,7 @@ $(".acoArea").on("click", ".rrrr", function(e){
     if($(e.target).hasClass("pickImg")) {
 	} else {
 		id = $(this).attr("empId");
+        $("#proId").val(id);
         let name = $(this).attr("value");
         let email = $('#email'+id).val();
         let phone = $('#phone'+id).val();
