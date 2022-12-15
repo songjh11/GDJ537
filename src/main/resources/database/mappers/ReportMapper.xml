@@ -53,6 +53,11 @@
 		INSERT INTO REPORTLICENSER (LICENSERNUM, DEPNUM, ID, LSTATUS) VALUES (null, #{depNum}, #{id}, 0)
 	</insert>
 	
+	<!-- 권한을 부여한 뒤 권한을 회수하고 싶다면 승인자 테이블에서 delete해주면 된다. -->
+	<delete id="setLicenserDelete" parameterType="UserVO">
+		DELETE FROM REPORTLICENSER  WHERE ID = #{id}
+	</delete>
+	
 	<!-- 승인권한을 가진사람들 모두 조회 -->
 	<select id="getLicenserList" parameterType="ReportVO" resultMap="getLicenserListResult">
 		SELECT DISTINCT U.ID, U.NAME, D.DEPNAME, R.ROLENAME 
@@ -119,7 +124,7 @@
 	
 	<insert id="setAddSorry" parameterType="ReportSorryVO">
 		INSERT INTO REPORTSORRY
-		VALUES(NULL, #{applyNum},#{date}, #{text}, #{order})
+		VALUES(NULL, #{applyNum},sysdate(), #{text}, #{order})
 	</insert>
 	
 	<insert id="setAddWork" parameterType="ReportWorkVO">

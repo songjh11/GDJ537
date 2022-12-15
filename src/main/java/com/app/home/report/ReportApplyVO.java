@@ -71,6 +71,7 @@ public class ReportApplyVO extends ReportPager {
 		this.returns = returns;
 	}
 
+
 	public Date getApDate() {
 		return apDate;
 	}
