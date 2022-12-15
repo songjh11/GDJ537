@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>       
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -71,8 +72,16 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">${user.name}</span>
-                                    <img class="img-profile rounded-circle"
-                                        src="/file/profile/${user.profile}">
+                                    <c:choose>
+				                    	<c:when test="${userVO.profile eq null}">
+				                    		<img class="img-profile rounded-circle" src="/img/user/user.webp"> 
+				                    	</c:when>
+				                    	<c:otherwise>
+						                    <img class="img-profile rounded-circle" src="/file/profile/${user.profile}">            	
+				                    	</c:otherwise>
+				                    </c:choose>
+                                    
+                                    
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
