@@ -63,7 +63,7 @@ $(".roleLi").click(function(){
 
 const listBtn = $("#listBtn");
 const statusBtn = $("#statusBtn");
-const tdId = $("#tdId");
+
 
 
 // ajax에 나오는 부여버튼을 클릭할려면 그 바로 위 tbody에 있는 부모선택자 id로 선택을 해야 작동됨
@@ -83,6 +83,7 @@ $("#tbd").on("click", "#statusBtn", function(event){
 
     let depNum = $(this).attr("data-depNum");
 
+
     $.ajax({
         type: 'POST',
         url:  '/report/insa',
@@ -94,15 +95,66 @@ $("#tbd").on("click", "#statusBtn", function(event){
         success:function(result){
             alert("수정에 성공하였습니다.");
             console.log($("#statusBtn").text());
-            console.log($("#statusBtn").text('부여됨'));
-            if(result == 1){
-                $("#statusBtn").text('부여됨');
-            }
+            // console.log($("#statusBtn").text('부여됨'));
+            
         },
         error:function(){
             alert("수정에 실패하였습니다");
         }
 
+
+
+    });
+
+});
+
+//ajax에 부여버튼을 클릭하면 user table에서 승인자 table로 insert 와 lstatus=2 로 update가 동시에 되는데 이 사람의 권한을 회수하고 싶다면 승인자 테이블에서 delete해주면 됌
+
+$("#tbd").on('click', "#deleteBtn", function(event){
+
+
+    console.log("권한회수 버튼 클릭");
+
+    let name = $(this).attr("data-name");
+    console.log("내가 클릭한 아이디 : ", name);
+
+    
+    $.ajax({
+        type: 'POST',
+        url:  '/report/deleteLicenser',
+        data:{
+            id : name
+        },
+
+        success:function(result){
+            alert("ID가" + name + "인 직원의 권한을 회수 하였습니다.");
+        },
+        error:function(){
+            alert("권한 회수에 실패하였습니다.");
+        }
+
     })
+
+});
+
+let d1 = $("#statusBtn").click();
+let d2 = $("#deleteBtn").click();
+
+let a1 = $("#statusBtn").attr("data-btn");
+let a2 = $("#deleteBtn").attr("data-btn");
+
+// if(d1){     //부여 버튼이 눌렸다면 부여버튼을 disabled한다
+//     $("#statusBtn").disabled(true);
+// }
+// if(d2){     //권한회수 버튼을 눌렀다면 권한회수 버튼을 disabled하고, 부여버튼을 다시 활성화 시킨다
+//     $("#deleteBtn").disabled(true);
+//     $("#statusBtn").disabled(false);
+// }
+
+
+$(".tdId").on('each', '.btn', function(){
+
+
+    console.log("하이");
 
 });

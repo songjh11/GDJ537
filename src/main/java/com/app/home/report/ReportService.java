@@ -84,7 +84,12 @@ public class ReportService {
 //		
 //		return reportMapper.setLicenserAdd(userVO);
 //	}
-//	
+		
+	//승인자 테이블에서 권한을 회수하기 위해 delete
+	public int setLicenserDelete(UserVO userVO) throws Exception{
+		
+		return reportMapper.setLicenserDelete(userVO);
+	}
 	
 	
 	
