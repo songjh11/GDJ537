@@ -69,6 +69,11 @@
 	color: white;
 }
 
+input:invalid{
+	border-color: danger;
+}
+
+
 /* 채팅방 정보 */
 .roomInfo{
 	display: flex;

@@ -12,7 +12,7 @@ body{
 }
 
 .blank{
-	height: 34px;
+	height: 17px;
 }
 
 .miniBar{
@@ -46,7 +46,7 @@ li{
 }
 
 .chatDiv{
-	width:580px;
+	width:50%;
 	height: 100%;
 	border-right: 1px #4e73df24 solid;
 }

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 						
-
+						<!-- 사원 프로필 모달 -->
 						<div id="modal" class="modal-overlay" style="z-index: 100;">
 							<div class="modal-window">
 								<div class="close-area">X</div>
@@ -18,18 +18,15 @@
 											<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">채팅</a>
 											<a class="btn" id="sendNote" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
 
-											<!-- <div>임시쪽지보내기버튼
-												<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
-											</div> -->
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<!-- 사원 검색 -->
-						<div>
-							<form action="searchEmp" method="POST" class="form-inline navbar-search" style="display: flex; justify-content: flex-end; margin-right: 10px; margin-bottom: 30px;">
-								<div class="input-group" style="width: 100%;"> 
+						<div style="display: flex; align-items: center; height: 57px;">
+							<form action="searchEmp" method="POST" class="form-inline navbar-search" style="width: 100%; display: flex; margin-right: 10px;">
+								<div class="input-group" style="width: 92%;"> 
 									<select class="searchOption form-control" id="kind" name="kind" value="">
 										<option value="0" selected>선택</option>
 										<option value="0">이름</option>
@@ -39,10 +36,20 @@
 									<input type="text" id="keyword" name="keyword" class="form-control bg-light border-0 small" style="width: 180px !important;" placeholder="Search for..."
 									aria-label="Search" aria-describedby="basic-addon2">
 									<div class="input-group-append">
-										<button class="btn btn-primary" type="submit">
+										<button class="btn btn-primary" type="submit" id="searchBtn">
 											<i class="fas fa-search fa-sm"></i>
 										</button>
 									</div>
+								</div>
+								<div style="margin-left: 12px;">
+									<c:choose>
+										<c:when test="${url eq 'note'}">
+											<a href="../messenger/note" title="초기화면으로 돌아가기"><img style="width: 32px;" src="/img/messenger/left.png"></a>
+										</c:when>
+										<c:otherwise>
+											<a href="../messenger/chat" title="초기화면으로 돌아가기"><img style="width: 32px;" src="/img/messenger/left.png"></a>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</form>
 						</div>
@@ -152,9 +159,7 @@
 								</c:when>
 								<c:when test="${empty depList}">
 									<!-- 검색 시 사원 목록(부서목록X) -->
-									<div>
-										<a href="../messenger/chat"><img style="width: 30px;" src="/img/messenger/left.png"></a>
-									</div>
+									
 									<!-- 즐찾 시작 -->
 									<li class="titleLi">
 										<span style="margin-left: 20px;">즐겨찾기</span>
@@ -254,4 +259,4 @@
 									</c:choose>
 								</c:when>
 							</c:choose>
-						</ul>		
+						</ul>

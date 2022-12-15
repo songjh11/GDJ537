@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>결재 목록</title>
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- 공통 css, js, jquery -->
 	<c:import url="../temp/layout_header.jsp"></c:import>
 
@@ -69,22 +69,116 @@
                         <div class="card-header py-3">
                             <c:choose>
                             	<c:when test="${cat eq '1'}">
-                            		<h6 class="m-0 font-weight-bold text-primary">지출결의서</h6>
+									<div class="container text-center">
+										<div class="row">
+											<div class="col">
+											  <h4 class="m-0 font-weight-bold text-primary">지출결의서</h4>
+										  </div>
+										  <div class="col">
+											
+										  </div>
+										  <div class="col">
+											  <select class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
+												  <option value="http://localhost:81/report/mylist?cat=1" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
+												  <option value="http://localhost:81/report/mylist?cat=1&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
+												  <option value="http://localhost:81/report/mylist?cat=1&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
+												  <option value="http://localhost:81/report/mylist?cat=1&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
+												  <option value="http://localhost:81/report/mylist?cat=1&kind=4" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+											  </select>
+										  </div>
+										</div>
+									  </div>
                         		</c:when>
                         		<c:when test="${cat eq '2'}">
-                            		<h6 class="m-0 font-weight-bold text-primary">휴가신청서</h6>
+                            		<div class="container text-center">
+										<div class="row">
+											<div class="col">
+											  <h4 class="m-0 font-weight-bold text-primary">휴가신청서</h4>
+										  </div>
+										  <div class="col">
+											
+										  </div>
+										  <div class="col">
+											  <select class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
+												  <option value="http://localhost:81/report/mylist?cat=2" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
+												  <option value="http://localhost:81/report/mylist?cat=2&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
+												  <option value="http://localhost:81/report/mylist?cat=2&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
+												  <option value="http://localhost:81/report/mylist?cat=2&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
+												  <option value="http://localhost:81/report/mylist?cat=2&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+											  </select>
+										  </div>
+										</div>
+									  </div>
                         		</c:when>
                         		<c:when test="${cat eq '3'}">
-                            		<h6 class="m-0 font-weight-bold text-primary">업무보고서</h6>
+                            		<div class="container text-center">
+										<div class="row">
+											<div class="col">
+											  <h4 class="m-0 font-weight-bold text-primary">업무보고서</h4>
+										  </div>
+										  <div class="col">
+											
+										  </div>
+										  <div class="col">
+											  <select class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
+												  <option value="http://localhost:81/report/mylist?cat=3" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
+												  <option value="http://localhost:81/report/mylist?cat=3&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
+												  <option value="http://localhost:81/report/mylist?cat=3&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
+												  <option value="http://localhost:81/report/mylist?cat=3&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
+												  <option value="http://localhost:81/report/mylist?cat=3&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+											  </select>
+										  </div>
+										</div>
+									  </div>
                         		</c:when>
                         		<c:when test="${cat eq '4'}">
-                            		<h6 class="m-0 font-weight-bold text-primary">시말서</h6>
+                            		<div class="container text-center">
+										<div class="row">
+											<div class="col">
+											  <h4 class="m-0 font-weight-bold text-primary">시말서</h4>
+										  </div>
+										  <div class="col">
+											
+										  </div>
+										  <div class="col">
+											  <select class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
+												  <option value="http://localhost:81/report/mylist?cat=4" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
+												  <option value="http://localhost:81/report/mylist?cat=4&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
+												  <option value="http://localhost:81/report/mylist?cat=4&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
+												  <option value="http://localhost:81/report/mylist?cat=4&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
+												  <option value="http://localhost:81/report/mylist?cat=4&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+											  </select>
+										  </div>
+										</div>
+									  </div>
                         		</c:when>
                         		<c:otherwise>
-                        			<h6 class="m-0 font-weight-bold text-primary">휴가신청서</h6>
+                        			<div class="container text-center">
+										<div class="row">
+											<div class="col">
+											  <h4 class="m-0 font-weight-bold text-primary">휴가신청서</h4>
+										  </div>
+										  <div class="col">
+											
+										  </div>
+										  <div class="col">
+											  <select class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
+												  <option value="http://localhost:81/report/mylist?cat=2" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
+												  <option value="http://localhost:81/report/mylist?cat=2&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
+												  <option value="http://localhost:81/report/mylist?cat=2&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
+												  <option value="http://localhost:81/report/mylist?cat=2&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
+												  <option value="http://localhost:81/report/mylist?cat=2&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+											  </select>
+										  </div>
+										</div>
+									  </div>
                         		</c:otherwise>
                         	</c:choose>
                         </div>
+						<div>
+						
+						
+						<div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -95,18 +189,16 @@
 		                                            <th>제목</th>
 		                                            <th>작성일자</th>
 		                                            <th>결재일자</th>
-		                                            <th>항목</th>
 		                                            <th>합계 금액</th>
 		                                            <th colspan="4">승인상태</th>
 		                                        </tr>
 	                                        </thead>
                                             <tbody>
                                                 <c:forEach items="${list}" var="vo">
-                                                	<tr>
+                                                	<tr onclick="location.href='/report/mylist?applyNum=${vo.applyNum}';" style="cursor:hand">
                                                 		<td>${vo.title}</td>
-                                                		<td>${vo.wdate}</td>
+                                                		<td>${vo.date}</td>
                                                 		<td>${vo.cdate}</td>
-                                                		<td>${vo.category}</td>
                                                 		<td>${vo.sum}</td>
                                                 		<c:choose>
 	                                                		<c:when test="${vo.returns eq 1}">
@@ -175,17 +267,19 @@
                                                 <tr>
                                                     <th>휴가 종류</th>
                                                     <th>휴가 사유</th>
-                                                    <th>휴가 기간</th>
+                                                    <th>휴가 시작일</th>
+                                                    <th>휴가 종료일</th>
                                                     <th>작성일자</th>
                                                     <th colspan="4">승인 상태</th> 
                                                 </tr>
                                             </thead>
                                             <tbody>
 												<c:forEach items="${list}" var="vo">
-                                                	<tr>
-                                                		<td>${vo.category}</td>
+                                                	<tr onclick="location.href='/report/detail?reportNum=1&applyNum=${vo.applyNum}';">
+                                                		<td>${vo.categoryName}</td>
                                                 		<td>${vo.text}</td>
-                                                		<td>${vo.period}</td>
+                                                		<td>${vo.startDate}</td>
+                                                		<td>${vo.endDate}</td>
                                                 		<td>${vo.date}</td>
                                                 		<c:choose>
 	                                                		<c:when test="${vo.returns eq 1}">
@@ -495,6 +589,94 @@
                                     </tfoot> -->
                                 </table>
                             </div>
+                            	
+                            	<c:choose>
+                            		<c:when test="${cat eq 1}">                           		 
+		                            	<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./mylist?cat=1&page=${pager.startNum-1}&kind=${pager.kind}">《</a>
+												</li>
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./mylist?cat=1&page=${i}&kind=${pager.kind}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./mylist?cat=1&page=${pager.lastNum+1}&kind=${pager.kind}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:when test="${cat eq 2}">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./mylist?cat=2&page=${pager.startNum-1}&kind=${pager.kind}">《</a>
+												</li>
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./mylist?cat=2&page=${i}&kind=${pager.kind}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./mylist?cat=2&page=${pager.lastNum+1}&kind=${pager.kind}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:when test="${cat eq 3}">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./mylist?cat=3&page=${pager.startNum-1}&kind=${pager.kind}">《</a>
+												</li>
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./mylist?cat=3&page=${i}&kind=${pager.kind}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./mylist?cat=3&page=${pager.lastNum+1}&kind=${pager.kind}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:when test="${cat eq 4}">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./mylist?cat=4&page=${pager.startNum-1}&kind=${pager.kind}">《</a>
+												</li>
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./mylist?cat=4&page=${i}&kind=${pager.kind}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./mylist?cat=4&page=${pager.lastNum+1}&kind=${pager.kind}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:when>
+									<c:otherwise>
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item ${pager.pre?'':'disabled'}">
+													<a class="page-link" href="./mylist?cat=2&page=${pager.startNum-1}&kind=${pager.kind}">《</a>
+												</li>
+											<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+												<li class="page-item">
+													<a class="page-link" href="./mylist?cat=2&page=${i}&kind=${pager.kind}">${i}</a>
+												</li>	
+											</c:forEach>
+												<li>
+													<a class="page-link ${pager.next?'':'disabled'}" href="./mylist?cat=2&page=${pager.lastNum+1}&kind=${pager.kind}">》</a>
+												</li>
+											</ul>
+										</nav>
+									</c:otherwise>
+                            	</c:choose>
                         </div>
                     </div>
 
