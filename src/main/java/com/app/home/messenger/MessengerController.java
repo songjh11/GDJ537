@@ -59,7 +59,9 @@ public class MessengerController {
 		// ------------------ 채팅목록 ------------------
 		List<RoomVO> roomVOs = new ArrayList<>();
 		RoomVO roomVO = new RoomVO();
+		UserVO userVO2 = new UserVO();
 		userVO.setId(userVO.getId());
+		roomVO.setUserVO(userVO);
 		
 		roomVOs = messengerService.getRoomList(roomVO);
 		
