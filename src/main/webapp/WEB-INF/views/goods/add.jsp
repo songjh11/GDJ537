@@ -41,7 +41,7 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800" >공용 시설 추가</h1>
+	            	<h1 class="h3 mb-4 text-gray-800" id="title" >공용 시설 추가</h1>
 					<P>* 표시는 필수항목입니다.</P>
 	            	
 	            	<form action="add" method="post" enctype="multipart/form-data" id="addform">

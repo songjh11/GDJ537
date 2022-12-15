@@ -34,6 +34,10 @@
  		VALUE (#{imgNum},#{goodsId},#{fileName},#{oriName})
  	</insert>
  	
+ 	<update id="setFileUpdate" parameterType="GoodsFileVO">
+ 		UPDATE GOODSFILE SET FILENAME = #{fileName} , ORINAME = #{oriName} WHERE IMGNUM = #{imgNum}
+ 	</update>
+ 	
  	<select id="getGoods" parameterType="GoodsVO" resultMap="getGoodsDetail">
  		SELECT * FROM GOODS G
 			LEFT JOIN GOODSFILE F
@@ -167,6 +171,20 @@
 	<select id="getDepartmentCarTotal" resultType="int" parameterType="DepartmentVO">
 		 SELECT COUNT(*) FROM RESERVE R
  			WHERE R.ID = (SELECT ID FROM DEPARTMENT  WHERE DEPNAME = #{depName}) AND R.GOODSID LIKE 'CA%'
+	</select>
+	
+	<select id="getRoomNowTotal" resultType="int" parameterType="String">
+		SELECT COUNT(*) 
+		FROM RESERVE r 
+		WHERE (SELECT SUBSTRING(r.STARTTIME,6,2)) = #{month} 
+			AND r.GOODSID LIKE 'RO%' 
+	</select>
+	
+	<select id="getCarNowTotal" resultType="int" parameterType="String">
+		SELECT COUNT(*) 
+		FROM RESERVE r 
+		WHERE (SELECT SUBSTRING(r.STARTTIME,6,2)) = #{month} 
+			AND r.GOODSID LIKE 'CA%' 
 	</select>
 	
 	

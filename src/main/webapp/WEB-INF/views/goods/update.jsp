@@ -41,7 +41,7 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800">공용 시설 수정</h1>
+	            	<h1 class="h3 mb-4 text-gray-800" id="title">공용 시설 수정</h1>
 	            	
 	            	<form action="update" method="post" enctype="multipart/form-data" id="addform">
 	            	 <div class="mb-3">
@@ -71,7 +71,7 @@
 					    <label for="exampleInputContents" class="form-label">시설 설명</label>
 			            <textarea  class="form-control add_ele" id="contents" name="contents">${goods.contents}</textarea>
 					  </div>
-					  <div class="mb-3">
+					  <div class="mb-3">goodId
 					    <label for="exampleInputMax" class="form-label">최대 인원</label>
 					    <input type="text" class="form-control" id="max" name="max" value="${goods.max}" >
 						<div id="maxdiv" class="check"></div>
@@ -93,9 +93,9 @@
 						<div class="mb-3" id="fileAddResult">      
 							<c:forEach items="${list}" var="li">
 								<div class="file_form mt-2">
-									<img src="/file/goods/${li.fileName}"  width="300" height="300">
-									<input type="file" name="files" class="files form-control" id="files">
-									<span class="text" >${li.oriName}</span> 
+									<!-- <img src="/file/goods/${li.fileName}"  width="300" height="300"> -->
+									<input type="file" name="files" class="files form-control">
+									<span class="text ff" >${li.oriName}</span> 
 									<button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>
 								</div>
 							</c:forEach>

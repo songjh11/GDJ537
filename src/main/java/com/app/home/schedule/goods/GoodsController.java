@@ -1,5 +1,6 @@
 package com.app.home.schedule.goods;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -89,9 +90,11 @@ public class GoodsController {
 	public int setFileUpdateNumber(GoodsFileVO goodsFileVO) throws Exception{
 		long ROWNUM = goodsFileVO.getRowNum()+1L;
 		goodsFileVO.setRowNum(ROWNUM);
+		System.out.println(goodsFileVO.getRowNum());
+		System.out.println(goodsFileVO.getGoodsId());
 		goodsFileVO = goodsService.getFileNumCheck(goodsFileVO);
 		int result = goodsFileVO.getImgNum().intValue();
-		
+		System.out.println(result);
 		return result;
 	}
 	
@@ -169,13 +172,14 @@ public class GoodsController {
 	@GetMapping("ad_room")
 	public ModelAndView getRoomAdmin() throws Exception{
 		ModelAndView mv = new ModelAndView();
+		LocalDate now = LocalDate.now();
 		List<GoodsVO> room = goodsService.getRoomNameList();
 		List<DepartmentVO> department = userService.getDepartment(); 
 		Map<String, Integer> map = new HashMap<>();
 		Map<String, Integer> departMap = new HashMap<>();
 		
 		for(int i=0;i<room.size();i++) {
-			map.put(room.get(i).getGoodsId(), goodsService.getreserveCount(room.get(i)));
+			map.put(room.get(i).getName(), goodsService.getreserveCount(room.get(i)));
 		}
 		
 		for(int i=0;i<department.size();i++) {
@@ -203,8 +207,10 @@ public class GoodsController {
 			depart += "['"+key+"', "+departMap.get(key)+"]";
 		}
 		
-		
-		System.out.println(result);
+		String month = now.toString().substring(5, 7);
+		int nowTotal = goodsService.getCarNowTotal(month);
+
+		mv.addObject("nowTotal", nowTotal);
 		mv.addObject("depart", depart);
 		mv.addObject("total", total);
 		mv.addObject("result", result);
@@ -215,13 +221,14 @@ public class GoodsController {
 	@GetMapping("ad_car")
 	public ModelAndView getCarAdmin()throws Exception{
 		ModelAndView mv = new ModelAndView();
+		LocalDate now = LocalDate.now();
 		List<GoodsVO> car = goodsService.getCarNameList();
 		List<DepartmentVO> department = userService.getDepartment(); 
 		Map<String, Integer> map = new HashMap<>();
 		Map<String, Integer> departMap = new HashMap<>();
 
 		for(int i=0;i<car.size();i++) {
-			map.put(car.get(i).getGoodsId(), goodsService.getreserveCount(car.get(i)));
+			map.put(car.get(i).getName(), goodsService.getreserveCount(car.get(i)));
 		}
 		
 		for(int i=0;i<department.size();i++) {
@@ -249,7 +256,11 @@ public class GoodsController {
 			}
 			depart += "['"+key+"', "+departMap.get(key)+"]";
 		}
-		System.out.println(result);
+		
+		String month = now.toString().substring(5, 7);
+		int nowTotal = goodsService.getCarNowTotal(month);
+
+		mv.addObject("nowTotal", nowTotal);
 		mv.addObject("depart", depart);
 		mv.addObject("total", total);
 		mv.addObject("result", result);

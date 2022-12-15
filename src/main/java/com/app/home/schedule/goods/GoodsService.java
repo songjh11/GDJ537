@@ -95,7 +95,8 @@ public class GoodsService
 					String fileName = fileManager.saveFile(path,servletContext, file);
 					if(fileUpdateNumber != null) {
 						if(fileUpdateNumber.length-1 < count) {
-						
+							goodsFileVO = new GoodsFileVO();
+							
 							goodsFileVO.setFileName(fileName);
 							goodsFileVO.setOriName(file.getOriginalFilename());
 							goodsFileVO.setGoodsId(goodsVO.getGoodsId());
@@ -105,10 +106,12 @@ public class GoodsService
 							goodsFileVO.setFileName(fileName);
 							goodsFileVO.setOriName(file.getOriginalFilename());
 							goodsFileVO.setGoodsId(goodsVO.getGoodsId());
-							goodsMapper.setGoodsFileAdd(goodsFileVO);
+							goodsMapper.setFileUpdate(goodsFileVO);
 							count++;
 						}
 					}else if(fileUpdateNumber == null) {
+						goodsFileVO = new GoodsFileVO();
+						
 						goodsFileVO.setFileName(fileName);
 						goodsFileVO.setOriName(file.getOriginalFilename());
 						goodsFileVO.setGoodsId(goodsVO.getGoodsId());
@@ -185,6 +188,13 @@ public class GoodsService
 	
 	public int getDepartmentCarTotal(DepartmentVO departmentVO) throws Exception{
 		return goodsMapper.getDepartmentCarTotal(departmentVO);
+	}
+	
+	public int getRoomNowTotal(String month) throws Exception{
+		return goodsMapper.getCarNowTotal(month);
+	}
+	public int getCarNowTotal(String month) throws Exception{
+		return goodsMapper.getCarNowTotal(month);
 	}
 
 }
