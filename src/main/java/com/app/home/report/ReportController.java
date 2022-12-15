@@ -491,6 +491,7 @@ public class ReportController {
 		}
 		
 		ReportVO reportVO = new ReportVO();
+		reportVO.setId(num);
 		reportPager.setReportNum(category);
 		Integer check = reportService.getLicenseCheck(reportVO);
 		if(check == 0) {
@@ -548,15 +549,15 @@ public class ReportController {
 			}
 			else {
 				
-			reportVO = reportService.getDoFinalReport(reportPager);
-			
-			int result = reportVO.getLstatus();
-			List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
-			mv.addObject("pager", reportPager);
-			mv.addObject("reportApplyVOs", reportApplyVOs);
-			mv.addObject("result", result);
-			mv.setViewName("report/doreport");
-			return mv;
+				reportVO = reportService.getDoFinalReport(reportPager);
+				
+				int result = reportVO.getLstatus();
+				List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
+				mv.addObject("pager", reportPager);
+				mv.addObject("reportApplyVOs", reportApplyVOs);
+				mv.addObject("result", result);
+				mv.setViewName("report/doreport");
+				return mv;
 			}
 		}
 	}
