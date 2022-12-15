@@ -90,6 +90,10 @@ $("#tbd").on("click", "#statusBtn", function(event){
     let depNum = $(event.target).attr("data-depNum");
     
     
+
+    
+    
+
     $.ajax({
         type: 'POST',
         url:  '/report/insa',
@@ -179,7 +183,4 @@ $(".tdId").on('each', '.btn', function(){
     console.log("하이");
 
 });
-
-
-
 

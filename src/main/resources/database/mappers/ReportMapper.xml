@@ -237,14 +237,40 @@
 		WHERE RW.APPLYNUM = #{applyNum}
 	</select>
 	
-	<select id="getLicensePayReportDetail" parameterType="ReportPayVO" resultType="ReportPayVO">
+	<select id="getLicensePayReportDetail" parameterType="ReportPayVO" resultMap="reportPayDetailResult">
 		SELECT RA.*,RP.* FROM
 		REPORTAPPLY RA
 		INNER JOIN
-		REPORTPAY RP
+		REPORTPAY RP		
 		ON RA.APPLYNUM = RP.APPLYNUM
+		INNER JOIN
+		REPRICE REP
+		ON RP.RNUM = REP.RNUM
 		WHERE RP.APPLYNUM = #{applyNum}
 	</select>
+	<resultMap type="ReportPayVO" id="reportPayDetailResult">
+		<id column="RNUM" property="rnum"/>
+		<result column="APPLYNUM" property="applyNum"/>
+		<result column="TITLE" property="title"/>
+		<result column="CDATE" property="cdate"/>
+		<result column="SUM" property="sum"/>
+		<result column="PAYMENT" property="payment"/>
+		<result column="DATE" property="date"/>
+		<result column="ID" property="id"/>
+		<result column="DEPNUM" property="depNum"/>
+		<result column="REPORTNUM" property="reportNum"/>
+		<result column="STATUS" property="status"/>
+		<result column="RETURNS" property="returns"/>
+		<result column="APDATE" property="apDate"/>
+		<result column="NAME" property="name"/>
+		<result column="ROLENAME" property="roleName"/>
+		<result column="DEPNAME" property="depName"/>
+		<collection property="repriceVOs" javaType="List" ofType="RepriceVO">
+			<id column="RNUM" property="rnum"/>
+			<result column="ITEM" property="item"/>
+			<result column="PRICE" property="price"/>
+		</collection>
+	</resultMap>
 	
 	<select id="getLicenseSorryReportDetail" parameterType="ReportSorryVO" resultType="ReportSorryVO">
 		SELECT RA.*,RS.* FROM
@@ -501,16 +527,42 @@
 		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
 	</select>
 	
-	<select id="getMyPayDetail" parameterType="ReportApplyVO" resultType="ReportPayVO">
+	<select id="getMyPayDetail" parameterType="ReportApplyVO" resultMap="getPayDetail">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN (SELECT 
+		INNER JOIN (SELECT rp.*, vg.ITEM, vg.PRICE
 					FROM REPORTPAY rp
 					INNER JOIN 
 					REPRICE vg ON rp.rnum = vg.rnum	
 						)r2 ON r.APPLYNUM = r2.APPLYNUM
 		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
 	</select>
+	
+	<resultMap type="ReportApplyVO" id="getPayDetail">
+		<id column="APPLYNUM" property="applyNum"/>
+		<result column="RNUM" property="rnum"/>
+		<result column="TITLE" property="title"/>
+		<result column="CDATE" property="cdate"/>
+		<result column="SUM" property="SUM"/>
+		<result column="PAYMENT" property="payment"/>
+		<result column="DATE" property="date"/>
+		<result column="DEPNAME" property="depName"/>
+		<result column="ID" property="id"/>
+		<result column="DEPNUM" property="depNum"/>
+		<result column="REPORTNUM" property="reportNum"/>
+		<result column="STATUS" property="status"/>
+		<result column="RETURNS" property="returns"/>
+		<result column="APDATE" property="apDate"/>
+		<result column="NAME" property="name"/>
+		<result column="ROLENAME" property="roleName"/>
+		
+		<collection property="repriceVOs" javaType="List" ofType="RepriceVO">
+			<id column="RNUM" property="rnum"/>
+			<result column="ITEM" property="item"/>
+			<result column="PRICE" property="price"/>
+		</collection>
+		
+	</resultMap>
 	
 	<select id="getMyWorkDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
 		SELECT r.*,r2.*
@@ -524,6 +576,10 @@
 		FROM REPORTAPPLY r 
 		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM
 		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+	</select>
+	
+	<select id="getLstatus" parameterType="Integer" resultType="Integer">
+		SELECT LSTATUS FROM REPORTLICENSER WHERE ID = #{id}
 	</select>
 	
 	<!-- ==================================== -->

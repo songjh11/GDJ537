@@ -1,6 +1,6 @@
 package com.app.home.report.sorry;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.app.home.report.ReportApplyVO;
 

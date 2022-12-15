@@ -85,15 +85,27 @@
                         <a class="collapse-item" href="/report/reportMyPage">나의 결재선</a>
                         <a class="collapse-item" href="/kdy/reportAdd">보고서 작성</a>
                       
+
+                        
+                        
+						                      
+
                         <sec:authorize access="isAuthenticated()">
  						<sec:authentication property="Principal" var="member"/>
                      	<c:if test="${member.reportVO.lstatus >= 2}">
                         <a class="collapse-item" href="/report/doreport">결제/반려 승인</a>
                      	</c:if>
-						</sec:authorize>
-                     	
+                        <c:if test="${member.reportVO.lstatus eq 3}">	
                         <a class="collapse-item" href="/report/insa">휴가담당 관리자</a>
+                        </c:if>
+                        <c:if test="${member.reportVO.lstatus ne 3}">
+                        <a class="collapse-item" href="/kdy/reportAdd">보고서 작성</a>
+                        </c:if>
+						</sec:authorize>
+                        <a class="collapse-item" href="/report/licenserList">전체 승인자 리스트</a>
                         <a class="collapse-item" href="/report/mylist?cat=1">결재 신청 목록</a>
+                     	
+                        
                     </div>
                 </div>
 			</li>
