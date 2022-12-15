@@ -12,6 +12,7 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 </style>
+<link rel="stylesheet" href="/css/chat/chatRoom.css">
 <link rel="stylesheet" href="/css/chat/groupModal.css">
 <link rel="stylesheet" href="/css/chat/employeeList.css">
 <style>

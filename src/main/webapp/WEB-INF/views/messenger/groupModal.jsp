@@ -22,8 +22,6 @@
 																<c:if test="${e.departmentVO.depNum eq d.depNum}">
 																	<c:if test="${e.id ne myId}">
 																	<li class="chatLi">
-																		<input type="hidden" id="email${e.id}" value="${e.email}">
-																		<input type="hidden" id="phone${e.id}" value="${e.phone}">
 																		<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
 																			<div class="userAdd">
 																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
@@ -42,16 +40,11 @@
 													</c:forEach>
 												</c:when>
 												<c:when test="${empty depList}">
-													<div>
-														<a href="../messenger/chat"><img style="width: 30px;" src="/img/messenger/left.png"></a>
-													</div>
 													<c:choose>
 														<c:when test="${not empty empList}">
 															<c:forEach items="${empList}" var="e">
 																<c:if test="${e.id ne myId}">
 																	<li class="chatLi">
-																		<input type="hidden" id="email${e.id}" value="${e.email}">
-																		<input type="hidden" id="phone${e.id}" value="${e.phone}">
 																		<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
 																			<div>
 																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
@@ -94,16 +87,33 @@
 												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
 											</div>
 											<div class="infoArea" style="background: transparent; border: none; box-shadow: none !important;">
-												<div class="mb-3">
+												<!-- <div class="mb-3">
 													<label for="exampleFormControlTextarea1" class="form-label">채팅방 이름</label>
 													<input type="text" name="roomName" class="form-control form-control-sm" placeholder="방이름을 입력해 주세요">
+												</div> -->
+												<!-- is-valid 클래스 추가시 인풋 라인이 초록색 -->
+												<div class="input-group mb-3 justify-content-center">
+													<div class="form-floating">
+														<label for="floatingInputGroup1">채팅방 이름</label>
+													  <input type="text" name="roomName" class="form-control" id="floatingInputGroup1" placeholder="방이름을 입력해 주세요">
+													</div>
 												</div>
-												<div class="mb-3">
+												<!-- <div class="mb-3">
 													<label for="exampleFormControlTextarea1" class="form-label">비밀번호</label>
-													<input type="password" name="pw" class="form-control form-control-sm" placeholder="숫자를 입력해 주세요">
+													<input type="password" id="numCheck" name="pw" required pattern="[0-9]+" aria-invalid="true" class="form-control form-control-sm" placeholder="숫자를 입력해 주세요">
+												</div> -->
+												<!-- is-invalid 클래스 추가시 인풋 라인이 빨간색 -->
+												<div class="input-group has-validation mb-3 justify-content-center">
+													<div class="form-floating is-invalid">
+													  <label for="floatingInputGroup2">비밀번호</label>
+													  <input type="password" id="numCheck" name="pw" class="form-control" id="floatingInputGroup2" placeholder="숫자를 입력해 주세요" required>
+													  <div class="invalid-feedback">
+														Please choose a username.
+													  </div>
+													</div>
 												</div>
 												<p class="mt-4">
-													<button type="submit" class="btn" style="background: #4e73df; color: #FFFFFF;">생성</button>
+													<button type="submit" id="roomAddBtn" class="btn" style="background: #4e73df; color: #FFFFFF;">생성</button>
 												</p>
 											</div>
 										</div>

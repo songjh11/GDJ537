@@ -92,7 +92,7 @@
 			INNER JOIN
 			ROOMUSER R 
 			ON CR.ROOMNUM = R.ROOMNUM
-		WHERE CR.HOSTID = #{hostId}
+		WHERE R.ID = #{userVO.id}
 		ORDER BY CR.ROOMNUM ASC
 	</select>
 	<resultMap type="RoomVO" id="getRoomListResult">

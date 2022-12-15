@@ -252,4 +252,4 @@
 									</c:choose>
 								</c:when>
 							</c:choose>
-						</ul>		
+						</ul>
