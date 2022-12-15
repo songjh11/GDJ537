@@ -278,7 +278,7 @@
 
 	#listInfo {
 		margin-bottom: auto;
-		width: 87%;
+		width: 89%;
 	}
 
 	#previewId {
