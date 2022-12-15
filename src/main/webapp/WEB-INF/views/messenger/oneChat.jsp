@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="/css/chat/chatroom.css">
     
     
-    <link rel="icon" href="/images/favicon.png">
-   <title>채팅방 💭 </title>
+   <link rel="icon" href="/images/favicon.png">
+	<title> 1:1채팅 💭 </title>
 </head>
 
 
@@ -30,7 +30,7 @@
                 <div class="header-flex">
                     <div class="tinum">
                         <div class="title">
-                            <span><strong>채팅방 이름</strong></span>
+                            <span><strong>${roomVO.roomName}</strong></span>
                         </div>
                         <div class="number">
                             <img src="/img/chatroom-number.png" width="15px" height="15px">
@@ -54,12 +54,12 @@
             </tr>
          </table>
       </div>
-      <div id="yourMsg">
-         <table class="inputTable">
+      <div id="put">
+         <table class="msg">
             <tr>
                <th>메시지</th>
-               <th><input id="inputChat"  placeholder="보내실 메시지를 입력하세요."></th>
-               <th><button onclick="send()" id="sendBtn">보내기</button></th>
+               <th><input type="text" id="inputChat"  placeholder="보내실 메시지를 입력하세요."></th>
+               <th><button onclick="send()" id="sendBtn" class="sendBtn">보내기</button></th>
             </tr>
          </table>
       </div>

@@ -18,6 +18,11 @@
     ws.onopen = function(data){
        //소켓이 열리면 초기화 세팅하기  
        
+       	let str = userName + " 님이 입장하셨습니다.";
+		$("#chating").append("<div class='al'>"
+	  						+"<div class='al-bubble'>" +str+"</div></div>"
+	 						);	
+       
     }
  }
 
@@ -58,13 +63,11 @@
        userName : userName,
        inputChat : $("#inputChat").val()
       };
-      console.log(option)
+  
 
       ws.send(JSON.stringify(option))
     $("#inputChat").val();
     
-    console.log("s : ", sessionId);
-    console.log("u : ", userName);
   
        
       }
@@ -73,13 +76,13 @@
 //---------------------------------------------
 
  //채팅창에서 들어왔을 때
- function wsOpen () {
-    let str = userName + " 님이 입장하셨습니다.";
-    
-    $("#chating").append("<div class='al'>"
-                     +"<div class='al-bubble'>" +str+"</div></div>"
-                    );   
- }
+ //function wsOpen () {
+ //   let str = userName + " 님이 입장하셨습니다.";
+ //   
+ //   $("#chating").append("<div class='al'>"
+ //                    +"<div class='al-bubble'>" +str+"</div></div>"
+ //                   );   
+// }
 
  //채팅창에서 나갔을 때
  function onClose() {
