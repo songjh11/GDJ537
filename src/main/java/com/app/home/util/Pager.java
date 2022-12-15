@@ -13,7 +13,7 @@ public class Pager {
 	private Long perBlock;
 
 	// 게시판 구분
-	private Integer sort;
+	private String sort;
 
 	//이전블럭의 유무 -이전블럭이 있으면 true 없으면 false
 	private boolean pre;

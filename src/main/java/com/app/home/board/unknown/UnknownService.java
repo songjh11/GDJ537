@@ -45,7 +45,7 @@ public class UnknownService {
 					String fileName = fileManager.saveFile(file, path);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
-					fileVO.setNum(boardVO.getNum());
+					fileVO.setBoardId(boardVO.getId());
 
 					int result2 =fileDAO.setFile(fileVO);
 				}
@@ -61,7 +61,7 @@ public class UnknownService {
 
 	@Transactional(rollbackFor = Exception.class)
 	public int setUnknownAdd(BoardVO boardVO) throws Exception {
-		boardVO.setSort(3);
+		boardVO.setSort("익명");
 
 		int result = boardDAO.setBoard(boardVO);
 
@@ -71,7 +71,7 @@ public class UnknownService {
 					FileVO fileVO = new FileVO();
 					String fileName = fileManager.saveFile(file, path);
 					fileVO.setFileName(fileName);
-					fileVO.setNum(boardVO.getNum());
+					fileVO.setBoardId(boardVO.getId());
 					fileVO.setOriName(file.getOriginalFilename());
 
 					int result2 = fileDAO.setFile(fileVO);

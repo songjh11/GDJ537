@@ -15,7 +15,7 @@ public class FileManageController {
 	@Autowired
 	private FileManageService fileManageService;
 
-	@GetMapping("/fileDown/{path}/{fileNum}")
+	@GetMapping("/fileDown/{path}/{id}")
 	public ModelAndView fileDown(FileVO fileVO,@PathVariable String path)throws Exception {
 		ModelAndView mv = new ModelAndView();
 
@@ -30,7 +30,7 @@ public class FileManageController {
 		return mv;
 	}
 
-	@GetMapping("/fileDelete/{path}/{fileNum}")
+	@GetMapping("/fileDelete/{path}/{id}")
 	@ResponseBody
 	public int fileDel(FileVO fileVO,@PathVariable String path) throws Exception{
 		int result = fileManageService.setFileDelete(fileVO, path);

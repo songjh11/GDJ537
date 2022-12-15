@@ -54,7 +54,7 @@
 					                 </div>
 					                 <div class="col-fill ml-auto align-self-end mr-5">
 					                 	<div>
-					                      <p>작성자 ${boardVO.id }</p>
+					                      <p>작성자 ${boardVO.creator }</p>
 					                      <p>조회수 ${boardVO.hit} </p>
 					                    </div>
 										<p id="regdate" data-date="${boardVO.regDate}"> 등록일자  </p>
@@ -76,7 +76,7 @@
 			                    </button>
 					              <div class="dropdown-menu dropdown-menu-right">
 		                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
-			                        <a class="dropdown-item" href="/fileDown/board/${file.fileNum}">${file.oriName } </a>
+			                        <a class="dropdown-item" href="/fileDown/board/${file.id}">${file.oriName } </a>
 			                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
 			                      </c:forEach>
 		
@@ -101,7 +101,7 @@
                   placeholder="Leave a comment here"></textarea>
               </div>
               <div class="mb-5">
-                <button type="button" id="b1" data-boardNum="${boardVO.num}" class="btn btn-success">댓글등록</button>
+                <button type="button" id="b1" data-boardNum="${boardVO.id}" class="btn btn-success">댓글등록</button>
               </div>
               <!-- 댓글 목록 -->
               <div>

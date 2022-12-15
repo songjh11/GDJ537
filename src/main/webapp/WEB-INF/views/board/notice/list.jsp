@@ -54,8 +54,7 @@
 					  	<div class="col-auto">
 						    <select class="form-control" name="kind" aria-label="Default select example">
 						    	<option value="title">제목</option>
-						    	<option value="contents">내용</option>
-						    	<option value="id">작성자</option>
+						    	<option value="creator">작성자</option>
 						    </select>
 						  </div>
 						  <div class="input-group">
@@ -96,10 +95,10 @@
 											margin-bottom: 0;
 											color: #4E73DF;
     										font-weight: 600;
-										  ">${notice.id} ·</p>
+										  ">${notice.creator} ·</p>
 										  <p class="regdate" data-date="${notice.regDate }" style="display: inline-block;
 												margin-bottom: 0;"></p>
-			            				  <a href="/notice/hit?num=${notice.num }">
+			            				  <a href="/notice/hit?id=${notice.id }">
 						                  	<h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 25px">${notice.title }</h5>
 						                  </a>
 						                 </div>

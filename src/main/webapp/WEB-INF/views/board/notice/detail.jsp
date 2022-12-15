@@ -79,7 +79,7 @@
 			                    </button>
 					              <div class="dropdown-menu dropdown-menu-right">
 		                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
-			                        <a class="dropdown-item" href="/fileDown/board/${file.fileNum}">${file.oriName } </a>
+			                        <a class="dropdown-item" href="/fileDown/board/${file.id}">${file.oriName } </a>
 			                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
 			                      </c:forEach>
 		
@@ -95,7 +95,7 @@
                 </div>
 
               </div>
-              <a href="/notice/update?num=<c:out value="${boardVO.num}"></c:out>" class="btn btn-danger">글 수정</a>
+              <a href="/notice/update?id=<c:out value="${boardVO.id}"></c:out>" class="btn btn-danger">글 수정</a>
               <button type="button" class="btn btn-danger">글 삭제</button>
             </div>
             <!-- End Page Content -->

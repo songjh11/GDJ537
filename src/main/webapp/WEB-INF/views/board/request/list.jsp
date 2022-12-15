@@ -54,8 +54,7 @@
 					  	<div class="col-auto">
 						    <select class="form-control" name="kind" aria-label="Default select example">
 						    	<option value="title">제목</option>
-						    	<option value="contents">내용</option>
-						    	<option value="id">작성자</option>
+						    	<option value="creator">작성자</option>
 						    </select>
 						  </div>
 						  <div class="input-group">
@@ -79,7 +78,7 @@
 					<a href="/request/add" class="btn btn-danger" style="margin:10px 0;">글 작성</a>
 	            	<!-- 요청게시판 작성 -->
 	            	<div class="card mb-3">
-		            	<c:forEach items="${requestList }" var="request">
+		            	<c:forEach items="${requestList}" var="request">
 							<div class="card-header bg-white">
 								<div class="row justify-content-between">
 									<p style="
@@ -95,10 +94,10 @@
 																		margin-bottom: 0;
 																		color: #4E73DF;
 																		font-weight: 600;
-																		">${request.id} ·</p>
+																		">${request.creator} ·</p>
 										<p class="regdate" data-date="${request.regDate }" style="display: inline-block;
 																			margin-bottom: 0;"></p>
-										<a href="/request/hit?num=${request.num }">
+										<a href="/request/hit?id=${request.id}">
 											<h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 25px">
 												${request.title }</h5>
 										</a>
