@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!DOCTYPE html>
     <html>
 
@@ -51,6 +52,10 @@
                     <div class="col-fill ml-auto align-self-end mr-5">
                       <p>조회수 ${boardVO.hit} </p>
                       <p id="regdate" data-date="${boardVO.regDate}"> 등록일자 </p>
+                      <c:if test="${boardVO.updateDate != null}">
+                    	 수정일자 
+                      	<fmt:formatDate value="${boardVO.updateDate}" pattern="yyyy-MM-dd HH:mm"/>
+                      </c:if>
                     </div>
                   </div>
                 </div>
