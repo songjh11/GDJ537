@@ -5,11 +5,16 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.app.home.user.EmployeeVO;
+import com.app.home.user.UserVO;
+
+
 
 @Mapper
 public interface NoteMapper {
 
+	public Long getNotReadCount(UserVO userVO)throws Exception;
+	public int updateCheck(NoteVO noteVO)throws Exception;
+	public int setDeleteNote(NoteVO noteVO)throws Exception;
 	public int setSendNote(NoteVO noteVO)throws Exception;
 	public List<NoteVO> getSendNoteList(Map<String, Object> map)throws Exception;
 	public Long getSendNoteListCount(Map<String, Object> map)throws Exception;
