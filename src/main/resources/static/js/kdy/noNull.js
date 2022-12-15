@@ -1,13 +1,21 @@
-// const am = document.getElementById("am");
-// const pm = document.getElementById("pm");
-// let frm = document.getElementById("frm");
+let frm = document.getElementById("frm");
 
-// function checkAll(){
-//     let result = nullCheck(am.value);
-//     let result2 = nullCheck(pm.value);
-//     if(result&&result2){
-//         frm.submit();
-//     }else{
-//         alert("오전, 오후를 작성해주세요");
-//     }
-// }
+function nullCheck(data){
+    if(data == null || data == ''){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function workReportNullCheck(){
+    console.log($("#am").val())
+    console.log($("#pm").val())
+    let result = nullCheck($("#am").val());
+    let result2 = nullCheck($("#pm").val());
+    if(result&&result2){
+        frm.submit();
+    }else{
+        alert("오전, 오후 입력란은 필수입니다.");
+    }
+}

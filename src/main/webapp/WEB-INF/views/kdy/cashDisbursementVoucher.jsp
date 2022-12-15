@@ -311,10 +311,10 @@
 
         </div>    
 
+        <button type="button" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;" onclick="checkAll()">제 출</button>
     </div>
 	            </div>
 	            
-	       <button type="button" onclick="checkAll()">제출</button>
 	</form>
 	            <!-- End Page Content -->
 					
