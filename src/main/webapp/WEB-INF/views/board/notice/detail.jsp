@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <!DOCTYPE html>
     <html>
 
@@ -13,6 +14,11 @@
       <!-- 파일 다운로드 아이콘 -->
       <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      <style type="text/css">
+      	.dropdown-toggle::after{
+      		vertical-align:inherit;
+      	}
+      </style>
     </head>
 
     <!-- body ID 작성 -->
@@ -59,16 +65,21 @@
                 </div>
                 <div class="card-body" style="min-height: 500px">
                   <div class="mb-1 row justify-content-end">
-                    <div class="col-3">
-                    
-                      <c:forEach items="${boardVO.fileVOs}" var="files">
-                        <p>
-                          <a href="/fileDown/board/<c:out value="${files.fileNum}"></c:out>">
-                            <span class="material-symbols-outlined">
-                              download
-                            </span> <c:out value="${files.oriName}"></c:out></a>
-                        </p>
-                      </c:forEach>
+                    <div class="col-2">
+			                    <c:if test="${!empty boardVO.fileVOs}">
+			                  	<button class="btn btn-outline-dark btn-block  dropdown-toggle dropdown-toggle-split"  data-toggle="dropdown" aria-expanded="false" type="button">
+			                            <span class="material-symbols-outlined my-auto" style="vertical-align: middle;"></span>
+			                            
+                            			<span style="vertical-align: middle;"> 첨부파일 (${fn:length(boardVO.fileVOs) }) </span>
+			                    </button>
+					              <div class="dropdown-menu dropdown-menu-right">
+		                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
+			                        <a class="dropdown-item" href="/fileDown/board/${file.fileNum}">${file.oriName } </a>
+			                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
+			                      </c:forEach>
+		
+								  </div>
+								  </c:if>
                     </div>
                   </div>
                   <div class="mb-5 row">
