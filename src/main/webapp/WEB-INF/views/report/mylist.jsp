@@ -38,8 +38,8 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">결재 신청 목록</h1>
                     <p class="mb-4">
-                    	<a href="./mylist?cat=2" class="btn btn-info btn-icon-split">
-                            <span class="icon text-white-50">
+                    	<a href="./mylist?cat=2&kind=${pager.kind}" class="btn btn-info btn-icon-split">
+                           <span class="icon text-white-50">
                                   <i class="fas fa-info-circle"></i>
                               </span>
                             <span class="text">휴가신청서</span>
