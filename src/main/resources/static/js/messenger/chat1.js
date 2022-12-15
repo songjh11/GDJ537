@@ -61,7 +61,7 @@
 		
 		let option={
 				type:"message",
-				sssionId:$("#sessionId").val(),
+				sessionId:$("#sessionId").val(),
 				userName:$("#userName").val(),
 				msg: $("#chatting").val()
 			}

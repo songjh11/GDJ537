@@ -18,7 +18,7 @@
 								<img class="yourImg" src="/img/undraw_profile_3.svg">
 							</div>
 							<div class="col text-center">
-								<a href="#"><b>${roomVO.roomName}</b></a>
+								<a href="/chatroom?roomNum=${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
 							</div>
 							<div class="col text-center">
 								${roomVO.roomName}

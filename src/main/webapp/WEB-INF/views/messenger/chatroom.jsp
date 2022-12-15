@@ -17,7 +17,7 @@
     
     
     <link rel="icon" href="/images/favicon.png">
-	<title>채팅방 💭 </title>
+	<title>그룹채팅 💭 </title>
 </head>
 
 
@@ -33,7 +33,7 @@
                         </div>
                         <div class="number">
                             <img src="/img/chatroom-number.png" width="15px" height="15px">
-                            <span>2</span>
+                            <span>${count}</span>
                         </div>
                     </div>
                 </div>
@@ -44,18 +44,10 @@
 		</div>
 		
 		<div class="put">
-			<div id="yourName">
-				<!-- <table class="inputTable">
-					<tr>
-						<th>사용자명</th>
-						<th><input type="text" name="userName" id="userName" value="gg"></th>
-						<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
-					</tr>
-				</table> -->
-			</div>
 			<div id="msg">
-				<input type="hidden" name="userName" id="userName" value="gg">
-				<input type="text" class="typing-chat" id="inputChat" placeholder="보내실 메시지를 입력하세요.">
+				<input type="hidden" name="userName" id="userName" value="${user.name}">
+				<input type="hidden" name="userId" id="userId" value="${user.id}">
+				<input id="inputChat" placeholder="보내실 메시지를 입력하세요.">
 				<button onclick="send()" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
 			</div>
 		</div>
@@ -64,7 +56,7 @@
 	<script type="text/javascript" src="/js/messenger/group_chatroom.js"></script>
 	<script type="text/javascript">
 		wsOpen();
-		wsEvt();
+		/* wsEvt(); */
 	</script>
 
 </body>

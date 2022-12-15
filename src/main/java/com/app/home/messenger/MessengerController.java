@@ -365,8 +365,21 @@ public class MessengerController extends Socket {
 	//--------------------- 소영 ------------------------------
 	// 그룹 채팅방
 	@GetMapping("chatroom")
-	public String chat3()throws Exception{
-		return "messenger/chatroom";
+	public ModelAndView chat3()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		//인원 수
+		int count = messengerService.getUserCount();
+		mv.addObject("count", count);
+		
+		//유저 정보
+		UserVO user = new UserVO();
+		user = userService.getMypage(user);
+		mv.addObject("user", user);
+		log.info("&&&&& &&&&& : {}", user);
+		
+		mv.setViewName("messenger/chatroom");
+		return mv;
 	}
 
 	
