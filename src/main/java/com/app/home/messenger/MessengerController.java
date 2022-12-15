@@ -351,6 +351,8 @@ public class MessengerController extends Socket {
 		
 		int userCount = messengerService.getUserCount();
 		
+		log.info("Count =========> {} ", userCount);
+		
 		mv.addObject("userCount", userCount);
 		mv.setViewName("messenger/chat");
 		

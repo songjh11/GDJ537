@@ -82,17 +82,22 @@
 	<!--                          효경                          -->
 	
 	<select id="getUserCount" parameterType="RoomVO" resultType="Integer">
-		SELECT COUNT(ID) FROM ROOMUSER WHERE ROOMNUM = #{roomNum}
+		SELECT COUNT(ID) 
+		FROM ROOMUSER RU
+			RIGHT JOIN
+			CHATROOM CR
+			ON RU.ROOMNUM = CR.ROOMNUM
+		WHERE CR.ROOMNUM = 16
 	</select>
 	
 	<!--                       채팅방 목록 조회                        -->
 	<select id="getRoomList" parameterType="RoomVO" resultMap="getRoomListResult">
-		SELECT CR.ROOMNUM, CR.REGDATE, CR.ROOMNAME, CR.HOSTID, CR.PW, R.ID
+		SELECT CR.ROOMNUM, CR.REGDATE, CR.ROOMNAME, CR.HOSTID, CR.PW, RU.USERNUM, RU.ID
 		FROM CHATROOM CR
 			INNER JOIN
-			ROOMUSER R 
-			ON CR.ROOMNUM = R.ROOMNUM
-		WHERE R.ID = #{userVO.id}
+			ROOMUSER RU
+			ON CR.ROOMNUM = RU.ROOMNUM
+		WHERE RU.ID = #{userVO.id}
 		ORDER BY CR.ROOMNUM DESC
 	</select>
 	<resultMap type="RoomVO" id="getRoomListResult">
