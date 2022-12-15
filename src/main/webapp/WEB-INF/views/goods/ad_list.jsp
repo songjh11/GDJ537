@@ -73,7 +73,6 @@
 							</c:forEach>  
 							</div>	
 						</div>
-
 						<div id="tab-2" class="tab-content">
 							<div class="row mb-2" id="ca">
 								<c:forEach items="${car}" var="ca">
