@@ -10,6 +10,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Join</title>
+
 <!-- 공통 css, js, jquery -->
 <c:import url="../temp/layout_header.jsp"></c:import>
 <c:import url="../temp/user/boot.jsp"></c:import>
