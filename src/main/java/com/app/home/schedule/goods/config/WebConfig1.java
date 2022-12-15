@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import lombok.extern.slf4j.Slf4j;
 
-//@Configuration
+@Configuration
 @Slf4j
 public class WebConfig1 implements WebMvcConfigurer{
 
