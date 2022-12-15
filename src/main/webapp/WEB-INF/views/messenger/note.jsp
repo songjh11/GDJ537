@@ -202,8 +202,10 @@
 
 	#noteChoice {
 		height: 57px;
-		border-top-left-radius: 20px;
-		border-top-right-radius: 20px;
+		border-top-left-radius: 9px;
+		border-top-right-radius: 9px;
+		border-bottom-left-radius: 9px;
+   		border-bottom-right-radius: 9px;
 		margin: 10px 0px 0px;
 		display: flex;
 		justify-content: center;
@@ -397,7 +399,6 @@
 					</div>
 
 					<div class="chatDiv">
-						<div class="blank"></div>
 						<c:import url="./groupModal.jsp"></c:import>
 						<c:import url="./employeeList.jsp"></c:import>
 					</div>
