@@ -63,7 +63,7 @@
 							</c:forEach>
 						</table>
 
-						<div>------------------------------------예약 리스트--------------------------------------</div>
+						<div>------------------------------------예약리스트--------------------------------------</div>
 
 						<table class="table table-hover justify-content-right" style="text-align: center;">
 							<tr>
