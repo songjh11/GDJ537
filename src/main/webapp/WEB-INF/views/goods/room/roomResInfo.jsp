@@ -89,5 +89,4 @@ ul li {
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 </body>
-<script src="/js/room/reserveInfo.js"></script>
 </html>
