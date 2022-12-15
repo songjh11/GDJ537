@@ -14,33 +14,49 @@
 
 	function wsOpen(){
 		ws = new WebSocket("ws://" + location.host + "/chatroom");
-		wsEvt();
+		//wsEvt();
 		
-		let str = userName + " 님이 입장하셨습니다.";
-		$("#chating").append("<div class='al'>"
+		//send()
+		
+		ws.onmessage=function(data){
+			let da = data.data;
+			console.log("Opennnnnn : ", da);
+			let str = da + " 님이 입장하셨습니다.";
+			$("#chating").append("<div class='al'>"
 	  						+"<div class='al-bubble'>" +str+"</div></div>"
 	 						);	
+		}
+		
+		//ws.onopen = function(data){
+			//소켓이 열리면 초기화 세팅하기
+		//let str = userName + " 님이 입장하셨습니다.";
+		//$("#chating").append("<div class='al'>"
+	  	//					+"<div class='al-bubble'>" +str+"</div></div>"
+	 	//					);	
+		//}
+		
 	}
 		
 		
 		
 	function wsEvt() {
-		ws.onopen = function(data){
+	//	ws.onopen = function(data){
 			//소켓이 열리면 초기화 세팅하기
-		}
+	//	}
 		
 		ws.onmessage = function(data) {
 			let msg = data.data;
 			if(msg != null && msg.trim() != ''){
 				
 			let d = JSON.parse(msg);
-			
+			console.log("message ===> ", d)
+			console.log(sessionId, "==== ", d.userId)
 			if(d.type == "message"){
 				//내가 보냈을 때
-			    if(sessionId == userId){
+			    if(userId == d.userId){
 					console.log("ggg");
 				    $("#chating").append("<div class='me'>"
-				  	  					+"<div class='me-bubble-flex-first'><div class='me-bubble'>" +chat+"</div>");	
+				  	  					+"<div class='me-bubble-flex-first'><div class='me-bubble'>" +d.chat+"</div>");	
 			  
 			    //남이 보냈을 때
 			    }else{
@@ -48,8 +64,8 @@
 											+"<div class = 'you-flex'>"
 											+"<div class='you-profile'>"
 											+"<div class='pic'><img src='/img/chatroom-profile.jpg' width='35px' height='35px'></div></div>"
-											+"<div class='you-namebubble'><div class='you-name'><span><strong>"+userName+"</strong></span></div>"
-											+"<div class='you-bubble-flex'><div class='you-bubble'>" +chat+ "</div></div>"
+											+"<div class='you-namebubble'><div class='you-name'><span><strong>"+d.userName+"</strong></span></div>"
+											+"<div class='you-bubble-flex'><div class='you-bubble'>" +d.chat+ "</div></div>"
 										);
 				  }
 			   }
