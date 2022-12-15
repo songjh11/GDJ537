@@ -5,8 +5,8 @@
 
 	let sessionId = $("#sessionId").val();
 	let userName = $("#userName").val();
-	//let inputChat = $("#inputChat").val();
-	let inputChat = document.getElementById('inputChat');
+	let inputChat = $("#inputChat").val();
+	//let inputChat = document.getElementById('inputChat').value;
 
 
 //------------------------------------

@@ -1,4 +1,3 @@
-/* 채팅방 목록 가져오기 */
 
 .container {
     width: 500px;
@@ -180,6 +179,8 @@
 .button span {
     margin-left: 4px;
 }
+
+/* 채팅방 목록 가져오기 */
 .roomList{
 	border: 1px solid #d8d9f7a1;
 	/* background: #3b4bbd0f; */
