@@ -91,16 +91,17 @@ function getCommentList(p, bn) {
         // td.appendChild(tdText);
         // tr.appendChild(td); 
 
+
         td = document.createElement("td");
-        tdText = document.createTextNode(ar[i].regDate);
+        tdText = document.createTextNode(ar[i].regDate.slice(0, 16));
         td.appendChild(tdText);
         tr.appendChild(td);
 
         td = document.createElement("td");
         if(ar[i].updateDate == null){
-          tdText = document.createTextNode(ar[i].regDate);
+          tdText = document.createTextNode(ar[i].regDate.slice(0, 16));
         } else {
-          tdText = document.createTextNode(ar[i].updateDate);
+          tdText = document.createTextNode(ar[i].updateDate.slice(0, 16));
         }
         td.appendChild(tdText);
         tr.appendChild(td);

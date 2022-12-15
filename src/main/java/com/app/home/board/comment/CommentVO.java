@@ -1,5 +1,7 @@
 package com.app.home.board.comment;
 
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 @Data
@@ -13,9 +15,9 @@ public class CommentVO {
 	private Integer id;
 	//댓글 내용
 	private String contents;
-	//날짜 timestamp 지저분해짐
-	private String regDate;
-	//수정날짜 timestamp 지저분해짐
-	private String updateDate;
+	//날짜 
+	private Timestamp regDate;
+	//수정날짜 
+	private Timestamp updateDate;
 
 }

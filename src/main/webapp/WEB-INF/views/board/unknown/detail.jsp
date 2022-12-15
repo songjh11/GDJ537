@@ -102,7 +102,7 @@
               </div>
               <!-- 댓글 목록 -->
               <div>
-                <table id="commentList" class="table table-striped"></table>
+                <table id="commentList" class="table table-bordered"></table>
               </div>
 
               <div>
