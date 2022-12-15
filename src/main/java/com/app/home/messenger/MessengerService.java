@@ -40,9 +40,6 @@ public class MessengerService {
 		
 		if(result > 0) {
 			
-			// 방장도 유저목록에 인서트
-			result = messengerMapper.setAddRoomUser(roomVO);
-			
 			// 그 후 유저들 인서트
 			if(result > 0) {
 				for(int ids : roomVO.getId()) {
