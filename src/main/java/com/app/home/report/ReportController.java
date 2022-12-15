@@ -1,7 +1,11 @@
 package com.app.home.report;
 
 
+import static org.hamcrest.CoreMatchers.both;
+
 import java.security.Principal;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.home.report.pay.ReportPayVO;
+import com.app.home.report.pay.RepriceVO;
 import com.app.home.report.sorry.ReportSorryVO;
 import com.app.home.report.util.ReportPager;
 import com.app.home.report.vaca.ReportVacaVO;
@@ -375,6 +380,18 @@ public class ReportController {
 			public ModelAndView getLicenseVacaReportDetail(ReportVacaVO reportVacaVO,String result) throws Exception{
 				ModelAndView mv = new ModelAndView();
 				reportVacaVO = reportService.getLicenseVacaReportDetail(reportVacaVO);
+				Date date = reportVacaVO.getDate();
+				String a = date.toString();
+				String[] b = a.split("-");
+				String year = b[0];
+				String month = b[1];
+				String day = b[2];
+				
+				
+										
+				mv.addObject("year", year);
+				mv.addObject("month", month);
+				mv.addObject("day", day);
 				mv.addObject("reportVacaVO", reportVacaVO);
 				mv.addObject("result", result);
 				return mv;
@@ -384,6 +401,18 @@ public class ReportController {
 			public ModelAndView getLicenseWorkReportDetail(ReportWorkVO reportWorkVO,String result) throws Exception{
 				ModelAndView mv = new ModelAndView();
 				reportWorkVO = reportService.getLicenseWorkReportDetail(reportWorkVO);
+				Date date = reportWorkVO.getDate();
+				String a = date.toString();
+				String[] b = a.split("-");
+				String year = b[0];
+				String month = b[1];
+				String day = b[2];
+				
+				
+										
+				mv.addObject("year", year);
+				mv.addObject("month", month);
+				mv.addObject("day", day);
 				mv.addObject("reportWorkVO", reportWorkVO);
 				mv.addObject("result", result);
 				return mv;
@@ -393,6 +422,19 @@ public class ReportController {
 			public ModelAndView getLicensePayReportDetail(ReportPayVO reportPayVO,String result) throws Exception{
 				ModelAndView mv = new ModelAndView();
 				reportPayVO = reportService.getLicensePayReportDetail(reportPayVO);
+				List<RepriceVO> rePriceVOs = reportPayVO.getRepriceVOs();
+				Date date = reportPayVO.getDate();
+				String a = date.toString();
+				String[] b = a.split("-");
+				String year = b[0];
+				String month = b[1];
+				String day = b[2];
+				
+				
+				mv.addObject("rePriceVOs", rePriceVOs);	
+				mv.addObject("year", year);
+				mv.addObject("month", month);
+				mv.addObject("day", day);
 				mv.addObject("reportPayVO", reportPayVO);
 				mv.addObject("result", result);
 				return mv;
@@ -402,6 +444,18 @@ public class ReportController {
 			public ModelAndView getLicenseSorryReportDetail(ReportSorryVO reportSorryVO,String result) throws Exception{
 				ModelAndView mv = new ModelAndView();
 				reportSorryVO = reportService.getLicenseSorryReportDetail(reportSorryVO);
+				Date date = reportSorryVO.getDate();
+				String a = date.toString();
+				String[] b = a.split("-");
+				String year = b[0];
+				String month = b[1];
+				String day = b[2];
+				
+				
+										
+				mv.addObject("year", year);
+				mv.addObject("month", month);
+				mv.addObject("day", day);
 				mv.addObject("reportSorryVO", reportSorryVO);
 				mv.addObject("result", result);
 				return mv;

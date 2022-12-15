@@ -89,9 +89,10 @@
                      	<c:if test="${member.reportVO.lstatus >= 2}">
                         <a class="collapse-item" href="/report/doreport">결제/반려 승인</a>
                      	</c:if>
-						</sec:authorize>
-                     	
+                     	<c:if test="${member.reportVO.lstatus == 3}">
                         <a class="collapse-item" href="/report/insa">휴가담당 관리자</a>
+                        </c:if>
+						</sec:authorize>
                         <a class="collapse-item" href="/report/mylist?cat=1">결재 신청 목록</a>
                     </div>
                 </div>
