@@ -117,7 +117,7 @@
             <input type="hidden" name="sendId" value="${member.id}">
             <input type="hidden" name="receiveId" value="${param.receiveId}">
             <div id="title">
-                <div style="margin: 15px;">발신자 : ${member.name} (${member.id})</div>
+                <div style="margin: 15px;">발신자 : 세션줘 (${member.id})</div>
                 <div style="margin: 15px;">수신자 : 수신자 (${param.receiveId})</div>
             </div>
             <div id="contents">

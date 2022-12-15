@@ -207,7 +207,9 @@
 								$(".checkUser").each(function(index, item) {
 									if($(item).prop("checked")) {
 										// console.log($(item).val())
-										arr[index] = $(item).val();
+										if($(item).val().length>0) {
+											arr.push($(item).val());
+										}
 									}
 								})
 
@@ -223,7 +225,7 @@
 										arr: arr
 									},
 									success : function(data){
-
+										console.log(data);
 									},
 									error   : function(){
 
