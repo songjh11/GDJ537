@@ -15,6 +15,8 @@ public class GoodsReserveVO {
 	private Timestamp endTime;
 	
 	
+	private GoodsVO goodsVO;
+	
 //	filter
 	private boolean room;
 	private boolean car;

@@ -1,5 +1,6 @@
 package com.app.home.schedule.goods;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.home.user.DepartmentVO;
 import com.app.home.user.UserService;
+import com.app.home.user.UserVO;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import ch.qos.logback.classic.Logger;
@@ -89,9 +91,11 @@ public class GoodsController {
 	public int setFileUpdateNumber(GoodsFileVO goodsFileVO) throws Exception{
 		long ROWNUM = goodsFileVO.getRowNum()+1L;
 		goodsFileVO.setRowNum(ROWNUM);
+		System.out.println(goodsFileVO.getRowNum());
+		System.out.println(goodsFileVO.getGoodsId());
 		goodsFileVO = goodsService.getFileNumCheck(goodsFileVO);
 		int result = goodsFileVO.getImgNum().intValue();
-		
+		System.out.println(result);
 		return result;
 	}
 	
@@ -141,41 +145,74 @@ public class GoodsController {
 	
 	@PostMapping("calendar")
 	@ResponseBody
-	public List<Map<String, Object>> getCalendar(Model model,GoodsReserveVO goodsReserveVO) throws Exception{
-		
-		
-		List<ReserveVO> list = goodsService.getReserveList(goodsReserveVO);
-		JSONObject jsonObj = new JSONObject();
-        JSONArray jsonArr = new JSONArray();
- 
-        HashMap<String, Object> hash = new HashMap<>();
-        log.info("list -> {}",list.size());
-        log.info("goodsReserveVO -> room : {}, car : {}, vacation : {}",goodsReserveVO.isRoom(),goodsReserveVO.isCar(),goodsReserveVO.isVacation());
-        for (int i = 0; i < list.size(); i++) {
-            hash.put("title", list.get(i).getGoodsId());
-            hash.put("start", list.get(i).getStartTime());
-            hash.put("end", list.get(i).getEndTime());
-            log.info("---");
+	public List<Map<String, Object>> getCalendar(Model model,ReserveVO reserveVO,String depNum) throws Exception{
+			int depNum1 = 0;
+			List<ReserveVO> list = goodsService.getReserveList(reserveVO);
+			JSONObject jsonObj = new JSONObject();
+			JSONArray jsonArr = new JSONArray();
+			UserVO userVO = new UserVO();
+			HashMap<String, Object> hash = new HashMap<>();
+			log.info("list -> {}",list.size());
+			log.info("ReserveVO -> room : {}, car : {}, vacation : {}",reserveVO.isRoom(),reserveVO.isCar(),reserveVO.isVacation());
+			for (int i = 0; i < list.size(); i++) {
+				if(depNum == "" || depNum == null) {
+					
+					userVO.setId(list.get(i).getId());
+					userVO = userService.getMypage(userVO);
+					hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+					hash.put("start", list.get(i).getStartTime());
+					hash.put("end", list.get(i).getEndTime());
+					
+					hash.put("content", userVO.getDepartmentVO().getDepName());
+					hash.put("test1", userVO.getRoleVO().getRoleName());
+					hash.put("test2", userVO.getName());
+					
 //            hash.put("time", listAll.get(i).getScheduleTime());
-            jsonObj = new JSONObject(hash);
-            jsonArr.add(jsonObj);
-           
-        }
-        
-        log.info("jsonArrCheck: {}", jsonArr);
-        return jsonArr;
-	}
+					jsonObj = new JSONObject(hash);
+					jsonArr.add(jsonObj);
+				}else {
+					depNum1 = Integer.valueOf(depNum);
+					userVO.setId(list.get(i).getId());
+					userVO = userService.getMypage(userVO);
+					if(userVO.getDepNum() == depNum1) {
+						hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+						hash.put("start", list.get(i).getStartTime());
+						hash.put("end", list.get(i).getEndTime());
+						
+						hash.put("content", userVO.getDepartmentVO().getDepName());
+						hash.put("test1", userVO.getRoleVO().getRoleName());
+						hash.put("test2", userVO.getName());
+						
+//	            hash.put("time", listAll.get(i).getScheduleTime());
+						jsonObj = new JSONObject(hash);
+						jsonArr.add(jsonObj);
+					}else {
+						continue;
+					}
+				}
+				
+			}
+			
+			log.info("jsonArrCheck: {}", jsonArr);
+			return jsonArr;
+		}
+	
 	
 	@GetMapping("ad_room")
 	public ModelAndView getRoomAdmin() throws Exception{
 		ModelAndView mv = new ModelAndView();
+		LocalDate now = LocalDate.now();
 		List<GoodsVO> room = goodsService.getRoomNameList();
 		List<DepartmentVO> department = userService.getDepartment(); 
 		Map<String, Integer> map = new HashMap<>();
 		Map<String, Integer> departMap = new HashMap<>();
 		
 		for(int i=0;i<room.size();i++) {
-			map.put(room.get(i).getGoodsId(), goodsService.getreserveCount(room.get(i)));
+			map.put(room.get(i).getName(), goodsService.getreserveCount(room.get(i)));
+		}
+		
+		for(int i=0;i<department.size();i++) {
+			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(department.get(i)));
 		}
 		
 		for(int i=0;i<department.size();i++) {
@@ -203,8 +240,10 @@ public class GoodsController {
 			depart += "['"+key+"', "+departMap.get(key)+"]";
 		}
 		
-		
-		System.out.println(result);
+		String month = now.toString().substring(5, 7);
+		int nowTotal = goodsService.getCarNowTotal(month);
+
+		mv.addObject("nowTotal", nowTotal);
 		mv.addObject("depart", depart);
 		mv.addObject("total", total);
 		mv.addObject("result", result);
@@ -215,13 +254,18 @@ public class GoodsController {
 	@GetMapping("ad_car")
 	public ModelAndView getCarAdmin()throws Exception{
 		ModelAndView mv = new ModelAndView();
+		LocalDate now = LocalDate.now();
 		List<GoodsVO> car = goodsService.getCarNameList();
 		List<DepartmentVO> department = userService.getDepartment(); 
 		Map<String, Integer> map = new HashMap<>();
 		Map<String, Integer> departMap = new HashMap<>();
 
 		for(int i=0;i<car.size();i++) {
-			map.put(car.get(i).getGoodsId(), goodsService.getreserveCount(car.get(i)));
+			map.put(car.get(i).getName(), goodsService.getreserveCount(car.get(i)));
+		}
+		
+		for(int i=0;i<department.size();i++) {
+			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentCarTotal(department.get(i)));
 		}
 		
 		for(int i=0;i<department.size();i++) {
@@ -249,7 +293,11 @@ public class GoodsController {
 			}
 			depart += "['"+key+"', "+departMap.get(key)+"]";
 		}
-		System.out.println(result);
+		
+		String month = now.toString().substring(5, 7);
+		int nowTotal = goodsService.getCarNowTotal(month);
+
+		mv.addObject("nowTotal", nowTotal);
 		mv.addObject("depart", depart);
 		mv.addObject("total", total);
 		mv.addObject("result", result);

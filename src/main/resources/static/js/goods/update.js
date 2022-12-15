@@ -19,11 +19,13 @@ $("#fileAdd").click(function(){
     if($(".files").length<5){
         let r = '<div class="file_form mt-2">';
         /* r = r+'<label for="contents" class="form-label">Files</label>'; label 여부 체크 */
+        r = r + `<div>`
         r = r+'<input type="file" name="files" class="files form-control" id="files">';
-        r = r+'<span class="text">선택된 파일 없음</span> ';
+        r = r+'<span class="text ff">선택된 파일 없음</span> ';
         r = r+'<button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>'
         r = r+'<div id="see"></div>'
         r = r+'</div>';
+        r = r+`</div>`
         $("#fileAddResult").append(r);
     }else {
         //swal("최대 3개만 가능","","warning")
@@ -91,7 +93,7 @@ for(let i=0; i<$(".files").length; i++){
                         url :"./fileUpdateNumber",
                         data:{
                             "rowNum":i,
-                            "id":goodId
+                            "goodsId":goodId
                         },
                         success:function(result){
                             console.log("Result : ",result)
@@ -114,20 +116,26 @@ for(let i=0; i<$(".files").length; i++){
         
     
     $($(".del")[i]).click(function(){
+        console.log("click");
+        console.log(i);
+
         $.ajax({
             type:"POST",
             url :"./fileDelete",
             data:{
                 "rowNum":i,
-                "id":goodId
+                "goodsId":goodId
             },
             success:function(result){
                 console.log("Result : ",result)
                 console.log("After Result This", $(this));
                 if(result == 1 ){
-                    swal("첨부파일이 삭제되었습니다.").then(function(){
-                        location.replace("./update?id="+goodId);
-                    })
+                    // swal("첨부파일이 삭제되었습니다.").then(function(){
+                    //     location.replace("./update?goodsId="+goodId);
+                    // })
+                    alert("첨부파일이 삭제되었습니다.");
+                    // location.replace("./update?goodsId="+goodId);
+
                 }
                 
             },
@@ -147,45 +155,45 @@ $("#fileAddResult").on("click", ".del", function(){
 
 flag=true;
 /// 글 수정시 첨부파일 삭제
-$(".deleteFile").click(function(){
-    //DB, HDD에 파일 삭제
-    let check = confirm("삭제 됩니다.. 복구 불가");
+// $(".deleteFile").click(function(){
+//     //DB, HDD에 파일 삭제
+//     let check = confirm("삭제 됩니다.. 복구 불가");
 
-    if(flag){
-        let size = $("#fileAddResult").attr("data-file-size");
+//     if(flag){
+//         let size = $("#fileAddResult").attr("data-file-size");
         
         
-        count=size;
-        flag=false;
-    }
+//         count=size;
+//         flag=false;
+//     }
 
-    if(check){
-        //post
-        // /qna/fileDelete
-        //파라미터 fileNum
-        let imgNum = $(this).attr("data-file-num");
-        console.log("Before Result This", $(this));
-        const btn = $(this);
-        $.ajax({
-            type:"POST",
-            url :"fileDelete",
-            data:{
-                imgNum:imgNum
-            },
-            success:function(result){
-                console.log("Result : ",result)
-                console.log("After Result This", $(this));
-                $(btn).parent().remove();
-                count--;
-            },
-            error:function(){
-                console.log("Error 발생");
-            }
+//     if(check){
+//         //post
+//         // /qna/fileDelete
+//         //파라미터 fileNum
+//         let imgNum = $(this).attr("data-file-num");
+//         console.log("Before Result This", $(this));
+//         const btn = $(this);
+//         $.ajax({
+//             type:"POST",
+//             url :"fileDelete",
+//             data:{
+//                 imgNum:imgNum
+//             },
+//             success:function(result){
+//                 console.log("Result : ",result)
+//                 console.log("After Result This", $(this));
+//                 $(btn).parent().remove();
+//                 count--;
+//             },
+//             error:function(){
+//                 console.log("Error 발생");
+//             }
 
-        });
+//         });
 
-    }
-});
+//     }
+// });
 
 
 $("#delete").click(function(){
@@ -194,7 +202,7 @@ $("#delete").click(function(){
         type:"GET",
         url :"delete",
         data:{
-            id:id
+            goodsId:id
         },
         success:function(result){
             console.log("삭제 완료 ");            
@@ -306,8 +314,8 @@ sub.addEventListener("click",function(){
     console.log(carNumCheck);
     console.log(imgCheck);
 
-    console.log("valuessssd : "+$("#files").val());
-    if($("#files").val() == undefined || $("#files").val() == "") {
+    console.log("valuessssd : "+$(".ff").html());
+    if($(".ff").html() == undefined || $(".ff").html() == "") {
         imgCheck = false;
         imgdiv.innerHTML ="이미지는 필수입니다.";
     }else {

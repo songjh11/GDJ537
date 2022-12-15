@@ -91,7 +91,7 @@ for(let i=0; i<$(".files").length; i++){
                         url :"./fileUpdateNumber",
                         data:{
                             "rowNum":i,
-                            "id":goodId
+                            "goodsId":goodId
                         },
                         success:function(result){
                             console.log("Result : ",result)
@@ -119,7 +119,7 @@ for(let i=0; i<$(".files").length; i++){
             url :"./fileDelete",
             data:{
                 "rowNum":i,
-                "id":goodId
+                "goodsId":goodId
             },
             success:function(result){
                 console.log("Result : ",result)
@@ -194,7 +194,7 @@ $("#delete").click(function(){
         type:"GET",
         url :"delete",
         data:{
-            id:id
+            goodsId:id
         },
         success:function(result){
             console.log("삭제 완료 ");            
