@@ -288,9 +288,20 @@ public class MessengerController {
 		userVO.setId(id);
 		mv.addObject("member", userVO);
 		mv.addObject("yourId", arr);
-		
+		mv.setViewName("messenger/note/group");
 		return mv;
 	}
+	
+	@GetMapping("note/groupSend")
+	public String setGroupSend(HttpSession session, UserVO userVO, int[] arr)throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();
+	    userVO = userService.getMypage(userVO);
+	    
+		return "messenger/note/groupSend";
+	}
+	
 	
 	
 	// --------------------- 유리 끝------------------------------

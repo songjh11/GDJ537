@@ -74,7 +74,7 @@
 														<li class="chatLi">
 															<input type="hidden" id="email${p.id}" value="${p.email}">
 															<input type="hidden" id="phone${p.id}" value="${p.phone}">
-															<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+															<div class="userArea rrrr" empId="${p.id}" value="${p.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 																<div class="userAdd">
 																	<img id="yourImg${p.id}" class="yourImg" src="/img/undraw_profile_3.svg">
 																</div>
@@ -117,7 +117,7 @@
 													<li class="chatLi">
 														<input type="hidden" id="email${e.id}" value="${e.email}">
 														<input type="hidden" id="phone${e.id}" value="${e.phone}">
-														<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+														<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 															<div class="userAdd">
  																<form action="./addRoom" class="roomForm" method="get">
 																	<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
@@ -177,7 +177,7 @@
 														<li class="chatLi">
 															<input type="hidden" id="email${p.id}" value="${p.email}">
 															<input type="hidden" id="phone${p.id}" value="${p.phone}">
-															<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+															<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 																<div class="userAdd">
 																	<img id="yourImg${p.id}" class="yourImg" src="/img/undraw_profile_3.svg">
 																</div>
@@ -220,7 +220,7 @@
 													<li class="chatLi">
 														<input type="hidden" id="email${e.id}" value="${e.email}">
 														<input type="hidden" id="phone${e.id}" value="${e.phone}">
-														<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+														<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 															<div>
 																<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
 															</div>
