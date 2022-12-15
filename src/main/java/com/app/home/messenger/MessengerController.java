@@ -311,11 +311,7 @@ public class MessengerController extends Socket {
 	
 	// --------------------- 유리 끝------------------------------
 	
-	// --------------------- 효경 ------------------------------
-	
-	// 채팅방 인원
-	
-	
+	// --------------------- 효경 ------------------------------	
 	// 채팅방 추가
 	@PostMapping("addRoom")
 	public ModelAndView setAddRoom(HttpSession session, UserVO userVO, RoomVO roomVO)throws Exception{
