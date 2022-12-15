@@ -11,8 +11,7 @@
 									<div class="content">
 										<div class="profile">
 											<input type="hidden" name="id" id="proId">
-											<input type="hidden" name="id" value="${user.id}">
-											<input type="hidden" name="roomName" value="${user.name}">
+											<input type="hidden" name="roomName" id="roomName">
 											<input type="hidden" name="pw">
 											<img id="proImg" src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
 											<div class="proArea" style="background: transparent; border: none; box-shadow: none !important;">
