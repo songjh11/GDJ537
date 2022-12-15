@@ -165,9 +165,6 @@
                                             <div>~</div>
                                         <input type="datetime-local" name="endDate" id="endInput">
 
-                                        <input type="datetime-local" name="startDate">
-                                            <div>~</div>
-                                        <input type="datetime-local" name="endDate">
 
                                     </div>
                                 </div>
