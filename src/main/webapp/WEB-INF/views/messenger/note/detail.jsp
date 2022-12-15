@@ -119,8 +119,8 @@
             <div id="receiveId">발신자 : 김경경 (${detail.sendId})</div>
         </div> -->
         <div id="title">
-            <div sendId="${detail.sendId}" id="sendId" style="margin: 15px;">발신자 : 김경경 (${detail.sendId})</div>
-            <div style="margin: 15px;">수신자 : 박수신 (${detail.receiveId})</div>
+            <div sendId="${detail.sendId}" id="sendId" style="margin: 15px;">발신자 : ${sendUser.name} (${detail.sendId})</div>
+            <div style="margin: 15px;">수신자 : ${receiveUser.name} (${receiveUser.id})</div>
         </div>
         <div id="contents">
             <div id="time">
@@ -128,6 +128,7 @@
                     보낸시간 : 
                     <fmt:formatDate value="${detail.regDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
                 </div>
+                <c:if test="${session.id != receiveUser.id}">
                 <div>
                     <c:choose>
                         <c:when test="${detail.readCheck eq 0}"> 읽음 </c:when>
@@ -135,6 +136,7 @@
                         <c:otherwise> 오류 </c:otherwise>
                     </c:choose>
                 </div>
+                </c:if>
             </div>
             
             <div id="line"></div>
