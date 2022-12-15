@@ -371,7 +371,11 @@ public class MessengerController extends Socket {
 	//--------------------- 소영 ------------------------------
 	// 그룹 채팅방
 	@GetMapping("chatroom")
-	public ModelAndView chat3()throws Exception{
+	public ModelAndView chat3(HttpSession session, UserVO userVO)throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  = (UserVO)authentication.getPrincipal();
+		
 		ModelAndView mv = new ModelAndView();
 		
 		//인원 수
@@ -379,10 +383,9 @@ public class MessengerController extends Socket {
 		mv.addObject("count", count);
 		
 		//유저 정보
-		UserVO user = new UserVO();
-		user = userService.getMypage(user);
-		mv.addObject("user", user);
-		log.info("&&&&& &&&&& : {}", user);
+		userVO = userService.getMypage(userVO);
+		mv.addObject("user", userVO);
+		log.info("&&&&& &&&&& : {}", userVO);
 		
 		mv.setViewName("messenger/chatroom");
 		return mv;
