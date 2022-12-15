@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +24,10 @@ public class GoodsService
 
 	@Autowired
 	private FileManager fileManager;
+	
+	@Value("${app.upload.goods}")
+	private String path;
+	
 
 	public int setAdd(GoodsVO goodsVO, MultipartFile[] files, ServletContext servletContext) throws Exception
 	{
@@ -42,7 +47,7 @@ public class GoodsService
 		goodsVO.setGoodsId(goodsVO.getGoodsId().concat(String.valueOf(count)));
 		
 		int result = goodsMapper.setAdd(goodsVO);
-		String path = "resources/upload/goods";
+
 
 		if (files.length != 0)
 		{
@@ -52,7 +57,7 @@ public class GoodsService
 				log.info("test1 => {}", file.isEmpty());
 				if (!file.isEmpty())
 				{
-
+					log.info(" test2 => {}", path);
 					String fileName = fileManager.saveFile(path, servletContext, file);
 					GoodsFileVO goodsFileVO = new GoodsFileVO();
 					goodsFileVO.setFileName(fileName);
@@ -149,9 +154,9 @@ public class GoodsService
 	public List<GoodsVO> getCarList() throws Exception{
 		return goodsMapper.getCarList();
 	}
-	public List<ReserveVO> getReserveList(GoodsReserveVO goodsReserveVO) throws Exception{
+	public List<ReserveVO> getReserveList(ReserveVO reserveVO) throws Exception{
 		
-		return goodsMapper.getReserveList(goodsReserveVO);
+		return goodsMapper.getReserveList(reserveVO);
 	}
 	
 	public List<GoodsVO> getRoomNameList() throws Exception{

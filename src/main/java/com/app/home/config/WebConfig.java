@@ -18,8 +18,8 @@ public class WebConfig implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		
-		registry.addResourceHandler(filePath)
-				.addResourceLocations(urlPath);
+		registry.addResourceHandler(urlPath) // 요청 url 주소
+			.addResourceLocations(filePath);
 		registry.addResourceHandler("/webjars/**")
 				.addResourceLocations("/webjars/")
 				 .resourceChain(false);
