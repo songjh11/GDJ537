@@ -26,7 +26,7 @@
 	}
 
 	.blank{
-		height: 34px;
+		height: 17px;
 	}
 
 	.miniBar{
@@ -187,7 +187,6 @@
 	.noteStart {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
     	width: 100%;
 		overflow: hidden;
 	}
@@ -201,13 +200,15 @@
 	}
 
 	#noteChoice {
-		display: flex;
 		height: 57px;
-		/* border: 1px solid #80808042; */
-		border-top-left-radius: 20px;
-		border-top-right-radius: 20px;
-		/* box-shadow: 0px -5px 7px -4px #80808052; */
-		margin: 10px 0px 0px;
+		border-top-left-radius: 9px;
+		border-top-right-radius: 9px;
+		border-bottom-left-radius: 9px;
+   		border-bottom-right-radius: 9px;
+		display: flex;
+		justify-content: center;
+		/* align-items: center; */
+		border-bottom: 1px solid #80808057;
 	}
 
 	#noteChoice div {
@@ -216,11 +217,15 @@
 		justify-content: center;
 	}
 
+	#noteChoice p {
+		transform: translate3d(0px, -10px, 10px);
+		font-size: 13px;
+	}
+
 	#noteChoiceSearch {
 		height: 57px;
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px;
-		margin: 10px 0px 0px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -229,53 +234,16 @@
 
 	#noteContent {
 		/* height: 700px; */
+		height: 570px;
 		
-		height: 500px;
+		/* height: 500px; */
 		overflow-y: scroll;
 	}
 
 	#noteContent::-webkit-scrollbar {
 		display: none;
 	}
-
-	@media screen and (max-width:1024px) {
-		#noteContent {
-			height: 700px;
-			overflow-y: scroll;
-		}
-	}
-
-	@media screen and (max-width:800px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-
-	}
-
-	@media screen and (max-width:640px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-
-	}
-
-	@media screen and (max-width:480px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-	}
-
-	@media screen and (max-width:375px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-	}
-
-
+	
 	.noteList{
 		border: 1px solid #d8d9f7a1;
 		/* background: #3b4bbd0f; */
@@ -313,16 +281,17 @@
 		width: 85%;
 	}
 
-	#listInfo div:nth-child(1) {
+	#previewId {
 		margin: 3px 0px 4px;
 		font-weight: bold;
 	}
 
-	#listInfo div:nth-child(2) {
+	#previewNote {
 		word-wrap: break-word;
 		text-overflow: ellipsis;
-    	/* width: 300px; */
-		width: 100%;
+    	width: 300px;
+		/* width: 100%; */
+		padding-right: 37px;
 	}
 
 	/* .noteList div:nth-child(3){
@@ -357,12 +326,43 @@
 		cursor: pointer;
 	}
 
+	#noteDelete {
+		width: 20px;
+    	height: 20px;
+		margin: 0px;
+	
+		display: flex;
+		float: right;
+		margin-left: auto;
+	}
+
+	#countse {
+		width: 18px;
+		/* margin: auto 0px; */
+		transform: translate3d(24px, 32px, 10px) !important;
+		background: red;
+		height: 17px;
+		border-radius: 83px;
+		margin-bottom: 0px;
+		position: absolute;
+		color: white;
+		font-size: 11px;
+		display: flex;
+	    justify-content: center;
+	}
+
+	.iconMsg {
+		font-size: 13px;
+		color: #4c6ac4;
+	}
+
 	
 
 </style>
 <title>Insert title here</title>
 <!-- 공통 css, js -->
 <link href="/css/chat/employeeList.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/chat/groupModal.css">
 <c:import url="../temp/layout_header.jsp"></c:import>
 </head>
 
@@ -390,40 +390,61 @@
 	
 	            	<!-- Page Heading -->
 					<div class="miniBar">
-						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/conversation.png"></button></a>
-						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/email.png"></button></a>
+						<a href="../messenger/chat"><button type="button" id="chatBtn"><img src="/img/messenger/m_chatX.png"><p class="iconMsg" style="color: white;">채팅</p></button></a>
+						
+						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/messenger/m_note.png"><p class="iconMsg" style="margin-top: -4px;">쪽지</p></button></a>
 					</div>
 
-					<div class="chatDiv">
+					<div class="chatDiv" id="chatArea">
 						<div class="blank"></div>
-							<c:import url="./employeeList.jsp"></c:import>	
+							<c:import url="./groupModal.jsp"></c:import>
+							<c:import url="./employeeList.jsp"></c:import>
+							<div class="btnArea d-flex flex-row-reverse" style="background: #4e73df; color: #FFFFFF; height: 38px; display: flex; text-align: center; justify-content: center;">
+								<button type="button" id="userBtn" style="color: #FFFFFF;">그룹채팅/쪽지<img class="roomImg" style="width: 20px; margin-left: 5px; margin-bottom: 7px; filter: invert(1);" src="/img/messenger/chatAdd.png"></button>
+							</div>
 					</div>
-					<div class="chatDiv">
 
+					<div class="chatDiv" id="chatArea">
+						<div class="blank"></div>
 						<!------------------------------------ YR ------------------------------------------->
 						<div class="noteStart">
 							<!-- <div id="noteTitle">쪽지함</div> -->
 
 							<div id="noteChoice">
-								<div><button id="receiveNote" onclick="location.href='./note'"><img id="rImg" src="/img/messenger/receive.png" alt=""></button></div>
-								<div><button id="sentNoteList" onclick="ajaxPage(1)"><img style="transform: translateY(-4px);" id="sImg" src="/img/messenger/sendX.png" alt=""></button></div>
+								<div>
+									<button id="receiveNote" onclick="location.href='./note'">
+										<img id="rImg" src="/img/messenger/receive.png" alt="">
+										<p id="soosin" style="color: #fe4a69;">수신</p>
+									</button>
+									<c:if test="${not empty getNotReadCount}">
+										<span id="countse">${getNotReadCount}</span>
+									</c:if>
+								</div>
+								<div><button id="sentNoteList" onclick="ajaxPage(1)"><img style="transform: translateY(-4px);" id="sImg" src="/img/messenger/sendX.png" alt=""><p id="balsin">발신</p></button></div>
 								<div><button id="goSearch"><img style="width: 30px;" src="/img/messenger/searchzz.png"></button></div>
 							</div>
 							<form id="ajaxSearchForm" action="./note" method="get">
+								
 								<div id="noteChoiceSearch">
-									<div class="input-group" style="width: 95%;"> 
-										<select class="searchOption form-control" name="kind" id="kindkind">
+									<div class="input-group" style="width: 80%; 
+									/* border: 1px solid black; */
+									"> 
+										<select class="searchOption form-control" name="kind" id="kindkind" placeholder="선택하세요">
 											<option value="contents" selected>내용</option>
 											<option id="changeOption" value="sendId">발신ID</option>
 										</select>
-										<input id="searchInput" name="search" type="text" class="form-control bg-light border-0 small" style="width: 120px !important;" placeholder="Search for..."
+										<!-- <input hidden="hidden" /> -->
+										<input id="searchInput" name="search" type="text" class="form-control bg-light border-0 small" style="width: 130px !important;" placeholder="Search for..."
 											aria-label="Search" aria-describedby="basic-addon2">
 										<div class="input-group-append">
 											<button class="btn btn-primary" id="gogogogo" type="submit">
 												<i class="fas fa-search fa-sm"></i>
 											</button>
 										</div>
+										
 									</div>
+									<!-- <a href="javascript:ajaxPage(1);"><img style="width: 30px;" src="/img/messenger/return.png"></a> -->
+									<a id="goBackNote"><img style="width: 44px; margin: 5px;" src="/img/messenger/close.png"></a>
 								
 									
 								</div>
@@ -433,27 +454,38 @@
 
 							<div id="noteContent">
 								<c:forEach items="${list}" var="list">
-									<div class="noteList" onclick="notePop(${list.noteNum})">
+									<div class="noteList" id="noteNum${list.noteNum}" onclick="notePop(${list.noteNum})" read-check="${list.readCheck}">
 										<div id="listImage">
-											<img src="/img/messenger/test.png" alt="">
+											<img src="/img/undraw_profile_3.svg" alt="">
 										</div>
 										<div id="listInfo">
-											<div>발신자:${list.sendId}</div>
-											<div>${fn:replace(list.contents, replaceChar, "<br/>")}
+											<div style="display: flex;">
+											<div id="previewId">발신자 : <strong>${list.sendId}</strong></div>
+											<img id="noteDelete" onclick="noteDelete(${list.noteNum})" src="/img/messenger/close.png">
+											</div>
+											
+											<div id="previewNote">${fn:replace(list.contents, replaceChar, "<br/>")}
 												<!-- ${list.contents} -->
 											</div>
 										</div>
 									</div>
 
 								</c:forEach>
+								<c:if test="${empty list}">
+									<div id="imEmpty" style="justify-content: center; margin-top: 5px; display: flex;" value="${message5}">${message5}</div>
+								</c:if>
+								
+								<script>
 
-								<div>임시쪽지보내기버튼
-									<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
-								</div>
-	
+									
+
+								</script>
+								
+								
 								
 							</div>
-
+							
+							<!-- <c:if test="${not empty list}"> -->
 							<div id="pagination">
 								<p style="margin: 0; display: flex; align-items: center;">
 									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startNum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
@@ -466,6 +498,7 @@
 									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastNum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
 								</p>
 							</div>
+							<!-- </c:if> -->
 
 							
 
@@ -474,23 +507,6 @@
 
 
 					</div>
-
-					<div class="chatDiv">
-						<div class="blank"></div>
-						<div class="profile">
-							<img src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
-							<h2 class="h2title">Goodee Company</h2>
-							<div class="proArea">
-								<p>이름</p>
-								<p>부서</p>
-								<p>직급</p>
-								<p>이메일</p>
-								<p>전화번호</p>
-								<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">개인 정보 수정 »</a></p>
-							</div>
-						  </div>
-					</div>
-	
 	            </div>
 	            <!-- End Page Content -->
 					
@@ -507,6 +523,18 @@
 
 
 	<script>
+
+		//읽은 아이들은 회색으로 표시..
+		$($(".noteList")).each(function(index, item) {
+
+			if($(this).attr("read-check")==0) {
+				$(this).css("color","lightgrey");
+			}
+		});	
+
+
+
+		
 		$(document).ready(function() {
 			$('#noteChoice').show(); //페이지를 로드할 때 표시할 요소
 			$('#noteChoiceSearch').hide();
@@ -516,22 +544,68 @@
 			$('#noteChoice').hide();
 			$('#noteChoiceSearch').fadeIn();
 
-
-			// $('#topSearchForm').fadeIn();
-			// $('#searchTopClose').show();
-			// $('#searchBoxArea').animate({height:'104px',opacity:'1'},'fast');
-			// $('#topSearchForm .searchBox').attr('tabIndex','0').focus();
-
 		})
 
+		$("#goBackNote").on("click", function(){
+			$('#noteChoiceSearch').hide();
+			$('#noteChoice').fadeIn();
+			$("#searchInput").val("");
+		})
+
+
+		// 쪽지 삭제
+		function noteDelete(num) {
+			event.stopPropagation();
+			if(confirm("쪽지를 삭제하시겠습니까?")) {
+				$.ajax({
+					type:"GET",
+					url :"./note/delete",
+					traditional:true, //배열을 전송할 때 사용, true
+					data:{
+						noteNum: num
+					},
+					success : function(data){
+						console.log(data);
+						$("#noteNum"+num).remove();
+						// console.log($("#noteNum"+num).attr("id"))
+						setTimeout(function(){
+							location.reload();
+						},20);
+						
+					},
+					error : function(){
+					}
+				})
+			} else {
+				
+			}
+		}
 		
-
-		$('#sendNote').on("click",function(){
-			window.open('./note/send?receiveId=2', '_blank', "width=450px, height=500px, location=no, top=100, left=500");
-		})
-
+		// 쪽지 상세보기
 		function notePop(num) {
+			// $.ajax({
+			// 	type:"GET",
+			// 	url :"./note/check",
+			// 	traditional:true, //배열을 전송할 때 사용, true
+			// 	data:{v
+			// 		noteNum: num
+			// 	},
+			// 	success : function(data){
+			// 		console.log(data);
+			// 	},
+			// 	error : function(){
+			// 	}
+			// })
+			
 			window.open('./note/detail?noteNum='+num, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+			
+
+			//수신함일때만 새로고침하게... (읽은거 표시하려면 새로고침해야 반영되는데 읽은거 표시는 수신함만 하려고함.... 맘에안든다....)
+			if($("#sImg").attr("src")=="/img/messenger/sendX.png") {
+				setTimeout(function(){
+					location.reload();
+				},20);
+			}
 		};
 
 
@@ -549,16 +623,18 @@
 					let disabled = "";
 					let disabled2 = "";
 					console.log("나는성공, 나의 데이터는? : ", data);
-					console.log(data.pager.page)
-					console.log(data.pager.startNum)
-					console.log(data.pager.lastNum)
-					console.log(data.pager.pre)
-					console.log(data.pager.next)
+
 
 					// 검색기능을 위해 기존 폼을 발신전용으로 잠시 수정
 					$("#changeOption").val("receiveId");
 					$("#changeOption").html("수신ID");
 					$("#gogogogo").attr("type","button");
+
+					$('input[type="text"]').keydown(function() {
+						if (event.keyCode === 13) {
+							event.preventDefault();
+						};
+					});
 
 					$("#gogogogo").on("click", function(){
 						console.log("에젝에서만나와");
@@ -569,28 +645,70 @@
 
 					$("#pagination").empty();
 
-					if(data.pager.pre) {
+					try {
+
+						if(data.pager.pre) {
 						disabled = "";
-					} else {
-						disabled = "disabled";
+						} else {
+							disabled = "disabled";
+						}
+
+						if(data.pager.next) {
+							disabled2 = ""
+						} else {
+							disabled2 = "disabled";
+						}
+
+						let forPage = "";
+						let pageAjax = "";
+
+						if($("#searchInput").val()=="") {
+							console.log("검색아닌중..");
+							// $("#searchInput").val("");
+							// $("#kindkind").val("");
+							let nullll = "";
+
+							for(let i=data.pager.startNum;i<=data.pager.lastNum;i++) {
+								forPage += '<a onclick="ajaxPage('+i+')" class="pagep" id="ppaaggee'+i+'">'+i+'</a>'
+							}
+							
+							pageAjax = '<p style="margin: 0; display: flex; align-items: center;"><a onclick="ajaxPage('+(data.pager.startNum-1)+')" style="margin: 0px 5px;"><img src="/img/messenger/left2.png" alt=""></a>'+forPage+'<a onclick="ajaxPage('+(data.pager.lastNum+1)+')" style="margin: 0px 5px;" id="nextg" class="'+disabled2+'"><img src="/img/messenger/right2.png" alt=""></a></p>';
+						
+							
+						} else {
+							console.log("검색중");
+							let kindval = $("#kindkind").val();
+							let searchval = $("#searchInput").val();
+
+							for(let i=data.pager.startNum;i<=data.pager.lastNum;i++) {
+								forPage += '<a onclick="ajaxPage('+i+', ' +'\'' + kindval+'\'' +', '+ '\'' + $("#searchInput").val()+'\'' +')" class="pagep" id="ppaaggee'+i+'">'+i+'</a>'
+							}
+
+							pageAjax = '<p style="margin: 0; display: flex; align-items: center;"><a onclick="ajaxPage('+(data.pager.startNum-1)+','+ '\'' + $("#kindkind").val()+'\'' +','+ '\'' + $("#searchInput").val()+'\'' +')" style="margin: 0px 5px;" class="'+disabled+'"><img src="/img/messenger/left2.png" alt=""></a>'+forPage+'<a onclick="ajaxPage('+(data.pager.lastNum+1)+','+ '\'' + $("#kindkind").val()+'\'' +','+ '\'' + $("#searchInput").val()+'\'' +')" style="margin: 0px 5px;" id="nextg" class="'+disabled2+'"><img src="/img/messenger/right2.png" alt=""></a></p>';
+						
+						}
+
+						console.log(data.notePager.totalPage);
+						console.log(data.notePager.page);
+						
+
+						console.log($("#kindkind").val());
+						console.log($("#searchInput").val());
+						$("#pagination").html(pageAjax);
+
+						$(".disabled").removeAttr("onclick");
+						// $("#disabled").attr('onclick', '').unbind('click');
+						
+
+						
+					} catch (error) {
+						
 					}
+					
 
-					if(data.pager.next) {
-						disabled2 = ""
-					} else {
-						disabled2 = "disabled";
-					}
+					
 
-					let forPage = "";
-					for(let i=data.pager.startNum;i<=data.pager.lastNum;i++) {
-						forPage += '<a onclick="ajaxPage('+i+')" class="pagep" id="ppaaggee'+i+'">'+i+'</a>'
-					}
-
-					console.log(forPage);
-
-					let pageAjax = '<p style="margin: 0; display: flex; align-items: center;"><a onclick="ajaxPage('+(data.pager.startNum-1)+')" style="margin: 0px 5px;" class="'+disabled+'"><img src="/img/messenger/left2.png" alt=""></a>'+forPage+'<a onclick="ajaxPage('+(data.pager.lastNum+1)+')" style="margin: 0px 5px;" class="'+disabled2+'"><img src="/img/messenger/right2.png" alt=""></a></p>';
-
-					$("#pagination").html(pageAjax);
+					
 
 
 					let tempest = '';
@@ -599,18 +717,34 @@
 					$("#sImg").attr("src",src2);
 					$("#rImg").attr("src",src);
 
+					$("#soosin").css("color", "#000000");
+					$("#balsin").css("color", "#4a7bdd");
+
+					
+					
+
 					$.each(data.list, function(index, item) { 
 						// console.log(item);
 						$('#noteContent').empty();
 						// console.log(item.noteNum);
 						item.contents = item.contents.replace(/\r\n/g, "</br>");
 
-						tempest += '<div class="noteList" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/messenger/test.png" alt=""></div><div id="listInfo"><div>'+item.noteNum+'수신자:'+item.receiveId+'</div><div>'+item.contents+'</div></div></div>'
+						tempest += '<div class="noteList" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId">'+item.noteNum+' 수신자 : <strong>'+item.receiveId+'</strong></div><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png"></div><div id="previewNote">'+item.contents+'</div></div></div>'
 
 						$('#noteContent').html(tempest);
 					})
 
+					if(data.list.length==0) {
+						$('#noteContent').empty();
+						console.log($("#imEmpty").val());
+						$('#noteContent').html('<div style="justify-content: center; margin-top: 5px; display: flex;">'+data.message5+'</div>');
+						// $("#imEmpty").html(data.message5)
+					} 
+
 					$(".disabled").removeAttr("href");
+
+					
+
 				},
 				error   : function(){
 					console.log("나는에러");
@@ -622,10 +756,15 @@
 		}
 
 		$(".disabled").removeAttr("href");
+
+		
+		
 	</script>
 
 	<!-- Scroll Top, Login Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+	
 	<script src="/js/messenger/main.js"></script>
+	<script src="/js/messenger/groupModal.js"></script>
 </body>
 </html>

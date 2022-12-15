@@ -12,7 +12,7 @@ public class Pager {
 	private Long lastRow;
 	private Long perPage;
 	private Long perBlock;
-	private Long totalPage1;
+	private Long totalPage;
 	
 	private boolean pre;
 	private boolean next;
@@ -34,11 +34,7 @@ public class Pager {
 			totalPage +=1;
 		}
 		
-		//토탈페이지 안먹어서 페이저소속인애(1번)과 페이저에서 그냥지나가는변수인데 두개로 중복처리.. 
-		totalPage1 = totalCount/this.getPerPage();
-		if(totalCount%this.getPerPage()!=0) {
-			totalPage1 +=1;
-		}
+		
 		
 		//cf)1-1. totalPage보다 page가 큰 경우 못가게 막기
 		if(this.getPage()>totalPage) {

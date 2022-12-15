@@ -5,6 +5,17 @@
 
 <mapper namespace="com.app.home.messenger.NoteMapper">
 
+<select id="getNotReadCount" parameterType="UserVO" resultType="Long">
+SELECT COUNT(NOTENUM) FROM NOTE WHERE RECEIVEID = #{id} AND READCHECK = 1
+</select>
+
+<update id="updateCheck" parameterType="NoteVO">
+UPDATE NOTE SET READCHECK = 0 WHERE NOTENUM = #{noteNum} AND RECEIVEID = #{receiveId}
+</update>
+<delete id="setDeleteNote" parameterType="NoteVO">
+DELETE FROM NOTE WHERE NOTENUM = #{noteNum}
+</delete>
+
 <insert id="setSendNote" parameterType="NoteVO">
 INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1)
 </insert>

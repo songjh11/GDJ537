@@ -7,8 +7,10 @@
   	<typeAliases>
   		<typeAlias type="java.util.List" alias="List"/>
 
-  		<typeAlias type="com.app.home.user.EmployeeVO" alias="EmployeeVO"/>
+  		<typeAlias type="com.app.home.user.UserVO" alias="UserVO"/>
+  		<typeAlias type="com.app.home.user.RoleVO" alias="RoleVO"/>
   		<typeAlias type="com.app.home.user.DepartmentVO" alias="DepartmentVO"/>
+
 		<typeAlias type="com.app.home.messenger.NoteVO" alias="NoteVO"/>
 		<typeAlias type="com.app.home.messenger.RoomVO" alias="RoomVO"/>
 		<typeAlias type="com.app.home.messenger.PickVO" alias="PickVO"/>
@@ -22,5 +24,31 @@
   		<typeAlias type="com.app.home.board.BoardVO" alias="BoardVO"/>	
   		<typeAlias type="com.app.home.board.comment.CommentVO" alias="CommentVO"/>	
 
+  		<typeAlias type="java.lang.Integer" alias="Integer"/>
+  		
+
+  		<typeAlias type="com.app.home.report.ReportApplyVO" alias="ReportApplyVO"/>
+
+  		
+  		<typeAlias type="com.app.home.report.ReportVO" alias="ReportVO"/>
+  		<typeAlias type="com.app.home.report.sorry.ReportSorryVO" alias="ReportSorryVO"/>
+  		<typeAlias type="com.app.home.report.work.ReportWorkVO" alias="ReportWorkVO"/>
+  		<typeAlias type="com.app.home.report.pay.ReportPayVO" alias="ReportPayVO"/>
+  		<typeAlias type="com.app.home.report.vaca.ReportVacaVO" alias="ReportVacaVO"/>
+  		<typeAlias type="com.app.home.report.pay.RepriceVO" alias="RepriceVO"/>
+  		<typeAlias type="com.app.home.report.util.ReportPager" alias="ReportPager"/>
+
+  		<typeAlias type="java.lang.Integer" alias="int"/>
+  		<typeAlias type="java.lang.String" alias="String"/>
+  		
+  		
+  		<typeAlias type="com.app.home.schedule.goods.GoodsVO" alias="GoodsVO" />
+  		<typeAlias type="com.app.home.schedule.goods.GoodsFileVO" alias="GoodsFileVO" />
+  		<typeAlias type="com.app.home.schedule.goods.ReserveVO" alias="ReserveVO" />
+  		<typeAlias type="com.app.home.schedule.goods.GoodsReserveVO" alias="GoodsReserveVO" />
+  		<typeAlias type="com.app.home.schedule.car.CarVO" alias="CarVO" />
+  		<typeAlias type="com.app.home.schedule.room.GoodsRoomVO" alias="GoodsRoomVO" />
+  		
+  		
   	</typeAliases>
   </configuration>
