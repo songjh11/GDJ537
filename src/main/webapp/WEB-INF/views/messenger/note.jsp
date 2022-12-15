@@ -201,13 +201,16 @@
 	}
 
 	#noteChoice {
-		display: flex;
 		height: 57px;
-		/* border: 1px solid #80808042; */
-		border-top-left-radius: 20px;
-		border-top-right-radius: 20px;
-		/* box-shadow: 0px -5px 7px -4px #80808052; */
+		border-top-left-radius: 9px;
+		border-top-right-radius: 9px;
+		border-bottom-left-radius: 9px;
+   		border-bottom-right-radius: 9px;
 		margin: 10px 0px 0px;
+		display: flex;
+		justify-content: center;
+		/* align-items: center; */
+		border-bottom: 1px solid #80808057;
 	}
 
 	#noteChoice div {
@@ -243,45 +246,7 @@
 	#noteContent::-webkit-scrollbar {
 		display: none;
 	}
-
-	@media screen and (max-width:1024px) {
-		#noteContent {
-			height: 700px;
-			overflow-y: scroll;
-		}
-	}
-
-	@media screen and (max-width:800px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-
-	}
-
-	@media screen and (max-width:640px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-
-	}
-
-	@media screen and (max-width:480px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-	}
-
-	@media screen and (max-width:375px) {
-		#noteContent {
-			height: 500px;
-			overflow-y: scroll;
-		}
-	}
-
-
+	
 	.noteList{
 		border: 1px solid #d8d9f7a1;
 		/* background: #3b4bbd0f; */
@@ -434,11 +399,10 @@
 					</div>
 
 					<div class="chatDiv">
-						<div class="blank"></div>
-							<c:import url="./groupModal.jsp"></c:import>
-							<c:import url="./employeeList.jsp"></c:import>
-							<c:import url="./groupModal.jsp"></c:import>
+						<c:import url="./groupModal.jsp"></c:import>
+						<c:import url="./employeeList.jsp"></c:import>
 					</div>
+
 					<div class="chatDiv">
 						<!------------------------------------ YR ------------------------------------------->
 						<div class="noteStart">
@@ -560,10 +524,8 @@
 
 		//읽은 아이들은 회색으로 표시..
 		$($(".noteList")).each(function(index, item) {
-			console.log("이게머지",item);
 
 			if($(this).attr("read-check")==0) {
-				console.log("나는~읽음이랍니다")
 				$(this).css("color","lightgrey");
 			}
 		});	
@@ -604,7 +566,9 @@
 						console.log(data);
 						$("#noteNum"+num).remove();
 						// console.log($("#noteNum"+num).attr("id"))
-						
+						setTimeout(function(){
+							location.reload();
+						},20);
 						
 					},
 					error : function(){
@@ -621,7 +585,7 @@
 			// 	type:"GET",
 			// 	url :"./note/check",
 			// 	traditional:true, //배열을 전송할 때 사용, true
-			// 	data:{
+			// 	data:{v
 			// 		noteNum: num
 			// 	},
 			// 	success : function(data){
@@ -637,8 +601,8 @@
 			//수신함일때만 새로고침하게... (읽은거 표시하려면 새로고침해야 반영되는데 읽은거 표시는 수신함만 하려고함.... 맘에안든다....)
 			if($("#sImg").attr("src")=="/img/messenger/sendX.png") {
 				setTimeout(function(){
-				location.reload();
-			},50);
+					location.reload();
+				},20);
 			}
 		};
 

@@ -254,6 +254,14 @@ public class MessengerController {
 		return noteService.setDeleteNote(noteVO);
 	}
 	
+	@GetMapping("note/group")
+	public ModelAndView setGroup(int[] arr)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		
+		return mv;
+	}
+	
 	
 	// --------------------- 유리 끝------------------------------
 	
