@@ -54,8 +54,8 @@
 				</table> -->
 			</div>
 			<div id="msg">
-				<input type="hidden" name="userName" id="userName" value="bb">
-				<input type="text" class="typing-chat" id="msg" placeholder="보내실 메시지를 입력하세요.">
+				<input type="hidden" name="userName" id="userName" value="gg">
+				<input type="text" class="typing-chat" id="inputChat" placeholder="보내실 메시지를 입력하세요.">
 				<button onclick="send()" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
 			</div>
 		</div>

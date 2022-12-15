@@ -1,5 +1,7 @@
 package com.app.home.messenger;
 
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -7,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("messenger")
 @Slf4j
-public class MessengerController {
+public class MessengerController extends Socket {
 	
 	@Autowired
 	private NoteService noteService;
@@ -219,7 +224,7 @@ public class MessengerController {
 	}
 
 	
-	//--- 소영 ---
+	//--------------------- 소영 ------------------------------
 	// 그룹 채팅방
 	@GetMapping("chatroom")
 	public String chat3()throws Exception{

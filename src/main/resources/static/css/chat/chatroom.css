@@ -37,6 +37,7 @@
 .number{
     margin-top: 0.2rem;
     font-size: 0.9rem;
+    font-weight : bold;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -131,6 +132,16 @@
     color: #727272;
     margin-right: 0.4rem;
     font-size: smaller;
+}
+
+.al-bubble {
+	background-color: gray;
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    margin: 0.7rem 3rem;
+    text-align: center;
+    color: white;
+    font-weight: bold;
 }
 
 /* ----- put ----- */
