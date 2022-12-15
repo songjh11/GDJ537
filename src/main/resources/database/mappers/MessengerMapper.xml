@@ -81,9 +81,8 @@
 	
 	<!--                          효경                          -->
 	
-	<select id="getUserCount" parameterType="RoomVO" resultType="UserVO">
-		SELECT COUNT(ID) FROM ROOMUSER WHERE ROOMNUM =
-		(SELECT ROOMNUM FROM CHATROOM WHERE ROOMNUM = #{roomNum})
+	<select id="getUserCount" parameterType="RoomVO" resultType="Integer">
+		SELECT COUNT(ID) FROM ROOMUSER WHERE ROOMNUM = #{roomNum}
 	</select>
 	
 	<!--                       채팅방 목록 조회                        -->
