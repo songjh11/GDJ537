@@ -326,6 +326,11 @@ public class MessengerController extends Socket {
 	    // 로그인 회원을 방장으로
 		roomVO.setHostId(userVO.getId());
 		
+		// 방장도 유저
+		UserVO hostVO = new UserVO();
+		hostVO.setId(userVO.getId());
+		roomVO.setUserVO(hostVO);
+		
 		int result = messengerService.setAddRoom(roomVO);
 		
 		if(result > 0 ) {
@@ -345,6 +350,8 @@ public class MessengerController extends Socket {
 		ModelAndView mv = new ModelAndView();
 		
 		int userCount = messengerService.getUserCount();
+		
+		log.info("Count =========> {} ", userCount);
 		
 		mv.addObject("userCount", userCount);
 		mv.setViewName("messenger/chat");
