@@ -70,8 +70,8 @@ public class MessengerService {
 		return messengerMapper.getRoomList(roomVO);
 	}
 	
-	public int getUserCount()throws Exception{
-		return messengerMapper.getUserCount();
+	public int getUserCount(RoomVO roomVO)throws Exception{
+		return messengerMapper.getUserCount(roomVO);
 	}
 	
 }
