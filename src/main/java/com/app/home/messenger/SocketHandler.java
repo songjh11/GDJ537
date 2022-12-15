@@ -21,7 +21,7 @@ public class SocketHandler extends TextWebSocketHandler{
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 	//메서지 발송
-		
+		log.info(("redsfsdf"));
 		String msg= message.getPayload();
 		for (String key: sessionMap.keySet()) {
 			WebSocketSession wss= sessionMap.get(key);
@@ -36,15 +36,16 @@ public class SocketHandler extends TextWebSocketHandler{
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-	
+	log.info(("asdfsf"));
 	//소켓 연결
 		super.afterConnectionEstablished(session);
 		sessionMap.put(session.getId(), session);
+		log.info("(##########)=>{}",sessionMap);
 		JSONObject obj =new JSONObject();
 		obj.put("type", "getId");
 		obj.put("sessionId", session.getId());
 		
-		session.sendMessage(new TextMessage(obj.toJSONString()));
+		//session.sendMessage(new TextMessage(obj.toJSONString()));
 	}
 
 	

@@ -60,3 +60,12 @@ $("#roomBtn").click(function(){
     // console.log("모달창 클릭됨?")
     $(".room-overlay").css('display','flex').hide().fadeIn();
 });
+
+
+//채팅창 방 팝업띄우기 
+
+$("#aaa").click(function(){
+    let style= "width=450px, height=550px, left=300px";
+   let oponUrl= '/messenger/chatroom';
+   window.open(oponUrl,'',style)
+})

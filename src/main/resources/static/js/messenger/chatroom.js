@@ -110,7 +110,15 @@
  let inputChat = $("#inputChat").val();
  //let inputChat = document.getElementById('inputChat').value;
 
+ws.onopen= function(){
+   console.log("asdf")
+}
 
+ws.onmessage=function(e){
+   console.log("asdf",e.data)
+   let a= JSON.parse(e.data)
+   console.log(a.inputChat)
+}
 //------------------------------------
     
  function wsEvt() {
@@ -123,13 +131,15 @@
 
  function send() {
     let option={
-          sessionId : sessionId,
-          userName : userName,
-          //inputChat : $("#inputChat").val()
-          inputChat : inputChat
-       }
-    ws.send(JSON.stringify(option))
-    $("#inputChat").val("");
+       sessionId : sessionId,
+       userName : userName,
+       inputChat : $("#inputChat").val()
+       //inputChat : inputChat
+      };
+      console.log(option)
+
+      ws.send(JSON.stringify(option))
+    $("#inputChat").val();
     
     console.log("s : ", sessionId);
     console.log("u : ", userName);

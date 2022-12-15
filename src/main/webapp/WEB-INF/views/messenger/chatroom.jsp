@@ -23,7 +23,7 @@
 
 <body>
     <div id="container" class="container">
-      <input type="hidden" id="sessionId" value="">
+      <input type="hidden" id="sessionId" value="${userVO.id}">
    
       <div class="header">
                 <div class="header-flex">
@@ -49,9 +49,7 @@
       <div id="yourName">
          <table class="inputTable">
             <tr>
-               <th>사용자명</th>
-               <th><input type="text" name="userName" value="${userVO.id}" id="userName"></th>
-               <th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+               <th><input type="hidden" name="userName" value="${userVO.name}" id="userName"></th>
             </tr>
          </table>
       </div>

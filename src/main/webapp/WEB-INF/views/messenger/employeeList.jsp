@@ -15,7 +15,7 @@
 											<p id="proDep">부서/직급</p>
 											<p id="proEmail">이메일</p>
 											<p id="proPhone">전화번호</p>
-											<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">채팅</a>
+											<p><a class="btn" id="aaa" style="background: #4e73df; color: #FFFFFF;" href="#">채팅</a>
 											<a class="btn" id="sendNote" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
 
 										</div>
