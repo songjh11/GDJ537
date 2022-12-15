@@ -114,7 +114,7 @@ function getCommentList(p, bn) {
         tr.appendChild(td);
 
         tdAttr = document.createAttribute("data-commentnum");
-        tdAttr.value = ar[i].commentNum;
+        tdAttr.value = ar[i].id;
         td.setAttributeNode(tdAttr);
         tr.appendChild(td);
 
@@ -126,7 +126,7 @@ function getCommentList(p, bn) {
         td.appendChild(tdText);
 
         tdAttr = document.createAttribute("data-commentnum");
-        tdAttr.value = ar[i].commentNum;
+        tdAttr.value = ar[i].id;
         td.setAttributeNode(tdAttr);
         tr.appendChild(td);
 
@@ -207,7 +207,7 @@ update.addEventListener("click", function(){
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   // 요청 실행
   xhttp.send("id="+commentNumber+"&contents="+contents);
-  console.log('id= ', id)
+  console.log('id= ', commentNumber)
   console.log('contents =',contents)
   // 응답 처리
   xhttp.onreadystatechange=function() {
