@@ -7,11 +7,14 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,18 +44,31 @@ public class SocketHandler extends TextWebSocketHandler{
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-	
-		//소켓 연결
-		super.afterConnectionEstablished(session);
+		 SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
+		
+		 UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
+		 
+		System.out.println("UserName : "+userVO.getName());
+		
 		sessionMap.put(session.getId(), session);
 		
-		JSONObject obj =new JSONObject();
-		obj.put("type", "getId");
-		obj.put("sessionId", session.getId());
-		session.sendMessage(new TextMessage(obj.toJSONString()));
+//		JSONObject obj =new JSONObject();
+//		obj.put("type", "getId");
+//		obj.put("sessionId", session.getId());
+//		session.sendMessage(new TextMessage(obj.toJSONString()));
+		
+		for (String key: sessionMap.keySet()) {
+			WebSocketSession wss= sessionMap.get(key);
+			try {
+			wss.sendMessage(new TextMessage(userVO.getName()));
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+     	}
 		
 		weblist.add(session);
 		log.info(session + "접속");
+		
 	}
 
 	
