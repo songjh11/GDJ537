@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -95,6 +96,26 @@ public class FileManager extends AbstractView {
 		multipartFile.transferTo(file);
 
 		return boardFileName;
+	}
+	
+	public String saveFile(String path,ServletContext servletContext,MultipartFile multipartFile) throws Exception{
+		
+		String realPath = servletContext.getRealPath(path);
+		System.out.println("realPath:" + realPath);
+		
+		
+		File file = new File(realPath);
+		if(!file.exists()) {
+			file.mkdirs();	
+		}
+		
+		String fileName = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
+		
+		file = new File(file,fileName);
+		multipartFile.transferTo(file);
+		
+		
+		return fileName;
 	}
 
 	//파일 삭제 (label 값과 FileName 필수)//

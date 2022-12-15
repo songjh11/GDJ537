@@ -41,5 +41,17 @@
   		<typeAlias type="com.app.home.report.pay.RepriceVO" alias="RepriceVO"/>
   		<typeAlias type="com.app.home.report.util.ReportPager" alias="ReportPager"/>
 
+  		<typeAlias type="java.lang.Integer" alias="int"/>
+  		<typeAlias type="java.lang.String" alias="String"/>
+  		
+  		
+  		<typeAlias type="com.app.home.schedule.goods.GoodsVO" alias="GoodsVO" />
+  		<typeAlias type="com.app.home.schedule.goods.GoodsFileVO" alias="GoodsFileVO" />
+  		<typeAlias type="com.app.home.schedule.goods.ReserveVO" alias="ReserveVO" />
+  		<typeAlias type="com.app.home.schedule.goods.GoodsReserveVO" alias="GoodsReserveVO" />
+  		<typeAlias type="com.app.home.schedule.car.CarVO" alias="CarVO" />
+  		<typeAlias type="com.app.home.schedule.room.GoodsRoomVO" alias="GoodsRoomVO" />
+  		
+  		
   	</typeAliases>
   </configuration>

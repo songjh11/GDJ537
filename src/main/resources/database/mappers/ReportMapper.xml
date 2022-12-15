@@ -55,7 +55,7 @@
 	
 	<!-- 승인권한을 가진사람들 모두 조회 -->
 	<select id="getLicenserList" parameterType="ReportVO" resultMap="getLicenserListResult">
-		SELECT U.ID, U.NAME, D.DEPNAME, R.ROLENAME 
+		SELECT DISTINCT U.ID, U.NAME, D.DEPNAME, R.ROLENAME 
 		FROM REPORTLICENSER RL
 		INNER JOIN
 		USER U 
@@ -79,15 +79,17 @@
 			<result column="name" property="name"/>
 		</association>
 		
-		<association property="departmentVO" javaType="DepartmentVO">
-			<id column="depNum" property="depNum"/>
-			<result column="depName" property="depName"/>
-		</association>
 		
-		<association property="roleVO" javaType="RoleVO">
-			<id column="roleNum" property="roleNum"/>
-			<result column="roleName" property="roleName"/>
-		</association>
+			<association property="departmentVO" javaType="DepartmentVO">
+				<id column="depNum" property="depNum"/>
+				<result column="depName" property="depName"/>
+			</association>
+			
+			<association property="roleVO" javaType="RoleVO">
+				<id column="roleNum" property="roleNum"/>
+				<result column="roleName" property="roleName"/>
+			</association>
+		
 		
 	</resultMap>
 	

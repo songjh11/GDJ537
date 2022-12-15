@@ -77,5 +77,4 @@ public class ReportVacaVO extends ReportApplyVO {
 	}
 
 	
-	
 }
