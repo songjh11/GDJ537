@@ -88,7 +88,7 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800">차량 예약 통계</h1>
+	            	<h1 class="h3 mb-4 text-gray-800" style="font-weight: bold;">차량 예약 통계</h1>
                 
                 
                 <div id="piechart" style="width: 700px; height: 500px; float:left; margin-right : 30px;"></div>
