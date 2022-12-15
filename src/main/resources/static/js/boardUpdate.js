@@ -85,7 +85,7 @@ $('#btnSubmit').click(function(){
 			alert(message+ "을 입력해주세요")
 			
 		}else{
-			alert("다시 로그인해주세요")
+			alert("다시 시도해주세요")
 			location.href = "/";
 		}
 	
