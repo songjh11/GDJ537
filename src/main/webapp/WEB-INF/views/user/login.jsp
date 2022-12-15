@@ -14,41 +14,70 @@ pageEncoding="UTF-8"%>
   crossorigin="anonymous">
 <c:import url="../temp/layout_header.jsp"></c:import>
 </head>
-<body>
-<div id="wrapper">
-<!-- Sidebar import -->
-<c:import url="../temp/layout_sidebar.jsp"></c:import>
-<!-- End of Sidebar -->
 
-<section class="container-fluid col-lg-4 mt-5 min-vh-100">
-    <div class="row">
-     <div class="container-fluid">
-        <h1><strong>로그인</strong></h1>
-        <form action="./login" method="post">
-            <div class="form-group">
-                <label th:for="username"><strong>사원번호</strong> </label>
-                <input type="text" name="id" class="form-control" placeholder="아이디 입력해주세요">
-            </div>
-            <div class="form-group">
-                <label th:for="password"><strong>비밀번호</strong> </label>
-                <input type="password" class="form-control" name="pw" placeholder="비밀번호 입력해주세요">
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">로그인</button>
-            <span style="margin-left: 25px;">
-              <input type="checkbox" name="rememberId" class="form-check-input" id="exampleCheck1" style="margin-top: 9px;">
-              <label class="form-check-label" for="exampleCheck1">ID기억하기</label>
-  
-            </span>
-            <span style="border-right: solid lightgray;">
-              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#findPwModal" data-bs-whatever="@mdo">비밀번호 찾기</button>
-              
-            </span>
-            <button type="button" class="btn" onclick="location.href='/user/join';">회원 가입</button>
-        </form>
-     </div>
-    </div>
-</section>
-</div>
+<!-- body ID 작성 -->
+<body id="page-top">
+
+	<!-- Page Wrapper 전체 Contents Wrapper -->
+    <div id="wrapper">
+
+		<!-- Sidebar import -->
+		<c:import url="../temp/layout_sidebar.jsp"></c:import>
+		<!-- End of Sidebar -->
+		
+		 <!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+			<!-- Main Content -->
+			<div id="content">
+			
+				<!-- Topbar import-->
+				<c:import url="../temp/layout_topbar.jsp"></c:import>
+				<!-- End of Topbar -->
+				
+				<!-- Begin Page Content -->
+	            <div class="container-fluid">
+                <section class="container-fluid col-lg-4 mt-5 min-vh-100">
+                  <div class="row">
+                   <div class="container-fluid">
+                      <h1><strong>로그인</strong></h1>
+                      <form action="./login" method="post">
+                          <div class="form-group">
+                              <label th:for="username"><strong>사원번호</strong> </label>
+                              <input type="text" name="id" class="form-control" placeholder="아이디 입력해주세요">
+                          </div>
+                          <div class="form-group">
+                              <label th:for="password"><strong>비밀번호</strong> </label>
+                              <input type="password" class="form-control" name="pw" placeholder="비밀번호 입력해주세요">
+                          </div>
+                          <button type="submit" class="btn btn-primary" style="width: 100%;">로그인</button>
+                          <span style="margin-left: 25px; margin-top: 2px;">
+                            <input type="checkbox" name="rememberId" class="form-check-input" id="exampleCheck1" style="margin-top: 16px;">
+                            <label class="form-check-label" for="exampleCheck1" style="margin-top: 13px;">ID기억하기</label>
+                          </span>
+                          <span style="border-right: solid lightgray;">
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#findPwModal" data-bs-whatever="@mdo">비밀번호 찾기</button>
+                            
+                          </span>
+                          <button type="button" class="btn" onclick="location.href='/user/join';">회원 가입</button>
+                      </form>
+                   </div>
+                  </div>
+              </section>
+	            </div>
+	            <!-- End Page Content -->
+					
+			</div>
+			<!-- End of Main Content -->
+			
+			<!-- Footer import -->
+			<c:import url="../temp/layout_footer.jsp"></c:import>
+			<!-- End of Footer -->
+		</div>
+		<!-- End of Content Wrapper -->
+	</div>
+
+
+
 <div class="modal fade" id="findPwModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
