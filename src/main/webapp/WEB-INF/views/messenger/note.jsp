@@ -281,7 +281,7 @@
 
 	#listInfo {
 		margin-bottom: auto;
-		width: 85%;
+		width: 87%;
 	}
 
 	#previewId {
@@ -568,7 +568,7 @@
 						// console.log($("#noteNum"+num).attr("id"))
 						setTimeout(function(){
 							location.reload();
-						},20);
+						},50);
 						
 					},
 					error : function(){
@@ -602,7 +602,7 @@
 			if($("#sImg").attr("src")=="/img/messenger/sendX.png") {
 				setTimeout(function(){
 					location.reload();
-				},20);
+				},100);
 			}
 		};
 
