@@ -203,7 +203,7 @@ public class ReportController {
 //		model.addAttribute("reportPager", userVO);
 //		log.info("dddd ====>>>> {}", reportPager.getStartNum());
 		
-		log.info("lsttst====== > {} " , ar.get(0).getLstatus());
+		log.info("lstatus ==== > {} " , ar.get(0));
 		
 //		log.info("depNum :: {} " , ar.get(0).getDepartmentVO().getDepName());
 

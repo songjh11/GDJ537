@@ -52,11 +52,8 @@ public class UserVO implements UserDetails {
 	private MultipartFile file;
 	
 	private ReportVO reportVO;
-	private List<ReportVO> reportVOs;
 
 	private List<DepartmentVO> departmentVOs;
-	
-
 
 
 	@Override

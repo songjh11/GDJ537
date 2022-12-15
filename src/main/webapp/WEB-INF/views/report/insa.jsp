@@ -77,7 +77,7 @@
 						   		<li class="roleLi" data-roleNum="3">과장</li>
 						   		<li class="roleLi" data-roleNum="4">대리</li>
 						   		<li class="roleLi" data-roleNum="5">주임</li>
-						   		<li class="roleLi" data-roleNum="7">사원</li>
+						   		<!-- <li class="roleLi" data-roleNum="7">사원</li> -->
 						   </ul>
 					  </div>
 				</div>
@@ -92,6 +92,7 @@
 			<!-- End of Main Content -->
 			
 			<form action="insa1" method="post">
+			
 				<div id="tdiv">
 						<%-- <input type="hidden" id="ls" name="lstatus" value="${userVO.lstatus}"> --%>
 					<table class="table table-striped">
@@ -193,7 +194,7 @@
                  	 	console.log("lstatus ==> ", dd[i].reportVO.lstatus);
 
                  	 	
-	                	$("#tbd").append('<tr class="trId"><input type="hidden" id="ls" name="lstatus" value="${userVO.reportVO.lstatus}"><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary b1" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'" data-btn="1">부여</button></td><td><button id="deleteBtn" type="button" class="btn btn-danger b2" data-name="'+dd[i].id+'" data-btn="2">권한회수</button></td></tr>')
+	                	$("#tbd").append('<tr class="trId"><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary b1" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'" data-btn="1">부여</button></td><td><button id="deleteBtn" type="button" class="btn btn-danger b2" data-name="'+dd[i].id+'" data-btn="2">권한회수</button></td></tr>')
                  	 	
                 		/* if(dd[i].reportVO.lstatus == 2){
                 			
