@@ -59,9 +59,7 @@ public class MessengerController {
 		// ------------------ 채팅목록 ------------------
 		List<RoomVO> roomVOs = new ArrayList<>();
 		RoomVO roomVO = new RoomVO();
-		UserVO userVO2 = new UserVO();
 		userVO.setId(userVO.getId());
-		roomVO.setUserVO(userVO);
 		
 		roomVOs = messengerService.getRoomList(roomVO);
 		
@@ -72,12 +70,13 @@ public class MessengerController {
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
+		mv.addObject("url", "chat");
 		mv.addObject("pickList", pl);
 		return mv;
 	}
 	
 	@PostMapping("searchEmp")
-	public ModelAndView getSearchResult(HttpSession session, UserVO userVO, String kind, String keyword) throws Exception{
+	public ModelAndView getSearchResult(HttpSession session, UserVO userVO, String kind, String keyword, String url) throws Exception{
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
@@ -93,6 +92,7 @@ public class MessengerController {
 		mv.addObject("myId", id);
 		mv.addObject("empList", el);
 		mv.addObject("pickList", pl);
+		mv.addObject("url", "chat");
 		mv.setViewName("/messenger/chat");
 		return mv;
 	}
@@ -124,6 +124,7 @@ public class MessengerController {
 		Integer id = userVO.getId();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", userVO);
+		mv.addObject("url", "note");
 		
 		//임시 id
 		userVO.setId(id);
@@ -157,7 +158,6 @@ public class MessengerController {
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
 		mv.addObject("pickList", pl);
-		mv.addObject("message", "all");
 		
 		return mv;
 	}
@@ -169,11 +169,11 @@ public class MessengerController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
-		Integer id = userVO.getId();
+	    userVO = userService.getMypage(userVO);
 		
 		ModelAndView mv = new ModelAndView("jsonView");
 		//임시 id
-		userVO.setId(id);
+		userVO.setId(userVO.getId());
 		List<NoteVO> ar = noteService.getSendNoteList(userVO, notePager);
 		mv.addObject("list", ar);
 		mv.addObject("pager", notePager);
@@ -193,13 +193,27 @@ public class MessengerController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
-		Integer id = userVO.getId();
+	    userVO = userService.getMypage(userVO);
 		
 		ModelAndView mv = new ModelAndView();
 		noteVO = noteService.getNoteDetail(noteVO);
-		mv.addObject("detail", noteVO);
 		
-		userVO.setId(id);
+		
+		UserVO sendUser = new UserVO();
+		sendUser.setId(noteVO.getSendId().intValue());
+		sendUser = userService.getMypage(sendUser);
+		
+		UserVO receiveUser = new UserVO();
+		receiveUser.setId(noteVO.getReceiveId().intValue());
+		receiveUser = userService.getMypage(receiveUser);
+		
+		mv.addObject("detail", noteVO);
+		log.info("노트의 인포는 {}", noteVO);
+		mv.addObject("sendUser", sendUser);
+		mv.addObject("receiveUser", receiveUser);
+		mv.addObject("session", userVO);
+		
+		userVO.setId(userVO.getId());
 		Long reid = new Long(userVO.getId());
 		
 		noteVO.setReceiveId(reid);
@@ -219,10 +233,10 @@ public class MessengerController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
-		Integer id = userVO.getId();
+	    userVO = userService.getMypage(userVO);
 		
 		ModelAndView mv = new ModelAndView();
-		userVO.setId(id);
+		userVO.setId(userVO.getId());
 		mv.addObject("member", userVO);
 		return mv;
 	}
@@ -256,9 +270,22 @@ public class MessengerController {
 	}
 	
 	@GetMapping("note/group")
-	public ModelAndView setGroup(int[] arr)throws Exception{
-		ModelAndView mv = new ModelAndView();
+	@ResponseBody
+	public ModelAndView setGroup(HttpSession session, UserVO userVO, int[] arr)throws Exception{
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  = (UserVO)authentication.getPrincipal();
+		Integer id = userVO.getId();
 		
+		ModelAndView mv = new ModelAndView("jsonView");
+		log.info("인트배열을받으세염 {}",arr);
+		
+		
+		
+		
+		userVO.setId(id);
+		mv.addObject("member", userVO);
+		mv.addObject("yourId", arr);
 		
 		return mv;
 	}
@@ -279,12 +306,19 @@ public class MessengerController {
 	    userVO  = (UserVO)authentication.getPrincipal();
 	    userVO = userService.getMypage(userVO);
 	    
+	    int [] id = roomVO.getId();
+	    
+	    for(int ids : id) {
+	    	log.info("아이디에 뭐가있나? =====> {} ", id);
+	    }
+	    
 	    // 로그인 회원을 방장으로
 		roomVO.setHostId(userVO.getId());
-		UserVO userVO2 = new UserVO();
-		// 방장도 유저이기 때문에 넣어줌
-		userVO2.setId(userVO.getId());
-		roomVO.setUserVO(userVO2);
+//		UserVO userVO2 = new UserVO();
+//		log.info("유저야아아 => {} ", userVO.getId());
+//		// 방장도 유저이기 때문에 넣어줌
+//		userVO2.setId(userVO.getId());
+//		roomVO.setUserVO(userVO2);
 		int result = messengerService.setAddRoom(roomVO);
 		
 		if(result > 0 ) {
