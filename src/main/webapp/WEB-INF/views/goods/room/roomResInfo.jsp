@@ -58,7 +58,7 @@ ul li {
 								<th>종료 시간</th>
 							</tr>
 							<c:forEach items="${roomInfo }" var="ro">
-								<!-- <input type="hidden" value="${ro.startTime}" class="startTime"> -->
+								<input type="hidden" value="${ro.startTime}" class="startTime">
 								<tr>
 									<td>${ro.id }</td>
 									<td>${ro.date }</td>
