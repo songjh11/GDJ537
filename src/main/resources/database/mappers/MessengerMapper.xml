@@ -87,7 +87,7 @@
 			RIGHT JOIN
 			CHATROOM CR
 			ON RU.ROOMNUM = CR.ROOMNUM
-		WHERE CR.ROOMNUM = 16
+		WHERE CR.ROOMNUM = #{roomNum}
 	</select>
 	
 	<!--                       채팅방 목록 조회                        -->

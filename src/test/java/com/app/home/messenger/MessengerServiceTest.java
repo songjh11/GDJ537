@@ -21,9 +21,9 @@ class MessengerServiceTest {
 	void getUserCount()throws Exception{
 		
 		RoomVO roomVO = new RoomVO();
-		roomVO.setRoomNum(25);
+		roomVO.setRoomNum(26);
 		
-		int userCount = messengerMapper.getUserCount();
+		int userCount = messengerMapper.getUserCount(roomVO);
 		
 		assertNotEquals(userCount, 0);
 		
