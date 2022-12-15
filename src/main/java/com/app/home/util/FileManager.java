@@ -22,6 +22,7 @@ import com.app.home.file.FileVO;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.model.CompleteMultipartUploadResponse;
+import software.amazon.awssdk.services.s3.model.DeleteObjectResponse;
 
 @Component
 @Slf4j
@@ -100,7 +101,7 @@ public class FileManager extends AbstractView {
 		return boardFileName;
 	}
 
-	public String saveFileS3(MultipartFile multipartFile, String path)throws Exception {
+	public String saveFileS3(MultipartFile multipartFile)throws Exception {
 
 		//amazons3Service 객체를 만든다.
 		AmazonS3Service amazonS3Service = new AmazonS3Service();
@@ -120,6 +121,19 @@ public class FileManager extends AbstractView {
 		
 		
 		return rr.key();//오브젝트 키 리턴
+	}
+	
+	//파일 삭제//
+	public boolean deleteFileS3(FileVO fileVO, String path)throws Exception{
+
+		AmazonS3Service amazonS3Service = new AmazonS3Service();
+		
+		
+
+		DeleteObjectResponse dr = amazonS3Service.delete(fileVO.getFileName(), "gdj537-yeyey");
+		
+		log.info("drr{}",dr.deleteMarker());
+		return dr.deleteMarker();
 	}
 	
 
@@ -144,7 +158,7 @@ public class FileManager extends AbstractView {
 		return fileName;
 	}
 
-	//파일 삭제 (label 값과 FileName 필수)//
+	//파일 삭제//
 	public boolean deleteFile(FileVO fileVO, String path)throws Exception{
 
 		File file = new File(base + path, fileVO.getFileName());
