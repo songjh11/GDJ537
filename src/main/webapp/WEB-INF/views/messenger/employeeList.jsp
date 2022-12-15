@@ -42,7 +42,14 @@
 									</div>
 								</div>
 								<div style="margin-left: 12px;">
-									<a href="../messenger/chat"><img style="width: 32px;" src="/img/messenger/left.png"></a>
+									<c:choose>
+										<c:when test="${url eq 'note'}">
+											<a href="../messenger/note" title="초기화면으로 돌아가기"><img style="width: 32px;" src="/img/messenger/left.png"></a>
+										</c:when>
+										<c:otherwise>
+											<a href="../messenger/chat" title="초기화면으로 돌아가기"><img style="width: 32px;" src="/img/messenger/left.png"></a>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</form>
 						</div>

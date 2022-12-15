@@ -72,12 +72,13 @@ public class MessengerController {
 		mv.addObject("myId", id);
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
+		mv.addObject("url", "chat");
 		mv.addObject("pickList", pl);
 		return mv;
 	}
 	
 	@PostMapping("searchEmp")
-	public ModelAndView getSearchResult(HttpSession session, UserVO userVO, String kind, String keyword) throws Exception{
+	public ModelAndView getSearchResult(HttpSession session, UserVO userVO, String kind, String keyword, String url) throws Exception{
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
@@ -93,6 +94,7 @@ public class MessengerController {
 		mv.addObject("myId", id);
 		mv.addObject("empList", el);
 		mv.addObject("pickList", pl);
+		mv.addObject("url", "chat");
 		mv.setViewName("/messenger/chat");
 		return mv;
 	}
@@ -124,6 +126,7 @@ public class MessengerController {
 		Integer id = userVO.getId();
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", userVO);
+		mv.addObject("url", "note");
 		
 		//임시 id
 		userVO.setId(id);
@@ -157,7 +160,6 @@ public class MessengerController {
 		mv.addObject("depList", dl);
 		mv.addObject("empList", el);
 		mv.addObject("pickList", pl);
-		mv.addObject("message", "all");
 		
 		return mv;
 	}
