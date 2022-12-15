@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -103,15 +103,34 @@
             </li> -->
 
             <!-- Divider -->
+            <sec:authorize access="hasAnyAuthority('사장', '부장', '과장')">
             <hr class="sidebar-divider">
-            <!-- Nav Item - 관리자 -->
-            <li class="nav-item">
+	            <!-- Nav Item - 관리자 -->
+	
+	            <li class="nav-item">
+	                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin"
+	                    aria-expanded="true" aria-controls="collapseAdmin">
+	                    <i class="fas fa-fw fa-folder"></i>
+	                    <span>관리자</span>
+	                </a>
+					
+	                <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionSidebar">
+	                    <div class="bg-white py-2 collapse-inner rounded">
+	                        <h6 class="collapse-header">관리자 List</h6>
+	                        <a class="collapse-item" href="/user/admin/wait">인사 관리</a>
+	                        <a class="collapse-item" href="#">시설물 관리</a>
+	                    </div>
+	                </div>
+				</li>
+			</sec:authorize>
+
+            <hr class="sidebar-divider d-none d-md-block">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="/user/admin/wait">
                     <i class="fas fa-fw fa-table"></i>
                     <span>관리자</span></a>
-            </li> 
+            </li>  -->
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
