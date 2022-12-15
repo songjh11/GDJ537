@@ -8,7 +8,7 @@
 									<div class="close-area">X</div>
 									<div class="content">
 										<div class="checkInfo">
-											<input class="checkUser" type="hidden" name="id" value="${user.id}" dep-num="${user.depNum}" checked="false">
+											<input class="checkUser" type="hidden" name="id" value="${user.id}" dep-num="${user.depNum}">
 											<c:choose>
 												<c:when test="${not empty depList}">
 													<c:forEach items="${depList}" var="d">
