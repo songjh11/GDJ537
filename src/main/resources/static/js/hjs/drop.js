@@ -63,7 +63,7 @@ $(".roleLi").click(function(){
 
 const listBtn = $("#listBtn");
 const statusBtn = $("#statusBtn");
-const tdId = $("#tdId");
+
 
 
 // ajax에 나오는 부여버튼을 클릭할려면 그 바로 위 tbody에 있는 부모선택자 id로 선택을 해야 작동됨
@@ -95,11 +95,8 @@ $("#tbd").on("click", "#statusBtn", function(event){
         success:function(result){
             alert("수정에 성공하였습니다.");
             console.log($("#statusBtn").text());
-            console.log($("#statusBtn").text('부여됨'));
-            if(result == 1){
-                $("#statusBtn").text('부여됨');
-
-            }
+            // console.log($("#statusBtn").text('부여됨'));
+            
         },
         error:function(){
             alert("수정에 실패하였습니다");
@@ -131,9 +128,6 @@ $("#tbd").on('click', "#deleteBtn", function(event){
 
         success:function(result){
             alert("ID가" + name + "인 직원의 권한을 회수 하였습니다.");
-            if(result == 1){
-                $("#deleteBtn").text('회수 완료');
-            }
         },
         error:function(){
             alert("권한 회수에 실패하였습니다.");

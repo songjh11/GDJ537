@@ -273,10 +273,10 @@ public class ReportController {
 //		String str = ar.get(ar.size()).getRoleVO().getRoleName();
 		
 		// 예를들어 ROLE_ADMIN => ROLE_을 파싱해서 ADMIN만 추출
-		for(ReportVO str: ar) {
-			str.getRoleVO().setRoleName(str.getRoleVO().getRoleName().substring(5));
-			log.info("auth {} " ,str.getRoleVO().getRoleName().substring(5));
-		}
+//		for(ReportVO str: ar) {
+//			str.getRoleVO().setRoleName(str.getRoleVO().getRoleName().substring(5));
+//			log.info("auth {} " ,str.getRoleVO().getRoleName().substring(5));
+//		}
 		
 		
 		
