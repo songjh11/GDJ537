@@ -331,18 +331,16 @@ public class ReportController {
 	
 	@PostMapping("/report/addvaca")
 	public String setAddVaca(String depNum, ReportVacaVO reportVacaVO, Principal principal) throws Exception{
-		String id = principal.getName();
 		
-		int result = reportService.setAddVaca(reportVacaVO, id);
+		int result = reportService.setAddVaca(reportVacaVO);
 		
 		return "redirect:/report/mylist?cat=2";
 	} 
 	
 	@PostMapping("/report/addwork")
 	public String setAddWork(ReportWorkVO reportWorkVO, Principal principal) throws Exception{
-		String id = principal.getName();
 		
-		int result = reportService.setAddWork(reportWorkVO,id);
+		int result = reportService.setAddWork(reportWorkVO);
 		
 		return "redirect:/report/mylist?cat=3";
 	}
@@ -350,18 +348,16 @@ public class ReportController {
 	@PostMapping("/report/addpay")
 	public String setAddPay(ReportPayVO reportPayVO, Principal principal) throws Exception{
 		
-		String id = principal.getName();
-		int result = reportService.setAddPay(reportPayVO, id);
+		int result = reportService.setAddPay(reportPayVO);
 		
 		return "redirect:/report/mylist?cat=1";
 	}
 	
 	@PostMapping("/report/addsorry")
 	public String setAddSorry(ReportSorryVO reportSorryVO, Principal principal) throws Exception{
+
 		
-		String id = principal.getName();
-		
-		int result = reportService.setAddSorry(reportSorryVO,id);
+		int result = reportService.setAddSorry(reportSorryVO);
 		
 		return "redirect:/report/mylist?cat=4";
 	}

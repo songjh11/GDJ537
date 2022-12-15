@@ -516,7 +516,7 @@
 		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
 	</select>
 	
-	<select id="getLstatus" parameterType="String" resultType="Integer">
+	<select id="getLstatus" parameterType="Integer" resultType="Integer">
 		SELECT LSTATUS FROM REPORTLICENSER WHERE ID = #{id}
 	</select>
 	

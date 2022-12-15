@@ -137,7 +137,7 @@ public interface ReportMapper {
 	public ReportPayVO getMyPayDetail(ReportApplyVO reportApplyVO) throws Exception;
 	public ReportWorkVO getMyWorkDetail(ReportApplyVO reportApplyVO) throws Exception;
 	public ReportSorryVO getMySorryDetail(ReportApplyVO reportApplyVO) throws Exception;
-	public int getLstatus(String id) throws Exception;
+	public Integer getLstatus(Integer id) throws Exception;
 	//================================================
 	
 }
