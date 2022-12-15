@@ -60,7 +60,7 @@
                       	<p>작성자 <c:out value="${boardVO.id }"></c:out></p>
                       	<p>조회수 <c:out value="${boardVO.hit}"></c:out> </p>
                       </div>
-                      <p id="regdate" data-date="${boardVO.regDate}"> 등록일자 </p>
+                      <p id="regdate" data-date="<c:out value="${boardVO.regDate}"></c:out>"> 등록일자 </p>
                       <c:if test="${boardVO.updateDate != null}">
                     	 수정일자 
                       	<fmt:formatDate value="${boardVO.updateDate}" pattern="yyyy-MM-dd HH:mm"/>
