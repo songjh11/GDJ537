@@ -19,11 +19,8 @@ public class WebSocketConfig  implements WebSocketConfigurer{
 
 		
 		registry.addHandler(socketHandler, "/chating");
+		registry.addHandler(socketHandler, "/chatroom").setAllowedOrigins("*");
 	}
-
-	
-	
-	
 	
 
 }
