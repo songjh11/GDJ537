@@ -37,9 +37,6 @@
                             <span>2</span>
                         </div>
                     </div>
-                    <div class="search">
-                        <img src="/img/chatroom-search.png" width="15px" height="15px">
-                    </div>
                 </div>
             </div>
       
@@ -47,25 +44,20 @@
       
       </div>
       
-      <div id="yourName">
-         <table class="inputTable">
-            <tr>
-               <th><input type="hidden" name="userName" value="${userVO.name}" id="userName"></th>
-            </tr>
-         </table>
-      </div>
-      <div id="put">
-         <table class="msg">
-            <tr>
-               <th>메시지</th>
-               <th><input type="text" id="inputChat"  placeholder="보내실 메시지를 입력하세요."></th>
-               <th><button onclick="send()" id="sendBtn" class="sendBtn">보내기</button></th>
-            </tr>
-         </table>
+      <div class="put">
+         <div id="msg">
+           
+                <input type="hidden" name="userName" value="${userVO.name}" id="userName">
+               <input type="text" id="inputChat"  placeholder="보내실 메시지를 입력하세요.">
+               <button onclick="send()" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
+            
+         </div>
       </div>
    </div>
 
    <script type="text/javascript" src="/js/messenger/chatroom.js"></script>
+
+	</script>
 
 </body>
 
