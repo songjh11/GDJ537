@@ -29,8 +29,7 @@
 //               console.log(d.sessionId);
 //               if(si !=""){
 //                  $("#sessionId").val(si); 
-//                  console.log(sessionId);
-//                  console.log(sessionId.val())
+//            
 //               }
 //            }else if (d.type =="message"){
 //               //내가 보냈을 때
@@ -113,28 +112,57 @@
 ws.onopen= function(){
    console.log("asdf")
 }
+   
 
-ws.onmessage=function(e){
-   console.log("asdf",e.data)
-   let a= JSON.parse(e.data)
-   console.log(a.inputChat)
-}
+   
+
 //------------------------------------
     
  function wsEvt() {
     ws.onopen = function(data){
-       //소켓이 열리면 초기화 세팅하기
+       //소켓이 열리면 초기화 세팅하기  
     }
  }
+
+ ws.onmessage = function(data) {
+   //메시지를 받으면 동작
+   let msg = data.data;
+   if(msg != null && msg.trim() != ''){
+      var d = JSON.parse(msg);
+      if(d.type == "getId"){
+         var si = d.sessionId != null ? d.sessionId : "";
+         if(si != ''){
+            $("#sessionId").val(si); 
+         }
+      }else if(d.type == "message"){
+         if(d.sessionId == $("#sessionId").val()){
+            $("#chating").append("<div class='me'>"
+            +"<div class='me-bubble-flex-first'><div class='me-bubble'>" +d.inputChat+"</div>"); 
+           
+      }else{
+         $("#chating").append("<div class = 'you'>"
+         +"<div class = 'you-flex'>"
+         +"<div class='you-profile'>"
+         +"<div class='pic'><img src='/img/chatroom-profile.jpg' width='35px' height='35px'></div></div>"
+         +"<div class='you-namebubble'><div class='you-name'><span><strong>"+d.userName+"</strong></span></div>"
+         +"<div class='you-bubble-flex'><div class='you-bubble'>" +d.inputChat+ "</div></div>"
+            );  
+         }
+            
+      }else{
+         console.warn("unknown type!")
+      }
+   }
+}
 
 //---------------------------------------------
 
  function send() {
     let option={
+        type: "message",
        sessionId : sessionId,
        userName : userName,
        inputChat : $("#inputChat").val()
-       //inputChat : inputChat
       };
       console.log(option)
 
@@ -143,29 +171,12 @@ ws.onmessage=function(e){
     
     console.log("s : ", sessionId);
     console.log("u : ", userName);
-    console.log("c : ", inputChat);
-    
-    
-    //내가 보냈을 때
-      if(sessionId==userName){
-         $("#chating").append("<div class='me'>"
-                           +"<div class='me-bubble-flex-first'><div class='me-bubble'>" +inputChat+"</div>");   
-      
-      //남이 보냈을 때
-      }else{
-          $("#chating").append("<div class = 'you'>"
-                            +"<div class = 'you-flex'>"
-                            +"<div class='you-profile'>"
-                            +"<div class='pic'><img src='/img/chatroom-profile.jpg' width='35px' height='35px'></div></div>"
-                            +"<div class='you-namebubble'><div class='you-name'><span><strong>"+userName+"</strong></span></div>"
-                            +"<div class='you-bubble-flex'><div class='you-bubble'>" +inputChat+ "</div></div>"
-                         );
-       }
-    
-    
-    
- }
+    console.log("c : ", d.inputChat);
+  
+       
+      }
  
+
 //---------------------------------------------
 
  //채팅창에서 들어왔을 때

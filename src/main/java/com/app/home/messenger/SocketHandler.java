@@ -40,7 +40,6 @@ public class SocketHandler extends TextWebSocketHandler{
 	//소켓 연결
 		super.afterConnectionEstablished(session);
 		sessionMap.put(session.getId(), session);
-		log.info("(##########)=>{}",sessionMap);
 		JSONObject obj =new JSONObject();
 		obj.put("type", "getId");
 		obj.put("sessionId", session.getId());

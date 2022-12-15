@@ -343,19 +343,18 @@ public class MessengerController {
 	
 	// --------------------- 효경 끝 ------------------------------
 	
-	@GetMapping("chatroom")
+	
+	@GetMapping("oneChat")
 	public ModelAndView chatroom(HttpSession session, UserVO userVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();	  
 	    mv.addObject("userVO", userVO);  
-		mv.setViewName("messenger/chatroom");
+		mv.setViewName("messenger/oneChat");
 		
 		return mv;
 	}
-
-
 	
 }
 

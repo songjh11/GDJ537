@@ -66,6 +66,6 @@ $("#roomBtn").click(function(){
 
 $("#aaa").click(function(){
     let style= "width=450px, height=550px, left=300px";
-   let oponUrl= '/messenger/chatroom';
+   let oponUrl= '/messenger/oneChat';
    window.open(oponUrl,'',style)
 })
