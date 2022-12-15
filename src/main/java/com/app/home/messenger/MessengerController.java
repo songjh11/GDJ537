@@ -332,12 +332,19 @@ public class MessengerController extends Socket {
 		roomVO.setUserVO(hostVO);
 		
 		int result = messengerService.setAddRoom(roomVO);
+		String message="채팅방 생성을 실패 했습니다..";
+		// 현재 위치는 /member/login.iu
+		String url = "./chat";
 		
 		if(result > 0) {
 			log.info("===========채팅방 생성 성공===========");
+			message="채팅방 생성을 성공 했습니다!!";
+			url="../messenger/chat";
 		}
 		
-		mv.setViewName("redirect:../messenger/chat");
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("messenger/result");
 		
 		return mv;
 	}
