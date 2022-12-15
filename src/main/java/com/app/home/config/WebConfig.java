@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import lombok.extern.slf4j.Slf4j;
 
-//@Configuration
+@Configuration
 @Slf4j
 public class WebConfig implements WebMvcConfigurer{
 

@@ -83,7 +83,7 @@ ul li {
 					</section>
 					<div style="text-align: center;">
 						<a href="./roomList">
-							<button type="button" class="btn btn-outline-none">뒤로가기</button>
+							<button type="button" class="btn btn-outline-dark">뒤로가기</button>
 						</a>
 					</div>
 

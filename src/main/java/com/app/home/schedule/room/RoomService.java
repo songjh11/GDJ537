@@ -42,9 +42,4 @@ public class RoomService
 	{
 		return roomMapper.getResInfo(goodsRoomVO);
 	}
-
-	public List<ReserveVO> getStartTime(ReserveVO reserveVO) throws Exception
-	{
-		return roomMapper.getStartTime(reserveVO);
-	}
 }

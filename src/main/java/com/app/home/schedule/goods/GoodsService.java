@@ -25,7 +25,6 @@ public class GoodsService
 	private String path;
 	@Autowired
 	private FileManager fileManager;
-	
 
 	public int setAdd(GoodsVO goodsVO, MultipartFile[] files, ServletContext servletContext) throws Exception
 	{
@@ -46,7 +45,6 @@ public class GoodsService
 		
 		int result = goodsMapper.setAdd(goodsVO);
 
-
 		if (files.length != 0)
 		{
 			for (MultipartFile file : files)
@@ -55,7 +53,8 @@ public class GoodsService
 				log.info("test1 => {}", file.isEmpty());
 				if (!file.isEmpty())
 				{
-					log.info(" test2 => {}", path);
+
+					System.out.println(path);
 					String fileName = fileManager.saveFile(path, servletContext, file);
 					GoodsFileVO goodsFileVO = new GoodsFileVO();
 					goodsFileVO.setFileName(fileName);
@@ -96,8 +95,7 @@ public class GoodsService
 					String fileName = fileManager.saveFile(path,servletContext, file);
 					if(fileUpdateNumber != null) {
 						if(fileUpdateNumber.length-1 < count) {
-							goodsFileVO = new GoodsFileVO();
-							
+						
 							goodsFileVO.setFileName(fileName);
 							goodsFileVO.setOriName(file.getOriginalFilename());
 							goodsFileVO.setGoodsId(goodsVO.getGoodsId());
@@ -107,12 +105,10 @@ public class GoodsService
 							goodsFileVO.setFileName(fileName);
 							goodsFileVO.setOriName(file.getOriginalFilename());
 							goodsFileVO.setGoodsId(goodsVO.getGoodsId());
-							goodsMapper.setFileUpdate(goodsFileVO);
+							goodsMapper.setGoodsFileAdd(goodsFileVO);
 							count++;
 						}
 					}else if(fileUpdateNumber == null) {
-						goodsFileVO = new GoodsFileVO();
-						
 						goodsFileVO.setFileName(fileName);
 						goodsFileVO.setOriName(file.getOriginalFilename());
 						goodsFileVO.setGoodsId(goodsVO.getGoodsId());
@@ -154,9 +150,9 @@ public class GoodsService
 	public List<GoodsVO> getCarList() throws Exception{
 		return goodsMapper.getCarList();
 	}
-	public List<ReserveVO> getReserveList(ReserveVO reserveVO) throws Exception{
+	public List<ReserveVO> getReserveList(GoodsReserveVO goodsReserveVO) throws Exception{
 		
-		return goodsMapper.getReserveList(reserveVO);
+		return goodsMapper.getReserveList(goodsReserveVO);
 	}
 	
 	public List<GoodsVO> getRoomNameList() throws Exception{
@@ -189,13 +185,6 @@ public class GoodsService
 	
 	public int getDepartmentCarTotal(DepartmentVO departmentVO) throws Exception{
 		return goodsMapper.getDepartmentCarTotal(departmentVO);
-	}
-	
-	public int getRoomNowTotal(String month) throws Exception{
-		return goodsMapper.getCarNowTotal(month);
-	}
-	public int getCarNowTotal(String month) throws Exception{
-		return goodsMapper.getCarNowTotal(month);
 	}
 
 }

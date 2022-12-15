@@ -31,9 +31,6 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-					<h3 style="text-align: center;">---- 모든 정보를 필수로 입력해야 합니다. ----</h3>
-					<br>
-					<br>
 					<section class="container col-lg-6 justify-content-center">
 						<c:forEach items="${stTime }" var="st">
 							<input type="hidden" value="${st.startTime }" class="startList">
@@ -49,15 +46,13 @@
 								</tr>
 							</table>
 
-							<input type="hidden" name="goodsId" value="${goodDetail.goodsId }">
-							<c:forEach items="${timeNotEqual }" var="t">
+							<div>
+								<h3>---- 모든 정보를 필수로 입력해야 합니다. ----</h3>
 								<br>
-								<div class="timeCheck">
-									<input type="text" value="${t.startTime }" class="startTimeCheck">
-									<input type="text" value="${t.endTime }" class="endTimeCheck">
-									<br>
-								</div>
-							</c:forEach>
+								<br>
+							</div>
+
+							<input type="hidden" name="goodsId" value="${goodDetail.goodsId }">
 
 							<div class="mb-3">
 								<label>예약날짜</label>
@@ -76,13 +71,12 @@
 
 							<div class="mb-5">
 								<label>예약자</label>
-								<input type="text" name="id" class="form-control" id="member" value="${userInfo.id }" readonly>
+								<input type="text" name="id" class="form-control" id="member">
 							</div>
 
 							<div class="mb-5">
 								<label>부서명</label>
-								<input type="text" class="form-control" id="exampleFormControlInput1"
-									value="${userInfo.departmentVO.depNum }" readonly>
+								<input type="text" class="form-control" id="exampleFormControlInput1" value="인사과">
 							</div>
 
 							<div class="mb-5">
@@ -93,14 +87,13 @@
 							</div>
 
 							<div style="text-align: center;">
-								<a href="./roomList">
-									<button type="button" class="btn btn-outline-none">뒤로가기</button>
-								</a>
-								<button id="resBtn" type="button" class="btn btn-outline-none">예약하기</button>
+								<button id="resBtn" type="button" class="btn btn-success">예약하기</button>
 							</div>
 							<br>
 						</form>
+
 					</section>
+
 				</div>
 				<!-- End Page Content -->
 

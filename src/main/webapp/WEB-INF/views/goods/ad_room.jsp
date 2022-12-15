@@ -43,7 +43,7 @@
         function drawChart1() {
           //부서명 가지고 오기
           var data = google.visualization.arrayToDataTable([
-            ['부서명', '건수'],
+            ['부서명', 'Count'],
             ${depart}
           ]);
   
@@ -86,12 +86,13 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800" style="font-weight: bold;">회의실 예약 통계</h1>
+	            	<h1 class="h3 mb-4 text-gray-800">회의실 예약 통계</h1>
 					
                     
                     <div id="piechart" style="width: 700px; height: 500px; float: left; margin-right : 30px;"></div>
 
                     <div id="columnchart_material" style="width: 800px; height: 500px; float: left;"></div>
+
 
                     <div class="card" id="total">
                         <div class="card-body">
@@ -113,27 +114,9 @@
                           </div> <!-- / .row -->
                         </div>
                     </div>
-
-                    <div class="card" id="total">
-                      <div class="card-body">
-                        <div class="row align-items-center gx-0">
-                          <div class="col">
-                            <!-- Title -->
-                            <h6 class="text-uppercase text-muted mb-2">
-                              이번 달 예약 건수
-                            </h6>
-                            <!-- Heading -->
-                            <span class="h2 mb-0">
-                              ${nowTotal}
-                            </span>
-                          </div>
-                          <div class="col-auto">
-                            <!-- Icon -->
-                            <span class="h2 fe fe-briefcase text-muted mb-0"></span>
-                          </div>
-                        </div> <!-- / .row -->
-                      </div>
-                  </div>
+						
+                 
+	
 	            </div>
 	            <!-- End Page Content -->
 					

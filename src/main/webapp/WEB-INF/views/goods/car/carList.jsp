@@ -103,7 +103,6 @@
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 
 	<script>
-		// 예약 취소 버튼을 눌렀을 때
 		$('.delete_btn').click(function() {
 			console.log($(this).val()); // 클릭 한 요소의 value값(reserveNum)을 출력한다.
 			

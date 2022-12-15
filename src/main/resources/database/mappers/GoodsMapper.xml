@@ -34,10 +34,6 @@
  		VALUE (#{imgNum},#{goodsId},#{fileName},#{oriName})
  	</insert>
  	
- 	<update id="setFileUpdate" parameterType="GoodsFileVO">
- 		UPDATE GOODSFILE SET FILENAME = #{fileName} , ORINAME = #{oriName} WHERE IMGNUM = #{imgNum}
- 	</update>
- 	
  	<select id="getGoods" parameterType="GoodsVO" resultMap="getGoodsDetail">
  		SELECT * FROM GOODS G
 			LEFT JOIN GOODSFILE F
@@ -96,7 +92,7 @@
  		WHERE G.GOODSID LIKE 'CA%'
  	</select>
 
-	<!-- 전체 정보 출력을 위한 리스트 -->
+<!-- 전체 정보 출력을 위한 리스트 -->
 	<select id="getGoodsList" parameterType="GoodsVO"
 		resultMap="getGoods">
 		SELECT * FROM GOODS G
@@ -121,50 +117,23 @@
 	</resultMap>
 	
 	
-	
-	
 	<sql id="getFilter">
-		WHERE r.GOODSID LIKE ''
+		WHERE GOODSID LIKE ''
 			<if test="room">
-				OR r.GOODSID LIKE '%RO%'
+				OR GOODSID LIKE '%RO%'
 			</if>
 			<if test="car">
-				OR r.GOODSID LIKE '%CA%'
+				OR GOODSID LIKE '%CA%'
 			</if>
 			<if test="vacation">
-				OR r.GOODSID LIKE '%VA%'
+				OR GOODSID LIKE '%VA%'
 			</if>
 		
 	</sql>
 	
-	
-	<!-- 캘린더 전체 출력을 위한 리스트 -->
-	<select id="getReserveList" parameterType="ReserveVO" resultMap="getGoodsReserveList">
-		SELECT * FROM 	
-		RESERVE r 
-		LEFT JOIN
-		GOODS g
-		ON(r.GOODSID = g.GOODSID)
-			 <include refid="getFilter"></include> 
+	<select id="getReserveList" parameterType="goodsReserveVO" resultType="ReserveVO">
+		select * from RESERVE   <include refid="getFilter"></include> 
 	</select>
-	
-	<resultMap type="ReserveVO" id="getGoodsReserveList">
-		<id column="RESERVENUM" property="reserveNum"/>
-	      <result column="GOODSID" property="goodsId"/>
-	      <result column="DATE" property="date"/>
-	      <result column="ID" property="id"/>
-	      <result column="USEPURPOSE" property="usePurpose"/>
-	      <result column="STARTTIME" property="startTime"/>
-	      <result column="ENDTIME" property="endTime"/>
-	      <association property="goodsVO" javaType="GoodsVO">
-	         <id column="GOODSID" property="goodsId"/>
-	         <result column="NAME" property="name"/>
-	         <result column="MAX" property="max"/>
-	         <result column="CONTENTS" property="contents"/>
-	         <result column="LOCATION" property="location"/>
-	         <result column="CARNUM" property="carNum"/>
-	      </association>
-	</resultMap>
 	
 	<select id="getRoomNameList" resultType="GoodsVO">
 		SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'RO%'
@@ -198,20 +167,6 @@
 	<select id="getDepartmentCarTotal" resultType="int" parameterType="DepartmentVO">
 		 SELECT COUNT(*) FROM RESERVE R
  			WHERE R.ID = (SELECT ID FROM DEPARTMENT  WHERE DEPNAME = #{depName}) AND R.GOODSID LIKE 'CA%'
-	</select>
-	
-	<select id="getRoomNowTotal" resultType="int" parameterType="String">
-		SELECT COUNT(*) 
-		FROM RESERVE r 
-		WHERE (SELECT SUBSTRING(r.STARTTIME,6,2)) = #{month} 
-			AND r.GOODSID LIKE 'RO%' 
-	</select>
-	
-	<select id="getCarNowTotal" resultType="int" parameterType="String">
-		SELECT COUNT(*) 
-		FROM RESERVE r 
-		WHERE (SELECT SUBSTRING(r.STARTTIME,6,2)) = #{month} 
-			AND r.GOODSID LIKE 'CA%' 
 	</select>
 	
 	

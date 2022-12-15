@@ -9,9 +9,6 @@
 <title>Insert title here</title>
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
-
-<!-- 차량 예약 JS -->
-<script defer src="/js/room/reserve.js"></script>
 </head>
 
 <!-- body ID 작성 -->
@@ -38,7 +35,7 @@
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
 						
-						<form action="carReserve" method="POST" id="frm">
+						<form action="carReserve" method="POST">
 							<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">차량 예약</h1>
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
@@ -55,15 +52,13 @@
 						
 						<div class="mb-3">
                            <label>예약날짜</label>
-                           <input type="datetime-local" name="startTime" class="form-control" id="start">
-                           <p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+                           <input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1" placeholder="시작시간">
                            <br>
                         </div>
                         
                         <div class="mb-3">
                            <label>반납날짜</label>
-                           <input type="datetime-local" name="endTime" class="form-control" id="end" disabled='disabled'>
-                           <p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+                           <input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput2" placeholder="시작시간">
                            <br>
                         </div> 
                         
@@ -79,11 +74,10 @@
                                                                                                    
                         <div class="mb-5">
                           <label>사용 목적</label>
-                          <input type="text" name="usePurpose" class="form-control" id="purpose">
-                          <p id="purposeText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+                          <input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1">
                         </div>
                         
-                        <button type="submit" id="resBtn" class="btn btn-success">예약하기</button>
+                        <button type="submit" class="btn btn-success">예약하기</button>
                      </form>
                </section>
 
@@ -101,8 +95,8 @@
    </div>
 <script type="text/javascript">
 
-document.getElementById('startTime').value= new Date().toISOString().slice(0, 8);
-document.getElementById('endTime').value= new Date().toISOString().slice(0, 8);
+document.getElementById('exampleFormControlInput1').value= new Date().toISOString().slice(0, 8);
+document.getElementById('exampleFormControlInput2').value= new Date().toISOString().slice(0, 8);
 </script>
 </body>
 </html>

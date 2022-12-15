@@ -35,6 +35,7 @@ public interface GoodsMapper
 
 	public int setGoodsFileDelete(GoodsVO goodsVO) throws Exception;
 	
+	public List<ReserveVO> getReserveList() throws Exception;
 	
 	public List<GoodsVO> getRoomNameList() throws Exception;
 	
@@ -48,14 +49,9 @@ public interface GoodsMapper
 	
 	public int getCarTotal() throws Exception;
 	
-	public List<ReserveVO> getReserveList(ReserveVO reserveVO) throws Exception;
+	public List<ReserveVO> getReserveList(GoodsReserveVO goodsReserveVO) throws Exception;
 	
 	public int getDepartmentRoomTotal(DepartmentVO departmentVO) throws Exception;
 	
 	public int getDepartmentCarTotal(DepartmentVO departmentVO) throws Exception;
-	
-	public int setFileUpdate(GoodsFileVO goodsFileVO) throws Exception;
-	
-	public int getRoomNowTotal(String month) throws Exception;
-	public int getCarNowTotal(String month) throws Exception;
 }
