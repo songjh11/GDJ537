@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 						
-
+						<!-- 사원 프로필 모달 -->
 						<div id="modal" class="modal-overlay" style="z-index: 100;">
 							<div class="modal-window">
 								<div class="close-area">X</div>
@@ -18,17 +18,14 @@
 											<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">채팅</a>
 											<a class="btn" id="sendNote" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
 
-											<!-- <div>임시쪽지보내기버튼
-												<button id="sendNote" style="background-color: rgb(158, 158, 255);">발송@</button>
-											</div> -->
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<!-- 사원 검색 -->
-						<div>
-							<form action="searchEmp" method="POST" class="form-inline navbar-search" style="display: flex; justify-content: flex-end; margin-right: 10px; margin-bottom: 30px;">
+						<div style="display: flex; align-items: center; height: 57px;">
+							<form action="searchEmp" method="POST" class="form-inline navbar-search" style="width: 100%; display: flex; justify-content: flex-end; margin-right: 10px;">
 								<div class="input-group" style="width: 100%;"> 
 									<select class="searchOption form-control" id="kind" name="kind" value="">
 										<option value="0" selected>선택</option>

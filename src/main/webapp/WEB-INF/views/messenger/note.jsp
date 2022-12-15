@@ -26,7 +26,7 @@
 	}
 
 	.blank{
-		height: 34px;
+		height: 17px;
 	}
 
 	.miniBar{
@@ -187,7 +187,6 @@
 	.noteStart {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
     	width: 100%;
 		overflow: hidden;
 	}
@@ -206,7 +205,6 @@
 		border-top-right-radius: 9px;
 		border-bottom-left-radius: 9px;
    		border-bottom-right-radius: 9px;
-		margin: 10px 0px 0px;
 		display: flex;
 		justify-content: center;
 		/* align-items: center; */
@@ -228,7 +226,6 @@
 		height: 57px;
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px;
-		margin: 10px 0px 0px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -237,7 +234,7 @@
 
 	#noteContent {
 		/* height: 700px; */
-		height: 650px;
+		height: 570px;
 		
 		/* height: 500px; */
 		overflow-y: scroll;
@@ -398,12 +395,17 @@
 						<a href="../messenger/note"><button type="button" id="msgBtn"><img src="/img/messenger/m_note.png"><p class="iconMsg" style="margin-top: -4px;">쪽지</p></button></a>
 					</div>
 
-					<div class="chatDiv">
-						<c:import url="./groupModal.jsp"></c:import>
-						<c:import url="./employeeList.jsp"></c:import>
+					<div class="chatDiv" id="chatArea">
+						<div class="blank"></div>
+							<c:import url="./groupModal.jsp"></c:import>
+							<c:import url="./employeeList.jsp"></c:import>
+							<div class="btnArea d-flex flex-row-reverse" style="background: #4e73df; color: #FFFFFF; height: 38px; display: flex; text-align: center; justify-content: center;">
+								<button type="button" id="userBtn" style="color: #FFFFFF;">그룹채팅/쪽지<img class="roomImg" style="width: 20px; margin-left: 5px; margin-bottom: 7px; filter: invert(1);" src="/img/messenger/chatAdd.png"></button>
+							</div>
 					</div>
 
-					<div class="chatDiv">
+					<div class="chatDiv" id="chatArea">
+						<div class="blank"></div>
 						<!------------------------------------ YR ------------------------------------------->
 						<div class="noteStart">
 							<!-- <div id="noteTitle">쪽지함</div> -->
