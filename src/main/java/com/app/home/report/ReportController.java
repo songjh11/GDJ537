@@ -2,6 +2,7 @@ package com.app.home.report;
 
 
 import java.security.Principal;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -49,14 +50,24 @@ public class ReportController {
 	
 	//=======================김도영===================
 	@GetMapping("/kdy/reportAdd")
-	public String reportAdd(ReportApplyVO reportApplyVO)throws Exception{
+	public ModelAndView reportAdd(ReportApplyVO reportApplyVO, Principal principal)throws Exception{
+		ModelAndView mv = new ModelAndView();
 		
-		return "/kdy/reportAdd";
+//		if(principal == null) {
+//			mv.setViewName("user/login");
+//			return mv;
+//		}
+		
+		mv.setViewName("kdy/reportAdd");
+		
+		return mv;
 	}
 	//휴가신청서
 	@GetMapping("/kdy/vacationApplication")
 	public ModelAndView vacationApplication(Principal principal)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
+		
 		log.info("principal :: {} " , principal);
 		int id = Integer.parseInt(principal.getName());
 		
@@ -319,33 +330,37 @@ public class ReportController {
 	
 	@PostMapping("/report/addvaca")
 	public String setAddVaca(String depNum, ReportVacaVO reportVacaVO, Principal principal) throws Exception{
+		String id = principal.getName();
 		
-		log.info("뎁넘 ::: {} " , principal);
-		
-		int result = reportService.setAddVaca(reportVacaVO);
-		
-		
+		int result = reportService.setAddVaca(reportVacaVO, id);
 		
 		return "redirect:/report/mylist?cat=2";
 	} 
 	
 	@PostMapping("/report/addwork")
-	public String setAddWork(ReportWorkVO reportWorkVO) throws Exception{
-		int result = reportService.setAddWork(reportWorkVO);
+	public String setAddWork(ReportWorkVO reportWorkVO, Principal principal) throws Exception{
+		String id = principal.getName();
+		
+		int result = reportService.setAddWork(reportWorkVO,id);
 		
 		return "redirect:/report/mylist?cat=3";
 	}
 	
 	@PostMapping("/report/addpay")
-	public String setAddPay(ReportPayVO reportPayVO) throws Exception{
-		int result = reportService.setAddPay(reportPayVO);
+	public String setAddPay(ReportPayVO reportPayVO, Principal principal) throws Exception{
+		
+		String id = principal.getName();
+		int result = reportService.setAddPay(reportPayVO, id);
 		
 		return "redirect:/report/mylist?cat=1";
 	}
 	
 	@PostMapping("/report/addsorry")
-	public String setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
-		int result = reportService.setAddSorry(reportSorryVO);
+	public String setAddSorry(ReportSorryVO reportSorryVO, Principal principal) throws Exception{
+		
+		String id = principal.getName();
+		
+		int result = reportService.setAddSorry(reportSorryVO,id);
 		
 		return "redirect:/report/mylist?cat=4";
 	}
@@ -509,7 +524,12 @@ public class ReportController {
 	//=======================류형민===================
 	
 	@GetMapping("/report/mylist")
-	public ModelAndView getMyReportList(ModelAndView mv,String cat,ReportPager pager) throws Exception{
+	public ModelAndView getMyReportList(ModelAndView mv,String cat,ReportPager pager, Principal principal) throws Exception{
+		
+//		if(principal == null) {
+//			mv.setViewName("user/login");
+//			return mv;
+//		}
 		
 		pager.setId(1209);
 		
@@ -548,20 +568,57 @@ public class ReportController {
 		
 		if(result == 1) {
 			ReportVacaVO reportVacaVO = reportService.getMyVacaDetail(reportApplyVO);
+			Date date = reportVacaVO.getDate();
+			String a = date.toString();
+            String[] b = a.split("-");
+            String year = b[0];
+            String month = b[1];
+            String day = b[2];         
+            mv.addObject("year", year);
+            mv.addObject("month", month);
+            mv.addObject("day", day);
 			
-			log.info("==============================================================");
-			log.info("날짜 찍어보기 : {}", reportVacaVO.getDate());
-			log.info("날짜 찍어보기 ap : {}", reportVacaVO.getApDate());
-			log.info("==============================================================");
 			mv.addObject("vo", reportVacaVO);
 		}else if(result == 2) {
 			ReportWorkVO reportWorkVO = reportService.getMyWorkDetail(reportApplyVO);
+			Date date = reportWorkVO.getDate();
+			String a = date.toString();
+            String[] b = a.split("-");
+            String year = b[0];
+            String month = b[1];
+            String day = b[2];         
+            mv.addObject("year", year);
+            mv.addObject("month", month);
+            mv.addObject("day", day);
+			
 			mv.addObject("vo", reportWorkVO);
 		}else if(result == 3) {
 			ReportPayVO reportPayVO = reportService.getMyPayDetail(reportApplyVO);
+			Date date = reportPayVO.getDate();
+			String a = date.toString();
+            String[] b = a.split("-");
+            String year = b[0];
+            String month = b[1];
+            String day = b[2];         
+            mv.addObject("year", year);
+            mv.addObject("month", month);
+            mv.addObject("day", day);
+			
+			
 			mv.addObject("vo", reportPayVO);
 		}else if(result == 4) {
 			ReportSorryVO reportSorryVO = reportService.getMySorryDetail(reportApplyVO);
+			Date date = reportSorryVO.getDate();
+			String a = date.toString();
+            String[] b = a.split("-");
+            String year = b[0];
+            String month = b[1];
+            String day = b[2];         
+            mv.addObject("year", year);
+            mv.addObject("month", month);
+            mv.addObject("day", day);
+			
+			
 			mv.addObject("vo", reportSorryVO);
 		}
 		
