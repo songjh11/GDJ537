@@ -144,7 +144,7 @@
             
         </div>
         <div id="btnDiv">
-            <button type="button" class="sendBtn" id="reply" style="background: linear-gradient(45deg, #758eff, #8a63da8a)">답장</button>
+            <button type="button" class="sendBtn" id="reply" style="background: linear-gradient(45deg, #4e73df, #2196f3)">답장</button>
             <button type="button" class="sendBtn" id="close" style="background: linear-gradient(45deg, #a6a6a6, #7473758a);">닫기</button>
         </div>
     </div>

@@ -23,12 +23,12 @@
 																<c:if test="${e.departmentVO.depNum eq d.depNum}">
 																	<c:if test="${e.id ne myId}">
 																	<li class="chatLi">
-																		<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+																		<div class="userArea" style="display: flex;	justify-content: start; align-items: center;">
 																			<div class="userAdd">
 																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
 																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
 																			</div>
-																			<div class="userInfo" style="width: 60%; color: white;">
+																			<div class="userInfo" style="width: 60%; color: white; margin-left: 9px;">
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
 																				<span id="depN${e.id}" value="${e.departmentVO.depName}/${e.roleVO.roleName}">(${e.departmentVO.depName}/${e.roleVO.roleName})</span>
 																			</div>
@@ -46,7 +46,7 @@
 															<c:forEach items="${empList}" var="e">
 																<c:if test="${e.id ne myId}">
 																	<li class="chatLi">
-																		<div class="userArea" style="display: flex;	justify-content: space-between; align-items: center;">
+																		<div class="userArea" style="display: flex;	justify-content: start; align-items: center;">
 																			<div>
 																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
 																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
@@ -148,8 +148,8 @@
 									} else {
 										Mastdep = $(this).attr("dep-num");
 										$.each($(".checkUser"), function(index, item){
-											console.log("췍유저의뎁넘",$(this).attr("dep-num"));
-											console.log(Mastdep);
+											// console.log("췍유저의뎁넘",$(this).attr("dep-num"));
+											// console.log(Mastdep);
 											if($(this).attr("dep-num")==Mastdep) {
 												if($(this).attr("dep-num")==$(e.target).attr("dep-num")) {
 												// console.log("같으면뜨셈",$(this));
@@ -177,16 +177,15 @@
 										}
 									}
 								})
-
-								console.log("체크된이부서의사원은몇명",checkCount);
-								console.log("이부서의사원은총몇명",totalCount);
+								// console.log("체크된이부서의사원은몇명",checkCount);
+								// console.log("이부서의사원은총몇명",totalCount);
 
 								if(totalCount==checkCount) {
 									console.log("위에꺼체크하자");
 									$("input[class=checkTeam]").each(function(index, item) {
 										if($(item).attr("dep-num")==$(e.target).attr("dep-num")) {
 											// $(item).prop("checked","true")
-											console.log($(item));
+											// console.log($(item));
 											item.checked=true;
 										}
 									})
@@ -196,7 +195,7 @@
 									$("input[class=checkTeam]").each(function(index, item) {
 										if ($(item).attr("dep-num")==$(e.target).attr("dep-num")) {
 											// $(item).prop("checked","false")
-											console.log($(item));
+											// console.log($(item));
 											item.checked=false;
 										}
 									})
@@ -221,20 +220,28 @@
 
 								console.log(arr);
 
+								window.open('./note/group', '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+
+
 								$.ajax({
 									type:"GET",
 									url :"note/group",
-									traditional:true, //배열을 전송할 때 사용, true
+									traditional:true,
 									data:{
 										arr: arr
 									},
 									success : function(data){
-										console.log(data);
+										console.log("데이터뭐임",data);
+										modalChat.style.display = "none";
+
+										
 									},
 									error   : function(){
 
 									}
 								})
+
+
 							})
 								
 

@@ -23,6 +23,7 @@ let ws;
 					$("#sessionId").val(si); 
 				}else if (d.type =="message")
 					{if(d.sessionId==$("#sessionId").val()){
+						
 						$("me").append("<div class='me-bubble-flex-first'><div class='me-bubble'>" +d.msg+"</div>"),
 																//읽음 확인
 						$("me").append("<div class='me-count'><span>1</span></div></div></div>")		
@@ -74,3 +75,4 @@ let ws;
 		ws.send(JSON.stringify(option))
 		$('#chatting').val("");
 	}
+}
