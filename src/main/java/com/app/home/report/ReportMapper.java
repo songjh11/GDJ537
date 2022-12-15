@@ -24,11 +24,6 @@ public interface ReportMapper {
 	
 	//=======================김도영===================
 	//신청보고서
-	public int setReportApply(ReportApplyVO reportApplyVO)throws Exception;
-	//업무보고서
-	public int setWorkReport(ReportWorkVO reportWorkVO)throws Exception;
-	
-	
 	
 	
 	
@@ -142,6 +137,7 @@ public interface ReportMapper {
 	public ReportPayVO getMyPayDetail(ReportApplyVO reportApplyVO) throws Exception;
 	public ReportWorkVO getMyWorkDetail(ReportApplyVO reportApplyVO) throws Exception;
 	public ReportSorryVO getMySorryDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public int getLstatus(String id) throws Exception;
 	//================================================
 	
 }

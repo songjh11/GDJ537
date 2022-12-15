@@ -28,15 +28,6 @@ public class ReportService {
 
 	//=======================김도영===================
 	//신청 보고서
-	public int setReportApply(ReportApplyVO reportApplyVO)throws Exception{
-		int result = reportMapper.setReportApply(reportApplyVO);
-		return result;
-	}
-	//업무 보고서
-	public int setWorkReport(ReportWorkVO reportWorkVO)throws Exception{
-		int result = reportMapper.setWorkReport(reportWorkVO);
-		return result;
-	}
 	
 	
 	
@@ -101,17 +92,37 @@ public class ReportService {
 	//=======================결재 신청 insert===================
 	
 	
-	public int setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+	public int setAddVaca(ReportVacaVO reportVacaVO, String id) throws Exception{
+		int lstatus = reportMapper.getLstatus(id);
+		
+		if(lstatus == 2) {
+			reportVacaVO.setStatus(2);
+		}
+		
 		reportMapper.setAddApply(reportVacaVO);
 		return reportMapper.setAddVaca(reportVacaVO);
 	} 
 	
-	public int setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+	public int setAddWork(ReportWorkVO reportWorkVO, String id) throws Exception{
+		int lstatus = reportMapper.getLstatus(id);
+		
+		if(lstatus == 2) {
+			reportWorkVO.setStatus(2);
+		}
+		
 		reportMapper.setAddApply(reportWorkVO);
 		return reportMapper.setAddWork(reportWorkVO);
 	}
 	
-	public int setAddPay(ReportPayVO reportPayVO) throws Exception{
+	public int setAddPay(ReportPayVO reportPayVO, String id) throws Exception{
+		
+		int lstatus = reportMapper.getLstatus(id);
+		
+		if(lstatus == 2) {
+			reportPayVO.setStatus(2);
+		}
+		
+		
 		reportMapper.setAddApply(reportPayVO);
 		int result = reportMapper.setAddPay(reportPayVO);
 		
@@ -126,7 +137,14 @@ public class ReportService {
 		return result;
 	}
 	
-	public int setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+	public int setAddSorry(ReportSorryVO reportSorryVO, String id) throws Exception{
+		
+		int lstatus = reportMapper.getLstatus(id);
+		
+		if(lstatus == 2) {
+			reportSorryVO.setStatus(2);
+		}
+		
 		reportMapper.setAddApply(reportSorryVO);
 		return reportMapper.setAddSorry(reportSorryVO);
 	}

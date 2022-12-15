@@ -38,8 +38,8 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">결재 신청 목록</h1>
                     <p class="mb-4">
-                    	<a href="./mylist?cat=2" class="btn btn-info btn-icon-split">
-                            <span class="icon text-white-50">
+                    	<a href="./mylist?cat=2&kind=${pager.kind}" class="btn btn-info btn-icon-split">
+                           <span class="icon text-white-50">
                                   <i class="fas fa-info-circle"></i>
                               </span>
                             <span class="text">휴가신청서</span>
@@ -79,11 +79,11 @@
 										  </div>
 										  <div class="col">
 											  <select class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
-												  <option value="http://localhost:81/report/mylist?cat=1" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
-												  <option value="http://localhost:81/report/mylist?cat=1&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
-												  <option value="http://localhost:81/report/mylist?cat=1&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
-												  <option value="http://localhost:81/report/mylist?cat=1&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
-												  <option value="http://localhost:81/report/mylist?cat=1&kind=4" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+												  <option value="./mylist?cat=1" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
+												  <option value="./mylist?cat=1&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
+												  <option value="./mylist?cat=1&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
+												  <option value="./mylist?cat=1&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
+												  <option value="./mylist?cat=1&kind=4" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
 											  </select>
 										  </div>
 										</div>
@@ -100,11 +100,11 @@
 										  </div>
 										  <div class="col">
 											  <select class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
-												  <option value="http://localhost:81/report/mylist?cat=2" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
-												  <option value="http://localhost:81/report/mylist?cat=2&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
-												  <option value="http://localhost:81/report/mylist?cat=2&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
-												  <option value="http://localhost:81/report/mylist?cat=2&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
-												  <option value="http://localhost:81/report/mylist?cat=2&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+												  <option value="./mylist?cat=2" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
+												  <option value="./mylist?cat=2&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
+												  <option value="./mylist?cat=2&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
+												  <option value="./mylist?cat=2&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
+												  <option value="./mylist?cat=2&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
 											  </select>
 										  </div>
 										</div>
@@ -121,11 +121,11 @@
 										  </div>
 										  <div class="col">
 											  <select class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
-												  <option value="http://localhost:81/report/mylist?cat=3" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
-												  <option value="http://localhost:81/report/mylist?cat=3&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
-												  <option value="http://localhost:81/report/mylist?cat=3&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
-												  <option value="http://localhost:81/report/mylist?cat=3&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
-												  <option value="http://localhost:81/report/mylist?cat=3&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+												  <option value="./mylist?cat=3" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
+												  <option value="./mylist?cat=3&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
+												  <option value="./mylist?cat=3&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
+												  <option value="./mylist?cat=3&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
+												  <option value="./mylist?cat=3&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
 											  </select>
 										  </div>
 										</div>
@@ -142,11 +142,11 @@
 										  </div>
 										  <div class="col">
 											  <select class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
-												  <option value="http://localhost:81/report/mylist?cat=4" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
-												  <option value="http://localhost:81/report/mylist?cat=4&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
-												  <option value="http://localhost:81/report/mylist?cat=4&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
-												  <option value="http://localhost:81/report/mylist?cat=4&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
-												  <option value="http://localhost:81/report/mylist?cat=4&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+												  <option value="./mylist?cat=4" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
+												  <option value="./mylist?cat=4&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
+												  <option value="./mylist?cat=4&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
+												  <option value="./mylist?cat=4&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
+												  <option value="./mylist?cat=4&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
 											  </select>
 										  </div>
 										</div>
@@ -163,11 +163,11 @@
 										  </div>
 										  <div class="col">
 											  <select class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
-												  <option value="http://localhost:81/report/mylist?cat=2" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
-												  <option value="http://localhost:81/report/mylist?cat=2&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
-												  <option value="http://localhost:81/report/mylist?cat=2&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
-												  <option value="http://localhost:81/report/mylist?cat=2&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
-												  <option value="http://localhost:81/report/mylist?cat=2&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+												  <option value="./mylist?cat=2" <c:if test="${pager.kind == ''}">selected</c:if>>승인 상태 선택</option>
+												  <option value="./mylist?cat=2&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
+												  <option value="./mylist?cat=2&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
+												  <option value="./mylist?cat=2&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
+												  <option value="./mylist?cat=2&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
 											  </select>
 										  </div>
 										</div>
@@ -195,7 +195,7 @@
 	                                        </thead>
                                             <tbody>
                                                 <c:forEach items="${list}" var="vo">
-                                                	<tr onclick="location.href='/report/mylist?applyNum=${vo.applyNum}';" style="cursor:hand">
+                                                	<tr onclick="location.href='/report/mylist?reportNum=3&applyNum=${vo.applyNum}';" style="cursor:hand">
                                                 		<td>${vo.title}</td>
                                                 		<td>${vo.date}</td>
                                                 		<td>${vo.cdate}</td>
@@ -354,7 +354,7 @@
                                             </thead>
                                             <tbody>
 												<c:forEach items="${list}" var="vo">
-                                                	<tr>
+                                                	<tr onclick="location.href='/report/detail?reportNum=2&applyNum=${vo.applyNum}';">
                                                 		<td>${vo.am}</td>
                                                 		<td>${vo.pm}</td>
                                                 		<td>${vo.date}</td>
@@ -431,7 +431,7 @@
                                             </thead>
                                             <tbody>
 												<c:forEach items="${list}" var="vo">
-                                                	<tr>
+                                                	<tr onclick="location.href='/report/detail?reportNum=4&applyNum=${vo.applyNum}';">
                                                 		<td>${vo.text}</td>
                                                 		<td>${vo.order}</td>
                                                 		<td>${vo.date}</td>
