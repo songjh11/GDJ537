@@ -1,15 +1,11 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
-<html>
 <head>
-<meta charset="UTF-8">
-<!-- meta tag 추가 -->
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Insert title here</title>
-<!-- 공통 css, js, jquery -->
-<c:import url="../temp/layout_header.jsp"></c:import>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -23,31 +19,12 @@
         }
     </style>
     <script defer src="/js/Apology.js"></script>
-
+	<script defer="defer" type="text/javascript" src="/js/report/report.js"></script>
 </head>
-
-<!-- body ID 작성 -->
-<body id="page-top">
-
-	<!-- Page Wrapper 전체 Contents Wrapper -->
-    <div id="wrapper">
-
-		<!-- Sidebar import -->
-		<c:import url="../temp/layout_sidebar.jsp"></c:import>
-		<!-- End of Sidebar -->
-		
-		 <!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
-			<!-- Main Content -->
-			<div id="content">
-			
-				<!-- Topbar import-->
-				<c:import url="../temp/layout_topbar.jsp"></c:import>
-				<!-- End of Topbar -->
-				
-				<!-- Begin Page Content -->
-	            <div class="container-fluid">
-						<div class="container px-4 px-lg-5 my-5">
+<body>
+    <div class="container px-4 px-lg-5 my-5">
+    	<input type="text" style="display: none;" value="${result }" data-status="${result }">
+    	<input type="text" style="display: none;" value="${reportSorryVO.applyNum }" data-num="${reportSorryVO.applyNum }">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
             <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 45px; background-color: rgb(255, 255, 249); text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
                    시말서
@@ -76,14 +53,14 @@
                                 성명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" id="ApologyName" value="${vo.name}"/>
+                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" id="ApologyName" value="홍길동"/>
 
                         <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
                             <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
                                 부서명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; text-align: center; border: 0;" id="ApologyPartname" value="${vo.departmentVO.depName}"/>
+                        <input style="width: 220px; height: 50px; text-align: center; border: 0;" id="ApologyPartname" value="구디아카데미"/>
                     </div>    
                 </div> 
 
@@ -95,14 +72,14 @@
                                     직책
                                 </div>
                             </div>
-                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" id="ApologyRes" value="${vo.roleVO.roleName}"/>
+                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" id="ApologyRes" value="홍길동"/>
     
                             <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
                                 <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
                                     작성일
                                 </div>
                             </div>
-                            <input style="width: 220px; height: 50px; text-align: center; border: 0;" id="ApologyWDate" value=""/>
+                            <input style="width: 220px; height: 50px; text-align: center; border: 0;" id="ApologyWDate" value="구디아카데미"/>
                         </div> 
                     </div>    
                 </div>    
@@ -138,22 +115,8 @@
             </div>
 
         </div>    
-
+		<button type="button" id="license" class="btn btn-info btn-icon-split">승인</button>
+		<button type="button" id="returns" class="btn btn-info btn-icon-split">반려</button>
     </div>
-	            </div>
-	            <!-- End Page Content -->
-					
-			</div>
-			<!-- End of Main Content -->
-			
-			<!-- Footer import -->
-			<c:import url="../temp/layout_footer.jsp"></c:import>
-			<!-- End of Footer -->
-		</div>
-		<!-- End of Content Wrapper -->
-	</div>
-
-	<!-- Scroll Top, Logout Modal import -->
-	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 </body>
 </html>

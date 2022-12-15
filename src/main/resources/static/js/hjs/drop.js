@@ -46,6 +46,7 @@ $(".roleLi").click(function(){
     console.log("ri ==> " , ri);
 
     $("#roleId").val(ri);
+    console.log($("#roleId").val(ri));
 
 
     $("#roleInput").val($(this).text());
@@ -76,7 +77,8 @@ $("#tbd").on("click", "#statusBtn", function(event){
 
     console.log("내 아이디  : ", $(this).attr("data-name"));
     console.log("내 depNum :  ", $(this).attr("data-depNum"));
-
+    
+    
     let name = $(this).attr("data-name");
 
     let depNum = $(this).attr("data-depNum");
@@ -89,10 +91,13 @@ $("#tbd").on("click", "#statusBtn", function(event){
             depNum : depNum
         },
 
-        success:function(){
-            alert("수정에 성공하였습니다.")
-            console.log($(this).attr("data-name"));
-            $(this).text("이미 부여됨");
+        success:function(result){
+            alert("수정에 성공하였습니다.");
+            console.log($("#statusBtn").text());
+            console.log($("#statusBtn").text('부여됨'));
+            if(result == 1){
+                $("#statusBtn").text('부여됨');
+            }
         },
         error:function(){
             alert("수정에 실패하였습니다");
