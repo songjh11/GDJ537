@@ -17,7 +17,7 @@
 								</tr>
 							</thead>
 						</table>
-						<div style="overflow-y: scroll; overflow-x: hidden; height: 720px;">							
+						<div style="overflow-y: scroll; overflow-x: hidden; height: 550px;">							
 							<c:forEach items="${roomList}" var="roomVO">
 								<div class="roomList">
 									<div class="col-3" style="margin-left: 6.4%;">
