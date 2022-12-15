@@ -59,7 +59,9 @@ public class MessengerController {
 		// ------------------ 채팅목록 ------------------
 		List<RoomVO> roomVOs = new ArrayList<>();
 		RoomVO roomVO = new RoomVO();
+		UserVO userVO2 = new UserVO();
 		userVO.setId(userVO.getId());
+		roomVO.setUserVO(userVO);
 		
 		roomVOs = messengerService.getRoomList(roomVO);
 		
@@ -295,6 +297,9 @@ public class MessengerController {
 	
 	// --------------------- 효경 ------------------------------
 	
+	// 채팅방 인원
+	
+	
 	// 채팅방 추가
 	@PostMapping("addRoom")
 	public ModelAndView setAddRoom(HttpSession session, UserVO userVO, RoomVO roomVO)throws Exception{
@@ -306,19 +311,9 @@ public class MessengerController {
 	    userVO  = (UserVO)authentication.getPrincipal();
 	    userVO = userService.getMypage(userVO);
 	    
-	    int [] id = roomVO.getId();
-	    
-	    for(int ids : id) {
-	    	log.info("아이디에 뭐가있나? =====> {} ", id);
-	    }
-	    
 	    // 로그인 회원을 방장으로
 		roomVO.setHostId(userVO.getId());
-//		UserVO userVO2 = new UserVO();
-//		log.info("유저야아아 => {} ", userVO.getId());
-//		// 방장도 유저이기 때문에 넣어줌
-//		userVO2.setId(userVO.getId());
-//		roomVO.setUserVO(userVO2);
+		
 		int result = messengerService.setAddRoom(roomVO);
 		
 		if(result > 0 ) {

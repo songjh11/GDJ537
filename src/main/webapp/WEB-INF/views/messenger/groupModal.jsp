@@ -127,7 +127,7 @@
 
 						<script>
 							//팀 선택시 전체팀원도 선택되게...
-							$(".checkTeam").on("change", function(){
+							$(".checkTeam").on("change", function(e){
 								event.stopPropagation();
 								let Mastdep = '';
 								$('input:checkbox[class=checkTeam]').each(function (index) {
@@ -148,14 +148,18 @@
 									} else {
 										Mastdep = $(this).attr("dep-num");
 										$.each($(".checkUser"), function(index, item){
-											// console.log("췍유저의뎁넘",$(this).attr("dep-num"));
-											// console.log(Mastdep);
+											console.log("췍유저의뎁넘",$(this).attr("dep-num"));
+											console.log(Mastdep);
 											if($(this).attr("dep-num")==Mastdep) {
+												if($(this).attr("dep-num")==$(e.target).attr("dep-num")) {
 												// console.log("같으면뜨셈",$(this));
 												// $(this).prop("checked","true");
 												item.checked=false;
+
+												}
 											} 
 										})
+										
 									}
 								})
 							})
