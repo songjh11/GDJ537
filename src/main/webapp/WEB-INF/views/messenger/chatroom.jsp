@@ -50,7 +50,7 @@
          <table class="inputTable">
             <tr>
                <th>사용자명</th>
-               <th><input type="text" name="userName" id="userName"></th>
+               <th><input type="text" name="userName" value="${userVO.id}" id="userName"></th>
                <th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
             </tr>
          </table>
@@ -59,7 +59,7 @@
          <table class="inputTable">
             <tr>
                <th>메시지</th>
-               <th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+               <th><input id="inputChat"  placeholder="보내실 메시지를 입력하세요."></th>
                <th><button onclick="send()" id="sendBtn">보내기</button></th>
             </tr>
          </table>

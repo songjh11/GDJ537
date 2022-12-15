@@ -29,6 +29,7 @@ public class SocketHandler extends TextWebSocketHandler{
 			wss.sendMessage(new TextMessage(msg));
 			}catch(Exception e) {
 				e.printStackTrace();
+			
 			}
      	}
 	}
@@ -42,6 +43,7 @@ public class SocketHandler extends TextWebSocketHandler{
 		JSONObject obj =new JSONObject();
 		obj.put("type", "getId");
 		obj.put("sessionId", session.getId());
+		
 		session.sendMessage(new TextMessage(obj.toJSONString()));
 	}
 
