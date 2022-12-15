@@ -24,6 +24,10 @@
          <result column="DEPNAME" property="depName"/>
          <result column="ID" property="id"/>
       </association>
+      <association property="reportVO" javaType="ReportVO">
+      	<id column="ID" property="id"/>
+      	<result column="LSTATUS" property="lstatus"/>
+      </association>
    </resultMap>
    
    
@@ -199,11 +203,15 @@
    </update>
 
    <select id="getLogin" parameterType="String" resultMap="getUserVO">
-      SELECT U.*, R.*
+      SELECT U.*, R.*,RL.LSTATUS
       FROM USER U
          INNER JOIN
          ROLE R
          ON U.ROLENUM = R.ROLENUM
+         LEFT JOIN
+         REPORTLICENSER RL
+         ON U.ID = RL.ID
+         
       WHERE U.id=#{username}
    </select>
    

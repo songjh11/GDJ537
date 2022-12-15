@@ -55,6 +55,8 @@ public class UserVO implements UserDetails {
 	private List<ReportVO> reportVOs;
 
 	private List<DepartmentVO> departmentVOs;
+	
+
 
 
 	@Override

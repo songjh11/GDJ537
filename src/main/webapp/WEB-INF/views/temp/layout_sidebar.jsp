@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -82,9 +83,14 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/report/licenserList">전체 승인자 리스트</a>
                         <a class="collapse-item" href="/kdy/reportAdd">보고서 작성</a>
+                      
+                        <sec:authorize access="isAuthenticated()">
+ 						<sec:authentication property="Principal" var="member"/>
+                     	<c:if test="${member.reportVO.lstatus >= 2}">
                         <a class="collapse-item" href="/report/doreport">결제/반려 승인</a>
-                        <a class="collapse-item" href="/report/finishreport">결제 승인 내역</a>
-                        <a class="collapse-item" href="/report/returnreport">반려 승인 내역</a>
+                     	</c:if>
+						</sec:authorize>
+                     	
                         <a class="collapse-item" href="/report/insa">휴가담당 관리자</a>
                         <a class="collapse-item" href="/report/mylist?cat=1">결재 신청 목록</a>
                     </div>
