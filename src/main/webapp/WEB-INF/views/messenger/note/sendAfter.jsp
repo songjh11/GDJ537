@@ -57,7 +57,7 @@
         }
 
         #sendBtn {
-            background: linear-gradient(45deg, #758eff, #8a63da8a);
+            background: linear-gradient(45deg, #4e73df, #2196f3);
             height: 30px;
             width: 60px;
             border: none;
