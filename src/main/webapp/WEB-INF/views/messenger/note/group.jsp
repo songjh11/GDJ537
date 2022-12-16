@@ -33,11 +33,11 @@
 
         #title {
             color: black;
-            height: 50px;
+            height: 60px;
             width: 430px;
             margin: 10px auto;
             background-color: #fff;
-            display: flex;
+            /* display: flex; */
             justify-content: space-between;
             align-items: center;
             border-radius: 10px 10px;
@@ -48,7 +48,7 @@
         }
 
         #contents {
-            height: 380px;
+            height: 374px;
             background-color: #fff;
             width: 430px;
             margin: 0 auto 7px;
@@ -113,12 +113,12 @@
 </head>
 <body>
     <div id="noteBox">
-        <form action="./send" method="post" id="fofo">
+        <form action="./group" method="post" id="fofo">
             <input type="hidden" name="sendId" value="${member.id}">
-            <input type="hidden" name="receiveId" value="${param.receiveId}">
+            <input type="hidden">
             <div id="title">
-                <div style="margin: 15px;">발신자 : 세션줘 (${member.id})</div>
-                <div style="margin: 15px;">수신자 : 수신자 (${param.receiveId})</div>
+                <div style="margin: 0 15px; padding-top: 12px;">발신자 : ${member.name} (${member.id})</div>
+                <div style="margin: 7px 15px;">수신자 : ${daepyo.name} 외 ${count}명</div>
             </div>
             <div id="contents">
                 <div id="realContents">
@@ -137,6 +137,11 @@
 
 
     <script>
+
+        opener.document.getElementById
+        console.log(opener.$(".dkdksk").val());
+        
+
         let val = "";
         $("#inputContents").on("keyup",function(){
             val = $("#inputContents").val();
@@ -152,6 +157,9 @@
             }
             
         })
+
+
+        opener.document.getElementById("pInput").value;
         
     </script>
 </body>
