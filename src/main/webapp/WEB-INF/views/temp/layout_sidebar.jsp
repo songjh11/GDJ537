@@ -112,32 +112,7 @@
 
             <!-- Divider -->
             <sec:authorize access="hasAnyAuthority('사장', '부장', '과장', '관리자')">
-            <hr class="sidebar-divider">
-
-<!--
-	            <!-- Nav Item - 관리자 -->
-	
-	            <li class="nav-item">
-	                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin"
-	                    aria-expanded="true" aria-controls="collapseAdmin">
-	                    <i class="fas fa-fw fa-folder"></i>
-	                    <span>관리자</span>
-	                </a>
-					
-	                <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionSidebar">
-	                    <div class="bg-white py-2 collapse-inner rounded">
-	                        <h6 class="collapse-header">관리자 List</h6>
-	                        <a class="collapse-item" href="/user/admin/wait">인사 관리</a>
-	                        <a class="collapse-item" href="#">시설물 관리</a>
-	                    </div>
-	                </div>
-				</li>
-			</sec:authorize>
--->
             <hr class="sidebar-divider d-none d-md-block">
-
-            
-
             <!-- Nav Item - 관리자 -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/user/admin/wait" data-toggle="collapse" data-target="#collapseAdmin"
@@ -148,6 +123,8 @@
                 <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">관리자 List</h6>
+	                    <a class="collapse-item" href="/user/admin/wait">인사 관리</a>
                         <h6 class="collapse-header">시설</h6>
                         <a class="collapse-item" href="/goods/ad_list">시설 관리</a>
                         <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseReserve" aria-expanded="true" aria-controls="collapseReserve" id="accordionReserve">
@@ -163,6 +140,7 @@
                     </div>
                 </div>
             </li> 
+            </sec:authorize>
 
             <!-- Divider -->
 

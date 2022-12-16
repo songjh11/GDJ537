@@ -63,7 +63,7 @@
                         <th class="table-light" scope="col">이메일</th>
                         <th class="table-light" scope="col">전화번호</th>
                         <th class="table-light entDate" scope="col">입사일</th>
-                        <th class="table-light" scope="col"></th>
+                        <th class="table-light" scope="col">퇴사 처리</th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">
