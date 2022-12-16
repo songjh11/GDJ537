@@ -444,7 +444,7 @@
 										
 									</div>
 									<!-- <a href="javascript:ajaxPage(1);"><img style="width: 30px;" src="/img/messenger/return.png"></a> -->
-									<a id="goBackNote"><img style="width: 44px; margin: 5px;" src="/img/messenger/close.png"></a>
+									<a id="goBackNote"><img style="width: 44px; margin: 5px; margin-left: 25px;" src="/img/messenger/close.png"></a>
 								
 									
 								</div>
@@ -454,7 +454,7 @@
 
 							<div id="noteContent">
 								<c:forEach items="${list}" var="list">
-									<div class="noteList on" id="noteNum${list.noteNum}" noteNum="${list.noteNum}" onclick="notePop(${list.noteNum})" read-check="${list.readCheck}">
+									<div class="noteList on" id="noteNum${list.noteNum}" noteNum="${list.noteNum}" flag="${list.flag}" onclick="notePop(${list.noteNum})" read-check="${list.readCheck}">
 										<div id="listImage">
 											<img src="/img/undraw_profile_3.svg" alt="">
 										</div>

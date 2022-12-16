@@ -16,5 +16,7 @@ public class NoteVO {
 	private int readCheck;
 	private String receiveName;
 	private String sendName;
+	private int remark;
+	private int flag;
 	
 }

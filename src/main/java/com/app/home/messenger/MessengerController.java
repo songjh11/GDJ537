@@ -362,7 +362,7 @@ public class MessengerController extends Socket {
 
 	    for(Long arrrdd : arrr) {
 	    	noteVO.setReceiveId(arrrdd);
-	    	result = noteService.setSendNote(noteVO);
+	    	result = noteService.setSendNoteGroup(noteVO);
 	    	log.info("쪽지내용 {}",noteVO);
 		}
 	    
