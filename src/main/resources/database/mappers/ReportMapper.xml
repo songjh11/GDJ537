@@ -209,16 +209,16 @@
 	
 
 	<update id="setUpdateApply" parameterType="ReportApplyVO">
-		UPDATE REPORTAPPLY SET STATUS = #{lStatus} WHERE APPLYNUM= #{applyNum}
+		UPDATE REPORTAPPLY SET STATUS = #{lstatus} WHERE APPLYNUM= #{applyNum}
 	</update>
 	
 	<update id="setUpdateCancelApply" parameterType="ReportApplyVO">
-		UPDATE REPORTAPPLY SET RETURNS = 1, STATUS=#{lStatus} WHERE APPLYNUM = #{applyNum}
+		UPDATE REPORTAPPLY SET RETURNS = 1, STATUS=#{lstatus} WHERE APPLYNUM = #{applyNum}
 	</update>
 
 
 	<select id="getLicenseCheck" parameterType="ReportVO" resultType="Integer">
-		SELECT LSTATUS FROM REPORTLICENSER WHERE ID = 1209
+		SELECT LSTATUS FROM REPORTLICENSER WHERE ID = #{id}
 	</select>
 	
 	<select id="getLicenseVacaReportDetail" parameterType="ReportVacaVO" resultType="ReportVacaVO">
@@ -292,7 +292,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=1209 AND RA.REPORTNUM=1
+		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=#{id} AND RA.REPORTNUM=#{reportNum}
 	</select>
 	
 	<select id="getFinishReport" parameterType="ReportPager" resultMap="getFinishReportResult">
@@ -331,7 +331,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=1209 AND RA.REPORTNUM=1
+		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=#{id} AND RA.REPORTNUM=#{reportNum}
 	</select>
 	
 	<select id="getDoFirstReport" parameterType="ReportPager" resultMap="getFinishReportResult">
@@ -357,20 +357,12 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RA.STATUS = 1 AND RL.ID=1209 AND RA.REPORTNUM=1
+		WHERE RA.STATUS = 1 AND RL.ID=#{id} AND RA.REPORTNUM=#{reportNum}
 	</select>
 	
-	<select id="getDoFinalReport" parameterType="ReportPager" resultMap="getFinishReportResult">
-		SELECT RL.*,RA.*,U.* FROM
-		REPORTLICENSER RL
-		INNER JOIN
-		REPORTAPPLY RA
-		ON RL.DEPNUM = RA.DEPNUM
-		INNER JOIN
-		USER U
-		ON RA.ID = U.ID
-		<include refid="license"></include>
-		AND RA.STATUS = 2
+	<select id="getDoFinalReport" parameterType="ReportPager" resultType="ReportApplyVO">
+		SELECT * FROM REPORTAPPLY WHERE STATUS = 2
+		<include refid="admin"></include>
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
@@ -383,7 +375,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RA.STATUS = 2 AND RL.ID=1209 AND RA.REPORTNUM=1
+		WHERE RA.STATUS = 2 AND RL.ID=#{id}
 	</select>
 	
 	<resultMap type="ReportVO" id="getFinishReportResult">
@@ -405,10 +397,31 @@
 			</collection>
 	</resultMap>
 	
-	<sql id="license">
-		where RL.ID=1209 AND RA.REPORTNUM=1  <choose>
+	<sql id="admin">
+		AND REPORTNUM=#{reportNum}								<choose>
 												<when test="kind == 1">
 												
+												</when>
+												<when test="kind == 2">
+													AND RL.LSTATUS = RA.STATUS
+												</when>
+												<when test="kind == 3">
+													AND RL.LSTATUS = RA.RETURNS
+												</when>
+												<otherwise>
+													
+												</otherwise>
+											</choose>
+	</sql>
+	
+	<sql id="license">
+
+		where RL.ID=#{id} AND RA.REPORTNUM=#{reportNum} <choose>
+
+	   							
+
+												<when test="kind == 1">
+													
 												</when>
 												<when test="kind == 2">
 													AND RL.LSTATUS = RA.STATUS
@@ -537,15 +550,14 @@
 					INNER JOIN 
 					REPRICE vg ON rp.rnum = vg.rnum	
 						)r2 ON r.APPLYNUM = r2.APPLYNUM
-		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum}
 	</select>
 	
-	<resultMap type="ReportApplyVO" id="getPayDetail">
+	<resultMap type="ReportPayVO" id="getPayDetail">
 		<id column="APPLYNUM" property="applyNum"/>
-		<result column="RNUM" property="rnum"/>
 		<result column="TITLE" property="title"/>
 		<result column="CDATE" property="cdate"/>
-		<result column="SUM" property="SUM"/>
+		<result column="SUM" property="sum"/>
 		<result column="PAYMENT" property="payment"/>
 		<result column="DATE" property="date"/>
 		<result column="DEPNAME" property="depName"/>
@@ -559,8 +571,7 @@
 		<result column="ROLENAME" property="roleName"/>
 		
 		<collection property="repriceVOs" javaType="List" ofType="RepriceVO">
-			<id column="RNUM" property="rnum"/>
-			<result column="ITEM" property="item"/>
+			<id column="ITEM" property="item"/>
 			<result column="PRICE" property="price"/>
 		</collection>
 		
