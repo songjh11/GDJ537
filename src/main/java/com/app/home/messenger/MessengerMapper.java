@@ -35,5 +35,8 @@ public interface MessengerMapper {
 	
 	// 비밀번호가 있는지 없는지 조회
 	public int getPwCheck(RoomVO roomVO)throws Exception;
+
+	//채팅방 제목
+	public String getChatName (RoomVO roomVO) throws Exception;
 	
 }

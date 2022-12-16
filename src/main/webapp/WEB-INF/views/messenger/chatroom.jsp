@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; 
+charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
 
@@ -24,12 +25,13 @@
 <body>
     <div id="container" class="container">
 		<input type="hidden" id="sessionId" value="${user.id}">
+		<input type="hidden" id="roomNum" value="${param.roomNum}">
 	
 		<div class="header">
                 <div class="header-flex">
                     <div class="tinum">
                         <div class="title">
-                            <span><strong>${roomVO.roomName}</strong></span>
+                            <span><strong>${rn}</strong></span>
                         </div>
                         <div class="number">
                             <img src="/img/chatroom-number.png" width="15px" height="15px">

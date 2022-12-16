@@ -17,6 +17,7 @@
 								</tr>
 							</thead>
 						</table>
+										
 						<div class="roomArea" style="overflow-y: scroll; overflow-x: hidden; height: 550px;">							
 						<!-- 그룹채팅 목록 -->
 							<h3>Group</h3>
@@ -44,13 +45,21 @@
 									</div> --%>
 									<div class="col text-center style="margin-left: 8%;">
 										${roomVO.total}
+									
+									<!-- 소영이 a태그 -->
+									<div class="col text-center" style="margin-left: 3%;">
+										<a class="roomLink" href="" onclick="javascript:chatPop('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a>
+										<%-- <a class="roomLink" href="./chatroom?roomNum=${roomVO.roomNum}" onclick=""><b>${roomVO.roomName}</b></a> --%>
+									</div>
+									<div class="col text-center">
+										${roomVO.roomName}
 									</div>
 								</div>
 								</c:if>
 							</c:forEach>
 							<!-- 그룹채팅 목록 -->
 							<br>
-							<!-- 1:!채팅 목록 -->	
+							<!-- 1:1 채팅 목록 -->	
 							<h3>1:1</h3>
 							<c:forEach items="${roomList}" var="roomVO">
 							<c:if test="${roomVO.kind eq '1'}">
@@ -80,6 +89,36 @@
 								</div>
 								</c:if>
 							</c:forEach>
-							<!-- 1:!채팅 목록 -->
+							<!-- 1:1 채팅 목록 -->
 						</div>
+						<!-- 채팅목록 -->
+						
+						<script type="text/javascript">
+						let popupWidth = "500";
+						let popupHeight = "750";
+						let popUp = "";
+						  
+						// 듀얼 모니터 고려한 윈도우 띄우기
+						let curX = window.screenLeft;
+						let curWidth = document.body.clientWidth;
+						let curHeight = document.body.clientHeight;
+						  
+						let nLeft = (screen.availWidth/ 2) - (popupWidth / 2);
+						let nTop = ((screen.availHeight-popupHeight)/2)-10;
+						
+						let strOption = "";
+						strOption += "left=" + nLeft + "px,";
+						strOption += "top=" + nTop + "px,";
+						strOption += "width=" + popupWidth + "px,";
+						strOption += "height=" + popupHeight + "px,";
+						strOption += "toolbar=no,menubar=no,location=no,";
+						strOption += "resizable=yes,status=yes";
+
+						function chatPop(roomNum){
+							window.open('/messenger/chatroom?roomNum='+roomNum, '단체 채팅방', strOption);
+						}
+
+						
+						</script>
+>>>>>>> master
 							

@@ -65,7 +65,7 @@
 										
 									</div>
 									<div class="col-auto d-none d-lg-block white" data-item-num="${ro.goodsId}">
-									  <img src="/resources/upload/goods/${ro.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ro.goodsId}">
+									  <img src="/file/goods/${ro.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ro.goodsId}">
 									</div>
 								  </div>
 								</div> 
@@ -89,7 +89,7 @@
 									  
 									</div>
 									<div class="col-auto d-none d-lg-block white" data-item-num="${ca.goodsId}">
-										<img src="/resources/upload/goods/${ca.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ca.goodsId}">
+										<img src="/file/goods/${ca.goodsFileVO[0].fileName}" width="200" height="250" data-item-num="${ca.goodsId}">
 									</div>
 								  </div>
 								</div>  

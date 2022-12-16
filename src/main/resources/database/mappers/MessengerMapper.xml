@@ -148,4 +148,10 @@
 			   (SELECT ID FROM USER WHERE ID = #{hostId}), #{pw}, #{kind})
 	</insert>
 	
+	<!-- 방 제목 -->
+	<select id="getChatName" parameterType="RoomVO" resultType="String">
+	   SELECT ROOMNAME FROM CHATROOM
+	      WHERE ROOMNUM = #{roomNum}
+	</select>
+	
 </mapper>    
