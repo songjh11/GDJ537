@@ -50,8 +50,8 @@
 		
 				<!-- Begin Page Content -->
         
-				<input type="text" style="display: none;" value="${result }" data-status="${result }">
-    			<input type="text" style="display: none;" value="${reportVacaVO.applyNum }" data-num="${reportVacaVO.applyNum }">
+				<input type="text" id="result" style="display: none;" value="${result }" data-status="${result }">
+    			<input type="text" id="applyNum" style="display: none;" value="${reportVacaVO.applyNum }" data-num="${reportVacaVO.applyNum }">
 	            <div class="container-fluid">
 						<div class="container px-4 px-lg-5 my-5">
         <div  style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1150px; border: solid 1px black; text-align: center;">
@@ -64,8 +64,7 @@
                         </div>
                         <div class="row" style="border-bottom: solid 1px black; margin-top: -120px; width: 368px; margin-left: 30px; height: 30px; font-size: 15px;">
                             <div style="padding-top:3px; letter-spacing: 0; margin-left: 30px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
-                                                                                                &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
-                            <c:choose>
+                        <c:choose>
                             	<c:when test="${reportVacaVO.status == 2}">
                             		<div id="ajaaja"></div>
                             
@@ -78,7 +77,8 @@
                             	<c:otherwise>
                             	
                             	</c:otherwise>
-                        </c:choose>
+                        </c:choose>                                                     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
+                            
                             <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
                             
                         </div>
@@ -91,7 +91,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 소속
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input id="depNameArea" name="depName" readonly style="border: 0; text-align: center; width: 645px; height: 97px;" value="${reportVacaVO.depName}">
+                                    <input type="text" id="depNameArea" name="depName" readonly style="border: 0; text-align: center; width: 645px; height: 97px;" value="${reportVacaVO.depName}">
                                     <!-- DEOARTMENT.DEPNAME = 부서번호 -->
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 성명
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input id="nameArea" name="name" readonly value="${reportVacaVO.name }" style="border: 0; text-align: center; width: 645px; height: 97px;">
+                                    <input type="text" id="nameArea" name="name" readonly value="${reportVacaVO.name }" style="border: 0; text-align: center; width: 645px; height: 97px;">
                                     <!-- USER.NAME = 이름 -->
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 직위
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input id="roleNameArea" name="roleName" readonly value="${reportVacaVO.roleName }" style="border: 0; text-align: center; width: 645px; height: 97px;">
+                                    <input type="text" id="roleNameArea" name="roleName" readonly value="${reportVacaVO.roleName }" style="border: 0; text-align: center; width: 645px; height: 97px;">
                                     <!-- ROLE.ROELNAME = 직급이름  -->
                                 </div>
                             </div>
@@ -152,7 +152,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 사유
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input id="textArea" name="text" readonly="readonly" value="${reportVacaVO.text }" style="border: 0; text-align: left; width: 645px; height: 97px;">
+                                    <input type="text" id="textArea" name="text" readonly="readonly" value="${reportVacaVO.text }" style="border: 0; text-align: left; width: 645px; height: 97px;">
                                     <span id="textAreaHelp"></span>
                                 </div>
                             </div>    
@@ -193,7 +193,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 45px; padding-top: 34px; letter-spacing: 15px;">
                                 비상연락망
                                 <div style="margin-left: 205px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input id="callInput" class="callHelp" readonly="readonly" type="call" name="call" value="${reportVacaVO.phone}" style="border: 0; width: 645px; height: 97px;  text-align:center"/>
+                                    <input type="text" id="callInput" class="callHelp" readonly="readonly" name="call" value="${reportVacaVO.call}" style="border: 0; width: 645px; height: 97px;  text-align:center"/>
                                 </div>
                             </div>
                         </div>
