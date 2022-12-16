@@ -7,13 +7,13 @@ let arr2 = location.search.split("=");
 // 게시글 요청 Controller 구분자
 let boardPathName = arr1[1];
 // 게시글 번호
-let boardParamNum = arr2[1];
+let boardParamnum = arr2[1];
 
 $.ajax({
     type: "POST",
     url: "/" + boardPathName + "/hit",
     data: {
-        num: boardParamNum
+        num: boardParamnum
     },
     success: result => {
         

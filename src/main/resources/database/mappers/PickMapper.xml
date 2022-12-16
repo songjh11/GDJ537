@@ -11,8 +11,8 @@
 		WHERE MYID=#{myId}
 	</select>
 	
-	<select id="findPickNum" parameterType="String" resultType="Long">
-		SELECT PICKNUM FROM PICK
+	<select id="findPicknum" parameterType="String" resultType="Long">
+		SELECT PICKnum FROM PICK
 		WHERE MYID=#{myId}
 	</select>
 
@@ -24,8 +24,8 @@
 	
 	<insert id="setPick" parameterType="Map">
 		INSERT INTO PICKDETAIL
-		(YOURID, PICKNUM)
-		VALUES(#{yourId}, #{pickNum});
+		(YOURID, PICKnum)
+		VALUES(#{yourId}, #{picknum});
 	</insert>
 	
 	<select id="getPickList" parameterType="String" resultMap="pickListResult">
@@ -35,52 +35,52 @@
 			ON E.ID=PD.YOURID 
 				INNER JOIN
 				PICK P
-				ON P.PICKNUM=PD.PICKNUM 
+				ON P.PICKnum=PD.PICKnum 
 					INNER JOIN
 					DEPARTMENT D
-					ON E.DEPNUM=D.DEPNUM
+					ON E.DEPnum=D.DEPnum
 						INNER JOIN
 					 	ROLE R
-					 	ON E.ROLENUM=R.ROLENUM	
+					 	ON E.ROLEnum=R.ROLEnum	
 			WHERE P.MYID=#{myId}		 	
 		ORDER BY E.NAME
 	</select>
 	
 	<select id="perCheck" parameterType="Map" resultType="int">
 		SELECT COUNT(*) FROM PICKDETAIL
-		WHERE PICKNUM=#{pickNum} AND YOURID=#{yourId}
+		WHERE PICKnum=#{picknum} AND YOURID=#{yourId}
 	</select>
 	
 	<delete id="pickCancel" parameterType="Map">
 		DELETE FROM PICKDETAIL
-		WHERE PICKNUM=#{pickNum} AND YOURID=#{yourId}
+		WHERE PICKnum=#{picknum} AND YOURID=#{yourId}
 	</delete>
 	
 	<!-- <select id="getDepList" resultType="DepartmentVO">
 		SELECT * FROM DEPARTMENT
-		ORDER BY DEPNUM
+		ORDER BY DEPnum
 	</select>
 	
 	<select id="getSearchResult" parameterType="Map" resultMap="getEmpListResult">
 		SELECT * FROM EMPLOYEE E
 			INNER JOIN
 			DEPARTMENT D
-			ON E.DEPNUM=D.DEPNUM
+			ON E.DEPnum=D.DEPnum
 			INNER JOIN
 				 	ROLE R
-				 	ON E.ROLENUM=R.ROLENUM	
+				 	ON E.ROLEnum=R.ROLEnum	
 				 	<if test="kind!=null">
 						<include refid="search"></include> 	
 				 	</if>
-			ORDER BY D.DEPNUM, E.NAME
+			ORDER BY D.DEPnum, E.NAME
 	</select>
 	
 	
 	<resultMap type="EmployeeVO" id="getEmpListResult">
-		<id column="NUM" property="num"/>
+		<id column="num" property="num"/>
 		<result column="ID" property="id"/>
-		<result column="ROLENUM" property="roleNum"/>
-		<result column="DEPNUM" property="depNum"/>
+		<result column="ROLEnum" property="rolenum"/>
+		<result column="DEPnum" property="depnum"/>
 		<result column="PW" property="pw"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
@@ -89,20 +89,20 @@
 		<result column="PROFILES" property="profiles"/>
 		<result column="STATUS" property="status"/>
 			<association property="roleVO">
-				<id column="ROLENUM" property="roleNum"/>
+				<id column="ROLEnum" property="rolenum"/>
 				<result column="ROLENAME" property="roleName"/>  
 			</association>
 			<association property="departmentVO">
-				<id column="DEPNUM" property="depNum"/>
+				<id column="DEPnum" property="depnum"/>
 				<result column="DEPNAME" property="depName"/>
 			</association>
 	</resultMap> -->
 	
 	<resultMap type="EmployeeVO" id="pickListResult">
-		<id column="NUM" property="num"/>
+		<id column="num" property="num"/>
 		<result column="ID" property="id"/>
-		<result column="DEPNUM" property="depNum"/>
-		<result column="ROLENUM" property="roleNum"/>
+		<result column="DEPnum" property="depnum"/>
+		<result column="ROLEnum" property="rolenum"/>
 		<result column="PW" property="pw"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
@@ -111,15 +111,15 @@
 		<result column="PROFILES" property="profiles"/>
 		<result column="STATUS" property="status"/>
 			<association property="roleVO">
-				<id column="ROLENUM" property="roleNum"/>
+				<id column="ROLEnum" property="rolenum"/>
 				<result column="ROLENAME" property="roleName"/>  
 			</association>
 			<association property="departmentVO">
-				<id column="DEPNUM" property="depNum"/>
+				<id column="DEPnum" property="depnum"/>
 				<result column="DEPNAME" property="depName"/>
 			</association>
 			<association property="pickVO">
-				<id column="PICKNUM" property="pickNum"/>
+				<id column="PICKnum" property="picknum"/>
 				<result column="MYID" property="myId"/>
 			</association>
 	</resultMap>

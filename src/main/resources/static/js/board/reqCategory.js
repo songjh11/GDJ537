@@ -13,7 +13,7 @@ $("#deptCate").on("change",function(){
         url: "./reqcate",
         traditional:true,
         data:{
-            depNum : cate1
+            depnum : cate1
         },
         success : function(data){
             console.log(data);
@@ -36,11 +36,8 @@ $("#deptCate").on("change",function(){
 });
 console.log(arrayForm);
 $("#formCate").on("change",function(){
-    // arrayCategoryName =[];
     let form =  $(this).find("option:selected").val();
-    // console.log(arrayForm[form]);
-    // console.log(arrayCategoryName[form]);
-     //요청받은 부서의 부서명을 넣기
+     //요청받은 부서의 서식명을 넣기
      $('#title').val('['+arrayCategoryName[form]+']');
     // console.log(form)
     $('#contents').summernote("destroy")

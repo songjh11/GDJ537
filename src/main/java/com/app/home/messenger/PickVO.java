@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class PickVO {
 	
-	private Long pickNum;
+	private Long picknum;
 	private Long myId;
 }

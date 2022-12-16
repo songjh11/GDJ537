@@ -41,7 +41,7 @@ public class GoodsService
 			count = Integer.parseInt(goodsMapper.getMaxCount(goodsVO).substring(2)) + 1;
 		}
 		if(goodsVO.getGoodsId().equals("RO")) {
-			goodsVO.setCarNum(null);
+			goodsVO.setCarnum(null);
 		}
 		goodsVO.setGoodsId(goodsVO.getGoodsId().concat(String.valueOf(count)));
 		
@@ -74,7 +74,7 @@ public class GoodsService
 		return goodsMapper.getGoods(goodsVO);
 	}
 	
-	public int setUpdate(GoodsVO goodsVO,MultipartFile [] files,ServletContext servletContext,String [] fileUpdateNumber) throws Exception{
+	public int setUpdate(GoodsVO goodsVO,MultipartFile [] files,ServletContext servletContext,String [] fileUpdatenumber) throws Exception{
 //		int count = goodsMapper.getCount(goodsVO);
 //		
 //		if(count == 0) {
@@ -96,22 +96,22 @@ public class GoodsService
 				if(!file.isEmpty()) {
 					
 					String fileName = fileManager.saveFile(path,servletContext, file);
-					if(fileUpdateNumber != null) {
-						if(fileUpdateNumber.length-1 < count) {
+					if(fileUpdatenumber != null) {
+						if(fileUpdatenumber.length-1 < count) {
 						
 							goodsFileVO.setFileName(fileName);
 							goodsFileVO.setOriName(file.getOriginalFilename());
 							goodsFileVO.setGoodsId(goodsVO.getGoodsId());
 							goodsMapper.setGoodsFileAdd(goodsFileVO);
 						}else {
-							goodsFileVO.setImgNum(Long.parseLong(fileUpdateNumber[count]));
+							goodsFileVO.setImgnum(Long.parseLong(fileUpdatenumber[count]));
 							goodsFileVO.setFileName(fileName);
 							goodsFileVO.setOriName(file.getOriginalFilename());
 							goodsFileVO.setGoodsId(goodsVO.getGoodsId());
 							goodsMapper.setGoodsFileAdd(goodsFileVO);
 							count++;
 						}
-					}else if(fileUpdateNumber == null) {
+					}else if(fileUpdatenumber == null) {
 						goodsFileVO.setFileName(fileName);
 						goodsFileVO.setOriName(file.getOriginalFilename());
 						goodsFileVO.setGoodsId(goodsVO.getGoodsId());
@@ -133,12 +133,12 @@ public class GoodsService
 		return goodsMapper.getMaxCount(goodsVO);
 	}
 	
-	public GoodsFileVO getFileNumCheck(GoodsFileVO goodsFileVO) throws Exception{
-		return goodsMapper.getFileNumCheck(goodsFileVO);
+	public GoodsFileVO getFilenumCheck(GoodsFileVO goodsFileVO) throws Exception{
+		return goodsMapper.getFilenumCheck(goodsFileVO);
 	}
 	
-	public int setFileNumCheckDelete(GoodsFileVO goodsFileVO) throws Exception{
-		return goodsMapper.setFileNumCheckDelete(goodsFileVO);
+	public int setFilenumCheckDelete(GoodsFileVO goodsFileVO) throws Exception{
+		return goodsMapper.setFilenumCheckDelete(goodsFileVO);
 	}
 	
 	public int setGoodsDelete(GoodsVO goodsVO) throws Exception{

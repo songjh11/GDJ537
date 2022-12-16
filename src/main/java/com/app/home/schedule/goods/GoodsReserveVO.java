@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 public class GoodsReserveVO {
-	private Long reserveNum;
+	private Long reservenum;
 	private String goodsId;
 	private Timestamp date;
-	private Long memberNum;
+	private Long membernum;
 	private String usePurpose;
 	private Timestamp startTime;
 	private Timestamp endTime;

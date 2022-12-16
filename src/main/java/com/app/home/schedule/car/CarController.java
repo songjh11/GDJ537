@@ -63,7 +63,7 @@ public class CarController {
 		List<GoodsVO> goodsVOs = carService.getGoodsList(goodsVO);
 		reserveVO = carService.getReserveDetail(reserveVO);
 		
-		session.setAttribute("reserveNum", reserveVO.getReserveNum());
+		session.setAttribute("reservenum", reserveVO.getReservenum());
 		
 		log.info("예약 변경 GET : {}", goodsVOs);
 		log.info("예약 변경 GET : {}", reserveVO);
@@ -79,8 +79,8 @@ public class CarController {
 	@PostMapping("/car/carReserveChange")
 	public String setUpdate(ReserveVO reserveVO, HttpSession session) throws Exception {
 		
-		Long reserveNum = (Long)session.getAttribute("reserveNum");
-		reserveVO.setReserveNum(reserveNum);
+		Long reservenum = (Long)session.getAttribute("reservenum");
+		reserveVO.setReservenum(reservenum);
 		
 		int result = carService.setUpdate(reserveVO);
 		

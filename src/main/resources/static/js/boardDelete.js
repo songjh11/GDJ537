@@ -4,7 +4,7 @@ deleteBtn.on("click", function(){
     let deleteFlag = confirm("정말 삭제합니까?");
 
     // 삭제할 게시글 번호
-    let deleteNum = deleteBtn.attr("data-boardNum");
+    let deletenum = deleteBtn.attr("data-boardnum");
 
     if(deleteFlag){
         
@@ -20,9 +20,9 @@ deleteBtn.on("click", function(){
                 
                 // a 태그의 href 속성에 파일 번호가 들어가 있으므로 잘라줌
                 let hrefSaper = item.getAttribute("href").split("/");
-                let fileDeleteNum = hrefSaper[3]; // 삭제될 파일 번호
+                let fileDeletenum = hrefSaper[3]; // 삭제될 파일 번호
 
-                $.get("/fileDelete/board/"+fileDeleteNum, function(data){
+                $.get("/fileDelete/board/"+fileDeletenum, function(data){
                     
                 }); // 파일 삭제
 
@@ -39,7 +39,7 @@ deleteBtn.on("click", function(){
             type: "POST",
             url: "/" + boardName + "/delete",
             data: {
-                id: deleteNum
+                id: deletenum
             },
             success: result => {
                 if(result == 1){

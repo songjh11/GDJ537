@@ -7,7 +7,7 @@
 	<insert id="setBoard" parameterType="BoardVO"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO BOARD (ID, CREATOR, TITLE,
-		CONTENTS, DEPNUM, HIT, SORT)
+		CONTENTS, DEPnum, HIT, SORT)
 		VALUES (0, #{creator}, #{title}, #{contents},
 		#{depnum}, 0, #{sort})
 	</insert>
@@ -115,8 +115,8 @@
 		FROM DEPARTMENT D
 			 JOIN
 			 REQCATEGORY RC 
-			 ON D.DEPNUM = RC.DEPNUM
-		WHERE RC.DEPNUM = #{depNum}
+			 ON D.DEPnum = RC.DEPnum
+		WHERE RC.DEPnum = #{depnum}
 	</select>
 	<resultMap type="ReqCategoryVO" id="reqCategoryResult">
 		<id column="id" property="id"/>
@@ -127,7 +127,6 @@
 			<id column="depNum" property="depNum"/>
 			<result column="depName" property="depName"/>
 			<result column="id" property="id"/>
-		
 		</association>
 	
 	</resultMap>

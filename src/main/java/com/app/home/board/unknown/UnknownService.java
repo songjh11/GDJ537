@@ -90,8 +90,8 @@ public class UnknownService {
 	public List<BoardVO> getUnknownList(Pager pager) throws Exception {
 
 		Long totalCount = boardDAO.getTotalCount(pager);
-		pager.getNum(totalCount);
-		pager.getRowNum();
+		pager.getnum(totalCount);
+		pager.getRownum();
 
 		return boardDAO.getList(pager);
 	}

@@ -52,8 +52,8 @@ $("#fileAdd").click(function(){
             //     type:"POST",
             //     url :"./fileDelete",
             //     data:{
-            //         "rowNum":i,
-            //         "noticeNum":noticeNum
+            //         "rownum":i,
+            //         "noticenum":noticenum
             //     },
             //     success:function(result){
             //         console.log("Result : ",result)
@@ -83,9 +83,9 @@ for(let i=0; i<$(".files").length; i++){
         console.log();
                     $.ajax({
                         type:"POST",
-                        url :"./fileUpdateNumber",
+                        url :"./fileUpdatenumber",
                         data:{
-                            "rowNum":i,
+                            "rownum":i,
                             "id":goodId
                         },
                         success:function(result){
@@ -93,10 +93,10 @@ for(let i=0; i<$(".files").length; i++){
                             console.log("After Result This", $(this));
                             // if(result == 1 ){
                             //     swal("첨부파일이 삭제되었습니다.").then(function(){
-                            //         location.replace("./update?noticeNum="+noticeNum);
+                            //         location.replace("./update?noticenum="+noticenum);
                             //     })
                             // }
-                            let r = '<input type="hidden" name="fileUpdateNumber" id="fileUpdateNumber" value="'+result
+                            let r = '<input type="hidden" name="fileUpdatenumber" id="fileUpdatenumber" value="'+result
                             r = r + '">';
                             $("#fileAddResult").append(r);
                         },
@@ -113,7 +113,7 @@ for(let i=0; i<$(".files").length; i++){
             type:"POST",
             url :"./fileDelete",
             data:{
-                "rowNum":i,
+                "rownum":i,
                 "id":goodId
             },
             success:function(result){
@@ -157,15 +157,15 @@ $(".deleteFile").click(function(){
     if(check){
         //post
         // /qna/fileDelete
-        //파라미터 fileNum
-        let imgNum = $(this).attr("data-file-num");
+        //파라미터 filenum
+        let imgnum = $(this).attr("data-file-num");
         console.log("Before Result This", $(this));
         const btn = $(this);
         $.ajax({
             type:"POST",
             url :"fileDelete",
             data:{
-                imgNum:imgNum
+                imgnum:imgnum
             },
             success:function(result){
                 console.log("Result : ",result)

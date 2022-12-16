@@ -69,20 +69,20 @@ public class GoodsController {
 	}
 
 	@PostMapping("update")
-	public String setUpdate(GoodsVO goodsVO,MultipartFile [] files,HttpSession session,String [] fileUpdateNumber) throws Exception {
+	public String setUpdate(GoodsVO goodsVO,MultipartFile [] files,HttpSession session,String [] fileUpdatenumber) throws Exception {
 		String id = (String) session.getAttribute("id");
 		goodsVO.setGoodsId(id);
-		int result = goodsService.setUpdate(goodsVO,files,session.getServletContext(),fileUpdateNumber);
+		int result = goodsService.setUpdate(goodsVO,files,session.getServletContext(),fileUpdatenumber);
 		return "redirect:./ad_list";
 	}
 	
-	@PostMapping("fileUpdateNumber")
+	@PostMapping("fileUpdatenumber")
 	@ResponseBody
-	public int setFileUpdateNumber(GoodsFileVO goodsFileVO) throws Exception{
-		long ROWNUM = goodsFileVO.getRowNum()+1L;
-		goodsFileVO.setRowNum(ROWNUM);
-		goodsFileVO = goodsService.getFileNumCheck(goodsFileVO);
-		int result = goodsFileVO.getImgNum().intValue();
+	public int setFileUpdatenumber(GoodsFileVO goodsFileVO) throws Exception{
+		long ROWnum = goodsFileVO.getRownum()+1L;
+		goodsFileVO.setRownum(ROWnum);
+		goodsFileVO = goodsService.getFilenumCheck(goodsFileVO);
+		int result = goodsFileVO.getImgnum().intValue();
 		
 		return result;
 	}
@@ -90,10 +90,10 @@ public class GoodsController {
 	@PostMapping("fileDelete")
 	@ResponseBody
 	public int setAttachFileDelete(GoodsFileVO goodsFileVO)throws Exception{
-		long ROWNUM = goodsFileVO.getRowNum()+1L;
-		goodsFileVO.setRowNum(ROWNUM);
-		goodsFileVO = goodsService.getFileNumCheck(goodsFileVO);
-		int result = goodsService.setFileNumCheckDelete(goodsFileVO);
+		long ROWnum = goodsFileVO.getRownum()+1L;
+		goodsFileVO.setRownum(ROWnum);
+		goodsFileVO = goodsService.getFilenumCheck(goodsFileVO);
+		int result = goodsService.setFilenumCheckDelete(goodsFileVO);
 		
 		return result;
 	}
