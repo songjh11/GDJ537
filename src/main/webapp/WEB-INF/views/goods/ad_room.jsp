@@ -23,7 +23,7 @@
           ${result}
         ]);
         var options = {
-          title: '회의실별 통계'
+          title: `${year}년 `+'회의실별 통계'
           
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -44,7 +44,7 @@
   
           var options = {
             chart: {
-              title: '부서별 회의실 예약 통계',
+              title: '부서별 회의실 예약 통계  ' +`(${month}월)`,
             }
           };
   

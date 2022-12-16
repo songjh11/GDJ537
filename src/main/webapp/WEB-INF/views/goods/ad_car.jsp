@@ -23,7 +23,7 @@
           ${result}
         ]);
         var options = {
-          title: '차량별 통계'
+          title: `${year}년 `+'차량별 통계',
           
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -38,13 +38,13 @@
         function drawChart1() {
           //부서명 가지고 오기
           var data = google.visualization.arrayToDataTable([
-            ['부서명', 'Count'],
+            ['부서명', '건수'],
             ${depart}
           ]);
   
           var options = {
             chart: {
-              title: '부서별 차량 예약 통계',
+              title: '부서별 차량 예약 통계    '+`(${month}월)`,
             }
           };
   
