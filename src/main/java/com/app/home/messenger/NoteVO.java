@@ -14,5 +14,7 @@ public class NoteVO {
 	private String contents;
 	private Timestamp regDate;
 	private int readCheck;
+	private String receiveName;
+	private String sendName;
 	
 }
