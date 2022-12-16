@@ -51,34 +51,28 @@ ul li {
 							<tr>
 								<th>회의실 번호</th>
 								<th>이름</th>
-								<th>상세정보</th>
-								<th>최대 인원(명)</th>
-								<th>위치</th>
+								<th>최대 인원 수</th>
+								<th>회의실 위치</th>
 							</tr>
 							<tr>
 								<td>${goodDetail.goodsId }</td>
 								<td>${goodDetail.name }</td>
-								<td>${goodDetail.contents }</td>
 								<td>${goodDetail.max }</td>
 								<td>${goodDetail.location }</td>
 							</tr>
 						</table>
 						<br>
 						<br>
+						<div class="text-center">
+						${goodDetail.contents }
 						<ul>
-							<li>
-								<img class="de" src="/file/goods/${goodDetail.goodsFileVO[0].fileName }"
-									alt="${goodDetail.goodsFileVO[0].oriName }">
-							</li>
-							<li>
-								<img class="de" src="/file/goods/${goodDetail.goodsFileVO[1].fileName }"
-									alt="${goodDetail.goodsFileVO[1].oriName }">
-							</li>
-							<li>
-								<img class="de" src="/file/goods/${goodDetail.goodsFileVO[2].fileName }"
-									alt="${goodDetail.goodsFileVO[2].oriName }">
-							</li>
+							<c:forEach items="${goodDetail.goodsFileVO}" var="goods">
+								<li>
+									<img class="de" src="/file/goods/${goods.fileName}" alt="">
+								</li>
+							</c:forEach>
 						</ul>
+						</div>
 						<br>
 					</section>
 					<div style="text-align: center;" class="mb-5">
