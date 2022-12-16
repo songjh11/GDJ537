@@ -195,7 +195,7 @@
 	                                        </thead>
                                             <tbody>
                                                 <c:forEach items="${list}" var="vo">
-                                                	<tr onclick="location.href='/report/mylist?reportNum=3&applyNum=${vo.applyNum}';" style="cursor:hand">
+                                                	<tr onclick="location.href='/report/detail?reportNum=3&applyNum=${vo.applyNum}';" style="cursor:hand">
                                                 		<td>${vo.title}</td>
                                                 		<td>${vo.date}</td>
                                                 		<td>${vo.cdate}</td>
