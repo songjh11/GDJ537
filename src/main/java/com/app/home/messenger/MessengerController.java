@@ -221,23 +221,22 @@ public class MessengerController extends Socket {
 		
 		
 		UserVO sendUser = new UserVO();
-		sendUser.setId(noteVO.getSendId().intValue());
+		sendUser.setId(noteVO.getSendId());
 		sendUser = userService.getMypage(sendUser);
 		
 		UserVO receiveUser = new UserVO();
-		receiveUser.setId(noteVO.getReceiveId().intValue());
+		receiveUser.setId(noteVO.getReceiveId());
 		receiveUser = userService.getMypage(receiveUser);
 		
 		mv.addObject("detail", noteVO);
-		log.info("노트의 인포는 {}", noteVO);
+		log.info("답장증명 {}, {}", userVO.getId(), noteVO.getSendId());
 		mv.addObject("sendUser", sendUser);
 		mv.addObject("receiveUser", receiveUser);
 		mv.addObject("session", userVO);
 		
 		userVO.setId(userVO.getId());
-		Long reid = new Long(userVO.getId());
 		
-		noteVO.setReceiveId(reid);
+		noteVO.setReceiveId(userVO.getId());
 		if(noteVO.getReadCheck()==1) {
 			int result = noteService.updateCheck(noteVO);
 		} else {
@@ -257,7 +256,7 @@ public class MessengerController extends Socket {
 	    userVO = userService.getMypage(userVO);
 	    
 	    UserVO receiveUser = new UserVO();
-	    receiveUser.setId(noteVO.getReceiveId().intValue());
+	    receiveUser.setId(noteVO.getReceiveId());
 	    receiveUser = userService.getMypage(receiveUser);
 	    
 		ModelAndView mv = new ModelAndView();
@@ -296,11 +295,11 @@ public class MessengerController extends Socket {
 		return noteService.setDeleteNote(noteVO);
 	}
 	
-	private ArrayList<Long> arrr = new ArrayList<>();
+	private ArrayList<Integer> arrr = new ArrayList<>();
 	
 	@PostMapping("note/group1")
 	@ResponseBody
-	public ModelAndView setGroup1(HttpSession session, UserVO userVO, Long [] arr)throws Exception{
+	public ModelAndView setGroup1(HttpSession session, UserVO userVO, int [] arr)throws Exception{
 		arrr = new ArrayList<>();
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
@@ -310,7 +309,7 @@ public class MessengerController extends Socket {
 		ModelAndView mv = new ModelAndView("jsonView");
 		log.info("인트배열을받으세염 {}",arr);
 		
-		for(Long arrrdd : arr) {
+		for(int arrrdd : arr) {
 			arrr.add(arrrdd);
 		}
 		
@@ -360,7 +359,7 @@ public class MessengerController extends Socket {
 	    int result = 0;
 		String message = "";
 
-	    for(Long arrrdd : arrr) {
+	    for(int arrrdd : arrr) {
 	    	noteVO.setReceiveId(arrrdd);
 	    	result = noteService.setSendNoteGroup(noteVO);
 	    	log.info("쪽지내용 {}",noteVO);

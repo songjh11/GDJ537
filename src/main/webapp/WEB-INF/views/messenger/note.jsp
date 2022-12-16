@@ -333,7 +333,7 @@
 	
 		display: flex;
 		float: right;
-		margin-left: auto;
+		/* margin-left: auto; */
 	}
 
 	#countse {
@@ -431,7 +431,7 @@
 									"> 
 										<select class="searchOption form-control" name="kind" id="kindkind" placeholder="선택하세요">
 											<option value="contents" selected>내용</option>
-											<option id="changeOption" value="sendId">보낸 사람 ID</option>
+											<option id="changeOption" value="sendId">보낸 사람</option>
 										</select>
 										<!-- <input hidden="hidden" /> -->
 										<input id="searchInput" name="search" type="text" class="form-control bg-light border-0 small" style="width: 130px !important;" placeholder="Search for..."
@@ -461,12 +461,20 @@
 										<div id="listInfo">
 											<div style="display: flex;">
 											<div id="previewId"><strong>${list.sendName}</strong></div>
+											<c:if test="${list.flag eq 1}">
+											<span style="margin-left: auto;
+											font-size: 10px; color: #8198fa; margin-right: 9px; margin-top: 2px;">그룹쪽지</span>
 											<img id="noteDelete" onclick="noteDelete(${list.noteNum})" src="/img/messenger/close.png">
+											</c:if>
+											<c:if test="${list.flag eq 0}">
+											<img id="noteDelete" style="margin-left: auto;" onclick="noteDelete(${list.noteNum})" src="/img/messenger/close.png">
+											</c:if>
+											
 											</div>
 											
 											<div id="previewNote">${fn:replace(list.contents, replaceChar, "<br/>")}
-												<!-- ${list.contents} -->
 											</div>
+											
 										</div>
 									</div>
 
@@ -524,12 +532,7 @@
 
 	<script>
 
-		//읽은 아이들은 회색으로 표시..
-		$($(".noteList")).each(function(index, item) {
-			if($(this).attr("read-check")==0) {
-				$(this).css("color","lightgrey");
-			}
-		});	
+		
 		
 		//검색아이콘 클릭시
 		$(document).ready(function() {
@@ -557,7 +560,7 @@
 				$.ajax({
 					type:"GET",
 					url :"./note/delete",
-					traditional:true, //배열을 전송할 때 사용, true
+					traditional:true,
 					data:{
 						noteNum: num
 					},
@@ -565,9 +568,16 @@
 						console.log(data);
 						$("#noteNum"+num).remove();
 						// console.log($("#noteNum"+num).attr("id"))
-						setTimeout(function(){
-							location.reload();
-						},250);
+
+
+						//발신에서 새로고침 안하려고했는데 안하니까 페이저 반영이 안되네.. 그냥 둘다 새로고침되는걸로 해야겠다
+						// if($("#sImg").attr("src")=="/img/messenger/sendX.png") {
+							setTimeout(function(){
+								location.reload();
+							},250);
+
+						// }
+						
 						
 					},
 					error : function(){
@@ -625,7 +635,7 @@
 
 					// 검색기능을 위해 기존 폼을 발신전용으로 잠시 수정
 					$("#changeOption").val("receiveId");
-					$("#changeOption").html("받는 사람 ID");
+					$("#changeOption").html("받는 사람");
 					$("#gogogogo").attr("type","button");
 
 					$('input[type="text"]').keydown(function() {
@@ -712,7 +722,7 @@
 					$("#soosin").css("color", "#000000");
 					$("#balsin").css("color", "#4a7bdd");
 
-					
+					let flagflag = "";
 					
 
 					$.each(data.list, function(index, item) { 
@@ -721,9 +731,15 @@
 						// console.log(item.noteNum);
 						item.contents = item.contents.replace(/\r\n/g, "</br>");
 
+						if(item.flag==1) {
+							flagflag='<span style="margin-left: auto; font-size: 10px; color: #8198fa; margin-right: 9px; margin-top: 2px;">그룹쪽지</span><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png">'
+						} else {
+							flagflag='<img id="noteDelete" style="margin-left: auto;" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png">'
+						}
+
 						// 쪽지번호, 수신자라는 글자 있는 버전
 						// tempest += '<div class="noteList" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId">'+item.noteNum+' 수신자 : <strong>'+item.receiveName+'</strong></div><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png"></div><div id="previewNote">'+item.contents+'</div></div></div>'
-						tempest += '<div class="noteList" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId"><strong>'+item.receiveName+'</strong></div><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png"></div><div id="previewNote">'+item.contents+'</div></div></div>'
+						tempest += '<div class="noteList" flag="'+item.flag+'" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId"><strong>'+item.receiveName+'</strong></div>'+flagflag+'</div><div id="previewNote">'+item.contents+'</div></div></div>'
 
 						$('#noteContent').html(tempest);
 					})
@@ -736,6 +752,16 @@
 					} 
 
 					$(".disabled").removeAttr("href");
+
+					$($(".noteList")).each(function(index, item) {
+						if($(this).attr("read-check")==0) {
+							$(this).css("color","lightgrey");
+						}
+
+						if($(this).attr("flag")==1) {
+							$(this).css("background","rgb(237 241 254)");
+						}
+					});	
 
 					
 
@@ -750,6 +776,19 @@
 		}
 
 		$(".disabled").removeAttr("href");
+
+
+
+		//읽은 아이들은 회색으로 표시..
+		$($(".noteList")).each(function(index, item) {
+			if($(this).attr("read-check")==0) {
+				$(this).css("color","lightgrey");
+			}
+
+			if($(this).attr("flag")==1) {
+				$(this).css("background","rgb(195 210 255 / 24%)");
+			}
+		});	
 
 		
 		
