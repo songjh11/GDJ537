@@ -5,11 +5,11 @@
 
 <mapper namespace="com.app.home.file.FileDAO">
 	<insert id="setFile" parameterType="com.app.home.file.FileVO">
-		INSERT INTO FILE (ID, BOARDID, FILENAME, ORINAME)
-		VALUES (0, #{boardId}, #{fileName}, #{oriName})
+		INSERT INTO FILE (ID, BOARDID, FILENAME, ORINAME, FILESIZE)
+		VALUES (0, #{boardId}, #{fileName}, #{oriName}, #{fileSize})
 	</insert>
 	<select id="getFileDetail" parameterType="com.app.home.file.FileVO" resultType="com.app.home.file.FileVO">
-		SELECT * FROM FILE WHERE id = #{id}
+		SELECT * FROM FILE WHERE ID = #{id}
 	</select>
 	<delete id="setFileDelete" parameterType="com.app.home.file.FileVO">
 		DELETE FROM FILE WHERE ID = #{id}

@@ -15,7 +15,10 @@ import com.app.home.file.FileVO;
 import com.app.home.util.FileManager;
 import com.app.home.util.Pager;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class UnknownService {
 
 	@Autowired
@@ -42,9 +45,10 @@ public class UnknownService {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(file.getOriginalFilename()!="") {
 					FileVO fileVO = new FileVO();
-					String fileName = fileManager.saveFile(file, path);
+					String fileName = fileManager.saveFileS3(file);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
+					fileVO.setFileSize(fileManager.calFileSize(file));
 					fileVO.setBoardId(boardVO.getId());
 
 					int result2 =fileDAO.setFile(fileVO);
@@ -69,8 +73,9 @@ public class UnknownService {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(!file.isEmpty()) {
 					FileVO fileVO = new FileVO();
-					String fileName = fileManager.saveFile(file, path);
+					String fileName = fileManager.saveFileS3(file);
 					fileVO.setFileName(fileName);
+					fileVO.setFileSize(fileManager.calFileSize(file));
 					fileVO.setBoardId(boardVO.getId());
 					fileVO.setOriName(file.getOriginalFilename());
 

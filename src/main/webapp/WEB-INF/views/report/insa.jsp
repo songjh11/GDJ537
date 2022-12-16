@@ -53,7 +53,7 @@
 						 </button>
 					 
 					  <div class="dropdown-menu">
-			              <input id="dropId" name="depNum" > 
+			              <input type="hidden" id="dropId" name="depNum" > 
 						   <ul>
 						   		<li class="deptLi" data-depNum="1">영업팀</li>
 						   		<li class="deptLi" data-depNum="2">총무팀</li>
@@ -70,7 +70,7 @@
 					   <input type="text" id="roleInput" readonly value="">
 					 </button>
 					  <div class="dropdown-menu">
-					  	<input id="roleId" name="roleNum" value="${userVO.roleNum}"> 
+					  	<input type="hidden" id="roleId" name="roleNum" value="${userVO.roleNum}"> 
 						   <ul>
 						   		<li class="roleLi" data-roleNum="1">사장</li>
 						   		<li class="roleLi" data-roleNum="2">부장</li>
@@ -81,11 +81,11 @@
 						   </ul>
 					  </div>
 				</div>
+						<button type="button" id="listBtn" class="btn btn-primary">
+							조회
+						</button>
 			</form>     
 			
-			<button type="button" id="listBtn">
-				조회
-			</button>
 	            <!-- End Page Content -->
 					
 			</div>
@@ -115,7 +115,44 @@
 		                                </c:forEach>  --%>
 		                            </tbody>
 		                        </table>
+		                     <%-- <nav aria-label="Page navigation example">
+                        		
+                      		  <ul class="pagination">
+                      		  
+                      		  	<c:if test="${ReportPager.pre}">
+                      		  	
+                      			    <li class="page-item">
+                      			    
+                      			      <a class="page-link" href="./insa1?page=${ReportPager.startNum-1}" aria-label="Previous">
+                      			        <span aria-hidden="true">&laquo;</span>
+                      			      </a>
+                      			      
+                      			    </li>
+                      			    
+                      		    </c:if>
+                      		    
+                      		    <c:forEach begin="${ReportPager.startNum}" end="${ReportPager.lastNum}" var="i">
+                      		    	    <li class="page-item"><a class="page-link" href="./insa1?page=${i}">${i}</a></li>
+                      		    </c:forEach>
+                      		
+                      			<li class="page-item ${ReportPager.next?'':'disabled'}">
+                      			
+                      		      <a class="page-link" href="./insa1?page=${ReportPager.lastNum+1}" aria-label="Next">
+                      		        <span aria-hidden="true">&raquo;</span>
+                      		      </a>
+                      		      
+                      		    </li>
+                      		    
+                      		  </ul>
+                      		  
+                      		</nav> --%>
+		                  
             </form>
+            
+            <div id="pageDiv">
+            
+            
+            </div>
 			
 			
 			
@@ -134,8 +171,11 @@
     $('#listBtn').click(function() {
 
     	let depNum = $("#dropId").val();
+    	console.log("뎁넘 : ", depNum);
+    
     	let roleNum = $("#roleId").val();
     	let value = $("#roleInput").val();
+    	let tbd = $("#tbd");
             $.ajax({
                 type: 'GET',
                 url:  '/report/insa1?depNum='+depNum+'&roleNum='+roleNum,
@@ -143,16 +183,17 @@
                 	console.log(dd)
                 	$("#thd").empty();
                 	$("#tbd").empty();
+                	$("#pageDiv").empty();
                 		$("#thd").append('<tr class="text-success"><th>아이디</th><th>이름</th><th>직급</th><th>승인부여</th></tr>')
                 	for(var i=0; i<dd.length; i++){
                 		
               
                 			
-	                	$("#tbd").append('<tr><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+dd[i].depNum+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'">부여</button></td></tr>')
-                	
-                		
+	                	$("#tbd").append('<tr><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'">부여</button></td></tr>')
                 		
                 	}
+                		
+                		
                 	
                 })
         

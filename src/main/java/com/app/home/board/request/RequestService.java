@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.app.home.board.BoardDAO;
 import com.app.home.board.BoardVO;
-import com.app.home.board.reqcategory.ReqCategoryVO;
 import com.app.home.file.FileDAO;
 import com.app.home.file.FileVO;
 import com.app.home.util.FileManager;
@@ -63,7 +62,8 @@ public class RequestService {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(file.getOriginalFilename()!="") {
 					FileVO fileVO = new FileVO();
-					String fileName = fileManager.saveFile(file, path);
+					String fileName = fileManager.saveFileS3(file);
+					fileVO.setFileSize(fileManager.calFileSize(file));
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setBoardId(boardVO.getId());
@@ -91,10 +91,11 @@ public class RequestService {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(file.getOriginalFilename()!="") {
 					FileVO fileVO = new FileVO();
-					String fileName = fileManager.saveFile(file, path);
+					String fileName = fileManager.saveFileS3(file);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setBoardId(boardVO.getId());
+					fileVO.setFileSize(fileManager.calFileSize(file));
 					
 					int result2 =fileDAO.setFile(fileVO);
 				}

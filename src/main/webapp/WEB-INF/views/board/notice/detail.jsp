@@ -57,7 +57,7 @@
                     </div>
                     <div class="col-fill ml-auto align-self-end mr-5">
                       <div>
-                      	<p>작성자 <c:out value="${boardVO.id }"></c:out></p>
+                      	<p>작성자 <c:out value="${boardVO.creator }"></c:out></p>
                       	<p>조회수 <c:out value="${boardVO.hit}"></c:out> </p>
                       </div>
                       <p id="regdate" data-date="<c:out value="${boardVO.regDate}"></c:out>"> 등록일자 </p>
@@ -79,7 +79,7 @@
 			                    </button>
 					              <div class="dropdown-menu dropdown-menu-right">
 		                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
-			                        <a class="dropdown-item" href="/fileDown/board/${file.id}">${file.oriName } </a>
+			                        <a class="dropdown-item" href="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/${file.fileName}">${file.oriName }(${file.fileSize }) </a>
 			                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
 			                      </c:forEach>
 		
