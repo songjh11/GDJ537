@@ -54,8 +54,8 @@ public class NoteService {
 		notePager.setPerPage(10L);
 		
 
-		log.info("============= : {}", totalCount);
-		log.info("==============토탈페이지 : {}", notePager.getTotalPage());
+//		log.info("============= : {}", totalCount);
+//		log.info("==============토탈페이지 : {}", notePager.getTotalPage());
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", userVO.getId());
