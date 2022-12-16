@@ -14,12 +14,14 @@
 
 	<select id="getDetail" parameterType="BoardVO"
 		resultMap="resultBoardAddfiles">
-		SELECT b.*,f.id as fileid, f.filename, f.oriname, f.fileSize  , u.name , u.status 
+		SELECT b.*,f.id as fileid, f.filename, f.oriname, f.fileSize  , u.name , u.status , UD.NAME AS updaterName
 		FROM BOARD b
 			LEFT JOIN FILE f 
 			ON b.id = f.boardId
-			inner JOIN `USER` u 
+			LEFT JOIN `USER` u 
 			ON b.CREATOR  = u.ID 
+			LEFT JOIN `USER` UD
+			ON b.UPDATER = UD.ID
 		WHERE b.id=#{id}
 	</select>
 
@@ -34,6 +36,7 @@
 		<result column="regdate" property="regDate" />
 		<result column="updatedate" property="updateDate"/>
 		<result column="updater" property="updater"/>
+		<result column="updaterName" property="updaterName"/>
 		<association property="userVO" javaType="UserVO">
 			<id column="creator" property="id"/>
 			<result column="name" property="name"/>
@@ -61,10 +64,13 @@
 		= #{id}
 	</delete>
 
-	<select id="getList" parameterType="Pager" resultType="BoardVO">
-		SELECT B.*, COUNT(C.ID) as cntComment FROM BOARD B
+	<select id="getList" parameterType="Pager" resultMap="resultBoardAddfiles">
+		SELECT B.ID, B.title, B.creator, B.depnum, B.hit, B.regDate, COUNT(C.ID) as cntComment, U.NAME, U.status 
+		FROM BOARD B
 		LEFT JOIN COMMENT C
 		ON B.ID = C.BOARDID
+		LEFT JOIN `USER` U 
+		ON B.CREATOR = U.ID 
 		WHERE SORT = #{sort}
 		AND
 		B.<include refid="search"></include>

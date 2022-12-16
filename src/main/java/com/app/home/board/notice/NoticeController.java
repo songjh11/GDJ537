@@ -1,11 +1,12 @@
 package com.app.home.board.notice;
-
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -97,6 +98,16 @@ public class NoticeController {
 		mv.setViewName("/board/notice/list");
 		
 		return mv;
+	}
+	
+	@GetMapping("getListByHit")
+	@ResponseBody
+	public Map<String, Object> getListByHit(Pager pager)throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		pager.setSort("공지");
+		map.put("notice", noticeService.getListByHit(pager));
+		map.put("pager", pager);
+		return map;
 	}
 	
 	@GetMapping("hit")
