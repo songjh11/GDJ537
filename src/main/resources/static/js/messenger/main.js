@@ -166,3 +166,9 @@ $("#chatBtn").click(function(){
  $("#msgBtn").click(function(){
     console.log("메세지함");
 })
+
+
+
+$(".roomArea").on("click", ".roomLink", function(){
+    console.log("dfssfd");
+})
