@@ -45,6 +45,10 @@ public class GoodsService
       goodsVO.setGoodsId(goodsVO.getGoodsId().concat(String.valueOf(count)));
       
       int result = goodsMapper.setAdd(goodsVO);
+      
+      if(result == 1) {
+    	  goodsMapper.setReserveInit(goodsVO);
+      }
 
 
       if (files.length != 0)
@@ -197,5 +201,6 @@ public class GoodsService
    public int getCarNowTotal(String month) throws Exception{
       return goodsMapper.getCarNowTotal(month);
    }
+
 
 }

@@ -76,6 +76,7 @@ startTime.addEventListener("blur", function () {
         alert("선택할 수 없는 날입니다.");
         startCheck = false;
         console.log("시작 날 선택 - " + startCheck);
+        
         return false;
     }
     else {
@@ -395,6 +396,7 @@ btn.addEventListener("click", function () {
 
     if ((startCheck == false || endCheck == false || purposeCheck == false || startValueCheck == false || endValueCheck == false || timeCheck == false || holidayCheck == false || betweenDayCheck == false)) {
         alert("조건을 충족하지 못하였습니다. (다시 입력하세요~)");
+        location.reload();
         return false;
     }
     else {
