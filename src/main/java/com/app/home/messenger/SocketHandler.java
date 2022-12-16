@@ -3,6 +3,7 @@ package com.app.home.messenger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,6 +27,9 @@ public class SocketHandler extends TextWebSocketHandler{
 	private static List<WebSocketSession> weblist = new ArrayList<>();
 	
 	HashMap<String, WebSocketSession>sessionMap=new HashMap<>(); // 웹소켓 세션을 담아둘 맵
+	
+	//방 구분하기
+	Map<String, ArrayList<WebSocketSession>> sm = new HashMap<>();
 	
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -77,29 +81,29 @@ public class SocketHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 	
+	log.info("session : {}", session);	
+	log.info("map : {}", sessionMap);
+	
 	SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
 	UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
 		
 	// 소켓 종료	
 	sessionMap.remove(session.getId());
-	super.afterConnectionClosed(session, status);
+	//super.afterConnectionClosed(session, status);
 	
 	log.info(session + "접속 해제");
 	weblist.remove(session);
-	}
-
-
-    public static JSONObject jsonToOJsonObject(String jsonStr) {
-    	JSONParser parser =new JSONParser();
-    	JSONObject obj= null;
-    	 
-    	try {
-    		obj=(JSONObject)parser.parse(jsonStr);
-		} catch (ParseException e) {
+	for (String key: sessionMap.keySet()) {
+		WebSocketSession wss= sessionMap.get(key);
+		try {
+			
+		wss.sendMessage(new TextMessage("{\"type\":\"disconnect\",\"username\":\""+userVO.getName()+"\"}"));//userVO.getName()));
+		}catch(Exception e) {
 			e.printStackTrace();
-		}return obj;
-     }
-
+		}
+ 	}
+	
+	}
 
 
 }

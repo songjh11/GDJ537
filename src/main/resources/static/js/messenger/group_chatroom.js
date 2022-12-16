@@ -1,36 +1,12 @@
 
-	let popupWidth = "500";
-	let popupHeight = "750";
-	let popUp = "";
-	  
-	// 듀얼 모니터 고려한 윈도우 띄우기
-	let curX = window.screenLeft;
-	let curWidth = document.body.clientWidth;
-	let curHeight = document.body.clientHeight;
-	  
-	let nLeft = (screen.availWidth/ 2) - (popupWidth / 2);
-	let nTop = ((screen.availHeight-popupHeight)/2)-10;
-	
-	let strOption = "";
-	strOption += "left=" + nLeft + "px,";
-	strOption += "top=" + nTop + "px,";
-	strOption += "width=" + popupWidth + "px,";
-	strOption += "height=" + popupHeight + "px,";
-	strOption += "toolbar=no,menubar=no,location=no,";
-	strOption += "resizable=yes,status=yes";
-
-	function chatPop(roomNum){
-		window.open('/messenger/chatroom?roomNum='+roomNum, '단체 채팅방', strOption);
-	}
 
 //------------------------------------
-
-	let ws = new WebSocket("ws://" + location.host + "/chatroom");
 
 	let sessionId = $("#sessionId").val();
 	let userName = $("#userName").val();
 	let userId = $("#userId").val();
 	let chat = "";
+	let roomNum = $("#roomNum").val(); //addRoom에서 방번호 뿌려주기
 
 //------------------------------------
 	//enter 치면 메세지 보내기
@@ -50,7 +26,8 @@ function send() {
 				sessionId : sessionId,
 				userName : userName,
 				userId : userId,
-				chat : chat
+				chat : chat,
+				roomNum : roomNum
 			}
 		ws.send(JSON.stringify(option))
 		$("#inputChat").val("");
@@ -59,6 +36,8 @@ function send() {
 //---------------------------------------------
 
 	function wsOpen(){
+		let ws = new WebSocket("ws://" + location.host + "/chatroom/"+roomNum);		
+		
 		ws.onmessage = function(data) {
 			let msg = data.data;
 			console.log("msg : ", msg);
@@ -91,23 +70,20 @@ function send() {
 												+"<div class='you-bubble-flex'><div class='you-bubble'>" +d.chat+ "</div></div>"
 											);
 					}
+				}else if(d.type == "disconnect"){
+					let str = d.username + " 님이 나가셨습니다.";
+					    $("#chating").append("<div class='alo'>"
+				  						+"<div class='alo-bubble'>" +str+"</div></div>"
+				 						);	
 				}
-			}
+				
+				
+				}
+				
 		}
 	}
 //---------------------------------------------
 
-	//채팅창에서 나갔을 때
-	function onClose() {
-		console.log("퇴장");
-		//let da = data.data;
-		let str = userName + " 님이 방을 나가셨습니다.";
-		
-		$("#chating").append("<div class='al0'>"
-	  						+"<div class='alo-bubble'>" +str+"</div></div>"
-	 						);	
-	}
-	
 
 
 
