@@ -14,8 +14,13 @@
 
 	<select id="getDetail" parameterType="BoardVO"
 		resultMap="resultBoardAddfiles">
-		SELECT b.*,f.id as fileid, f.filename, f.oriname, f.fileSize FROM BOARD b
-		LEFT JOIN FILE f ON b.id = f.boardId WHERE b.id=#{id}
+		SELECT b.*,f.id as fileid, f.filename, f.oriname, f.fileSize  , u.name , u.status 
+		FROM BOARD b
+			LEFT JOIN FILE f 
+			ON b.id = f.boardId
+			inner JOIN `USER` u 
+			ON b.CREATOR  = u.ID 
+		WHERE b.id=#{id}
 	</select>
 
 	<resultMap type="BoardVO" id="resultBoardAddfiles">
@@ -29,7 +34,11 @@
 		<result column="regdate" property="regDate" />
 		<result column="updatedate" property="updateDate"/>
 		<result column="updater" property="updater"/>
-
+		<association property="userVO" javaType="UserVO">
+			<id column="creator" property="id"/>
+			<result column="name" property="name"/>
+			<result column="status" property="status"/>
+		</association>
 		<collection property="fileVOs" javaType="List"
 			ofType="FileVO">
 			<id column="fileid" property="id" />
@@ -42,7 +51,7 @@
 
 	<update id="setUpdate" parameterType="BoardVO" >
 		UPDATE BOARD set
-		title=#{title}, CONTENTS =#{contents}, UPDATEDATE = SYSDATE()
+		title=#{title}, CONTENTS =#{contents}, UPDATEDATE = SYSDATE(), UPDATER = #{updater}
 		WHERE ID =#{id};
 	</update>
 
@@ -60,31 +69,7 @@
 		AND
 		B.<include refid="search"></include>
 		GROUP BY B.ID
-		ORDER BY ID DESC
-		LIMIT ${startRow}, ${perPage}
-	</select>
-	
-	<!-- 조회수 순으로 리스트 불러오기 -->
-	<select id="getListByHit" parameterType="Pager" resultType="BoardVO">
-		SELECT * FROM BOARD 
-		WHERE SORT = #{sort}
-		AND
-		<include refid="search"></include>
-		ORDER BY HIT DESC
-		LIMIT ${startRow}, ${perPage}
-	</select>
-	
-	<!-- 댓글수 순으로 리스트 불러오기 -->
-	<select id="getListByComment" parameterType="Pager" resultType="BoardVO">
-		SELECT B.*, COUNT(C.BOARDID) AS BI FROM
-		BOARD B
-		LEFT JOIN COMMENT C
-		ON B.ID = C.BOARDID
-		WHERE SORT = #{sort}
-		AND
-		B.<include refid="search"></include>
-		GROUP BY B.ID
-		ORDER BY BI DESC
+		ORDER BY <include refid="order"></include>
 		LIMIT ${startRow}, ${perPage}
 	</select>
 
@@ -104,6 +89,14 @@
 		</choose>
 		LIKE CONCAT('%', #{search}, '%')
 	</sql>
+	
+	<sql id="order">
+		<choose>
+			<when test="order == 'comment'">cntComment DESC</when>
+			<when test="order == 'hit'">HIT DESC</when>
+			<otherwise>ID DESC</otherwise>
+		</choose>
+	</sql>
 
 	<update id="setHit" parameterType="BoardVO">
 		UPDATE BOARD SET HIT = HIT + 1
@@ -111,13 +104,26 @@
 	</update>
 	
 	<!-- 요청카테고리 -->
-	<select id="findReqCategory" parameterType="ReqCategoryVO" resultType="ReqCategoryVO">
-		SELECT RC.*
+	<select id="findReqCategory" parameterType="ReqCategoryVO" resultMap="reqCategoryResult">
+		SELECT RC.*,D.DEPNAME
 		FROM DEPARTMENT D
 			 JOIN
 			 REQCATEGORY RC 
 			 ON D.DEPnum = RC.DEPnum
 		WHERE RC.DEPnum = #{depnum}
 	</select>
+	<resultMap type="ReqCategoryVO" id="reqCategoryResult">
+		<id column="id" property="id"/>
+		<result column="categoryName" property="categoryName"/>
+		<result column="categoryForm" property="categoryForm"/>
+		<result column="depNum" property="depNum"/>
+		<association property="DepartmentVO" javaType="DepartmentVO">
+			<id column="depNum" property="depNum"/>
+			<result column="depName" property="depName"/>
+			<result column="id" property="id"/>
+		
+		</association>
+	
+	</resultMap>
 
 </mapper>    

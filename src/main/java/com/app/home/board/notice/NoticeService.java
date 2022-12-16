@@ -1,9 +1,11 @@
 package com.app.home.board.notice;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +14,7 @@ import com.app.home.board.BoardDAO;
 import com.app.home.board.BoardVO;
 import com.app.home.file.FileDAO;
 import com.app.home.file.FileVO;
+import com.app.home.user.UserVO;
 import com.app.home.util.FileManager;
 import com.app.home.util.Pager;
 
@@ -31,11 +34,17 @@ public class NoticeService {
 	@Autowired
 	private FileDAO fileDAO;
 
-	public boolean checkValid(BoardVO boardVO) {
+	public boolean checkValid(UserVO userVO ,BoardVO boardVO) {
 		boolean chkId = false;
 		boolean chkTitle = false;
 		try {
-			chkId = boardVO.getCreator()!=null;
+			for(GrantedAuthority rr : userVO.getAuthorities()) {
+				if(rr.getAuthority().equals("관리자")) {
+					chkId = true;
+				}
+			}
+			
+			
 			chkTitle = boardVO.getTitle()!=null;
 		}catch(Exception exception) {
 			return false;

@@ -19,8 +19,10 @@ import com.app.home.report.ReportVO;
 import com.nimbusds.oauth2.sdk.Role;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
+@Slf4j
 public class UserVO implements UserDetails {
 
 	private int id;
@@ -51,8 +53,18 @@ public class UserVO implements UserDetails {
 	private String address;
 	private MultipartFile file;
 	
+
+	public String phone_format(String number) {
+		String regEx = "(\\d{3})(\\d{3,4})(\\d{4})";
+		return number.replaceAll(regEx, "$1-$2-$3");
+	}
+
 	private ReportVO reportVO;
 	private List<ReportVO> reportVOs;
+
+	private List<DepartmentVO> departmentVOs;
+
+
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -60,7 +72,7 @@ public class UserVO implements UserDetails {
 		List<GrantedAuthority> authorities = new ArrayList<>();
 
 		authorities.add(new SimpleGrantedAuthority(roleVO.getRoleName()));
-
+		log.info("role => {}", roleVO.getRoleName());
 		return authorities;
 	}
 

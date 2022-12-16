@@ -6,7 +6,7 @@
  const urlParams = new URL(location.href).searchParams;
  
  if(urlParams.get("error")==1){
-	 alert("글 작성 실패.  제목, 내용, 작성자를 모두 입력해야 합니다.");
+	 alert("글 작성 실패.  관리자가 아닙니다.");
  }
  
  

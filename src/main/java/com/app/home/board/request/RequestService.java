@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.app.home.board.BoardDAO;
 import com.app.home.board.BoardVO;
-import com.app.home.board.reqcategory.ReqCategoryVO;
 import com.app.home.file.FileDAO;
 import com.app.home.file.FileVO;
 import com.app.home.util.FileManager;

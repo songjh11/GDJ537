@@ -723,7 +723,7 @@
                     } else {
                         monthHtml += "<option value='" + m + "'" +
                             (m === currentMonth ? " selected='selected'" : "") +
-                            " disabled='disabled'>" + this.locale.monthNames[m] + "</option>";
+                            ">" + this.locale.monthNames[m] + "</option>";
                     }
                 }
                 monthHtml += "</select>";

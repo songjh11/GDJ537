@@ -6,17 +6,17 @@ $(".deptLi").click(function(){
 
     console.log('dd',$(this));
 
-    $(this).attr("data-depnum");
-    $("#dropId").val($(this).attr("data-depnum"));
+    $(this).attr("data-depNum");
+    $("#dropId").val($(this).attr("data-depNum"));
 
-    console.log($("#dropId").val($(this).attr("data-depnum")));
+    console.log($("#dropId").val($(this).attr("data-depNum")));
 
-    const di = $(this).attr("data-depnum");
+    const di = $(this).attr("data-depNum");
 
     console.log("di ==> " ,di);
 
     $("#dropId").val(di);
-    let value = $(".deptLi").attr("data-depnum");
+    let value = $(".deptLi").attr("data-depNum");
     console.log("value ==> " , value);
 
     console.log($(this).text());
@@ -24,7 +24,7 @@ $(".deptLi").click(function(){
     $("#depInput").val($(this).text());
 
     
-    // $("#depInput").val($(".deptLi").prop("data-depnum").text());
+    // $("#depInput").val($(".deptLi").prop("data-depNum").text());
 });
 
 
@@ -36,16 +36,17 @@ $(".roleLi").click(function(){
 
     console.log('rr',$(this));
 
-    $(this).attr("data-rolenum");
-    $("#roleId").val($(this).attr("data-rolenum"));
+    $(this).attr("data-roleNum");
+    $("#roleId").val($(this).attr("data-roleNum"));
 
-    console.log($("#roleId").val($(this).attr("data-rolenum")));
+    console.log($("#roleId").val($(this).attr("data-roleNum")));
 
-    let ri = $(this).attr("data-rolenum");
+    let ri = $(this).attr("data-roleNum");
 
     console.log("ri ==> " , ri);
 
     $("#roleId").val(ri);
+    console.log($("#roleId").val(ri));
 
 
     $("#roleInput").val($(this).text());
@@ -75,24 +76,28 @@ $("#tbd").on("click", "#statusBtn", function(event){
     // console.log("아이디:::" ,$("#tbd").find("#tdId").text());
 
     console.log("내 아이디  : ", $(this).attr("data-name"));
-    console.log("내 depnum :  ", $(this).attr("data-depnum"));
-
+    console.log("내 depNum :  ", $(this).attr("data-depNum"));
+    
+    
     let name = $(this).attr("data-name");
 
-    let depnum = $(this).attr("data-depnum");
+    let depNum = $(this).attr("data-depNum");
 
     $.ajax({
         type: 'POST',
         url:  '/report/insa',
         data:{
             id : name,
-            depnum : depnum
+            depNum : depNum
         },
 
-        success:function(){
-            alert("수정에 성공하였습니다.")
-            console.log($(this).attr("data-name"));
-            $(this).text("이미 부여됨");
+        success:function(result){
+            alert("수정에 성공하였습니다.");
+            console.log($("#statusBtn").text());
+            console.log($("#statusBtn").text('부여됨'));
+            if(result == 1){
+                $("#statusBtn").text('부여됨');
+            }
         },
         error:function(){
             alert("수정에 실패하였습니다");

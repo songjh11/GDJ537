@@ -1,6 +1,7 @@
 package com.app.home.report.pay;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.app.home.report.ReportApplyVO;
 
@@ -9,15 +10,27 @@ public class ReportPayVO extends ReportApplyVO {
 	private Long rnum;
 	private Long applynum;
 	private String title;
-	private String wdate;
 	private String cdate;
-	private String category;
-	private Long pay;
 	private Long sum;
 	private String payment;
 	private Date date;
+	private String depName;
+	private List<RepriceVO> repriceVOs;
 	
 	
+	
+	public List<RepriceVO> getRepriceVOs() {
+		return repriceVOs;
+	}
+	public void setRepriceVOs(List<RepriceVO> repriceVOs) {
+		this.repriceVOs = repriceVOs;
+	}
+	public String getDepName() {
+		return depName;
+	}
+	public void setDepName(String depName) {
+		this.depName = depName;
+	}
 	public Long getRnum() {
 		return rnum;
 	}
@@ -36,29 +49,11 @@ public class ReportPayVO extends ReportApplyVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getWdate() {
-		return wdate;
-	}
-	public void setWdate(String wdate) {
-		this.wdate = wdate;
-	}
 	public String getCdate() {
 		return cdate;
 	}
 	public void setCdate(String cdate) {
 		this.cdate = cdate;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public Long getPay() {
-		return pay;
-	}
-	public void setPay(Long pay) {
-		this.pay = pay;
 	}
 	public Long getSum() {
 		return sum;

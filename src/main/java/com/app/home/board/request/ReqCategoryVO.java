@@ -1,4 +1,6 @@
-package com.app.home.board.reqcategory;
+package com.app.home.board.request;
+
+import com.app.home.user.DepartmentVO;
 
 import lombok.Data;
 
@@ -9,5 +11,7 @@ public class ReqCategoryVO {
 	private String categoryName;
 	private String categoryForm;
 	private int depnum;
+	
+	private DepartmentVO DepartmentVO;
 	
 }

@@ -8,9 +8,9 @@ const update = document.querySelector("#update");
 
 //page 번호 담는 변수
 let page = 1;
-// commentnum을 담을 변수
-const boardnum = b1.getAttribute("data-boardnum");
-getCommentList(page, boardnum);
+// commentNum을 담을 변수
+const boardNum = b1.getAttribute("data-boardNum");
+getCommentList(page, boardNum);
 
 b1.addEventListener("click", function () {
 
@@ -29,7 +29,7 @@ b1.addEventListener("click", function () {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   //4. 파라미터 전송 요청 발생 (메서드 post일 경우 파라미터 추가)
-  xhttp.send("boardId=" + boardnum + "&contents=" + cv + "&creator=" + commentWriter);
+  xhttp.send("boardId=" + boardNum + "&contents=" + cv + "&creator=" + commentWriter);
 
   //5. 응답 처리
   xhttp.onreadystatechange = function () {
@@ -47,7 +47,7 @@ b1.addEventListener("click", function () {
 
         page = 1;
 
-        getCommentList(page, boardnum);
+        getCommentList(page, boardNum);
       }
     }
   }
@@ -91,17 +91,16 @@ function getCommentList(p, bn) {
         // td.appendChild(tdText);
         // tr.appendChild(td); 
 
-
         td = document.createElement("td");
-        tdText = document.createTextNode(ar[i].regDate.slice(0, 16));
+        tdText = document.createTextNode(ar[i].regDate);
         td.appendChild(tdText);
         tr.appendChild(td);
 
         td = document.createElement("td");
         if(ar[i].updateDate == null){
-          tdText = document.createTextNode(ar[i].regDate.slice(0, 16));
+          tdText = document.createTextNode(ar[i].regDate);
         } else {
-          tdText = document.createTextNode(ar[i].updateDate.slice(0, 16));
+          tdText = document.createTextNode(ar[i].updateDate);
         }
         td.appendChild(tdText);
         tr.appendChild(td);
@@ -145,7 +144,7 @@ commentList.addEventListener("click", function (event) {
   if (event.target.className == "update") {
 
     /*let contents = event.target.parentNode.parentNode.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML;
-    let num = event.target.getAttribute("data-boardnum");
+    let num = event.target.getAttribute("data-boardNum");
 
     document.querySelector("#updateContents").value = contents;
     document.querySelector("#num").value = num;
@@ -160,7 +159,7 @@ commentList.addEventListener("click", function (event) {
     let deFlag = confirm("댓글을 삭제 하시겠습니까?");
 
     if(deFlag){
-      let commentnum = event.target.getAttribute("data-commentnum");
+      let commentNum = event.target.getAttribute("data-commentnum");
 
       //1. XMLHTTPRequest
       const xhttp = new XMLHttpRequest();
@@ -172,7 +171,7 @@ commentList.addEventListener("click", function (event) {
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
       //4. 요청 (파라미터와 함께)
-      xhttp.send("id=" + commentnum);
+      xhttp.send("id=" + commentNum);
 
       //5. 응답처리
       xhttp.onreadystatechange = function () {
@@ -186,7 +185,7 @@ commentList.addEventListener("click", function (event) {
               commentList.children[0].remove();
             }
 
-            getCommentList(page, boardnum);
+            getCommentList(page, boardNum);
           } else {
             alert("삭제를 실패 했습니다.");
           }
@@ -198,7 +197,7 @@ commentList.addEventListener("click", function (event) {
 //------------------------------Modal Update button------------------------------
 update.addEventListener("click", function(){
   // modal 에서 num , contents 가져오기
-  let commentnumber = up.getAttribute("data-commentnum");
+  let commentNumber = up.getAttribute("data-commentnum");
   let contents = document.querySelector("#updateContents").value;
   // XMLHTTPRequest 
   const xhttp = new XMLHttpRequest();
@@ -207,8 +206,7 @@ update.addEventListener("click", function(){
   // 요청 header 정보
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   // 요청 실행
-  xhttp.send("id="+commentnumber+"&contents="+contents);
-  console.log('id= ', commentnumber)
+  xhttp.send("id="+commentNumber+"&contents="+contents);
   console.log('contents =',contents)
   // 응답 처리
   xhttp.onreadystatechange=function() {
@@ -224,7 +222,7 @@ update.addEventListener("click", function(){
 
               page=1;
 
-              getCommentList(page, boardnum)
+              getCommentList(page, boardNum)
 
           }else {
               alert("댓글 수정을 실패했습니다.");

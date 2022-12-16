@@ -5,40 +5,43 @@
 <mapper namespace="com.app.home.report.ReportMapper">
 	<!-- ============== 김도영 ================ -->
 	
-	
-	
 	<!-- ==================================== -->
 	
 	<!-- ============== 한종석 ================ -->
 	
-	<select id="getReportList" parameterType="userVO" resultMap="getListResult" >
-		SELECT  U.ID, U.NAME, U.ROLEnum , U.DEPnum, R.ROLENAME
+	<select id="getReportList" parameterType="UserVO" resultMap="getListResult" >
+		SELECT  U.ID, U.NAME, U.ROLENUM , U.DEPNUM, R.ROLENAME
 			FROM USER U
 			INNER JOIN
 				ROLE R 
-				ON R.ROLEnum = U.ROLEnum 
+				ON R.ROLENUM = U.ROLENUM 
 				INNER JOIN
 				DEPARTMENT D 
-				ON U.DEPnum = D.DEPnum 
-				WHERE U.DEPnum = #{depnum} AND U.ROLEnum = #{rolenum}
+				ON U.DEPNUM = D.DEPNUM 
+				WHERE U.DEPNUM = #{depNum} AND U.ROLENUM = #{roleNum}
+
 	</select>
 	
 	<resultMap type="UserVO" id="getListResult">
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
-		<result column="rolenum" property="rolenum"/>
-		<result column="depnum" property="depnum"/>
+		<result column="roleNum" property="roleNum"/>
+		<result column="depNum" property="depNum"/>
 		
 		<association property="roleVO" javaType="RoleVO">
-			<id column="rolenum" property="rolenum"/>
+			<id column="roleNum" property="roleNum"/>
 			<result column="roleName" property="roleName"/>
 		</association>
 		
 		<association property="departmentVO" javaType="DepartmentVO">
-			<id column="depnum" property="depnum"/>
+			<id column="depNum" property="depNum"/>
 		</association>
 		
 	</resultMap>
+	
+	<select id="getReportListCount" resultType="Long" parameterType="ReportPager">
+		SELECT COUNT(id) FROM USER
+	</select>
 	
 	<!-- 권한수정 누구를 부장(lstatus = 2)로 바꿀것인지 ****id를 받아서 -->
 	<update id="setLstatusUpdate" parameterType="ReportVO">
@@ -47,25 +50,86 @@
 	
 	<!-- 팀장(부장)이 휴가를 가거나 공석일 때 그 팀에서 대표자를 정해야되기 때문에 맴버테이블에서 승인자 테이블로 INSERT해준다 -->
 	<insert id="setLicenserAdd" parameterType="UserVO">
-		INSERT INTO REPORTLICENSER (LICENSERnum, DEPnum, ID, LSTATUS) VALUES (null, #{depnum}, #{id}, 0)
+		INSERT INTO REPORTLICENSER (LICENSERNUM, DEPNUM, ID, LSTATUS) VALUES (null, #{depNum}, #{id}, 0)
 	</insert>
 	
 	<!-- 승인권한을 가진사람들 모두 조회 -->
-	<select id="getLicenserList" parameterType="ReportVO" resultType="ReportVO">
-		SELECT * FROM REPORTLICENSER WHERE LSTATUS = 2 OR LSTATUS = 3;
+	<select id="getLicenserList" parameterType="ReportVO" resultMap="getLicenserListResult">
+		SELECT DISTINCT U.ID, U.NAME, D.DEPNAME, R.ROLENAME 
+		FROM REPORTLICENSER RL
+		INNER JOIN
+		USER U 
+		ON U.ID = RL.ID
+		INNER JOIN
+		ROLE R
+		ON U.ROLENUM = R.ROLENUM 
+		INNER JOIN 
+		DEPARTMENT D 
+		ON D.DEPNUM = U.DEPNUM 
+		WHERE RL.LSTATUS = 2 OR RL.LSTATUS = 3
 	</select>
+	
+	<resultMap type="ReportVO" id="getLicenserListResult">
+		<id column="licenserNum" property="licenserNum"/>
+		<result column="id" property="id"/>
+		
+		<association property="userVO" javaType="UserVO">
+			<id column="num" property="num"/>
+			<result column="id" property="id"/>
+			<result column="name" property="name"/>
+		</association>
+		
+		
+			<association property="departmentVO" javaType="DepartmentVO">
+				<id column="depNum" property="depNum"/>
+				<result column="depName" property="depName"/>
+			</association>
+			
+			<association property="roleVO" javaType="RoleVO">
+				<id column="roleNum" property="roleNum"/>
+				<result column="roleName" property="roleName"/>
+			</association>
+		
+		
+	</resultMap>
 	
 	
 	<!-- ==================================== -->
 	
-	<!-- ============== 장민석 ================ -->
+	<!-- ============== 결재 신청 insert ================ -->
 	
-	
-	<insert id="selectPay" parameterType="ReportPayVO">
-		SELECT * FROM REPORTPAY VALUES() WHERE APPLYnum = #{applynum}
+	<insert id="setAddApply" parameterType="ReportApplyVO" useGeneratedKeys="true" keyProperty="applyNum">
+
+		INSERT INTO REPORTAPPLY 
+		VALUES (NULL, #{id}, #{depNum}, #{reportNum}, 1, 0, SYSDATE(), #{name}, #{roleName}, #{depName})
+
 	</insert>
-	<insert id="selectSorry" parameterType="ReportSorryVO">
-		SELECT * FROM REPORTSORRY VALUES() WHERE APPLYnum = #{applynum}
+	
+	<insert id="setAddPay" parameterType="ReportPayVO" useGeneratedKeys="true" keyProperty="rnum">
+		INSERT INTO REPORTPAY
+		VALUES(NULL, #{applyNum}, #{title}, #{cdate},#{sum},#{payment},sysdate(),#{depName})
+	</insert>
+	
+	<!-- 지출결의서 품목 추가 -->
+	<insert id="setAddItem" parameterType="RepriceVO">
+		INSERT INTO REPRICE
+		VALUES(#{rnum}, #{item}, #{price})
+	</insert>
+	<!--  -->
+	
+	<insert id="setAddSorry" parameterType="ReportSorryVO">
+		INSERT INTO REPORTSORRY
+		VALUES(NULL, #{applyNum},#{date}, #{text}, #{order})
+	</insert>
+	
+	<insert id="setAddWork" parameterType="ReportWorkVO">
+		INSERT INTO REPORTWORK
+		VALUES(NULL, #{applyNum}, sysdate(), #{am}, #{pm}, #{undo}, #{todo}, #{wrong}, #{etc})
+	</insert>
+	
+	<insert id="setAddVaca" parameterType="ReportVacaVO">
+		INSERT INTO REPORTVACA 
+		VALUES(NULL, #{applyNum}, #{categoryNum}, #{text}, #{call}, sysdate(),#{startDate}, #{endDate})
 	</insert>
 	
 	
@@ -74,96 +138,270 @@
 	
 	<!-- ============== 최근호 ================ -->
 	
+
+	<update id="setUpdateApply" parameterType="ReportApplyVO">
+		UPDATE REPORTAPPLY SET STATUS = #{lStatus} WHERE APPLYNUM= #{applyNum}
+	</update>
+	
+	<update id="setUpdateCancelApply" parameterType="ReportApplyVO">
+		UPDATE REPORTAPPLY SET RETURNS = 1, STATUS=#{lStatus} WHERE APPLYNUM = #{applyNum}
+	</update>
+
+
 	<select id="getLicenseCheck" parameterType="ReportVO" resultType="Integer">
-		SELECT LSTATUS FROM REPORTLICENSER WHERE ID = #{id}
+		SELECT LSTATUS FROM REPORTLICENSER WHERE ID = 1209
 	</select>
 	
-	<select id="getFinishReport" parameterType="ReportVO" resultMap="getFinishReportResult">
-		SELECT RL.*,RA.* FROM
-		REPORTLICENCES RL
-		INNER JOIN
+	<select id="getLicenseVacaReportDetail" parameterType="ReportVacaVO" resultType="ReportVacaVO">
+		SELECT RA.*,RV.* FROM
 		REPORTAPPLY RA
-		ON RL.DEPnum = RA.DEPnum
-		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=#{id}
+		INNER JOIN
+		REPORTVACA RV
+		ON RA.APPLYNUM = RV.APPLYNUM
+		WHERE RV.APPLYNUM = #{applyNum}
 	</select>
 	
-	<select id="getReturnReport" parameterType="ReportVO" resultMap="getFinishReportResult">
-		SELECT RL.*,RA.* FROM
-		REPORTLICENCES RL
-		INNER JOIN
+	<select id="getLicenseWorkReportDetail" parameterType="ReportWorkVO" resultType="ReportWorkVO">
+		SELECT RA.*,RW.* FROM
 		REPORTAPPLY RA
-		ON RL.DEPnum = RA.DEPnum
-		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=#{id}
+		INNER JOIN
+		REPORTWORK RW
+		ON RA.APPLYNUM = RW.APPLYNUM
+		WHERE RW.APPLYNUM = #{applyNum}
 	</select>
 	
-	<select id="getDoFirstReport" parameterType="ReportVO" resultMap="getFinishReportResult">
-		SELECT RL.*,RA.* FROM
-		REPORTLICENCES RL
-		INNER JOIN
+	<select id="getLicensePayReportDetail" parameterType="ReportPayVO" resultType="ReportPayVO">
+		SELECT RA.*,RP.* FROM
 		REPORTAPPLY RA
-		ON RL.DEPnum = RA.DEPnum
-		WHERE RA.STATUS = 0 AND RL.ID=#{id}
+		INNER JOIN
+		REPORTPAY RP
+		ON RA.APPLYNUM = RP.APPLYNUM
+		WHERE RP.APPLYNUM = #{applyNum}
 	</select>
 	
-	<select id="getDoFinalReport" parameterType="ReportVO" resultMap="getFinishReportResult">
-		SELECT RL.*,RA.* FROM
-		REPORTLICENCES RL
+	<select id="getLicenseSorryReportDetail" parameterType="ReportSorryVO" resultType="ReportSorryVO">
+		SELECT RA.*,RS.* FROM
+		REPORTAPPLY RA
+		INNER JOIN
+		REPORTSORRY RS
+		ON RA.APPLYNUM = RP.APPLYNUM
+		WHERE RS.APPLYNUM = #{applyNum}
+	</select>
+	
+	<select id="getCountFinishReport" parameterType="ReportPager" resultType="Long">
+		SELECT COUNT(*) FROM
+		REPORTLICENSER RL
 		INNER JOIN
 		REPORTAPPLY RA
-		ON RL.DEPnum = RA.DEPnum
-		WHERE RA.STATUS = 2 AND RL.ID=#{id}
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=1209 AND RA.REPORTNUM=1
+	</select>
+	
+	<select id="getFinishReport" parameterType="ReportPager" resultMap="getFinishReportResult">
+		SELECT RL.*,RA.*,U.* FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=1209 AND RA.REPORTNUM=1
+		LIMIT #{startRow},#{perPage}
+	</select>
+
+	
+	<select id="getReturnReport" parameterType="ReportPager" resultMap="getFinishReportResult">
+		SELECT RL.*,RA.*,U.* FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=1209 AND RA.REPORTNUM=1
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getCountReturnReport" parameterType="ReportPager" resultType="Long">
+		SELECT COUNT(*) FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=1209 AND RA.REPORTNUM=1
+	</select>
+	
+	<select id="getDoFirstReport" parameterType="ReportPager" resultMap="getFinishReportResult">
+		SELECT RL.*,RA.*,U.* FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RA.STATUS = 1 AND RL.ID=1209 AND RA.REPORTNUM=1
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getCountDoFirstReport" parameterType="ReportPager" resultType="Long">
+		SELECT COUNT(*) FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RA.STATUS = 1 AND RL.ID=1209 AND RA.REPORTNUM=1
+	</select>
+	
+	<select id="getDoFinalReport" parameterType="ReportPager" resultMap="getFinishReportResult">
+		SELECT RL.*,RA.*,U.* FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RA.STATUS = 2 AND RL.ID=1209 AND RA.REPORTNUM=1
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getCountDoFinalReport" parameterType="ReportPager" resultType="Long">
+		SELECT COUNT(*) FROM
+		REPORTLICENSER RL
+		INNER JOIN
+		REPORTAPPLY RA
+		ON RL.DEPNUM = RA.DEPNUM
+		INNER JOIN
+		USER U
+		ON RA.ID = U.ID
+		WHERE RA.STATUS = 2 AND RL.ID=1209 AND RA.REPORTNUM=1
 	</select>
 	
 	<resultMap type="ReportVO" id="getFinishReportResult">
-		<id column="LICENSERnum" property="licensernum"/>
-		<result column="DEPnum" property="depnum"/>
+		<id column="LICENSERNUM" property="licenserNum"/>
+		<result column="DEPNUM" property="depNum"/>
 		<result column="ID" property="id"/>
-		<result column="STATUS" property="lstatus"/>
+		<result column="LSTATUS" property="lstatus"/>
 			<collection property="reportApplyVOs" javaType="List" ofType="ReportApplyVO">
-				<id column="APPLYnum" property="applynum"/>
+				<id column="APPLYNUM" property="applyNum"/>
 				<result column="ID" property="id"/>
-				<result column="DEPnum" property="depnum"/>
-				<result column="REPORTnum" property="reportnum"/>
+				<result column="DEPNUM" property="depNum"/>
+				<result column="REPORTNUM" property="reportNum"/>
 				<result column="STATUS" property="status"/>
 				<result column="RETURNS" property="returns"/>
 				<result column="APDATE" property="apDate"/>
+				
+				<association property="userVO" javaType="UserVO">
+					<result column="NAME" property="name"/>
+				</association>
 			</collection>
+			
 	</resultMap>
+	
+	
 	
 	
 	<!-- ==================================== -->
 	
 	<!-- ============== 류형민 ================ -->
+	<sql id="paging">
+		where r.id = #{id}  <choose>
+								<when test="kind == 1">
+									and r.status = 1
+								</when>
+								<when test="kind == 2">
+									and r.status = 2
+								</when>
+								<when test="kind == 3">
+									and r.status = 3
+								</when>
+								<when test="kind == 4">
+									and r.returns = 1
+								</when>
+								<otherwise>
+								</otherwise>
+							</choose>
+	</sql>
+	
 	<!-- 휴가 신청 목록 가져오기 -->
 	<select id="getMyVacaList" parameterType="ReportPager" resultType="ReportVacaVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
-		INNER JOIN REPORTVACA r2 ON r.APPLYnum = r2.APPLYnum 
-		where r.id = #{id};
+		INNER JOIN (SELECT rv.*,vg.CATEGORYNAME
+					FROM REPORTVACA rv
+					INNER JOIN 	
+					VACATEGORY vg ON rv.CATEGORYNUM = vg.CATEGORYNUM
+							) r2 ON r.APPLYNUM = r2.APPLYNUM
+		<include refid="paging"></include>
+		ORDER BY r.APPLYNUM DESC
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getMyVacaCount" resultType="Long">
+		SELECT COUNT(r.APPLYNUM)
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM 
+		<include refid="paging"></include>
 	</select>
 	
 	<!-- 시말서 목록 가져오기 -->
 	<select id="getMySorryList" parameterType="ReportPager" resultType="ReportSorryVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
-		INNER JOIN REPORTSORRY r2 ON r.APPLYnum = r2.APPLYnum 
-		where r.id = #{id};
+		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		<include refid="paging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getMySorryCount" resultType="Long">
+		SELECT COUNT(r.APPLYNUM)
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		<include refid="paging"></include>
 	</select>
 	
 	<!-- 업무보고서 목록 가져오기 -->
 	<select id="getMyWorkList" parameterType="ReportPager" resultType="ReportWorkVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
-		INNER JOIN REPORTWORK r2 ON r.APPLYnum = r2.APPLYnum 
-		where r.id = #{id};
+		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM 
+		<include refid="paging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getMyWorkCount" resultType="Long">
+		SELECT COUNT(r.APPLYNUM)
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM 
+		<include refid="paging"></include>
 	</select>
 	
 	<!-- 지출결의서 목록 가져오기 -->
 	<select id="getMyPayList" parameterType="ReportPager" resultType="ReportPayVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
-		INNER JOIN REPORTPAY r2 ON r.APPLYnum = r2.APPLYnum 
-		where r.id = #{id};
+		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		<include refid="paging"></include>
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getMyPayCount" resultType="Long">
+		SELECT COUNT(r.APPLYNUM)
+		FROM REPORTAPPLY r
+		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		<include refid="paging"></include>
 	</select>
 	
 	
@@ -171,29 +409,37 @@
 	<select id="getMyVacaDetail" parameterType="ReportApplyVO" resultType="ReportVacaVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN REPORTVACA r2 ON r.APPLYnum = r2.APPLYnum
-		where r.ID = #{id} and r.APPLYnum = #{applynum};
+		INNER JOIN (SELECT rv.*,vg.CATEGORYNAME
+					FROM REPORTVACA rv
+					INNER JOIN 	
+					VACATEGORY vg ON rv.CATEGORYNUM = vg.CATEGORYNUM
+							) r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
 	</select>
 	
 	<select id="getMyPayDetail" parameterType="ReportApplyVO" resultType="ReportPayVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN REPORTPAY r2 ON r.APPLYnum = r2.APPLYnum
-		where r.ID = #{id} and r.APPLYnum = #{applynum};
+		INNER JOIN (SELECT 
+					FROM REPORTPAY rp
+					INNER JOIN 
+					REPRICE vg ON rp.rnum = vg.rnum	
+						)r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
 	</select>
 	
 	<select id="getMyWorkDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN REPORTWORK r2 ON r.APPLYnum = r2.APPLYnum
-		where r.ID = #{id} and r.APPLYnum = #{applynum};
+		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
 	</select>
 	
 	<select id="getMySorryDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN REPORTSORRY r2 ON r.APPLYnum = r2.APPLYnum
-		where r.ID = #{id} and r.APPLYnum = #{applynum};
+		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
 	</select>
 	
 	<!-- ==================================== -->
