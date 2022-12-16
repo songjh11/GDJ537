@@ -55,14 +55,14 @@
 							</c:forEach>
 
 							<div class="mb-3">
-								<label>예약날짜</label>
+								<label>사용 시작 시간</label>
 								<input type="datetime-local" name="startTime" class="form-control" id="start" placeholder="시작시간">
 								<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
 								<br>
 							</div>
 
 							<div class="mb-3">
-								<label>반납날짜</label>
+								<label>사용 종료 시간</label>
 								<input type="datetime-local" name="endTime" class="form-control" id="end" placeholder="시작시간"
 									disabled='disabled'>
 								<p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>

@@ -51,15 +51,18 @@ ul li {
 						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVOs[0].name}예약정보</h1>
 						<table class="table table-hover" id="info">
 							<tr>
-								<th>예약자 ID</th>
-								<th>날짜</th>
+								<th>회의실 예약 번호</th>
+								<th>사원 번호</th>
+								<th>예약 신청일</th>
 								<th>사용 목적</th>
-								<th>시작 시간</th>
-								<th>종료 시간</th>
+								<th>사용 시작 날</th>
+								<th>사용 종료 날</th>
 							</tr>
 							<c:forEach items="${roomInfo }" var="ro">
 								<input type="hidden" value="${ro.startTime}" class="startTime">
+								<input type="hidden" value="${ro.endTime}" class="endTime">
 								<tr>
+									<td>${ro.reserveNum }</td>
 									<td>${ro.id }</td>
 									<td>${ro.date }</td>
 									<td>${ro.usePurpose }</td>
@@ -91,4 +94,5 @@ ul li {
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 </body>
+<script src="/js/room/reserveInfo.js"></script>
 </html>
