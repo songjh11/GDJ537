@@ -441,11 +441,18 @@ public class MessengerController extends Socket {
 	
 	// --------------------- 효경 끝 ------------------------------
 	
-	@GetMapping("chat1")
-	public ModelAndView chat()throws Exception{
+
+	// --------------------- 다은 ------------------------------
+
+	@GetMapping("oneChat")
+	public ModelAndView chatroom(HttpSession session, UserVO userVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
-	
-		mv.setViewName("messenger/chat1");
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();	  
+	    mv.addObject("userVO", userVO);  
+		mv.setViewName("messenger/oneChat");
+		
 		return mv;
 	}
 
