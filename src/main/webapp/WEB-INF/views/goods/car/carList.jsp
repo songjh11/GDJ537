@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,40 +48,22 @@
 								<th>모델명</th>
 								<th>상세정보</th>
 								<th>예약</th>
+								<th>예약현황</th>
 							</tr>
 							
 							<c:forEach items="${goods}" var="goods">
+							<c:set var="TextValue" value="${goods.goodsId}" />
+							<c:if test="${fn:substring(TextValue,0,2) == 'CA' }">
 								<tr>
-									<td>${goods.carnum }</td>
-									<td>${goods.name }</td>
-									<%-- <td><a href="./carDetail?id=" ${goods.goodsId}><button type="button" class="btn btn-outline-none">정보 보기</button></a></td>
-									<td><a href="./carReserve?id=${goods.goodsId}"><button type="button" class="btn btn-outline-none">예약하기</button>	</a></td> --%>
-								</tr>
-							</c:forEach>
-						</table>
 
-						<div>------------------------------------예약 리스트--------------------------------------</div>
+									<td>${goods.carNum}</td>
+									<td>${goods.name}</td>
+									<td><a href="./carDetail?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">정보 보기</button></a></td>
+									<td><a href="./carReserve?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">예약하기</button></a></td>
+									<td><a href="./carResInfo?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">현황보기</button></a></td>
 
-						<table class="table table-hover justify-content-right" style="text-align: center;">
-							<tr>
-								<th>예약 번호</th>
-								<th>예약 날짜</th>
-								<th>예약자</th>
-								<th>예약정보</th>
-								<th>예약 변경</th>
-								<th>예약 취소</th>
-							</tr>
-							
-							<c:forEach items="${reserves}" var="reserve">
-								<tr>
-									<td>${reserve.reservenum}</td>
-									<td>${reserve.startTime}</td>
-									<td>${reserve.membernum}</td>
-									<%-- <td><a href="./carDetail?reservenum=${reserve.reservenum}" class="btn btn-outline-none">정보 보기</a></td>
-									<td><a href="./carReserveChange?reservenum=${reserve.reservenum}" class="btn btn-outline-none">변경</a></td>
-									<td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reservenum}">취소</button></td> --%>
-									<%-- <td><a href="./carReserveDelete?reservenum=${reserve.reservenum}" id="delete_btn" class="btn btn-outline-none">취소</a></td> --%>
 								</tr>
+								</c:if>
 							</c:forEach>
 						</table>
 					</section>

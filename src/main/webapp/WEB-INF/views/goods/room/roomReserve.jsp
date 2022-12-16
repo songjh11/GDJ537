@@ -10,7 +10,6 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
-
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -32,10 +31,10 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
+					<h3 style="text-align: center;">---- 모든 정보를 필수로 입력해야 합니다. ----</h3>
+					<br>
+					<br>
 					<section class="container col-lg-6 justify-content-center">
-						<c:forEach items="${stTime }" var="st">
-							<input type="hidden" value="${st.startTime }" class="startList">
-						</c:forEach>
 						<form action="./roomReserve" method="POST" id="frm">
 							<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">회의실 예약</h1>
 							<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
@@ -48,43 +47,77 @@
 							</table>
 
 							<input type="hidden" name="goodsId" value="${goodDetail.goodsId }">
+							<c:forEach items="${timeNotEqual }" var="t">
+								<div class="timeCheck">
+									<input type="hidden" value="${t.startTime }" class="startTimeCheck">
+									<input type="hidden" value="${t.endTime }" class="endTimeCheck">
+								</div>
+							</c:forEach>
 
 							<div class="mb-3">
-								<label>예약날짜</label>
-								<input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1"
-									placeholder="시작시간">
+								<label>사용 시작 시간</label>
+								<input type="datetime-local" name="startTime" class="form-control" id="start" placeholder="시작시간">
+								<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
 								<br>
 							</div>
 
 							<div class="mb-3">
-								<label>반납날짜</label>
-								<input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput2"
-									placeholder="시작시간">
+								<label>사용 종료 시간</label>
+								<input type="datetime-local" name="endTime" class="form-control" id="end" placeholder="시작시간"
+									disabled='disabled'>
+								<p id="endText" style="color: red; display: none;">필수 작성 조건입니다..</p>
 								<br>
 							</div>
 
 							<div class="mb-5">
 								<label>예약자</label>
-								<input type="text" name="id" class="form-control" id="exampleFormControlInput1">
+								<input type="hidden" name="id" class="form-control" id="member" value="${userInfo.id }" readonly>
+								<input type="text" class="form-control" value="${userInfo.name }" disabled>
 							</div>
 
 							<div class="mb-5">
 								<label>부서명</label>
-								<input type="text" class="form-control" id="exampleFormControlInput1" value="인사과">
+								<c:choose>
+									<c:when test="${userInfo.departmentVO.depNum == 1}">
+										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
+											value="영업팀">
+									</c:when>
+									<c:when test="${userInfo.departmentVO.depNum == 2}">
+										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
+											value="총무팀">
+									</c:when>
+									<c:when test="${userInfo.departmentVO.depNum == 3}">
+										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
+											value="인사팀">
+									</c:when>
+									<c:when test="${userInfo.departmentVO.depNum == 4}">
+										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
+											value="IT개발팀">
+									</c:when>
+									<c:when test="${userInfo.departmentVO.depNum == 5}">
+										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
+											value="생산팀">
+									</c:when>
+
+								</c:choose>
 							</div>
 
 							<div class="mb-5">
 								<label>사용 목적</label>
-								<input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1">
+								<input type="text" name="usePurpose" class="form-control" id="purpose">
+								<p id="purposeText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+								<br>
 							</div>
 
-							<button type="submit" class="btn btn-success">예약하기</button>
-
-							<br>
+							<div style="text-align: center;" class="mb-5">
+								<button id="resBtn" type="button" class="btn btn-outline-none"
+									style="background-color: #4e73df; color: white;">예약하기</button>
+								<a href="./roomList">
+									<button type="button" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">뒤로가기</button>
+								</a>
+							</div>
 						</form>
-
 					</section>
-
 				</div>
 				<!-- End Page Content -->
 
@@ -103,5 +136,5 @@
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- <script src="/js/room/reserve.js"></script> -->
+<script src="/js/room/reserve.js"></script>
 </html>

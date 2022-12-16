@@ -1,7 +1,7 @@
 let count = 0;
 let goodId = $("#goodId").val();
 let flag=true;
-let imgCheck = false;
+let imgCheck = true;
 $("#fileAdd").click(function(){
     if(flag){
         let size = $("#fileAddResult").attr("data-file-size");
@@ -16,11 +16,13 @@ $("#fileAdd").click(function(){
     if($(".files").length<5){
         let r = '<div class="file_form mt-2">';
         /* r = r+'<label for="contents" class="form-label">Files</label>'; label 여부 체크 */
+        r = r + `<div>`
         r = r+'<input type="file" name="files" class="files form-control" id="files">';
-        r = r+'<span class="text">선택된 파일 없음</span> ';
+        r = r+'<span class="text ff">선택된 파일 없음</span> ';
         r = r+'<button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>'
         r = r+'<div id="see"></div>'
         r = r+'</div>';
+        r = r+`</div>`
         $("#fileAddResult").append(r);
     }else {
         //swal("최대 3개만 가능","","warning")
@@ -51,8 +53,8 @@ $("#fileAdd").click(function(){
             //     type:"POST",
             //     url :"./fileDelete",
             //     data:{
-            //         "rownum":i,
-            //         "noticenum":noticenum
+            //         "rowNum":i,
+            //         "noticeNum":noticeNum
             //     },
             //     success:function(result){
             //         console.log("Result : ",result)
@@ -81,22 +83,20 @@ for(let i=0; i<$(".files").length; i++){
         console.log();
                     $.ajax({
                         type:"POST",
-                        url :"./fileUpdatenumber",
+                        url :"./fileUpdateNumber",
                         data:{
-
                             "rowNum":i,
                             "goodsId":goodId
-
                         },
                         success:function(result){
                             console.log("Result : ",result)
                             console.log("After Result This", $(this));
                             // if(result == 1 ){
                             //     swal("첨부파일이 삭제되었습니다.").then(function(){
-                            //         location.replace("./update?noticenum="+noticenum);
+                            //         location.replace("./update?noticeNum="+noticeNum);
                             //     })
                             // }
-                            let r = '<input type="hidden" name="fileUpdatenumber" id="fileUpdatenumber" value="'+result
+                            let r = '<input type="hidden" name="fileUpdateNumber" id="fileUpdateNumber" value="'+result
                             r = r + '">';
                             $("#fileAddResult").append(r);
                         },
@@ -105,27 +105,31 @@ for(let i=0; i<$(".files").length; i++){
                         }
             });
         });
-        
-    
+
+
     $($(".del")[i]).click(function(){
+        console.log("click");
+        console.log(i);
+
         $.ajax({
             type:"POST",
             url :"./fileDelete",
             data:{
-
                 "rowNum":i,
                 "goodsId":goodId
-
             },
             success:function(result){
                 console.log("Result : ",result)
                 console.log("After Result This", $(this));
                 if(result == 1 ){
-                    swal("첨부파일이 삭제되었습니다.").then(function(){
-                        location.replace("./update?id="+goodId);
-                    })
+                    // swal("첨부파일이 삭제되었습니다.").then(function(){
+                    //     location.replace("./update?goodsId="+goodId);
+                    // })
+                    alert("첨부파일이 삭제되었습니다.");
+                    // location.replace("./update?goodsId="+goodId);
+
                 }
-                
+
             },
             error:function(){
                 console.log("Error 발생");
@@ -137,43 +141,50 @@ $("#fileAddResult").on("click", ".del", function(){
     $(this).parent().remove();
     
 });
+
 flag=true;
 /// 글 수정시 첨부파일 삭제
-$(".deleteFile").click(function(){
-    //DB, HDD에 파일 삭제
-    let check = confirm("삭제 됩니다.. 복구 불가");
-    if(flag){
-        let size = $("#fileAddResult").attr("data-file-size");
-        
-        
-        count=size;
-        flag=false;
-    }
-    if(check){
-        //post
-        // /qna/fileDelete
-        //파라미터 filenum
-        let imgnum = $(this).attr("data-file-num");
-        console.log("Before Result This", $(this));
-        const btn = $(this);
-        $.ajax({
-            type:"POST",
-            url :"fileDelete",
-            data:{
-                imgnum:imgnum
-            },
-            success:function(result){
-                console.log("Result : ",result)
-                console.log("After Result This", $(this));
-                $(btn).parent().remove();
-                count--;
-            },
-            error:function(){
-                console.log("Error 발생");
-            }
-        });
-    }
-});
+// $(".deleteFile").click(function(){
+//     //DB, HDD에 파일 삭제
+//     let check = confirm("삭제 됩니다.. 복구 불가");
+
+//     if(flag){
+//         let size = $("#fileAddResult").attr("data-file-size");
+
+
+//         count=size;
+//         flag=false;
+//     }
+
+//     if(check){
+//         //post
+//         // /qna/fileDelete
+//         //파라미터 fileNum
+//         let imgNum = $(this).attr("data-file-num");
+//         console.log("Before Result This", $(this));
+//         const btn = $(this);
+//         $.ajax({
+//             type:"POST",
+//             url :"fileDelete",
+//             data:{
+//                 imgNum:imgNum
+//             },
+//             success:function(result){
+//                 console.log("Result : ",result)
+//                 console.log("After Result This", $(this));
+//                 $(btn).parent().remove();
+//                 count--;
+//             },
+//             error:function(){
+//                 console.log("Error 발생");
+//             }
+
+//         });
+
+//     }
+// });
+
+
 $("#delete").click(function(){
     var id = $("#delete").attr("data-id-num");
     $.ajax({
@@ -200,11 +211,10 @@ $('input[name=goodsId]').click(function(){
         $('#carChecked').css("display", "none");
     }
 })
-let nameCheck = false;
-let maxCheck = false;
-let locationCheck = false;
+let nameCheck = true;
+let maxCheck = true;
+let locationCheck = true;
 let carNumCheck = true;
-let kindCheck = false;
 const name = document.getElementById("name");
 const max = document.getElementById("max");
 const loca = document.getElementById("location");
@@ -220,19 +230,10 @@ var pattern_num = /[1-9999999]/; //숫자
 var pattern_eng = /[a-zA-Z]/;	// 문자 
 var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
 var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
-$("input[name=goodsId]").blur(function(){
-    if($('input[name=goodsId]:radio:checked').length < 1) {
-        kinddiv.innerHTML = "시설 종류를 선택해주세요.";
-        kindCheck = false;
-    }else{
-        kinddiv.innerHTML ="";
-        kindCheck = true;
-    }
-})
 name.addEventListener("blur",function(){
     if(name.value.length < 1) {
-        namediv.innerHTML ="시설 이름을 작성해주세요.";
         $("#name").css("border-color","red");
+        namediv.innerHTML ="시설 이름을 작성해주세요.";
         nameCheck = false;
     }else{
         $("#name").css("border-color","green");
@@ -242,8 +243,8 @@ name.addEventListener("blur",function(){
 })
 max.addEventListener("blur",function(){
     if((pattern_num.test(max.value)) && !(pattern_eng.test(max.value)) && !(pattern_spc.test(max.value)) && !(pattern_kor.test(max.value))) {
-        maxdiv.innerHTML="";
         $("#max").css("border-color","green");
+        maxdiv.innerHTML="";
         maxCheck = true;
     } else{
         $("#max").css("border-color","red");
@@ -265,36 +266,35 @@ loca.addEventListener("blur",function(){
 })
 carNum.addEventListener("blur",function(){
     if($('input[name=goodsId]:checked').val() == 'CA') {
-        if(carNum.value.length < 1) {
-            $("#carNum").css("border-color","red");
-            carNumdiv.innerHTML ="차량 위치를 작성해주세요.";
-            carNumCheck = false;
-        }else{
-            $("#carNum").css("border-color","green");
-            carNumdiv.innerHTML ="";
-            carNumCheck = true;
-        }
+       
+    if(carNum.value.length < 1) {
+        $("#carNum").css("border-color","red");
+        carNumdiv.innerHTML ="차량 위치를 작성해주세요.";
+        carNumCheck = false;
+    }else{
+        $("#carNum").css("border-color","green");
+        carNumdiv.innerHTML ="";
+        carNumCheck = true;
     }
+}
 })
 sub.addEventListener("click",function(){
-    console.log(kindCheck);
     console.log(nameCheck);
     console.log(locationCheck);
     console.log(carNumCheck);
     console.log(imgCheck);
-    if(kindCheck == false) {
-        kinddiv.innerHTML = "시설 종류를 선택해주세요.";
-    }else{
-        kinddiv.innerHTML ="";
+
+    console.log("valuessssd : "+$(".ff").html());
+    if($(".ff").html() == undefined || $(".ff").html() == "") {
+        imgCheck = false;
+        imgdiv.innerHTML ="이미지는 필수입니다.";
+    }else {
+        imgdiv.innerHTML ="";
     }
-    if(!(kindCheck && nameCheck && maxCheck && locationCheck && carNumCheck && imgCheck)) {
-        if(imgCheck == false){
-            imgdiv.innerHTML="이미지는 필수입니다"
-        }else{
-            imgdiv.innerHTML="";
-        }
+    if(!(nameCheck && maxCheck && locationCheck && carNumCheck &&imgCheck)) {
+        
         alert("모든 칸을 작성해주세요");
     }else{
-        $("#addform").submit();
+       $("#addform").submit();
     }
 })
