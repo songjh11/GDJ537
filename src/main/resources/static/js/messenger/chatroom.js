@@ -53,13 +53,13 @@
       }
    }
    
+
+}
 document.addEventListener("keypress", function(e){
 			if(e.keyCode == 13){ //enter press
 				send();
 			}
-		});
-}
-   
+		});   
 
 //---------------------------------------------
 
@@ -73,7 +73,7 @@ document.addEventListener("keypress", function(e){
   
 
       ws.send(JSON.stringify(option))
-    $("#inputChat").val();
+    $("#inputChat").val("");
     
   
        
