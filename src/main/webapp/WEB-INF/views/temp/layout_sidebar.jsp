@@ -103,7 +103,7 @@
             </li> -->
 
             <!-- Divider -->
-            <sec:authorize access="hasAnyAuthority('사장', '부장', '과장')">
+            <sec:authorize access="hasAnyAuthority('사장', '부장', '과장', '관리자')">
             <hr class="sidebar-divider">
 	            <!-- Nav Item - 관리자 -->
 	
