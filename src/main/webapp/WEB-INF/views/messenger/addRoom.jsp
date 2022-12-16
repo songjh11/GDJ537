@@ -5,19 +5,20 @@
 						<table class="table" style="margin-bottom: 0.5rem;">
 							<thead>
 								<tr>
-								  <th scope="col" class="text-center" style="padding: 0.8rem; border-top: 0px;">
-									<div class="mb-2" style="margin-right: 10%;">방장</div>
+								  <th scope="col" class="text-end" style="padding: 0.8rem; border-top: 0px;">
+									<div class="mb-2" style="margin-left: 80px;">방장</div>
 								  </th>
-								  <th scope="col" class="text-center" style="padding: 0.8rem; border-top: 0px;">
-									<div class="mb-2">채팅방이름</div>
+								  <th scope="col" class="text-start" style="padding: 0.8rem; border-top: 0px;">
+									<div class="mb-2" style="margin-right: 8px;">채팅방이름</div>
 								  </th>
-								  <th scope="col" style="padding: 0.8rem; border-top: 0px; ">
-									<div class="mb-2" style="margin-left: 16%;">인원</div>
+								  <th scope="col" style="padding: 0.8rem; border-top: 0px;">
+									<div class="mb-2" style="margin-right: 25px;">인원</div>
 								  </th>
 								</tr>
 							</thead>
 						</table>
 						<div class="roomArea" style="overflow-y: scroll; overflow-x: hidden; height: 550px;">							
+						<!-- 그룹채팅 목록 -->
 							<h3>Group</h3>
 							<c:forEach items="${roomList}" var="roomVO">
 							<c:if test="${roomVO.kind eq '0'}">
@@ -41,13 +42,15 @@
 <%-- 									<div class="col text-center" style="margin-left: 3%;">
 										<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
 									</div> --%>
-									<div class="col text-center">
-										${roomVO.roomName}
+									<div class="col text-center style="margin-left: 8%;">
+										${roomVO.total}
 									</div>
 								</div>
 								</c:if>
 							</c:forEach>
-							
+							<!-- 그룹채팅 목록 -->
+							<br>
+							<!-- 1:!채팅 목록 -->	
 							<h3>1:1</h3>
 							<c:forEach items="${roomList}" var="roomVO">
 							<c:if test="${roomVO.kind eq '1'}">
@@ -71,12 +74,12 @@
 <%-- 									<div class="col text-center" style="margin-left: 3%;">
 										<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
 									</div> --%>
-									<div class="col text-center">
-										${roomVO.roomName}
+									<div class="col text-center style="margin-left: 8%;">
+										${roomVO.total}
 									</div>
 								</div>
 								</c:if>
 							</c:forEach>
+							<!-- 1:!채팅 목록 -->
 						</div>
-						<!-- 채팅목록 -->
 							
