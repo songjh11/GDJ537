@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -82,9 +82,13 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="#">업무보고서</a>
                         <a class="collapse-item" href="#">휴가신청서</a>
-                        <a class="collapse-item" href="/report/licenserList">승인자 리스트</a>
+                        <a class="collapse-item" href="/report/licenserList">전체 승인자 리스트</a>
                         <a class="collapse-item" href="/kdy/reportAdd">보고서 작성</a>
+                        <a class="collapse-item" href="/report/doreport">결제/반려 승인</a>
+                        <a class="collapse-item" href="/report/finishreport">결제 승인 내역</a>
+                        <a class="collapse-item" href="/report/returnreport">반려 승인 내역</a>
                         <a class="collapse-item" href="/report/insa">휴가담당 관리자</a>
+                        <a class="collapse-item" href="/report/mylist?cat=1">결재 신청 목록</a>
                     </div>
                 </div>
 			</li>
@@ -107,7 +111,14 @@
             </li> -->
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <sec:authorize access="hasAnyAuthority('사장', '부장', '과장', '관리자')">
+
+
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            
+
             <!-- Nav Item - 관리자 -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/user/admin/wait" data-toggle="collapse" data-target="#collapseAdmin"
@@ -118,6 +129,8 @@
                 <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">인사</h6>
+                    <a class="collapse-item" href="/user/admin/wait">인사 관리</a>
                         <h6 class="collapse-header">시설</h6>
                         <a class="collapse-item" href="/goods/ad_list">시설 관리</a>
                         <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseReserve" aria-expanded="true" aria-controls="collapseReserve" id="accordionReserve">
@@ -133,8 +146,8 @@
                     </div>
                 </div>
             </li> 
+</sec:authorize>
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

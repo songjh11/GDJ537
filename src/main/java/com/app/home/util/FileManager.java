@@ -124,7 +124,7 @@ public class FileManager extends AbstractView {
 	}
 	
 	//파일 삭제//
-	public boolean deleteFileS3(FileVO fileVO, String path)throws Exception{
+	public boolean deleteFileS3(FileVO fileVO)throws Exception{
 
 		AmazonS3Service amazonS3Service = new AmazonS3Service();
 		
@@ -140,11 +140,11 @@ public class FileManager extends AbstractView {
 	
 	public String saveFile(String path,ServletContext servletContext,MultipartFile multipartFile) throws Exception{
 		
-		String realPath = servletContext.getRealPath(path);
-		System.out.println("realPath:" + realPath);
+		//String realPath = servletContext.getRealPath(path);
+		//System.out.println("realPath:" + realPath);
 		
 		
-		File file = new File(realPath);
+		File file = new File(path);
 		if(!file.exists()) {
 			file.mkdirs();	
 		}
@@ -159,12 +159,29 @@ public class FileManager extends AbstractView {
 	}
 
 	//파일 삭제//
-	public boolean deleteFile(FileVO fileVO, String path)throws Exception{
+	public boolean deleteFile(FileVO fileVO)throws Exception{
 
-		File file = new File(base + path, fileVO.getFileName());
+		File file = new File(base , fileVO.getFileName());
 
 		boolean result = file.delete();
 
 		return result;
+	}
+	
+	//파일 사이즈 계산
+	public String calFileSize(MultipartFile file)throws Exception{
+		long byte1 = file.getSize();
+		double kb = byte1 / 1024.0;
+		double mb = kb / 1024.0;
+		double gb = mb / 1024.0;
+		
+		String filesize = byte1 +"byte";
+		if(byte1 > 1000) {
+			filesize = Math.round(kb * 100) / 100.0 + "kb";
+			if(kb > 1000) {
+				filesize = Math.round(mb * 100) / 100.0  + "mb";
+			}
+		}
+		return filesize;
 	}
 }

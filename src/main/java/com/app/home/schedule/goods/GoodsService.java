@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +23,10 @@ public class GoodsService
 
 	@Autowired
 	private FileManager fileManager;
+	@Value("${app.upload.goods}")
+	private String filePath;
+	
+	
 
 	public int setAdd(GoodsVO goodsVO, MultipartFile[] files, ServletContext servletContext) throws Exception
 	{
@@ -41,7 +46,7 @@ public class GoodsService
 		goodsVO.setGoodsId(goodsVO.getGoodsId().concat(String.valueOf(count)));
 		
 		int result = goodsMapper.setAdd(goodsVO);
-		String path = "resources/upload/goods";
+		String path = filePath;
 
 		if (files.length != 0)
 		{
@@ -79,7 +84,7 @@ public class GoodsService
 //		}
 //		goodsVO.setId(goodsVO.getId().concat(String.valueOf(count)));
 		int result =  goodsMapper.setUpdate(goodsVO);
-		String path = "resources/upload/goods" ;
+		String path = filePath ;
 		int count = 0;
 		GoodsFileVO goodsFileVO = new GoodsFileVO();
 		if(files.length != 0) {

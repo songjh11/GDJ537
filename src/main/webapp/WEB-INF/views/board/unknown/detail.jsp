@@ -78,7 +78,7 @@
                       </button>
                         <div class="dropdown-menu dropdown-menu-right">
                           <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
-	                        <a class="dropdown-item" href="/fileDown/board/${file.id}">${file.oriName }(${file.fileSize }) </a>
+	                        <a class="dropdown-item" href="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/${file.fileName}">${file.oriName } (${file.fileSize}) </a>
 	                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
 	                      </c:forEach>
 

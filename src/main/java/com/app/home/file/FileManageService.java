@@ -20,14 +20,15 @@ public class FileManageService {
 		return fileDAO.getFileDetail(fileVO);
 	}
 
-	public int setFileDelete(FileVO fileVO, String path)throws Exception{
+	//파일삭제는 여기서
+	public int setFileDelete(FileVO fileVO)throws Exception{
 		fileVO = fileDAO.getFileDetail(fileVO);
 		int result = 0;
 
 		if(fileVO!=null) {
 			result = fileDAO.setFileDelete(fileVO);
 
-			boolean result2 = fileManager.deleteFile(fileVO, path);
+			boolean result2 = fileManager.deleteFile(fileVO);
 		}
 
 
