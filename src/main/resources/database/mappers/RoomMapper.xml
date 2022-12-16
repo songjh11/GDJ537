@@ -98,7 +98,7 @@
 	</resultMap>
 
 	<!-- 회의실별 예약된 시작, 종료 시간 가져오기 -->
-	<select id="getReserveStartTime" parameterType="List"
+	<select id="getStartTime" parameterType="List"
 		resultType="ReserveVO">
 		select STARTTIME, ENDTIME from RESERVE where GOODSID =
 		#{goodsId}
