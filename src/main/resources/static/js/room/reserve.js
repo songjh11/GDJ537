@@ -1,3 +1,31 @@
+
+// 예약자 번호 숫자형으로 변환
+var memNum = $("#member").val();
+let tt = parseFloat(memNum);
+$("#member").val(tt);
+
+console.log(memNum);
+
+$.ajax({
+    url: './roomReserve',
+    type: 'GET',
+    data: {
+        memberNum: memNum
+    },
+    success: function (rs) {
+        console.log(rs);
+        if (rs == null) {
+            alert("예약하려면 로그인이 필요합니다.")
+            history.back();
+        }
+    },
+    error: function (status, error) {
+        console.log(status);
+        console.log(error);
+    }
+})
+
+// -----------------------------------------
 const btn = document.getElementById("resBtn");
 const frm = document.getElementById("frm");
 const startTime = document.getElementById("start");
@@ -109,6 +137,33 @@ function CalculatorEndTime() {
         alert("동일한 시간은 사용할 수 없습니다.");
         endCheck = false;
         console.log("시간 동일 - " + endCheck)
+        return false;
+    }
+    else { // 날짜, 시간이 동일하지 않을때
+        // 같은 날에 종료 시간이 시작 시간보다 커야 함
+        // 또는
+        // 같은 날 종료 시간과 시작 시간이 동일하고 시작분이 종료 분보다 작아야 함
+        if (d == da && end < st || (d == da && end == st && a > b)) {
+            alert("시작 시간보다 빨리 끝날 수 없습니다.");
+            endCheck = false;
+            console.log("종료시간이 시작보다 빠름 - " + endCheck);
+            return false;
+        }
+        else {
+            endCheck = true;
+        }
+    }
+
+    // 날짜의 요일 구하기
+    var week = new Array('일', '월', '화', '수', '목', '금', '토');
+    var dayWeek = new Date(endDate).getDay();
+    var todayLabel = week[dayWeek];
+
+    console.log("선택한 요일은 : " + todayLabel);
+    if (todayLabel == '일' || todayLabel == '토') {
+        alert("주말은 선택할 수 없습니다.");
+        holidayCheck = false;
+        return false;
     }
     else {
 

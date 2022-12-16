@@ -168,77 +168,80 @@ public class GoodsController {
                hash.put("test2", userVO.getName());
                
 //            hash.put("time", listAll.get(i).getScheduleTime());
-               jsonObj = new JSONObject(hash);
-               jsonArr.add(jsonObj);
-            }else {
-               depNum1 = Integer.valueOf(depNum);
-               userVO.setId(list.get(i).getId());
-               userVO = userService.getMypage(userVO);
-               if(userVO.getDepNum() == depNum1) {
-                  hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
-                  hash.put("start", list.get(i).getStartTime());
-                  hash.put("end", list.get(i).getEndTime());
-                  
-                  hash.put("content", userVO.getDepartmentVO().getDepName());
-                  hash.put("test1", userVO.getRoleVO().getRoleName());
-                  hash.put("test2", userVO.getName());
-                  
-//               hash.put("time", listAll.get(i).getScheduleTime());
-                  jsonObj = new JSONObject(hash);
-                  jsonArr.add(jsonObj);
-               }else {
-                  continue;
-               }
-            }
-            
-         }
-         
-         log.info("jsonArrCheck: {}", jsonArr);
-         return jsonArr;
-      }
-   
-   
-   @GetMapping("ad_room")
-   public ModelAndView getRoomAdmin() throws Exception{
-      ModelAndView mv = new ModelAndView();
-      LocalDate now = LocalDate.now();
-      List<GoodsVO> room = goodsService.getRoomNameList();
-      List<DepartmentVO> department = userService.getDepartment(); 
-      Map<String, Integer> map = new HashMap<>();
-      Map<String, Integer> departMap = new HashMap<>();
-      
-      for(int i=0;i<room.size();i++) {
-         map.put(room.get(i).getName(), goodsService.getreserveCount(room.get(i)));
-      }
-      
-      for(int i=0;i<department.size();i++) {
-         departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(department.get(i)));
-      }
-      
-      String result ="";
-      Set<String> reasonKeys = map.keySet();
-      
-      for(String key : reasonKeys) {
-         if(result != "") {
-            result += ",";
-         }
-         result += "['"+key+"', "+map.get(key)+"]";
-      }
-      int total = goodsService.getRoomTotal();
-      
-      String depart ="";
-      Set<String> reasonKey = departMap.keySet();
-      
-      for(String key : reasonKey) {
-         if(depart != "") {
-            depart += ",";
-         }
-         depart += "['"+key+"', "+departMap.get(key)+"]";
-      }
-      
-      String month = now.toString().substring(5, 7);
-      System.out.println(month);
-      int nowTotal = goodsService.getRoomNowTotal(month);
+					jsonObj = new JSONObject(hash);
+					jsonArr.add(jsonObj);
+				}else {
+					depNum1 = Integer.valueOf(depNum);
+					userVO.setId(list.get(i).getId());
+					userVO = userService.getMypage(userVO);
+					if(userVO.getDepNum() == depNum1) {
+						hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+						hash.put("start", list.get(i).getStartTime());
+						hash.put("end", list.get(i).getEndTime());
+						
+						hash.put("content", userVO.getDepartmentVO().getDepName());
+						hash.put("test1", userVO.getRoleVO().getRoleName());
+						hash.put("test2", userVO.getName());
+						
+//	            hash.put("time", listAll.get(i).getScheduleTime());
+						jsonObj = new JSONObject(hash);
+						jsonArr.add(jsonObj);
+					}else {
+						continue;
+					}
+				}
+				
+			}
+			
+			log.info("jsonArrCheck: {}", jsonArr);
+			return jsonArr;
+		}
+	
+	
+	@GetMapping("ad_room")
+	public ModelAndView getRoomAdmin() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		LocalDate now = LocalDate.now();
+		List<GoodsVO> room = goodsService.getRoomNameList();
+		List<DepartmentVO> department = userService.getDepartment(); 
+		Map<String, Integer> map = new HashMap<>();
+		Map<String, Integer> departMap = new HashMap<>();
+		
+		for(int i=0;i<room.size();i++) {
+			map.put(room.get(i).getName(), goodsService.getreserveCount(room.get(i)));
+		}
+		
+		for(int i=0;i<department.size();i++) {
+			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(department.get(i)));
+		}
+		
+		for(int i=0;i<department.size();i++) {
+			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(department.get(i)));
+		}
+		
+		String result ="";
+		Set<String> reasonKeys = map.keySet();
+		
+		for(String key : reasonKeys) {
+			if(result != "") {
+				result += ",";
+			}
+			result += "['"+key+"', "+map.get(key)+"]";
+		}
+		int total = goodsService.getRoomTotal();
+		
+		String depart ="";
+		Set<String> reasonKey = departMap.keySet();
+		
+		for(String key : reasonKey) {
+			if(depart != "") {
+				depart += ",";
+			}
+			depart += "['"+key+"', "+departMap.get(key)+"]";
+		}
+		
+		String month = now.toString().substring(5, 7);
+		int nowTotal = goodsService.getCarNowTotal(month);
 
       System.out.println(nowTotal);
       mv.addObject("nowTotal", nowTotal);
