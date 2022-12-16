@@ -27,6 +27,31 @@
   		<typeAlias type="com.app.home.board.BoardVO" alias="BoardVO"/>	
   		<typeAlias type="com.app.home.board.comment.CommentVO" alias="CommentVO"/>	
 
+  		<typeAlias type="java.lang.Integer" alias="Integer"/>
+  		
 
+  		<typeAlias type="com.app.home.report.ReportApplyVO" alias="ReportApplyVO"/>
+
+  		
+  		<typeAlias type="com.app.home.report.ReportVO" alias="ReportVO"/>
+  		<typeAlias type="com.app.home.report.sorry.ReportSorryVO" alias="ReportSorryVO"/>
+  		<typeAlias type="com.app.home.report.work.ReportWorkVO" alias="ReportWorkVO"/>
+  		<typeAlias type="com.app.home.report.pay.ReportPayVO" alias="ReportPayVO"/>
+  		<typeAlias type="com.app.home.report.vaca.ReportVacaVO" alias="ReportVacaVO"/>
+  		<typeAlias type="com.app.home.report.pay.RepriceVO" alias="RepriceVO"/>
+  		<typeAlias type="com.app.home.report.util.ReportPager" alias="ReportPager"/>
+
+  		<typeAlias type="java.lang.Integer" alias="int"/>
+  		<typeAlias type="java.lang.String" alias="String"/>
+  		
+  		
+  		<typeAlias type="com.app.home.schedule.goods.GoodsVO" alias="GoodsVO" />
+  		<typeAlias type="com.app.home.schedule.goods.GoodsFileVO" alias="GoodsFileVO" />
+  		<typeAlias type="com.app.home.schedule.goods.ReserveVO" alias="ReserveVO" />
+  		<typeAlias type="com.app.home.schedule.goods.GoodsReserveVO" alias="GoodsReserveVO" />
+  		<typeAlias type="com.app.home.schedule.car.CarVO" alias="CarVO" />
+  		<typeAlias type="com.app.home.schedule.room.GoodsRoomVO" alias="GoodsRoomVO" />
+  		
+  		
   	</typeAliases>
   </configuration>
