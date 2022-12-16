@@ -26,7 +26,7 @@
   		<typeAlias type="com.app.home.file.FileVO" alias="FileVO"/>
   		<typeAlias type="com.app.home.board.BoardVO" alias="BoardVO"/>	
   		<typeAlias type="com.app.home.board.comment.CommentVO" alias="CommentVO"/>	
-  		<typeAlias type="com.app.home.board.reqcategory.ReqCategoryVO" alias="ReqCategoryVO"/>
+  		<typeAlias type="com.app.home.board.request.ReqCategoryVO" alias="ReqCategoryVO"/>
 
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		

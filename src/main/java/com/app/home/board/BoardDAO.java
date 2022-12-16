@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.app.home.board.reqcategory.ReqCategoryVO;
+import com.app.home.board.request.ReqCategoryVO;
 import com.app.home.util.Pager;
 
 @Mapper
