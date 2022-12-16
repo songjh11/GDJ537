@@ -45,11 +45,13 @@ public class ReportService {
 	public int setLstatusUpdate(ReportVO reportVO, UserVO userVO) throws Exception{
 		
 		
-		int result = reportMapper.setLicenserAdd(userVO);
+//		int result = reportMapper.setLicenserAdd(userVO);
+//		
+//		if(result > 0) {
+//			reportMapper.setLstatusUpdate(reportVO);
+//		}
 		
-		if(result > 0) {
-			reportMapper.setLstatusUpdate(reportVO);
-		}
+		int result = reportMapper.setLstatusUpdate(reportVO);
 		
 		return result;
 	}
@@ -77,9 +79,22 @@ public class ReportService {
 //	}
 		
 	//승인자 테이블에서 권한을 회수하기 위해 delete
-	public int setLicenserDelete(UserVO userVO) throws Exception{
+	public int setLicenserUpdate(UserVO userVO) throws Exception{
 		
-		return reportMapper.setLicenserDelete(userVO);
+		return reportMapper.setLicenserUpdate(userVO);
+	}
+	
+	//결재 신청자 입장에서 자기가 결재를 해야할 목록 리스트
+	public UserVO getFirstList(UserVO userVO) throws Exception{
+			
+		
+		return reportMapper.getFirstList(userVO);
+	}
+	
+	//결재 신청자 입장에서 자기가 결재를 해야할 목록 리스트
+	public UserVO getlastlist(UserVO userVO) throws Exception{
+		
+		return reportMapper.getlastlist(userVO);
 	}
 	
 	
