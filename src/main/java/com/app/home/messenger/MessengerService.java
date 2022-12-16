@@ -75,9 +75,14 @@ public class MessengerService {
 		return messengerMapper.getUserCount(roomVO);
 	}
 	
-	// 비밀번호가 있는지 없는지 조회
+	// 비밀번호 조회
 	public RoomVO getRoomPw(RoomVO roomVO)throws Exception{
 		return messengerMapper.getRoomPw(roomVO);
+	}
+	
+	// 비밀번호가 있는지 없는지 조회
+	public int getPwCheck(RoomVO roomVO)throws Exception{
+		return messengerMapper.getPwCheck(roomVO);
 	}
 	
 }

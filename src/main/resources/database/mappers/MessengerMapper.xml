@@ -82,6 +82,11 @@
 	<!--                          효경                          -->
 	
 	<!--                       비밀번호가 있는지 없는지 조회                       -->
+	<select id="getPwCheck" parameterType="RoomVO" resultType="Integer">
+		SELECT COUNT(PW) FROM CHATROOM WHERE ROOMNUM = #{roomNum}
+	</select>
+	
+	<!--                       비밀번호 조회                       -->
 	<select id="getRoomPw" parameterType="RoomVO" resultType="RoomVO">
 		SELECT PW FROM CHATROOM WHERE ROOMNUM = #{roomNum}
 	</select>

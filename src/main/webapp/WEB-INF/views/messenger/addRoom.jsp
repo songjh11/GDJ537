@@ -24,7 +24,7 @@
 										<img class="yourImg" src="/img/undraw_profile_3.svg">
 									</div>
 									<div class="col text-center" style="margin-left: 3%;">
-										<button type="button" class="roomLink"><b>${roomVO.roomName}</b></button>
+										<button type="button" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></button>
 									</div>
 									<div class="col text-center">
 										${roomVO.roomName}
