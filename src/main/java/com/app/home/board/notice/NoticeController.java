@@ -10,6 +10,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.board.BoardVO;
+import com.app.home.user.UserVO;
 import com.app.home.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,11 +38,12 @@ public class NoticeController {
 	}
 
 	@PostMapping("add")
-	public String setNotice(BoardVO boardVO) throws Exception{
+	public String setNotice(@AuthenticationPrincipal UserVO userVO ,BoardVO boardVO) throws Exception{
 
-		boolean chk = noticeService.checkValid(boardVO);
+		boolean chk = noticeService.checkValid(userVO, boardVO);
 
 		if(chk) {
+			boardVO.setCreator(userVO.getId());
 			//DB에 저장 진행
 			int result = noticeService.setNotice(boardVO);
 
@@ -68,8 +71,10 @@ public class NoticeController {
 	}
 
 	@PostMapping("update")
-	public String setUpdate(BoardVO boardVO) throws Exception{
+	public String setUpdate(@AuthenticationPrincipal UserVO userVO ,BoardVO boardVO) throws Exception{
+		boardVO.setUpdater(userVO.getId());
 		log.info("update boardVO {}", boardVO);
+		
 		int result = noticeService.setUpdate(boardVO);
 
 		return "redirect:/notice/detail?id="+boardVO.getId();

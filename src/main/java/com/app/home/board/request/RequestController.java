@@ -3,6 +3,7 @@ package com.app.home.board.request;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.board.BoardVO;
 import com.app.home.board.reqcategory.ReqCategoryVO;
+import com.app.home.user.UserVO;
 import com.app.home.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +32,9 @@ public class RequestController {
 	}
 	
 	@PostMapping("add")
-	public String setRequest(BoardVO boardVO) throws Exception{
+	public String setRequest(@AuthenticationPrincipal UserVO userVO, BoardVO boardVO) throws Exception{
+		
+		boardVO.setCreator(userVO.getId());
 		
 		boolean chk = requestService.checkValid(boardVO);
 		
@@ -62,6 +66,7 @@ public class RequestController {
 	
 	@GetMapping("update")
 	public ModelAndView setUpdate(BoardVO boardVO, ModelAndView mv)throws Exception{
+		
 		boardVO = requestService.getDetail(boardVO);
 		mv.addObject("boardVO", boardVO);
 		mv.setViewName("/board/request/update");
@@ -70,7 +75,8 @@ public class RequestController {
 	}
 	
 	@PostMapping("update")
-	public String setUpdate(BoardVO boardVO) throws Exception{
+	public String setUpdate(@AuthenticationPrincipal UserVO userVO, BoardVO boardVO) throws Exception{
+		boardVO.setCreator(userVO.getId());
 		log.info("update boardVO {}", boardVO);
 		int result = requestService.setUpdate(boardVO);
 		
