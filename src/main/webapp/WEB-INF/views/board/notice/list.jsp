@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +82,9 @@
 					</div>
 					</form>
 					<div>
-					<a href="/notice/add" class="btn btn-danger" style="margin:10px 0;">글 작성</a>
+					<sec:authorize access="hasAuthority('관리자')">
+						<a href="/notice/add" class="btn btn-danger" style="margin:10px 0;">글 작성</a>
+					</sec:authorize>					
 					</div>
 	            	<!-- 공지사항 작성 -->
 	            	<div class="card mb-3 noticeList">
@@ -115,8 +118,7 @@
 													d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z">
 												</path>
 												<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-											</svg><span>${notice.hit}</span><span style="margin-left: 5px;">views</span>
-											</div>
+											</svg><span>${notice.hit}</span></div>
 						                </div>
 						            </div>
 						        </div>
