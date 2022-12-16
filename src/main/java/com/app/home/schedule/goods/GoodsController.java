@@ -162,7 +162,7 @@ public class GoodsController {
                     hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
                     hash.put("start", list.get(i).getStartTime());
                     hash.put("end", list.get(i).getEndTime());
-                    hash.put("color", "#36b9cc");
+                    hash.put("color", "#4e73df");
                     hash.put("content", userVO.getDepartmentVO().getDepName());
                     hash.put("test1", userVO.getRoleVO().getRoleName());
                     hash.put("test2", userVO.getName());
@@ -172,7 +172,7 @@ public class GoodsController {
 		               hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
 		               hash.put("start", list.get(i).getStartTime());
 		               hash.put("end", list.get(i).getEndTime());
-		               hash.put("color", "#1cc88a");
+		               hash.put("color", "#009000");
 		               hash.put("content", userVO.getDepartmentVO().getDepName());
 		               hash.put("test1", userVO.getRoleVO().getRoleName());
 		               hash.put("test2", userVO.getName());
@@ -193,7 +193,7 @@ public class GoodsController {
 							hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
 							hash.put("start", list.get(i).getStartTime());
 							hash.put("end", list.get(i).getEndTime());
-							hash.put("color", "#36b9cc");
+							hash.put("color", "#4e73df");
 							hash.put("content", userVO.getDepartmentVO().getDepName());
 							hash.put("test1", userVO.getRoleVO().getRoleName());
 							hash.put("test2", userVO.getName());
@@ -205,7 +205,7 @@ public class GoodsController {
 							hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
 							hash.put("start", list.get(i).getStartTime());
 							hash.put("end", list.get(i).getEndTime());
-							hash.put("color", "#1cc88a");
+							hash.put("color", "#009000");
 							hash.put("content", userVO.getDepartmentVO().getDepName());
 							hash.put("test1", userVO.getRoleVO().getRoleName());
 							hash.put("test2", userVO.getName());

@@ -71,8 +71,14 @@
 				  	    <div id='calendar'></div>
 					    </div>
               <div style=" text-align: center;" class="mt-5">
-                <a href="/goods/room/roomList" class="btn btn-info">회의실 예약하기</a>
-                <a href="/goods/car/carList" class="btn btn-success">출장 차량 예약하기</a>
+                <a href="/goods/room/roomList" class="btn" style="
+                background: #4e73df;
+                color: white;
+            ">회의실 예약하기</a>
+                <a href="/goods/car/carList" class="btn" style="
+                background: #009000;
+                color: white;
+            ">출장 차량 예약하기</a>
               </div>
 	
 	            </div>
