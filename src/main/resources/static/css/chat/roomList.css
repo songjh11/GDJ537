@@ -1,0 +1,17 @@
+/* 채팅방 목록 가져오기 */
+.roomList{
+	border: 1px solid #d8d9f7a1;
+	/* background: #3b4bbd0f; */
+	background: #fff;
+	margin: 8px 7px;
+	display: flex;
+	height: 70px;
+	/* height: 73px; */
+	align-items: center;
+	padding: 3px;
+	overflow: hidden;
+	border-radius: 10px 10px;
+	   font-size: 13px;
+	box-shadow: 2px 2px 5px #8080801f;
+	font-size: medium;
+}
