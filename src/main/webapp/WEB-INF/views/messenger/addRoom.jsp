@@ -18,7 +18,9 @@
 							</thead>
 						</table>
 						<div class="roomArea" style="overflow-y: scroll; overflow-x: hidden; height: 550px;">							
+							<h3>Group</h3>
 							<c:forEach items="${roomList}" var="roomVO">
+							<c:if test="${roomVO.kind eq '0'}">
 								<div class="roomList">
 									<div class="col-3" style="margin-left: 6.4%;">
 										<img class="yourImg" src="/img/undraw_profile_3.svg">
@@ -43,6 +45,37 @@
 										${roomVO.roomName}
 									</div>
 								</div>
+								</c:if>
+							</c:forEach>
+							
+							<h3>1:1</h3>
+							<c:forEach items="${roomList}" var="roomVO">
+							<c:if test="${roomVO.kind eq '1'}">
+								<div class="roomList">
+									<div class="col-3" style="margin-left: 6.4%;">
+										<img class="yourImg" src="/img/undraw_profile_3.svg">
+										<span>${roomVO.userVO.name}</span>
+									</div>
+									<c:choose>
+										<c:when test="${user.name eq roomVO.roomName}">
+											<div class="col text-center" style="margin-left: 3%;">
+												<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="col text-center" style="margin-left: 3%;">
+												<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+											</div>
+										</c:otherwise>
+									</c:choose>
+<%-- 									<div class="col text-center" style="margin-left: 3%;">
+										<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+									</div> --%>
+									<div class="col text-center">
+										${roomVO.roomName}
+									</div>
+								</div>
+								</c:if>
 							</c:forEach>
 						</div>
 						<!-- 채팅목록 -->
