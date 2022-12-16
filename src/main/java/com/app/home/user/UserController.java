@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.home.schedule.car.CarService;
+import com.app.home.schedule.goods.ReserveVO;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -32,6 +35,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CarService carService;
 
 	@GetMapping("usernum")
 	public String getNum() throws Exception {
@@ -53,7 +59,13 @@ public class UserController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
+	    
+	    // 개인 예약내역 추가
+	    List<ReserveVO> reserveVOs = carService.getReserveUserList(userVO);
+	    System.out.println("r"+ reserveVOs);
+	    
 		userVO = userService.getMypage(userVO);
+		mv.addObject("reserveVO", reserveVOs);
 		mv.addObject("userVO", userVO);
 		mv.setViewName("/user/mypage");
 		return mv;

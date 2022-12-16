@@ -1,10 +1,7 @@
 let count = 0;
 let goodId = $("#goodId").val();
 let flag=true;
-
 let imgCheck = true;
-
-
 $("#fileAdd").click(function(){
     if(flag){
         let size = $("#fileAddResult").attr("data-file-size");
@@ -30,7 +27,6 @@ $("#fileAdd").click(function(){
     }else {
         //swal("최대 3개만 가능","","warning")
     }
-
     for(let i=0; i<$(".files").length; i++){
         console.log("i확인 : "+i);
         $($(".files")[i]).on('change',function(){
@@ -70,7 +66,6 @@ $("#fileAdd").click(function(){
             //     }
     
             // });
-
             imgCheck = true;
         });
     
@@ -78,10 +73,8 @@ $("#fileAdd").click(function(){
     
     // console.log($(".files").length);     
 });
-
 for(let i=0; i<$(".files").length; i++){
     console.log("i확인 : "+i);
-
     $($(".files")[i]).on('change',function(){
         console.log("rr");
         var fileName = $($(".files")[i]).val();
@@ -110,11 +103,10 @@ for(let i=0; i<$(".files").length; i++){
                         error:function(){
                             console.log("Error 발생");
                         }
-
             });
         });
-        
-    
+
+
     $($(".del")[i]).click(function(){
         console.log("click");
         console.log(i);
@@ -137,17 +129,14 @@ for(let i=0; i<$(".files").length; i++){
                     // location.replace("./update?goodsId="+goodId);
 
                 }
-                
+
             },
             error:function(){
                 console.log("Error 발생");
             }
-
         });
     })
-
 }
-
 $("#fileAddResult").on("click", ".del", function(){
     $(this).parent().remove();
     
@@ -161,8 +150,8 @@ flag=true;
 
 //     if(flag){
 //         let size = $("#fileAddResult").attr("data-file-size");
-        
-        
+
+
 //         count=size;
 //         flag=false;
 //     }
@@ -212,27 +201,20 @@ $("#delete").click(function(){
             alert("예약된 건이 있어 삭제가 불가합니다.");
             console.log("Error 발생");
         }
-
     });
     
-
 })
-
-
 $('input[name=goodsId]').click(function(){
     if($('input[name=goodsId]:checked').val() == 'CA') {
         $('#carChecked').css("display","inline");
     }else{
         $('#carChecked').css("display", "none");
     }
-
 })
-
 let nameCheck = true;
 let maxCheck = true;
 let locationCheck = true;
 let carNumCheck = true;
-
 const name = document.getElementById("name");
 const max = document.getElementById("max");
 const loca = document.getElementById("location");
@@ -244,14 +226,10 @@ const carNumdiv = document.getElementById("carNumdiv");
 const kinddiv = document.getElementById("kinddiv");
 const imgdiv = document.getElementById("imgdiv");
 const sub = document.getElementById("sub");
-
 var pattern_num = /[1-9999999]/; //숫자
 var pattern_eng = /[a-zA-Z]/;	// 문자 
 var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
 var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
-
-
-
 name.addEventListener("blur",function(){
     if(name.value.length < 1) {
         $("#name").css("border-color","red");
@@ -259,7 +237,6 @@ name.addEventListener("blur",function(){
         nameCheck = false;
     }else{
         $("#name").css("border-color","green");
-
         namediv.innerHTML ="";
         nameCheck = true;
     }
@@ -276,7 +253,6 @@ max.addEventListener("blur",function(){
         maxCheck = false;
     } 
 })
-
 loca.addEventListener("blur",function(){
     if(loca.value.length < 1) {
         $("#location").css("border-color","red");
@@ -288,7 +264,6 @@ loca.addEventListener("blur",function(){
         locationCheck = true;
     }
 })
-
 carNum.addEventListener("blur",function(){
     if($('input[name=goodsId]:checked').val() == 'CA') {
        
@@ -303,11 +278,6 @@ carNum.addEventListener("blur",function(){
     }
 }
 })
-
-
-
-
-
 sub.addEventListener("click",function(){
     console.log(nameCheck);
     console.log(locationCheck);
@@ -321,11 +291,9 @@ sub.addEventListener("click",function(){
     }else {
         imgdiv.innerHTML ="";
     }
-
     if(!(nameCheck && maxCheck && locationCheck && carNumCheck &&imgCheck)) {
         
         alert("모든 칸을 작성해주세요");
-
     }else{
        $("#addform").submit();
     }

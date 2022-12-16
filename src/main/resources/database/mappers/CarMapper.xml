@@ -64,6 +64,10 @@
 	<select id="getReserveList" resultType="ReserveVO" parameterType="List">
 		SELECT * FROM RESERVE ORDER BY RESERVENUM DESC
 	</select>
+	
+	<select id="getReserveUserList" resultType="ReserveVO" parameterType="UserVO">
+		SELECT * FROM RESERVE WHERE ID=#{id};
+	</select>
 
 	<!-- 예약 -->
 	<insert id="setReserve" parameterType="ReserveVO">

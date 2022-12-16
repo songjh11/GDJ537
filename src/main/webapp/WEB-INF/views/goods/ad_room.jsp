@@ -17,21 +17,16 @@
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
-
       function drawChart() {
-
         var data = google.visualization.arrayToDataTable([
           ['Reason', 'Count'],
           ${result}
         ]);
-
         var options = {
           title: '회의실별 통계'
           
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
         chart.draw(data, options);
       }
 </script>
@@ -66,28 +61,28 @@
 <!-- body ID 작성 -->
 <body id="page-top">
 
-	<!-- Page Wrapper 전체 Contents Wrapper -->
+   <!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
 
-		<!-- Sidebar import -->
-		<c:import url="../temp/layout_sidebar.jsp"></c:import>
-		<!-- End of Sidebar -->
-		
-		 <!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
-			<!-- Main Content -->
-			<div id="content">
-			
-				<!-- Topbar import-->
-				<c:import url="../temp/layout_topbar.jsp"></c:import>
-				<!-- End of Topbar -->
-				
-				<!-- Begin Page Content -->
-	            <div class="container-fluid">
-	
-	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800" style="font-weight: bold;">회의실 예약 통계</h1>
-					
+      <!-- Sidebar import -->
+      <c:import url="../temp/layout_sidebar.jsp"></c:import>
+      <!-- End of Sidebar -->
+      
+       <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+         <!-- Main Content -->
+         <div id="content">
+         
+            <!-- Topbar import-->
+            <c:import url="../temp/layout_topbar.jsp"></c:import>
+            <!-- End of Topbar -->
+            
+            <!-- Begin Page Content -->
+               <div class="container-fluid">
+   
+                  <!-- Page Heading -->
+                  <h1 class="h3 mb-4 text-gray-800" style="font-weight: bold;">회의실 예약 통계</h1>
+               
                     
                     <div id="piechart" style="width: 700px; height: 500px; float: left; margin-right : 30px;"></div>
 
@@ -134,22 +129,22 @@
                         </div> <!-- / .row -->
                       </div>
                   </div>
-	            </div>
-	            <!-- End Page Content -->
-					
-			</div>
-			<!-- End of Main Content -->
-			
-			<!-- Footer import -->
-			<c:import url="../temp/layout_footer.jsp"></c:import>
-			<!-- End of Footer -->
-		</div>
-		<!-- End of Content Wrapper -->
-	</div>
+               </div>
+               <!-- End Page Content -->
+               
+         </div>
+         <!-- End of Main Content -->
+         
+         <!-- Footer import -->
+         <c:import url="../temp/layout_footer.jsp"></c:import>
+         <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+   </div>
 
-	<!-- Scroll Top, Login Modal import -->
-	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
-	<script src="/js/goods/ad_list.js"></script>
+   <!-- Scroll Top, Login Modal import -->
+   <c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+   <script src="/js/goods/ad_list.js"></script>
     
 </body>
 </html>

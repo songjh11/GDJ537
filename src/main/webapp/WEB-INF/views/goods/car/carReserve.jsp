@@ -9,11 +9,9 @@
 <title>Insert title here</title>
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
-
+</head>
 <!-- 차량 예약 JS -->
 <script defer src="/js/room/reserve.js"></script>
-</head>
-
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -61,15 +59,15 @@
                      	
 						<div class="mb-3">
                            <label>예약날짜</label>
-                           <input type="datetime-local" name="startTime" class="form-control" id="start">
-                           <p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
-                           <br>
-                        </div>
+                           <input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1" placeholder="시작시간"
+<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p> <br>
+</div>
                         
                         <div class="mb-3">
                            <label>반납날짜</label>
-                           <input type="datetime-local" name="endTime" class="form-control" id="end" disabled='disabled'>
-                           <p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+                           <input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput2" placeholder="시작시간">
+                           <p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+
                            <br>
                         </div> 
                         
