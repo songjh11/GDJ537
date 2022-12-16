@@ -10,6 +10,8 @@ import com.app.home.schedule.goods.ReserveVO;
 @Mapper
 public interface CarMapper {
 	
+	public List<ReserveVO> getStartTime(ReserveVO reserveVO) throws Exception;
+	
 	// 예약 취소
 	public int setDelete(ReserveVO reserveVO) throws Exception;
 	

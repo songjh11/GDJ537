@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -115,13 +116,19 @@ public class CarController {
 
 	// 예약 GET
 	@GetMapping("/car/carReserve")
-	public ModelAndView setReserve(GoodsVO goodsVO, ModelAndView mv) throws Exception {
+	public ModelAndView setReserve(GoodsVO goodsVO, ReserveVO reserveVO, Authentication authentication, ModelAndView mv) throws Exception {
 		
 		goodsVO = carService.getGoods(goodsVO);
+		List<ReserveVO> reserveVOs = carService.getStartTime(reserveVO);
 		
 		log.info("예약하기 GET : {}", goodsVO);
+		log.info("예약하기 user GET : {}", authentication.getPrincipal());
+		log.info("예약하기 ss GET : {}", reserveVOs);
 		
+		mv.addObject("timeNotEqual", reserveVOs);
+		mv.addObject("userInfo", authentication.getPrincipal());
 		mv.addObject("goods", goodsVO);
+		mv.setViewName("/goods/car/carReserve");
 		
 		return mv;
 	}
@@ -132,9 +139,9 @@ public class CarController {
 		
 		int result = carService.setReserve(reserveVO);
 		
-		log.info("예약하기 POST : {}", reserveVO);
+		log.info("예약하기 POST : {}", result);
 		
-		mv.setViewName("redirect:../car/carList");
+		mv.setViewName("redirect:/goods/car/carList");
 		
 		return mv;
 	}

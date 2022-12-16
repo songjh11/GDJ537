@@ -17,6 +17,11 @@ public class CarService {
 	@Autowired
 	private CarMapper carMapper;
 	
+	public List<ReserveVO> getStartTime(ReserveVO reserveVO) throws Exception {
+		
+		return carMapper.getStartTime(reserveVO);
+	}
+	
 	// 예약 취소
 	public int setDelete(ReserveVO reserveVO) throws Exception {
 		

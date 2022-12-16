@@ -52,7 +52,13 @@
 								</table>
 								
 						<input type="hidden" name="goodsId" value="${goods.goodsId}">
-						
+                     	<c:forEach items="${timeNotEqual }" var="t">
+	                        <div class="timeCheck">
+	                           <input type="hidden" value="${t.startTime }" class="startTimeCheck">
+	                           <input type="hidden" value="${t.endTime }" class="endTimeCheck">
+	                        </div>
+                     	</c:forEach>
+                     	
 						<div class="mb-3">
                            <label>예약날짜</label>
                            <input type="datetime-local" name="startTime" class="form-control" id="start">
@@ -69,12 +75,12 @@
                         
                         <div class="mb-5">
                            <label>예약자</label>
-                           <input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="7">
+                           <input type="text" name="memberNum" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${userInfo.id}">
                         </div>
                         
                         <div class="mb-5">
                            <label>부서명</label>
-                           <input type="text" class="form-control" id="exampleFormControlInput1" value="인사과">
+                           <input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="${userInfo.departmentVO.depNum}">
                         </div>   
                                                                                                    
                         <div class="mb-5">

@@ -5,6 +5,11 @@
 
 <mapper namespace="com.app.home.schedule.car.CarMapper">
 
+	<select id="getStartTime" parameterType="List" resultType="ReserveVO">
+		SELECT STARTTIME, ENDTIME FROM RESERVE 
+		WHERE GOODSID = #{goodsId}
+	</select>
+
 	<!-- 예약 취소 -->
 	<delete id="setDelete" parameterType="ReserveVO">
 		DELETE FROM RESERVE 
@@ -34,7 +39,7 @@
 	<!-- 예약 -->
 	<insert id="setReserve" parameterType="ReserveVO">
 		INSERT INTO RESERVE(RESERVENUM, GOODSID, DATE, STARTTIME, ENDTIME, ID, USEPURPOSE)
-		VALUES(null, #{goodsId}, now(), #{startTime}, #{endTime}, '7', #{usePurpose})
+		VALUES(null, #{goodsId}, now(), #{startTime}, #{endTime}, #{id}, #{usePurpose})
 	</insert>
 
 	<!-- 차량 상세보기 -->
