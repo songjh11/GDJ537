@@ -199,7 +199,7 @@ public class ReportService {
 				return reportMapper.getDoFirstReport(reportPager);
 			}
 			
-			public ReportVO getDoFinalReport(ReportPager reportPager) throws Exception{
+			public List<ReportApplyVO> getDoFinalReport(ReportPager reportPager) throws Exception{
 				reportPager.getNum(reportMapper.getCountDoFinalReport(reportPager));
 				return reportMapper.getDoFinalReport(reportPager);
 			}

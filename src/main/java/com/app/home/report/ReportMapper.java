@@ -102,7 +102,7 @@ public interface ReportMapper {
 			
 			public Long getCountDoFirstReport(ReportPager reportPager) throws Exception;
 			
-			public ReportVO getDoFinalReport(ReportPager reportPager) throws Exception;
+			public List<ReportApplyVO> getDoFinalReport(ReportPager reportPager) throws Exception;
 			
 			public Long getCountDoFinalReport(ReportPager reportPager) throws Exception;
 
