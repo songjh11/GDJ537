@@ -74,4 +74,9 @@ public class MessengerService {
 		return messengerMapper.getUserCount(roomVO);
 	}
 	
+	//채팅방 제목
+	public String getChatName (RoomVO roomVO) throws Exception{
+		return messengerMapper.getChatName(roomVO);
+	}
+	
 }
