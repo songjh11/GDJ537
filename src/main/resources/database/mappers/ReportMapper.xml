@@ -342,9 +342,9 @@
 	</resultMap>
 	
 	<sql id="license">
-		where RL.ID=1209 AND RA.REPORTNUM=1  <choose>
+		where RA.DEPNUM=#{depNum}    <choose>
 												<when test="kind == 1">
-												
+													
 												</when>
 												<when test="kind == 2">
 													AND RL.LSTATUS = RA.STATUS
@@ -473,15 +473,14 @@
 					INNER JOIN 
 					REPRICE vg ON rp.rnum = vg.rnum	
 						)r2 ON r.APPLYNUM = r2.APPLYNUM
-		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum}
 	</select>
 	
-	<resultMap type="ReportApplyVO" id="getPayDetail">
+	<resultMap type="ReportPayVO" id="getPayDetail">
 		<id column="APPLYNUM" property="applyNum"/>
-		<result column="RNUM" property="rnum"/>
 		<result column="TITLE" property="title"/>
 		<result column="CDATE" property="cdate"/>
-		<result column="SUM" property="SUM"/>
+		<result column="SUM" property="sum"/>
 		<result column="PAYMENT" property="payment"/>
 		<result column="DATE" property="date"/>
 		<result column="DEPNAME" property="depName"/>
@@ -495,8 +494,7 @@
 		<result column="ROLENAME" property="roleName"/>
 		
 		<collection property="repriceVOs" javaType="List" ofType="RepriceVO">
-			<id column="RNUM" property="rnum"/>
-			<result column="ITEM" property="item"/>
+			<id column="ITEM" property="item"/>
 			<result column="PRICE" property="price"/>
 		</collection>
 		

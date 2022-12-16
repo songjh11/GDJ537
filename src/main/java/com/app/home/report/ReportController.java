@@ -517,13 +517,18 @@ public class ReportController {
 			}
 			else {						
 				reportVO = reportService.getDoFirstReport(reportPager);
-				int result = reportVO.getLstatus();
-				List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
-				mv.addObject("pager", reportPager);
-				mv.addObject("reportApplyVOs", reportApplyVOs);
-				mv.addObject("result", result);
-				mv.setViewName("report/doreport");
-				return mv;
+				if(reportVO != null) {
+					int result = reportVO.getLstatus();
+					List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
+					mv.addObject("pager", reportPager);
+					mv.addObject("reportApplyVOs", reportApplyVOs);
+					mv.addObject("result", result);
+					mv.setViewName("report/doreport");
+					return mv;
+				}else {
+					mv.setViewName("redirect:/");
+					return mv;
+				}
 			}
 	}
 		else{
@@ -572,12 +577,12 @@ public class ReportController {
 	@GetMapping("/report/mylist")
 	public ModelAndView getMyReportList(ModelAndView mv,String cat,ReportPager pager, Principal principal) throws Exception{
 		
-//		if(principal == null) {
-//			mv.setViewName("user/login");
-//			return mv;
-//		}
+		if(principal == null) {
+			mv.setViewName("user/login");
+			return mv;
+		}
 		
-		pager.setId(1209);
+		pager.setId(Integer.parseInt(principal.getName()));
 		
 		if(cat.equals("1")){
 			List<ReportPayVO> list = reportService.getMyPayList(pager);
@@ -606,9 +611,14 @@ public class ReportController {
 	}
 	
 	@GetMapping("/report/detail")
-	public ModelAndView getMyReportDetail(ModelAndView mv,ReportApplyVO reportApplyVO) throws Exception{
+	public ModelAndView getMyReportDetail(ModelAndView mv,ReportApplyVO reportApplyVO, Principal principal) throws Exception{
 		
-		reportApplyVO.setId(1209);
+		if(principal == null) {
+			mv.setViewName("user/login");
+			return mv;
+		}
+		
+		reportApplyVO.setId(Integer.parseInt(principal.getName()));
 		
 		int result = reportApplyVO.getReportNum();
 		
@@ -640,6 +650,7 @@ public class ReportController {
 			mv.addObject("vo", reportWorkVO);
 		}else if(result == 3) {
 			ReportPayVO reportPayVO = reportService.getMyPayDetail(reportApplyVO);
+			log.info("목록 : {}", reportPayVO.getRepriceVOs());
 			Date date = reportPayVO.getDate();
 			String a = date.toString();
             String[] b = a.split("-");

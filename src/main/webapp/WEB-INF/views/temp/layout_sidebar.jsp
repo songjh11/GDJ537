@@ -87,7 +87,7 @@
                         <sec:authorize access="isAuthenticated()">
  						<sec:authentication property="Principal" var="member"/>
                      	<c:if test="${member.reportVO.lstatus >= 2}">
-                        <a class="collapse-item" href="/report/doreport">결제/반려 승인</a>
+                        <a class="collapse-item" href="/report/doreport?depNum=${member.depNum}">결제/반려 승인</a>
                      	</c:if>
                         <c:if test="${member.reportVO.lstatus eq 3}">	
                         <a class="collapse-item" href="/report/insa">휴가담당 관리자</a>

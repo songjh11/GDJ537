@@ -44,19 +44,19 @@
                               </span>
                             <span class="text">휴가신청서</span>
                          </a>
-                         <a href="./doreport?cat=2kind=${pager.kind }" class="btn btn-info btn-icon-split">
+                         <a href="./doreport?cat=2&kind=${pager.kind }" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
                                   <i class="fas fa-info-circle"></i>
                               </span>
                             <span class="text">업무보고서</span>
                          </a>
-                         <a href="./doreport?cat=3kind=${pager.kind }" class="btn btn-info btn-icon-split">
+                         <a href="./doreport?cat=3&kind=${pager.kind }" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
                                   <i class="fas fa-info-circle"></i>
                               </span>
                             <span class="text">지출결의서</span>
                          </a>
-                         <a href="./doreport?cat=4kind=${pager.kind }" class="btn btn-info btn-icon-split">
+                         <a href="./doreport?cat=4&kind=${pager.kind }" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
                                   <i class="fas fa-info-circle"></i>
                               </span>
