@@ -29,7 +29,7 @@ public class NotePager {
 	}
 	
 	// 2. 각종 페이지수 계산 메서드 - totalCount는 매퍼에서 getCount생성 후 서비스에서 호출
-	public void getnum(Long totalCount)throws Exception{
+	public void getNum(Long totalCount)throws Exception{
 		//1. 전체글수(totalCount)로 (전체페이지수)totalPage 계산
 		totalPage = totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage()!=0) {

@@ -11,7 +11,7 @@ import lombok.Data;
 public class RoomVO {
 
 	// 채팅방 번호
-	private Integer roomnum;
+	private Integer roomNum;
 	// 채팅방 생성일자
 	private Date regDate;
 	// 채팅방 이름
