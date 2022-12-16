@@ -42,7 +42,7 @@
 	  						+"<div class='al-bubble'>" +str+"</div></div>"
 	 						);	
 		}	
-	}
+	
 		
 		
 		

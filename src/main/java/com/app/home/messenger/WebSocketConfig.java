@@ -19,8 +19,12 @@ public class WebSocketConfig  implements WebSocketConfigurer{
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 
 		
-		registry.addHandler(socketHandler, "/chating").setAllowedOrigins("*");
-		registry.addHandler(socketHandler, "/chatroom").setAllowedOrigins("*");
+		registry.addHandler(socketHandler, "/chating")
+				.addInterceptors(new HttpSessionHandshakeInterceptor())
+				.setAllowedOrigins("*");
+		registry.addHandler(socketHandler, "/chatroom")
+				.addInterceptors(new HttpSessionHandshakeInterceptor())
+				.setAllowedOrigins("*");
 	}
 	
 
