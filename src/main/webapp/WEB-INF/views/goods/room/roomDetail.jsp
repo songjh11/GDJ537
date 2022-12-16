@@ -52,7 +52,7 @@ ul li {
 								<th>회의실 번호</th>
 								<th>이름</th>
 								<th>최대 인원 수</th>
-								<th>위치</th>
+								<th>회의실 위치</th>
 							</tr>
 							<tr>
 								<td>${goodDetail.goodsId }</td>
