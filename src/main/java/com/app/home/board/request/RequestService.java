@@ -64,6 +64,7 @@ public class RequestService {
 				if(file.getOriginalFilename()!="") {
 					FileVO fileVO = new FileVO();
 					String fileName = fileManager.saveFileS3(file);
+					fileVO.setFileSize(fileManager.calFileSize(file));
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setBoardId(boardVO.getId());
@@ -95,6 +96,7 @@ public class RequestService {
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setBoardId(boardVO.getId());
+					fileVO.setFileSize(fileManager.calFileSize(file));
 					
 					int result2 =fileDAO.setFile(fileVO);
 				}

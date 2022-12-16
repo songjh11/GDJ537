@@ -167,4 +167,24 @@ public class FileManager extends AbstractView {
 
 		return result;
 	}
+	
+	//파일 사이즈 계산
+	public String calFileSize(MultipartFile file)throws Exception{
+		long byte1 = file.getSize();
+		double kb = byte1 / 1024.0;
+		double mb = kb / 1024.0;
+		double gb = mb / 1024.0;
+		
+		String filesize = byte1 +"byte";
+		log.info("byte {}", filesize);
+		if(byte1 > 1000) {
+			filesize = Math.round(kb * 100) / 100.0 + "kb";
+			log.info("kb {}", filesize);
+			if(kb > 1000) {
+				filesize = Math.round(mb * 100) / 100.0  + "mb";
+				log.info("mb {}", filesize);
+			}
+		}
+		return filesize;
+	}
 }

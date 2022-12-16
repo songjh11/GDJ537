@@ -59,6 +59,7 @@ public class NoticeService {
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setBoardId(boardVO.getId());
+					fileVO.setFileSize(fileManager.calFileSize(file));
 
 					int result2 =fileDAO.setFile(fileVO);
 				}
@@ -86,6 +87,7 @@ public class NoticeService {
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setBoardId(boardVO.getId());
+					fileVO.setFileSize(fileManager.calFileSize(file));
 
 					int result2 =fileDAO.setFile(fileVO);
 				}
