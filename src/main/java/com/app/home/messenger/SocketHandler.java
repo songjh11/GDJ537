@@ -35,6 +35,7 @@ public class SocketHandler extends TextWebSocketHandler{
 		for (String key: sessionMap.keySet()) {
 			WebSocketSession wss= sessionMap.get(key);
 			try {
+				System.out.println(msg);
 			wss.sendMessage(new TextMessage(msg));
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -49,7 +50,7 @@ public class SocketHandler extends TextWebSocketHandler{
 		UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
 		 
 		System.out.println("UserName : "+userVO.getName());
-		
+		String message = "{\"type\":\"connect\",\"username\":\""+userVO.getName()+"\"}";
 		sessionMap.put(session.getId(), session);
 		
 //		JSONObject obj =new JSONObject();
@@ -60,7 +61,8 @@ public class SocketHandler extends TextWebSocketHandler{
 		for (String key: sessionMap.keySet()) {
 			WebSocketSession wss= sessionMap.get(key);
 			try {
-			wss.sendMessage(new TextMessage("ii"));//userVO.getName()));
+				
+			wss.sendMessage(new TextMessage(message));//userVO.getName()));
 			}catch(Exception e) {
 				e.printStackTrace();
 			}

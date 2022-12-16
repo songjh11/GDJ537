@@ -1,7 +1,7 @@
  //console.log("js");
    
- let ws = new WebSocket("ws://" + location.host + "/chating");
 
+let ws = new WebSocket("ws://" + location.host + "/chating");
  let sessionId = $("#sessionId").val();
  let userName = $("#userName").val();
  let inputChat = $("#inputChat").val();
@@ -13,25 +13,59 @@
    
 
 //------------------------------------
-    
- function wsEvt() {
-    ws.onopen = function(data){
-       //소켓이 열리면 초기화 세팅하기  
-     	console.log("aaa")
-       	let str = userName + " 님이 입장하셨습니다.";
-		$("#chating").append("<div class='al'>"
-	  						+"<div class='al-bubble'>" +str+"</div></div>"
-	 						);	
-       
-    }
- }
 
- ws.onmessage = function(data) {
+
+
+   
+
+
+document.addEventListener("keypress", function(e){
+			if(e.keyCode == 13){ //enter press
+				send();
+			}
+		});   
+
+//---------------------------------------------
+
+ function send() {
+    let option={
+        type: "message",
+       	sessionId : sessionId,
+       	userName : userName,
+       	inputChat : $("#inputChat").val()
+      };
+  
+
+      ws.send(JSON.stringify(option))
+    	$("#inputChat").val("");
+    
+  
+       
+      }
+
+
+//---------------------------------------------
+
+ //채팅창에서 들어왔을 때
+ function wsOpen () {
+	ws.onmessage = function(data) {
    //메시지를 받으면 동작
    let msg = data.data;
+   console.log(msg)
    if(msg != null && msg.trim() != ''){
       let d = JSON.parse(msg);
-      if(d.type == "getId"){
+      
+      //--------------
+      if(d.type=="connect"){
+	       	let str = d.username + " 님이 입장하셨습니다.";
+			$("#chating").append("<div class='al'>"
+	  						+"<div class='al-bubble'>" +str+"</div></div>"
+	 						);	
+	  }
+      
+      //--------------
+      
+      else if(d.type == "getId"){
          var si = d.sessionId != null ? d.sessionId : "";
       }else if(d.type == "message"){
          if(d.sessionId == $("#sessionId").val()){
@@ -52,43 +86,9 @@
          console.warn("unknown type!")
       }
    }
-   
 
-}
-document.addEventListener("keypress", function(e){
-			if(e.keyCode == 13){ //enter press
-				send();
-			}
-		});   
-
-//---------------------------------------------
-
- function send() {
-    let option={
-        type: "message",
-       sessionId : sessionId,
-       userName : userName,
-       inputChat : $("#inputChat").val()
-      };
-  
-
-      ws.send(JSON.stringify(option))
-    $("#inputChat").val("");
-    
-  
-       
-      }
-
-
-//---------------------------------------------
-
- //채팅창에서 들어왔을 때
- function wsOpen () {
-    let str = userName + " 님이 입장하셨습니다.";
-    
-    $("#chating").append("<div class='al'>"
-                     +"<div class='al-bubble'>" +str+"</div></div>"
-                    );   
+}	  
+ 
  }
 
  //채팅창에서 나갔을 때
