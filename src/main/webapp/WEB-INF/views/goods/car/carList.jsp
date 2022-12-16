@@ -48,6 +48,7 @@
 								<th>모델명</th>
 								<th>상세정보</th>
 								<th>예약</th>
+								<th>예약현황</th>
 							</tr>
 							
 							<c:forEach items="${goods}" var="goods">
@@ -58,6 +59,7 @@
 									<td>${goods.name}</td>
 									<td><a href="./carDetail?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">정보 보기</button></a></td>
 									<td><a href="./carReserve?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">예약하기</button></a></td>
+									<td><a href="./carResInfo?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">현황보기</button></a></td>
 								</tr>
 								</c:if>
 							</c:forEach>

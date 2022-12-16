@@ -17,6 +17,12 @@ public class CarService {
 	@Autowired
 	private CarMapper carMapper;
 	
+	// 예약현황 보기
+	public List<ReserveVO> getResInfo(ReserveVO reserveVO) throws Exception {
+		
+		return carMapper.getResInfo(reserveVO);
+	}
+	
 	public List<ReserveVO> getStartTime(ReserveVO reserveVO) throws Exception {
 		
 		return carMapper.getStartTime(reserveVO);

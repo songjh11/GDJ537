@@ -4,6 +4,35 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.app.home.schedule.car.CarMapper">
+	
+	<!-- 예약현황 보기 -->
+	<select id="getResInfo" parameterType="ReserveVO" resultMap="info">
+		SELECT g.*, r.*
+		FROM
+		GOODS g
+		INNER JOIN
+		RESERVE r
+		ON g.GOODSID = r.GOODSID
+		WHERE g.GOODSID = #{goodsId}
+	</select>
+	
+	<resultMap type="ReserveVO" id="info">
+		<id column="reserveNum" property="reserveNum" />
+		<result column="goodsId" property="goodsId" />
+		<result column="date" property="date" />
+		<result column="id" property="id" />
+		<result column="usePurpose" property="usePurpose" />
+		<result column="startTime" property="startTime" />
+		<result column="endTime" property="endTime" />
+		
+		<collection property="goodsVOs" ofType="GoodsVO" javaType="List">
+			<id column="goodsId" property="goodsId" />
+			<result column="name" property="name" />
+			<result column="max" property="max" />
+			<result column="contents" property="contents" />
+			<result column="location" property="location" />
+		</collection>
+	</resultMap>
 
 	<select id="getStartTime" parameterType="List" resultType="ReserveVO">
 		SELECT STARTTIME, ENDTIME FROM RESERVE 

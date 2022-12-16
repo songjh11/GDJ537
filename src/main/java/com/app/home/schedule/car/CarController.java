@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.app.home.schedule.goods.GoodsService;
 import com.app.home.schedule.goods.GoodsVO;
 import com.app.home.schedule.goods.ReserveVO;
+import com.app.home.schedule.room.GoodsRoomVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +36,20 @@ public class CarController {
 	@GetMapping("/car/ReserveDetail")
 	public void getReserveDetail(ReserveVO reserveVO) throws Exception {
 		
+	}
+	
+	// 예약현황 보기
+	@GetMapping("/car/carResInfo")
+	public ModelAndView getRoomResInfo(GoodsRoomVO goodsRoomVO, ModelAndView mv) throws Exception {
+		
+		List<ReserveVO> reserveVOs = carService.getResInfo(goodsRoomVO);
+
+		log.info("roomVOs: {}", reserveVOs);
+
+		mv.addObject("roomInfo", reserveVOs);
+		mv.setViewName("goods/car/carResInfo");
+
+		return mv;
 	}
 	
 	// 예약 취소 
