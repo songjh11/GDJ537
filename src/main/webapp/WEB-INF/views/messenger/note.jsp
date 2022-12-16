@@ -565,7 +565,7 @@
 						noteNum: num
 					},
 					success : function(data){
-						console.log(data);
+						// console.log(data);
 						$("#noteNum"+num).remove();
 						// console.log($("#noteNum"+num).attr("id"))
 
@@ -645,7 +645,7 @@
 					});
 
 					$("#gogogogo").on("click", function(){
-						console.log("에젝에서만나와");
+						// console.log("에젝에서만나와");
 						ajaxPage(1, $("#kindkind").val(), $("#searchInput").val())
 						// console.log($("#kindkind").val());
 						// console.log($("#searchInput").val());
@@ -671,7 +671,7 @@
 						let pageAjax = "";
 
 						if($("#searchInput").val()=="") {
-							console.log("검색아닌중..");
+							// console.log("검색아닌중..");
 							// $("#searchInput").val("");
 							// $("#kindkind").val("");
 							let nullll = "";
@@ -684,7 +684,7 @@
 						
 							
 						} else {
-							console.log("검색중");
+							// console.log("검색중");
 							let kindval = $("#kindkind").val();
 							let searchval = $("#searchInput").val();
 
@@ -696,12 +696,12 @@
 						
 						}
 
-						console.log(data.notePager.totalPage);
-						console.log(data.notePager.page);
+						// console.log(data.notePager.totalPage);
+						// console.log(data.notePager.page);
 						
 
-						console.log($("#kindkind").val());
-						console.log($("#searchInput").val());
+						// console.log($("#kindkind").val());
+						// console.log($("#searchInput").val());
 						$("#pagination").html(pageAjax);
 
 						$(".disabled").removeAttr("onclick");
@@ -746,7 +746,7 @@
 
 					if(data.list.length==0) {
 						$('#noteContent').empty();
-						console.log($("#imEmpty").val());
+						// console.log($("#imEmpty").val());
 						$('#noteContent').html('<div style="justify-content: center; margin-top: 5px; display: flex;">'+data.message5+'</div>');
 						// $("#imEmpty").html(data.message5)
 					} 
@@ -767,7 +767,7 @@
 
 				},
 				error   : function(){
-					console.log("나는에러");
+					// console.log("나는에러");
 				}
 			});
 
@@ -785,9 +785,9 @@
 				$(this).css("color","lightgrey");
 			}
 
-			if($(this).attr("flag")==1) {
-				$(this).css("background","rgb(195 210 255 / 24%)");
-			}
+			// if($(this).attr("flag")==1) {
+			// 	$(this).css("background","rgb(195 210 255 / 24%)");
+			// }
 		});	
 
 		

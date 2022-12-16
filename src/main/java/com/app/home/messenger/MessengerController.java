@@ -153,7 +153,7 @@ public class MessengerController extends Socket {
 		
 		Long getNotReadCount = noteService.getNotReadCount(userVO);
 		mv.addObject("list", ar);
-		log.info("수신함AR {}",ar);
+//		log.info("수신함AR {}",ar);
 		mv.addObject("pager", notePager);
 		if(getNotReadCount==0L) {
 			mv.addObject("getNotReadCount", "");
@@ -163,7 +163,7 @@ public class MessengerController extends Socket {
 		
 		
 		if(ar.size()==0) {
-			log.info("=============================비었따");
+//			log.info("=============================비었따");
 			mv.addObject("message5", "쪽지가 없습니다.");
 		} else {
 			mv.addObject("message5", "");
@@ -200,7 +200,7 @@ public class MessengerController extends Socket {
 		mv.addObject("pager", notePager);
 		
 		if(ar.size()==0) {
-			log.info("=============================발신비었따");
+//			log.info("=============================발신비었따");
 			mv.addObject("message5", "쪽지가 없습니다.");
 		} else {
 			mv.addObject("message5", "");
@@ -229,7 +229,7 @@ public class MessengerController extends Socket {
 		receiveUser = userService.getMypage(receiveUser);
 		
 		mv.addObject("detail", noteVO);
-		log.info("답장증명 {}, {}", userVO.getId(), noteVO.getSendId());
+//		log.info("답장증명 {}, {}", userVO.getId(), noteVO.getSendId());
 		mv.addObject("sendUser", sendUser);
 		mv.addObject("receiveUser", receiveUser);
 		mv.addObject("session", userVO);
@@ -307,7 +307,7 @@ public class MessengerController extends Socket {
 	    userVO = userService.getMypage(userVO);
 		
 		ModelAndView mv = new ModelAndView("jsonView");
-		log.info("인트배열을받으세염 {}",arr);
+//		log.info("인트배열을받으세염 {}",arr);
 		
 		for(int arrrdd : arr) {
 			arrr.add(arrrdd);
@@ -339,7 +339,7 @@ public class MessengerController extends Socket {
 		
 		mv.addObject("daepyo", daepyo);
 		mv.addObject("count", arrr.size()-1);
-		log.info("새로운아이배열죽어 {}",arrr);
+//		log.info("새로운아이배열죽어 {}",arrr);
 		
 		mv.setViewName("messenger/note/group");
 		
@@ -353,7 +353,7 @@ public class MessengerController extends Socket {
 	    userVO  =(UserVO)authentication.getPrincipal();
 	    userVO = userService.getMypage(userVO);
 	    
-		log.info("쪽지보내자 {}",arrr);
+//		log.info("쪽지보내자 {}",arrr);
 
 	    
 	    int result = 0;
@@ -362,7 +362,7 @@ public class MessengerController extends Socket {
 	    for(int arrrdd : arrr) {
 	    	noteVO.setReceiveId(arrrdd);
 	    	result = noteService.setSendNoteGroup(noteVO);
-	    	log.info("쪽지내용 {}",noteVO);
+//	    	log.info("쪽지내용 {}",noteVO);
 		}
 	    
 	    if(result==1) {

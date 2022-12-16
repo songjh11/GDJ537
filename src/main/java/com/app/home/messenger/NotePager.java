@@ -35,23 +35,23 @@ public class NotePager {
 		if(totalCount%this.getPerPage()!=0) {
 			totalPage +=1;
 		}
-		
-		log.info("totalCount는 {}",totalCount);
-		log.info("겟퍼페이지는 {}",this.getPerPage());
-		log.info("totalPAge {}",totalPage);
-		log.info("현재페이지는 {}",this.getPage());
+//		
+//		log.info("totalCount는 {}",totalCount);
+//		log.info("겟퍼페이지는 {}",this.getPerPage());
+//		log.info("totalPAge {}",totalPage);
+//		log.info("현재페이지는 {}",this.getPage());
 		
 		
 		
 		//cf)1-1. totalPage보다 page가 큰 경우 못가게 막기
 		if(this.getPage()>totalPage) {
-			log.info("겟페이지가 더크다고");
+//			log.info("겟페이지가 더크다고");
 			this.setPage(totalPage);
-			log.info("현재페이지는 {}",this.getPage());
+//			log.info("현재페이지는 {}",this.getPage());
 
 		}
 		
-		log.info("현재페이지는 {}",this.getPage());
+//		log.info("현재페이지는 {}",this.getPage());
 
 		
 		if(this.getPage()==0L) {
@@ -96,7 +96,7 @@ public class NotePager {
 			next=true;
 		}
 		
-		log.info("totalPAge {}",totalPage);
+//		log.info("totalPAge {}",totalPage);
 	}
 	
 	
