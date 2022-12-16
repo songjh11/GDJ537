@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class DepartmentVO {
-	private int depnum;
+	private int depNum;
 	private String depName;
 	private int id;
 
