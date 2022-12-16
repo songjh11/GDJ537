@@ -214,6 +214,11 @@
          AND r.GOODSID LIKE 'CA%' 
    </select>
    
+   <insert id="setReserveInit" parameterType="GoodsVO">
+   		INSERT INTO RESERVE 
+		VALUE(null,#{goodsId},"2018-01-01 09:00:00",2022001,"예시","2018-01-01T09:00","2018-01-01T09:00")
+   </insert>
+   
    
    
 </mapper> 

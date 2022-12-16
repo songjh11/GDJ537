@@ -58,4 +58,6 @@ public interface GoodsMapper
    
    public int getRoomNowTotal(String month) throws Exception;
    public int getCarNowTotal(String month) throws Exception;
+   
+   public int setReserveInit(GoodsVO goodsVO) throws Exception;
 }
