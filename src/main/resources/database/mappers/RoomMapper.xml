@@ -58,11 +58,11 @@
 	<insert id="setRoomReserve" parameterType="GoodsRoomVO">
 		insert into RESERVE
 		values(null, #{goodsId},
-		#{id},
-		#{startTime},
-		#{endTime},
+		now(), #{id},
 		#{usePurpose},
-		now())
+		#{startTime},
+		#{endTime}
+		)
 	</insert>
 
 	<!-- 예약된 시간 가져오기 -->
