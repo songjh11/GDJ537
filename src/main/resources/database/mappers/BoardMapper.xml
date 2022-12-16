@@ -86,13 +86,26 @@
 	</update>
 	
 	<!-- 요청카테고리 -->
-	<select id="findReqCategory" parameterType="ReqCategoryVO" resultType="ReqCategoryVO">
-		SELECT RC.*
+	<select id="findReqCategory" parameterType="ReqCategoryVO" resultMap="reqCategoryResult">
+		SELECT RC.*,D.DEPNAME
 		FROM DEPARTMENT D
 			 JOIN
 			 REQCATEGORY RC 
 			 ON D.DEPNUM = RC.DEPNUM
 		WHERE RC.DEPNUM = #{depNum}
 	</select>
+	<resultMap type="ReqCategoryVO" id="reqCategoryResult">
+		<id column="id" property="id"/>
+		<result column="categoryName" property="categoryName"/>
+		<result column="categoryForm" property="categoryForm"/>
+		<result column="depNum" property="depNum"/>
+		<association property="DepartmentVO" javaType="DepartmentVO">
+			<id column="depNum" property="depNum"/>
+			<result column="depName" property="depName"/>
+			<result column="id" property="id"/>
+		
+		</association>
+	
+	</resultMap>
 
 </mapper>    

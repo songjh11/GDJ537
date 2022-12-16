@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.board.BoardVO;
-import com.app.home.board.reqcategory.ReqCategoryVO;
 import com.app.home.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
