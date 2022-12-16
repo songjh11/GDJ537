@@ -95,6 +95,19 @@ public class MessengerController extends Socket {
 		List<UserVO> el = messengerService.getSearchResult(map);
 		List<UserVO> pl = pickService.getPickList(id.toString());
 		ModelAndView mv = new ModelAndView();
+		
+		// ------------------ 채팅목록 ------------------
+			List<RoomVO> roomVOs = new ArrayList<>();
+			RoomVO roomVO = new RoomVO();
+			UserVO userVO2 = new UserVO();
+			userVO.setId(userVO.getId());
+			roomVO.setUserVO(userVO);
+			
+			roomVOs = messengerService.getRoomList(roomVO);
+			
+			mv.addObject("roomList", roomVOs);
+		// ------------------ 채팅목록 ------------------
+		
 		mv.addObject("user", userVO);
 		mv.addObject("myId", id);
 		mv.addObject("empList", el);
