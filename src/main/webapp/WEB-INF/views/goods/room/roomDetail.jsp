@@ -51,20 +51,20 @@ ul li {
 							<tr>
 								<th>회의실 번호</th>
 								<th>이름</th>
-								<th>상세정보</th>
-								<th>최대 인원(명)</th>
+								<th>최대 인원 수</th>
 								<th>위치</th>
 							</tr>
 							<tr>
 								<td>${goodDetail.goodsId }</td>
 								<td>${goodDetail.name }</td>
-								<td>${goodDetail.contents }</td>
 								<td>${goodDetail.max }</td>
 								<td>${goodDetail.location }</td>
 							</tr>
 						</table>
 						<br>
 						<br>
+						<div class="text-center">
+						${goodDetail.contents }
 						<ul>
 							<c:forEach items="${goodDetail.goodsFileVO}" var="goods">
 								<li>
@@ -72,6 +72,7 @@ ul li {
 								</li>
 							</c:forEach>
 						</ul>
+						</div>
 						<br>
 					</section>
 					<div style="text-align: center;" class="mb-5">
