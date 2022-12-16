@@ -57,6 +57,7 @@
 					</div>
 					<div class="chatDiv">
 						<div class="blank"></div>
+						<c:import url="./roomPwModal.jsp"></c:import>
 						<c:import url="./addRoom.jsp"></c:import>
 					</div>
 	            </div>

@@ -444,15 +444,12 @@ public class MessengerController extends Socket {
 	}
 	
 	@PostMapping("pwCheck")
-	public ModelAndView getPwCheck(RoomVO roomVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
+	@ResponseBody
+	public int getPwCheck(RoomVO roomVO)throws Exception{
 		
 		int result = messengerService.getPwCheck(roomVO);
 		
-		mv.addObject("pwCheck", result);
-		mv.setViewName("messenger/pwCheck");
-		
-		return mv;
+		return result;
 	}
 	
 	// --------------------- 효경 끝 ------------------------------

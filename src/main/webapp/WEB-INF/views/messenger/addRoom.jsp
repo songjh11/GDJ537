@@ -22,10 +22,23 @@
 								<div class="roomList">
 									<div class="col-3" style="margin-left: 6.4%;">
 										<img class="yourImg" src="/img/undraw_profile_3.svg">
+										<span>${roomVO.userVO.name}</span>
 									</div>
-									<div class="col text-center" style="margin-left: 3%;">
-										<button type="button" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></button>
-									</div>
+									<c:choose>
+										<c:when test="${user.name eq roomVO.roomName}">
+											<div class="col text-center" style="margin-left: 3%;">
+												<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="col text-center" style="margin-left: 3%;">
+												<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+											</div>
+										</c:otherwise>
+									</c:choose>
+<%-- 									<div class="col text-center" style="margin-left: 3%;">
+										<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+									</div> --%>
 									<div class="col text-center">
 										${roomVO.roomName}
 									</div>

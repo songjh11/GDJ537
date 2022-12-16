@@ -36,6 +36,8 @@ public class MessengerService {
 	// 채팅방 생성
 	public int setAddRoom(RoomVO roomVO)throws Exception{
 		
+		
+		
 		int result = messengerMapper.setAddRoom(roomVO);
 		
 		if(result > 0) {

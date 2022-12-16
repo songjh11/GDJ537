@@ -22,7 +22,7 @@ class MessengerServiceTest {
 	private MessengerMapper messengerMapper;
 	
 	//@Test
-	void getPw()throws Exception{
+	void getPwTest()throws Exception{
 		
 		RoomVO roomVO = new RoomVO();
 		roomVO.setRoomNum(26);
@@ -49,13 +49,14 @@ class MessengerServiceTest {
 		
 	}
 	
-	//@Test
+	@Test
 	void getRoomListTest()throws Exception{
 		List<RoomVO> roomVOs = new ArrayList<>();
 		
 		RoomVO roomVO = new RoomVO();
 
-		roomVO.setHostId(2022001);
+		roomVO.setHostId(2022003);
+		roomVO.getUserVO().setId(2022003);
 		
 		roomVOs = messengerMapper.getRoomList(roomVO);
 		
