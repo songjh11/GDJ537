@@ -57,6 +57,9 @@
 
    <script type="text/javascript" src="/js/messenger/chatroom.js"></script>
 
+	<script type="text/javascript">
+		wsOpen();
+		/* wsEvt(); */
 	</script>
 
 </body>

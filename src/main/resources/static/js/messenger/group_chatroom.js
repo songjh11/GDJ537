@@ -17,7 +17,7 @@
 		wsEvt();
 		
 		let str = userName + " 님이 입장하셨습니다.";
-		$("#chating").append("<div class='al'>"
+		    $("#chating").append("<div class='al'>"
 	  						+"<div class='al-bubble'>" +str+"</div></div>"
 	 						);	
 	}

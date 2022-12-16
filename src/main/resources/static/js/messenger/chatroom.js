@@ -17,7 +17,7 @@
  function wsEvt() {
     ws.onopen = function(data){
        //소켓이 열리면 초기화 세팅하기  
-       
+     	console.log("aaa")
        	let str = userName + " 님이 입장하셨습니다.";
 		$("#chating").append("<div class='al'>"
 	  						+"<div class='al-bubble'>" +str+"</div></div>"
@@ -52,7 +52,14 @@
          console.warn("unknown type!")
       }
    }
+   
+document.addEventListener("keypress", function(e){
+			if(e.keyCode == 13){ //enter press
+				send();
+			}
+		});
 }
+   
 
 //---------------------------------------------
 
@@ -71,18 +78,18 @@
   
        
       }
- 
+
 
 //---------------------------------------------
 
  //채팅창에서 들어왔을 때
- //function wsOpen () {
- //   let str = userName + " 님이 입장하셨습니다.";
- //   
- //   $("#chating").append("<div class='al'>"
- //                    +"<div class='al-bubble'>" +str+"</div></div>"
- //                   );   
-// }
+ function wsOpen () {
+    let str = userName + " 님이 입장하셨습니다.";
+    
+    $("#chating").append("<div class='al'>"
+                     +"<div class='al-bubble'>" +str+"</div></div>"
+                    );   
+ }
 
  //채팅창에서 나갔을 때
  function onClose() {
