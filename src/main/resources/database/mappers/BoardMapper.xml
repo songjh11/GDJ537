@@ -51,7 +51,7 @@
 
 	<update id="setUpdate" parameterType="BoardVO" >
 		UPDATE BOARD set
-		title=#{title}, CONTENTS =#{contents}, UPDATEDATE = SYSDATE()
+		title=#{title}, CONTENTS =#{contents}, UPDATEDATE = SYSDATE(), UPDATER = #{updater}
 		WHERE ID =#{id};
 	</update>
 
@@ -69,31 +69,7 @@
 		AND
 		B.<include refid="search"></include>
 		GROUP BY B.ID
-		ORDER BY ID DESC
-		LIMIT ${startRow}, ${perPage}
-	</select>
-	
-	<!-- 조회수 순으로 리스트 불러오기 -->
-	<select id="getListByHit" parameterType="Pager" resultType="BoardVO">
-		SELECT * FROM BOARD 
-		WHERE SORT = #{sort}
-		AND
-		<include refid="search"></include>
-		ORDER BY HIT DESC
-		LIMIT ${startRow}, ${perPage}
-	</select>
-	
-	<!-- 댓글수 순으로 리스트 불러오기 -->
-	<select id="getListByComment" parameterType="Pager" resultType="BoardVO">
-		SELECT B.*, COUNT(C.BOARDID) AS BI FROM
-		BOARD B
-		LEFT JOIN COMMENT C
-		ON B.ID = C.BOARDID
-		WHERE SORT = #{sort}
-		AND
-		B.<include refid="search"></include>
-		GROUP BY B.ID
-		ORDER BY BI DESC
+		ORDER BY <include refid="order"></include>
 		LIMIT ${startRow}, ${perPage}
 	</select>
 
@@ -112,6 +88,14 @@
 			<otherwise>CONTENTS</otherwise>
 		</choose>
 		LIKE CONCAT('%', #{search}, '%')
+	</sql>
+	
+	<sql id="order">
+		<choose>
+			<when test="order == 'comment'">cntComment DESC</when>
+			<when test="order == 'hit'">HIT DESC</when>
+			<otherwise>ID DESC</otherwise>
+		</choose>
 	</sql>
 
 	<update id="setHit" parameterType="BoardVO">
