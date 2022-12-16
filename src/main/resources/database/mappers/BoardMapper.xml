@@ -75,33 +75,6 @@
 		AND
 		B.<include refid="search"></include>
 		GROUP BY B.ID
-		ORDER BY ID DESC
-		LIMIT ${startRow}, ${perPage}
-	</select>
-	
-	<!-- 조회수 순으로 리스트 불러오기 -->
-	<select id="getListByHit" parameterType="Pager" resultType="BoardVO">
-		SELECT B.*, COUNT(C.ID) as cntComment FROM BOARD B
-		LEFT JOIN COMMENT C
-		ON B.ID = C.BOARDID
-		WHERE SORT = #{sort}
-		AND
-		B.<include refid="search"></include>
-		GROUP BY B.ID
-		ORDER BY HIT DESC
-		LIMIT ${startRow}, ${perPage}
-	</select>
-	
-	<!-- 댓글수 순으로 리스트 불러오기 -->
-	<select id="getListByComment" parameterType="Pager" resultType="BoardVO">
-		SELECT B.*, COUNT(C.BOARDID) AS cntComment FROM
-		BOARD B
-		LEFT JOIN COMMENT C
-		ON B.ID = C.BOARDID
-		WHERE SORT = #{sort}
-		AND
-		B.<include refid="search"></include>
-		GROUP BY B.ID
 		ORDER BY <include refid="order"></include>
 		LIMIT ${startRow}, ${perPage}
 	</select>
