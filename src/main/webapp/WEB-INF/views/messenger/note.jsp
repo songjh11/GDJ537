@@ -496,14 +496,14 @@
 							<!-- <c:if test="${not empty list}"> -->
 							<div id="pagination">
 								<p style="margin: 0; display: flex; align-items: center;">
-									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startnum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
-									<c:forEach begin="${pager.startnum}" end="${pager.lastnum}" var="i">
+									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startNum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
+									<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
                                     
                                     	<!-- <a href="./simpleresult?search=${pager.search}&kind=${pager.kind}&page=${i}" id="ppaaggee${i}">${i}</a> -->
                                     	<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${i}" class="pagep" id="ppaaggee${i}">${i}</a>
                                     
                                 	</c:forEach>
-									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastnum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
+									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastNum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
 								</p>
 							</div>
 							<!-- </c:if> -->
