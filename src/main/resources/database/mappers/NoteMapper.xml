@@ -6,7 +6,7 @@
 <mapper namespace="com.app.home.messenger.NoteMapper">
 
 <select id="getNotReadCount" parameterType="UserVO" resultType="Long">
-SELECT COUNT(NOTENUM) FROM NOTE WHERE RECEIVEID = #{id} AND READCHECK = 1
+SELECT COUNT(NOTENUM) FROM NOTE WHERE RECEIVEID = #{id} AND #{id} = REMARK AND READCHECK = 1
 </select>
 
 <update id="updateCheck" parameterType="NoteVO">
@@ -17,11 +17,11 @@ DELETE FROM NOTE WHERE NOTENUM = #{noteNum}
 </delete>
 
 <insert id="setSendNote" parameterType="NoteVO">
-INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{sendId})
+INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{receiveId})
 </insert>
 
 <insert id="setSendNote2" parameterType="NoteVO">
-INSERT INTO NOTE VALUES (null, #{receiveId}, #{sendId}, #{contents}, now(), 1, #{receiveId})
+INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{sendId})
 </insert>
 
 <select id="getSendNoteList" parameterType="Map" resultType="NoteVO">
@@ -31,7 +31,7 @@ ON N.RECEIVEID = U.ID
 INNER JOIN USER US
 ON N.SENDID = US.ID
 WHERE SENDID = #{id}
-AND SENDID = REMARK
+AND #{id} = REMARK
 AND
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>
@@ -50,6 +50,7 @@ ON N.RECEIVEID = U.ID
 INNER JOIN USER US
 ON N.SENDID = US.ID
 WHERE SENDID = #{id}
+AND #{id} = REMARK
 AND
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>
@@ -65,7 +66,7 @@ ON N.RECEIVEID = U.ID
 INNER JOIN USER US
 ON N.SENDID = US.ID
 WHERE RECEIVEID = #{id}
-AND RECEIVEID = REMARK
+AND #{id} = REMARK
 AND
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>
@@ -84,7 +85,7 @@ ON N.RECEIVEID = U.ID
 INNER JOIN USER US
 ON N.SENDID = US.ID
 WHERE RECEIVEID = #{id}
-AND RECEIVEID = REMARK
+AND #{id} = REMARK
 AND 
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>

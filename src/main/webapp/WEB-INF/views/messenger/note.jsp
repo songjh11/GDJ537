@@ -567,7 +567,7 @@
 						// console.log($("#noteNum"+num).attr("id"))
 						setTimeout(function(){
 							location.reload();
-						},50);
+						},250);
 						
 					},
 					error : function(){
@@ -586,9 +586,9 @@
 
 			//수신함일때만 새로고침하게... (읽은거 표시하려면 새로고침해야 반영되는데 읽은거 표시는 수신함만 하려고함.... 맘에안든다....)
 			if($("#sImg").attr("src")=="/img/messenger/sendX.png") {
-				// setTimeout(function(){
-				// 	location.reload();
-				// },200);
+				setTimeout(function(){
+					location.reload();
+				},200);
 
 				$(".noteList").each(function(index, item){
 					// console.log()
