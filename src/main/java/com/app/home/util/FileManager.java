@@ -100,8 +100,7 @@ public class FileManager extends AbstractView {
 	
 	public String saveFile(String path,ServletContext servletContext,MultipartFile multipartFile) throws Exception{
 		
-//		String realPath = servletContext.getRealPath(path);
-//		System.out.println("realPath:" + realPath);
+
 		
 		
 		File file = new File(path);
