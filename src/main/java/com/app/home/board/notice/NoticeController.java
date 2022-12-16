@@ -91,11 +91,6 @@ public class NoticeController {
 		
 		pager.setSort("공지");
 		List<BoardVO> ar = noticeService.getList(pager);
-		for(BoardVO boardVO : ar) {
-			ZonedDateTime time = ZonedDateTime.of(boardVO.getRegDate().toLocalDateTime(), ZoneId.of("Asia/Seoul"));
-			time = time.withZoneSameInstant(ZoneId.of("Asia/Seoul"));
-			log.info("Time ======================== {}", time);
-		}
 		
 		mv.addObject("noticeList", ar);
 		mv.addObject("pager", pager);
