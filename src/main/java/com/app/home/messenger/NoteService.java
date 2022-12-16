@@ -30,6 +30,11 @@ public class NoteService {
 	public int setDeleteNote(NoteVO noteVO)throws Exception{
 		return noteMapper.setDeleteNote(noteVO);
 	}
+	
+	public int setSendNoteGroup(NoteVO noteVO)throws Exception{
+		noteMapper.setSendNoteGroup2(noteVO);
+		return noteMapper.setSendNoteGroup(noteVO);
+	}
 
 	
 	public int setSendNote(NoteVO noteVO)throws Exception{
