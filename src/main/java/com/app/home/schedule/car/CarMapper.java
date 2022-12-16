@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.app.home.schedule.goods.GoodsVO;
 import com.app.home.schedule.goods.ReserveVO;
+import com.app.home.user.UserVO;
 
 @Mapper
 public interface CarMapper {
@@ -21,6 +22,9 @@ public interface CarMapper {
 	
 	// 예약 리스트
 	public List<ReserveVO> getReserveList(ReserveVO reserveVO) throws Exception;
+	
+	// 유저 예약 리스트
+	public List<ReserveVO> getReserveUserList(UserVO userVO) throws Exception;
 	
 	// 예약
 	public int setReserve(ReserveVO reserveVO) throws Exception;	

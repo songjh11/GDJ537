@@ -69,6 +69,23 @@
                                 <h6 class="m-0 font-weight-bold text-primary">today's schedule</h6>
                             </div>
                             <div class="card-body">
+                                <table class="table table-hover justify-content-right" style="text-align: center;">
+                                    <tr>
+                                        <th>예약 날짜</th>
+                                        <th>예약정보</th>
+                                        <th>예약 변경</th>
+                                        <th>예약 취소</th>
+                                    </tr>
+                                    
+                                    <c:forEach items="${reserveVO}" var="reserve">
+                                        <tr>
+                                            <td>${reserve.startTime}</td>
+                                            <td><a href="/goods/car/carReserveDetail?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">정보 보기</a></td>
+                                            <td><a href="/goods/car/carReserveChange?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">변경</a></td>
+                                            <td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reserveNum}">취소</button></td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
                                 <p class="mb-0"></p>
                             </div>
                         </div>
@@ -220,5 +237,21 @@
 
    <!-- Scroll Top, Login Modal import -->
    <c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+<script>
+    // 예약 취소 버튼을 눌렀을 때
+    $('.delete_btn').click(function() {
+        console.log($(this).val()); // 클릭 한 요소의 value값(reserveNum)을 출력한다.
+        
+        let reserve = $(this).val(); // value값(reserveNum)을 reserve에 저장한다.
+        let result = confirm("예약을 취소하시겠습니까? \n취소 후에는 되돌릴 수 없습니다.");
+
+        if (result) { // 확인 클릭 시
+            $.get("carReserveDelete?reserveNum=" + reserve, function(result) { // controller로 get방식의 보낸다
+                console.log(reserve);
+                location.reload();
+            });
+        }
+    });
+</script>
 </body>
 </html>
