@@ -431,7 +431,7 @@
 									"> 
 										<select class="searchOption form-control" name="kind" id="kindkind" placeholder="선택하세요">
 											<option value="contents" selected>내용</option>
-											<option id="changeOption" value="sendId">발신ID</option>
+											<option id="changeOption" value="sendId">보낸 사람 ID</option>
 										</select>
 										<!-- <input hidden="hidden" /> -->
 										<input id="searchInput" name="search" type="text" class="form-control bg-light border-0 small" style="width: 130px !important;" placeholder="Search for..."
@@ -567,7 +567,7 @@
 						// console.log($("#noteNum"+num).attr("id"))
 						setTimeout(function(){
 							location.reload();
-						},50);
+						},250);
 						
 					},
 					error : function(){
@@ -586,9 +586,9 @@
 
 			//수신함일때만 새로고침하게... (읽은거 표시하려면 새로고침해야 반영되는데 읽은거 표시는 수신함만 하려고함.... 맘에안든다....)
 			if($("#sImg").attr("src")=="/img/messenger/sendX.png") {
-				// setTimeout(function(){
-				// 	location.reload();
-				// },200);
+				setTimeout(function(){
+					location.reload();
+				},200);
 
 				$(".noteList").each(function(index, item){
 					// console.log()
@@ -625,7 +625,7 @@
 
 					// 검색기능을 위해 기존 폼을 발신전용으로 잠시 수정
 					$("#changeOption").val("receiveId");
-					$("#changeOption").html("수신ID");
+					$("#changeOption").html("받는 사람 ID");
 					$("#gogogogo").attr("type","button");
 
 					$('input[type="text"]').keydown(function() {

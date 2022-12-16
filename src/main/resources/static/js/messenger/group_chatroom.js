@@ -35,16 +35,14 @@
 
 	function wsOpen(){
 		ws = new WebSocket("ws://" + location.host + "/chatroom");
-
-		ws.onmessage=function(data){
-			let da = data.data;
-			//console.log("Opennnnnn : ", da);
-			let str = da + " 님이 입장하셨습니다.";
-			$("#chating").append("<div class='al'>"
+		wsEvt();
+		
+		let str = userName + " 님이 입장하셨습니다.";
+		    $("#chating").append("<div class='al'>"
 	  						+"<div class='al-bubble'>" +str+"</div></div>"
 	 						);	
 		}	
-	}
+	
 		
 		
 		

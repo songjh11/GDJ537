@@ -95,6 +95,19 @@ public class MessengerController extends Socket {
 		List<UserVO> el = messengerService.getSearchResult(map);
 		List<UserVO> pl = pickService.getPickList(id.toString());
 		ModelAndView mv = new ModelAndView();
+		
+		// ------------------ 채팅목록 ------------------
+			List<RoomVO> roomVOs = new ArrayList<>();
+			RoomVO roomVO = new RoomVO();
+			UserVO userVO2 = new UserVO();
+			userVO.setId(userVO.getId());
+			roomVO.setUserVO(userVO);
+			
+			roomVOs = messengerService.getRoomList(roomVO);
+			
+			mv.addObject("roomList", roomVOs);
+		// ------------------ 채팅목록 ------------------
+		
 		mv.addObject("user", userVO);
 		mv.addObject("myId", id);
 		mv.addObject("empList", el);
@@ -428,11 +441,18 @@ public class MessengerController extends Socket {
 	
 	// --------------------- 효경 끝 ------------------------------
 	
-	@GetMapping("chat1")
-	public ModelAndView chat()throws Exception{
+
+	// --------------------- 다은 ------------------------------
+
+	@GetMapping("oneChat")
+	public ModelAndView chatroom(HttpSession session, UserVO userVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
-	
-		mv.setViewName("messenger/chat1");
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    userVO  =(UserVO)authentication.getPrincipal();	  
+	    mv.addObject("userVO", userVO);  
+		mv.setViewName("messenger/oneChat");
+		
 		return mv;
 	}
 
