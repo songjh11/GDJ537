@@ -65,26 +65,35 @@ const listBtn = $("#listBtn");
 const statusBtn = $("#statusBtn");
 
 
+const ls = document.querySelector("#ls");
 
 // ajax에 나오는 부여버튼을 클릭할려면 그 바로 위 tbody에 있는 부모선택자 id로 선택을 해야 작동됨
 $("#tbd").on("click", "#statusBtn", function(event){
 
+
+    console.log("이벤트 : ", event.target);
     console.log("부여버튼 클릭 콘솔");
 
     // console.log("ididididid : ", event.target.siblings());
 
     // console.log("아이디:::" ,$("#tbd").find("#tdId").text());
 
-    console.log("내 아이디  : ", $(this).attr("data-name"));
-    console.log("내 depNum :  ", $(this).attr("data-depNum"));
-    
-    
-    let name = $(this).attr("data-name");
+    console.log("내 아이디  : ", $(event.target).attr("data-name"));
+    console.log("내 depNum :  ", $(event.target).attr("data-depNum"));
 
-    let depNum = $(this).attr("data-depNum");
+    console.log($(event.target));
+
+    $(event.target).attr("disabled", false);
+    
+    let name = $(event.target).attr("data-name");
+    
+    let depNum = $(event.target).attr("data-depNum");
+    
+    
 
     
     
+
     $.ajax({
         type: 'POST',
         url:  '/report/insa',
@@ -97,6 +106,7 @@ $("#tbd").on("click", "#statusBtn", function(event){
             alert("수정에 성공하였습니다.");
             console.log($("#statusBtn").text());
             // console.log($("#statusBtn").text('부여됨'));
+            console.log("dd", ls);
             
         },
         error:function(){
@@ -119,6 +129,8 @@ $("#tbd").on('click', "#deleteBtn", function(event){
     let name = $(this).attr("data-name");
     console.log("내가 클릭한 아이디 : ", name);
 
+    $(this).attr("disabled", false);
+
     
     $.ajax({
         type: 'POST',
@@ -127,8 +139,10 @@ $("#tbd").on('click', "#deleteBtn", function(event){
             id : name
         },
 
-        success:function(result){
+        success:function(){
             alert("ID가" + name + "인 직원의 권한을 회수 하였습니다.");
+            console.log("콘소로오오오오올")
+            
         },
         error:function(){
             alert("권한 회수에 실패하였습니다.");
@@ -152,6 +166,16 @@ let a2 = $("#deleteBtn").attr("data-btn");
 //     $("#statusBtn").disabled(false);
 // }
 
+$(".b1").click(function(){
+
+    console.log("회색버튼 클래스 콘솔");
+
+});
+
+$(".b2").click(function(){
+
+    console.log("빨간버튼 클래스 콘솔");
+})
 
 $(".tdId").on('each', '.btn', function(){
 
@@ -159,8 +183,4 @@ $(".tdId").on('each', '.btn', function(){
     console.log("하이");
 
 });
-
-
-
-
 
