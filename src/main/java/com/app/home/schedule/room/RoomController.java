@@ -41,6 +41,13 @@ public class RoomController
 
 		log.info("goodVO list: {}", goodsVOs);
 
+		int r = 0;
+		if (authentication != null)
+		{
+			r = 1;
+		}
+
+		modelAndView.addObject("loginCheck", r);
 		modelAndView.addObject("goodVO", goodsVOs);
 		modelAndView.setViewName("/goods/room/roomList");
 
@@ -63,8 +70,8 @@ public class RoomController
 	}
 
 	@GetMapping("/room/roomReserve")
-	public ModelAndView setRoomReserve(GoodsVO goodsVO, GoodsRoomVO goodsRoomVO, Authentication authentication, ReserveVO reserveVO)
-			throws Exception
+	public ModelAndView setRoomReserve(@RequestParam(value = "memberNum", required = false) String memberNum, GoodsVO goodsVO,
+			GoodsRoomVO goodsRoomVO, Authentication authentication, ReserveVO reserveVO) throws Exception
 	{
 		log.info("======= get roomReserve =======");
 		ModelAndView modelAndView = new ModelAndView();
@@ -73,6 +80,17 @@ public class RoomController
 
 		// log.info("goodVO 1 : {}", goodsVO);
 		log.info("reserveVO: {}", reserveVOs);
+
+		log.info(memberNum);
+
+		modelAndView.addObject("memberNum", memberNum);
+
+		if (authentication == null)
+		{
+			modelAndView.setViewName("redirect:/goods/room/roomList");
+
+			return modelAndView;
+		}
 
 		modelAndView.addObject("timeNotEqual", reserveVOs);
 		modelAndView.addObject("userInfo", authentication.getPrincipal());

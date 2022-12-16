@@ -87,13 +87,13 @@
 								<br>
 							</div>
 
-							<div style="text-align: center;">
+							<div style="text-align: center;" class="mb-5">
+								<button id="resBtn" type="button" class="btn btn-outline-none"
+									style="background-color: #4e73df; color: white;">예약하기</button>
 								<a href="./roomList">
-									<button type="button" class="btn btn-outline-none">뒤로가기</button>
+									<button type="button" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">뒤로가기</button>
 								</a>
-								<button id="resBtn" type="button" class="btn btn-outline-none">예약하기</button>
 							</div>
-							<br>
 						</form>
 					</section>
 				</div>

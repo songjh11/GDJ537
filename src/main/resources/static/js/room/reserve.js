@@ -4,6 +4,27 @@ var memNum = $("#member").val();
 let tt = parseFloat(memNum);
 $("#member").val(tt);
 
+console.log(memNum);
+
+$.ajax({
+    url: './roomReserve',
+    type: 'GET',
+    data: {
+        memberNum: memNum
+    },
+    success: function (rs) {
+        console.log(rs);
+        if (rs == null) {
+            alert("예약하려면 로그인이 필요합니다.")
+            history.back();
+        }
+    },
+    error: function (status, error) {
+        console.log(status);
+        console.log(error);
+    }
+})
+
 // -----------------------------------------
 const btn = document.getElementById("resBtn");
 const frm = document.getElementById("frm");

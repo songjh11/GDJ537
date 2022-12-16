@@ -35,6 +35,7 @@
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
 						<h1 class="h3 mb-4 text-gray-800">회의실 정보</h1>
+						<input type="hidden" value="${loginCheck }" id="userID">
 						<table class="table table-hover justify-content-right" style="text-align: center;">
 							<tr>
 								<th>이름</th>
@@ -55,9 +56,9 @@
 												<button type="button" class="btn btn-outline-none">보기</button>
 											</a>
 										</td>
-										<td> <!-- &id=${userInfo.id} -->
+										<td>
 											<a href="./roomReserve?goodsId=${good.goodsId }">
-												<button type="button" class="btn btn-outline-none">예약</button>
+												<button type="button" id="res" class="btn btn-outline-none">예약</button>
 											</a>
 										</td>
 										<td>
@@ -87,4 +88,5 @@
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 </body>
+<script src="/js/room/reserveIDcheck.js"></script>
 </html>
