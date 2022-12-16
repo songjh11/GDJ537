@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ReqCategoryVO {
 
-	private  int categoryNum;
+	private  int id;
 	private String categoryName;
 	private String categoryForm;
 	private int depNum;

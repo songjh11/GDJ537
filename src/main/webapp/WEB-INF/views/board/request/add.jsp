@@ -59,7 +59,7 @@
 								<div class="mb-0 row">
 								  	<label class="col-sm-2 col-form-label" for="id">요청 부서</label>
 								  	<div class="col-sm-10">
-								  		<select>
+								  		<select id="deptCate">
 								  			<option>부서명</option>
 								  			<option value="1">영업팀</option>
 								  			<option value="2">총무팀</option>
@@ -73,8 +73,8 @@
 								<div class="mb-0 row">
 									<label class="col-sm-2 col-form-label" for="id">요청 서식</label>
 									<div class="col-sm-10">
-										<select style="width: 40%;">
-											<option>서식명</option>
+										<select id="formCate" style="width: 40%;">
+											<option id="formOption">서식명</option>
 										</select>
 									</div>
 							    </div>
@@ -121,6 +121,7 @@
 		<!-- End of Content Wrapper -->
 	</div>
     <script src="/js/boardAdd.js"></script>
+	<script src="/js/board/reqCategory.js"></script>
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 </body>

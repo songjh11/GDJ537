@@ -63,7 +63,7 @@ public class RequestService {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(file.getOriginalFilename()!="") {
 					FileVO fileVO = new FileVO();
-					String fileName = fileManager.saveFile(file, path);
+					String fileName = fileManager.saveFileS3(file);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setBoardId(boardVO.getId());
@@ -91,7 +91,7 @@ public class RequestService {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(file.getOriginalFilename()!="") {
 					FileVO fileVO = new FileVO();
-					String fileName = fileManager.saveFile(file, path);
+					String fileName = fileManager.saveFileS3(file);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
 					fileVO.setBoardId(boardVO.getId());

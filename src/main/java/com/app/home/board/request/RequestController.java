@@ -1,5 +1,7 @@
 package com.app.home.board.request;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.board.BoardVO;
+import com.app.home.board.reqcategory.ReqCategoryVO;
 import com.app.home.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -95,5 +98,13 @@ public class RequestController {
 		mv.setViewName("board/request/detail");
 		
 		return mv;
+	}
+	@PostMapping("reqcate")
+	@ResponseBody
+	public List<ReqCategoryVO> findReqCategory(ReqCategoryVO reqCategoryVO)throws Exception{
+		
+		List<ReqCategoryVO> al = requestService.findReqCategory(reqCategoryVO);
+		
+		return al;
 	}
 }
