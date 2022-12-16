@@ -33,6 +33,7 @@ public class NoteService {
 
 	
 	public int setSendNote(NoteVO noteVO)throws Exception{
+		noteMapper.setSendNote2(noteVO);
 		return noteMapper.setSendNote(noteVO);
 	}
 	

@@ -64,7 +64,8 @@ INNER JOIN USER U
 ON N.RECEIVEID = U.ID
 INNER JOIN USER US
 ON N.SENDID = US.ID
-WHERE RECEIVEID = #{id} 
+WHERE RECEIVEID = #{id}
+AND RECEIVEID = REMARK
 AND
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>
@@ -83,6 +84,7 @@ ON N.RECEIVEID = U.ID
 INNER JOIN USER US
 ON N.SENDID = US.ID
 WHERE RECEIVEID = #{id}
+AND RECEIVEID = REMARK
 AND 
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>
