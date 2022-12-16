@@ -12,6 +12,9 @@ public class CommentPager {
 	
 	private Integer boardId;
 	
+	private boolean pre;
+	private boolean next;
+	
 	public CommentPager() {
 		this.perPage=10L;
 	}

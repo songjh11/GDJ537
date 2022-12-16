@@ -1,14 +1,15 @@
 package com.app.home.report.util;
 
 import com.app.home.report.ReportVO;
+
 import com.app.home.user.UserVO;
 
 import lombok.Data;
 
 public class ReportPager {
 	private Long page;
-	private Long startnum;
-	private Long lastnum;
+	private Long startNum;
+	private Long lastNum;
 	private Long perPage;
 	private Long perBlock;
 	private Long totalPage;
@@ -161,7 +162,7 @@ public class ReportPager {
 	
 	
 	//jsp 에서 쓸 startnum
-	public void getnum(Long totalCount) throws Exception{
+	public void getNum(Long totalCount) throws Exception{
 		//1. 받은 totalCount로 전체 페이지 구하기
 		Long totalPage = totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage() != 0) {
@@ -183,11 +184,11 @@ public class ReportPager {
 		}
 		
 		//4. Curblock으로 시작번호 및 끝번호
-		this.startnum = (curBlock-1)*this.getPerBlock()+1;
-		this.lastnum = curBlock*this.getPerBlock();
+		this.startNum = (curBlock-1)*this.getPerBlock()+1;
+		this.lastNum = curBlock*this.getPerBlock();
 		
 		if(curBlock == totalBlock) {
-			this.lastnum = totalPage;
+			this.lastNum = totalPage;
 		}
 		
 		if(curBlock > 1) {
@@ -204,4 +205,5 @@ public class ReportPager {
 		}
 		
 	}
+
 }

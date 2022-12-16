@@ -92,31 +92,34 @@ function getCommentList(p, bn) {
         // tr.appendChild(td); 
 
         td = document.createElement("td");
-        tdText = document.createTextNode(ar[i].regDate);
+        let dateTextes = ar[i].regDate.slice(0, 16);
+        dateTextes = dateTextes.split("T");
+        tdText = document.createTextNode(dateTextes[0] + " " + dateTextes[1]);
         td.appendChild(tdText);
         tr.appendChild(td);
 
         td = document.createElement("td");
         if(ar[i].updateDate == null){
-          tdText = document.createTextNode(ar[i].regDate);
+          tdText = document.createTextNode(dateTextes[0] + " " + dateTextes[1]);
         } else {
-          tdText = document.createTextNode(ar[i].updateDate);
+          dateTextes = ar[i].updateDate.slice(0, 16).split("T");
+          tdText = document.createTextNode(dateTextes[0] + " " + dateTextes[1]);
         }
         td.appendChild(tdText);
         tr.appendChild(td);
 
-        td = document.createElement("td");
-        tdText = document.createTextNode("수정");
-        let tdAttr = document.createAttribute("class")
-        tdAttr.value = "update";
-        td.setAttributeNode(tdAttr);
-        td.appendChild(tdText);
-        tr.appendChild(td);
+        // td = document.createElement("td");
+        // tdText = document.createTextNode("수정");
+        // let tdAttr = document.createAttribute("class")
+        // tdAttr.value = "update";
+        // td.setAttributeNode(tdAttr);
+        // td.appendChild(tdText);
+        // tr.appendChild(td);
 
-        tdAttr = document.createAttribute("data-commentnum");
-        tdAttr.value = ar[i].id;
-        td.setAttributeNode(tdAttr);
-        tr.appendChild(td);
+        // tdAttr = document.createAttribute("data-commentnum");
+        // tdAttr.value = ar[i].id;
+        // td.setAttributeNode(tdAttr);
+        // tr.appendChild(td);
 
         td = document.createElement("td");
         tdText = document.createTextNode("삭제");
