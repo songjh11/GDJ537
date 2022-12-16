@@ -88,26 +88,44 @@
                        <!-- Approach -->
                         <div class="card shadow mb-4" style="height: 420px;">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">today's schedule</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">schedule list</h6>
                             </div>
                             <div class="card-body">
-                                <table class="table table-hover justify-content-right" style="text-align: center;">
-                                    <tr>
-                                        <th>예약 날짜</th>
-                                        <th>예약정보</th>
-                                        <th>예약 변경</th>
-                                        <th>예약 취소</th>
-                                    </tr>
+                                
                                     
                                     <c:forEach items="${reserveVO}" var="reserve">
-                                        <tr>
-                                            <td>${reserve.startTime}</td>
-                                            <td><a href="/goods/car/carReserveDetail?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">정보 보기</a></td>
-                                            <td><a href="/goods/car/carReserveChange?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">변경</a></td>
-                                            <td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reserveNum}">취소</button></td>
-                                        </tr>
+                                        <c:if test="${reserve.goodsId.substring(0,2) == 'RO'}">
+                                            <table class="table table-hover justify-content-right" style="text-align: center;">
+                                                <tr>
+                                                    <th>예약 날짜</th>
+                                                    <th>예약정보</th>
+                                                </tr>
+                                            회의실 예약
+                                            <tr>
+                                                <td>${reserve.startTime}</td>
+                                                <td><a href="/goods/room/roomDetail?goodsId=${reserve.goodsId}" class="btn btn-outline-none">정보 보기</a></td>
+                                            </tr>
+                                          </table>
+                                        </c:if>
+                                        <c:if test="${reserve.goodsId.substring(0,2) == 'CA'}">
+                                            <table class="table table-hover justify-content-right" style="text-align: center;">
+                                                <tr>
+                                                    <th>예약 날짜</th>
+                                                    <th>예약정보</th>
+                                                    <th>예약 변경</th>
+                                                    <th>예약 취소</th>
+                                                </tr>
+                                            자동차 예약
+                                            <tr>
+                                                <td>${reserve.startTime}</td>
+                                                <td><a href="/goods/car/carReserveDetail?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">정보 보기</a></td>
+                                                <td><a href="/goods/car/carReserveChange?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">변경</a></td>
+                                                <td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reserveNum}">취소</button></td>
+                                            </tr>
+                                        </table>
+                                        </c:if>
                                     </c:forEach>
-                                </table>
+                               
                                 <p class="mb-0"></p>
                             </div>
                         </div>

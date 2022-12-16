@@ -1,5 +1,8 @@
 package com.app.home.user;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
@@ -62,7 +66,19 @@ public class UserController {
 	    
 	    // 개인 예약내역 추가
 	    List<ReserveVO> reserveVOs = carService.getReserveUserList(userVO);
-	    System.out.println("r"+ reserveVOs);
+	    LocalDate now = LocalDate.now();
+	    List<Integer> removePast = new ArrayList<>();
+	    for(int i =0; i<reserveVOs.size(); i++) {
+	    	LocalDate data = LocalDate.parse(reserveVOs.get(i).getStartTime().substring(0, 10));
+	    	if(data.isBefore(now)) {
+	    		removePast.add(i);
+	    	}
+	    }
+	    
+	    for(int i = 0; i<removePast.size(); i++) {
+	    	reserveVOs.remove(0);
+	    }
+	   
 	    
 		userVO = userService.getMypage(userVO);
 		mv.addObject("reserveVO", reserveVOs);
