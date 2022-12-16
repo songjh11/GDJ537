@@ -35,9 +35,6 @@
 					<br>
 					<br>
 					<section class="container col-lg-6 justify-content-center">
-						<c:forEach items="${stTime }" var="st">
-							<input type="hidden" value="${st.startTime }" class="startList">
-						</c:forEach>
 						<form action="./roomReserve" method="POST" id="frm">
 							<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">회의실 예약</h1>
 							<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
@@ -51,11 +48,9 @@
 
 							<input type="hidden" name="goodsId" value="${goodDetail.goodsId }">
 							<c:forEach items="${timeNotEqual }" var="t">
-								<br>
 								<div class="timeCheck">
-									<input type="text" value="${t.startTime }" class="startTimeCheck">
-									<input type="text" value="${t.endTime }" class="endTimeCheck">
-									<br>
+									<input type="hidden" value="${t.startTime }" class="startTimeCheck">
+									<input type="hidden" value="${t.endTime }" class="endTimeCheck">
 								</div>
 							</c:forEach>
 
