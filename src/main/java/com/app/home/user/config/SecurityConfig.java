@@ -53,6 +53,8 @@ public class SecurityConfig {
                .antMatchers("/admin").hasRole("ADMIN")
                .antMatchers("/manager").hasRole("MANAGER")
                .antMatchers("/user").permitAll()
+               .antMatchers("/user/admin/*").hasAnyAuthority("사장", "부장", "과장","관리자")
+               .antMatchers("/goods/admin-list/*").hasAnyAuthority("과장","관리자")
                .anyRequest().permitAll()
                .and()
             .formLogin()
