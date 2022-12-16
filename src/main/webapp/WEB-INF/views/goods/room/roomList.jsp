@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +35,7 @@
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
 						<h1 class="h3 mb-4 text-gray-800">회의실 정보</h1>
+						<input type="hidden" value="${loginCheck }" id="userID">
 						<table class="table table-hover justify-content-right" style="text-align: center;">
 							<tr>
 								<th>이름</th>
@@ -43,26 +45,31 @@
 								<th>예약된 정보 보기</th>
 							</tr>
 							<c:forEach items="${goodVO }" var="good">
-								<input type="hidden" value="${good.goodsId}" class="ROID">
-								<tr>
-									<td>${good.name }</td>
-									<td>${good.location }</td>
-									<td>
-										<a href="./roomDetail?goodsId=${good.goodsId }">
-											<button type="button" class="btn btn-outline-none">보기</button>
-										</a>
-									</td>
-									<td>
-										<a href="./roomReserve?goodsId=${good.goodsId }">
-											<button type="button" class="btn btn-outline-none">예약</button>
-										</a>
-									</td>
-									<td>
-										<a href="./roomResInfo?goodsId=${good.goodsId }">
-											<button type="button" class="btn btn-outline-none">보기</button>
-										</a>
-									</td>
-								</tr>
+								<c:set var="TextValue" value="${good.goodsId}" />
+								<c:if test="${fn:substring(TextValue,0,2) == 'RO' }">
+									<input type="hidden" value="${good.goodsId}" class="ROID">
+									<tr>
+										<td>${good.name }</td>
+										<td>${good.location }</td>
+										<td>
+											<a href="./roomDetail?goodsId=${good.goodsId }">
+												<button type="button" class="btn btn-outline-none">보기</button>
+											</a>
+										</td>
+										<td>
+											<div class="btnDiv">
+												<a href="./roomReserve?goodsId=${good.goodsId }">
+													<button type="button" class="btn btn-outline-none res">예약</button>
+												</a>
+											</div>
+										</td>
+										<td>
+											<a href="./roomResInfo?goodsId=${good.goodsId }">
+												<button type="button" class="btn btn-outline-none">보기</button>
+											</a>
+										</td>
+									</tr>
+								</c:if>
 							</c:forEach>
 						</table>
 					</section>
@@ -83,4 +90,5 @@
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 </body>
+<script src="/js/room/reserveIDcheck.js"></script>
 </html>

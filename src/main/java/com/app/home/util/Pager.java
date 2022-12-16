@@ -13,7 +13,7 @@ public class Pager {
 	private Long perBlock;
 
 	// 게시판 구분
-	private Integer sort;
+	private String sort;
 
 	//이전블럭의 유무 -이전블럭이 있으면 true 없으면 false
 	private boolean pre;
@@ -23,6 +23,8 @@ public class Pager {
 	private String kind;
 	//검색어
 	private String search;
+	//정렬
+	private String order;
 
 	public Pager() {
 		this.perPage=10L;
@@ -59,7 +61,7 @@ public class Pager {
 			curBlock++;
 		}
 
-		//5. curBlock으로 startNum lastNum 구하기
+		//5. curBlock으로 startnum lastnum 구하기
 		this.startNum = (curBlock-1)*this.getPerBlock()+1;
 		this.lastNum = curBlock*this.getPerBlock();
 
@@ -113,5 +115,6 @@ public class Pager {
 	public void setSearch(String search) {
 		this.search = search;
 	}
+
 
 }

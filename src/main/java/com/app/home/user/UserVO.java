@@ -15,7 +15,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import com.app.home.messenger.PickVO;
+
 import com.app.home.report.ReportVO;
 import com.nimbusds.oauth2.sdk.Role;
 
@@ -28,8 +30,8 @@ public class UserVO implements UserDetails {
 
 	private int num;
 	private int id;
-	private int roleNum;
-	private int depNum;
+	private int rolenum;
+	private int depnum;
     @Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}")
 	private String pw;
 	private String name;
@@ -56,6 +58,7 @@ public class UserVO implements UserDetails {
 	private MultipartFile file;
 	
 
+
 	public String phone_format(String number) {
 		String regEx = "(\\d{3})(\\d{3,4})(\\d{4})";
 		return number.replaceAll(regEx, "$1-$2-$3");
@@ -63,6 +66,7 @@ public class UserVO implements UserDetails {
 
 	private ReportVO reportVO;
 	private List<ReportVO> reportVOs;
+
 
 	private List<DepartmentVO> departmentVOs;
 

@@ -5,159 +5,243 @@
 
 <mapper namespace="com.app.home.schedule.goods.GoodsMapper">
 
-	<update id="setUpdate" parameterType="GoodsVO">
-		UPDATE GOODS SET NAME = #{name}, MAX = #{max}, CONTENTS = #{contents}, LOCATION = #{location}, CARNUM = #{carNum} WHERE GOODSID = #{goodsId}
-	</update>
 
-	<insert id="setAdd" parameterType="GoodsVO">
-			INSERT INTO GOODS
-				VALUES (#{goodsId},#{name},#{max},#{contents},#{location},#{carNum})
-	</insert>
+   <update id="setUpdate" parameterType="GoodsVO">
+      UPDATE GOODS SET NAME = #{name}, MAX = #{max}, CONTENTS = #{contents}, LOCATION = #{location}, CARNUM = #{carNum} WHERE GOODSID = #{goodsId}
+   </update>
 
-	<select id="getCount" parameterType="GoodsVO" resultType="int">
-		SELECT
-		COUNT(*) FROM GOODS WHERE GOODSID LIKE CONCAT (#{goodsId},'%')
-	</select>
+   <insert id="setAdd" parameterType="GoodsVO">
+         INSERT INTO GOODS
+            VALUES (#{goodsId},#{name},#{max},#{contents},#{location},#{carNum})
+   </insert>
 
-	<select id="getMaxCount" parameterType="GoodsVO"
-		resultType="String">
-		SELECT MAX(GOODSID) FROM GOODS WHERE GOODSID LIKE CONCAT (#{goodsId},'%')
-	</select>
 
-	<select id="getGood" parameterType="GoodsVO"
-		resultType="GoodsVO">
-		SELECT * FROM GOODS WHERE GOODSID = #{goodsId}
-	</select>
+   <select id="getCount" parameterType="GoodsVO" resultType="int">
+      SELECT
+      COUNT(*) FROM GOODS WHERE GOODSID LIKE CONCAT (#{goodsId},'%')
+   </select>
 
-	<insert id="setGoodsFileAdd" parameterType="GoodsFileVO">
- 		INSERT INTO GOODSFILE
- 		VALUE (#{imgNum},#{goodsId},#{fileName},#{oriName})
- 	</insert>
- 	
- 	<select id="getGoods" parameterType="GoodsVO" resultMap="getGoodsDetail">
- 		SELECT * FROM GOODS G
-			LEFT JOIN GOODSFILE F
-			ON G.GOODSID  = F.GOODSID
-			WHERE G.GOODSID = #{goodsId}
- 	</select>
-	
-	<resultMap type="GoodsVO" id="getGoodsDetail">
-		<id column="GOODSID" property="goodsId"></id>
-		<result column="NAME" property="name"></result>
-		<result column="MAX" property="max"></result>
-		<result column="CONTENTS" property="contents"></result>
-		<result column="LOCATION" property="location"></result>
-		<result column="CARNUM" property="carNum"></result>
-		
-		<collection property="goodsFileVO" javaType="List" ofType="GoodsFileVO">
-				<id column="IMGNUM" property="imgNum"></id>
-				<result column = "FILENAME" property="fileName"></result>
-				<result column = "ORINAME" property="oriName"></result>
-		</collection>
-	</resultMap>
-	
-	<select id="getFileNumCheck" parameterType="GoodsFileVO" resultType="GoodsFileVO">
- 		SELECT t.IMGNUM FROM
-			(select @ROWNUM:=@ROWNUM+1 AS ROWNUM, GF.* 
-			FROM GOODSFILE GF, (SELECT @ROWNUM:=0) R
-			WHERE GOODSID = #{goodsId} ) 
-			AS t WHERE t.ROWNUM = #{rowNum}
- 	</select>
-	
- 	<delete id="setFileNumCheckDelete" parameterType="GoodsFileVO">
- 		DELETE FROM GOODSFILE WHERE IMGNUM = #{imgNum}
- 	</delete>
- 	
- 	<delete id="setGoodsDelete" parameterType="GoodsVO">
- 		DELETE FROM GOODS WHERE GOODSID = #{goodsId}
- 	</delete>
- 	
- 	<delete id="setGoodsFileDelete" parameterType="GoodsVO">
- 		DELETE FROM GOODSFILE WHERE GOODSID = #{goodsId}
- 	</delete>
- 	
- 	<select id="getRoomList" resultMap="getGoodsDetail">
- 		SELECT * FROM 
- 		GOODS G
- 		LEFT JOIN GOODSFILE GF
- 		ON G.GOODSID = GF.GOODSID
- 		WHERE G.GOODSID LIKE 'RO%'
- 	</select>
- 	
- 	<select id="getCarList" resultMap="getGoodsDetail">
- 		SELECT * FROM
- 		GOODS G
- 		LEFT JOIN GOODSFILE GF
- 		ON G.GOODSID = GF.GOODSID
- 		WHERE G.GOODSID LIKE 'CA%'
- 	</select>
+   <select id="getMaxCount" parameterType="GoodsVO"
+      resultType="String">
+      SELECT MAX(GOODSID) FROM GOODS WHERE GOODSID LIKE CONCAT (#{goodsId},'%')
+   </select>
 
-<!-- 전체 정보 출력을 위한 리스트 -->
-	<select id="getGoodsList" parameterType="GoodsVO"
-		resultMap="getGoods">
-		SELECT * FROM GOODS G
-		left JOIN GOODSFILE F
-		ON G.GOODSID = F.GOODSID
-	</select>
+   <select id="getGood" parameterType="GoodsVO"
+      resultType="GoodsVO">
+      SELECT * FROM GOODS WHERE GOODSID = #{goodsId}
+   </select>
 
-	<resultMap type="GoodsVO" id="getGoods">
-		<id column="GOODSID" property="goodsId"></id>
-		<result column="NAME" property="name"></result>
-		<result column="MAX" property="max"></result>
-		<result column="CONTENTS" property="contents"></result>
-		<result column="LOCATION" property="location"></result>
-		<result column="CARNUM" property="carNum"></result>
 
-		<collection property="goodsFileVO" javaType="List"
-			ofType="GoodsFileVO">
-			<id column="IMGNUM" property="imgNum"></id>
-			<result column="FILENAME" property="fileName"></result>
-			<result column="ORINAME" property="oriName"></result>
-		</collection>
-	</resultMap>
-	
-	
-	<sql id="getFilter">
-		WHERE goodsId LIKE ''
-			<if test="room">
-				OR goodsId LIKE '%RO%'
-			</if>
-			<if test="car">
-				OR goodsId LIKE '%CA%'
-			</if>
-			<if test="vacation">
-				OR goodsId LIKE '%VA%'
-			</if>
-		
-	</sql>
-	
-	<select id="getReserveList" parameterType="goodsReserveVO" resultType="ReserveVO">
-		select * from RESERVE   <include refid="getFilter"></include> 
-	</select>
-	
-	<select id="getRoomNameList" resultType="GoodsVO">
-		SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'RO%'
-	</select>
-	
-	<select id="getCarNameList" resultType="GoodsVO">
-		SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'CA%'
-	</select>
-	
-	<select id="getreserveGoods" parameterType="GoodsVO" resultType="ReserveVO">
-		SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
-	</select>
-	
-	<select id="getreserveCount" parameterType="GoodsVO" resultType="int">
-		SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
-	</select>
-	
-	<select id="getRoomTotal" resultType="int">
-		SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'RO%'
-	</select>
-	
-	<select id="getCarTotal" resultType="int">
-		SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'CA%'
-	</select>
-	
-	
-</mapper> 
+   <insert id="setGoodsFileAdd" parameterType="GoodsFileVO">
+       INSERT INTO GOODSFILE
+       VALUE (#{imgNum},#{goodsId},#{fileName},#{oriName})
+    </insert>
+    
+    <update id="setFileUpdate" parameterType="GoodsFileVO">
+       UPDATE GOODSFILE SET FILENAME = #{fileName} , ORINAME = #{oriName} WHERE IMGNUM = #{imgNum}
+    </update>
+    
+    <select id="getGoods" parameterType="GoodsVO" resultMap="getGoodsDetail">
+       SELECT * FROM GOODS G
+         LEFT JOIN GOODSFILE F
+         ON G.GOODSID  = F.GOODSID
+         WHERE G.GOODSID = #{goodsId}
+    </select>
+   
+   <resultMap type="GoodsVO" id="getGoodsDetail">
+      <id column="GOODSID" property="goodsId"></id>
+      <result column="NAME" property="name"></result>
+      <result column="MAX" property="max"></result>
+      <result column="CONTENTS" property="contents"></result>
+      <result column="LOCATION" property="location"></result>
+      <result column="CARNUM" property="carNum"></result>
+      
+      <collection property="goodsFileVO" javaType="List" ofType="GoodsFileVO">
+            <id column="IMGNUM" property="imgNum"></id>
+            <result column = "FILENAME" property="fileName"></result>
+            <result column = "ORINAME" property="oriName"></result>
+      </collection>
+   </resultMap>
+   
+   <select id="getFileNumCheck" parameterType="GoodsFileVO" resultType="GoodsFileVO">
+       SELECT t.IMGNUM FROM
+         (select @ROWNUM:=@ROWNUM+1 AS ROWNUM, GF.* 
+         FROM GOODSFILE GF, (SELECT @ROWNUM:=0) R
+         WHERE GOODSID = #{goodsId} ) 
+         AS t WHERE t.ROWNUM = #{rowNum}
+    </select>
+   
+    <delete id="setFileNumCheckDelete" parameterType="GoodsFileVO">
+       DELETE FROM GOODSFILE WHERE IMGNUM = #{imgNum}
+    </delete>
+    
+    <delete id="setGoodsDelete" parameterType="GoodsVO">
+       DELETE FROM GOODS WHERE GOODSID = #{goodsId}
+    </delete>
+    
+    <delete id="setGoodsFileDelete" parameterType="GoodsVO">
+       DELETE FROM GOODSFILE WHERE GOODSID = #{goodsId}
+    </delete>
+    
+    <select id="getRoomList" resultMap="getGoodsDetail">
+       SELECT * FROM 
+       GOODS G
+       LEFT JOIN GOODSFILE GF
+       ON G.GOODSID = GF.GOODSID
+       WHERE G.GOODSID LIKE 'RO%'
+    </select>
+    
+    <select id="getCarList" resultMap="getGoodsDetail">
+       SELECT * FROM
+       GOODS G
+       LEFT JOIN GOODSFILE GF
+       ON G.GOODSID = GF.GOODSID
+       WHERE G.GOODSID LIKE 'CA%'
+    </select>
+
+
+   <!-- 전체 정보 출력을 위한 리스트 -->
+   <select id="getGoodsList" parameterType="GoodsVO"
+      resultMap="getGoods">
+      SELECT * FROM GOODS G
+      left JOIN GOODSFILE F
+      ON G.GOODSID = F.GOODSID
+   </select>
+
+
+   <resultMap type="GoodsVO" id="getGoods">
+      <id column="GOODSID" property="goodsId"></id>
+      <result column="NAME" property="name"></result>
+      <result column="MAX" property="max"></result>
+      <result column="CONTENTS" property="contents"></result>
+      <result column="LOCATION" property="location"></result>
+      <result column="CARNUM" property="carNum"></result>
+
+      <collection property="goodsFileVO" javaType="List"
+         ofType="GoodsFileVO">
+         <id column="IMGNUM" property="imgNum"></id>
+         <result column="FILENAME" property="fileName"></result>
+         <result column="ORINAME" property="oriName"></result>
+      </collection>
+   </resultMap>
+   
+   
+   
+   
+   <sql id="getFilter">
+      WHERE r.GOODSID LIKE ''
+         <if test="room">
+            OR r.GOODSID LIKE '%RO%'
+         </if>
+         <if test="car">
+            OR r.GOODSID LIKE '%CA%'
+         </if>
+         <if test="vacation">
+            OR r.GOODSID LIKE '%VA%'
+         </if>
+      
+   </sql>
+   
+   
+   <!-- 캘린더 전체 출력을 위한 리스트 -->
+   <select id="getReserveList" parameterType="ReserveVO" resultMap="getGoodsReserveList">
+      SELECT * FROM    
+      RESERVE r 
+      LEFT JOIN
+      GOODS g
+      ON(r.GOODSID = g.GOODSID)
+          <include refid="getFilter"></include> 
+   </select>
+   
+   <resultMap type="ReserveVO" id="getGoodsReserveList">
+      <id column="RESERVENUM" property="reserveNum"/>
+         <result column="GOODSID" property="goodsId"/>
+         <result column="DATE" property="date"/>
+         <result column="ID" property="id"/>
+         <result column="USEPURPOSE" property="usePurpose"/>
+         <result column="STARTTIME" property="startTime"/>
+         <result column="ENDTIME" property="endTime"/>
+         <association property="goodsVO" javaType="GoodsVO">
+            <id column="GOODSID" property="goodsId"/>
+            <result column="NAME" property="name"/>
+            <result column="MAX" property="max"/>
+            <result column="CONTENTS" property="contents"/>
+            <result column="LOCATION" property="location"/>
+            <result column="CARNUM" property="carNum"/>
+         </association>
+   </resultMap>
+   
+   <select id="getRoomNameList" resultType="GoodsVO">
+      SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'RO%'
+   </select>
+   
+   <select id="getCarNameList" resultType="GoodsVO">
+      SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'CA%'
+   </select>
+   
+   <select id="getreserveGoods" parameterType="GoodsVO" resultType="ReserveVO">
+      SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
+   </select>
+   
+   <select id="getreserveCount" parameterType="ReserveVO" resultType="int">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId} AND (SELECT SUBSTRING(STARTTIME,1,4)) = #{startTime}
+   </select>
+   
+   <select id="getRoomTotal" resultType="int" parameterType="ReserveVO">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'RO%' AND (SELECT SUBSTRING(STARTTIME,1,4)) = #{startTime}
+   </select>
+   
+   <select id="getCarTotal" resultType="int" parameterType="ReserveVO">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'CA%' AND (SELECT SUBSTRING(STARTTIME,1,4)) = #{startTime}
+   </select>
+
+   <select id="getDepartmentRoomTotal" resultType="int" parameterType="ReserveVO">
+        SELECT COUNT(*) FROM RESERVE R
+	      LEFT JOIN 
+	      USER U 
+	      ON R.ID=U.ID
+		      LEFT JOIN
+		      DEPARTMENT D 
+      		  ON U.DEPNUM = D.DEPNUM 
+      			WHERE D.DEPNAME = #{depName}
+	          	AND R.GOODSID LIKE 'RO%'
+	          	AND (SELECT SUBSTRING(R.STARTTIME,1,7)) = #{startTime}
+          
+   </select>
+   
+   <select id="getDepartmentCarTotal" resultType="int" parameterType="ReserveVO">
+       SELECT COUNT(*) FROM RESERVE R
+	      LEFT JOIN 
+	      USER U 
+	      ON R.ID=U.ID
+		      LEFT JOIN
+		      DEPARTMENT D 
+      		  ON U.DEPNUM = D.DEPNUM 
+      			WHERE D.DEPNAME = #{depName}
+          	AND R.GOODSID LIKE 'CA%'
+          	AND (SELECT SUBSTRING(R.STARTTIME,1,7)) = #{startTime}
+   </select>
+   
+   <select id="getRoomNowTotal" resultType="int" parameterType="String">
+      SELECT COUNT(*) 
+      FROM RESERVE r 
+      WHERE (SELECT SUBSTRING(r.STARTTIME,1,7)) = #{month} 
+         AND r.GOODSID LIKE 'RO%' 
+   </select>
+   
+   <select id="getCarNowTotal" resultType="int" parameterType="String">
+      SELECT COUNT(*) 
+      FROM RESERVE r 
+      WHERE (SELECT SUBSTRING(r.STARTTIME,1,7)) = #{month} 
+         AND r.GOODSID LIKE 'CA%' 
+   </select>
+   
+   <insert id="setReserveInit" parameterType="GoodsVO">
+   		INSERT INTO RESERVE 
+		VALUE(null,#{goodsId},"2018-01-01 09:00:00",2022001,"예시","2018-01-01T09:00","2018-01-01T09:00")
+   </insert>
+   
+   
+   
+</mapper>
+

@@ -38,7 +38,7 @@ AND
 		<otherwise>RECEIVEID</otherwise>
 	</choose> 
 	LIKE CONCAT('%', #{search}, '%')
-ORDER BY NOTENUM DESC
+ORDER BY NOTEnum DESC
 LIMIT #{startRow}, #{perPage}
 </select>
 
@@ -73,7 +73,7 @@ AND
 		<otherwise>SENDID</otherwise>
 	</choose> 
 	LIKE CONCAT('%', #{search}, '%')
-ORDER BY NOTENUM DESC
+ORDER BY NOTEnum DESC
 LIMIT #{startRow}, #{perPage}
 </select>
 
@@ -95,7 +95,7 @@ AND
 
 <select id="getNoteDetail" resultType="NoteVO" parameterType="NoteVO">
 SELECT * FROM NOTE 
-WHERE NOTENUM = #{noteNum}
+WHERE NOTEnum = #{notenum}
 </select>
 	
 </mapper>    

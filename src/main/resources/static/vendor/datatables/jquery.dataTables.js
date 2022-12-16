@@ -22,7 +22,7 @@
  */
 
 /*jslint evil: true, undef: true, browser: true */
-/*globals $,require,jQuery,define,_selector_run,_selector_opts,_selector_first,_selector_row_indexes,_ext,_Api,_api_register,_api_registerPlural,_re_new_lines,_re_html,_re_formatted_numeric,_re_escape_regex,_empty,_intVal,_numToDecimal,_isNumber,_isHtml,_htmlNumeric,_pluck,_pluck_order,_range,_stripHtml,_unique,_fnBuildAjax,_fnAjaxUpdate,_fnAjaxParameters,_fnAjaxUpdateDraw,_fnAjaxDataSrc,_fnAddColumn,_fnColumnOptions,_fnAdjustColumnSizing,_fnVisibleToColumnIndex,_fnColumnIndexToVisible,_fnVisbleColumns,_fnGetColumns,_fnColumnTypes,_fnApplyColumnDefs,_fnHungarianMap,_fnCamelToHungarian,_fnLanguageCompat,_fnBrowserDetect,_fnAddData,_fnAddTr,_fnNodeToDataIndex,_fnNodeToColumnIndex,_fnGetCellData,_fnSetCellData,_fnSplitObjNotation,_fnGetObjectDataFn,_fnSetObjectDataFn,_fnGetDataMaster,_fnClearTable,_fnDeleteIndex,_fnInvalidate,_fnGetRowElements,_fnCreateTr,_fnBuildHead,_fnDrawHead,_fnDraw,_fnReDraw,_fnAddOptionsHtml,_fnDetectHeader,_fnGetUniqueThs,_fnFeatureHtmlFilter,_fnFilterComplete,_fnFilterCustom,_fnFilterColumn,_fnFilter,_fnFilterCreateSearch,_fnEscapeRegex,_fnFilterData,_fnFeatureHtmlInfo,_fnUpdateInfo,_fnInfoMacros,_fnInitialise,_fnInitComplete,_fnLengthChange,_fnFeatureHtmlLength,_fnFeatureHtmlPaginate,_fnPageChange,_fnFeatureHtmlProcessing,_fnProcessingDisplay,_fnFeatureHtmlTable,_fnScrollDraw,_fnApplyToChildren,_fnCalculateColumnWidths,_fnThrottle,_fnConvertToWidth,_fnGetWidestNode,_fnGetMaxLenString,_fnStringToCss,_fnSortFlatten,_fnSort,_fnSortAria,_fnSortListener,_fnSortAttachListener,_fnSortingClasses,_fnSortData,_fnSaveState,_fnLoadState,_fnSettingsFromNode,_fnLog,_fnMap,_fnBindAction,_fnCallbackReg,_fnCallbackFire,_fnLengthOverflow,_fnRenderer,_fnDataSource,_fnRowAttributes*/
+/*globals $,require,jQuery,define,_selector_run,_selector_opts,_selector_first,_selector_row_indexes,_ext,_Api,_api_register,_api_registerPlural,_re_new_lines,_re_html,_re_formatted_numeric,_re_escape_regex,_empty,_intVal,_numToDecimal,_isnumber,_isHtml,_htmlnumeric,_pluck,_pluck_order,_range,_stripHtml,_unique,_fnBuildAjax,_fnAjaxUpdate,_fnAjaxParameters,_fnAjaxUpdateDraw,_fnAjaxDataSrc,_fnAddColumn,_fnColumnOptions,_fnAdjustColumnSizing,_fnVisibleToColumnIndex,_fnColumnIndexToVisible,_fnVisbleColumns,_fnGetColumns,_fnColumnTypes,_fnApplyColumnDefs,_fnHungarianMap,_fnCamelToHungarian,_fnLanguageCompat,_fnBrowserDetect,_fnAddData,_fnAddTr,_fnNodeToDataIndex,_fnNodeToColumnIndex,_fnGetCellData,_fnSetCellData,_fnSplitObjNotation,_fnGetObjectDataFn,_fnSetObjectDataFn,_fnGetDataMaster,_fnClearTable,_fnDeleteIndex,_fnInvalidate,_fnGetRowElements,_fnCreateTr,_fnBuildHead,_fnDrawHead,_fnDraw,_fnReDraw,_fnAddOptionsHtml,_fnDetectHeader,_fnGetUniqueThs,_fnFeatureHtmlFilter,_fnFilterComplete,_fnFilterCustom,_fnFilterColumn,_fnFilter,_fnFilterCreateSearch,_fnEscapeRegex,_fnFilterData,_fnFeatureHtmlInfo,_fnUpdateInfo,_fnInfoMacros,_fnInitialise,_fnInitComplete,_fnLengthChange,_fnFeatureHtmlLength,_fnFeatureHtmlPaginate,_fnPageChange,_fnFeatureHtmlProcessing,_fnProcessingDisplay,_fnFeatureHtmlTable,_fnScrollDraw,_fnApplyToChildren,_fnCalculateColumnWidths,_fnThrottle,_fnConvertToWidth,_fnGetWidestNode,_fnGetMaxLenString,_fnStringToCss,_fnSortFlatten,_fnSort,_fnSortAria,_fnSortListener,_fnSortAttachListener,_fnSortingClasses,_fnSortData,_fnSaveState,_fnLoadState,_fnSettingsFromNode,_fnLog,_fnMap,_fnBindAction,_fnCallbackReg,_fnCallbackFire,_fnLengthOverflow,_fnRenderer,_fnDataSource,_fnRowAttributes*/
 
 (function( factory ) {
 	"use strict";
@@ -1002,7 +1002,7 @@
 				"asStripeClasses",
 				"ajax",
 				"fnServerData",
-				"fnFormatNumber",
+				"fnFormatnumber",
 				"sServerMethod",
 				"aaSorting",
 				"aaSortingFixed",
@@ -1387,7 +1387,7 @@
 	};
 	
 	
-	var _isNumber = function ( d, decimalPoint, formatted ) {
+	var _isnumber = function ( d, decimalPoint, formatted ) {
 		var strType = typeof d === 'string';
 	
 		// If empty return immediately so there must be a number if it is a
@@ -1415,7 +1415,7 @@
 	};
 	
 	
-	var _htmlNumeric = function ( d, decimalPoint, formatted ) {
+	var _htmlnumeric = function ( d, decimalPoint, formatted ) {
 		if ( _empty( d ) ) {
 			return true;
 		}
@@ -1423,7 +1423,7 @@
 		var html = _isHtml( d );
 		return ! html ?
 			null :
-			_isNumber( _stripHtml( d ), decimalPoint, formatted ) ?
+			_isnumber( _stripHtml( d ), decimalPoint, formatted ) ?
 				true :
 				null;
 	};
@@ -1773,7 +1773,7 @@
 		// Default mapping
 		var defaultDecimal = defaults.sDecimal;
 		if ( defaultDecimal ) {
-			_addNumericSort( defaultDecimal );
+			_addnumericSort( defaultDecimal );
 		}
 	
 		if ( lang ) {
@@ -1801,7 +1801,7 @@
 	
 			var decimal = lang.sDecimal;
 			if ( decimal && defaultDecimal !== decimal ) {
-				_addNumericSort( decimal );
+				_addnumericSort( decimal );
 			}
 		}
 	}
@@ -1928,7 +1928,7 @@
 			var outer = n.children();
 			var inner = outer.children();
 	
-			// Numbers below, in order, are:
+			// numbers below, in order, are:
 			// inner.offsetWidth, inner.clientWidth, outer.offsetWidth, outer.clientWidth
 			//
 			// IE6 XP:                           100 100 100  83
@@ -4129,8 +4129,8 @@
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {object} json json data return from the server.
 	 *  @param {string} json.sEcho Tracking flag for DataTables to match requests
-	 *  @param {int} json.iTotalRecords Number of records in the data set, not accounting for filtering
-	 *  @param {int} json.iTotalDisplayRecords Number of records in the data set, accounting for filtering
+	 *  @param {int} json.iTotalRecords number of records in the data set, not accounting for filtering
+	 *  @param {int} json.iTotalDisplayRecords number of records in the data set, accounting for filtering
 	 *  @param {array} json.aaData The data to display on this page
 	 *  @param {string} [json.sColumns] Column ordering (sName, comma separated)
 	 *  @memberof DataTable#oApi
@@ -4710,7 +4710,7 @@
 		// When infinite scrolling, we are always starting at 1. _iDisplayStart is used only
 		// internally
 		var
-			formatter  = settings.fnFormatNumber,
+			formatter  = settings.fnFormatnumber,
 			start      = settings._iDisplayStart+1,
 			len        = settings._iDisplayLength,
 			vis        = settings.fnRecordsDisplay(),
@@ -4868,7 +4868,7 @@
 		for ( var i=0, ien=lengths.length ; i<ien ; i++ ) {
 			select[0][ i ] = new Option(
 				typeof language[i] === 'number' ?
-					settings.fnFormatNumber( language[i] ) :
+					settings.fnFormatnumber( language[i] ) :
 					language[i],
 				lengths[i]
 			);
@@ -6401,7 +6401,7 @@
 				return;
 			}
 	
-			// Number of columns have changed - all bets are off, no restore of settings
+			// number of columns have changed - all bets are off, no restore of settings
 			if ( s.columns && columns.length !== s.columns.length ) {
 				callback();
 				return;
@@ -10801,14 +10801,14 @@
 		 *  @returns {string} formatted string for DataTables to show the number
 		 *
 		 *  @dtopt Callbacks
-		 *  @name DataTable.defaults.formatNumber
+		 *  @name DataTable.defaults.formatnumber
 		 *
 		 *  @example
 		 *    // Format a number using a single quote for the separator (note that
 		 *    // this can also be done with the language.thousands option)
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
-		 *        "formatNumber": function ( toFormat ) {
+		 *        "formatnumber": function ( toFormat ) {
 		 *          return toFormat.toString().replace(
 		 *            /\B(?=(\d{3})+(?!\d))/g, "'"
 		 *          );
@@ -10816,7 +10816,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"fnFormatNumber": function ( toFormat ) {
+		"fnFormatnumber": function ( toFormat ) {
 			return toFormat.toString().replace(
 				/\B(?=(\d{3})+(?!\d))/g,
 				this.oLanguage.sThousands
@@ -11252,7 +11252,7 @@
 	
 	
 		/**
-		 * Number of rows to display on a single page when using pagination. If
+		 * number of rows to display on a single page when using pagination. If
 		 * feature enabled (`lengthChange`) then the end user will be able to override
 		 * this to a custom setting using a pop-up menu.
 		 *  @type int
@@ -11520,8 +11520,8 @@
 			 *
 			 * * `\_START\_` - Display index of the first record on the current page
 			 * * `\_END\_` - Display index of the last record on the current page
-			 * * `\_TOTAL\_` - Number of records in the table after filtering
-			 * * `\_MAX\_` - Number of records in the table without filtering
+			 * * `\_TOTAL\_` - number of records in the table after filtering
+			 * * `\_MAX\_` - number of records in the table without filtering
 			 * * `\_PAGE\_` - Current page number
 			 * * `\_PAGES\_` - Total number of pages of data in the table
 			 *
@@ -11641,7 +11641,7 @@
 	
 	
 			/**
-			 * DataTables has a build in number formatter (`formatNumber`) which is
+			 * DataTables has a build in number formatter (`formatnumber`) which is
 			 * used to format large numbers that are used in the table information.
 			 * By default a comma is used, but this can be trivially changed to any
 			 * character you wish with this parameter.
@@ -13677,7 +13677,7 @@
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type function
 		 */
-		"fnFormatNumber": null,
+		"fnFormatnumber": null,
 	
 		/**
 		 * List of options that can be used for the user selectable length menu.
@@ -14372,7 +14372,7 @@
 			 *  @default {}
 			 *
 			 *  @example
-			 *    // Numeric ordering of formatted numbers with a pre-formatter
+			 *    // numeric ordering of formatted numbers with a pre-formatter
 			 *    $.extend( $.fn.dataTable.ext.type.order, {
 			 *      "string-pre": function(x) {
 			 *        a = (a === "-" || a === "") ? 0 : a.replace( /[^\d\-\.]/g, "" );
@@ -14586,7 +14586,7 @@
 		// For testing and plug-ins to use
 		_numbers: _numbers,
 	
-		// Number of number buttons (including ellipsis) to show. _Must be odd!_
+		// number of number buttons (including ellipsis) to show. _Must be odd!_
 		numbers_length: 7
 	} );
 	
@@ -14661,7 +14661,7 @@
 									break;
 	
 								default:
-									btnDisplay = settings.fnFormatNumber( button + 1 );
+									btnDisplay = settings.fnFormatnumber( button + 1 );
 									btnClass = page === button ?
 										classes.sPageButtonActive : '';
 									break;
@@ -14724,7 +14724,7 @@
 		function ( d, settings )
 		{
 			var decimal = settings.oLanguage.sDecimal;
-			return _isNumber( d, decimal ) ? 'num'+decimal : null;
+			return _isnumber( d, decimal ) ? 'num'+decimal : null;
 		},
 	
 		// Dates (only those recognised by the browser's Date.parse)
@@ -14744,21 +14744,21 @@
 		function ( d, settings )
 		{
 			var decimal = settings.oLanguage.sDecimal;
-			return _isNumber( d, decimal, true ) ? 'num-fmt'+decimal : null;
+			return _isnumber( d, decimal, true ) ? 'num-fmt'+decimal : null;
 		},
 	
 		// HTML numeric
 		function ( d, settings )
 		{
 			var decimal = settings.oLanguage.sDecimal;
-			return _htmlNumeric( d, decimal ) ? 'html-num'+decimal : null;
+			return _htmlnumeric( d, decimal ) ? 'html-num'+decimal : null;
 		},
 	
 		// HTML numeric, formatted
 		function ( d, settings )
 		{
 			var decimal = settings.oLanguage.sDecimal;
-			return _htmlNumeric( d, decimal, true ) ? 'html-num-fmt'+decimal : null;
+			return _htmlnumeric( d, decimal, true ) ? 'html-num-fmt'+decimal : null;
 		},
 	
 		// HTML (this is strict checking - there must be html)
@@ -14775,7 +14775,7 @@
 	// what is required from these methods.
 	// 
 	// Note that additional search methods are added for the html numbers and
-	// html formatted numbers by `_addNumericSort()` when we know what the decimal
+	// html formatted numbers by `_addnumericSort()` when we know what the decimal
 	// place is
 	
 	
@@ -14830,7 +14830,7 @@
 	// Add the numeric 'deformatting' functions for sorting and search. This is done
 	// in a function to provide an easy ability for the language options to add
 	// additional methods if a non-period decimal place is used.
-	function _addNumericSort ( decimalPlace ) {
+	function _addnumericSort ( decimalPlace ) {
 		$.each(
 			{
 				// Plain numbers
@@ -14908,8 +14908,8 @@
 	} );
 	
 	
-	// Numeric sorting types - order doesn't matter here
-	_addNumericSort( '' );
+	// numeric sorting types - order doesn't matter here
+	_addnumericSort( '' );
 	
 	
 	$.extend( true, DataTable.ext.renderer, {
@@ -15012,7 +15012,7 @@
 	 *   It takes 5 parameters:
 	 *   * `string` - Thousands grouping separator
 	 *   * `string` - Decimal point indicator
-	 *   * `integer` - Number of decimal points to show
+	 *   * `integer` - number of decimal points to show
 	 *   * `string` (optional) - Prefix.
 	 *   * `string` (optional) - Postfix (/suffix).
 	 * * `text` - Escape HTML to help prevent XSS attacks. It has no optional

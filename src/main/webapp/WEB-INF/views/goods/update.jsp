@@ -21,111 +21,125 @@
 <!-- body ID 작성 -->
 <body id="page-top">
 
-	<!-- Page Wrapper 전체 Contents Wrapper -->
+   <!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
 
-		<!-- Sidebar import -->
-		<c:import url="../temp/layout_sidebar.jsp"></c:import>
-		<!-- End of Sidebar -->
-		
-		 <!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
-			<!-- Main Content -->
-			<div id="content">
-			
-				<!-- Topbar import-->
-				<c:import url="../temp/layout_topbar.jsp"></c:import>
-				<!-- End of Topbar -->
-				
-				<!-- Begin Page Content -->
-	            <div class="container-fluid">
-	
-	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800">공용 시설 수정</h1>
-	            	
-	            	<form action="update" method="post" enctype="multipart/form-data">
-	            	 <div class="mb-3">
-	            	 	<div>
-					    	<label for="exampleInputName" class="form-label" data-str-num="${str}">kind</label>
-					    </div>
-					    <label class="test_obj">
-						    <input type="radio" <c:if test="${str == 'RO'}">checked</c:if> value=${goods.goodsId} disabled>
-						    <span>회의실</span>
-						</label>
-						 
-						<label class="test_obj">
-						    <input type="radio" <c:if test="${str == 'CA'}">checked</c:if> value=${goods.goodsId} disabled>
-						    <span>차량</span>
-						</label>
-					  </div>
-					  <div>
-						<input type="hidden" id="goodId" name="goodsId" value="${goods.goodsId}">
-					  </div>
-					  <div class="mb-3">
-					    <label for="exampleInputName" class="form-label">시설 이름</label>
-					    <input type="text" class="form-control" id="name" name="name" value="${goods.name}">
-					  </div>
-					  <div class="mb-3">
-					    <label for="exampleInputContents" class="form-label">시설 설명</label>
-			            <textarea  class="form-control add_ele" id="contents" name="contents">${goods.contents}</textarea>
-					  </div>
-					  <div class="mb-3">
-					    <label for="exampleInputMax" class="form-label">최대 인원</label>
-					    <input type="text" class="form-control" id="max" name="max" value="${goods.max}" >
-					  </div>
-					  <div class="mb-3">
-					    <label for="exampleInputLocation" class="form-label">시설 위치</label>
-					    <input type="text" class="form-control" id="location" name="location" value="${goods.location}">
-					  </div>
-					  <div class="mb-3" <c:if test="${str == 'RO'}">style ="display:none;"</c:if>>
-					    <label for="exampleInputLocation" class="form-label">차량 번호</label>
-					    <input type="text" class="form-control" id="carNum" name="carNum" value="${goods.carNum}">
-					  </div>
-					  <div>
-						<div class="mb-3" id="fileAddResult">      
-							<c:forEach items="${list}" var="li">
-								<div class="file_form mt-2">
-									<img src="/resources/upload/goods/${li.fileName}"  width="300" height="300">
-									<input type="file" name="files" class="files form-control" id="files">
-									<span class="text" >${li.oriName}</span> 
-									<button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>
-								</div>
-							</c:forEach>
-						</div>
-						<div class="mb-3">
-							<button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
-				 		</div>
-					  </div>
-					  <button type="submit" class="btn btn-primary">수정</button>
-					  <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}">
-					</form>
-	
-	            </div>
-	            <!-- End Page Content -->
-					
-			</div>
-			<!-- End of Main Content -->
-			
-			<!-- Footer import -->
-			<c:import url="../temp/layout_footer.jsp"></c:import>
-			<!-- End of Footer -->
-		</div>
-		<!-- End of Content Wrapper -->
-	</div>
 
-	<!-- Scroll Top, Login Modal import -->
-	<script src="/js/goods/addFiles.js"></script>
-	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
-	<!-- <script type="text/javascript">
+      <!-- Sidebar import -->
+      <c:import url="../temp/layout_sidebar.jsp"></c:import>
+      <!-- End of Sidebar -->
+      
+       <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+         <!-- Main Content -->
+         <div id="content">
+         
+            <!-- Topbar import-->
+            <c:import url="../temp/layout_topbar.jsp"></c:import>
+            <!-- End of Topbar -->
+            
+            <!-- Begin Page Content -->
+               <div class="container-fluid">
+               <section class="container col-lg-4 justify-content-center" style="text-align: center;">
+   
+                  <!-- Page Heading -->
+                  <h1 class="h3 mb-4 text-gray-800" id="title">공용 시설 수정</h1>
+                  
+                  <form action="update" method="post" enctype="multipart/form-data" id="addform">
+                  <div class="mb-3">
+                     <div>
+                        <label for="exampleInputName" class="form-label" data-str-num="${str}" style="font-weight : bold">*종류</label>
+                     </div>
+                     <label class="test_obj">
+                        <input type="radio" <c:if test="${str == 'RO'}">checked</c:if> value=${goods.goodsId} disabled>
+                        <span>회의실</span>
+                     </label>
+                     
+                     <label class="test_obj">
+                        <input type="radio" <c:if test="${str == 'CA'}">checked</c:if> value=${goods.goodsId} disabled>
+                        <span>차량</span>
+                     </label>
+                     <div id="kinddiv"></div>
+                  </div>
+                  <div>
+                     <input type="hidden" id="goodId" name="goodsId" value="${goods.goodsId}">
+                  </div>
+                  <div class="mb-3">
+                     <label for="exampleInputName" class="form-label" style="font-weight : bold">*시설 이름</label>
+                     <input type="text" class="form-control" id="name" name="name" value="${goods.name}">
+                     <div id="namediv" class="check"></div>
+                  </div>
+                  <div class="mb-3">
+                     <label for="exampleInputContents" class="form-label">시설 설명</label>
+                     <textarea  class="form-control add_ele" id="contents" name="contents">${goods.contents}</textarea>
+                  </div>
+                  <div class="mb-3">
+                     <label for="exampleInputMax" class="form-label">*최대 인원</label>
+                     <input type="text" class="form-control" id="max" name="max" value="${goods.max}" >
+                     <div id="maxdiv" class="check"></div>
+
+
+                  </div>
+                  <div class="mb-3">
+                     <label for="exampleInputLocation" class="form-label" style="font-weight : bold">*시설 위치</label>
+                     <input type="text" class="form-control" id="location" name="location" value="${goods.location}">
+                     <div id="locationdiv" class="check"></div>
+
+                  </div>
+                  <div class="mb-3" <c:if test="${str == 'RO'}">style ="display:none;"</c:if>>
+                     <label for="exampleInputLocation" class="form-label" style="font-weight : bold">*차량 번호</label>
+                     <input type="text" class="form-control" id="carNum" name="carNum" value="${goods.carNum}">
+                     <div id="carNumdiv" class="check"></div>
+
+                  </div>
+                  <div>
+                     <div class="mb-3" id="fileAddResult">   
+                        <div class="board-filetitle" style="font-weight : bold">*이미지</div> 
+                        <c:forEach items="${list}" var="li">
+                           <div class="file_form mt-2">
+                              <!-- <img src="/file/goods/${li.fileName}"  width="300" height="300"> -->
+                              <input type="file" name="files" class="files form-control">
+                              <span class="text ff" >${li.oriName}</span> 
+                              <button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>
+                           </div>
+                        </c:forEach>
+                     </div>
+                     <div class="mb-3">
+                        <button type="button" id="fileAdd" class="btn btn-primary">파일 추가</button>
+                        <div id="imgdiv" class="check"></div>
+                     </div>
+                  </div>
+                  <input type="button" class="btn btn-primary" value="수정" id="sub" style="margin-top : 50px;">
+                  <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}" style="margin-top : 50px;">
+                  </form>
+   
+                  </div>
+            </section>
+               <!-- End Page Content -->
+               
+         </div>
+         <!-- End of Main Content -->
+         
+         <!-- Footer import -->
+         <c:import url="../temp/layout_footer.jsp"></c:import>
+         <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+   </div>
+
+   <!-- Scroll Top, Login Modal import -->
+   <script src="/js/goods/update.js"></script>
+   <c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+   <!-- <script type="text/javascript">
       $(document).ready(function(){
         $("#contents").summernote({
           height:500,
           minHeight: null,             // 최소 높이
-				  maxHeight: null,             // 최대 높이
-			  	focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-			  	lang: "ko-KR",					// 한글 설정
-			  	placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
-			  	callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+              maxHeight: null,             // 최대 높이
+              focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+              lang: "ko-KR",               // 한글 설정
+              placeholder: '최대 2048자까지 쓸 수 있습니다',   //placeholder 설정
+              callbacks: {   //여기 부분이 이미지를 첨부하는 부분
             onImageUpload : function(files) {
               uploadSummernoteImageFile(files[0],this);
             },
@@ -138,9 +152,9 @@
                 }
               }
             }
-				  }
+              }
         });
       })
-	</script> -->
+   </script> -->
 </body>
 </html>
