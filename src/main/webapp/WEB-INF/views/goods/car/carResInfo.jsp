@@ -9,6 +9,9 @@
 <title>Insert title here</title>
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
+
+<!-- 차량 예약 JS -->
+<script defer src="/js/room/reserveInfo.js"></script>
 </head>
 <style>
 .de {
@@ -51,22 +54,23 @@ ul li {
 						<h1 class="h3 mb-4 text-gray-800">${carInfo[0].goodsVOs[0].name}의 예약현황</h1>
 						<table class="table table-hover" id="info">
 							<tr>
-								<th>예약번호</th>
-								<th>시작 시간</th>
-								<th>종료 시간</th>
-								<th>날짜</th>
+								<th>차량 예약번호</th>
+								<th>사원번호</th>
 								<th>사용 목적</th>
-								<th>예약자 ID</th>
+								<th>예약 신청일</th>
+								<th>사용 시작 날짜</th>
+								<th>사용 종료 날짜</th>
 							</tr>
 							<c:forEach items="${carInfo}" var="ro">
 								<input type="hidden" value="${ro.startTime}" class="startTime">
+                        		<input type="hidden" value="${ro.endTime}" class="endTime">	
 								<tr>
 									<td>${ro.reserveNum }</td>
+									<td>${ro.id }</td>
+									<td>${ro.usePurpose }</td>
+									<td>${ro.date }</td>
 									<td>${ro.startTime }</td>
 									<td>${ro.endTime }</td>
-									<td>${ro.date }</td>
-									<td>${ro.usePurpose }</td>
-									<td>${ro.id }</td>
 								</tr>
 							</c:forEach>
 						</table>

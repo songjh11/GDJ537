@@ -12,7 +12,7 @@
 </head>
 <style>
 /* .de {
-	width: 1000px;
+	width: 	1000px;
 	height: 500px;
 	padding-bottom: 50px;
 	padding-left: 20px;
@@ -55,33 +55,32 @@ ul li {
 							<tr>
 								<th>차량 번호</th>
 								<th>모델명</th>
-								<th>상세정보</th>
-								<th>최대 인원(명)</th>
-								<th>위치</th>
+								<th>최대 탑승 수</th>
+								<th>인수/반납 위치</th>
 							</tr>
 							<tr>
-								<td>${goods.goodsId }</td>
+								<td>${goods.carNum }</td>
 								<td>${goods.name }</td>
-								<td>${goods.contents }</td>
 								<td>${goods.max }</td>
 								<td>${goods.location }</td>
 							</tr>
 						</table>
-						<ul>
-							<c:forEach items="${goods.goodsFileVO}" var="goods">
-								<li>
-									<img class="de" src="/file/goods/${goods.fileName}" alt="">
-								</li>
-							</c:forEach>
-						</ul>
-						
-						<div class="test mb-5">
+						<div>
+						<div class="text-center">
+							${goods.contents }
+							<ul>
+								<c:forEach items="${goods.goodsFileVO}" var="goods">
+									<li>
+										<img class="de" src="/file/goods/${goods.fileName}" alt="" style="width: 500px; height: 500px;">
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
+						<div class="test mb-5" style="text-align: center;">
 							<a href="../car/carList" class="btn" style="background-color: #4e73df; color: white;">뒤로가기</a>
 						</div>
-						
-
+						</div>
 					</section>
-
 				</div>
 				<!-- End Page Content -->
 
