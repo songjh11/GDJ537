@@ -47,15 +47,12 @@
 										${roomVO.total}
 									
 									<!-- 소영이 a태그 -->
-									<div class="col text-center" style="margin-left: 3%;">
+									<!-- <div class="col text-center" style="margin-left: 3%;">
 										<a class="roomLink" href="" onclick="javascript:chatPop('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a>
 										<%-- <a class="roomLink" href="./chatroom?roomNum=${roomVO.roomNum}" onclick=""><b>${roomVO.roomName}</b></a> --%>
-									</div>
-									<div class="col text-center">
-										${roomVO.roomName}
-									</div>
+									</div> -->
 								</div>
-								</c:if>
+							</c:if>
 							</c:forEach>
 							<!-- 그룹채팅 목록 -->
 							<br>
@@ -87,7 +84,7 @@
 										${roomVO.total}
 									</div>
 								</div>
-								</c:if>
+							</c:if>
 							</c:forEach>
 							<!-- 1:1 채팅 목록 -->
 						</div>
@@ -120,5 +117,4 @@
 
 						
 						</script>
->>>>>>> master
 							
