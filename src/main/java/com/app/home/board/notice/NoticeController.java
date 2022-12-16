@@ -1,5 +1,14 @@
 package com.app.home.board.notice;
 
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,7 +85,14 @@ public class NoticeController {
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
 		
 		pager.setSort("공지");
-		mv.addObject("noticeList", noticeService.getList(pager));
+		List<BoardVO> ar = noticeService.getList(pager);
+		for(BoardVO boardVO : ar) {
+			ZonedDateTime time = ZonedDateTime.of(boardVO.getRegDate().toLocalDateTime(), ZoneId.of("Asia/Seoul"));
+			time = time.withZoneSameInstant(ZoneId.of("Asia/Seoul"));
+			log.info("Time ======================== {}", time);
+		}
+		
+		mv.addObject("noticeList", ar);
 		mv.addObject("pager", pager);
 		mv.setViewName("/board/notice/list");
 		
