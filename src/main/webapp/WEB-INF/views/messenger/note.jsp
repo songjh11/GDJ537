@@ -461,7 +461,7 @@
 										<div id="listInfo">
 											<div style="display: flex;">
 											<div id="previewId"><strong>${list.sendName}</strong></div>
-											<!-- <img id="noteDelete" onclick="noteDelete(${list.noteNum})" src="/img/messenger/close.png"> -->
+											<img id="noteDelete" onclick="noteDelete(${list.noteNum})" src="/img/messenger/close.png">
 											</div>
 											
 											<div id="previewNote">${fn:replace(list.contents, replaceChar, "<br/>")}
