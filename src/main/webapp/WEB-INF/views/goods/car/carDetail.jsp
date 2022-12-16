@@ -11,13 +11,13 @@
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
 <style>
-.de {
+/* .de {
 	width: 1000px;
 	height: 500px;
 	padding-bottom: 50px;
 	padding-left: 20px;
 	padding-right: 25px;
-}
+} */
 
 /* ul {
 	display: flex;
