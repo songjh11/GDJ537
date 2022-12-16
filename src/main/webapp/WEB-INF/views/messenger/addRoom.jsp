@@ -17,6 +17,7 @@
 								</tr>
 							</thead>
 						</table>
+										
 						<div class="roomArea" style="overflow-y: scroll; overflow-x: hidden; height: 550px;">							
 							<c:forEach items="${roomList}" var="roomVO">
 								<div class="roomList">
@@ -24,7 +25,8 @@
 										<img class="yourImg" src="/img/undraw_profile_3.svg">
 									</div>
 									<div class="col text-center" style="margin-left: 3%;">
-										<a class="roomLink" href="./chatroom?roomNum=${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+										<a class="roomLink" href="" onclick="javascript:chatPop('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a>
+										<%-- <a class="roomLink" href="./chatroom?roomNum=${roomVO.roomNum}" onclick=""><b>${roomVO.roomName}</b></a> --%>
 									</div>
 									<div class="col text-center">
 										${roomVO.roomName}
@@ -33,4 +35,6 @@
 							</c:forEach>
 						</div>
 						<!-- 채팅목록 -->
+						
+						<script type="text/javascript" src="/js/messenger/group_chatroom.js"></script>
 							
