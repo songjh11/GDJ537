@@ -45,10 +45,10 @@ ul li {
 				<c:import url="../../temp/layout_topbar.jsp"></c:import>
 				<!-- End of Topbar -->
 				<!-- Begin Page Content -->
-				<input type="hidden" value="${roomInfo[0].goodsVOs[0].name}">
+				<input type="hidden" value="${carInfo[0].goodsVOs[0].name}">
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
-						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVOs[0].name}의 예약현황</h1>
+						<h1 class="h3 mb-4 text-gray-800">${carInfo[0].goodsVOs[0].name}의 예약현황</h1>
 						<table class="table table-hover" id="info">
 							<tr>
 								<th>예약번호</th>
@@ -58,7 +58,7 @@ ul li {
 								<th>사용 목적</th>
 								<th>예약자 ID</th>
 							</tr>
-							<c:forEach items="${roomInfo}" var="ro">
+							<c:forEach items="${carInfo}" var="ro">
 								<input type="hidden" value="${ro.startTime}" class="startTime">
 								<tr>
 									<td>${ro.reserveNum }</td>
@@ -70,7 +70,7 @@ ul li {
 								</tr>
 							</c:forEach>
 						</table>
-						<a href="./carList"><button type="button" class="btn btn-outline-none">뒤로가기</button></a>
+						<a href="../car/carList" class="btn" style="background-color: #4e73df; color: white;">뒤로가기</a>
 					</section>
 
 				</div>

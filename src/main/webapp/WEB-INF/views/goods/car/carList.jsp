@@ -64,30 +64,6 @@
 								</c:if>
 							</c:forEach>
 						</table>
-
-						<div>------------------------------------예약리스트--------------------------------------</div>
-
-						<table class="table table-hover justify-content-right" style="text-align: center;">
-							<tr>
-								<th>예약 번호</th>
-								<th>예약 날짜</th>
-								<th>예약자</th>
-								<th>예약정보</th>
-								<th>예약 변경</th>
-								<th>예약 취소</th>
-							</tr>
-							
-							<c:forEach items="${reserves}" var="reserve">
-								<tr>
-									<td>${reserve.reserveNum}</td>
-									<td>${reserve.startTime}</td>
-									<td>${reserve.id}</td>
-									<td><a href="./carReserveDetail?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">정보 보기</a></td>
-									<td><a href="./carReserveChange?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">변경</a></td>
-									<td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reserveNum}">취소</button></td>
-								</tr>
-							</c:forEach>
-						</table>
 					</section>
 				</div>
 				<!-- End Page Content -->

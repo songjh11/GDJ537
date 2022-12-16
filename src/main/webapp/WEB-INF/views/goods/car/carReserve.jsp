@@ -74,13 +74,20 @@
                         </div> 
                         
                         <div class="mb-5">
-                           <label>예약자</label>
-                           <input type="text" name="id" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${userInfo.id}">
+                           <label>사원이름</label>
+                           <input type="hidden" name="id" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${userInfo.id}">
+                           <input type="text" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${userInfo.name}">
                         </div>
                         
                         <div class="mb-5">
-                           <label>부서</label>
-                           <input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="${userInfo.departmentVO.depNum}">
+                           <label>부서명</label>
+                           <c:choose>
+                           <c:when test="${userInfo.departmentVO.depNum == 1}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="영업팀"></c:when>
+                           <c:when test="${userInfo.departmentVO.depNum == 2}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="총무팀"></c:when>
+                           <c:when test="${userInfo.departmentVO.depNum == 3}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="인사팀"></c:when>
+                           <c:when test="${userInfo.departmentVO.depNum == 4}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="IT개발팀"></c:when>
+                           <c:when test="${userInfo.departmentVO.depNum == 5}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="생산팀"></c:when>
+                           </c:choose>
                         </div>   
                                                                                                    
                         <div class="mb-5">
@@ -89,7 +96,10 @@
                           <p id="purposeText" style="color: red; display: none;">필수 작성 조건입니다.</p>
                         </div>
                         
-                        <button type="submit" id="resBtn" class="btn btn-success">예약하기</button>
+                        <div class="text-center mb-3">
+	                        <button type="submit" id="resBtn" class="btn" style="background-color: #4e73df; color: white;">예약하기</button>
+	                        <a href="../car/carList" class="btn" style="background-color: #4e73df; color: white;">뒤로가기</a>
+                        </div>
                      </form>
                </section>
 

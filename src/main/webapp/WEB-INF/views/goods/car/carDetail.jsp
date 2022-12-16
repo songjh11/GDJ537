@@ -70,15 +70,13 @@ ul li {
 						<ul>
 							<c:forEach items="${goods.goodsFileVO}" var="goods">
 								<li>
-									<img class="de" src="/resources/upload/goods/${goods.fileName}" alt="">
+									<img class="de" src="/file/goods/${goods.fileName}" alt="">
 								</li>
 							</c:forEach>
 						</ul>
 						
-						<div class="test">
-							<a href="./carList">
-								<button type="button" class="btn btn-outline-none">뒤로가기</button>
-							</a>
+						<div class="test mb-5">
+							<a href="../car/carList" class="btn" style="background-color: #4e73df; color: white;">뒤로가기</a>
 						</div>
 						
 

@@ -22,6 +22,7 @@ import com.app.home.schedule.goods.GoodsService;
 import com.app.home.schedule.goods.GoodsVO;
 import com.app.home.schedule.goods.ReserveVO;
 import com.app.home.schedule.room.GoodsRoomVO;
+import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,9 +45,9 @@ public class CarController {
 		
 		List<ReserveVO> reserveVOs = carService.getResInfo(goodsRoomVO);
 
-		log.info("roomVOs: {}", reserveVOs);
+		log.info("carVOs: {}", reserveVOs);
 
-		mv.addObject("roomInfo", reserveVOs);
+		mv.addObject("carInfo", reserveVOs);
 		mv.setViewName("goods/car/carResInfo");
 
 		return mv;
