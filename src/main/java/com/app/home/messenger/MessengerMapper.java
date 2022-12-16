@@ -28,6 +28,6 @@ public interface MessengerMapper {
 	public List<RoomVO> getRoomList(RoomVO roomVO)throws Exception;
 	
 	// 참여인원 조회
-	public int getUserCount()throws Exception;
+	public int getUserCount(RoomVO roomVO)throws Exception;
 	
 }

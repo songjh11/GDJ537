@@ -4,25 +4,29 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 						
 						<!-- 사원 프로필 모달 -->
-						<div id="modal" class="modal-overlay" style="z-index: 100;">
-							<div class="modal-window">
-								<div class="close-area">X</div>
-								<div class="content">
-									<div class="profile">
-										<img id="proImg" src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
-										<div class="proArea" style="background: transparent; border: none; box-shadow: none !important;">
-											<p id="proName">이름</p>
-											<p id="proDep">부서/직급</p>
-											<p id="proEmail">이메일</p>
-											<p id="proPhone">전화번호</p>
-											<p><a class="btn" style="background: #4e73df; color: #FFFFFF;" href="#">채팅</a>
-											<a class="btn" id="sendNote" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
-
+						<form action="./addRoom" method="post">
+							<div id="modal" class="modal-overlay" style="z-index: 100;">
+								<div class="modal-window">
+									<div class="close-area">X</div>
+									<div class="content">
+										<div class="profile">
+											<input type="hidden" name="id" id="proId">
+											<input type="hidden" name="roomName" id="roomName">
+											<input type="hidden" name="pw">
+											<img id="proImg" src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
+											<div class="proArea" style="background: transparent; border: none; box-shadow: none !important;">
+												<p id="proName">이름</p>
+												<p id="proDep">부서/직급</p>
+												<p id="proEmail">이메일</p>
+												<p id="proPhone">전화번호</p>
+												<p><button type="submit" class="btn" style="background: #4e73df; color: #FFFFFF;">채팅</button>
+												<a class="btn" id="sendNote" style="background: #4e73df; color: #FFFFFF;" href="#">쪽지</a></p>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 						<!-- 사원 검색 -->
 						<div style="display: flex; align-items: center; height: 57px;">
 							<form action="searchEmp" method="POST" class="form-inline navbar-search" style="width: 100%; display: flex; margin-right: 10px;">

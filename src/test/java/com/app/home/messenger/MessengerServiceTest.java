@@ -17,7 +17,19 @@ class MessengerServiceTest {
 	@Autowired
 	private MessengerMapper messengerMapper;
 	
-	@Test
+	//@Test
+	void getUserCount()throws Exception{
+		
+		RoomVO roomVO = new RoomVO();
+		roomVO.setRoomNum(26);
+		
+		int userCount = messengerMapper.getUserCount(roomVO);
+		
+		assertNotEquals(userCount, 0);
+		
+	}
+	
+	//@Test
 	void getRoomListTest()throws Exception{
 		List<RoomVO> roomVOs = new ArrayList<>();
 		

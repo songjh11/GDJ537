@@ -5,6 +5,8 @@ closeBtn.addEventListener("click", e => {
 });
 
 let myId = "";
+let proId = "";
+let roomName = "";
 
 $("#searchBtn").click(function(){
     console.log("ddsfds");
@@ -107,7 +109,10 @@ $(".acoArea").on("click", ".rrrr", function(e){
     if($(e.target).hasClass("pickImg")) {
 	} else {
 		id = $(this).attr("empId");
+        $("#proId").val(id);
         let name = $(this).attr("value");
+        $("#roomName").val(name);
+        console.log("상대방 이름 : ", name);
         let email = $('#email'+id).val();
         let phone = $('#phone'+id).val();
         let img = $('#yourImg'+id).attr("src");
@@ -160,4 +165,10 @@ $("#chatBtn").click(function(){
 
  $("#msgBtn").click(function(){
     console.log("메세지함");
+})
+
+
+
+$(".roomArea").on("click", ".roomLink", function(){
+    console.log("dfssfd");
 })
