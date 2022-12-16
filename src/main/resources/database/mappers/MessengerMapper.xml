@@ -81,6 +81,17 @@
 	
 	<!--                          효경                          -->
 	
+	<!--                       비밀번호가 있는지 없는지 조회                       -->
+	<select id="getPwCheck" parameterType="RoomVO" resultType="Integer">
+		SELECT COUNT(PW) FROM CHATROOM WHERE ROOMNUM = #{roomNum}
+	</select>
+	
+	<!--                       비밀번호 조회                       -->
+	<select id="getRoomPw" parameterType="RoomVO" resultType="RoomVO">
+		SELECT PW FROM CHATROOM WHERE ROOMNUM = #{roomNum}
+	</select>
+	
+	<!--                       채팅방 인원 수 조회                       -->
 	<select id="getUserCount" parameterType="RoomVO" resultType="Integer">
 		SELECT COUNT(ID) 
 		FROM ROOMUSER RU
@@ -92,23 +103,35 @@
 	
 	<!--                       채팅방 목록 조회                        -->
 	<select id="getRoomList" parameterType="RoomVO" resultMap="getRoomListResult">
-		SELECT CR.ROOMNUM, CR.REGDATE, CR.ROOMNAME, CR.HOSTID, CR.PW, RU.USERNUM, RU.ID
-		FROM CHATROOM CR
-			INNER JOIN
-			ROOMUSER RU
-			ON CR.ROOMNUM = RU.ROOMNUM
-		WHERE RU.ID = #{userVO.id}
-		ORDER BY CR.ROOMNUM DESC
+		SELECT U.NAME, R.HOSTID, R.ROOMNAME, R.ROOMNUM, R.KIND, R.PW, C.TOTAL FROM
+		(SELECT HOSTID, ROOMNAME, ROOMNUM, KIND, PW
+			FROM CHATROOM
+			WHERE ROOMNUM IN (SELECT ROOMNUM FROM ROOMUSER WHERE ID=#{userVO.id} ORDER BY USERNUM DESC)) R 
+		INNER JOIN
+		USER U
+		ON R.HOSTID = U.ID
+		INNER JOIN 
+		(
+		SELECT R1.TOTAL, R1.ROOMNUM FROM 
+		(SELECT COUNT(ID) AS TOTAL, ROOMNUM FROM ROOMUSER GROUP BY ROOMNUM) R1
+		INNER JOIN
+		(SELECT ROOMNUM FROM ROOMUSER 
+		WHERE ID=#{userVO.id}) R2
+		ON R1.ROOMNUM=R2.ROOMNUM
+		) C
+		ON R.ROOMNUM = C.ROOMNUM
 	</select>
 	<resultMap type="RoomVO" id="getRoomListResult">
 		<id column="ROOMNUM" property="roomNum" />
-		<result column="REGDATE" property="regDate"/>
 		<result column="ROOMNAME" property="roomName"/>
 		<result column="HOSTID" property="hostId"/>
-		<result column="PW" property="pw"/>
-		<collection property="userVOs" javaType="List" ofType="UserVO">
-			<result column="ID" property="id"/>
-		</collection>
+		<result column="KIND" property="kind"/>
+ 		<result column="PW" property="pw"/>
+ 		<result column="TOTAL" property="total"/>
+		<association property="userVO" javaType="UserVO">
+			<id column="ID" property="id"/>
+			<result column="NAME" property="name"/>
+		</association>
 	</resultMap>
 	
 	<!--                       채팅방 유저 추가                        -->
@@ -122,13 +145,7 @@
 	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum" >
 		INSERT INTO CHATROOM
 		VALUES(#{roomNum}, now(), #{roomName}, 
-			   (SELECT ID FROM USER WHERE ID = #{hostId}), #{pw})
+			   (SELECT ID FROM USER WHERE ID = #{hostId}), #{pw}, #{kind})
 	</insert>
-	
-	<!-- 방 제목 -->
-	<select id="getChatName" parameterType="RoomVO" resultType="String">
-		SELECT ROOMNAME FROM CHATROOM
-			WHERE ROOMNUM = #{roomNum}
-	</select>
 	
 </mapper>    
