@@ -76,9 +76,9 @@
 	            	<input type="text" name="depName" value="${userVO2.departmentVO.depName}">
 	            	<input type="text" name="roleName" value="${userVO2.roleVO.roleName}"> --%>
 	            	
-	            	<div style="display: flex">
+	            	<div style="display: flex" id="dpName">
 		            	<!-- 나의 정보 -->
-		            	 <div class="col-xl-3 col-md-4 mb-4">
+		            	 <div class="col-xl-3 col-md-4 mb-4" >
 	                        <div class="card border-left-info shadow h-100 py-2">
 	                            <div class="card-body">
 	                                <div class="row no-gutters align-items-center">
@@ -87,7 +87,7 @@
 	                                        	<h4 style="border: 2">나의 정보</h4>
 	                                        	<h6>아이디 : ${member.id}</h6>
 	                                        	<h6>이름 : ${member.name}</h6>
-	                                        	<h6 id="dpName" data-hh="${member.depNum}">부서명 : ${member.depNum}</h6>
+	                                        	<h6 id="aaa" data-hh="${member.depNum}">부서명 : ${member.depNum}</h6>
 	                                        	<h6>직급 : ${member.roleVO.roleName}</h6>
 	       
 	                                       		<%-- <input type="text" name="id" id="lsId" value="${userVO.id}">
@@ -123,7 +123,7 @@
 	                                        	<h4 style="border: 2">첫번째 승인자 정보</h4>
 	                                        	<h6>아이디 : ${userVO.id}</h6>
 	                                        	<h6>이름 : ${userVO.name}</h6>
-	                                        	<h6 id="dpName" data-hh="${userVO.departmentVO.depName}">부서명 : ${userVO.departmentVO.depName}</h6>
+	                                        	<h6 data-hh="${userVO.departmentVO.depName}">부서명 : ${userVO.departmentVO.depName}</h6>
 	                                        	<h6>직급 : ${userVO.roleVO.roleName}</h6>
 	       
 	                                       		
@@ -158,7 +158,7 @@
 	                                        	<h4 style="border: 2">최종 승인자 정보</h4>
 	                                        	<h6>아이디 : ${userVO2.id}</h6>
 	                                        	<h6>이름 : ${userVO2.name}</h6>
-	                                        	<h6 id="dpName" data-hh="${userVO2.departmentVO.depName}">부서명 : ${userVO2.departmentVO.depName}</h6>
+	                                        	<h6 data-hh="${userVO2.departmentVO.depName}">부서명 : ${userVO2.departmentVO.depName}</h6>
 	                                        	<h6>직급 : ${userVO2.roleVO.roleName}</h6>
 	       
 	                                        </div>
