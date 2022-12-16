@@ -12,20 +12,29 @@ SELECT COUNT(NOTENUM) FROM NOTE WHERE RECEIVEID = #{id} AND #{id} = REMARK AND R
 <update id="updateCheck" parameterType="NoteVO">
 UPDATE NOTE SET READCHECK = 0 WHERE NOTENUM = #{noteNum} AND RECEIVEID = #{receiveId}
 </update>
+
 <delete id="setDeleteNote" parameterType="NoteVO">
 DELETE FROM NOTE WHERE NOTENUM = #{noteNum}
 </delete>
 
+<insert id="setSendNoteGroup" parameterType="NoteVO">
+INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{receiveId}, 1)
+</insert>
+
+<insert id="setSendNoteGroup2" parameterType="NoteVO">
+INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{sendId}, 1)
+</insert>
+
 <insert id="setSendNote" parameterType="NoteVO">
-INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{receiveId})
+INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{receiveId}, 0)
 </insert>
 
 <insert id="setSendNote2" parameterType="NoteVO">
-INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{sendId})
+INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{sendId}, 0)
 </insert>
 
 <select id="getSendNoteList" parameterType="Map" resultType="NoteVO">
-SELECT NOTENUM, SENDID, RECEIVEID, CONTENTS, REGDATE, READCHECK, REMARK, U.NAME "RECEIVENAME", US.NAME "SENDNAME" FROM NOTE N
+SELECT NOTENUM, SENDID, RECEIVEID, CONTENTS, REGDATE, READCHECK, REMARK, FLAG, U.NAME "RECEIVENAME", US.NAME "SENDNAME" FROM NOTE N
 INNER JOIN USER U
 ON N.RECEIVEID = U.ID
 INNER JOIN USER US
@@ -34,11 +43,10 @@ WHERE SENDID = #{id}
 AND #{id} = REMARK
 AND
 	<choose>
-		<when test="kind == 'contents'">CONTENTS</when>
-		<otherwise>RECEIVEID</otherwise>
+		<when test="kind == 'contents'">CONTENTS LIKE CONCAT('%', #{search}, '%')</when>
+		<otherwise>CONCAT(RECEIVEID, U.NAME) REGEXP #{search}</otherwise>
 	</choose> 
-	LIKE CONCAT('%', #{search}, '%')
-ORDER BY NOTEnum DESC
+ORDER BY NOTENUM DESC
 LIMIT #{startRow}, #{perPage}
 </select>
 
@@ -53,14 +61,14 @@ WHERE SENDID = #{id}
 AND #{id} = REMARK
 AND
 	<choose>
-		<when test="kind == 'contents'">CONTENTS</when>
-		<otherwise>RECEIVEID</otherwise>
+		<when test="kind == 'contents'">CONTENTS LIKE CONCAT('%', #{search}, '%')</when>
+		<otherwise>CONCAT(RECEIVEID, U.NAME) REGEXP #{search}</otherwise>
 	</choose> 
-	LIKE CONCAT('%', #{search}, '%')
+	
 </select>
 
 <select id="getReceiveNoteList" parameterType="Map" resultType="NoteVO">
-SELECT NOTENUM, SENDID, RECEIVEID, CONTENTS, REGDATE, READCHECK, U.NAME "RECEIVENAME", US.NAME "SENDNAME" FROM NOTE N
+SELECT NOTENUM, SENDID, RECEIVEID, CONTENTS, REGDATE, READCHECK, REMARK, FLAG, U.NAME "RECEIVENAME", US.NAME "SENDNAME" FROM NOTE N
 INNER JOIN USER U
 ON N.RECEIVEID = U.ID
 INNER JOIN USER US
