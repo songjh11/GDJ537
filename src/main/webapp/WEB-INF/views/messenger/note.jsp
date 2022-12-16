@@ -454,13 +454,13 @@
 
 							<div id="noteContent">
 								<c:forEach items="${list}" var="list">
-									<div class="noteList" id="noteNum${list.noteNum}" onclick="notePop(${list.noteNum})" read-check="${list.readCheck}">
+									<div class="noteList on" id="noteNum${list.noteNum}" noteNum="${list.noteNum}" onclick="notePop(${list.noteNum})" read-check="${list.readCheck}">
 										<div id="listImage">
 											<img src="/img/undraw_profile_3.svg" alt="">
 										</div>
 										<div id="listInfo">
 											<div style="display: flex;">
-											<div id="previewId">발신자 : <strong>${list.sendId}</strong></div>
+											<div id="previewId"><strong>${list.sendName}</strong></div>
 											<img id="noteDelete" onclick="noteDelete(${list.noteNum})" src="/img/messenger/close.png">
 											</div>
 											
@@ -586,10 +586,24 @@
 
 			//수신함일때만 새로고침하게... (읽은거 표시하려면 새로고침해야 반영되는데 읽은거 표시는 수신함만 하려고함.... 맘에안든다....)
 			if($("#sImg").attr("src")=="/img/messenger/sendX.png") {
-				setTimeout(function(){
-					location.reload();
-				},100);
+				// setTimeout(function(){
+				// 	location.reload();
+				// },200);
+
+				$(".noteList").each(function(index, item){
+					// console.log()
+					if($(item).attr("noteNum")==num) {
+						$(item).css("color","lightgrey");
+					}
+					
+					
+				})
+
+				
 			}
+
+			
+			
 		};
 
 
@@ -707,7 +721,9 @@
 						// console.log(item.noteNum);
 						item.contents = item.contents.replace(/\r\n/g, "</br>");
 
-						tempest += '<div class="noteList" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId">'+item.noteNum+' 수신자 : <strong>'+item.receiveId+'</strong></div><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png"></div><div id="previewNote">'+item.contents+'</div></div></div>'
+						// 쪽지번호, 수신자라는 글자 있는 버전
+						// tempest += '<div class="noteList" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId">'+item.noteNum+' 수신자 : <strong>'+item.receiveName+'</strong></div><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png"></div><div id="previewNote">'+item.contents+'</div></div></div>'
+						tempest += '<div class="noteList" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId"><strong>'+item.receiveName+'</strong></div><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png"></div><div id="previewNote">'+item.contents+'</div></div></div>'
 
 						$('#noteContent').html(tempest);
 					})

@@ -17,14 +17,14 @@
 								</tr>
 							</thead>
 						</table>
-						<div style="overflow-y: scroll; overflow-x: hidden; height: 550px;">							
+						<div class="roomArea" style="overflow-y: scroll; overflow-x: hidden; height: 550px;">							
 							<c:forEach items="${roomList}" var="roomVO">
 								<div class="roomList">
 									<div class="col-3" style="margin-left: 6.4%;">
 										<img class="yourImg" src="/img/undraw_profile_3.svg">
 									</div>
 									<div class="col text-center" style="margin-left: 3%;">
-										<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+										<button type="button" class="roomLink"><b>${roomVO.roomName}</b></button>
 									</div>
 									<div class="col text-center">
 										${roomVO.roomName}
