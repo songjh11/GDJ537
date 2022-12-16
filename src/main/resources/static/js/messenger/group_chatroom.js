@@ -6,7 +6,7 @@
 	let userName = $("#userName").val();
 	let userId = $("#userId").val();
 	let chat = "";
-	let roomNum = $("#roomNum").val(); //addRoom에서 방번호 뿌려주기
+	let roomNum = $("#roomNum").val();
 
 //------------------------------------
 	//enter 치면 메세지 보내기
@@ -37,6 +37,7 @@ function send() {
 
 	function wsOpen(){
 		let ws = new WebSocket("ws://" + location.host + "/chatroom/"+roomNum);		
+		console.log("ws : ", ws);
 		
 		ws.onmessage = function(data) {
 			let msg = data.data;

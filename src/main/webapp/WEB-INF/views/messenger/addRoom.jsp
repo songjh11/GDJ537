@@ -37,30 +37,28 @@
 						<!-- 채팅목록 -->
 						
 						<script type="text/javascript">
-						let popupWidth = "500";
-						let popupHeight = "750";
-						let popUp = "";
-						  
-						// 듀얼 모니터 고려한 윈도우 띄우기
-						let curX = window.screenLeft;
-						let curWidth = document.body.clientWidth;
-						let curHeight = document.body.clientHeight;
-						  
-						let nLeft = (screen.availWidth/ 2) - (popupWidth / 2);
-						let nTop = ((screen.availHeight-popupHeight)/2)-10;
-						
-						let strOption = "";
-						strOption += "left=" + nLeft + "px,";
-						strOption += "top=" + nTop + "px,";
-						strOption += "width=" + popupWidth + "px,";
-						strOption += "height=" + popupHeight + "px,";
-						strOption += "toolbar=no,menubar=no,location=no,";
-						strOption += "resizable=yes,status=yes";
-
-						function chatPop(roomNum){
-							window.open('/messenger/chatroom?roomNum='+roomNum, '단체 채팅방', strOption);
-						}
-
-						
+							let popupWidth = "500";
+							let popupHeight = "750";
+							let popUp = "";
+							  
+							// 듀얼 모니터 고려한 윈도우 띄우기
+							let curX = window.screenLeft;
+							let curWidth = document.body.clientWidth;
+							let curHeight = document.body.clientHeight;
+							  
+							let nLeft = (screen.availWidth/ 2) - (popupWidth / 2);
+							let nTop = ((screen.availHeight-popupHeight)/2)-10;
+							
+							let strOption = "";
+							strOption += "left=" + nLeft + "px,";
+							strOption += "top=" + nTop + "px,";
+							strOption += "width=" + popupWidth + "px,";
+							strOption += "height=" + popupHeight + "px,";
+							strOption += "toolbar=no,menubar=no,location=no,";
+							strOption += "resizable=yes,status=yes";
+							
+							function chatPop(roomNum){
+								window.open('/messenger/chatroom/'+roomNum, '단체 채팅방', strOption);
+							}
 						</script>
 							
