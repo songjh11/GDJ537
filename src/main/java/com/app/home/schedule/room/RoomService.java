@@ -28,6 +28,12 @@ public class RoomService
 		return roomMapper.getRoomTotal(goodsVO);
 	}
 
+	
+	public List<GoodsRoomVO> getReserveStartTime(GoodsRoomVO goodsRoomVO) throws Exception
+	{
+		return roomMapper.getReserveStartTime(goodsRoomVO);
+	}
+	
 	public int setRoomReserve(GoodsRoomVO goodsRoomVO) throws Exception
 	{
 		return roomMapper.setRoomReserve(goodsRoomVO);

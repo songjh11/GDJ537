@@ -2,7 +2,9 @@ package com.app.home.schedule.room;
 
 import java.util.List;
 
+import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +30,7 @@ public class RoomController
 	private CarService carService;
 
 	@GetMapping("/room/roomList")
-	public ModelAndView getRoomList(GoodsVO goodsVO, ReserveVO reserveVO) throws Exception
+	public ModelAndView getRoomList(GoodsVO goodsVO, ReserveVO reserveVO, Authentication authentication ) throws Exception
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		List<GoodsVO> goodsVOs = roomService.getRoomList(goodsVO);
@@ -73,8 +75,8 @@ public class RoomController
 		log.info("======= get roomReserve =======");
 		ModelAndView modelAndView = new ModelAndView();
 		goodsVO = roomService.getRoomTotal(goodsVO);
-		List<GoodsRoomVO> roomVOs = roomService.getReserveStartTime(goodsRoomVO);
-		log.info("roomVOs: {}", roomVOs);
+		List<GoodsRoomVO> reserveVOs = roomService.getReserveStartTime(goodsRoomVO);
+		log.info("roomVOs: {}", reserveVOs);
 
 		// log.info("goodVO 1 : {}", goodsVO);
 
