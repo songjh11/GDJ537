@@ -124,7 +124,7 @@ public class FileManager extends AbstractView {
 	}
 	
 	//파일 삭제//
-	public boolean deleteFileS3(FileVO fileVO, String path)throws Exception{
+	public boolean deleteFileS3(FileVO fileVO)throws Exception{
 
 		AmazonS3Service amazonS3Service = new AmazonS3Service();
 		
@@ -159,9 +159,9 @@ public class FileManager extends AbstractView {
 	}
 
 	//파일 삭제//
-	public boolean deleteFile(FileVO fileVO, String path)throws Exception{
+	public boolean deleteFile(FileVO fileVO)throws Exception{
 
-		File file = new File(base + path, fileVO.getFileName());
+		File file = new File(base , fileVO.getFileName());
 
 		boolean result = file.delete();
 
@@ -176,13 +176,10 @@ public class FileManager extends AbstractView {
 		double gb = mb / 1024.0;
 		
 		String filesize = byte1 +"byte";
-		log.info("byte {}", filesize);
 		if(byte1 > 1000) {
 			filesize = Math.round(kb * 100) / 100.0 + "kb";
-			log.info("kb {}", filesize);
 			if(kb > 1000) {
 				filesize = Math.round(mb * 100) / 100.0  + "mb";
-				log.info("mb {}", filesize);
 			}
 		}
 		return filesize;

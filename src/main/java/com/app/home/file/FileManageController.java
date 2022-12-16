@@ -33,17 +33,8 @@ public class FileManageController {
 	@GetMapping("/fileDelete/{path}/{id}")
 	@ResponseBody
 	public int fileDel(FileVO fileVO,@PathVariable String path) throws Exception{
-		int result = fileManageService.setFileDelete(fileVO, path);
-
-		return result;
-	}
-	
-	@GetMapping("/fileDeleteS3/{fileNum}")
-	@ResponseBody
-	public int fileDelS3(FileVO fileVO)throws Exception{
-		System.out.println("manageController");
 		int result = fileManageService.setFileDeleteS3(fileVO);
-		
+
 		return result;
 	}
 
