@@ -1,6 +1,7 @@
 package com.app.home.report.util;
 
 import com.app.home.report.ReportVO;
+
 import com.app.home.user.UserVO;
 
 import lombok.Data;
@@ -204,4 +205,5 @@ public class ReportPager {
 		}
 		
 	}
+
 }

@@ -14,8 +14,8 @@ public class CommentService {
 	public List<CommentVO> getCommentList(CommentPager commentPager) throws Exception {
 
 		Long totalCount = commentDAO.getCommentListTotalCount(commentPager);
-		commentPager.getRowNum();
-		commentPager.getNum(totalCount);
+		commentPager.getRownum();
+		commentPager.getnum(totalCount);
 
 		return commentDAO.getCommentList(commentPager);
 	}

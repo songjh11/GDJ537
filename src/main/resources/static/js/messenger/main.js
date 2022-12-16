@@ -39,7 +39,7 @@ $(".userList").on("click", ".pickBtn", function(){
         })
     } else{
         src = "/img/star (3).png"
-        let pickBtnNum = $(this).attr("value");
+        let pickBtnnum = $(this).attr("value");
         $(this).children(".pickImg").attr("src", src);
         $.ajax({
             type:"POST",
@@ -51,7 +51,7 @@ $(".userList").on("click", ".pickBtn", function(){
                 if(result>0){
                     console.log("즐찾취소됨", result); 
                     $(".pickBtn").each(function(index,item){
-                        if($(item).attr("value") === pickBtnNum){
+                        if($(item).attr("value") === pickBtnnum){
                             $(this).parents(".chatLi").remove();
                             return false;
                         }
@@ -67,7 +67,7 @@ $(".userList").on("click", ".pickBtn", function(){
 })
 
 $("#pickRemove").on("click",".pickBtn", function(){
-    let pickBtnNum = $(this).attr("value");
+    let pickBtnnum = $(this).attr("value");
     let pr = $(this).parents(".chatLi");
     myId = $("#loginUserId").val();
     let yourId = $(this).attr("value");
@@ -84,7 +84,7 @@ $("#pickRemove").on("click",".pickBtn", function(){
                     console.log("즐찾영역에서취소됨", result);
                     pr.remove();
                     $(".pickBtn").each(function(index,item){
-                        if($(item).attr("value") === pickBtnNum){
+                        if($(item).attr("value") === pickBtnnum){
                             $(this).children(".pickImg").attr("src", src);
                         }
                     });
