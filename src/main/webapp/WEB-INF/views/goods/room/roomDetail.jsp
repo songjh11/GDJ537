@@ -71,7 +71,7 @@ ul li {
 									alt="${goodDetail.goodsFileVO[0].oriName }">
 							</li>
 							<li>
-								<img class="de" src="//file/goods/${goodDetail.goodsFileVO[1].fileName }"
+								<img class="de" src="/file/goods/${goodDetail.goodsFileVO[1].fileName }"
 									alt="${goodDetail.goodsFileVO[1].oriName }">
 							</li>
 							<li>

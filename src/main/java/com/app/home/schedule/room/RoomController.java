@@ -81,8 +81,6 @@ public class RoomController
 		// log.info("goodVO 1 : {}", goodsVO);
 		log.info("reserveVO: {}", reserveVOs);
 
-		log.info(memberNum);
-
 		modelAndView.addObject("memberNum", memberNum);
 
 		if (authentication == null)

@@ -71,13 +71,35 @@
 
 							<div class="mb-5">
 								<label>예약자</label>
-								<input type="text" name="id" class="form-control" id="member" value="${userInfo.id }" readonly>
+								<input type="hidden" name="id" class="form-control" id="member" value="${userInfo.id }" readonly>
+								<input type="text" class="form-control" value="${userInfo.name }" disabled>
 							</div>
 
 							<div class="mb-5">
 								<label>부서명</label>
-								<input type="text" class="form-control" id="exampleFormControlInput1"
-									value="${userInfo.departmentVO.depNum }" readonly>
+								<c:choose>
+									<c:when test="${userInfo.departmentVO.depNum == 1}">
+										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
+											value="영업팀">
+									</c:when>
+									<c:when test="${userInfo.departmentVO.depNum == 2}">
+										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
+											value="총무팀">
+									</c:when>
+									<c:when test="${userInfo.departmentVO.depNum == 3}">
+										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
+											value="인사팀">
+									</c:when>
+									<c:when test="${userInfo.departmentVO.depNum == 4}">
+										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
+											value="IT개발팀">
+									</c:when>
+									<c:when test="${userInfo.departmentVO.depNum == 5}">
+										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
+											value="생산팀">
+									</c:when>
+
+								</c:choose>
 							</div>
 
 							<div class="mb-5">
