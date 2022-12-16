@@ -157,8 +157,9 @@
 											<label id="fileAdd" for="file"
 												class="border border-black rounded-3"
 												style="color: #8b95a1; width: 140px; height: 160px; text-align: center">
-												<span id="default"> <i
-													class="fa-solid fa-circle-user" class="pt-2 mb-0" style="font-size: 14px">이미지등록</p></i>
+												<span id="default"> 
+												<i class="fa-solid fa-circle-user" style="font-size: 50px; margin: 35px 0;">
+												<p class="pt-2 mb-0" style="font-size: 14px">이미지등록</p></i>
 											</span> <span id="profile"></span>
 											</label>
 										</div>
