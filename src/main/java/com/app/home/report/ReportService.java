@@ -45,11 +45,13 @@ public class ReportService {
 	public int setLstatusUpdate(ReportVO reportVO, UserVO userVO) throws Exception{
 		
 		
-		int result = reportMapper.setLicenserAdd(userVO);
+//		int result = reportMapper.setLicenserAdd(userVO);
+//		
+//		if(result > 0) {
+//			reportMapper.setLstatusUpdate(reportVO);
+//		}
 		
-		if(result > 0) {
-			reportMapper.setLstatusUpdate(reportVO);
-		}
+		int result = reportMapper.setLstatusUpdate(reportVO);
 		
 		return result;
 	}
@@ -77,9 +79,22 @@ public class ReportService {
 //	}
 		
 	//승인자 테이블에서 권한을 회수하기 위해 delete
-	public int setLicenserDelete(UserVO userVO) throws Exception{
+	public int setLicenserUpdate(UserVO userVO) throws Exception{
 		
-		return reportMapper.setLicenserDelete(userVO);
+		return reportMapper.setLicenserUpdate(userVO);
+	}
+	
+	//결재 신청자 입장에서 자기가 결재를 해야할 목록 리스트
+	public UserVO getFirstList(UserVO userVO) throws Exception{
+			
+		
+		return reportMapper.getFirstList(userVO);
+	}
+	
+	//결재 신청자 입장에서 자기가 결재를 해야할 목록 리스트
+	public UserVO getlastlist(UserVO userVO) throws Exception{
+		
+		return reportMapper.getlastlist(userVO);
 	}
 	
 	
@@ -92,34 +107,40 @@ public class ReportService {
 	//=======================결재 신청 insert===================
 	
 	
-	public int setAddVaca(ReportVacaVO reportVacaVO, String id) throws Exception{
-		int lstatus = reportMapper.getLstatus(id);
+	public int setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		Integer lstatus = reportMapper.getLstatus(reportVacaVO.getId());
 		
-		if(lstatus == 2) {
+		if(lstatus != null) {
+			if(lstatus == 2) {
 			reportVacaVO.setStatus(2);
+			}
 		}
 		
 		reportMapper.setAddApply(reportVacaVO);
 		return reportMapper.setAddVaca(reportVacaVO);
 	} 
 	
-	public int setAddWork(ReportWorkVO reportWorkVO, String id) throws Exception{
-		int lstatus = reportMapper.getLstatus(id);
+	public int setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		Integer lstatus = reportMapper.getLstatus(reportWorkVO.getId());
 		
-		if(lstatus == 2) {
+		if(lstatus != null) {
+			if(lstatus == 2) {
 			reportWorkVO.setStatus(2);
+			}
 		}
 		
 		reportMapper.setAddApply(reportWorkVO);
 		return reportMapper.setAddWork(reportWorkVO);
 	}
 	
-	public int setAddPay(ReportPayVO reportPayVO, String id) throws Exception{
+	public int setAddPay(ReportPayVO reportPayVO) throws Exception{
 		
-		int lstatus = reportMapper.getLstatus(id);
+		Integer lstatus = reportMapper.getLstatus(reportPayVO.getId());
 		
-		if(lstatus == 2) {
+		if(lstatus != null) {
+			if(lstatus == 2) {
 			reportPayVO.setStatus(2);
+			}
 		}
 		
 		
@@ -137,12 +158,14 @@ public class ReportService {
 		return result;
 	}
 	
-	public int setAddSorry(ReportSorryVO reportSorryVO, String id) throws Exception{
+	public int setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
 		
-		int lstatus = reportMapper.getLstatus(id);
+		Integer lstatus = reportMapper.getLstatus(reportSorryVO.getId());
 		
-		if(lstatus == 2) {
+		if(lstatus != null) {
+			if(lstatus == 2) {
 			reportSorryVO.setStatus(2);
+			}
 		}
 		
 		reportMapper.setAddApply(reportSorryVO);

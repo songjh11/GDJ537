@@ -104,7 +104,7 @@
 												  <option value="./mylist?cat=2&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
 												  <option value="./mylist?cat=2&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
 												  <option value="./mylist?cat=2&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
-												  <option value="./mylist?cat=2&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+												  <option value="./mylist?cat=2&kind=4" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
 											  </select>
 										  </div>
 										</div>
@@ -125,7 +125,7 @@
 												  <option value="./mylist?cat=3&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
 												  <option value="./mylist?cat=3&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
 												  <option value="./mylist?cat=3&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
-												  <option value="./mylist?cat=3&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+												  <option value="./mylist?cat=3&kind=4" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
 											  </select>
 										  </div>
 										</div>
@@ -146,7 +146,7 @@
 												  <option value="./mylist?cat=4&kind=1" <c:if test="${pager.kind == '1'}">selected</c:if>>신청</option>
 												  <option value="./mylist?cat=4&kind=2" <c:if test="${pager.kind == '2'}">selected</c:if>>1차 승인</option>
 												  <option value="./mylist?cat=4&kind=3" <c:if test="${pager.kind == '3'}">selected</c:if>>최종 승인</option>
-												  <option value="./mylist?cat=4&kind=1" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
+												  <option value="./mylist?cat=4&kind=4" <c:if test="${pager.kind == '4'}">selected</c:if>>반려</option>
 											  </select>
 										  </div>
 										</div>
@@ -195,7 +195,7 @@
 	                                        </thead>
                                             <tbody>
                                                 <c:forEach items="${list}" var="vo">
-                                                	<tr onclick="location.href='/report/mylist?reportNum=3&applyNum=${vo.applyNum}';" style="cursor:hand">
+                                                	<tr onclick="location.href='/report/detail?reportNum=3&applyNum=${vo.applyNum}';" style="cursor:hand">
                                                 		<td>${vo.title}</td>
                                                 		<td>${vo.date}</td>
                                                 		<td>${vo.cdate}</td>

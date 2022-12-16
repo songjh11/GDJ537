@@ -46,7 +46,13 @@ public interface ReportMapper {
 	
 	public Long getReportListCount(ReportPager reportPager) throws Exception;
 	
-	public int setLicenserDelete(UserVO userVO) throws Exception;
+	public int setLicenserUpdate(UserVO userVO) throws Exception;
+	
+	//신청자입장에서 자기가 첫번째(팀장) 결재선 
+	public UserVO getFirstList(UserVO userVO) throws Exception;
+	
+	//신청자입장에서 자기가 두번째(최종결재관리자) 결재선
+	public UserVO getlastlist(UserVO userVO) throws Exception;
 	
 	
 	
@@ -137,7 +143,7 @@ public interface ReportMapper {
 	public ReportPayVO getMyPayDetail(ReportApplyVO reportApplyVO) throws Exception;
 	public ReportWorkVO getMyWorkDetail(ReportApplyVO reportApplyVO) throws Exception;
 	public ReportSorryVO getMySorryDetail(ReportApplyVO reportApplyVO) throws Exception;
-	public int getLstatus(String id) throws Exception;
+	public Integer getLstatus(Integer id) throws Exception;
 	//================================================
 	
 }
