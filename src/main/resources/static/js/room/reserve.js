@@ -297,8 +297,10 @@ function CalculatorEndTime() {
         return false;
     }
     else { // 날짜, 시간이 동일하지 않을때
-        // 동일한 날에 종료 시간이 시작 시간보다 커야 함
-        if (d == da && end < st || (end == st && a > b)) {
+        // 같은 날에 종료 시간이 시작 시간보다 커야 함
+        // 또는
+        // 같은 날 종료 시간과 시작 시간이 동일하고 시작분이 종료 분보다 작아야 함
+        if (d == da && end < st || (d == da && end == st && a > b)) {
             alert("시작 시간보다 빨리 끝날 수 없습니다.");
             endCheck = false;
             console.log("종료시간이 시작보다 빠름 - " + endCheck);
