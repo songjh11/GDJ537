@@ -207,13 +207,23 @@ public class GoodsController {
 		List<DepartmentVO> department = userService.getDepartment(); 
 		Map<String, Integer> map = new HashMap<>();
 		Map<String, Integer> departMap = new HashMap<>();
+		ReserveVO reserveVO = new ReserveVO();
+		
+		String year = now.toString().substring(0,4);
+		String month = now.toString().substring(0, 7);
+
 		
 		for(int i=0;i<room.size();i++) {
-			map.put(room.get(i).getName(), goodsService.getreserveCount(room.get(i)));
+			reserveVO.setStartTime(year);
+			reserveVO.setGoodsId(room.get(i).getGoodsId());
+			map.put(room.get(i).getName(), goodsService.getreserveCount(reserveVO));
 		}
 		
 		for(int i=0;i<department.size();i++) {
-			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(department.get(i)));
+			reserveVO.setStartTime(month);
+			reserveVO.setDepName(department.get(i).getDepName());
+			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(reserveVO));
+			
 		}
 		
 		String result ="";
@@ -225,7 +235,8 @@ public class GoodsController {
 			}
 			result += "['"+key+"', "+map.get(key)+"]";
 		}
-		int total = goodsService.getRoomTotal();
+		reserveVO.setStartTime(year);
+		int total = goodsService.getRoomTotal(reserveVO);
 		
 		String depart ="";
 		Set<String> reasonKey = departMap.keySet();
@@ -237,10 +248,10 @@ public class GoodsController {
 			depart += "['"+key+"', "+departMap.get(key)+"]";
 		}
 		
-		String month = now.toString().substring(5, 7);
-		int nowTotal = goodsService.getCarNowTotal(month);
-
-      System.out.println(nowTotal);
+		int nowTotal = goodsService.getRoomNowTotal(month);
+		
+      mv.addObject("year", year);
+      mv.addObject("month", month);
       mv.addObject("nowTotal", nowTotal);
       mv.addObject("depart", depart);
       mv.addObject("total", total);
@@ -257,13 +268,23 @@ public class GoodsController {
       List<DepartmentVO> department = userService.getDepartment(); 
       Map<String, Integer> map = new HashMap<>();
       Map<String, Integer> departMap = new HashMap<>();
+      ReserveVO reserveVO = new ReserveVO(); 
 
+      String year = now.toString().substring(0,4);
+      String month = now.toString().substring(0, 7);
+
+      
       for(int i=0;i<car.size();i++) {
-         map.put(car.get(i).getName(), goodsService.getreserveCount(car.get(i)));
+    	  reserveVO.setStartTime(year);
+    	  reserveVO.setGoodsId(car.get(i).getGoodsId());
+         map.put(car.get(i).getName(), goodsService.getreserveCount(reserveVO));
       }
       
       for(int i=0;i<department.size();i++) {
-         departMap.put(department.get(i).getDepName(), goodsService.getDepartmentCarTotal(department.get(i)));
+    	  reserveVO.setStartTime(month);
+    	  reserveVO.setDepName(department.get(i).getDepName());
+         departMap.put(department.get(i).getDepName(), goodsService.getDepartmentCarTotal(reserveVO));
+
       }
       
       String result ="";
@@ -275,8 +296,8 @@ public class GoodsController {
          }
          result += "['"+key+"', "+map.get(key)+"]";
       }
-      
-      int total = goodsService.getCarTotal();
+      reserveVO.setStartTime(year);
+      int total = goodsService.getCarTotal(reserveVO);
       
       String depart ="";
       Set<String> reasonKey = departMap.keySet();
@@ -288,9 +309,10 @@ public class GoodsController {
          depart += "['"+key+"', "+departMap.get(key)+"]";
       }
       
-      String month = now.toString().substring(5, 7);
       int nowTotal = goodsService.getCarNowTotal(month);
-
+		
+      mv.addObject("year", year);
+      mv.addObject("month", month);
       mv.addObject("nowTotal", nowTotal);
       mv.addObject("depart", depart);
       mv.addObject("total", total);

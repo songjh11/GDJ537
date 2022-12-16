@@ -175,24 +175,24 @@ public class GoodsService
       return goodsMapper.getreserveGoods(goodsVO);
    }
    
-   public int getreserveCount(GoodsVO goodsVO) throws Exception{
-      return goodsMapper.getreserveCount(goodsVO);
+   public int getreserveCount(ReserveVO reserveVO) throws Exception{
+      return goodsMapper.getreserveCount(reserveVO);
    }
    
-   public int getRoomTotal() throws Exception{
-      return goodsMapper.getRoomTotal();   
+   public int getRoomTotal(ReserveVO reserveVO) throws Exception{
+      return goodsMapper.getRoomTotal(reserveVO);   
    }
    
-   public int getCarTotal() throws Exception{
-      return goodsMapper.getCarTotal();   
+   public int getCarTotal(ReserveVO reserveVO) throws Exception{
+      return goodsMapper.getCarTotal(reserveVO);   
    }
    
-   public int getDepartmentRoomTotal(DepartmentVO departmentVO) throws Exception{
-      return goodsMapper.getDepartmentRoomTotal(departmentVO);
+   public int getDepartmentRoomTotal(ReserveVO reserveVO) throws Exception{
+      return goodsMapper.getDepartmentRoomTotal(reserveVO);
    }
    
-   public int getDepartmentCarTotal(DepartmentVO departmentVO) throws Exception{
-      return goodsMapper.getDepartmentCarTotal(departmentVO);
+   public int getDepartmentCarTotal(ReserveVO reserveVO) throws Exception{
+      return goodsMapper.getDepartmentCarTotal(reserveVO);
    }
    
    public int getRoomNowTotal(String month) throws Exception{

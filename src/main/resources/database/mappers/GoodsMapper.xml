@@ -178,39 +178,56 @@
       SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
    </select>
    
-   <select id="getreserveCount" parameterType="GoodsVO" resultType="int">
-      SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
+   <select id="getreserveCount" parameterType="ReserveVO" resultType="int">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId} AND (SELECT SUBSTRING(STARTTIME,1,4)) = #{startTime}
    </select>
    
-   <select id="getRoomTotal" resultType="int">
-      SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'RO%'
+   <select id="getRoomTotal" resultType="int" parameterType="ReserveVO">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'RO%' AND (SELECT SUBSTRING(STARTTIME,1,4)) = #{startTime}
    </select>
    
-   <select id="getCarTotal" resultType="int">
-      SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'CA%'
+   <select id="getCarTotal" resultType="int" parameterType="ReserveVO">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'CA%' AND (SELECT SUBSTRING(STARTTIME,1,4)) = #{startTime}
    </select>
 
-   <select id="getDepartmentRoomTotal" resultType="int" parameterType="DepartmentVO">
-       SELECT COUNT(*) FROM RESERVE R
-          WHERE R.ID = (SELECT ID FROM DEPARTMENT  WHERE DEPNAME = #{depName}) AND R.GOODSID LIKE 'RO%'
+   <select id="getDepartmentRoomTotal" resultType="int" parameterType="ReserveVO">
+        SELECT COUNT(*) FROM RESERVE R
+	      LEFT JOIN 
+	      USER U 
+	      ON R.ID=U.ID
+		      LEFT JOIN
+		      DEPARTMENT D 
+      		  ON U.DEPNUM = D.DEPNUM 
+      			WHERE D.DEPNAME = #{depName}
+	          	AND R.GOODSID LIKE 'RO%'
+	          	AND (SELECT SUBSTRING(R.STARTTIME,1,7)) = #{startTime}
+          
    </select>
    
-   <select id="getDepartmentCarTotal" resultType="int" parameterType="DepartmentVO">
+   <select id="getDepartmentCarTotal" resultType="int" parameterType="ReserveVO">
        SELECT COUNT(*) FROM RESERVE R
-          WHERE R.ID = (SELECT ID FROM DEPARTMENT  WHERE DEPNAME = #{depName}) AND R.GOODSID LIKE 'CA%'
+	      LEFT JOIN 
+	      USER U 
+	      ON R.ID=U.ID
+		      LEFT JOIN
+		      DEPARTMENT D 
+      		  ON U.DEPNUM = D.DEPNUM 
+      			WHERE D.DEPNAME = #{depName}
+          	AND R.GOODSID LIKE 'CA%'
+          	AND (SELECT SUBSTRING(R.STARTTIME,1,7)) = #{startTime}
    </select>
    
    <select id="getRoomNowTotal" resultType="int" parameterType="String">
       SELECT COUNT(*) 
       FROM RESERVE r 
-      WHERE (SELECT SUBSTRING(r.STARTTIME,6,2)) = #{month} 
+      WHERE (SELECT SUBSTRING(r.STARTTIME,1,7)) = #{month} 
          AND r.GOODSID LIKE 'RO%' 
    </select>
    
    <select id="getCarNowTotal" resultType="int" parameterType="String">
       SELECT COUNT(*) 
       FROM RESERVE r 
-      WHERE (SELECT SUBSTRING(r.STARTTIME,6,2)) = #{month} 
+      WHERE (SELECT SUBSTRING(r.STARTTIME,1,7)) = #{month} 
          AND r.GOODSID LIKE 'CA%' 
    </select>
    

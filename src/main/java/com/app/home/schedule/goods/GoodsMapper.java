@@ -42,17 +42,17 @@ public interface GoodsMapper
    
    public List<ReserveVO> getreserveGoods(GoodsVO goodsVO) throws Exception;
    
-   public int getreserveCount(GoodsVO goodsVO) throws Exception;
+   public int getreserveCount(ReserveVO reserveVO) throws Exception;
    
-   public int getRoomTotal() throws Exception;
+   public int getRoomTotal(ReserveVO reserveVO) throws Exception;
    
-   public int getCarTotal() throws Exception;
+   public int getCarTotal(ReserveVO reserveVO) throws Exception;
    
    public List<ReserveVO> getReserveList(ReserveVO reserveVO) throws Exception;
    
-   public int getDepartmentRoomTotal(DepartmentVO departmentVO) throws Exception;
+   public int getDepartmentRoomTotal(ReserveVO reserveVO) throws Exception;
    
-   public int getDepartmentCarTotal(DepartmentVO departmentVO) throws Exception;
+   public int getDepartmentCarTotal(ReserveVO reserveVO) throws Exception;
    
    public int setFileUpdate(GoodsFileVO goodsFileVO) throws Exception;
    
