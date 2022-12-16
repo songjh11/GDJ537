@@ -324,54 +324,91 @@ public class ReportController {
 	
 	
 	//신청자 입장에서 결재받을 사람 나오게 하기
+//	@RequestMapping(method = RequestMethod.GET, value = "/report/reportMyPage")
+//	@ResponseBody
+//	public ModelAndView getReportMyPage(UserVO userVO, Principal principal, HttpSession session, ReportVO reportVO) throws Exception{
+//		
+//		ModelAndView mv = new ModelAndView();
+//		
+//		log.info("맴버 마이페이지 정보 =====>>>> {} ", userVO);
+//		log.info("프린시펄 ::: {} " ,principal);
+//		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+//	    Authentication authentication = context.getAuthentication();
+//	    userVO  =(UserVO)authentication.getPrincipal();
+//		
+//	    int id = Integer.parseInt(principal.getName());
+//	    
+//	    
+//	    reportVO.setId(id);
+//	    reportVO.setDepNum(userVO.getDepNum());
+//	    
+//	    
+//	    ReportVO reportVO2 = new ReportVO();
+//	    ReportVO reportVO3 = new ReportVO();
+//	    reportVO = reportMapper.getFirstList(reportVO);
+//	    
+//	    
+//	    reportVO2 = reportMapper.getlastlist(reportVO2);
+//	    
+//	    log.info("prpr :: {} " ,id);
+//	    log.info("뎁뎁넘넘 ::: {} " ,userVO.getDepNum());
+////	    log.info("뎁네임 ::: {} " , userVO.getDepartmentVO().getDepName());
+//	    
+//		UserVO userVO2= new UserVO();
+//		userVO2 = userService.getMypage(userVO);
+//		log.info("로그인한 자신의 마이페이지 :: {} " , userVO2);
+////		log.info("내 롤네임 ::: {} " ,userVO2.getRoleVO().getRoleName());
+////		log.info("1111111 :: {}" ,reportVO.getDepName());
+////		log.info("222222::: {}" , reportVO2.getDepName());
+////		log.info("333333:: {} ", reportVO2.getDepartmentVO().getDepName());
+////		log.info("44444 :: {} " ,reportVO.getDepartmentVO().getDepName());
+//		
+////		log.info(reportVO.getDepName()); 
+//
+//		if(userVO2.getDepNum() == reportVO.getUserVO().getDepNum() && userVO.getRoleNum() == reportVO.getRoleNum()) {
+//			log.info("조건만족");
+//			reportMapper.getFirstList(reportVO3);
+//			reportMapper.getlastlist(reportVO3);
+//		}
+//		
+//		
+//
+//		mv.addObject("reportVO", reportVO);
+//		mv.addObject("reportVO2", reportVO2);
+//		mv.addObject("reportVO3", reportVO3);
+//		mv.setViewName("/report/reportMyPage");
+//		
+//		return mv;
+//	}
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/report/reportMyPage")
-	@ResponseBody
-	public ModelAndView getReportMyPage(UserVO userVO, Principal principal, HttpSession session, ReportVO reportVO) throws Exception{
+	public ModelAndView getFirstList(String depNum, Principal principal, UserVO userVO, ReportVO reportVO, HttpSession session) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		
-		log.info("맴버 마이페이지 정보 =====>>>> {} ", userVO);
-		log.info("프린시펄 ::: {} " ,principal);
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
-	    userVO  =(UserVO)authentication.getPrincipal();
+	    userVO  = (UserVO)authentication.getPrincipal();
 		
 	    int id = Integer.parseInt(principal.getName());
+	    userVO.setId(id);
 	    
+	    log.info("데엡넘 ::: {} " , userVO.getDepNum());
+	    UserVO userVO2 = new UserVO();
+	    UserVO userVO3 = new UserVO();
+		
 	    
-	    reportVO.setId(id);
-	    reportVO.setDepNum(userVO.getDepNum());
-	    
-	    
-	    ReportVO reportVO2 = new ReportVO();
-	    ReportVO reportVO3 = new ReportVO();
-	    reportVO = reportMapper.getFirstList(reportVO);
-	    
-	    
-	    reportVO2 = reportMapper.getlastlist(reportVO2);
-	    
-	    log.info("prpr :: {} " ,id);
-	    log.info("뎁뎁넘넘 ::: {} " ,userVO.getDepNum());
-	    log.info("뎁네임 ::: {} " , userVO.getDepartmentVO().getDepName());
-	    
-		UserVO userVO2= new UserVO();
-		userVO2 = userService.getMypage(userVO);
-		log.info("로그인한 자신의 마이페이지 :: {} " , userVO2);
-		log.info("내 롤네임 ::: {} " ,userVO2.getRoleVO().getRoleName());
-		log.info("1111111 :: {}" ,reportVO.getDepName());
-		log.info("222222::: {}" , reportVO2.getDepName());
-		log.info("333333:: {} ", reportVO2.getDepartmentVO().getDepName());
-		log.info("44444 :: {} " ,reportVO.getDepartmentVO().getDepName());
+		userVO = reportMapper.getFirstList(userVO);
+		userVO2 = reportMapper.getlastlist(userVO);
+		userVO3 = userService.getMypage(userVO3);
+		
+//		log.info("ID ::::: {} " , userVO.getId());
+//		log.info("depNum :::::: {} " , userVO.getDepNum());
 		
 		
-
+		mv.addObject("userVO", userVO);
+		mv.addObject("userVO2", userVO2);
+		mv.addObject("userVO3", userVO3);
 		
-		
-		
-
-		mv.addObject("reportVO", reportVO);
-		mv.addObject("reportVO2", reportVO2);
-		mv.setViewName("/report/reportMyPage");
 		
 		return mv;
 	}

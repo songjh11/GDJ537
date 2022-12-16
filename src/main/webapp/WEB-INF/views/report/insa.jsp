@@ -77,7 +77,7 @@
 						   		<li class="roleLi" data-roleNum="3">과장</li>
 						   		<li class="roleLi" data-roleNum="4">대리</li>
 						   		<li class="roleLi" data-roleNum="5">주임</li>
-						   		<!-- <li class="roleLi" data-roleNum="7">사원</li> -->
+						   		<li class="roleLi" data-roleNum="6">사원</li>
 						   </ul>
 					  </div>
 				</div>

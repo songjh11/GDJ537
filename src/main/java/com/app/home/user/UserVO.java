@@ -44,6 +44,8 @@ public class UserVO implements UserDetails {
 
 	private RoleVO roleVO;
 	private DepartmentVO departmentVO;
+	private String depName;
+	private String roleName;
 
 	private String pw2;
 	private String mail;
