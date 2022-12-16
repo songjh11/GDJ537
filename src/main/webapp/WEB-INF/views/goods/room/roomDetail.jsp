@@ -67,23 +67,23 @@ ul li {
 						<br>
 						<ul>
 							<li>
-								<img class="de" src="/resources/upload/goods/${goodDetail.goodsFileVO[0].fileName }"
+								<img class="de" src="/file/goods/${goodDetail.goodsFileVO[0].fileName }"
 									alt="${goodDetail.goodsFileVO[0].oriName }">
 							</li>
 							<li>
-								<img class="de" src="/resources/upload/goods/${goodDetail.goodsFileVO[1].fileName }"
+								<img class="de" src="//file/goods/${goodDetail.goodsFileVO[1].fileName }"
 									alt="${goodDetail.goodsFileVO[1].oriName }">
 							</li>
 							<li>
-								<img class="de" src="/resources/upload/goods/${goodDetail.goodsFileVO[2].fileName }"
+								<img class="de" src="/file/goods/${goodDetail.goodsFileVO[2].fileName }"
 									alt="${goodDetail.goodsFileVO[2].oriName }">
 							</li>
 						</ul>
 						<br>
 					</section>
-					<div style="text-align: center;">
+					<div style="text-align: center;" class="mb-5">
 						<a href="./roomList">
-							<button type="button" class="btn btn-outline-none">뒤로가기</button>
+							<button type="button" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">뒤로가기</button>
 						</a>
 					</div>
 

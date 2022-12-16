@@ -57,9 +57,11 @@
 											</a>
 										</td>
 										<td>
-											<a href="./roomReserve?goodsId=${good.goodsId }">
-												<button type="button" id="res" class="btn btn-outline-none">예약</button>
-											</a>
+											<div class="btnDiv">
+												<a href="./roomReserve?goodsId=${good.goodsId }">
+													<button type="button" class="btn btn-outline-none res">예약</button>
+												</a>
+											</div>
 										</td>
 										<td>
 											<a href="./roomResInfo?goodsId=${good.goodsId }">
