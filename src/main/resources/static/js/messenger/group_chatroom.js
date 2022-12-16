@@ -1,6 +1,6 @@
 
-	let popupWidth = "750";
-	let popupHeight = "550";
+	let popupWidth = "500";
+	let popupHeight = "750";
 	let popUp = "";
 	  
 	// 듀얼 모니터 고려한 윈도우 띄우기
@@ -38,7 +38,7 @@
 
 		ws.onmessage=function(data){
 			let da = data.data;
-			console.log("Opennnnnn : ", da);
+			//console.log("Opennnnnn : ", da);
 			let str = da + " 님이 입장하셨습니다.";
 			$("#chating").append("<div class='al'>"
 	  						+"<div class='al-bubble'>" +str+"</div></div>"
@@ -54,8 +54,8 @@
 			if(msg != null && msg.trim() != ''){
 				
 			let d = JSON.parse(msg);
-			console.log("message ===> ", d)
-			console.log(sessionId, "==== ", d.userId)
+			//console.log("message ===> ", d)
+			//console.log(sessionId, "==== ", d.userId)
 			if(d.type == "message"){
 				//내가 보냈을 때
 			    if(userId == d.userId){
@@ -100,8 +100,8 @@
 		ws.send(JSON.stringify(option))
 		$("#inputChat").val("");
 		
-		console.log("se : ", sessionId);
-		console.log("us : ", userId);
+		//console.log("se : ", sessionId);
+		//console.log("us : ", userId);
 	}
 	
 //---------------------------------------------
