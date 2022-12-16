@@ -24,8 +24,6 @@ public class WebConfig implements WebMvcConfigurer{
 				.addResourceLocations("/webjars/")
 				 .resourceChain(false);
         registry.setOrder(1);
-				
-		
 	}
 	
 	@Bean

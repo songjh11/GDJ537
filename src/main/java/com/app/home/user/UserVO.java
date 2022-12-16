@@ -15,6 +15,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.home.messenger.PickVO;
 import com.app.home.report.ReportVO;
 import com.nimbusds.oauth2.sdk.Role;
 
@@ -25,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserVO implements UserDetails {
 
+	private int num;
 	private int id;
 	private int roleNum;
 	private int depNum;
@@ -65,7 +67,8 @@ public class UserVO implements UserDetails {
 	private List<DepartmentVO> departmentVOs;
 
 
-
+	private List<PickVO> pickVO;
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// <? super T> T나 T의 부모타입을 담을 수 있다. grantedauthority타입이나 이걸 상속받는 타입 을 담을 수 있다.
