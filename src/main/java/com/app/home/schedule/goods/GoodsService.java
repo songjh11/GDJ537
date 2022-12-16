@@ -192,7 +192,7 @@ public class GoodsService
    }
    
    public int getRoomNowTotal(String month) throws Exception{
-      return goodsMapper.getCarNowTotal(month);
+      return goodsMapper.getRoomNowTotal(month);
    }
    public int getCarNowTotal(String month) throws Exception{
       return goodsMapper.getCarNowTotal(month);

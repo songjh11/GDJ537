@@ -1,10 +1,7 @@
 let count = 0;
 let goodId = $("#goodId").val();
 let flag=true;
-
 let imgCheck = false;
-
-
 $("#fileAdd").click(function(){
     if(flag){
         let size = $("#fileAddResult").attr("data-file-size");
@@ -28,7 +25,6 @@ $("#fileAdd").click(function(){
     }else {
         //swal("최대 3개만 가능","","warning")
     }
-
     for(let i=0; i<$(".files").length; i++){
         console.log("i확인 : "+i);
         $($(".files")[i]).on('change',function(){
@@ -68,7 +64,6 @@ $("#fileAdd").click(function(){
             //     }
     
             // });
-
             imgCheck = true;
         });
     
@@ -76,10 +71,8 @@ $("#fileAdd").click(function(){
     
     // console.log($(".files").length);     
 });
-
 for(let i=0; i<$(".files").length; i++){
     console.log("i확인 : "+i);
-
     $($(".files")[i]).on('change',function(){
         console.log("rr");
         var fileName = $($(".files")[i]).val();
@@ -91,7 +84,7 @@ for(let i=0; i<$(".files").length; i++){
                         url :"./fileUpdateNumber",
                         data:{
                             "rowNum":i,
-                            "id":goodId
+                            "goodsId":goodId
                         },
                         success:function(result){
                             console.log("Result : ",result)
@@ -108,7 +101,6 @@ for(let i=0; i<$(".files").length; i++){
                         error:function(){
                             console.log("Error 발생");
                         }
-
             });
         });
         
@@ -119,7 +111,7 @@ for(let i=0; i<$(".files").length; i++){
             url :"./fileDelete",
             data:{
                 "rowNum":i,
-                "id":goodId
+                "goodsId":goodId
             },
             success:function(result){
                 console.log("Result : ",result)
@@ -134,23 +126,18 @@ for(let i=0; i<$(".files").length; i++){
             error:function(){
                 console.log("Error 발생");
             }
-
         });
     })
-
 }
-
 $("#fileAddResult").on("click", ".del", function(){
     $(this).parent().remove();
     
 });
-
 flag=true;
 /// 글 수정시 첨부파일 삭제
 $(".deleteFile").click(function(){
     //DB, HDD에 파일 삭제
     let check = confirm("삭제 됩니다.. 복구 불가");
-
     if(flag){
         let size = $("#fileAddResult").attr("data-file-size");
         
@@ -158,7 +145,6 @@ $(".deleteFile").click(function(){
         count=size;
         flag=false;
     }
-
     if(check){
         //post
         // /qna/fileDelete
@@ -181,20 +167,16 @@ $(".deleteFile").click(function(){
             error:function(){
                 console.log("Error 발생");
             }
-
         });
-
     }
 });
-
-
 $("#delete").click(function(){
     var id = $("#delete").attr("data-id-num");
     $.ajax({
         type:"GET",
         url :"delete",
         data:{
-            id:id
+            goodsId:id
         },
         success:function(result){
             console.log("삭제 완료 ");            
@@ -204,28 +186,21 @@ $("#delete").click(function(){
             alert("예약된 건이 있어 삭제가 불가합니다.");
             console.log("Error 발생");
         }
-
     });
     
-
 })
-
-
 $('input[name=goodsId]').click(function(){
     if($('input[name=goodsId]:checked').val() == 'CA') {
         $('#carChecked').css("display","inline");
     }else{
         $('#carChecked').css("display", "none");
     }
-
 })
-
 let nameCheck = false;
 let maxCheck = false;
 let locationCheck = false;
 let carNumCheck = true;
 let kindCheck = false;
-
 const name = document.getElementById("name");
 const max = document.getElementById("max");
 const loca = document.getElementById("location");
@@ -237,12 +212,10 @@ const carNumdiv = document.getElementById("carNumdiv");
 const kinddiv = document.getElementById("kinddiv");
 const imgdiv = document.getElementById("imgdiv");
 const sub = document.getElementById("sub");
-
 var pattern_num = /[1-9999999]/; //숫자
 var pattern_eng = /[a-zA-Z]/;	// 문자 
 var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
 var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
-
 $("input[name=goodsId]").blur(function(){
     if($('input[name=goodsId]:radio:checked').length < 1) {
         kinddiv.innerHTML = "시설 종류를 선택해주세요.";
@@ -252,7 +225,6 @@ $("input[name=goodsId]").blur(function(){
         kindCheck = true;
     }
 })
-
 name.addEventListener("blur",function(){
     if(name.value.length < 1) {
         namediv.innerHTML ="시설 이름을 작성해주세요.";
@@ -276,7 +248,6 @@ max.addEventListener("blur",function(){
         maxCheck = false;
     } 
 })
-
 loca.addEventListener("blur",function(){
     if(loca.value.length < 1) {
         $("#location").css("border-color","red");
@@ -288,7 +259,6 @@ loca.addEventListener("blur",function(){
         locationCheck = true;
     }
 })
-
 carNum.addEventListener("blur",function(){
     if($('input[name=goodsId]:checked').val() == 'CA') {
         if(carNum.value.length < 1) {
@@ -302,9 +272,6 @@ carNum.addEventListener("blur",function(){
         }
     }
 })
-
-
-
 sub.addEventListener("click",function(){
     console.log(kindCheck);
     console.log(nameCheck);
@@ -316,7 +283,6 @@ sub.addEventListener("click",function(){
     }else{
         kinddiv.innerHTML ="";
     }
-
     if(!(kindCheck && nameCheck && maxCheck && locationCheck && carNumCheck && imgCheck)) {
         if(imgCheck == false){
             imgdiv.innerHTML="이미지는 필수입니다"
@@ -324,7 +290,6 @@ sub.addEventListener("click",function(){
             imgdiv.innerHTML="";
         }
         alert("모든 칸을 작성해주세요");
-
     }else{
         $("#addform").submit();
     }
