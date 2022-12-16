@@ -45,10 +45,10 @@ public class SocketHandler extends TextWebSocketHandler{
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
-		UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
-		 
-		System.out.println("UserName : "+userVO.getName());
+//		SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
+//		UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
+//		 
+//		System.out.println("UserName : "+userVO.getName());
 		
 		sessionMap.put(session.getId(), session);
 		
@@ -60,7 +60,7 @@ public class SocketHandler extends TextWebSocketHandler{
 		for (String key: sessionMap.keySet()) {
 			WebSocketSession wss= sessionMap.get(key);
 			try {
-			wss.sendMessage(new TextMessage(userVO.getName()));
+			wss.sendMessage(new TextMessage("ii"));//userVO.getName()));
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
