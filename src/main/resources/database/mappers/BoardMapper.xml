@@ -87,7 +87,7 @@
 	
 	<!-- 요청카테고리 -->
 	<select id="findReqCategory" parameterType="ReqCategoryVO" resultType="ReqCategoryVO">
-		SELECT RC.CATEGORYNAME,RC.CATEGORYFORM  
+		SELECT RC.*
 		FROM DEPARTMENT D
 			 JOIN
 			 REQCATEGORY RC 
