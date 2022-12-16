@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <!DOCTYPE html>
     <html>
@@ -60,6 +61,10 @@
                       	<p>조회수 <c:out value="${boardVO.hit}"></c:out> </p>
                       </div>
                       <p id="regdate" data-date="<c:out value="${boardVO.regDate}"></c:out>"> 등록일자 </p>
+                      <c:if test="${boardVO.updateDate != null}">
+                    	 수정일자 
+                      	<fmt:formatDate value="${boardVO.updateDate}" pattern="yyyy-MM-dd HH:mm"/>
+                      </c:if>
                     </div>
                   </div>
                 </div>
@@ -74,7 +79,7 @@
 			                    </button>
 					              <div class="dropdown-menu dropdown-menu-right">
 		                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
-			                        <a class="dropdown-item" href="/fileDown/board/${file.fileNum}">${file.oriName } </a>
+			                        <a class="dropdown-item" href="/fileDown/board/${file.id}">${file.oriName } </a>
 			                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
 			                      </c:forEach>
 		
@@ -90,7 +95,7 @@
                 </div>
 
               </div>
-              <a href="/notice/update?num=<c:out value="${boardVO.num}"></c:out>" class="btn btn-danger">글 수정</a>
+              <a href="/notice/update?id=<c:out value="${boardVO.id}"></c:out>" class="btn btn-danger">글 수정</a>
               <button type="button" class="btn btn-danger">글 삭제</button>
             </div>
             <!-- End Page Content -->

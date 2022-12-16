@@ -32,22 +32,20 @@ public class NoticeService {
 	public boolean checkValid(BoardVO boardVO) {
 		boolean chkId = false;
 		boolean chkTitle = false;
-		boolean chkContents = false;
 		try {
-			chkId = boardVO.getId()!=null;
+			chkId = boardVO.getCreator()!=null;
 			chkTitle = boardVO.getTitle()!=null;
-			chkContents = boardVO.getContents()!=null;			
 		}catch(Exception exception) {
 			return false;
 		}
 
 
-		return chkId&chkTitle&chkContents;
+		return chkId&chkTitle;
 	}
 
 	public int setNotice(BoardVO boardVO) throws Exception{
 		//sort에 1 (notice) 세팅
-		boardVO.setSort(1);
+		boardVO.setSort("공지");
 
 		int result = boardDAO.setBoard(boardVO);
 
@@ -58,7 +56,7 @@ public class NoticeService {
 					String fileName = fileManager.saveFile(file, path);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
-					fileVO.setNum(boardVO.getNum());
+					fileVO.setBoardId(boardVO.getId());
 
 					int result2 =fileDAO.setFile(fileVO);
 				}
@@ -85,7 +83,7 @@ public class NoticeService {
 					String fileName = fileManager.saveFile(file, path);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
-					fileVO.setNum(boardVO.getNum());
+					fileVO.setBoardId(boardVO.getId());
 
 					int result2 =fileDAO.setFile(fileVO);
 				}

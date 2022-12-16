@@ -28,7 +28,7 @@ public class UnknownController {
 	public String setUnknownUpdate(BoardVO boardVO) throws Exception{
 		int result = unknownService.setUnknownUpdate(boardVO);
 
-		return "redirect:/unknown/detail?num="+boardVO.getNum();
+		return "redirect:/unknown/detail?id="+boardVO.getId();
 	}
 
 	@GetMapping("update")
@@ -66,7 +66,7 @@ public class UnknownController {
 	@GetMapping("list")
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
 
-		pager.setSort(3);
+		pager.setSort("익명");
 		mv.addObject("unknownList", unknownService.getUnknownList(pager));
 		mv.addObject("pager", pager);
 		mv.setViewName("/board/unknown/list");

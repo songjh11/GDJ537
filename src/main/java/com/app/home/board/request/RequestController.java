@@ -1,5 +1,7 @@
 package com.app.home.board.request;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.board.BoardVO;
+import com.app.home.board.reqcategory.ReqCategoryVO;
 import com.app.home.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +41,7 @@ public class RequestController {
 		}else {
 			return "redirect:/request/add?error=1";
 		}
-		return "redirect:/request/detail?num="+boardVO.getNum();
+		return "redirect:/request/detail?id="+boardVO.getId();
 	}
 	
 	@GetMapping("detail")
@@ -71,13 +74,13 @@ public class RequestController {
 		log.info("update boardVO {}", boardVO);
 		int result = requestService.setUpdate(boardVO);
 		
-		return "redirect:/request/detail?num="+boardVO.getNum();
+		return "redirect:/request/detail?id="+boardVO.getId();
 	}
 
 	@GetMapping("list")
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
 		
-		pager.setSort(2);
+		pager.setSort("요청");
 		mv.addObject("requestList", requestService.getRequestList(pager));
 		mv.addObject("pager", pager);
 		mv.setViewName("/board/request/list");
@@ -95,5 +98,13 @@ public class RequestController {
 		mv.setViewName("board/request/detail");
 		
 		return mv;
+	}
+	@PostMapping("reqcate")
+	@ResponseBody
+	public List<ReqCategoryVO> findReqCategory(ReqCategoryVO reqCategoryVO)throws Exception{
+		
+		List<ReqCategoryVO> al = requestService.findReqCategory(reqCategoryVO);
+		
+		return al;
 	}
 }

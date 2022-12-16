@@ -63,7 +63,7 @@ public class NoticeController {
 		log.info("update boardVO {}", boardVO);
 		int result = noticeService.setUpdate(boardVO);
 
-		return "redirect:/notice/detail?num="+boardVO.getNum();
+		return "redirect:/notice/detail?id="+boardVO.getId();
 	}
 
 	@PostMapping("delete")
@@ -75,7 +75,7 @@ public class NoticeController {
 	@GetMapping("list")
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
 		
-		pager.setSort(1);
+		pager.setSort("공지");
 		mv.addObject("noticeList", noticeService.getList(pager));
 		mv.addObject("pager", pager);
 		mv.setViewName("/board/notice/list");
