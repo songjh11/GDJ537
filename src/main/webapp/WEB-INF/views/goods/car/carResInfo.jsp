@@ -9,14 +9,20 @@
 <title>Insert title here</title>
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
+
+<!-- 차량 예약 JS -->
+<script defer src="/js/room/reserveInfo.js"></script>
 </head>
 <style>
 .de {
-	width: 600px;
-	height: 400px;
-	padding-bottom: 50px;
+	width: 350px;
+	height: 350px;
 	padding-left: 20px;
 	padding-right: 25px;
+}
+
+ul {
+	display: flex;
 }
 
 ul li {
@@ -41,45 +47,35 @@ ul li {
 				<!-- Topbar import-->
 				<c:import url="../../temp/layout_topbar.jsp"></c:import>
 				<!-- End of Topbar -->
-				<%-- ${goodDetail.goodsFileVO } --%>
 				<!-- Begin Page Content -->
+				<input type="hidden" value="${carInfo[0].goodsVOs[0].name}">
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
-						<h1 class="h3 mb-4 text-gray-800">회의실 상세정보</h1>
-						<!-- Page Heading -->
-						<table class="table table-hover">
+						<h1 class="h3 mb-4 text-gray-800">${carInfo[0].goodsVOs[0].name}의 예약현황</h1>
+						<table class="table table-hover" id="info">
 							<tr>
-								<th>회의실 번호</th>
-								<th>이름</th>
-								<th>최대 인원 수</th>
-								<th>회의실 위치</th>
+								<th>차량 예약번호</th>
+								<th>사원번호</th>
+								<th>사용 목적</th>
+								<th>예약 신청일</th>
+								<th>사용 시작 날짜</th>
+								<th>사용 종료 날짜</th>
 							</tr>
-							<tr>
-								<td>${goodDetail.goodsId }</td>
-								<td>${goodDetail.name }</td>
-								<td>${goodDetail.max }</td>
-								<td>${goodDetail.location }</td>
-							</tr>
-						</table>
-						<br>
-						<br>
-						<div class="text-center">
-						${goodDetail.contents }
-						<ul>
-							<c:forEach items="${goodDetail.goodsFileVO}" var="goods">
-								<li>
-									<img class="de" src="/file/goods/${goods.fileName}" alt="">
-								</li>
+							<c:forEach items="${carInfo}" var="ro">
+								<input type="hidden" value="${ro.startTime}" class="startTime">
+                        		<input type="hidden" value="${ro.endTime}" class="endTime">	
+								<tr>
+									<td>${ro.reserveNum }</td>
+									<td>${ro.id }</td>
+									<td>${ro.usePurpose }</td>
+									<td>${ro.date }</td>
+									<td>${ro.startTime }</td>
+									<td>${ro.endTime }</td>
+								</tr>
 							</c:forEach>
-						</ul>
-						</div>
-						<br>
+						</table>
+						<a href="../car/carList" class="btn" style="background-color: #4e73df; color: white;">뒤로가기</a>
 					</section>
-					<div style="text-align: center;" class="mb-5">
-						<a href="./roomList">
-							<button type="button" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">뒤로가기</button>
-						</a>
-					</div>
 
 				</div>
 				<!-- End Page Content -->

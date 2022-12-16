@@ -40,31 +40,31 @@
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
  										<th>차량번호</th>
-<%--									<td>${goods.carNum}</td>
+										<td>${goods.carNum}</td>
 										<th>모델명</th>
 										<td>${goods.name}</td>									
 										<th>정원</th>
-										<td>${goods.max}명</td>	 --%>												
+										<td>${goods.max}명</td>											
 									</tr>
 								</table>
 								
-<%-- 								<input type="hidden" name="id" value="${goods.id}"> --%>
+ 								<input type="hidden" name="id" value="${test.id}">
 								
 								<div class="mb-3">
 									<label>예약날짜</label>
-									<input type="date" name="startTime" class="form-control" id="exampleFormControlInput1" value="${reserve.startTime}">
+									<input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1" value="${reserve.startTime}">
 									<br>
 								</div>
 								
 								<div class="mb-3">
 									<label>반납날짜</label>
-									<input type="date" name="endTime" class="form-control" id="exampleFormControlInput1" value="${reserve.endTime}">
+									<input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput1" value="${reserve.endTime}">
 									<br>
 								</div> 
 								
 								<div class="mb-5">
 									<label>예약자</label>
-									<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="아이폰">
+									<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="${reserve.id}">
 								</div>
 								
 								<div class="mb-5">
