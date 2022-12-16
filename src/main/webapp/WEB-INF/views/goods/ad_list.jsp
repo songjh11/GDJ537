@@ -46,7 +46,6 @@
                <div class="container">
 
 
-
    <!-- Scroll Top, Login Modal import -->
    <c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
    <script src="/js/goods/ad_list.js"></script>

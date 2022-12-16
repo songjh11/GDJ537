@@ -104,48 +104,5 @@
       ON G.GOODSID = F.GOODSID
    </select>
 
-   <resultMap type="GoodsVO" id="getGoods">
-      <id column="GOODSID" property="goodsId"></id>
-      <result column="NAME" property="name"></result>
-      <result column="MAX" property="max"></result>
-      <result column="CONTENTS" property="contents"></result>
-      <result column="LOCATION" property="location"></result>
-      <result column="CARNUM" property="carNum"></result>
+</mapper>
 
-
-				OR goodsId LIKE '%VA%'
-			</if>
-		
-	</sql>
-	
-	<select id="getReserveList" parameterType="goodsReserveVO" resultType="ReserveVO">
-		select * from RESERVE   <include refid="getFilter"></include> 
-	</select>
-	
-	<select id="getRoomNameList" resultType="GoodsVO">
-		SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'RO%'
-	</select>
-	
-	<select id="getCarNameList" resultType="GoodsVO">
-		SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'CA%'
-	</select>
-	
-	<select id="getreserveGoods" parameterType="GoodsVO" resultType="ReserveVO">
-		SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
-	</select>
-	
-	<select id="getreserveCount" parameterType="GoodsVO" resultType="int">
-		SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
-	</select>
-	
-	<select id="getRoomTotal" resultType="int">
-		SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'RO%'
-	</select>
-	
-	<select id="getCarTotal" resultType="int">
-		SELECT COUNT(*) FROM RESERVE WHERE GOODSID LIKE 'CA%'
-	</select>
-	
-	
-
-</mapper> 

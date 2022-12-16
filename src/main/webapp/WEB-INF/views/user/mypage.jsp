@@ -58,7 +58,6 @@
                   <h1 class="h3 mb-4 pt-2 text-gray-800"><b>${userVO.name}님의 정보</b></h1>
                   
 
-                    
                     <!-- Area Chart -->
                     <div class="col-lg-8">
                         <div class="card shadow mb-4" style="
