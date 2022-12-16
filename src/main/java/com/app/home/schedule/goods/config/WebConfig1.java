@@ -26,7 +26,7 @@ public class WebConfig1 implements WebMvcConfigurer{
       log.info("==============================");
       
       //<resources mapping="/resources/**" location="/resources/" />
-      registry.addResourceHandler(urlPath) // 요청 url 주소
+      registry.addResourceHandler("/file/goods/") // 요청 url 주소
       			.addResourceLocations(filePath);
    }
    

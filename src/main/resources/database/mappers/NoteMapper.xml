@@ -5,12 +5,33 @@
 
 <mapper namespace="com.app.home.messenger.NoteMapper">
 
+<select id="getNotReadCount" parameterType="UserVO" resultType="Long">
+SELECT COUNT(NOTENUM) FROM NOTE WHERE RECEIVEID = #{id} AND #{id} = REMARK AND READCHECK = 1
+</select>
+
+<update id="updateCheck" parameterType="NoteVO">
+UPDATE NOTE SET READCHECK = 0 WHERE NOTENUM = #{noteNum} AND RECEIVEID = #{receiveId}
+</update>
+<delete id="setDeleteNote" parameterType="NoteVO">
+DELETE FROM NOTE WHERE NOTENUM = #{noteNum}
+</delete>
+
 <insert id="setSendNote" parameterType="NoteVO">
-INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1)
+INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{receiveId})
+</insert>
+
+<insert id="setSendNote2" parameterType="NoteVO">
+INSERT INTO NOTE VALUES (null, #{sendId}, #{receiveId}, #{contents}, now(), 1, #{sendId})
 </insert>
 
 <select id="getSendNoteList" parameterType="Map" resultType="NoteVO">
-SELECT * FROM NOTE WHERE SENDID = #{id}
+SELECT NOTENUM, SENDID, RECEIVEID, CONTENTS, REGDATE, READCHECK, REMARK, U.NAME "RECEIVENAME", US.NAME "SENDNAME" FROM NOTE N
+INNER JOIN USER U
+ON N.RECEIVEID = U.ID
+INNER JOIN USER US
+ON N.SENDID = US.ID
+WHERE SENDID = #{id}
+AND #{id} = REMARK
 AND
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>
@@ -22,7 +43,14 @@ LIMIT #{startRow}, #{perPage}
 </select>
 
 <select id="getSendNoteListCount" parameterType="Map" resultType="Long">
-SELECT COUNT(NOTENUM) FROM NOTE WHERE SENDID = #{id}
+SELECT COUNT(NOTENUM) 
+FROM NOTE N
+INNER JOIN USER U
+ON N.RECEIVEID = U.ID
+INNER JOIN USER US
+ON N.SENDID = US.ID
+WHERE SENDID = #{id}
+AND #{id} = REMARK
 AND
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>
@@ -32,7 +60,13 @@ AND
 </select>
 
 <select id="getReceiveNoteList" parameterType="Map" resultType="NoteVO">
-SELECT * FROM NOTE WHERE RECEIVEID = #{id} 
+SELECT NOTENUM, SENDID, RECEIVEID, CONTENTS, REGDATE, READCHECK, U.NAME "RECEIVENAME", US.NAME "SENDNAME" FROM NOTE N
+INNER JOIN USER U
+ON N.RECEIVEID = U.ID
+INNER JOIN USER US
+ON N.SENDID = US.ID
+WHERE RECEIVEID = #{id}
+AND #{id} = REMARK
 AND
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>
@@ -44,7 +78,14 @@ LIMIT #{startRow}, #{perPage}
 </select>
 
 <select id="getReceiveNoteListCount" parameterType="Map" resultType="Long">
-SELECT COUNT(NOTENUM) FROM NOTE WHERE RECEIVEID = #{id}
+SELECT COUNT(NOTENUM)
+FROM NOTE N
+INNER JOIN USER U
+ON N.RECEIVEID = U.ID
+INNER JOIN USER US
+ON N.SENDID = US.ID
+WHERE RECEIVEID = #{id}
+AND #{id} = REMARK
 AND 
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>

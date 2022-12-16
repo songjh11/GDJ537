@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.home.user.EmployeeVO;
+import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,34 +20,25 @@ public class PickService {
 	
 	public int createPick(String myId, String yourId) throws Exception{
 		Map<String, Object> map = new HashMap<>();
-		Long pickNum=null;
-		int result = pickMapper.firstCheckPick(myId);
-		if(result>0) {
-			log.info("이미 픽 테이블이 만들어짐!");
-		}else {
-			pickMapper.createPick(myId);
-		}
-		pickNum = pickMapper.findPickNum(myId);
 		map.put("yourId", yourId);
-		map.put("pickNum", pickNum);
-		int perResult = pickMapper.perCheck(map);
-		if(perResult>0) {
+		map.put("myId", myId);
+		int result = pickMapper.firstCheckPick(map);
+		if(result>0) {
+			log.info("이미 픽!");
 			return 0;
 		}else {
 			return pickMapper.setPick(map);
 		}
 	}
 	
-	public List<EmployeeVO> getPickList(String myId) throws Exception{
+	public List<UserVO> getPickList(String myId) throws Exception{
 		return pickMapper.getPickList(myId);
 	}
 	
 	public int pickCancel(String myId, String yourId) throws Exception{
 		Map<String, Object> map = new HashMap<>();
-		Long pickNum=null;
-		pickNum = pickMapper.findPickNum(myId);
 		map.put("yourId", yourId);
-		map.put("pickNum", pickNum);
+		map.put("myId", myId);
 		return pickMapper.pickCancel(map);
 	}
 
