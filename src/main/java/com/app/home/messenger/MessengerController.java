@@ -467,7 +467,6 @@ public class MessengerController extends Socket {
 		//유저 정보
 		userVO = userService.getMypage(userVO);
 		mv.addObject("user", userVO);
-		log.info("&&&&& &&&&& : {}", userVO);
 		
 		mv.setViewName("messenger/chatroom");
 		return mv;
