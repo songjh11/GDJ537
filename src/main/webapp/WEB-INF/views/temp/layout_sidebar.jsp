@@ -34,11 +34,10 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBoard"
                     aria-expanded="true" aria-controls="collapseBoard">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Board</span>
+                    <span>게시판</span>
                 </a>
                 <div id="collapseBoard" class="collapse" aria-labelledby="headingBoard" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Board List</h6>
                         <a class="collapse-item" href="/notice/list">공지사항</a>
                         <a class="collapse-item" href="/request/list">요청게시판</a>
                         <a class="collapse-item" href="/unknown/list">익명게시판</a>
