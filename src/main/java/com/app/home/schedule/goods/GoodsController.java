@@ -237,8 +237,10 @@ public class GoodsController {
       }
       
       String month = now.toString().substring(5, 7);
-      int nowTotal = goodsService.getCarNowTotal(month);
+      System.out.println(month);
+      int nowTotal = goodsService.getRoomNowTotal(month);
 
+      System.out.println(nowTotal);
       mv.addObject("nowTotal", nowTotal);
       mv.addObject("depart", depart);
       mv.addObject("total", total);
