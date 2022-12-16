@@ -8,8 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 public class NotePager {
 	
 	private Long page;
-	private Long startnum;
-	private Long lastnum;
+	private Long startNum;
+	private Long lastNum;
 	private Long startRow;
 	private Long perPage;
 	private Long perBlock;
@@ -70,21 +70,21 @@ public class NotePager {
 		}
 		
 		//4. curBlock으로 페이지의 시작번호랑 끝번호 계산
-		this.startnum = (curBlock-1)*this.getPerBlock()+1;
-		this.lastnum = curBlock*this.getPerBlock();
+		this.startNum = (curBlock-1)*this.getPerBlock()+1;
+		this.lastNum = curBlock*this.getPerBlock();
 
 		//5. 현재내가있는블럭이 토탈블락의 끝일때 (라스트넘이 전체페이지수보다 많아짐 방지)
 		if(curBlock==totalBlock) {
-			this.lastnum=totalPage;
+			this.lastNum=totalPage;
 		}
 		
 
 		
 		//?? 검색결과가 0개면 라스트넘도 0이 되는 식 (제가 임의로 추가한거라 에러뜨면 사용x)
 		if(totalBlock==0) {
-			//this.lastnum=totalPage;
+			//this.lastNum=totalPage;
 			
-			this.lastnum=0L;
+			this.lastNum=0L;
 		}
 		
 		//6.이전, 다음 블럭의 유무
