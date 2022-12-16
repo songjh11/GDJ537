@@ -98,9 +98,22 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - Messanger -->
             <li class="nav-item">
-                <a class="nav-link" href="/messenger/chat">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMessenger"
+                    aria-expanded="true" aria-controls="collapseReport">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Messenger</span>
+                </a>
+                <!-- <a class="nav-link" href="/messenger/chat">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Messenger</span></a>
+                    <span>Messenger</span>
+                </a> -->
+                <div id="collapseMessenger" class="collapse" aria-labelledby="headingMessenger" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/messenger/chat">채팅</a>
+                        <a class="collapse-item" href="/messenger/note">쪽지</a>
+                        
+                    </div>
+                </div>
             </li>
 
             <!-- Nav Item - Tables -->
