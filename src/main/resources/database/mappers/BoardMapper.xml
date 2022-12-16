@@ -61,10 +61,13 @@
 		= #{id}
 	</delete>
 
-	<select id="getList" parameterType="Pager" resultType="BoardVO">
-		SELECT B.*, COUNT(C.ID) as cntComment FROM BOARD B
+	<select id="getList" parameterType="Pager" resultMap="resultBoardAddfiles">
+		SELECT B.ID, B.title, B.creator, B.depnum, B.hit, B.regDate, COUNT(C.ID) as cntComment, U.NAME, U.status 
+		FROM BOARD B
 		LEFT JOIN COMMENT C
 		ON B.ID = C.BOARDID
+		LEFT JOIN `USER` U 
+		ON B.CREATOR = U.ID 
 		WHERE SORT = #{sort}
 		AND
 		B.<include refid="search"></include>
