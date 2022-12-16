@@ -75,11 +75,11 @@
                         
                         <div class="mb-5">
                            <label>예약자</label>
-                           <input type="text" name="memberNum" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${userInfo.id}">
+                           <input type="text" name="id" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${userInfo.id}">
                         </div>
                         
                         <div class="mb-5">
-                           <label>부서명</label>
+                           <label>부서</label>
                            <input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="${userInfo.departmentVO.depNum}">
                         </div>   
                                                                                                    

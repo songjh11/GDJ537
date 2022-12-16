@@ -55,13 +55,13 @@ ul li {
 								<th>예약 번호</th>
 								<th>예약 날짜</th>
 								<th>반납 날짜</th>
-								<th>예약자</th>
+								<th>사용 목적</th>
 							</tr>
 							<tr>
 								<td>${reserve.reserveNum }</td>
 								<td>${reserve.startTime }</td>
 								<td>${reserve.endTime }</td>
-								<td>${reserve.id }</td>
+								<td>${reserve.usePurpose }</td>
 							</tr>
 							<tr>
 								<th>차량 번호</th>
