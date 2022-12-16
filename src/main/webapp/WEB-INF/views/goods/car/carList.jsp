@@ -51,7 +51,7 @@
 							
 							<c:forEach items="${goods}" var="goods">
 								<tr>
-									<td>${goods.carNum }</td>
+									<td>${goods.carnum }</td>
 									<td>${goods.name }</td>
 									<%-- <td><a href="./carDetail?id=" ${goods.goodsId}><button type="button" class="btn btn-outline-none">정보 보기</button></a></td>
 									<td><a href="./carReserve?id=${goods.goodsId}"><button type="button" class="btn btn-outline-none">예약하기</button>	</a></td> --%>
@@ -73,13 +73,13 @@
 							
 							<c:forEach items="${reserves}" var="reserve">
 								<tr>
-									<td>${reserve.reserveNum}</td>
+									<td>${reserve.reservenum}</td>
 									<td>${reserve.startTime}</td>
-									<td>${reserve.memberNum}</td>
-									<%-- <td><a href="./carDetail?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">정보 보기</a></td>
-									<td><a href="./carReserveChange?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">변경</a></td>
-									<td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reserveNum}">취소</button></td> --%>
-									<%-- <td><a href="./carReserveDelete?reserveNum=${reserve.reserveNum}" id="delete_btn" class="btn btn-outline-none">취소</a></td> --%>
+									<td>${reserve.membernum}</td>
+									<%-- <td><a href="./carDetail?reservenum=${reserve.reservenum}" class="btn btn-outline-none">정보 보기</a></td>
+									<td><a href="./carReserveChange?reservenum=${reserve.reservenum}" class="btn btn-outline-none">변경</a></td>
+									<td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reservenum}">취소</button></td> --%>
+									<%-- <td><a href="./carReserveDelete?reservenum=${reserve.reservenum}" id="delete_btn" class="btn btn-outline-none">취소</a></td> --%>
 								</tr>
 							</c:forEach>
 						</table>
@@ -101,13 +101,13 @@
 
 	<script>
 		$('.delete_btn').click(function() {
-			console.log($(this).val()); // 클릭 한 요소의 value값(reserveNum)을 출력한다.
+			console.log($(this).val()); // 클릭 한 요소의 value값(reservenum)을 출력한다.
 			
-			let reserve = $(this).val(); // value값(reserveNum)을 reserve에 저장한다.
+			let reserve = $(this).val(); // value값(reservenum)을 reserve에 저장한다.
 			let result = confirm("예약을 취소하시겠습니까? \n취소 후에는 되돌릴 수 없습니다.");
 
 			if (result) { // 확인 클릭 시
-				$.get("carReserveDelete?reserveNum=" + reserve, function(result) { // controller로 get방식의 보낸다
+				$.get("carReserveDelete?reservenum=" + reserve, function(result) { // controller로 get방식의 보낸다
 					console.log(reserve);
 					location.reload();
 				});

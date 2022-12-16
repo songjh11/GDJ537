@@ -218,8 +218,8 @@ public class ReportController {
 //		
 //		
 //		userVO.setId(2209);						//로그인을 가정해서 아이디를 세팅해줌
-//		userVO.setDepNum(userVO.getDepNum());	//jsp 드롭다운에서 부서를 고르면 그에 해당하는 depNum이 세팅됨
-//		userVO.setRoleNum(userVO.getRoleNum());	//jsp 드롭다운에서 직급을 고르면 그에 해당하는 roleNum이 세팅됨
+//		userVO.setDepnum(userVO.getDepnum());	//jsp 드롭다운에서 부서를 고르면 그에 해당하는 depnum이 세팅됨
+//		userVO.setRolenum(userVO.getRolenum());	//jsp 드롭다운에서 직급을 고르면 그에 해당하는 rolenum이 세팅됨
 //		reportVO.setLstatus(2);	
 //		
 //		mv.addObject("userVO", userVO);
@@ -244,7 +244,7 @@ public class ReportController {
 		
 		int result = reportService.setLstatusUpdate(reportVO, userVO);
 		log.info("아이디 : {} " , userVO.getId());
-		log.info("depNum : {} ", reportVO.getDepNum());
+		log.info("depnum : {} ", reportVO.getDepnum());
 		
 		model.addAttribute("result", result);
 		

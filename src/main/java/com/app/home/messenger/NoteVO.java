@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class NoteVO {
 	
-	private Long noteNum;
+	private Long notenum;
 	private Long sendId;
 	private Long receiveId;
 	private String contents;

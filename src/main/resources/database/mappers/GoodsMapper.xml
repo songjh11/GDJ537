@@ -6,12 +6,12 @@
 <mapper namespace="com.app.home.schedule.goods.GoodsMapper">
 
 	<update id="setUpdate" parameterType="GoodsVO">
-		UPDATE GOODS SET NAME = #{name}, MAX = #{max}, CONTENTS = #{contents}, LOCATION = #{location}, CARNUM = #{carNum} WHERE GOODSID = #{goodsId}
+		UPDATE GOODS SET NAME = #{name}, MAX = #{max}, CONTENTS = #{contents}, LOCATION = #{location}, CARnum = #{carnum} WHERE GOODSID = #{goodsId}
 	</update>
 
 	<insert id="setAdd" parameterType="GoodsVO">
 			INSERT INTO GOODS
-				VALUES (#{goodsId},#{name},#{max},#{contents},#{location},#{carNum})
+				VALUES (#{goodsId},#{name},#{max},#{contents},#{location},#{carnum})
 	</insert>
 
 	<select id="getCount" parameterType="GoodsVO" resultType="int">
@@ -31,7 +31,7 @@
 
 	<insert id="setGoodsFileAdd" parameterType="GoodsFileVO">
  		INSERT INTO GOODSFILE
- 		VALUE (#{imgNum},#{goodsId},#{fileName},#{oriName})
+ 		VALUE (#{imgnum},#{goodsId},#{fileName},#{oriName})
  	</insert>
  	
  	<select id="getGoods" parameterType="GoodsVO" resultMap="getGoodsDetail">
@@ -47,25 +47,25 @@
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
 		<result column="LOCATION" property="location"></result>
-		<result column="CARNUM" property="carNum"></result>
+		<result column="CARnum" property="carnum"></result>
 		
 		<collection property="goodsFileVO" javaType="List" ofType="GoodsFileVO">
-				<id column="IMGNUM" property="imgNum"></id>
+				<id column="IMGnum" property="imgnum"></id>
 				<result column = "FILENAME" property="fileName"></result>
 				<result column = "ORINAME" property="oriName"></result>
 		</collection>
 	</resultMap>
 	
-	<select id="getFileNumCheck" parameterType="GoodsFileVO" resultType="GoodsFileVO">
- 		SELECT t.IMGNUM FROM
-			(select @ROWNUM:=@ROWNUM+1 AS ROWNUM, GF.* 
-			FROM GOODSFILE GF, (SELECT @ROWNUM:=0) R
+	<select id="getFilenumCheck" parameterType="GoodsFileVO" resultType="GoodsFileVO">
+ 		SELECT t.IMGnum FROM
+			(select @ROWnum:=@ROWnum+1 AS ROWnum, GF.* 
+			FROM GOODSFILE GF, (SELECT @ROWnum:=0) R
 			WHERE GOODSID = #{goodsId} ) 
-			AS t WHERE t.ROWNUM = #{rowNum}
+			AS t WHERE t.ROWnum = #{rownum}
  	</select>
 	
- 	<delete id="setFileNumCheckDelete" parameterType="GoodsFileVO">
- 		DELETE FROM GOODSFILE WHERE IMGNUM = #{imgNum}
+ 	<delete id="setFilenumCheckDelete" parameterType="GoodsFileVO">
+ 		DELETE FROM GOODSFILE WHERE IMGnum = #{imgnum}
  	</delete>
  	
  	<delete id="setGoodsDelete" parameterType="GoodsVO">
@@ -106,11 +106,11 @@
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
 		<result column="LOCATION" property="location"></result>
-		<result column="CARNUM" property="carNum"></result>
+		<result column="CARnum" property="carnum"></result>
 
 		<collection property="goodsFileVO" javaType="List"
 			ofType="GoodsFileVO">
-			<id column="IMGNUM" property="imgNum"></id>
+			<id column="IMGnum" property="imgnum"></id>
 			<result column="FILENAME" property="fileName"></result>
 			<result column="ORINAME" property="oriName"></result>
 		</collection>

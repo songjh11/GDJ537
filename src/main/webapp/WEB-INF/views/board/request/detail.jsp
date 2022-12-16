@@ -102,7 +102,7 @@
                   placeholder="Leave a comment here"></textarea>
               </div>
               <div class="mb-5">
-                <button type="button" id="b1" data-boardNum="${boardVO.id}" class="btn btn-success">댓글등록</button>
+                <button type="button" id="b1" data-boardnum="${boardVO.id}" class="btn btn-success">댓글등록</button>
               </div>
               <!-- 댓글 목록 -->
               <div>

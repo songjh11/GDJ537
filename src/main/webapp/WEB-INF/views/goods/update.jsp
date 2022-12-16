@@ -79,7 +79,7 @@
 					  </div>
 					  <div class="mb-3" <c:if test="${str == 'RO'}">style ="display:none;"</c:if>>
 					    <label for="exampleInputLocation" class="form-label">차량 번호</label>
-					    <input type="text" class="form-control" id="carNum" name="carNum" value="${goods.carNum}">
+					    <input type="text" class="form-control" id="carnum" name="carnum" value="${goods.carnum}">
 					  </div>
 					  <div>
 						<div class="mb-3" id="fileAddResult">      

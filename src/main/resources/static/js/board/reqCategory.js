@@ -13,7 +13,7 @@ $("#deptCate").on("change",function(){
         url: "./reqcate",
         traditional:true,
         data:{
-            depNum : cate1
+            depnum : cate1
         },
         success : function(data){
             console.log(data);

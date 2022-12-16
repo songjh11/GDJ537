@@ -140,6 +140,7 @@
 								<li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Next</a></li>
 							</c:if>
 
+
 						</ul>
 						</nav>
 					</div>

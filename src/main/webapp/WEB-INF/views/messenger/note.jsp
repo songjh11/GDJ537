@@ -433,7 +433,7 @@
 
 							<div id="noteContent">
 								<c:forEach items="${list}" var="list">
-									<div class="noteList" onclick="notePop(${list.noteNum})">
+									<div class="noteList" onclick="notePop(${list.notenum})">
 										<div id="listImage">
 											<img src="/img/messenger/test.png" alt="">
 										</div>
@@ -456,14 +456,14 @@
 
 							<div id="pagination">
 								<p style="margin: 0; display: flex; align-items: center;">
-									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startNum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
-									<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startnum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
+									<c:forEach begin="${pager.startnum}" end="${pager.lastnum}" var="i">
                                     
                                     	<!-- <a href="./simpleresult?search=${pager.search}&kind=${pager.kind}&page=${i}" id="ppaaggee${i}">${i}</a> -->
                                     	<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${i}" class="pagep" id="ppaaggee${i}">${i}</a>
                                     
                                 	</c:forEach>
-									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastNum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
+									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastnum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
 								</p>
 							</div>
 
@@ -531,7 +531,7 @@
 		})
 
 		function notePop(num) {
-			window.open('./note/detail?noteNum='+num, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+			window.open('./note/detail?notenum='+num, '_blank', "width=450px, height=500px, location=no, top=100, left=500");
 		};
 
 
@@ -550,8 +550,8 @@
 					let disabled2 = "";
 					console.log("나는성공, 나의 데이터는? : ", data);
 					console.log(data.pager.page)
-					console.log(data.pager.startNum)
-					console.log(data.pager.lastNum)
+					console.log(data.pager.startnum)
+					console.log(data.pager.lastnum)
 					console.log(data.pager.pre)
 					console.log(data.pager.next)
 
@@ -582,13 +582,13 @@
 					}
 
 					let forPage = "";
-					for(let i=data.pager.startNum;i<=data.pager.lastNum;i++) {
+					for(let i=data.pager.startnum;i<=data.pager.lastnum;i++) {
 						forPage += '<a onclick="ajaxPage('+i+')" class="pagep" id="ppaaggee'+i+'">'+i+'</a>'
 					}
 
 					console.log(forPage);
 
-					let pageAjax = '<p style="margin: 0; display: flex; align-items: center;"><a onclick="ajaxPage('+(data.pager.startNum-1)+')" style="margin: 0px 5px;" class="'+disabled+'"><img src="/img/messenger/left2.png" alt=""></a>'+forPage+'<a onclick="ajaxPage('+(data.pager.lastNum+1)+')" style="margin: 0px 5px;" class="'+disabled2+'"><img src="/img/messenger/right2.png" alt=""></a></p>';
+					let pageAjax = '<p style="margin: 0; display: flex; align-items: center;"><a onclick="ajaxPage('+(data.pager.startnum-1)+')" style="margin: 0px 5px;" class="'+disabled+'"><img src="/img/messenger/left2.png" alt=""></a>'+forPage+'<a onclick="ajaxPage('+(data.pager.lastnum+1)+')" style="margin: 0px 5px;" class="'+disabled2+'"><img src="/img/messenger/right2.png" alt=""></a></p>';
 
 					$("#pagination").html(pageAjax);
 
@@ -602,10 +602,10 @@
 					$.each(data.list, function(index, item) { 
 						// console.log(item);
 						$('#noteContent').empty();
-						// console.log(item.noteNum);
+						// console.log(item.notenum);
 						item.contents = item.contents.replace(/\r\n/g, "</br>");
 
-						tempest += '<div class="noteList" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/messenger/test.png" alt=""></div><div id="listInfo"><div>'+item.noteNum+'수신자:'+item.receiveId+'</div><div>'+item.contents+'</div></div></div>'
+						tempest += '<div class="noteList" onclick="notePop('+item.notenum+')"><div id="listImage"><img src="/img/messenger/test.png" alt=""></div><div id="listInfo"><div>'+item.notenum+'수신자:'+item.receiveId+'</div><div>'+item.contents+'</div></div></div>'
 
 						$('#noteContent').html(tempest);
 					})

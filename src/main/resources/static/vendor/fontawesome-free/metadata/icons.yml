@@ -17311,7 +17311,7 @@ sort-numeric-down:
     - '3.2'
     - 5.0.0
     - 5.9.0
-  label: Sort Numeric Down
+  label: Sort numeric Down
   search:
     terms:
       - arrange
@@ -17326,7 +17326,7 @@ sort-numeric-down:
 sort-numeric-down-alt:
   changes:
     - 5.9.0
-  label: Alternate Sort Numeric Down
+  label: Alternate Sort numeric Down
   search:
     terms:
       - arrange
@@ -17343,7 +17343,7 @@ sort-numeric-up:
     - '3.2'
     - 5.0.0
     - 5.9.0
-  label: Sort Numeric Up
+  label: Sort numeric Up
   search:
     terms:
       - arrange
@@ -17358,7 +17358,7 @@ sort-numeric-up:
 sort-numeric-up-alt:
   changes:
     - 5.9.0
-  label: Alternate Sort Numeric Up
+  label: Alternate Sort numeric Up
   search:
     terms:
       - arrange
