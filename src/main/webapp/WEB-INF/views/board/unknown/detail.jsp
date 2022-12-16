@@ -78,7 +78,7 @@
                       </button>
                         <div class="dropdown-menu dropdown-menu-right">
                           <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
-	                        <a class="dropdown-item" href="/fileDown/board/${file.fileNum}">${file.oriName } </a>
+	                        <a class="dropdown-item" href="/fileDown/board/${file.id}">${file.oriName } </a>
 	                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
 	                      </c:forEach>
 
@@ -103,7 +103,7 @@
                   placeholder="Leave a comment here"></textarea>
               </div>
               <div class="mb-5">
-                <button type="button" id="b1" data-boardNum="${boardVO.num}" class="btn btn-success">댓글등록</button>
+                <button type="button" id="b1" data-boardNum="${boardVO.id}" class="btn btn-success">댓글등록</button>
               </div>
               <!-- 댓글 목록 -->
               <div>
@@ -146,8 +146,8 @@
               </div>
 
               <!-- 나중에 로그인한 사용자와 작성자가 일치하는지 검증 -->
-              <a href="/unknown/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a>
-              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.num}">글 삭제</button>
+              <a href="/unknown/update?id=${boardVO.id}" class="btn btn-danger">글 수정</a>
+              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>
             </div>
             <!-- End Page Content -->
 

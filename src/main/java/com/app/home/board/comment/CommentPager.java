@@ -10,7 +10,7 @@ public class CommentPager {
 	private Long perPage;
 	private Long totalPage;
 	
-	private Integer num;
+	private Integer boardId;
 	
 	public CommentPager() {
 		this.perPage=10L;

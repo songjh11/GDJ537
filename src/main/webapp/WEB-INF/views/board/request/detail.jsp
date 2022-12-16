@@ -54,7 +54,7 @@
 					                 </div>
 					                 <div class="col-fill ml-auto align-self-end mr-5">
 					                 	<div>
-					                      <p>작성자 ${boardVO.id }</p>
+					                      <p>작성자 ${boardVO.creator }</p>
 					                      <p>조회수 ${boardVO.hit} </p>
 					                    </div>
 										<p id="regdate" data-date="${boardVO.regDate}"> 등록일자  </p>
@@ -76,7 +76,7 @@
 			                    </button>
 					              <div class="dropdown-menu dropdown-menu-right">
 		                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
-			                        <a class="dropdown-item" href="/fileDown/board/${file.fileNum}">${file.oriName } </a>
+			                        <a class="dropdown-item" href="/fileDown/board/${file.id}">${file.oriName } </a>
 			                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
 			                      </c:forEach>
 		
@@ -94,14 +94,14 @@
 	            	</div>
 	            	
               <!-- 댓글 -->
-              <input type="hidden" name="id" id="commentIdInput" value="4321">
+              <input type="hidden" name="creator" id="commentIdInput" value="4321">
               <div class="mb-5">
                 <label for="contents" class="form-label">[요청] 댓글 쓰기</label>
                 <textarea class="form-control" id="contents" style="height: 100px"
                   placeholder="Leave a comment here"></textarea>
               </div>
               <div class="mb-5">
-                <button type="button" id="b1" data-boardNum="${boardVO.num}" class="btn btn-success">댓글등록</button>
+                <button type="button" id="b1" data-boardNum="${boardVO.id}" class="btn btn-success">댓글등록</button>
               </div>
               <!-- 댓글 목록 -->
               <div>
@@ -144,8 +144,8 @@
               </div>
 
               <!-- 나중에 로그인한 사용자와 작성자가 일치하는지 검증 -->
-              <a href="/unknown/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a>
-              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.num}">글 삭제</button>
+              <a href="/request/update?id=${boardVO.id}" class="btn btn-danger">글 수정</a>
+              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>
             </div>
             <!-- End Page Content -->
 

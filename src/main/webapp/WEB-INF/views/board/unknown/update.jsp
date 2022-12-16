@@ -55,12 +55,12 @@
                         value="${boardVO.num}" />
                       <label class="col-sm-2 col-form-label" for="id">수정자 사번</label>
                       <div class="col-sm-10">
-                        <input class="form-control-plaintext outline-none" id="id" name="id" type="text" value="1234" />
+                        <input class="form-control-plaintext outline-none" id="id" name="creator" type="text" value="1234" />
                       </div>
                   </div> --%>
                   <!-- 나중에 로그인한 사용자의 값이 오도록 수정 -->
-                  <input class="form-control-plaintext d-none" id="num" name="num" type="text" value="${boardVO.num}" />
-                  <input type="hidden" name="id" id="id" value="1234">
+                  <input class="form-control-plaintext d-none" id="num" name="id" type="text" value="${boardVO.id}" />
+                  <input type="hidden" name="creator" id="id" value="1234">
                   <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label" for="title">제목</label>
                     <div class="col-sm-10">
@@ -83,7 +83,7 @@
                   </c:forEach>
                   <div id="fileDiv" data-fileCnt="${fileCnt }">
                     <c:forEach var="files" items="${boardVO.fileVOs}" varStatus="st">
-                      <div class="mb-1 row" data-fileNum="${files.fileNum }">
+                      <div class="mb-1 row" data-fileNum="${files.id}">
                         <label class="col-sm-2 col-form-label justify-contents-end" for=""><button type="button"
                             class="btn btn-sm btn-danger" id="DelFileInput">파일삭제</button></label>
                         <div class="col-sm-10">

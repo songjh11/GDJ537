@@ -4,15 +4,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.app.home.file.FileDAO">
-	<insert id="setFile" parameterType="com.app.home.file.FileVO" useGeneratedKeys="true" keyProperty="num">
-		INSERT INTO FILE (FILENUM, NUM, FILENAME, ORINAME)
-		VALUES (0, #{num}, #{fileName}, #{oriName})
+	<insert id="setFile" parameterType="com.app.home.file.FileVO">
+		INSERT INTO FILE (ID, BOARDID, FILENAME, ORINAME)
+		VALUES (0, #{boardId}, #{fileName}, #{oriName})
 	</insert>
 	<select id="getFileDetail" parameterType="com.app.home.file.FileVO" resultType="com.app.home.file.FileVO">
-		SELECT * FROM FILE WHERE FILENUM = #{fileNum}
+		SELECT * FROM FILE WHERE id = #{id}
 	</select>
 	<delete id="setFileDelete" parameterType="com.app.home.file.FileVO">
-		DELETE FROM FILE WHERE FILENUM = #{fileNum}
+		DELETE FROM FILE WHERE ID = #{id}
 	</delete>
 	
 </mapper>    

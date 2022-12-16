@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.app.home.board.BoardDAO;
 import com.app.home.board.BoardVO;
+import com.app.home.board.reqcategory.ReqCategoryVO;
 import com.app.home.file.FileDAO;
 import com.app.home.file.FileVO;
 import com.app.home.util.FileManager;
@@ -34,7 +35,7 @@ public class RequestService {
 		boolean chkTitle = false;
 		boolean chkContents = false;
 		try {
-			chkId = boardVO.getId()!=null;
+			chkId = boardVO.getCreator()!=null;
 			chkTitle = boardVO.getTitle()!=null;
 			chkContents = boardVO.getContents()!=null;			
 		}catch(Exception exception) {
@@ -54,7 +55,7 @@ public class RequestService {
 	@Transactional(rollbackFor = Exception.class)
 	public int setRequest(BoardVO boardVO) throws Exception{
 		//sort에 2 (Request) 세팅
-		boardVO.setSort(2);
+		boardVO.setSort("요청");
 		
 		int result = boardDAO.setBoard(boardVO);
 		
@@ -65,7 +66,7 @@ public class RequestService {
 					String fileName = fileManager.saveFile(file, path);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
-					fileVO.setNum(boardVO.getNum());
+					fileVO.setBoardId(boardVO.getId());
 					
 					int result2 =fileDAO.setFile(fileVO);
 				}
@@ -93,7 +94,7 @@ public class RequestService {
 					String fileName = fileManager.saveFile(file, path);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
-					fileVO.setNum(boardVO.getNum());
+					fileVO.setBoardId(boardVO.getId());
 					
 					int result2 =fileDAO.setFile(fileVO);
 				}
@@ -114,5 +115,10 @@ public class RequestService {
 	
 	public int setHit(BoardVO boardVO) throws Exception {
 		return boardDAO.setHit(boardVO);
+	}
+	
+	public List<ReqCategoryVO> findReqCategory(ReqCategoryVO reqCategoryVO)throws Exception{
+		
+		return boardDAO.findReqCategory(reqCategoryVO);
 	}
 }

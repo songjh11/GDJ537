@@ -53,23 +53,30 @@
 				                <div class="mb-0 row">
 								  	<label class="col-sm-2 col-form-label" for="id">작성자 사번</label>
 								  	<div class="col-sm-10">
-								  		<input class="form-control-plaintext outline-none" id="id" name="id" type="text" value="1234"/>
+								  		<input class="form-control-plaintext outline-none" id="id" name="creator" type="text" value="1234"/>
 								  	</div>
 								</div>
 								<div class="mb-0 row">
 								  	<label class="col-sm-2 col-form-label" for="id">요청 부서</label>
 								  	<div class="col-sm-10">
-								  		<select name="depnum">
+								  		<select id="deptCate" name="depnum">
 								  			<option selected disabled>부서명</option>
 								  			<option value="1">영업팀</option>
 								  			<option value="2">총무팀</option>
 								  			<option value="3">인사팀</option>
 								  			<option value="4">IT개발팀</option>
 								  			<option value="5">생산팀</option>
-								  			
 								  		</select>
 								  	</div>
 								</div>
+								<div class="mb-0 row">
+									<label class="col-sm-2 col-form-label" for="id">요청 서식</label>
+									<div class="col-sm-10">
+										<select id="formCate" style="width: 40%;">
+											<option id="formOption">서식명</option>
+										</select>
+									</div>
+							    </div>
 								<div class="mb-3 row">
 				                	<label class="col-sm-2 col-form-label" for="title">제목</label>
 								  	<div class="col-sm-10">
@@ -113,6 +120,7 @@
 		<!-- End of Content Wrapper -->
 	</div>
     <script src="/js/boardAdd.js"></script>
+	<script src="/js/board/reqCategory.js"></script>
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 </body>

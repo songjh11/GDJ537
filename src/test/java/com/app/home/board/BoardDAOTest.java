@@ -31,7 +31,7 @@ class BoardDAOTest {
 			boardVO.setTitle("test" + i);
 			boardVO.setContents("test" + i);
 			boardVO.setDepnum(null);
-			boardVO.setSort(1);
+			boardVO.setSort("공지");
 			
 			noticeService.setNotice(boardVO);
 //			unknownService.setUnknownAdd(boardVO);

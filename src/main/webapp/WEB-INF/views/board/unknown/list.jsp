@@ -56,7 +56,6 @@
 					  	<div class="col-auto">
 						    <select class="form-control" name="kind" aria-label="Default select example">
 						    	<option value="title">제목</option>
-						    	<option value="contents">내용</option>
 						    </select>
 						  </div>
 						  <div class="input-group">
@@ -99,7 +98,7 @@
                   										  ">Anonymous ·</p>
                         <p class="regdate" data-date="${unknown.regDate }" style="display: inline-block;
                   												margin-bottom: 0;"></p>
-                        <a href="/unknown/hit?num=${unknown.num }">
+                        <a href="/unknown/hit?id=${unknown.id }">
                           <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 25px">${unknown.title
                             }</h5>
                         </a>
