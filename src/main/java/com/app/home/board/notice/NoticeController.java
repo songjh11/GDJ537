@@ -89,6 +89,7 @@ public class NoticeController {
 		
 		ModelAndView mv = new ModelAndView();
 		boardVO = noticeService.getDetail(boardVO);
+		log.info("보드 VO {}", boardVO);
 		mv.addObject("boardVO", boardVO);
 		mv.setViewName("board/notice/detail");
 		

@@ -15,7 +15,10 @@ import com.app.home.file.FileVO;
 import com.app.home.util.FileManager;
 import com.app.home.util.Pager;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class UnknownService {
 
 	@Autowired
@@ -42,9 +45,29 @@ public class UnknownService {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(file.getOriginalFilename()!="") {
 					FileVO fileVO = new FileVO();
-					String fileName = fileManager.saveFile(file, path);
+					String fileName = fileManager.saveFileS3(file);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
+					
+					long byte1 = file.getSize();
+					double kb = byte1 / 1024.0;
+					double mb = kb / 1024.0;
+					double gb = mb / 1024.0;
+					log.info("byte {} ,   kb   {},   mb   {}, gb    {}", byte1, kb, mb, gb);
+					
+					String filesize = byte1 +"byte";
+					
+					if(byte1 > 1000) {
+						filesize = Math.round(kb * 100) / 100 + "kb";
+						if(mb > 1000) {
+							filesize = Math.round(mb * 100) / 100  + "mb";
+							if(gb > 1000) {
+								filesize = gb +"gb";
+							}
+						}
+					}
+					
+					fileVO.setFileSize(filesize);
 					fileVO.setBoardId(boardVO.getId());
 
 					int result2 =fileDAO.setFile(fileVO);
@@ -69,7 +92,7 @@ public class UnknownService {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(!file.isEmpty()) {
 					FileVO fileVO = new FileVO();
-					String fileName = fileManager.saveFile(file, path);
+					String fileName = fileManager.saveFileS3(file);
 					fileVO.setFileName(fileName);
 					fileVO.setBoardId(boardVO.getId());
 					fileVO.setOriName(file.getOriginalFilename());

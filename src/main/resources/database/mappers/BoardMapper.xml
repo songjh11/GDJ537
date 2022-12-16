@@ -14,7 +14,7 @@
 
 	<select id="getDetail" parameterType="BoardVO"
 		resultMap="resultBoardAddfiles">
-		SELECT b.*,f.id, f.filename, f.oriname FROM BOARD b
+		SELECT b.*,f.id as fileid, f.filename, f.oriname FROM BOARD b
 		LEFT JOIN FILE f ON b.id = f.boardId WHERE b.id=#{id}
 	</select>
 
@@ -32,7 +32,7 @@
 
 		<collection property="fileVOs" javaType="List"
 			ofType="FileVO">
-			<id column="id" property="id" />
+			<id column="fileid" property="id" />
 			<result column="filename" property="fileName" />
 			<result column="oriname" property="oriName" />
 		</collection>

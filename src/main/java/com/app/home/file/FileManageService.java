@@ -3,7 +3,10 @@ package com.app.home.file;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.home.util.AmazonS3Service;
 import com.app.home.util.FileManager;
+
+import software.amazon.awssdk.services.s3.model.DeleteObjectResponse;
 
 @Service
 public class FileManageService {
@@ -25,6 +28,24 @@ public class FileManageService {
 			result = fileDAO.setFileDelete(fileVO);
 
 			boolean result2 = fileManager.deleteFile(fileVO, path);
+		}
+
+
+		return result;
+	}
+	
+	public int setFileDeleteS3(FileVO fileVO)throws Exception{
+		System.out.println("managerService");
+		fileVO = fileDAO.getFileDetail(fileVO);
+		int result = 0;
+
+		if(fileVO!=null) {
+			AmazonS3Service amazonS3Service = new AmazonS3Service();
+			
+			result = fileDAO.setFileDelete(fileVO);
+
+			DeleteObjectResponse result2 = amazonS3Service.delete(fileVO.getFileName(), "gdj537-yeyey");
+			System.out.println("delete result "+ result2.deleteMarker());			
 		}
 
 
