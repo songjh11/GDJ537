@@ -88,7 +88,7 @@
                        <!-- Approach -->
                         <div class="card shadow mb-4" style="height: 420px;">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">schedule list</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">나의 예약 목록</h6>
                             </div>
                             <div class="card-body">
                                 
@@ -139,7 +139,7 @@
                             <!-- Card Header - Dropdown -->
                             <div
                                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">schedule</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">예약 캘린더</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

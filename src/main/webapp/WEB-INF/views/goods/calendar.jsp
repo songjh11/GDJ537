@@ -72,7 +72,7 @@
 					    </div>
               <div style=" text-align: center;" class="mt-5">
                 <a href="/goods/room/roomList" class="btn btn-info">회의실 예약하기</a>
-                <a href="/goods/car/carList" class="btn btn-info">차량 예약하기</a>
+                <a href="/goods/car/carList" class="btn btn-success">출장 차량 예약하기</a>
               </div>
 	
 	            </div>
@@ -187,6 +187,9 @@
                * data 로 값이 넘어온다. log 값 전달.
                */
                events: data
+               
+
+               
               
                ,eventClick:function(data) {
                 
@@ -207,13 +210,9 @@
                     
                   }
               }
+
               
-              //  [{
-              //     title: 'All Day Event',
-              //     start: '2022-12-01 12:30:00',
-              //     end: '2022-12-03',
-              //     content : '메롱'
-              //   }] 
+               
               
           });
 

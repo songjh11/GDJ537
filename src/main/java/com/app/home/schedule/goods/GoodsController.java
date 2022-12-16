@@ -153,20 +153,32 @@ public class GoodsController {
          JSONArray jsonArr = new JSONArray();
          UserVO userVO = new UserVO();
          HashMap<String, Object> hash = new HashMap<>();
-         log.info("list -> {}",list.size());
-         log.info("ReserveVO -> room : {}, car : {}, vacation : {}",reserveVO.isRoom(),reserveVO.isCar(),reserveVO.isVacation());
          for (int i = 0; i < list.size(); i++) {
             if(depNum == "" || depNum == null) {
                
-               userVO.setId(list.get(i).getId());
-               userVO = userService.getMypage(userVO);
-               hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
-               hash.put("start", list.get(i).getStartTime());
-               hash.put("end", list.get(i).getEndTime());
+            	if(list.get(i).getGoodsId().substring(0,2).equals("RO")) {
+            		userVO.setId(list.get(i).getId());
+                    userVO = userService.getMypage(userVO);
+                    hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+                    hash.put("start", list.get(i).getStartTime());
+                    hash.put("end", list.get(i).getEndTime());
+                    hash.put("color", "#36b9cc");
+                    hash.put("content", userVO.getDepartmentVO().getDepName());
+                    hash.put("test1", userVO.getRoleVO().getRoleName());
+                    hash.put("test2", userVO.getName());
+				}else if(list.get(i).getGoodsId().substring(0,2).equals("CA")) {
+					   userVO.setId(list.get(i).getId());
+		               userVO = userService.getMypage(userVO);
+		               hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+		               hash.put("start", list.get(i).getStartTime());
+		               hash.put("end", list.get(i).getEndTime());
+		               hash.put("color", "#1cc88a");
+		               hash.put("content", userVO.getDepartmentVO().getDepName());
+		               hash.put("test1", userVO.getRoleVO().getRoleName());
+		               hash.put("test2", userVO.getName());
+		               
+				}
                
-               hash.put("content", userVO.getDepartmentVO().getDepName());
-               hash.put("test1", userVO.getRoleVO().getRoleName());
-               hash.put("test2", userVO.getName());
                
 //            hash.put("time", listAll.get(i).getScheduleTime());
 					jsonObj = new JSONObject(hash);
@@ -176,17 +188,33 @@ public class GoodsController {
 					userVO.setId(list.get(i).getId());
 					userVO = userService.getMypage(userVO);
 					if(userVO.getDepNum() == depNum1) {
-						hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
-						hash.put("start", list.get(i).getStartTime());
-						hash.put("end", list.get(i).getEndTime());
+						if(list.get(i).getGoodsId().substring(0,2).equals("RO")) {
 						
-						hash.put("content", userVO.getDepartmentVO().getDepName());
-						hash.put("test1", userVO.getRoleVO().getRoleName());
-						hash.put("test2", userVO.getName());
+							hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+							hash.put("start", list.get(i).getStartTime());
+							hash.put("end", list.get(i).getEndTime());
+							hash.put("color", "#36b9cc");
+							hash.put("content", userVO.getDepartmentVO().getDepName());
+							hash.put("test1", userVO.getRoleVO().getRoleName());
+							hash.put("test2", userVO.getName());
+							
+//		            hash.put("time", listAll.get(i).getScheduleTime());
+							jsonObj = new JSONObject(hash);
+							jsonArr.add(jsonObj);
+						}else if(list.get(i).getGoodsId().substring(0,2).equals("CA")) {
+							hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+							hash.put("start", list.get(i).getStartTime());
+							hash.put("end", list.get(i).getEndTime());
+							hash.put("color", "#1cc88a");
+							hash.put("content", userVO.getDepartmentVO().getDepName());
+							hash.put("test1", userVO.getRoleVO().getRoleName());
+							hash.put("test2", userVO.getName());
+							
+//		            hash.put("time", listAll.get(i).getScheduleTime());
+							jsonObj = new JSONObject(hash);
+							jsonArr.add(jsonObj);
+						}
 						
-//	            hash.put("time", listAll.get(i).getScheduleTime());
-						jsonObj = new JSONObject(hash);
-						jsonArr.add(jsonObj);
 					}else {
 						continue;
 					}
