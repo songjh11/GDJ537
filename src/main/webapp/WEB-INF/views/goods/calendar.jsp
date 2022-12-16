@@ -54,7 +54,7 @@
 	            <div class="container-fluid">
 	
 	            	<!-- Page Heading -->
-	            	<div id='calendar-container'>
+	            	  <div id='calendar-container'>
 		            	<input class="filter" id="room" type="checkbox" name="room"  checked>회의실
                   <input class="filter" id="car" type="checkbox" name="car" >차량
                   <input class="filter" id="vacation" type="checkbox" name="vacation">휴가
@@ -68,8 +68,12 @@
                     <option value="5">생산팀</option>
                   </select>
 						<!-- Calendar -->
-					    <div id='calendar'></div>
-					 </div>
+				  	    <div id='calendar'></div>
+					    </div>
+              <div style=" text-align: center;" class="mt-5">
+                <a href="/goods/room/roomList" class="btn btn-info">회의실 예약하기</a>
+                <a href="/goods/car/carList" class="btn btn-info">차량 예약하기</a>
+              </div>
 	
 	            </div>
 	            <!-- End Page Content -->
