@@ -117,7 +117,7 @@
    </delete>
    
    <delete id="setDismiss" parameterType="UserVO">
-      DELETE FROM USER WHERE ID=#{id}
+      UPDATE USER SET STATUS=2 WHERE ID=#{id}
    </delete>
    
    <update id="setRoleNumUpdate" parameterType="UserVO">

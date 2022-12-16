@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.home.file.FileVO;
-import com.app.home.user.DepartmentVO;
+import com.app.home.user.UserVO;
 
 import lombok.Data;
 
@@ -28,7 +28,7 @@ public class BoardVO {
 	
 	private Integer cntComment;
 	
-	
+	private UserVO userVO;
 
 
 }

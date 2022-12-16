@@ -128,7 +128,7 @@
             }
           });
       </script>
-      <script src="/js/boardUpdate2.js"></script>
+      <script src="/js/boardUpdate.js"></script>
       <!-- Scroll Top, Logout Modal import -->
       <c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
     </body>
