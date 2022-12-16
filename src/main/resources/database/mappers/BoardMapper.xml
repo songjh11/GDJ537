@@ -13,11 +13,11 @@
 	</insert>
 
 	<select id="getDetail" parameterType="BoardVO" resultMap="resultBoardAddfiles">
-		SELECT B.*,F.FILENUM, F.FILENAME, F.ORINAME
+		SELECT B.*,F.ID, F.FILENAME, F.ORINAME
 		FROM BOARD B
 		LEFT JOIN FILE F
-		ON B.NUM = F.NUM
-		WHERE B.NUM = #{num}
+		ON B.ID = F.BOARDID
+		WHERE B.ID = #{id}
 	</select>
 
 	<resultMap type="BoardVO" id="resultBoardAddfiles">
