@@ -103,7 +103,7 @@ AND
 
 <select id="getNoteDetail" resultType="NoteVO" parameterType="NoteVO">
 SELECT * FROM NOTE 
-WHERE NOTEnum = #{notenum}
+WHERE NOTENUM = #{noteNum}
 </select>
 	
 </mapper>    
