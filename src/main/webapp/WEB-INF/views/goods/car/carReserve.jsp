@@ -64,7 +64,7 @@
                           	<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p> <br>
 						</div>
                         
-                        <div class="mb-3">
+                        <div class="mb-5">
                            <label>반납날짜</label>
                            <input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput2">
                            <p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
