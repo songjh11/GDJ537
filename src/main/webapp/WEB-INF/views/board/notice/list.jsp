@@ -104,7 +104,7 @@
 											margin-bottom: 0;
 											color: #4E73DF;
     										font-weight: 600;
-										  ">${notice.creator} ·</p>
+										  ">${notice.userVO.name} ·</p>
 										  <p class="regdate" data-date="${notice.regDate }" style="display: inline-block;
 												margin-bottom: 0;"></p>
 			            				  <a href="/notice/hit?id=${notice.id }">
