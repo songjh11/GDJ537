@@ -215,6 +215,10 @@ public class GoodsController {
 			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(department.get(i)));
 		}
 		
+		for(int i=0;i<department.size();i++) {
+			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(department.get(i)));
+		}
+		
 		String result ="";
 		Set<String> reasonKeys = map.keySet();
 		
@@ -258,6 +262,10 @@ public class GoodsController {
 
 		for(int i=0;i<car.size();i++) {
 			map.put(car.get(i).getName(), goodsService.getreserveCount(car.get(i)));
+		}
+		
+		for(int i=0;i<department.size();i++) {
+			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentCarTotal(department.get(i)));
 		}
 		
 		for(int i=0;i<department.size();i++) {
