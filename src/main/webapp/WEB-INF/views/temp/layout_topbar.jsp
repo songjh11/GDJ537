@@ -191,7 +191,7 @@
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">${user.name}</span>
                                     <c:choose>
-				                    	<c:when test="${userVO.profile eq null}">
+				                    	<c:when test="${user.profile eq null}">
 				                    		<img class="img-profile rounded-circle" src="/img/user/user.webp"> 
 				                    	</c:when>
 				                    	<c:otherwise>
