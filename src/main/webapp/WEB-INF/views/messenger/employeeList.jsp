@@ -37,7 +37,7 @@
 														</li>
 														<ul class="acoArea">
 															<c:forEach items="${empList}" var="e">
-																<c:if test="${e.departmentVO.depNum eq d.depNum}">
+																<c:if test="${e.departmentVO.depnum eq d.depnum}">
 																	<c:if test="${e.id ne myId}">
 																	<li class="chatLi">
 																		<input type="hidden" id="email${e.id}" value="${e.email}">
@@ -204,12 +204,12 @@
 														<c:choose>
 															<c:when test="${p.pickVO.myId eq myId}">
 																<div class="btnArea">
-																	<button type="button" class="pickBtn" value="${p.id}" pickBtnNum="${p.id}"><img class="pickImg" src="/img/star (4).png"></button>
+																	<button type="button" class="pickBtn" value="${p.id}" pickBtnnum="${p.id}"><img class="pickImg" src="/img/star (4).png"></button>
 																</div>
 															</c:when>
 															<c:when test="${p.pickVO.myId ne myId}">
 																<div class="btnArea">
-																	<button type="button" class="pickBtn" value="${p.id}" pickBtnNum="${p.id}"><img class="pickImg" src="/img/star (3).png"></button>
+																	<button type="button" class="pickBtn" value="${p.id}" pickBtnnum="${p.id}"><img class="pickImg" src="/img/star (3).png"></button>
 																</div>
 															</c:when>
 														</c:choose>
@@ -231,7 +231,7 @@
 										</li>
 										<ul class="acoArea">
 											<c:forEach items="${empList}" var="e">
-												<c:if test="${e.departmentVO.depNum eq d.depNum}">
+												<c:if test="${e.departmentVO.depnum eq d.depnum}">
 													<c:if test="${e.id ne myId}">
 													<li class="chatLi">
 														<input type="hidden" id="email${e.id}" value="${e.email}">

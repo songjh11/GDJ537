@@ -46,7 +46,7 @@ public class CommentController {
 	@ResponseBody
 	public int setCommentUpdate(CommentVO commentVO) throws Exception {
 		int result = commentService.setCommentUpdate(commentVO);
-		//return "redirect:/comment/detail?num="+commentVO.getNum();
+		//return "redirect:/comment/detail?num="+commentVO.getnum();
 		return result;
 	}
 

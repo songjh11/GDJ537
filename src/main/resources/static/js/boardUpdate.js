@@ -19,7 +19,7 @@
  //파일이 Change됐을때
 $("#fileDiv").on("change", function(e) {
 	//ajax로 기존 파일 삭제 요청
-	 let filenum = ($(e.target).parent().parent().attr("data-fileNum"))
+	 let filenum = ($(e.target).parent().parent().attr("data-filenum"))
 		$.get("/fileDelete/board/"+filenum, function(data){
 	        if(data==1){
 				alert("첨부파일이 수정되었습니다.")
@@ -33,7 +33,7 @@ $("#fileDiv").on("change", function(e) {
 //파일삭제 버튼을 클릭
  $("#fileDiv").on("click", function(e) {
 	 if($(e.target).attr("id")=="DelFileInput"){
-		 let filenum = $(e.target).parent().parent().attr("data-fileNum")
+		 let filenum = $(e.target).parent().parent().attr("data-filenum")
 		 console.log(filenum)
 		 //ajax로 파일 삭제 요청
 		 $.get("/fileDelete/board/"+filenum, function(data){

@@ -11,7 +11,7 @@ import lombok.Data;
 public class RoomVO {
 
 	// 채팅방 번호
-	private Integer roomNum;
+	private Integer roomnum;
 	// 채팅방 생성일자
 	private Date regDate;
 	// 채팅방 이름
@@ -27,7 +27,7 @@ public class RoomVO {
 	private List<EmployeeVO> employeeVOs;
 	
 //	public String toString() {
-//		return "Room[roomNum="+roomNum+", roomName="+roomName+"]";
+//		return "Room[roomnum="+roomnum+", roomName="+roomName+"]";
 //	}
 	
 }

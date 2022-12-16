@@ -26,8 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 public class UserVO implements UserDetails {
 
 	private int id;
-	private int roleNum;
-	private int depNum;
+	private int rolenum;
+	private int depnum;
     @Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}")
 	private String pw;
 	private String name;

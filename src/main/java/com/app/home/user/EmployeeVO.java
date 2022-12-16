@@ -13,8 +13,8 @@ public class EmployeeVO {
 
 	private int num;
 	private int id;
-	private int depNum;
-	private int roleNum;
+	private int depnum;
+	private int rolenum;
 	private String pw;
 	private String name;
 	private String email;

@@ -76,7 +76,7 @@
 					  </div>
 					  <div class="mb-3" style="display: none;" id="carChecked">
 						<label for="exampleInputLocation" class="form-label">차량 번호</label>
-						<input type="text" class="form-control" id="carNum" name="carNum">
+						<input type="text" class="form-control" id="carnum" name="carnum">
 					  </div>
 					  <div class="board-filetitle">이미지 첨부  
 			          	<div class="mb-3" id="fileAddResult">      

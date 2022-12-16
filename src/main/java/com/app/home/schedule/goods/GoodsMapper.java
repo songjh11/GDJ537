@@ -21,9 +21,9 @@ public interface GoodsMapper
 
 	public int setUpdate(GoodsVO goodsVO) throws Exception;
 	
-	public GoodsFileVO getFileNumCheck(GoodsFileVO goodsFileVO) throws Exception;
+	public GoodsFileVO getFilenumCheck(GoodsFileVO goodsFileVO) throws Exception;
 	
-	public int setFileNumCheckDelete(GoodsFileVO goodsFileVO) throws Exception;
+	public int setFilenumCheckDelete(GoodsFileVO goodsFileVO) throws Exception;
 	
 	public List<GoodsVO> getRoomList() throws Exception;
 	
