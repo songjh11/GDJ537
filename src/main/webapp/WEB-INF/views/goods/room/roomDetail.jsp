@@ -66,18 +66,11 @@ ul li {
 						<br>
 						<br>
 						<ul>
-							<li>
-								<img class="de" src="/file/goods/${goodDetail.goodsFileVO[0].fileName }"
-									alt="${goodDetail.goodsFileVO[0].oriName }">
-							</li>
-							<li>
-								<img class="de" src="/file/goods/${goodDetail.goodsFileVO[1].fileName }"
-									alt="${goodDetail.goodsFileVO[1].oriName }">
-							</li>
-							<li>
-								<img class="de" src="/file/goods/${goodDetail.goodsFileVO[2].fileName }"
-									alt="${goodDetail.goodsFileVO[2].oriName }">
-							</li>
+							<c:forEach items="${goodDetail.goodsFileVO}" var="goods">
+								<li>
+									<img class="de" src="/file/goods/${goods.fileName}" alt="">
+								</li>
+							</c:forEach>
 						</ul>
 						<br>
 					</section>
