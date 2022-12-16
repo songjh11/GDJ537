@@ -69,9 +69,9 @@
                                     <tbody>
                                     <c:forEach items="${reportApplyVOs }" var="list">
                                     	<tr>
-                                    		<td>${list.applyNum }</td>
+                                    		<td>${list.applynum }</td>
                                     		<td>${list.id }</td>
-                                    		<td>${list.reportNum }</td>
+                                    		<td>${list.reportnum }</td>
                                     	</tr>
                                     </c:forEach>
                                         <tr>

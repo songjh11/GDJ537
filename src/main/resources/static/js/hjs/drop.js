@@ -6,17 +6,17 @@ $(".deptLi").click(function(){
 
     console.log('dd',$(this));
 
-    $(this).attr("data-depNum");
-    $("#dropId").val($(this).attr("data-depNum"));
+    $(this).attr("data-depnum");
+    $("#dropId").val($(this).attr("data-depnum"));
 
-    console.log($("#dropId").val($(this).attr("data-depNum")));
+    console.log($("#dropId").val($(this).attr("data-depnum")));
 
-    const di = $(this).attr("data-depNum");
+    const di = $(this).attr("data-depnum");
 
     console.log("di ==> " ,di);
 
     $("#dropId").val(di);
-    let value = $(".deptLi").attr("data-depNum");
+    let value = $(".deptLi").attr("data-depnum");
     console.log("value ==> " , value);
 
     console.log($(this).text());
@@ -24,7 +24,7 @@ $(".deptLi").click(function(){
     $("#depInput").val($(this).text());
 
     
-    // $("#depInput").val($(".deptLi").prop("data-depNum").text());
+    // $("#depInput").val($(".deptLi").prop("data-depnum").text());
 });
 
 
@@ -36,12 +36,12 @@ $(".roleLi").click(function(){
 
     console.log('rr',$(this));
 
-    $(this).attr("data-roleNum");
-    $("#roleId").val($(this).attr("data-roleNum"));
+    $(this).attr("data-rolenum");
+    $("#roleId").val($(this).attr("data-rolenum"));
 
-    console.log($("#roleId").val($(this).attr("data-roleNum")));
+    console.log($("#roleId").val($(this).attr("data-rolenum")));
 
-    let ri = $(this).attr("data-roleNum");
+    let ri = $(this).attr("data-rolenum");
 
     console.log("ri ==> " , ri);
 
@@ -75,18 +75,18 @@ $("#tbd").on("click", "#statusBtn", function(event){
     // console.log("아이디:::" ,$("#tbd").find("#tdId").text());
 
     console.log("내 아이디  : ", $(this).attr("data-name"));
-    console.log("내 depNum :  ", $(this).attr("data-depNum"));
+    console.log("내 depnum :  ", $(this).attr("data-depnum"));
 
     let name = $(this).attr("data-name");
 
-    let depNum = $(this).attr("data-depNum");
+    let depnum = $(this).attr("data-depnum");
 
     $.ajax({
         type: 'POST',
         url:  '/report/insa',
         data:{
             id : name,
-            depNum : depNum
+            depnum : depnum
         },
 
         success:function(){

@@ -107,8 +107,8 @@ public class RequestService {
 	public List<BoardVO> getRequestList(Pager pager) throws Exception {
 		
 		Long totalCount = boardDAO.getTotalCount(pager);
-		pager.getNum(totalCount);
-		pager.getRowNum();
+		pager.getnum(totalCount);
+		pager.getRownum();
 		
 		return boardDAO.getList(pager);
 	}

@@ -70,8 +70,8 @@
                      <c:forEach items="${list}" var="userVO">
                      <tr>
                         <th scope="row">${userVO.id}</th>
-                        <td class="showUser1" data-user="roleNum" data-bs-toggle="modal" data-bs-target="#exampleModalR" >${userVO.roleVO.roleName}</td>
-                        <td class="showUser1" data-user="depNum"  data-bs-toggle="modal" data-bs-target="#exampleModalD" >${userVO.departmentVO.depName}</td>
+                        <td class="showUser1" data-user="rolenum" data-bs-toggle="modal" data-bs-target="#exampleModalR" >${userVO.roleVO.roleName}</td>
+                        <td class="showUser1" data-user="depnum"  data-bs-toggle="modal" data-bs-target="#exampleModalD" >${userVO.departmentVO.depName}</td>
                         <td class="showUser" data-user="name">${userVO.name}</td>
                         <td class="showUser" data-user="email">${userVO.email}</td>
                         <td class="showUser" data-user="phone">${userVO.phone}</td>
@@ -93,7 +93,7 @@
 				      </div>
 				      <div class="modal-body">
 				      	<c:forEach items="${listR}" var="roleVO">
-				        <center><button type="button" class="btn btn-primary roleNumUpdate" data-bs-dismiss="modal" data-rolenum=${roleVO.roleNum }>${roleVO.roleName}</button><br><br></center>
+				        <center><button type="button" class="btn btn-primary rolenumUpdate" data-bs-dismiss="modal" data-rolenum=${roleVO.rolenum }>${roleVO.roleName}</button><br><br></center>
 				        </c:forEach>
 				      </div>
 				      <div class="modal-footer">
@@ -113,7 +113,7 @@
 				      </div>
 				      <div class="modal-body">
 				      	<c:forEach items="${listD}" var="departmentVO">
-				        <center><button type="button" class="btn btn-primary depNumUpdate" data-bs-dismiss="modal" data-depnum=${departmentVO.depNum }>${departmentVO.depName}</button><br><br></center>
+				        <center><button type="button" class="btn btn-primary depnumUpdate" data-bs-dismiss="modal" data-depnum=${departmentVO.depnum }>${departmentVO.depName}</button><br><br></center>
 				        </c:forEach>
 				      </div>
 				      <div class="modal-footer">

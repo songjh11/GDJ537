@@ -7,7 +7,7 @@ import com.app.home.report.ReportApplyVO;
 public class ReportVacaVO extends ReportApplyVO {
 	
 	private Long rnum;
-	private Long applyNum;
+	private Long applynum;
 	private Long category;
 	private String text;
 	private String period;
@@ -20,11 +20,11 @@ public class ReportVacaVO extends ReportApplyVO {
 	public void setRnum(Long rnum) {
 		this.rnum = rnum;
 	}
-	public Long getApplyNum() {
-		return applyNum;
+	public Long getApplynum() {
+		return applynum;
 	}
-	public void setApplyNum(Long applyNum) {
-		this.applyNum = applyNum;
+	public void setApplynum(Long applynum) {
+		this.applynum = applynum;
 	}
 	public Long getCategory() {
 		return category;

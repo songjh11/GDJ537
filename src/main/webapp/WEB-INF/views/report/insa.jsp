@@ -53,13 +53,13 @@
 						 </button>
 					 
 					  <div class="dropdown-menu">
-			              <input id="dropId" name="depNum" > 
+			              <input id="dropId" name="depnum" > 
 						   <ul>
-						   		<li class="deptLi" data-depNum="1">영업팀</li>
-						   		<li class="deptLi" data-depNum="2">총무팀</li>
-						   		<li class="deptLi" data-depNum="3">인사팀</li>
-						   		<li class="deptLi" data-depNum="4">IT개발팀</li>
-						   		<li class="deptLi" data-depNum="5">생산팀</li>
+						   		<li class="deptLi" data-depnum="1">영업팀</li>
+						   		<li class="deptLi" data-depnum="2">총무팀</li>
+						   		<li class="deptLi" data-depnum="3">인사팀</li>
+						   		<li class="deptLi" data-depnum="4">IT개발팀</li>
+						   		<li class="deptLi" data-depnum="5">생산팀</li>
 						   </ul>
 					  </div>
 				</div>
@@ -70,14 +70,14 @@
 					   <input type="text" id="roleInput" readonly value="">
 					 </button>
 					  <div class="dropdown-menu">
-					  	<input id="roleId" name="roleNum" value="${userVO.roleNum}"> 
+					  	<input id="roleId" name="rolenum" value="${userVO.rolenum}"> 
 						   <ul>
-						   		<li class="roleLi" data-roleNum="1">사장</li>
-						   		<li class="roleLi" data-roleNum="2">부장</li>
-						   		<li class="roleLi" data-roleNum="3">과장</li>
-						   		<li class="roleLi" data-roleNum="4">대리</li>
-						   		<li class="roleLi" data-roleNum="5">주임</li>
-						   		<li class="roleLi" data-roleNum="7">사원</li>
+						   		<li class="roleLi" data-rolenum="1">사장</li>
+						   		<li class="roleLi" data-rolenum="2">부장</li>
+						   		<li class="roleLi" data-rolenum="3">과장</li>
+						   		<li class="roleLi" data-rolenum="4">대리</li>
+						   		<li class="roleLi" data-rolenum="5">주임</li>
+						   		<li class="roleLi" data-rolenum="7">사원</li>
 						   </ul>
 					  </div>
 				</div>
@@ -133,12 +133,12 @@
 <script>
     $('#listBtn').click(function() {
 
-    	let depNum = $("#dropId").val();
-    	let roleNum = $("#roleId").val();
+    	let depnum = $("#dropId").val();
+    	let rolenum = $("#roleId").val();
     	let value = $("#roleInput").val();
             $.ajax({
                 type: 'GET',
-                url:  '/report/insa1?depNum='+depNum+'&roleNum='+roleNum,
+                url:  '/report/insa1?depnum='+depnum+'&rolenum='+rolenum,
             }).done(function(dd){
                 	console.log(dd)
                 	$("#thd").empty();
@@ -148,7 +148,7 @@
                 		
               
                 			
-	                	$("#tbd").append('<tr><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+dd[i].depNum+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'">부여</button></td></tr>')
+	                	$("#tbd").append('<tr><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+dd[i].depnum+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depnum="'+dd[i].depnum+'" data-name="'+dd[i].id+'">부여</button></td></tr>')
                 	
                 		
                 		

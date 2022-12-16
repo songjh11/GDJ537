@@ -28,9 +28,9 @@ public class NoteService {
 		countMap.put("search", notePager.getSearch());
 		countMap.put("kind", notePager.getKind());
 		
-		notePager.getRowNum();
+		notePager.getRownum();
 		Long totalCount = noteMapper.getSendNoteListCount(countMap);
-		notePager.getNum(totalCount);
+		notePager.getnum(totalCount);
 		notePager.setPerPage(8L);
 		
 		Map<String, Object> map = new HashMap<>();
@@ -51,9 +51,9 @@ public class NoteService {
 		countMap.put("search", notePager.getSearch());
 		countMap.put("kind", notePager.getKind());
 		
-		notePager.getRowNum();
+		notePager.getRownum();
 		Long totalCount = noteMapper.getReceiveNoteListCount(countMap);
-		notePager.getNum(totalCount);
+		notePager.getnum(totalCount);
 		notePager.setPerPage(8L);
 //		log.info("============= : {}", totalCount);
 		

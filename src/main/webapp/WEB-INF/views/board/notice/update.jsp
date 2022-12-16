@@ -80,7 +80,7 @@
                     </c:forEach>
                     <div id="fileDiv" data-fileCnt="${fileCnt }">
                       <c:forEach var="files" items="${boardVO.fileVOs}" varStatus="st">
-                        <div class="mb-1 row" data-fileNum="${files.id }">
+                        <div class="mb-1 row" data-filenum="${files.id }">
                           <label class="col-sm-2 col-form-label justify-contents-end" for=""><button type="button"
                               class="btn btn-sm btn-danger" id="DelFileInput">파일삭제</button></label>
                           <div class="col-sm-10">

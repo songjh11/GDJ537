@@ -12,30 +12,30 @@
 	<!-- ============== 한종석 ================ -->
 	
 	<select id="getReportList" parameterType="userVO" resultMap="getListResult" >
-		SELECT  U.ID, U.NAME, U.ROLENUM , U.DEPNUM, R.ROLENAME
+		SELECT  U.ID, U.NAME, U.ROLEnum , U.DEPnum, R.ROLENAME
 			FROM USER U
 			INNER JOIN
 				ROLE R 
-				ON R.ROLENUM = U.ROLENUM 
+				ON R.ROLEnum = U.ROLEnum 
 				INNER JOIN
 				DEPARTMENT D 
-				ON U.DEPNUM = D.DEPNUM 
-				WHERE U.DEPNUM = #{depNum} AND U.ROLENUM = #{roleNum}
+				ON U.DEPnum = D.DEPnum 
+				WHERE U.DEPnum = #{depnum} AND U.ROLEnum = #{rolenum}
 	</select>
 	
 	<resultMap type="UserVO" id="getListResult">
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
-		<result column="roleNum" property="roleNum"/>
-		<result column="depNum" property="depNum"/>
+		<result column="rolenum" property="rolenum"/>
+		<result column="depnum" property="depnum"/>
 		
 		<association property="roleVO" javaType="RoleVO">
-			<id column="roleNum" property="roleNum"/>
+			<id column="rolenum" property="rolenum"/>
 			<result column="roleName" property="roleName"/>
 		</association>
 		
 		<association property="departmentVO" javaType="DepartmentVO">
-			<id column="depNum" property="depNum"/>
+			<id column="depnum" property="depnum"/>
 		</association>
 		
 	</resultMap>
@@ -47,7 +47,7 @@
 	
 	<!-- 팀장(부장)이 휴가를 가거나 공석일 때 그 팀에서 대표자를 정해야되기 때문에 맴버테이블에서 승인자 테이블로 INSERT해준다 -->
 	<insert id="setLicenserAdd" parameterType="UserVO">
-		INSERT INTO REPORTLICENSER (LICENSERNUM, DEPNUM, ID, LSTATUS) VALUES (null, #{depNum}, #{id}, 0)
+		INSERT INTO REPORTLICENSER (LICENSERnum, DEPnum, ID, LSTATUS) VALUES (null, #{depnum}, #{id}, 0)
 	</insert>
 	
 	<!-- 승인권한을 가진사람들 모두 조회 -->
@@ -62,10 +62,10 @@
 	
 	
 	<insert id="selectPay" parameterType="ReportPayVO">
-		SELECT * FROM REPORTPAY VALUES() WHERE APPLYNUM = #{applyNum}
+		SELECT * FROM REPORTPAY VALUES() WHERE APPLYnum = #{applynum}
 	</insert>
 	<insert id="selectSorry" parameterType="ReportSorryVO">
-		SELECT * FROM REPORTSORRY VALUES() WHERE APPLYNUM = #{applyNum}
+		SELECT * FROM REPORTSORRY VALUES() WHERE APPLYnum = #{applynum}
 	</insert>
 	
 	
@@ -83,7 +83,7 @@
 		REPORTLICENCES RL
 		INNER JOIN
 		REPORTAPPLY RA
-		ON RL.DEPNUM = RA.DEPNUM
+		ON RL.DEPnum = RA.DEPnum
 		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=#{id}
 	</select>
 	
@@ -92,7 +92,7 @@
 		REPORTLICENCES RL
 		INNER JOIN
 		REPORTAPPLY RA
-		ON RL.DEPNUM = RA.DEPNUM
+		ON RL.DEPnum = RA.DEPnum
 		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=#{id}
 	</select>
 	
@@ -101,7 +101,7 @@
 		REPORTLICENCES RL
 		INNER JOIN
 		REPORTAPPLY RA
-		ON RL.DEPNUM = RA.DEPNUM
+		ON RL.DEPnum = RA.DEPnum
 		WHERE RA.STATUS = 0 AND RL.ID=#{id}
 	</select>
 	
@@ -110,20 +110,20 @@
 		REPORTLICENCES RL
 		INNER JOIN
 		REPORTAPPLY RA
-		ON RL.DEPNUM = RA.DEPNUM
+		ON RL.DEPnum = RA.DEPnum
 		WHERE RA.STATUS = 2 AND RL.ID=#{id}
 	</select>
 	
 	<resultMap type="ReportVO" id="getFinishReportResult">
-		<id column="LICENSERNUM" property="licenserNum"/>
-		<result column="DEPNUM" property="depNum"/>
+		<id column="LICENSERnum" property="licensernum"/>
+		<result column="DEPnum" property="depnum"/>
 		<result column="ID" property="id"/>
 		<result column="STATUS" property="lstatus"/>
 			<collection property="reportApplyVOs" javaType="List" ofType="ReportApplyVO">
-				<id column="APPLYNUM" property="applyNum"/>
+				<id column="APPLYnum" property="applynum"/>
 				<result column="ID" property="id"/>
-				<result column="DEPNUM" property="depNum"/>
-				<result column="REPORTNUM" property="reportNum"/>
+				<result column="DEPnum" property="depnum"/>
+				<result column="REPORTnum" property="reportnum"/>
 				<result column="STATUS" property="status"/>
 				<result column="RETURNS" property="returns"/>
 				<result column="APDATE" property="apDate"/>
@@ -138,7 +138,7 @@
 	<select id="getMyVacaList" parameterType="ReportPager" resultType="ReportVacaVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
-		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM 
+		INNER JOIN REPORTVACA r2 ON r.APPLYnum = r2.APPLYnum 
 		where r.id = #{id};
 	</select>
 	
@@ -146,7 +146,7 @@
 	<select id="getMySorryList" parameterType="ReportPager" resultType="ReportSorryVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
-		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		INNER JOIN REPORTSORRY r2 ON r.APPLYnum = r2.APPLYnum 
 		where r.id = #{id};
 	</select>
 	
@@ -154,7 +154,7 @@
 	<select id="getMyWorkList" parameterType="ReportPager" resultType="ReportWorkVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
-		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM 
+		INNER JOIN REPORTWORK r2 ON r.APPLYnum = r2.APPLYnum 
 		where r.id = #{id};
 	</select>
 	
@@ -162,7 +162,7 @@
 	<select id="getMyPayList" parameterType="ReportPager" resultType="ReportPayVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r
-		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM 
+		INNER JOIN REPORTPAY r2 ON r.APPLYnum = r2.APPLYnum 
 		where r.id = #{id};
 	</select>
 	
@@ -171,29 +171,29 @@
 	<select id="getMyVacaDetail" parameterType="ReportApplyVO" resultType="ReportVacaVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN REPORTVACA r2 ON r.APPLYNUM = r2.APPLYNUM
-		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+		INNER JOIN REPORTVACA r2 ON r.APPLYnum = r2.APPLYnum
+		where r.ID = #{id} and r.APPLYnum = #{applynum};
 	</select>
 	
 	<select id="getMyPayDetail" parameterType="ReportApplyVO" resultType="ReportPayVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM
-		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+		INNER JOIN REPORTPAY r2 ON r.APPLYnum = r2.APPLYnum
+		where r.ID = #{id} and r.APPLYnum = #{applynum};
 	</select>
 	
 	<select id="getMyWorkDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM
-		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+		INNER JOIN REPORTWORK r2 ON r.APPLYnum = r2.APPLYnum
+		where r.ID = #{id} and r.APPLYnum = #{applynum};
 	</select>
 	
 	<select id="getMySorryDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
-		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM
-		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+		INNER JOIN REPORTSORRY r2 ON r.APPLYnum = r2.APPLYnum
+		where r.ID = #{id} and r.APPLYnum = #{applynum};
 	</select>
 	
 	<!-- ==================================== -->

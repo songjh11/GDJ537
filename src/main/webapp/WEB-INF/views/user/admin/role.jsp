@@ -64,7 +64,7 @@
                   <tbody class="table-group-divider">
                      <c:forEach items="${list}" var="roleVO">
                      <tr>
-                        <th scope="row">${roleVO.roleNum}</th>
+                        <th scope="row">${roleVO.rolenum}</th>
                         <td class="showRole" data-role="roleName">${roleVO.roleName}</td>
                         <td class="roleDel"><a href="#">삭제</a></td>
                      </tr>

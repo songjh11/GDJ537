@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class ReportPager {
 	private Long page;
-	private Long startNum;
-	private Long lastNum;
+	private Long startnum;
+	private Long lastnum;
 	private Long perPage;
 	private Long perBlock;
 	private Long totalPage;
@@ -46,7 +46,7 @@ public class ReportPager {
 	}
 	
 	//jsp 에서 쓸 startnum
-	public void getNum(Long totalCount) throws Exception{
+	public void getnum(Long totalCount) throws Exception{
 		//1. 받은 totalCount로 전체 페이지 구하기
 		Long totalPage = totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage() != 0) {
@@ -68,11 +68,11 @@ public class ReportPager {
 		}
 		
 		//4. Curblock으로 시작번호 및 끝번호
-		this.startNum = (curBlock-1)*this.getPerBlock()+1;
-		this.lastNum = curBlock*this.getPerBlock();
+		this.startnum = (curBlock-1)*this.getPerBlock()+1;
+		this.lastnum = curBlock*this.getPerBlock();
 		
 		if(curBlock == totalBlock) {
-			this.lastNum = totalPage;
+			this.lastnum = totalPage;
 		}
 		
 		if(curBlock > 1) {

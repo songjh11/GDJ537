@@ -85,7 +85,7 @@
 									  <p class="mb-1 text-muted" data-item-num="${ca.goodsId}">최대 정원 : ${ca.max}명</p>
 									  <p class="card-text mb-auto" data-item-num="${ca.goodsId}">상세설명 : ${ca.contents}</p>
 									  <p class="card-text mb-auto" data-item-num="${ca.goodsId}">위치 : ${ca.location}</P>
-									  <p class="card-text mb-auto" data-item-num="${ca.goodsId}">차량 번호 : ${ca.carNum}</P>
+									  <p class="card-text mb-auto" data-item-num="${ca.goodsId}">차량 번호 : ${ca.carnum}</P>
 									  
 									</div>
 									<div class="col-auto d-none d-lg-block white" data-item-num="${ca.goodsId}">

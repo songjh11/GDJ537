@@ -57,17 +57,17 @@
 							<tbody>
 								<c:forEach items="${list}" var="reportVO">
 								
-								<input type="text" id="depNumId" value="">
+								<input type="text" id="depnumId" value="">
 								
 								
 								<div id="listDiv">
-									<input id="depId" name="depNum">
+									<input id="depId" name="depnum">
 										<ul>
-									   		<li class="deptLi" data-depNum="1">영업팀</li>
-									   		<li class="deptLi" data-depNum="2">총무팀</li>
-									   		<li class="deptLi" data-depNum="3">인사팀</li>
-									   		<li class="deptLi" data-depNum="4">IT개발팀</li>
-									   		<li class="deptLi" data-depNum="5">생산팀</li>
+									   		<li class="deptLi" data-depnum="1">영업팀</li>
+									   		<li class="deptLi" data-depnum="2">총무팀</li>
+									   		<li class="deptLi" data-depnum="3">인사팀</li>
+									   		<li class="deptLi" data-depnum="4">IT개발팀</li>
+									   		<li class="deptLi" data-depnum="5">생산팀</li>
 							   			</ul>
 								</div>
 								

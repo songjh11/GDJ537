@@ -7,7 +7,7 @@ import com.app.home.report.ReportApplyVO;
 public class ReportPayVO extends ReportApplyVO {
 	
 	private Long rnum;
-	private Long applyNum;
+	private Long applynum;
 	private String title;
 	private String wdate;
 	private String cdate;
@@ -24,11 +24,11 @@ public class ReportPayVO extends ReportApplyVO {
 	public void setRnum(Long rnum) {
 		this.rnum = rnum;
 	}
-	public Long getApplyNum() {
-		return applyNum;
+	public Long getApplynum() {
+		return applynum;
 	}
-	public void setApplyNum(Long applyNum) {
-		this.applyNum = applyNum;
+	public void setApplynum(Long applynum) {
+		this.applynum = applynum;
 	}
 	public String getTitle() {
 		return title;

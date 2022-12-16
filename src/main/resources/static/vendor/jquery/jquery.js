@@ -499,7 +499,7 @@ if ( typeof Symbol === "function" ) {
 }
 
 // Populate the class2type map
-jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
+jQuery.each( "Boolean number String Function Array Date RegExp Object Error Symbol".split( " " ),
 	function( _i, name ) {
 		class2type[ "[object " + name + "]" ] = name.toLowerCase();
 	} );
@@ -970,7 +970,7 @@ function addHandle( attrs, handler ) {
  * Checks document order of two siblings
  * @param {Element} a
  * @param {Element} b
- * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
+ * @returns {number} Returns less than 0 if a precedes b, greater than 0 if a follows b
  */
 function siblingCheck( a, b ) {
 	var cur = b && a,
@@ -4693,7 +4693,7 @@ jQuery.fn.extend( {
 } );
 var pnum = ( /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/ ).source;
 
-var rcssNum = new RegExp( "^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i" );
+var rcssnum = new RegExp( "^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i" );
 
 
 var cssExpand = [ "Top", "Right", "Bottom", "Left" ];
@@ -4750,12 +4750,12 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 				return jQuery.css( elem, prop, "" );
 			},
 		initial = currentValue(),
-		unit = valueParts && valueParts[ 3 ] || ( jQuery.cssNumber[ prop ] ? "" : "px" ),
+		unit = valueParts && valueParts[ 3 ] || ( jQuery.cssnumber[ prop ] ? "" : "px" ),
 
 		// Starting value computation is required for potential unit mismatches
 		initialInUnit = elem.nodeType &&
-			( jQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
-			rcssNum.exec( jQuery.css( elem, prop ) );
+			( jQuery.cssnumber[ prop ] || unit !== "px" && +initial ) &&
+			rcssnum.exec( jQuery.css( elem, prop ) );
 
 	if ( initialInUnit && initialInUnit[ 3 ] !== unit ) {
 
@@ -6692,11 +6692,11 @@ var
 		fontWeight: "400"
 	};
 
-function setPositiveNumber( _elem, value, subtract ) {
+function setPositivenumber( _elem, value, subtract ) {
 
 	// Any relative (+/-) values have already been
 	// normalized at this point
-	var matches = rcssNum.exec( value );
+	var matches = rcssnum.exec( value );
 	return matches ?
 
 		// Guard against undefined "subtract", e.g., when used as in cssHooks
@@ -6866,7 +6866,7 @@ jQuery.extend( {
 	},
 
 	// Don't automatically add "px" to these possibly-unitless properties
-	cssNumber: {
+	cssnumber: {
 		"animationIterationCount": true,
 		"columnCount": true,
 		"fillOpacity": true,
@@ -6922,7 +6922,7 @@ jQuery.extend( {
 			type = typeof value;
 
 			// Convert "+=" or "-=" to relative numbers (#7345)
-			if ( type === "string" && ( ret = rcssNum.exec( value ) ) && ret[ 1 ] ) {
+			if ( type === "string" && ( ret = rcssnum.exec( value ) ) && ret[ 1 ] ) {
 				value = adjustCSS( elem, name, ret );
 
 				// Fixes bug #9237
@@ -6938,7 +6938,7 @@ jQuery.extend( {
 			// The isCustomProp check can be removed in jQuery 4.0 when we only auto-append
 			// "px" to a few hardcoded values.
 			if ( type === "number" && !isCustomProp ) {
-				value += ret && ret[ 3 ] || ( jQuery.cssNumber[ origName ] ? "" : "px" );
+				value += ret && ret[ 3 ] || ( jQuery.cssnumber[ origName ] ? "" : "px" );
 			}
 
 			// background-* props affect original clone's values
@@ -7069,14 +7069,14 @@ jQuery.each( [ "height", "width" ], function( _i, dimension ) {
 			}
 
 			// Convert to pixels if value adjustment is needed
-			if ( subtract && ( matches = rcssNum.exec( value ) ) &&
+			if ( subtract && ( matches = rcssnum.exec( value ) ) &&
 				( matches[ 3 ] || "px" ) !== "px" ) {
 
 				elem.style[ dimension ] = value;
 				value = jQuery.css( elem, dimension );
 			}
 
-			return setPositiveNumber( elem, value, subtract );
+			return setPositivenumber( elem, value, subtract );
 		}
 	};
 } );
@@ -7118,7 +7118,7 @@ jQuery.each( {
 	};
 
 	if ( prefix !== "margin" ) {
-		jQuery.cssHooks[ prefix + suffix ].set = setPositiveNumber;
+		jQuery.cssHooks[ prefix + suffix ].set = setPositivenumber;
 	}
 } );
 
@@ -7162,7 +7162,7 @@ Tween.prototype = {
 		this.options = options;
 		this.start = this.now = this.cur();
 		this.end = end;
-		this.unit = unit || ( jQuery.cssNumber[ prop ] ? "" : "px" );
+		this.unit = unit || ( jQuery.cssnumber[ prop ] ? "" : "px" );
 	},
 	cur: function() {
 		var hooks = Tween.propHooks[ this.prop ];
@@ -7665,7 +7665,7 @@ jQuery.Animation = jQuery.extend( Animation, {
 	tweeners: {
 		"*": [ function( prop, value ) {
 			var tween = this.createTween( prop, value );
-			adjustCSS( tween.elem, prop, rcssNum.exec( value ), tween );
+			adjustCSS( tween.elem, prop, rcssnum.exec( value ), tween );
 			return tween;
 		} ]
 	},
@@ -10803,9 +10803,9 @@ jQuery.type = toType;
 
 jQuery.now = Date.now;
 
-jQuery.isNumeric = function( obj ) {
+jQuery.isnumeric = function( obj ) {
 
-	// As of jQuery 3.0, isNumeric is limited to
+	// As of jQuery 3.0, isnumeric is limited to
 	// strings and numbers (primitives or objects)
 	// that can be coerced to finite numbers (gh-2662)
 	var type = jQuery.type( obj );

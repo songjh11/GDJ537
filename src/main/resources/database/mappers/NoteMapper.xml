@@ -17,12 +17,12 @@ AND
 		<otherwise>RECEIVEID</otherwise>
 	</choose> 
 	LIKE CONCAT('%', #{search}, '%')
-ORDER BY NOTENUM DESC
+ORDER BY NOTEnum DESC
 LIMIT #{startRow}, #{perPage}
 </select>
 
 <select id="getSendNoteListCount" parameterType="Map" resultType="Long">
-SELECT COUNT(NOTENUM) FROM NOTE WHERE SENDID = #{id}
+SELECT COUNT(NOTEnum) FROM NOTE WHERE SENDID = #{id}
 AND
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>
@@ -39,12 +39,12 @@ AND
 		<otherwise>SENDID</otherwise>
 	</choose> 
 	LIKE CONCAT('%', #{search}, '%')
-ORDER BY NOTENUM DESC
+ORDER BY NOTEnum DESC
 LIMIT #{startRow}, #{perPage}
 </select>
 
 <select id="getReceiveNoteListCount" parameterType="Map" resultType="Long">
-SELECT COUNT(NOTENUM) FROM NOTE WHERE RECEIVEID = #{id}
+SELECT COUNT(NOTEnum) FROM NOTE WHERE RECEIVEID = #{id}
 AND 
 	<choose>
 		<when test="kind == 'contents'">CONTENTS</when>
@@ -54,7 +54,7 @@ AND
 
 <select id="getNoteDetail" resultType="NoteVO" parameterType="NoteVO">
 SELECT * FROM NOTE 
-WHERE NOTENUM = #{noteNum}
+WHERE NOTEnum = #{notenum}
 </select>
 	
 </mapper>    

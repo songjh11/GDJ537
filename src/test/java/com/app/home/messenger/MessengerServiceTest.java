@@ -17,7 +17,7 @@ class MessengerServiceTest {
 	@Test
 	void setAddRoomUserTest()throws Exception{
 		RoomVO roomVO = new RoomVO();
-		roomVO.setRoomNum(1);
+		roomVO.setRoomnum(1);
 		EmployeeVO employeeVO = new EmployeeVO();
 		employeeVO.setId(5678);
 		int result = messengerMapper.setAddRoomUser(employeeVO);

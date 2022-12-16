@@ -6,8 +6,8 @@
 	
    <resultMap type="UserVO" id="getUserVO">
       <id column="ID" property="id"/>
-      <result column="ROLENUM" property="roleNum"/>
-      <result column="DEPNUM" property="depNum"/>
+      <result column="ROLEnum" property="rolenum"/>
+      <result column="DEPnum" property="depnum"/>
       <result column="PW" property="pw"/>
       <result column="NAME" property="name"/>
       <result column="EMAIL" property="email"/>
@@ -16,11 +16,11 @@
       <result column="PROFILE" property="profile"/>
       <result column="STATUS" property="status"/>
       <association property="roleVO" javaType="RoleVO">
-         <id column="ROLENUM" property="roleNum"/>
+         <id column="ROLEnum" property="rolenum"/>
          <result column="ROLENAME" property="roleName"/>
       </association>
       <association property="departmentVO" javaType="DepartmentVO">
-         <id column="DEPNUM" property="depNum"/>
+         <id column="DEPnum" property="depnum"/>
          <result column="DEPNAME" property="depName"/>
          <result column="ID" property="id"/>
       </association>
@@ -28,11 +28,11 @@
    
    
 	<select id="getUserID" resultType="UserVO">
-		SELECT * FROM USER WHERE NUM = LAST_INSERT_ID()
+		SELECT * FROM USER WHERE num = LAST_INSERT_ID()
 	</select>
 	
 	<update id="setUserID" parameterType="UserVO">
-		UPDATE USER SET ID = CONCAT(DATE_FORMAT(#{entDate}, '%Y'),LPAD(LAST_INSERT_ID(),3,0)) WHERE NUM = LAST_INSERT_ID()
+		UPDATE USER SET ID = CONCAT(DATE_FORMAT(#{entDate}, '%Y'),LPAD(LAST_INSERT_ID(),3,0)) WHERE num = LAST_INSERT_ID()
 	</update>
 	
 	<insert id="setUser" parameterType="UserVO">
@@ -43,10 +43,10 @@
       SELECT * FROM USER E
          INNER JOIN
          ROLE R
-         ON (E.ROLENUM = R.ROLENUM)
+         ON (E.ROLEnum = R.ROLEnum)
          INNER JOIN 
          DEPARTMENT D
-         ON (E.DEPNUM=D.DEPNUM)
+         ON (E.DEPnum=D.DEPnum)
       WHERE E.ID=#{id}
    </select>
    
@@ -89,9 +89,9 @@
       SELECT U.*,R.*,D.*
       FROM USER U
       LEFT OUTER JOIN ROLE R
-      USING(ROLENUM)
+      USING(ROLEnum)
       LEFT OUTER JOIN DEPARTMENT D
-      USING(DEPNUM)
+      USING(DEPnum)
       WHERE STATUS=1
       
    </select>
@@ -102,9 +102,9 @@
             SELECT U.*,R.*,D.*
       FROM USER U
       LEFT OUTER JOIN ROLE R
-      USING(ROLENUM)
+      USING(ROLEnum)
       LEFT OUTER JOIN DEPARTMENT D
-      USING(DEPNUM)
+      USING(DEPnum)
       WHERE STATUS=0
    </select>
    
@@ -120,12 +120,12 @@
       DELETE FROM USER WHERE ID=#{id}
    </delete>
    
-   <update id="setRoleNumUpdate" parameterType="UserVO">
-      UPDATE USER SET ROLENUM=#{roleNum} WHERE ID=#{id}
+   <update id="setRolenumUpdate" parameterType="UserVO">
+      UPDATE USER SET ROLEnum=#{rolenum} WHERE ID=#{id}
    </update>
    
-   <update id="setDepNumUpdate" parameterType="UserVO">
-      UPDATE USER SET DEPNUM=#{depNum} WHERE ID=#{id}
+   <update id="setDepnumUpdate" parameterType="UserVO">
+      UPDATE USER SET DEPnum=#{depnum} WHERE ID=#{id}
    </update>
    
    <update id="setNameUpdate" parameterType="UserVO">
@@ -149,15 +149,15 @@
    </insert>
    
    <update id="setDepNameUpdate" parameterType="DepartmentVO">
-      UPDATE DEPARTMENT SET DEPNAME=#{depName} WHERE DEPNUM=#{depNum}
+      UPDATE DEPARTMENT SET DEPNAME=#{depName} WHERE DEPnum=#{depnum}
    </update>
    
    <update id="setIdUpdate" parameterType="DepartmentVO">
-      UPDATE DEPARTMENT SET ID=#{id} WHERE DEPNUM=#{depNum}
+      UPDATE DEPARTMENT SET ID=#{id} WHERE DEPnum=#{depnum}
    </update>
    
    <delete id="setDepartmentDel" parameterType="DepartmentVO">
-      DELETE FROM DEPARTMENT WHERE DEPNUM=#{depNum}
+      DELETE FROM DEPARTMENT WHERE DEPnum=#{depnum}
    </delete>
    
    <insert id="setRoleAdd" parameterType="RoleVO">
@@ -165,19 +165,19 @@
    </insert>
    
    <update id="setRoleNameUpdate" parameterType="RoleVO">
-      UPDATE ROLE SET ROLENAME=#{roleName} WHERE ROLENUM=#{roleNum}
+      UPDATE ROLE SET ROLENAME=#{roleName} WHERE ROLEnum=#{rolenum}
    </update>
    
    <delete id="setRoleDel" parameterType="RoleVO">
-      DELETE FROM ROLE WHERE ROLENUM=#{roleNum}
+      DELETE FROM ROLE WHERE ROLEnum=#{rolenum}
    </delete>
    
    <select id="getDepCheck" parameterType="UserVO" resultType="UserVO">
-      SELECT * FROM USER WHERE DEPNUM=#{depNum};
+      SELECT * FROM USER WHERE DEPnum=#{depnum};
    </select>
    
    <select id="getRoleCheck" parameterType="UserVO" resultType="UserVO">
-      SELECT * FROM USER WHERE ROLENUM=#{roleNum};
+      SELECT * FROM USER WHERE ROLEnum=#{rolenum};
    </select>
 	
 	<!-- 사원번호 조회 -->
@@ -186,10 +186,10 @@
       FROM USER U
       LEFT JOIN
       DEPARTMENT D
-      USING(DEPNUM)
+      USING(DEPnum)
       LEFT JOIN
       ROLE R
-      USING(ROLENUM)
+      USING(ROLEnum)
       WHERE U.ID=#{id} AND U.NAME=#{name}
    </select>
    
@@ -203,7 +203,7 @@
       FROM USER U
          INNER JOIN
          ROLE R
-         ON U.ROLENUM = R.ROLENUM
+         ON U.ROLEnum = R.ROLEnum
       WHERE U.id=#{username}
    </select>
    

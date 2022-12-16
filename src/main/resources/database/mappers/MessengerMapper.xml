@@ -22,19 +22,19 @@
 			ON E.ID=PD.YOURID 
 				LEFT JOIN
 				PICK P
-				ON P.PICKNUM=PD.PICKNUM 
+				ON P.PICKnum=PD.PICKnum 
 					INNER JOIN
 					DEPARTMENT D
-					ON E.DEPNUM=D.DEPNUM
+					ON E.DEPnum=D.DEPnum
 						INNER JOIN
 					 	ROLE R
-					 	ON E.ROLENUM=R.ROLENUM				 	
-		ORDER BY D.DEPNUM, E.NAME
+					 	ON E.ROLEnum=R.ROLEnum				 	
+		ORDER BY D.DEPnum, E.NAME
 	</select>
 	
 	<select id="getDepList" resultType="DepartmentVO">
 		SELECT * FROM DEPARTMENT
-		ORDER BY DEPNUM
+		ORDER BY DEPnum
 	</select>
 	
 	<select id="getSearchResult" parameterType="Map" resultMap="getEmpListResult">
@@ -44,25 +44,25 @@
 			ON E.ID=PD.YOURID 
 				LEFT JOIN
 				PICK P
-				ON P.PICKNUM=PD.PICKNUM 
+				ON P.PICKnum=PD.PICKnum 
 					INNER JOIN
 					DEPARTMENT D
-					ON E.DEPNUM=D.DEPNUM
+					ON E.DEPnum=D.DEPnum
 					INNER JOIN
 						 	ROLE R
-						 	ON E.ROLENUM=R.ROLENUM	
+						 	ON E.ROLEnum=R.ROLEnum	
 						 	<if test="kind!=null">
 								<include refid="search"></include> 	
 						 	</if>
-			ORDER BY D.DEPNUM, E.NAME
+			ORDER BY D.DEPnum, E.NAME
 	</select>
 	
 	
 	<resultMap type="EmployeeVO" id="getEmpListResult">
-		<id column="NUM" property="num"/>
+		<id column="num" property="num"/>
 		<result column="ID" property="id"/>
-		<result column="DEPNUM" property="depNum"/>
-		<result column="ROLENUM" property="roleNum"/>
+		<result column="DEPnum" property="depnum"/>
+		<result column="ROLEnum" property="rolenum"/>
 		<result column="PW" property="pw"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
@@ -71,15 +71,15 @@
 		<result column="PROFILES" property="profiles"/>
 		<result column="STATUS" property="status"/>
 			<association property="roleVO">
-				<id column="ROLENUM" property="roleNum"/>
+				<id column="ROLEnum" property="rolenum"/>
 				<result column="ROLENAME" property="roleName"/>  
 			</association>
 			<association property="departmentVO">
-				<id column="DEPNUM" property="depNum"/>
+				<id column="DEPnum" property="depnum"/>
 				<result column="DEPNAME" property="depName"/>
 			</association>
 			<association property="pickVO">
-				<id column="PICKNUM" property="pickNum"/>
+				<id column="PICKnum" property="picknum"/>
 				<result column="MYID" property="myId"/>
 			</association>
 	</resultMap>
@@ -88,13 +88,13 @@
 	
 	<insert id="setAddRoomUser" parameterType="EmployeeVO">
 		INSERT INTO  ROOMUSER
-		VALUES(NULL, #{id}, #{roomNum})
+		VALUES(NULL, #{id}, #{roomnum})
 	</insert>
 	
-	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomNum" >
+	<insert id="setAddRoom" parameterType="RoomVO" useGeneratedKeys="true" keyProperty="roomnum" >
 		INSERT INTO  CHATROOM
-		VALUES(#{roomNum}, now(), #{roomName}, 
-			   (SELECT ID FROM EMPLOYEE WHERE NUM = #{num}), #{pw})
+		VALUES(#{roomnum}, now(), #{roomName}, 
+			   (SELECT ID FROM EMPLOYEE WHERE num = #{num}), #{pw})
 	</insert>
 	
 </mapper>    

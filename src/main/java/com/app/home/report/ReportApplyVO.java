@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 public class ReportApplyVO {
-	 private Long applyNum;
+	 private Long applynum;
 	 private int id;
-	 private int depNum;
-	 private int reportNum;
+	 private int depnum;
+	 private int reportnum;
 	 private int status;
 	 private int returns;
 	 private Date apDate;
