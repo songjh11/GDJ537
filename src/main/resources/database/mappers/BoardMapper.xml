@@ -12,12 +12,10 @@
 		#{depnum}, 0, #{sort})
 	</insert>
 
-	<select id="getDetail" parameterType="BoardVO" resultMap="resultBoardAddfiles">
-		SELECT B.*,F.ID, F.FILENAME, F.ORINAME
-		FROM BOARD B
-		LEFT JOIN FILE F
-		ON B.ID = F.BOARDID
-		WHERE B.ID = #{id}
+	<select id="getDetail" parameterType="BoardVO"
+		resultMap="resultBoardAddfiles">
+		SELECT b.*,f.id as fileid, f.filename, f.oriname, f.fileSize FROM BOARD b
+		LEFT JOIN FILE f ON b.id = f.boardId WHERE b.id=#{id}
 	</select>
 
 	<resultMap type="BoardVO" id="resultBoardAddfiles">
@@ -34,9 +32,10 @@
 
 		<collection property="fileVOs" javaType="List"
 			ofType="FileVO">
-			<id column="id" property="id" />
+			<id column="fileid" property="id" />
 			<result column="filename" property="fileName" />
 			<result column="oriname" property="oriName" />
+			<result column="fileSize" property="fileSize"/>
 		</collection>
 
 	</resultMap>
