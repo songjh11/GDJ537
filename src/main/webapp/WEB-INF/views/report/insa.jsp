@@ -77,7 +77,7 @@
 						   		<li class="roleLi" data-roleNum="3">과장</li>
 						   		<li class="roleLi" data-roleNum="4">대리</li>
 						   		<li class="roleLi" data-roleNum="5">주임</li>
-						   		<li class="roleLi" data-roleNum="7">사원</li>
+						   		<li class="roleLi" data-roleNum="6">사원</li>
 						   </ul>
 					  </div>
 				</div>
@@ -92,7 +92,9 @@
 			<!-- End of Main Content -->
 			
 			<form action="insa1" method="post">
+			
 				<div id="tdiv">
+						<%-- <input type="hidden" id="ls" name="lstatus" value="${userVO.lstatus}"> --%>
 					<table class="table table-striped">
 		                            <thead id="thd">
 		                                <tr class="text-success">
@@ -174,7 +176,7 @@
 
     	let depNum = $("#dropId").val();
     	console.log("뎁넘 : ", depNum);
-    
+    	
     	let roleNum = $("#roleId").val();
     	let value = $("#roleInput").val();
     	let tbd = $("#tbd");
@@ -182,18 +184,36 @@
                 type: 'GET',
                 url:  '/report/insa1?depNum='+depNum+'&roleNum='+roleNum,
             }).done(function(dd){
-                	console.log(dd)
+                	console.log("list:::: ",dd);
                 	$("#thd").empty();
                 	$("#tbd").empty();
                 	$("#pageDiv").empty();
                 		$("#thd").append('<tr class="text-success"><th>아이디</th><th>이름</th><th>직급</th><th>승인부여</th><th>권한 회수</th></tr>')
                 	for(var i=0; i<dd.length; i++){
                 		
-              		
-		                $("#tbd").append('<tr class="trId"><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'" data-btn="1">부여</button></td><td><button id="deleteBtn" type="button" class="btn btn-danger" data-name="'+dd[i].id+'" data-btn="2">권한회수</button></td></tr>')
-              			
+
+                 	 	console.log("lstatus ==> ", dd[i].reportVO.lstatus);
+
+                 	 	
+	                	$("#tbd").append('<tr class="trId"><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary b1" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'" data-btn="1">부여</button></td><td><button id="deleteBtn" type="button" class="btn btn-danger b2" data-name="'+dd[i].id+'" data-btn="2">권한회수</button></td></tr>')
+                 	 	
+                		/* if(dd[i].reportVO.lstatus == 2){
                 			
+		                	$("#tbd").append('<tr class="trId"><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" disabled type="button" class="btn btn-secondary b1" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'" data-btn="1">부여</button></td><td><button id="deleteBtn" type="button"  class="btn btn-danger b2" data-name="'+dd[i].id+'" data-btn="2">권한회수</button></td></tr>')                			
+                			
+                		}else if(dd[i].reportVO.lstatus == 0){
+                			
+		                	
+		                	$("#tbd").append('<tr class="trId"><td id="tdId">'+dd[i].id+'</td><td>'+dd[i].name+'</td><td>'+value+'</td><td><button id="statusBtn" type="button" class="btn btn-secondary b1" data-depNum="'+dd[i].depNum+'" data-name="'+dd[i].id+'" data-btn="1">부여</button></td><td><button id="deleteBtn" disabled type="button" class="btn btn-danger b2" data-name="'+dd[i].id+'" data-btn="2">권한회수</button></td></tr>')
+                		} */
+              
+
+              		
+              			
+
                 		
+	                	
+	                	
                 	}
                 		
                 		

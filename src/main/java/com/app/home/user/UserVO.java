@@ -44,6 +44,8 @@ public class UserVO implements UserDetails {
 
 	private RoleVO roleVO;
 	private DepartmentVO departmentVO;
+	private String depName;
+	private String roleName;
 
 	private String pw2;
 	private String mail;
@@ -52,11 +54,8 @@ public class UserVO implements UserDetails {
 	private MultipartFile file;
 	
 	private ReportVO reportVO;
-	private List<ReportVO> reportVOs;
 
 	private List<DepartmentVO> departmentVOs;
-	
-
 
 
 	@Override
