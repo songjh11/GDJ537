@@ -203,7 +203,7 @@
    </update>
 
    <select id="getLogin" parameterType="String" resultMap="getUserVO">
-      SELECT U.*, R.*,RL.LSTATUS
+      SELECT U.*, R.*,RL.LSTATUS, D.DEPNAME
       FROM USER U
          INNER JOIN
          ROLE R
@@ -211,6 +211,9 @@
          LEFT JOIN
          REPORTLICENSER RL
          ON U.ID = RL.ID
+         INNER JOIN 
+         DEPARTMENT D 
+         ON D.DEPNUM = U.DEPNUM 
          
       WHERE U.id=#{username}
    </select>
