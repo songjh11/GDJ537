@@ -1,5 +1,8 @@
 package com.app.home.board.notice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,6 +84,16 @@ public class NoticeController {
 		mv.setViewName("/board/notice/list");
 		
 		return mv;
+	}
+	
+	@GetMapping("getListByHit")
+	@ResponseBody
+	public Map<String, Object> getListByHit(Pager pager)throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		pager.setSort("공지");
+		map.put("notice", noticeService.getListByHit(pager));
+		map.put("pager", pager);
+		return map;
 	}
 	
 	@GetMapping("hit")
