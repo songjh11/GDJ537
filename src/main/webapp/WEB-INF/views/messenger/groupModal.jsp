@@ -122,6 +122,8 @@
 							</div>
 						</form>
 
+						<div style="display: none;" id="dksk"></div>
+
 						
 
 						<script>
@@ -214,31 +216,32 @@
 										}
 									}
 								})
-
-								
-
 								console.log(arr);
+								let arrr = "";
 
-								window.open('./note/group', '_blank', "width=450px, height=500px, location=no, top=100, left=500");
-
+								for(let i=0;i<arr.length;i++) {
+									arrr += '<div class="dkdksk" value="'+arr[i]+'"></div>'
+								}
+								console.log(arrr);
+								$("#dksk").append(arrr);
 
 								$.ajax({
-									type:"GET",
-									url :"note/group",
+									type:"POST",
+									url :"./note/group1",
 									traditional:true,
 									data:{
 										arr: arr
 									},
 									success : function(data){
-										console.log("데이터뭐임",data);
 										modalChat.style.display = "none";
-
-										
 									},
 									error   : function(){
 
 									}
 								})
+
+								window.open('./note/group', '_blank', "width=450px, height=500px, location=no, top=100, left=500");
+
 
 
 							})
