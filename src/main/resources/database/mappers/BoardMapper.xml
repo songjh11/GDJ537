@@ -12,10 +12,12 @@
 		#{depnum}, 0, #{sort})
 	</insert>
 
-	<select id="getDetail" parameterType="BoardVO"
-		resultMap="resultBoardAddfiles">
-		SELECT b.*,f.id, f.filename, f.oriname FROM BOARD b
-		LEFT JOIN FILE f ON b.id = f.boardId WHERE b.id=#{id}
+	<select id="getDetail" parameterType="BoardVO" resultMap="resultBoardAddfiles">
+		SELECT B.*,F.ID, F.FILENAME, F.ORINAME
+		FROM BOARD B
+		LEFT JOIN FILE F
+		ON B.ID = F.BOARDID
+		WHERE B.ID = #{id}
 	</select>
 
 	<resultMap type="BoardVO" id="resultBoardAddfiles">
@@ -60,6 +62,30 @@
 		B.<include refid="search"></include>
 		GROUP BY B.ID
 		ORDER BY ID DESC
+		LIMIT ${startRow}, ${perPage}
+	</select>
+	
+	<!-- 조회수 순으로 리스트 불러오기 -->
+	<select id="getListByHit" parameterType="Pager" resultType="BoardVO">
+		SELECT * FROM BOARD 
+		WHERE SORT = #{sort}
+		AND
+		<include refid="search"></include>
+		ORDER BY HIT DESC
+		LIMIT ${startRow}, ${perPage}
+	</select>
+	
+	<!-- 댓글수 순으로 리스트 불러오기 -->
+	<select id="getListByComment" parameterType="Pager" resultType="BoardVO">
+		SELECT B.*, COUNT(C.BOARDID) AS BI FROM
+		BOARD B
+		LEFT JOIN COMMENT C
+		ON B.ID = C.BOARDID
+		WHERE SORT = #{sort}
+		AND
+		B.<include refid="search"></include>
+		GROUP BY B.ID
+		ORDER BY BI DESC
 		LIMIT ${startRow}, ${perPage}
 	</select>
 
