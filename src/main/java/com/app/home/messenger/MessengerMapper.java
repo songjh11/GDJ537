@@ -30,4 +30,7 @@ public interface MessengerMapper {
 	// 참여인원 조회
 	public int getUserCount(RoomVO roomVO)throws Exception;
 	
+	//채팅방 제목
+	public String getChatName (RoomVO roomVO) throws Exception;
+	
 }
