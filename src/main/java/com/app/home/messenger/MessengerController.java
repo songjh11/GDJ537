@@ -488,11 +488,13 @@ public class MessengerController extends Socket {
 		ModelAndView mv= new ModelAndView();
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
-	    userVO  =(UserVO)authentication.getPrincipal();	 
-	    String rn = messengerService.getChatName(roomVO);
+	    userVO  =(UserVO)authentication.getPrincipal();	
+	    
+	    userVO = userService.getMypage(userVO);
 	    mv.addObject("userVO", userVO);  
-	    mv.addObject("roomVO", roomVO);  
-	    mv.addObject("rn", rn);
+	    
+	    String name = messengerService.getChatName(roomVO);
+	    mv.addObject("name", name);
 
 	    mv.setViewName("messenger/oneChat");
 		

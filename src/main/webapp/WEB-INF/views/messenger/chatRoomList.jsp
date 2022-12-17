@@ -41,7 +41,7 @@
 										</c:choose> -->
 										<!-- 소영이 a태그 -->
 										<div class="col text-center" style="margin-left: 3%;">
-											<a class="roomLink" href="" onclick="javascript:chatPop('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a>
+											<a class="roomLink" href="" onclick="javascript:chatPop1('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a>
 											<!-- <a class="roomLink" href="./chatroom?roomNum=${roomVO.roomNum}" onclick=""><b>${roomVO.roomName}</b></a> -->
 										</div>
  	 									<!-- <div class="col text-center" style="margin-left: 3%;">
@@ -78,7 +78,7 @@
 									</c:choose> --%>
 									<!-- 1:1채팅 입장 a태그 -->
 									<div class="col text-center" style="margin-left: 3%;">
-										 <a class="roomLink1" href="" onclick="javascript:chatPop('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a>
+										 <a class="roomLink1" href="" onclick="javascript:chattPop('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a>
 										<%-- <a class="roomLink" href="./oneChat?roomNum=${roomVO.roomNum}"><b>${roomVO.roomName}</b></a> --%>
 									
 									</div>
@@ -114,8 +114,9 @@
 						strOption += "resizable=yes,status=yes";
 
 						function chatPop(roomNum){
-							window.open('/messenger/oneChat?roomNum='+roomNum, '개인 채팅방', strOption);
+							window.open('/messenger/chatroom?roomNum='+roomNum, '그룹 채팅방', strOption);
 						}
-
 						
+					
 						</script>
+						
