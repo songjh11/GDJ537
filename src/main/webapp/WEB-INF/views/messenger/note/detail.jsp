@@ -115,9 +115,6 @@
 </head>
 <body>
     <div id="noteBox">
-        <!-- <div id="title">
-            <div id="receiveId">발신자 : 김경경 (${detail.sendId})</div>
-        </div> -->
         <div id="title">
             <div sendId="${detail.sendId}" id="sendId" style="margin: 15px;">발신자 : ${sendUser.name} (${detail.sendId})</div>
             <div style="margin: 15px;">수신자 : ${receiveUser.name} (${receiveUser.id})</div>
@@ -144,7 +141,10 @@
             
         </div>
         <div id="btnDiv">
+            <!-- <div style="display: none;" sendid=""></div> -->
+            <c:if test="${detail.sendId != session.id}">
             <button type="button" class="sendBtn" id="reply" style="background: linear-gradient(45deg, #4e73df, #2196f3)">답장</button>
+            </c:if>
             <button type="button" class="sendBtn" id="close" style="background: linear-gradient(45deg, #a6a6a6, #7473758a);">닫기</button>
         </div>
     </div>
