@@ -47,9 +47,6 @@ document.addEventListener("keypress", function(e){
 
  //채팅창에서 들어왔을 때
  function wsOpen () {
-	let ws = new WebSocket("ws://" + location.host + "/chatroom?roomNum"+roomNum);		
-
-	
 	ws.onmessage = function(data) {
    //메시지를 받으면 동작
    let msg = data.data;
