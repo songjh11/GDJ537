@@ -5,22 +5,18 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.app.home.user.EmployeeVO;
+import com.app.home.user.UserVO;
 
 @Mapper
 public interface PickMapper {
 	
-	public int firstCheckPick(String myId) throws Exception;
+	//중복체크
+	public int firstCheckPick(Map<String, Object> map) throws Exception;
 	
-	public Long findPicknum(String myId) throws Exception;
-
-	public int createPick(String myId) throws Exception;
-	
+	//픽 설정
 	public int setPick(Map<String, Object> map) throws Exception;
 	
-	public List<EmployeeVO> getPickList(String myId) throws Exception;
-	
-	public int perCheck(Map<String, Object> map) throws Exception;
+	public List<UserVO> getPickList(String myId) throws Exception;
 	
 	public int pickCancel(Map<String, Object> map) throws Exception;
 }
