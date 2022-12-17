@@ -67,7 +67,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <c:choose>
-                            	<c:when test="${cat eq '1'}">
+                            	<c:when test="${cat eq 1}">
 									<div class="container text-center">
 										<div class="row">
 											<div class="col">
@@ -86,7 +86,7 @@
 										</div>
 									  </div>
                         		</c:when>
-                        		<c:when test="${cat eq '2'}">
+                        		<c:when test="${cat eq 2}">
                             		<div class="container text-center">
 										<div class="row">
 											<div class="col">
@@ -105,7 +105,7 @@
 										</div>
 									  </div>
                         		</c:when>
-                        		<c:when test="${cat eq '3'}">
+                        		<c:when test="${cat eq 3}">
                             		<div class="container text-center">
 										<div class="row">
 											<div class="col">
@@ -124,7 +124,7 @@
 										</div>
 									  </div>
                         		</c:when>
-                        		<c:when test="${cat eq '4'}">
+                        		<c:when test="${cat eq 4}">
                             		<div class="container text-center">
 										<div class="row">
 											<div class="col">
@@ -168,7 +168,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <c:choose>
-                                    	<c:when test="${cat eq '1'}">
+                                    	<c:when test="${cat eq 1}">
                                     		<thead>
 		                                        <tr>
 		                                            <th>보고서번호</th>
@@ -197,7 +197,7 @@
                                                 </c:forEach>
                                             </tbody>    
                                         </c:when>
-                                        <c:when test="${cat eq '2'}">
+                                        <c:when test="${cat eq 2}">
                                         	<thead>
                                                 <tr>
                                                     <th>보고서번호</th>
@@ -226,7 +226,7 @@
                                                 </c:forEach>
                                             </tbody>   
                                         </c:when>
-                                        <c:when test="${cat eq '3'}">
+                                        <c:when test="${cat eq 3}">
                                         	<thead>
                                                 <tr>
                                                     <th>보고서번호</th>
@@ -255,7 +255,7 @@
                                                 </c:forEach>
                                             </tbody>
                                         </c:when>
-                                        <c:when test="${cat eq '4'}">
+                                        <c:when test="${cat eq 4}">
                                         	<thead>
                                                 <tr>
                                                     <th>보고서번호</th>
@@ -302,7 +302,7 @@
                                                 				<td><a href="./vacadetail?applyNum=${vo.applyNum }&lstatus=${reportVO.lstatus}">${vo.applyNum}</a></td>
                                                 			</c:when>
                                                 			<c:otherwise>
-                                                				<td><a href="./vacadetail?applyNum=${vo.applyNum }&lstatus=${reportVO.lstatus}">${vo.applyNum}</a></td>
+                                                				<td>${vo.applyNum}</td>
                                                 			</c:otherwise>
                                                 		</c:choose>
                                                 		<td>${vo.id}</td>
