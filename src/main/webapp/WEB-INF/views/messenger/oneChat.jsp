@@ -32,7 +32,7 @@
                 <div class="header-flex">
                     <div class="tinum">
                         <div class="title">
-                            <span><strong>${name}</strong></span>
+                            <span><strong>${rn}</strong></span>
                         </div>
                         <div class="number">
                             <img src="/img/chatroom-number.png" width="15px" height="15px">

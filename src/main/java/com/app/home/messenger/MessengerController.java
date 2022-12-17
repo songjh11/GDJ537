@@ -493,8 +493,8 @@ public class MessengerController extends Socket {
 	    userVO = userService.getMypage(userVO);
 	    mv.addObject("userVO", userVO);  
 	    
-	    String name = messengerService.getChatName(roomVO);
-	    mv.addObject("name", name);
+	    String rn = messengerService.getChatName(roomVO);
+		mv.addObject("rn", rn);
 
 	    mv.setViewName("messenger/oneChat");
 		
@@ -523,6 +523,7 @@ public class MessengerController extends Socket {
 		//채팅방 제목
 		String rn = messengerService.getChatName(roomVO);
 		mv.addObject("rn", rn);
+
 		
 		mv.setViewName("messenger/chatroom");
 		return mv;
