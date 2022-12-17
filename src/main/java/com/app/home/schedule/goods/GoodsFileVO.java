@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class GoodsFileVO {
-	private Long rownum;
-	private Long imgnum;
+	private Long rowNum;
+	private Long imgNum;
 	private String goodsId;
 	private String fileName;
 	private String oriName;

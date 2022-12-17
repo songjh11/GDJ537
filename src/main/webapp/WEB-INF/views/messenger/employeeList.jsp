@@ -84,7 +84,7 @@
 																</div>
 																<div class="userInfo" style="width: 60%;">
 																	<span class="empName" empId="${p.id}" value="${p.name}">😎${p.name}</span>
-																	<span id="depN${p.id}" value="${p.departmentVO.depName}/${p.roleVO.roleName}">(${p.departmentVO.depName}/${p.roleVO.roleName})</span>
+																	<span id="${p.id}" value="${p.departmentVO.depName}/${p.roleVO.roleName}">(${p.departmentVO.depName}/${p.roleVO.roleName})</span>
 																</div>
 																<c:choose>
 																	<c:when test="${p.pickVO[0].myId eq myId}">
