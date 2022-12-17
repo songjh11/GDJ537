@@ -127,7 +127,6 @@
 			<id column="depNum" property="depNum"/>
 			<result column="depName" property="depName"/>
 			<result column="id" property="id"/>
-		
 		</association>
 	
 	</resultMap>

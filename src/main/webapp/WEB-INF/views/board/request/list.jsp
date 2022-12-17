@@ -133,15 +133,15 @@
 	            	<nav aria-label="Page navigation example">
 					  <ul class="pagination">
 					  	<c:if test="${pager.pre }">
-					  		<li class="page-item"><a class="page-link" href="./list?page=${pager.startnum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Previous</a></li>
+					  		<li class="page-item"><a class="page-link" href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Previous</a></li>
 					  	</c:if>
 
-					    <c:forEach begin="${pager.startnum }" end="${pager.lastnum }" step="1" var="i">
+					    <c:forEach begin="${pager.startNum }" end="${pager.lastNum }" step="1" var="i">
 					    	<li class="page-item"><a class="page-link" href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">${i }</a></li>
 					    </c:forEach>
 
 					    <c:if test="${pager.next }">
-					    	<li class="page-item"><a class="page-link" href="./list?page=${pager.lastnum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Next</a></li>
+					    	<li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Next</a></li>
 					    </c:if>
 
 					  </ul>

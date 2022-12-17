@@ -6,8 +6,8 @@ import lombok.Data;
 public class Pager {
 
 	private Long page;
-	private Long startnum;
-	private Long lastnum;
+	private Long startNum;
+	private Long lastNum;
 	private Long startRow;
 	private Long perPage;
 	private Long perBlock;
@@ -32,12 +32,12 @@ public class Pager {
 	}
 
 	//1. mapper에서 사용할 값 계산
-	public void getRownum()throws Exception {
+	public void getRowNum()throws Exception {
 		this.startRow = (this.getPage()-1)*this.getPerPage();
 	}
 
 	//2. Jsp에서 사용할 값 계산
-	public void getnum(Long totalCount)throws Exception {
+	public void getNum(Long totalCount)throws Exception {
 		//2. totalCount로 totalPage구하기
 		Long totalPage = totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage() !=0) {
@@ -62,16 +62,16 @@ public class Pager {
 		}
 
 		//5. curBlock으로 startnum lastnum 구하기
-		this.startnum = (curBlock-1)*this.getPerBlock()+1;
-		this.lastnum = curBlock*this.getPerBlock();
+		this.startNum = (curBlock-1)*this.getPerBlock()+1;
+		this.lastNum = curBlock*this.getPerBlock();
 
 		//6. culBlock이 마지막block(total과 같을때)
 		if(curBlock==totalBlock) {
-			this.lastnum=totalPage;
+			this.lastNum=totalPage;
 		}
 
 		if(totalPage == 0) {
-			this.lastnum = 1L;
+			this.lastNum = 1L;
 		}
 
 		//7. 이전 다음 블럭의 유무
@@ -115,5 +115,6 @@ public class Pager {
 	public void setSearch(String search) {
 		this.search = search;
 	}
+
 
 }
