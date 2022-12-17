@@ -1,5 +1,5 @@
-$(".roomArea").on("click", ".roomPw", function(){
-
+$(".roomArea").on("click", ".roomLink", function(){
+    console.log("자바스크립트 연결 되었니?")
     let roomNum = $(this).attr("data-room-num");
 
     // console.log("룸넘이 나오니!", roomNum);

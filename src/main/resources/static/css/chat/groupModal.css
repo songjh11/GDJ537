@@ -221,3 +221,28 @@ input[type=checkbox] {
 	-o-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
+#pwModal .title {
+	padding-left: 10px;
+	display: inline;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+	
+}
+#pwModal .title h2 {
+	display: inline;
+}
+#pwModal .close-area {
+	display: inline;
+	float: right;
+	padding-right: 10px;
+	cursor: pointer;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+}
+
+#pwModal .content {
+	margin-top: 20px;
+	padding: 0px 10px;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+}

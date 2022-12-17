@@ -27,7 +27,7 @@
 											<img class="yourImg" src="/img/undraw_profile_3.svg">
 											<span>${roomVO.userVO.name}</span>
 										</div>
-										<c:choose>
+										<!-- <c:choose>
 											<c:when test="${user.name eq roomVO.roomName}">
 												<div class="col text-center" style="margin-left: 3%;">
 													<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
@@ -38,15 +38,15 @@
 													<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
 												</div>
 											</c:otherwise>
-										</c:choose>
+										</c:choose> -->
 										<!-- 소영이 a태그 -->
-										<!-- <div class="col text-center" style="margin-left: 3%;">
+<%-- 										<div class="col text-center" style="margin-left: 3%;">
 											<a class="roomLink" href="" onclick="javascript:chatPop('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a>
-											<%-- <a class="roomLink" href="./chatroom?roomNum=${roomVO.roomNum}" onclick=""><b>${roomVO.roomName}</b></a> --%>
-										</div> -->
-	 									<div class="col text-center" style="margin-left: 3%;">
-	 										<button></button>			
-										</div>
+											<a class="roomLink" href="./chatroom?roomNum=${roomVO.roomNum}" onclick=""><b>${roomVO.roomName}</b></a>
+										</div> --%>
+<%-- 	 									<div class="col text-center" style="margin-left: 3%;">
+	 										<button type="button" class="roomLink" data-room-num="${roomVO.roomNum}">${roomVO.roomName}</button>			
+										</div> --%>
 										<div class="col text-center style="margin-left: 8%;">
 											${roomVO.total}
 										</div>
