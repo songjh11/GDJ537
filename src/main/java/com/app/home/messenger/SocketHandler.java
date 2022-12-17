@@ -76,9 +76,6 @@ public class SocketHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 	
-	log.info("session : {}", session);	
-	log.info("map : {}", sessionMap);
-	
 	SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
 	UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
 		
