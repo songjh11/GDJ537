@@ -1,13 +1,12 @@
 package com.app.home.messenger;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -31,7 +30,6 @@ public class SocketHandler extends TextWebSocketHandler{
 	
 	//방 구분하기
 	Map<String, List<WebSocketSession>> sm = new HashMap<>();
-	List<HashMap<String, Object>> sm2 =new ArrayList<>(); //room 
 	
 	
 	@Override
@@ -61,7 +59,8 @@ public class SocketHandler extends TextWebSocketHandler{
 		String message = "{\"type\":\"connect\",\"username\":\""+userVO.getName()+"\"}";
 		sessionMap.put(session.getId(), session);
 		
-	
+		
+				
 		for (String key: sessionMap.keySet()) {
 			WebSocketSession wss= sessionMap.get(key);
 			try {
@@ -74,8 +73,10 @@ public class SocketHandler extends TextWebSocketHandler{
 		
 		weblist.add(session);
 		log.info(session + "접속");
-		
-	}
+	
+			
+		}
+		 
 
 	
 	@Override
