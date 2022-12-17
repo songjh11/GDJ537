@@ -6,9 +6,11 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
@@ -253,30 +255,53 @@ public class ReportController {
 	//권한수정 페이지 POST
 	@RequestMapping(value = "/report/insa", method = RequestMethod.POST)
 	@ResponseBody
-	public int setLstatusUpdate(ReportVO reportVO, UserVO userVO, Model model) throws Exception{
+	public int setLstatusUpdate(String depNum, ReportVO reportVO, UserVO userVO, Model model,HttpServletRequest request , RedirectAttributes redirectAttributes) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		
 
 //		int result1 = reportService.setLicenserAdd(userVO);
 
-
+		int count = reportService.getGrantorCount(reportVO);
+		int result = 0;
+		log.info("count :: {} ",count);
+		
+		if(count == 0) {				//부여를 누르려는 부서에 승인자가 이미 있다면 
+			result = reportService.setLstatusUpdate(reportVO, userVO);
+		}else{						//부여를 누르려는 부서에 승인자가 없다면
+			log.info("이지원돼지");
+			
+//			model.addAttribute("msg", "이미 승인자가 있습니다.");
+//			model.addAttribute("url", "/");
+			
+			//request.setAttribute("msg", "이미 승인자가 있습니다");
+			
+			mv.addObject("msg", "이미 승인자가 있습니다");
+			mv.addObject("url", "/");
+			mv.setViewName("/report/alert");
+			
+			log.info("이지원꿀꿀");
+			
+			//mv.setViewName("/report/alert");
+			return count;
+			
+		}
 		
 		
-		int result = reportService.setLstatusUpdate(reportVO, userVO);
-		log.info("아이디 : {} " , userVO.getId());
-		log.info("depNum : {} ", reportVO.getDepNum());
+//		int result = reportService.setLstatusUpdate(reportVO, userVO);
+		//log.info("아이디 : {} " , userVO.getId());
+		//log.info("depNum : {} ", reportVO.getDepNum());
 		
-		model.addAttribute("result", result);
-		
-//		mv.addObject("result1", result1);
+//		model.addAttribute("result", result);
+		mv.addObject("count", count);
 //		mv.addObject("result", result);
+//		mv.addObject("result1", result1);
 //		mv.addObject("UserVO", userVO);
 //		mv.addObject("ReportVO", reportVO);
 //		
-//		mv.setViewName("report/insa");
+		mv.setViewName("report/insa");
 		
-		return result;
+		return count;
 	}
 	
 	
@@ -311,15 +336,35 @@ public class ReportController {
 	}
 	
 	
-	//승인자 테이블에서 권한을 다시 회수하기 위해 승인자 테이블에서 delete
+	//승인자 테이블에서 권한을 다시 회수하기 위해 lstatus == 0으로 만듬
 	@RequestMapping(value = "/report/deleteLicenser", method = RequestMethod.POST)
 	@ResponseBody
-	public int setLicenserUpdate(UserVO userVO, Model model) throws Exception{
+	public int setLicenserUpdate(String depNum, UserVO userVO, ReportVO reportVO, Model model) throws Exception{
 		
-		int result = reportService.setLicenserUpdate(userVO);
+		ModelAndView mv = new ModelAndView();
+		
+		int count = reportService.getGrantorCount(reportVO);
+		int result = 0;
+		log.info("count :: {} ",count);
+		
+		if(count == 0) {				//부여를 누르려는 부서에 승인자가 이미 없다면 
+			result = reportService.setLicenserUpdate(userVO);
+		}else if(count >= 1){						//부여를 누르려는 부서에 승인자가 있다면
+			log.info("이지원돼지");
+			mv.addObject("msg", "이미 승인자가 있습니다");
+			mv.addObject("url", "/");
+			mv.setViewName("/report/alert");
+			
+			log.info("이지원꿀꿀");
+			
+			//mv.setViewName("/report/alert");
+			return count;
+		}
+		
 		model.addAttribute("result", result);
+		model.addAttribute("count", count);
 		
-		return result;
+		return count;
 	}
 	
 	
@@ -395,11 +440,11 @@ public class ReportController {
 	    log.info("데엡넘 ::: {} " , userVO.getDepNum());
 	    UserVO userVO2 = new UserVO();
 	    UserVO userVO3 = new UserVO();
-		
 	    
-		userVO = reportMapper.getFirstList(userVO);
-		userVO2 = reportMapper.getlastlist(userVO);
-		userVO3 = userService.getMypage(userVO3);
+	    
+		userVO = reportMapper.getFirstList(userVO);	//나의 첫번째 승인자 리스트를 띄움
+		userVO2 = reportMapper.getlastlist(userVO);	//나의 최종승인자 리스트를 띄움
+		userVO3 = userService.getMypage(userVO3);	// 마이페이지를 불러서 회원정보의 모든것을 userVO3에 가져옴
 		
 //		log.info("ID ::::: {} " , userVO.getId());
 //		log.info("depNum :::::: {} " , userVO.getDepNum());

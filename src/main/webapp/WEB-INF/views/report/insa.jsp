@@ -159,7 +159,6 @@
             </div>
 			
 			
-			
 			<!-- Footer import -->
 			<c:import url="../temp/layout_footer.jsp"></c:import>
 			<!-- End of Footer -->
