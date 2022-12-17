@@ -30,4 +30,18 @@ public class RoomVO {
 	// 방인원의 id를 받을 배열선언
 	private int [] id;
 	
+	// 0 그룹, 1 일대일
+	private Integer kind;
+	
+	private Integer total;
+	
+	public Integer getKind() {
+		
+		if(this.kind == null) {
+			this.kind = 1;
+		}
+		
+		return this.kind;
+	}
+	
 }

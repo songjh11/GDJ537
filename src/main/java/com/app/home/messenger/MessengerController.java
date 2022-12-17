@@ -437,6 +437,32 @@ public class MessengerController extends Socket {
 		return mv;
 	}
 	
+	@PostMapping("roomPw")
+	@ResponseBody
+	public int getRoomPw(RoomVO roomVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		log.info("룸넘 들어왔니?!!! ======> {} ",roomVO.getRoomNum());
+		
+		roomVO = messengerService.getRoomPw(roomVO);
+		
+		log.info("비밀번호는?! =====> {} ",roomVO.getPw());
+		
+//		mv.addObject("roomPw", roomVO.getPw());
+		
+		int result = roomVO.getPw();
+		
+		return result;
+	}
+	
+	@PostMapping("pwCheck")
+	@ResponseBody
+	public int getPwCheck(RoomVO roomVO)throws Exception{
+		
+		int result = messengerService.getPwCheck(roomVO);
+		
+		return result;
+	}
 	
 	// --------------------- 효경 끝 ------------------------------
 	

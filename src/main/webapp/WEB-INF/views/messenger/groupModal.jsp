@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 						<!-- 체크박스 생성 모달 시작 -->
 						<form action="./addRoom" method="post">
+						 <input type="hidden" name="kind" value="0">
 							<div id="check" class="check-overlay" style="z-index: 100;">
 								<div class="check-window">
 									<div class="close-area">X</div>
