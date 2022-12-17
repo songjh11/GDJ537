@@ -39,7 +39,7 @@ $("#returns").click(function(){
                 "applyNum":applyNum
             },
             success:function(success){
-                window.location.href="/report/returnreport";
+                window.location.href="/report/doreport";
             },
             error:function(error){
                 alert("반려 에러");

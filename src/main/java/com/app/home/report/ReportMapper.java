@@ -84,7 +84,7 @@ public interface ReportMapper {
 	
 	
 
-	public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception;
+			public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception;
 			
 			public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception;
 			
@@ -113,8 +113,14 @@ public interface ReportMapper {
 			public List<ReportApplyVO> getDoFinalReport(ReportPager reportPager) throws Exception;
 			
 			public Long getCountDoFinalReport(ReportPager reportPager) throws Exception;
+			
+			public List<ReportApplyVO> getAdminReturnReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountAdminReturnReport(ReportPager reportPager) throws Exception;
+			
+			public List<ReportApplyVO> getAdminFinishReport(ReportPager reportPager) throws Exception;
 
-
+			public Long getCountAdminFinishReport(ReportPager reportPager) throws Exception;
 
 	
 	

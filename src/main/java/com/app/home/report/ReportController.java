@@ -626,7 +626,7 @@ public class ReportController {
 		if(cat != null) {
 			category = Integer.parseInt(cat);
 		}
-		if(reportPager.getKind() == null) {
+		if(reportPager.getKind() == "") {
 			reportPager.setKind("1"); 
 		}
 		
@@ -634,8 +634,10 @@ public class ReportController {
 		reportPager.setId(num);
 		reportVO.setId(num);
 		reportPager.setReportNum(category);
+		mv.addObject("cat", category);
 		Integer check = reportService.getLicenseCheck(reportVO);
 		log.info("ffffffffffffffffffffffffffffffff:{}",check);
+		log.info("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn:{}",reportPager.getKind());
 		if(check == 0) {
 			String message = "승인자만 볼수 있습니다.";
 			String url = "/";
@@ -645,7 +647,7 @@ public class ReportController {
 			return mv;
 	}
 	else if (check == 2){
-			if(reportPager.getKind() == "2") {
+			if(reportPager.getKind().equals("2")) {
 				reportVO = reportService.getFinishReport(reportPager);
 				if(reportVO != null) {
 					List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
@@ -655,7 +657,7 @@ public class ReportController {
 				mv.setViewName("report/doreport");
 				return mv;
 			}
-			else if(reportPager.getKind() == "3") {						
+			else if(reportPager.getKind().equals("3")) {						
 				reportVO = reportService.getReturnReport(reportPager);
 				if(reportVO != null) {
 					List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
@@ -665,7 +667,8 @@ public class ReportController {
 				mv.setViewName("report/doreport");
 				return mv;
 			}
-			else {						
+			else {
+				log.info("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 				reportVO = reportService.getDoFirstReport(reportPager);
 				if(reportVO != null) {
 
@@ -682,28 +685,23 @@ public class ReportController {
 			}
 	}
 		else {
-			if(reportPager.getKind() == "2") {
-				reportVO = reportService.getFinishReport(reportPager);
-				if(reportVO != null) {
-					List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
-					mv.addObject("reportApplyVOs", reportApplyVOs);					
-				}
+			log.info("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+			if(reportPager.getKind().equals("2")) {
+				List<ReportApplyVO> reportApplyVOs = reportService.getAdminFinishReport(reportPager);
+				mv.addObject("reportApplyVOs", reportApplyVOs);					
 				mv.addObject("pager", reportPager);
-				mv.setViewName("report/doreport");
+				mv.setViewName("report/adminreport");
 				return mv;
 			}
-			else if(reportPager.getKind() == "3") {						
-				reportVO = reportService.getReturnReport(reportPager);
-				if(reportVO != null) {
-					List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
-					mv.addObject("reportApplyVOs", reportApplyVOs);					
-				}
+			else if(reportPager.getKind().equals("3")) {						
+				List<ReportApplyVO> reportApplyVOs = reportService.getAdminReturnReport(reportPager);
+				mv.addObject("reportApplyVOs", reportApplyVOs);					
 				mv.addObject("pager", reportPager);
-				mv.setViewName("report/doreport");
+				mv.setViewName("report/adminreport");
 				return mv;
 			}
 			else {
-				
+				log.info("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 				List<ReportApplyVO> reportApplyVOs = reportService.getDoFinalReport(reportPager);
 				mv.addObject("reportApplyVOs", reportApplyVOs);			
 				mv.addObject("pager", reportPager);

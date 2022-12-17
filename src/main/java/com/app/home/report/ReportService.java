@@ -232,6 +232,16 @@ public class ReportService {
 				reportPager.getNum(reportMapper.getCountDoFinalReport(reportPager));
 				return reportMapper.getDoFinalReport(reportPager);
 			}
+			
+			public List<ReportApplyVO> getAdminReturnReport(ReportPager reportPager) throws Exception{
+				reportPager.getNum(reportMapper.getCountAdminReturnReport(reportPager));
+				return reportMapper.getAdminReturnReport(reportPager);
+			}
+			
+			public List<ReportApplyVO> getAdminFinishReport(ReportPager reportPager) throws Exception{
+				reportPager.getNum(reportMapper.getCountAdminFinishReport(reportPager));
+				return reportMapper.getAdminFinishReport(reportPager);
+			}
 
 		
 
