@@ -21,7 +21,19 @@ public class ReportApplyVO extends ReportPager {
 	 private String depName;
 	 private String roleName;
 	 
-	 private UserVO userVO;
+	 private int lstatus;
+	 
+	 public int getLstatus() {
+		return lstatus;
+	}
+
+	public void setLstatus(int lstatus) {
+		this.lstatus = lstatus;
+	}
+
+
+
+	private UserVO userVO;
 	 
 	 public Long getApplyNum() {
 		return applyNum;
@@ -104,13 +116,7 @@ public class ReportApplyVO extends ReportPager {
 		this.roleName = roleName;
 	}
 
-	public int getlStatus() {
-		return lStatus;
-	}
-
-	public void setlStatus(int lStatus) {
-		this.lStatus = lStatus;
-	}
+	
 	
 	
 
@@ -124,5 +130,4 @@ public class ReportApplyVO extends ReportPager {
 
 
 
-	private int lStatus;
 }
