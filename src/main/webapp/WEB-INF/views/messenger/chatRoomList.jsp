@@ -64,7 +64,7 @@
 										<img class="yourImg" src="/img/undraw_profile_3.svg">
 										<span>${roomVO.userVO.name}</span>
 									</div>
-									<c:choose>
+<%-- 									<c:choose>
 										<c:when test="${user.name eq roomVO.roomName}">
 											<div class="col text-center" style="margin-left: 3%;">
 												<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
@@ -75,7 +75,7 @@
 												<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
 											</div>
 										</c:otherwise>
-									</c:choose>
+									</c:choose> --%>
 									<!-- 1:1채팅 입장 a태그 -->
 									<div class="col text-center" style="margin-left: 3%;">
 										<%-- <a class="roomLink" href="" onclick="javascript:chatPop('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a> --%>
