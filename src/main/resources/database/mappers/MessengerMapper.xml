@@ -88,7 +88,9 @@
 	
 	<!--                       비밀번호 조회                       -->
 	<select id="getRoomPw" parameterType="RoomVO" resultType="RoomVO">
-		SELECT PW FROM CHATROOM WHERE ROOMNUM = #{roomNum}
+		SELECT ROOMNUM, ROOMNAME, HOSTID, KIND
+		FROM CHATROOM
+		WHERE ROOMNUM = #{roomNum} AND PW = #{pw}
 	</select>
 	
 	<!--                       채팅방 인원 수 조회                       -->

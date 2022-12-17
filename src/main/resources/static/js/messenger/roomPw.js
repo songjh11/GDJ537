@@ -16,18 +16,50 @@ $(".roomArea").on("click", ".roomLink", function(){
             // let result = JSON.parse(obj);
             console.log("결과는?!", result);
 
+            // 비밀번호가 있음
             if(result=1){
 
                 console.log("성공!!");
                 // 모달창 띄우기!
                 $(".pwModal-overlay").css('display','flex').hide().fadeIn();
 
-                // $.ajax{
+            }else{
 
-                // }
+                // 비밀번호가 없음
+
 
             }
 
         }
     });
+
+    $("#pwCheckBtn").click(function(){
+
+        let pw = $("#roomPwCheck").val();
+
+        console.log("입력한 비밀번호가? ", pw);
+        
+        $.ajax({
+            type:"POST",
+            url:"roomPw",
+            data:{
+                roomNum : roomNum,
+                pw : pw
+            },
+            success:function(roomVO){
+
+                console.log("룸브이오", roomVO);
+
+                if(roomVO=1){
+                    console.log("비밀번호 맞음")
+
+                }else{
+                    console.log("틀림")
+                    // alert("비밀번호가 맞지 않습니다.")
+                }
+            }
+        })
+
+    });
+
 });

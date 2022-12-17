@@ -439,18 +439,32 @@ public class MessengerController extends Socket {
 	
 	@PostMapping("roomPw")
 	@ResponseBody
-	public int getRoomPw(RoomVO roomVO)throws Exception{
+	public int getRoomPw(RoomVO roomVO, String pw)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		log.info("룸넘 들어왔니?!!! ======> {} ",roomVO.getRoomNum());
+		log.info("비밀번호는?! =====> {} ", pw);
 		
+		// 클릭한 채팅방 번호와 입력한 채팅방 비밀번호가 옴
+		// String => Integer로 변환
+		int roomPw = Integer.parseInt(pw);
+		
+		// roomVO에 값을 넣어줌
+		roomVO.setPw(roomPw);
+		
+		// 방과 비밀번호가 같은지 체크
 		roomVO = messengerService.getRoomPw(roomVO);
 		
-		log.info("비밀번호는?! =====> {} ",roomVO.getPw());
+		int result = 0;
+		
+//		log.info("룸브이오가 비었니? {} ", roomVO.getRoomName());
+		
+		if(roomVO!=null) {
+			result = 1;
+		}
+		
 		
 //		mv.addObject("roomPw", roomVO.getPw());
-		
-		int result = roomVO.getPw();
 		
 		return result;
 	}
