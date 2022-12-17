@@ -55,6 +55,10 @@
 							</c:forEach>
 
 							<div class="mb-3">
+								<div>
+									<font size="2em"> *분 단위는 모두 0으로 입력됩니다.* </font>
+								</div>
+								<br>
 								<label>사용 시작 시간</label>
 								<input type="datetime-local" name="startTime" class="form-control" id="start" placeholder="시작시간">
 								<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
@@ -74,6 +78,7 @@
 								<input type="hidden" name="id" class="form-control" id="member" value="${userInfo.id }" readonly>
 								<input type="text" class="form-control" value="${userInfo.name }" disabled>
 							</div>
+
 
 							<div class="mb-5">
 								<label>부서명</label>
