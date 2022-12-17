@@ -12,7 +12,7 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 </style>
-<link rel="stylesheet" href="/css/chat/roomList.css">
+<link rel="stylesheet" href="/css/chat/chatRoomList.css">
 <link rel="stylesheet" href="/css/chat/groupModal.css">
 <link rel="stylesheet" href="/css/chat/employeeList.css">
 <style>
@@ -58,7 +58,7 @@
 					<div class="chatDiv">
 						<div class="blank"></div>
 						<c:import url="./roomPwModal.jsp"></c:import>
-						<c:import url="./addRoom.jsp"></c:import>
+						<c:import url="./chatRoomList.jsp"></c:import>
 					</div>
 	            </div>
 	            <!-- End Page Content -->
