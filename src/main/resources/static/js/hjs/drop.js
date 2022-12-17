@@ -106,9 +106,11 @@ console.log("전전전");
                 console.log("후 성공");
                 // console.log(result);
                 if(count == 1){
-                    alert("이미 승인자가 있습니다.")
+                    alert("선택하신 부서에 이미 승인자가 있습니다.")
+                }else if(count == 0){
+                    alert("수정에 성공하였습니다.");
+                    location.href="/report/licenserList"
                 }
-                alert("수정에 성공하였습니다.");
 
                 // console.log($("#statusBtn").text());
                 // console.log($("#statusBtn").text('부여됨'));
@@ -151,9 +153,17 @@ $("#tbd").on('click', "#deleteBtn", function(event){
             id : name
         },
 
-        success:function(){
-            alert("ID가" + name + "인 직원의 권한을 회수 하였습니다.");
-            console.log("콘소로오오오오올")
+        success:function(count){
+            console.log(count);
+
+            if(count >= 1){
+
+                alert("ID가" + name + "인 직원의 권한을 회수 하였습니다.");
+                console.log("콘소로오오오오올");
+
+            }else if(count == 0){
+                alert("선택하신 부서에 승인자가 존재하지 않아 회수 대상이 없습니다.");
+            }
             
         },
         error:function(){

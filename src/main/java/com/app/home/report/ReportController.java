@@ -293,7 +293,7 @@ public class ReportController {
 		//log.info("depNum : {} ", reportVO.getDepNum());
 		
 //		model.addAttribute("result", result);
-		
+		mv.addObject("count", count);
 //		mv.addObject("result", result);
 //		mv.addObject("result1", result1);
 //		mv.addObject("UserVO", userVO);
@@ -339,12 +339,32 @@ public class ReportController {
 	//승인자 테이블에서 권한을 다시 회수하기 위해 lstatus == 0으로 만듬
 	@RequestMapping(value = "/report/deleteLicenser", method = RequestMethod.POST)
 	@ResponseBody
-	public int setLicenserUpdate(UserVO userVO, Model model) throws Exception{
+	public int setLicenserUpdate(String depNum, UserVO userVO, ReportVO reportVO, Model model) throws Exception{
 		
-		int result = reportService.setLicenserUpdate(userVO);
+		ModelAndView mv = new ModelAndView();
+		
+		int count = reportService.getGrantorCount(reportVO);
+		int result = 0;
+		log.info("count :: {} ",count);
+		
+		if(count == 0) {				//부여를 누르려는 부서에 승인자가 이미 없다면 
+			result = reportService.setLicenserUpdate(userVO);
+		}else if(count >= 1){						//부여를 누르려는 부서에 승인자가 있다면
+			log.info("이지원돼지");
+			mv.addObject("msg", "이미 승인자가 있습니다");
+			mv.addObject("url", "/");
+			mv.setViewName("/report/alert");
+			
+			log.info("이지원꿀꿀");
+			
+			//mv.setViewName("/report/alert");
+			return count;
+		}
+		
 		model.addAttribute("result", result);
+		model.addAttribute("count", count);
 		
-		return result;
+		return count;
 	}
 	
 	
