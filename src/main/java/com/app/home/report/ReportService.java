@@ -97,6 +97,12 @@ public class ReportService {
 		return reportMapper.getlastlist(userVO);
 	}
 	
+	// 휴가관리자가 권한을 부여할때 부여하려는 부서에 승인자가 있는지 먼저 체크
+	public int getGrantorCount(ReportVO reportVO) throws Exception{
+		
+		return reportMapper.getGrantorCount(reportVO);
+	}
+	
 	
 	
 	

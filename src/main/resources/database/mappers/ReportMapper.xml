@@ -162,6 +162,11 @@
 			WHERE  RL.LSTATUS = 3
 	</select>
 	
+	<!-- 관리자 테이블에서 부여버튼을 눌렀을때 이미 그 부서에 승인자가 있는지 조회 -->
+	<select id="getGrantorCount" parameterType="ReportVO" resultType="Integer">
+		SELECT COUNT(ID) FROM REPORTLICENSER WHERE LSTATUS = 2 AND DEPNUM = #{depNum}
+	</select>
+	
 	
 	<!-- ==================================== -->
 	

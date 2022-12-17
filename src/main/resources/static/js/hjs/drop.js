@@ -67,6 +67,7 @@ const statusBtn = $("#statusBtn");
 
 const ls = document.querySelector("#ls");
 
+
 // ajax에 나오는 부여버튼을 클릭할려면 그 바로 위 tbody에 있는 부모선택자 id로 선택을 해야 작동됨
 $("#tbd").on("click", "#statusBtn", function(event){
 
@@ -88,28 +89,35 @@ $("#tbd").on("click", "#statusBtn", function(event){
     let name = $(event.target).attr("data-name");
     
     let depNum = $(event.target).attr("data-depNum");
-    
-    
 
     
-    
-
+console.log("전전전");
     $.ajax({
         type: 'POST',
         url:  '/report/insa',
+        async:false,
         data:{
             id : name,
             depNum : depNum
         },
         
-        success:function(result){
-            alert("수정에 성공하였습니다.");
-            console.log($("#statusBtn").text());
-            // console.log($("#statusBtn").text('부여됨'));
-            console.log("dd", ls);
+        success:function(count){
+           //if(result == 1){
+                console.log("후 성공");
+                // console.log(result);
+                if(count == 1){
+                    alert("이미 승인자가 있습니다.")
+                }
+                alert("수정에 성공하였습니다.");
+
+                // console.log($("#statusBtn").text());
+                // console.log($("#statusBtn").text('부여됨'));
+                // console.log(result);
+           // }
             
         },
         error:function(){
+            console.log("후 실패");
             alert("수정에 실패하였습니다");
         }
 
@@ -122,6 +130,10 @@ $("#tbd").on("click", "#statusBtn", function(event){
 //ajax에 부여버튼을 클릭하면 user table에서 승인자 table로 insert 와 lstatus=2 로 update가 동시에 되는데 이 사람의 권한을 회수하고 싶다면 승인자 테이블에서 delete해주면 됌
 
 $("#tbd").on('click', "#deleteBtn", function(event){
+
+    $("#deleteBtn").click(function(){
+
+    })
 
 
     console.log("권한회수 버튼 클릭");
@@ -183,4 +195,3 @@ $(".tdId").on('each', '.btn', function(){
     console.log("하이");
 
 });
-

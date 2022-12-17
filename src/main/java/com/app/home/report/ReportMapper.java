@@ -54,6 +54,8 @@ public interface ReportMapper {
 	//신청자입장에서 자기가 두번째(최종결재관리자) 결재선
 	public UserVO getlastlist(UserVO userVO) throws Exception;
 	
+	public int getGrantorCount(ReportVO reportVO) throws Exception;
+	
 	
 	
 	
