@@ -1,12 +1,12 @@
  //console.log("js");
    
 
-let ws = new WebSocket("ws://" + location.host + "/chating");
  let sessionId = $("#sessionId").val();
  let userName = $("#userName").val();
  let inputChat = $("#inputChat").val();
  //let inputChat = document.getElementById('inputChat').value;
 
+let ws = new WebSocket("ws://" + location.host + "/chatroom?roomNum");		
 
    
 
@@ -48,6 +48,8 @@ document.addEventListener("keypress", function(e){
 
  //채팅창에서 들어왔을 때
  function wsOpen () {
+
+	
 	ws.onmessage = function(data) {
    //메시지를 받으면 동작
    let msg = data.data;
@@ -82,21 +84,15 @@ document.addEventListener("keypress", function(e){
             );  
          }
             
-      }else{
-         console.warn("unknown type!")
-      }
+      }//타입이 연결해제
+				else if(d.type == "disconnect"){
+					let str = d.username + " 님이 나가셨습니다.";
+					    $("#chating").append("<div class='alo'>"
+				  						+"<div class='alo-bubble'>" +str+"</div></div>"
+				 						);	
    }
 
 }	  
  
  }
-
- //채팅창에서 나갔을 때
- function onClose() {
-    console.log("퇴장");
-    let str = userName + ": 님이 방을 나가셨습니다.";
-    
-    $("#chating").append("<div class='al'>"
-                     +"<div class='al-bubble'>" +str+"</div></div>"
-                    );   
  }
