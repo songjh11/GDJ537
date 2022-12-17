@@ -28,8 +28,11 @@ public class SocketHandler extends TextWebSocketHandler{
 	
 	HashMap<String, WebSocketSession>sessionMap=new HashMap<>(); // 웹소켓 세션을 담아둘 맵
 	
+	
 	//방 구분하기
-	//Map<String, ArrayList<WebSocketSession>> sm = new HashMap<>();
+	Map<String, List<WebSocketSession>> sm = new HashMap<>();
+	List<HashMap<String, Object>> sm2 =new ArrayList<>(); //room 
+	
 	
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -52,11 +55,13 @@ public class SocketHandler extends TextWebSocketHandler{
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
 		UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
-		 
 		System.out.println("UserName : "+userVO.getName());
+		
+		
 		String message = "{\"type\":\"connect\",\"username\":\""+userVO.getName()+"\"}";
 		sessionMap.put(session.getId(), session);
-
+		
+	
 		for (String key: sessionMap.keySet()) {
 			WebSocketSession wss= sessionMap.get(key);
 			try {

@@ -6,7 +6,7 @@
  let inputChat = $("#inputChat").val();
  //let inputChat = document.getElementById('inputChat').value;
 
-let ws = new WebSocket("ws://" + location.host + "/chatroom?roomNum");		
+let ws = new WebSocket("ws://" + location.host + "/oneChat?roomNum={roomNum}");		
 
    
 
@@ -48,6 +48,7 @@ document.addEventListener("keypress", function(e){
 
  //채팅창에서 들어왔을 때
  function wsOpen () {
+let ws = new WebSocket("ws://" + location.host + "/oneChat");		
 
 	
 	ws.onmessage = function(data) {

@@ -67,12 +67,12 @@
 									<c:choose>
 										<c:when test="${user.name eq roomVO.roomName}">
 											<div class="col text-center" style="margin-left: 3%;">
-												<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+												<a href="./oneChat?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
 											</div>
 										</c:when>
 										<c:otherwise>
 											<div class="col text-center" style="margin-left: 3%;">
-												<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
+												<a href="./oneChat?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
 											</div>
 										</c:otherwise>
 									</c:choose>
