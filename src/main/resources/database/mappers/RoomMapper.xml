@@ -56,7 +56,8 @@
 
 	<!-- 회의실 예약하기 -->
 	<insert id="setRoomReserve" parameterType="GoodsRoomVO">
-		insert into RESERVE(RESERVENUM, GOODSID, DATE, ID, USEPURPOSE, STARTTIME, ENDTIME)
+		insert into
+		RESERVE(RESERVENUM, GOODSID, DATE, ID, USEPURPOSE, STARTTIME, ENDTIME)
 		values(null, #{goodsId},
 		now(), #{id},
 		#{usePurpose},
@@ -103,5 +104,32 @@
 		select STARTTIME, ENDTIME from RESERVE where GOODSID =
 		#{goodsId}
 	</select>
+
+	<select id="getUserReserveInfo" parameterType="ReserveVO"
+		resultMap="userReserve">
+		select * FROM
+		USER u
+		inner join
+		RESERVE r
+		on u.ID = r.ID
+		where
+		u.ID = #{id}
+	</select>
+
+	<resultMap type="ReserveVO" id="userReserve">
+		<id column="reserveNum" property="reserveNum" />
+		<result column="goodsId" property="goodsId" />
+		<result column="date" property="date" />
+		<result column="id" property="id" />
+		<result column="usePurpose" property="usePurpose" />
+		<result column="startTime" property="startTime" />
+		<result column="endTime" property="endTime" />
+
+		<collection property="userVO" ofType="UserVO"
+			javaType="list">
+			<id column="id" property="id" />
+			<result column="name" property="name" />
+		</collection>
+	</resultMap>
 
 </mapper>    

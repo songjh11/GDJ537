@@ -72,6 +72,28 @@
 								</c:if>
 							</c:forEach>
 						</table>
+						<div>--------------- 로그인 한 회원 예약 리스트 ---------------</div>
+						<br>
+						${userVO }
+						<c:forEach items="${userVO }" var="us">
+						${us }
+<%-- 							<c:set var="TextValue" value="${us.goodsId}" />
+							<c:if test="${fn:substring(TextValue,0,2) == 'RO' }">
+								<input type="hidden" value="${us.goodsId}" class="ROID">
+								<tr>
+									<td>${us.name }</td>
+									<td>${us.location }</td>
+									<td>
+										<a href="./roomDetail?goodsId=${us.goodsId }">
+											<button type="button" class="btn btn-outline-none">보기</button>
+										</a>
+									</td>
+								</tr>
+							</c:if> --%>
+						</c:forEach>
+						<br>
+						<br>
+						<br>
 					</section>
 
 				</div>

@@ -13,7 +13,6 @@ $.ajax({
         memberNum: memNum
     },
     success: function (rs) {
-        console.log(rs);
         if (rs == null) {
             alert("예약하려면 로그인이 필요합니다.")
             history.back();
@@ -47,8 +46,6 @@ holidayCheck = false;
 betweenDayCheck = false;
 
 startTime.addEventListener("blur", function () {
-    // console.log(startTime.value);
-
     var startDate = startTime.value.toString().substr(0, 10);
 
     let y = parseFloat(startDate.split('-')[0]);
@@ -109,8 +106,8 @@ startTime.addEventListener("blur", function () {
         var eTime = b1.replace(':', '');
         var endTimeNumber = parseFloat(eTime);
 
-        console.log("예약된 시간: " + startTimeNumber);
-        console.log("예약된 종료 시간: " + endTimeNumber);
+        // console.log("예약된 시간: " + startTimeNumber);
+        // console.log("예약된 종료 시간: " + endTimeNumber);
 
         // console.log("예약시작시간보다 선택한 시간이 클때: ", startTimeNumber < selectStartTime);
         // console.log("선택한 시간이 예약 종료 시간보다 작을때: ", selectStartTime <= endTimeNumber);
@@ -196,13 +193,19 @@ startTime.addEventListener("blur", function () {
         endValueCheck = false;
         return false;
     }
+
+    var startHour = startTime.value.toString().substr(13, 15);
+    startHour = ':00';
+    startTime.value = startTime.value.toString().substr(0, 13) + startHour;
+
+    console.log("0분으로: " + startTime.value);
 })
 
 function CalculatorEndTime() {
     var startDate = startTime.value.toString().substr(0, 10);
     var endDate = endTime.value.toString().substr(0, 10);
 
-    // console.log(endDate);
+    console.log(endDate);
 
     let y = parseFloat(endDate.split('-')[0]);
     let m = parseFloat(endDate.split('-')[1]);
@@ -360,6 +363,12 @@ endTime.addEventListener("blur", function () {
         endValueCheck = true;
     }
     CalculatorEndTime();
+
+    var endHour = endTime.value.toString().substr(13, 15);
+    endHour = ':00';
+    endTime.value = endTime.value.toString().substr(0, 13) + endHour;
+
+    console.log(endTime.value);
 })
 
 purpose.addEventListener("blur", function () {

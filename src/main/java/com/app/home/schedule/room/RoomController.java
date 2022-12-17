@@ -33,13 +33,17 @@ public class RoomController
 	private RoomService roomService;
 
 	@GetMapping("/room/roomList")
-	public ModelAndView getRoomList(GoodsVO goodsVO, ReserveVO reserveVO, Authentication authentication) throws Exception
+	public ModelAndView getRoomList(GoodsVO goodsVO, ReserveVO reserveVO, Authentication authentication, GoodsRoomVO goodsRoomVO) throws Exception
 	{
 		log.info("------- get room List -------");
 		ModelAndView modelAndView = new ModelAndView();
 		List<GoodsVO> goodsVOs = roomService.getRoomList(goodsVO);
+		
+		// user reserve list
+		List<ReserveVO> reserveVOs = roomService.getUserReserveInfo(reserveVO);
 
-		log.info("goodVO list: {}", goodsVOs);
+		log.info("user: {}", reserveVOs);
+//		log.info("goodVO list: {}", goodsVOs);
 
 		int r = 0;
 		if (authentication != null)
@@ -47,6 +51,7 @@ public class RoomController
 			r = 1;
 		}
 
+		modelAndView.addObject("userVO", reserveVOs);
 		modelAndView.addObject("loginCheck", r);
 		modelAndView.addObject("goodVO", goodsVOs);
 		modelAndView.setViewName("/goods/room/roomList");
@@ -120,10 +125,21 @@ public class RoomController
 		List<ReserveVO> reserveVOs = roomService.getResInfo(goodsRoomVO);
 
 		log.info("roomVOs: {}", reserveVOs);
+		log.info("res: {}", reserveVOs.size());
+
+		for (int i = 0; i < reserveVOs.size(); i++)
+		{
+			String start = reserveVOs.get(i).getStartTime().substring(0, 10) + " " + reserveVOs.get(i).getStartTime().substring(11, 16);
+			String end = reserveVOs.get(i).getEndTime().substring(0, 10) + " " + reserveVOs.get(i).getEndTime().substring(11, 16);
+
+			reserveVOs.get(i).setStartTime(start);
+			reserveVOs.get(i).setEndTime(end);
+		}
 
 		modelAndView.addObject("roomInfo", reserveVOs);
 		modelAndView.setViewName("goods/room/roomResInfo");
 
 		return modelAndView;
 	}
+	
 }
