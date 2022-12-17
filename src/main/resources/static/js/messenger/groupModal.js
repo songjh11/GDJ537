@@ -70,10 +70,3 @@ $("#roomBtn").click(function(){
 });
 
 
-//채팅창 방 팝업띄우기 
-
-$("#aaa").click(function(){
-    let style= "width=450px, height=550px, left=300px";
-   let oponUrl= '/messenger/oneChat';
-   window.open(oponUrl,'',style)
-})
