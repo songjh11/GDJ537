@@ -27,7 +27,7 @@ function send() {
 				userName : userName,
 				userId : userId,
 				chat : chat,
-				roomNum : roomNum
+				//roomNum : roomNum
 			}
 		ws.send(JSON.stringify(option))
 		$("#inputChat").val("");
@@ -36,7 +36,7 @@ function send() {
 //---------------------------------------------
 
 	function wsOpen(){
-		let ws = new WebSocket("ws://" + location.host + "/chatroom/"+roomNum);		
+		let ws = new WebSocket("ws://" + location.host + "/chatroom?roomNum"+roomNum);		
 		
 		ws.onmessage = function(data) {
 			let msg = data.data;
@@ -70,7 +70,9 @@ function send() {
 												+"<div class='you-bubble-flex'><div class='you-bubble'>" +d.chat+ "</div></div>"
 											);
 					}
-				}else if(d.type == "disconnect"){
+				}
+				//타입이 연결해제
+				else if(d.type == "disconnect"){
 					let str = d.username + " 님이 나가셨습니다.";
 					    $("#chating").append("<div class='alo'>"
 				  						+"<div class='alo-bubble'>" +str+"</div></div>"
