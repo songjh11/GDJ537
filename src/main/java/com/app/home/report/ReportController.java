@@ -339,32 +339,39 @@ public class ReportController {
 	//승인자 테이블에서 권한을 다시 회수하기 위해 lstatus == 0으로 만듬
 	@RequestMapping(value = "/report/deleteLicenser", method = RequestMethod.POST)
 	@ResponseBody
-	public int setLicenserUpdate(String depNum, UserVO userVO, ReportVO reportVO, Model model) throws Exception{
+	public ReportVO setLicenserUpdate(String depNum, String id, UserVO userVO, ReportVO reportVO, Model model) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
+		
+		ReportVO reportVO2 = new ReportVO();
 		
 		int count = reportService.getGrantorCount(reportVO);
 		int result = 0;
 		log.info("count :: {} ",count);
 		
-		if(count == 0) {				//부여를 누르려는 부서에 승인자가 이미 없다면 
+		reportVO2 = reportService.getLicenserId(reportVO);
+		if(reportVO2 != null) {	//승인자라면
+			
 			result = reportService.setLicenserUpdate(userVO);
-		}else if(count >= 1){						//부여를 누르려는 부서에 승인자가 있다면
-			log.info("이지원돼지");
-			mv.addObject("msg", "이미 승인자가 있습니다");
-			mv.addObject("url", "/");
-			mv.setViewName("/report/alert");
+		}else{						//부여를 누르려는 부서에 승인자가 없다면
 			
-			log.info("이지원꿀꿀");
-			
-			//mv.setViewName("/report/alert");
-			return count;
-		}
+			}
+		
+//		if(count >= 1) {				//부여를 누르려는 부서에 승인자가 이미 있다면 선택한 사람의 lstatus == 0으로 업데이트
+//		}else if(count == 0){						//부여를 누르려는 부서에 승인자가 없다면
+//			log.info("이지원돼지");
+//			
+//			log.info("이지원꿀꿀");
+//			
+//			//mv.setViewName("/report/alert");
+//			return count;
+//		}
 		
 		model.addAttribute("result", result);
-		model.addAttribute("count", count);
+		mv.addObject("reportVO2", reportVO2);
+//		mv.addObject("count", count);
 		
-		return count;
+		return reportVO2;
 	}
 	
 	
