@@ -64,7 +64,8 @@
 	
 	<!-- 권한을 부여한 뒤 권한을 회수하고 싶다면 승인자 테이블에서 lstatus를 0으로 만들면 된다. -->
 	<update id="setLicenserUpdate" parameterType="ReportVO">
-		UPDATE REPORTLICENSER SET LSTATUS = 0 WHERE ID = #{id}
+		UPDATE REPORTLICENSER SET LSTATUS = 0 WHERE ID = 
+		(SELECT ID FROM REPORTLICENSER WHERE LSTATUS = 2 AND DEPNUM = #{depNum} AND ID = #{id})
 	</update>
 	
 	<!-- 승인권한을 가진사람들 모두 조회 (lstatus == 2)-->
@@ -167,6 +168,10 @@
 		SELECT COUNT(ID) FROM REPORTLICENSER WHERE LSTATUS = 2 AND DEPNUM = #{depNum}
 	</select>
 	
+	<!-- 권한을 회수하기 전에 회수버튼을 누르려는 id가 현재 그 부서의 승인자 id가 맞는지 조회 -->
+	<select id="getLicenserId" parameterType="ReportVO" resultType="ReportVO">
+		SELECT ID FROM REPORTLICENSER WHERE LSTATUS  = 2 AND DEPNUM = #{depNum}
+	</select>
 	
 	<!-- ==================================== -->
 	

@@ -56,6 +56,7 @@ public interface ReportMapper {
 	
 	public int getGrantorCount(ReportVO reportVO) throws Exception;
 	
+	public ReportVO getLicenserId(ReportVO reportVO) throws Exception;
 	
 	
 	
