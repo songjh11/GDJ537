@@ -44,8 +44,18 @@ public class RoomService
 		return roomMapper.getStartTime(reserveVO);
 	}
 
-	public List<ReserveVO> getUserReserveInfo(ReserveVO reserveVO) throws Exception
+	public ReserveVO getReserveDetail(ReserveVO reserveVO) throws Exception
 	{
-		return roomMapper.getUserReserveInfo(reserveVO);
+		return roomMapper.getReserveDetail(reserveVO);
+	}
+
+	public int setReserveUpdate(ReserveVO reserveVO) throws Exception
+	{
+		return roomMapper.setReserveUpdate(reserveVO);
+	}
+
+	public int setReserveDelete(ReserveVO reserveVO) throws Exception
+	{
+		return roomMapper.setReserveDelete(reserveVO);
 	}
 }

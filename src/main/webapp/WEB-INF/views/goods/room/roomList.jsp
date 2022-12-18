@@ -41,8 +41,8 @@
 								<th>이름</th>
 								<th>위치</th>
 								<th>상세정보</th>
-								<th>예약하기</th>
-								<th>예약된 정보 보기</th>
+								<th>예약</th>
+								<th>예약 현황</th>
 							</tr>
 							<c:forEach items="${goodVO }" var="good">
 								<c:set var="TextValue" value="${good.goodsId}" />
@@ -52,48 +52,22 @@
 										<td>${good.name }</td>
 										<td>${good.location }</td>
 										<td>
-											<a href="./roomDetail?goodsId=${good.goodsId }">
-												<button type="button" class="btn btn-outline-none">보기</button>
-											</a>
+											<a href="./roomDetail?goodsId=${good.goodsId }" class="btn btn-outline-none"> 정보 보기 </a>
 										</td>
 										<td>
 											<div class="btnDiv">
 												<a href="./roomReserve?goodsId=${good.goodsId }">
-													<button type="button" class="btn btn-outline-none res">예약</button>
+													<button type="button" class="btn btn-outline-none res">예약하기</button>
 												</a>
 											</div>
 										</td>
 										<td>
-											<a href="./roomResInfo?goodsId=${good.goodsId }">
-												<button type="button" class="btn btn-outline-none">보기</button>
-											</a>
+											<a href="./roomResInfo?goodsId=${good.goodsId }" class="btn btn-outline-none"> 현황 보기 </a>
 										</td>
 									</tr>
 								</c:if>
 							</c:forEach>
 						</table>
-						<div>--------------- 로그인 한 회원 예약 리스트 ---------------</div>
-						<br>
-						${userVO }
-						<c:forEach items="${userVO }" var="us">
-						${us }
-<%-- 							<c:set var="TextValue" value="${us.goodsId}" />
-							<c:if test="${fn:substring(TextValue,0,2) == 'RO' }">
-								<input type="hidden" value="${us.goodsId}" class="ROID">
-								<tr>
-									<td>${us.name }</td>
-									<td>${us.location }</td>
-									<td>
-										<a href="./roomDetail?goodsId=${us.goodsId }">
-											<button type="button" class="btn btn-outline-none">보기</button>
-										</a>
-									</td>
-								</tr>
-							</c:if> --%>
-						</c:forEach>
-						<br>
-						<br>
-						<br>
 					</section>
 
 				</div>

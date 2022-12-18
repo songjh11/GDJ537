@@ -4,7 +4,7 @@ var memNum = $("#member").val();
 let tt = parseFloat(memNum);
 $("#member").val(tt);
 
-console.log(memNum);
+// console.log(memNum);
 
 $.ajax({
     url: './roomReserve',
