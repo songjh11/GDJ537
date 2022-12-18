@@ -162,6 +162,11 @@
 			WHERE  RL.LSTATUS = 3
 	</select>
 	
+	<!-- 관리자 테이블에서 부여버튼을 눌렀을때 이미 그 부서에 승인자가 있는지 조회 -->
+	<select id="getGrantorCount" parameterType="ReportVO" resultType="Integer">
+		SELECT COUNT(ID) FROM REPORTLICENSER WHERE LSTATUS = 2 AND DEPNUM = #{depNum}
+	</select>
+	
 	
 	<!-- ==================================== -->
 	
@@ -292,7 +297,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RL.LSTATUS = RA.STATUS AND RL.ID=#{id} AND RA.REPORTNUM=#{reportNum}
+		WHERE RL.ID=#{id} AND RA.REPORTNUM=#{reportNum} AND RA.STATUS=2 AND RA.RETURNS=0
 	</select>
 	
 	<select id="getFinishReport" parameterType="ReportPager" resultMap="getFinishReportResult">
@@ -304,7 +309,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		<include refid="license"></include>
+		WHERE RL.ID=#{id} AND RA.REPORTNUM=#{reportNum} AND RA.STATUS=2 AND RA.RETURNS=0 AND NOT RL.ID IN(#{id})
 		LIMIT #{startRow},#{perPage}
 	</select>
 
@@ -318,7 +323,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		<include refid="license"></include>
+		WHERE RL.ID=#{id} AND RA.REPORTNUM=#{reportNum} AND RA.STATUS=2 AND RA.RETURNS=1
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
@@ -331,7 +336,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RL.LSTATUS = RA.RETURNS AND RL.ID=#{id} AND RA.REPORTNUM=#{reportNum}
+		WHERE RL.ID=#{id} AND RA.REPORTNUM=#{reportNum} AND RA.STATUS=2 AND RA.RETURNS=1
 	</select>
 	
 	<select id="getDoFirstReport" parameterType="ReportPager" resultMap="getFinishReportResult">
@@ -343,8 +348,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		<include refid="license"></include>
-		AND RA.STATUS = 1 
+		WHERE RL.ID=#{id} AND RA.REPORTNUM=#{reportNum} AND RA.STATUS = 1 
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
@@ -357,25 +361,34 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RA.STATUS = 1 AND RL.ID=#{id} AND RA.REPORTNUM=#{reportNum}
+		WHERE RL.ID=#{id} AND RA.REPORTNUM=#{reportNum} AND RA.STATUS = 1
 	</select>
 	
 	<select id="getDoFinalReport" parameterType="ReportPager" resultType="ReportApplyVO">
-		SELECT * FROM REPORTAPPLY WHERE STATUS = 2
-		<include refid="admin"></include>
+		SELECT * FROM REPORTAPPLY WHERE STATUS = 2  AND REPORTNUM=#{reportNum} AND RETURNS = 0
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
 	<select id="getCountDoFinalReport" parameterType="ReportPager" resultType="Long">
-		SELECT COUNT(*) FROM
-		REPORTLICENSER RL
-		INNER JOIN
-		REPORTAPPLY RA
-		ON RL.DEPNUM = RA.DEPNUM
-		INNER JOIN
-		USER U
-		ON RA.ID = U.ID
-		WHERE RA.STATUS = 2 AND RL.ID=#{id}
+		SELECT COUNT(*) FROM REPORTAPPLY WHERE STATUS = 2 AND REPORTNUM=#{reportNum} AND RETURNS = 0
+	</select>
+	
+	<select id="getCountAdminReturnReport" parameterType="ReportPager" resultType="Long">
+		SELECT COUNT(*) FROM REPORTAPPLY WHERE STATUS = 3 AND REPORTNUM=#{reportNum} AND RETURNS = 1
+	</select>
+	
+	<select id="getAdminReturnReport" parameterType="ReportPager" resultType="ReportApplyVO">
+		SELECT * FROM REPORTAPPLY WHERE STATUS = 3  AND REPORTNUM=#{reportNum} AND RETURNS = 1
+		LIMIT #{startRow},#{perPage}
+	</select>
+	
+	<select id="getCountAdminFinishReport" parameterType="ReportPager" resultType="Long">
+		SELECT COUNT(*) FROM REPORTAPPLY WHERE STATUS = 3 AND REPORTNUM=#{reportNum} AND RETURNS = 0
+	</select>
+	
+	<select id="getAdminFinishReport" parameterType="ReportPager" resultType="ReportApplyVO">
+		SELECT * FROM REPORTAPPLY WHERE STATUS = 3  AND REPORTNUM=#{reportNum} AND RETURNS = 0
+		LIMIT #{startRow},#{perPage}
 	</select>
 	
 	<resultMap type="ReportVO" id="getFinishReportResult">
@@ -396,46 +409,6 @@
 				<result column="APDATE" property="apDate"/>
 			</collection>
 	</resultMap>
-	
-	<sql id="admin">
-		AND REPORTNUM=#{reportNum}								<choose>
-												<when test="kind == 1">
-												
-												</when>
-												<when test="kind == 2">
-													AND RL.LSTATUS = RA.STATUS
-												</when>
-												<when test="kind == 3">
-													AND RL.LSTATUS = RA.RETURNS
-												</when>
-												<otherwise>
-													
-												</otherwise>
-											</choose>
-	</sql>
-	
-	<sql id="license">
-
-		where RL.ID=#{id} AND RA.REPORTNUM=#{reportNum} <choose>
-
-	   							
-
-												<when test="kind == 1">
-													
-												</when>
-												<when test="kind == 2">
-													AND RL.LSTATUS = RA.STATUS
-												</when>
-												<when test="kind == 3">
-													AND RL.LSTATUS = RA.RETURNS
-												</when>
-												<otherwise>
-													
-												</otherwise>
-											</choose>
-	</sql>
-	
-	
 	
 	
 	<!-- ==================================== -->

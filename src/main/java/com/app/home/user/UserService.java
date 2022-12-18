@@ -224,9 +224,9 @@ public class UserService {
 	// 회원가입
 	public int setJoin(UserVO userVO, String e, String address) throws Exception {
 		
-		//회원가입 하기전에 승인자 테이블로 먼저 insert (보고서조)
-		int result = reportMapper.setLicenserAdd(userVO);
-		
+//		//회원가입 하기전에 승인자 테이블로 먼저 insert (보고서조)
+//		int result = reportMapper.setLicenserAdd(userVO);
+//		
 		// 패스워드 암호화
 		userVO.setPw(passwordEncoder.encode(userVO.getPw()));
 

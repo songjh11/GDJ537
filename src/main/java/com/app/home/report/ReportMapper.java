@@ -54,6 +54,8 @@ public interface ReportMapper {
 	//신청자입장에서 자기가 두번째(최종결재관리자) 결재선
 	public UserVO getlastlist(UserVO userVO) throws Exception;
 	
+	public int getGrantorCount(ReportVO reportVO) throws Exception;
+	
 	
 	
 	
@@ -82,7 +84,7 @@ public interface ReportMapper {
 	
 	
 
-	public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception;
+			public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception;
 			
 			public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception;
 			
@@ -111,8 +113,14 @@ public interface ReportMapper {
 			public List<ReportApplyVO> getDoFinalReport(ReportPager reportPager) throws Exception;
 			
 			public Long getCountDoFinalReport(ReportPager reportPager) throws Exception;
+			
+			public List<ReportApplyVO> getAdminReturnReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountAdminReturnReport(ReportPager reportPager) throws Exception;
+			
+			public List<ReportApplyVO> getAdminFinishReport(ReportPager reportPager) throws Exception;
 
-
+			public Long getCountAdminFinishReport(ReportPager reportPager) throws Exception;
 
 	
 	
