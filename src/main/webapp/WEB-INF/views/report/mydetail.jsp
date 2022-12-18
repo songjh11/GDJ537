@@ -401,7 +401,7 @@
                             <input type="number" id="total" readonly style="font-weight: bold; border: 0; width: 173px; height: 35px; margin-top: 5px; text-align: right;" readonly value="${vo.sum}">
                         </div>
                         <div style="width: 179px; margin-left: 550px; height: 42px; margin-top: -42px; text-align: left; font-weight: bold; padding-top: 7px;">
-                            만(원)
+                            원
                         </div>
                     </div>
                 </div>
@@ -618,7 +618,7 @@
                                 부서명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; text-align: center; border: 0;"  readonly value="${vodepName}"/>
+                        <input style="width: 220px; height: 50px; text-align: center; border: 0;"  readonly value="${vo.depName}"/>
                     </div>    
                 </div> 
 
