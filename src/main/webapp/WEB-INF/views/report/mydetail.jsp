@@ -268,7 +268,7 @@
                        <span class="icon text-white-50">
                        <i class="fas fa-arrow-right"></i>
                        </span>
-                       <span class="text">휴가신청 목록</span>
+                       <span class="text">지출결의서 목록</span>
                        </a>
 				</div>
 		    
@@ -436,12 +436,248 @@
 		    </c:when>
 		    <c:when test="${vo.reportNum eq 2}">
 		    
+			<div class="container px-4 px-lg-5 my-5">
+					<a href="./mylist?cat=1" class="btn btn-primary btn-icon-split btn-sm">
+                       <span class="icon text-white-50">
+                       <i class="fas fa-arrow-right"></i>
+                       </span>
+                       <span class="text">업무보고서 목록</span>
+                       </a>
+				</div>
+			
+			
+	            <div class="container-fluid">
+	 <div class="container px-4 px-lg-5 my-5">
+        <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
+            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 25px; background-color: rgb(255, 255, 249); text-align: center; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
+                   업무보고서
+            </div>
+            <hr >
+
+            <div  style="border: solid 1px black; margin-top: 25px; margin-left: 45px; width: 900px; height: 110px; ">
+                <div style="height: 55px; border-bottom: solid 1px black;">
+                    <div class="d-flex">
+                        
+                        <div style="width: 225px; height: 55px; border-right: solid 1px black;">
+                            <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 70px; padding-left: 50px;">
+                                성명
+                            </div>
+                        </div>
+                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" name="name" readonly value="${vo.name}"/>
+                        <!-- USER.NAME -->
+
+                        <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
+                            <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
+                                부서명
+                            </div>
+                        </div>
+                        <input style="width: 220px; height: 50px; text-align: center; border: 0;" name="depName" readonly value="${vo.depName}"/>
+                         <!-- DEPARTMENT.DEPNAME -->
+
+                    </div>    
+                </div> 
+                <div style="height: 55px;">
+                    <div class="d-flex">
+                        <div class="d-flex">
+                        
+                            <div style="width: 225px; height: 55px; border-right: solid 1px black;">
+                                <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 70px; padding-left: 50px;">
+                                    직책
+                                </div>
+                            </div>
+                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" name="roleName" readonly value="${vo.roleName}"/>
+                            <!-- ROLE.ROLENAME -->
+    
+                            <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
+                                <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
+                                    작성일
+                                </div>
+                            </div>
+                            <input style="width: 220px; height: 50px; text-align: center; border: 0;"readonly value="${year}-${month}-${day}" name="date"/>
+                            <!-- DATE -->
+                        </div> 
+                    </div>    
+                </div>    
+            </div>
+
+            <div style="margin-top: 20px; margin-left: 45px; width: 900px; height: 1010px; border: solid 1px black;" >
+                            <div style="border-bottom: solid 1px black; height: 40px; padding-top: 5px;">
+                                금일 실시사항 /  금일 업무실적
+                            </div>
+                            <div style="height: 212px; border-bottom: solid 1px black;">
+                                <div style="height: 107px; border-bottom: solid 1px black;">
+                                    <div style="border-right: solid 1px black; width: 100px; height: 107px;">
+                                        <div style="padding-top: 28px; font-weight: bold;">
+                                            오<br>
+                                            전
+                                        </div>
+                                        <div style=" margin-left: 100px; width: 800px; height: 107px; margin-top: -77px;">
+                                            ${vo.am}
+                                        </div>
+                                    </div>
+                                    <div style="border-right: solid 1px black; width: 100px; height: 107px;">
+                                        <div style="padding-top: 28px; font-weight: bold;">
+                                            오<br>
+                                            후
+                                        </div>
+                                        <div style=" margin-left: 100px; width: 800px; height: 107px; margin-top: -77px;">
+                                            ${vo.pm}
+                                            <!-- <textarea id="pm" style=" width: 780px; height: 100px; text-align: left; border: 0; margin-top: 5px;" name="pm"></textarea> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="height: 40px; border-bottom: solid 1px black; padding-top: 5px;">
+                                    미처리내역 및 개선사항
+                            </div>
+                        <div style="height: 212px; border-bottom: solid 1px black;">
+                            ${vo.undo}
+                            <!-- <textarea  style="width:895px; height: 209px; text-align: left; border: 0;" name="undo"></textarea> -->
+                        </div>
+                            <div style="height: 40px; border-bottom: solid 1px black; padding-top: 5px;">
+                                내일 예정업무
+                            </div>
+                        <div style="height: 212px; border-bottom: solid 1px black;">
+                            ${vo.todo}
+                            <!-- <textarea  style="width:895px; height: 209px; text-align: left; border: 0;" name="todo"></textarea> -->
+                        </div>
+                            <div style="height: 40px; border-bottom: solid 1px black; padding-top: 5px;">
+                                문제점 및 특이사항 보고
+                            </div>
+                        <div class="d-flex" style="height: 212px; border-bottom: solid 1px black; ">
+                            <div style="border-right: solid 1px black; height: 212px; width: 450px;">
+                                ${vo.wrong}
+                                <!-- <textarea  style="border: 0; width: 445px; height: 212px; text-align: left;" name="wrong"></textarea> -->
+                            </div>
+                            <div style=" height: 212px; width: 450px;">
+                                ${vo.etc}
+                                <!-- <textarea  style="border: 0; width: 445px; height: 212px; text-align: left;" name="etc"></textarea> -->
+                            </div>
+                        </div>
+                        
+                   
+                   <div>
+
+                   </div>
+            </div>
+
+        </div>    
+     
+
+    </div>
+	            </div>
+	            <!-- End Page Content -->
 		   
 		    
 		    </c:when>
 		    <c:when test="${vo.reportNum eq 4}">
+		   <div class="container px-4 px-lg-5 my-5">
+					<a href="./mylist?cat=1" class="btn btn-primary btn-icon-split btn-sm">
+                       <span class="icon text-white-50">
+                       <i class="fas fa-arrow-right"></i>
+                       </span>
+                       <span class="text">시말서 목록</span>
+                       </a>
+				</div>
 		    
-		    
+				<!-- Begin Page Content -->
+	            <div class="container-fluid">
+						<div class="container px-4 px-lg-5 my-5">
+        <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
+            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 45px; background-color: rgb(255, 255, 249); text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
+                   시말서
+                   <div style="border: solid 1px black; width: 400px; margin-left: 500px; height: 120px; margin-top: -75px;">
+                    <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
+                        결<br>
+                        재
+                    </div>
+                    <div class="row" style="border-bottom: solid 1px black; margin-top: -120px; width: 368px; margin-left: 30px; height: 30px; font-size: 15px;">
+                        <div style="padding-top:3px; letter-spacing: 0; margin-left: 30px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
+                                                                                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
+                        <div id="ajaaja"></div>
+                        <div id="ajaaja"></div>
+                        <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                        
+                    </div>
+                </div>
+            </div>
+            <hr >
+
+            <div  style="border: solid 1px black; margin-top: 25px; margin-left: 45px; width: 900px; height: 110px; ">
+                <div style="height: 55px; border-bottom: solid 1px black;">
+                    <div class="d-flex">
+                        <div style="width: 225px; height: 55px; border-right: solid 1px black;">
+                            <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 70px; padding-left: 50px;">
+                                성명
+                            </div>
+                        </div>
+                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" readonly value="${vo.name}"/>
+
+                        <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
+                            <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
+                                부서명
+                            </div>
+                        </div>
+                        <input style="width: 220px; height: 50px; text-align: center; border: 0;"  readonly value="${vodepName}"/>
+                    </div>    
+                </div> 
+
+                <div style="height: 55px;">
+                    <div class="d-flex">
+                        <div class="d-flex">         
+                            <div style="width: 225px; height: 55px; border-right: solid 1px black;">
+                                <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 70px; padding-left: 50px;">
+                                    직책
+                                </div>
+                            </div>
+                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" value="${vo.roleName}"/>
+    
+                            <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
+                                <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
+                                    작성일
+                                </div>
+                            </div>
+                            <input style="width: 220px; height: 50px; text-align: center; border: 0;" readonly value="${year}-${month}-${day}" />
+                        </div> 
+                    </div>    
+                </div>    
+            </div>
+
+            <div style="margin-top: 20px; margin-left: 45px; width: 900px; height: 950px; border: solid 1px black;" >
+                <div style="font-weight: bold; margin-top: 15px;">
+                    위 본인은 직원으로서 제 사규를 맡은바 책임과 의무를 다하여 성실히 복무하여야함에도<br>
+                    불구하고 아래와 같이 회사의 관련 규정을 위반하였는바 이에 시말서를 제출하고<br>
+                    그에 따른 처벌을 감수하며 차후 본건을 계기로 과오의 재발이 없을 것임을 서약합니다.
+                </div>
+                <div style="border: solid 1px red; margin-top: 15px; height: 50px; text-align: center; font-weight: bold;">
+                    <div style="padding-top: 10px; font-size: 20px;">
+                        위 반 내 용(상세히 기술요함)
+                    </div>   
+                </div>
+                <div style="border-bottom: solid 1px black; height: 600px;">
+                    ${vo.text}
+                </div>
+                <div style="font-weight: bold; text-align: center; margin-top: 25px;">
+                    상기 기록사실에 허위가 없습니다.
+                </div>
+                <div style=" width: 900px; height: 250px;"> 
+                    <div class="d-flex" style="font-weight: bold; margin-left: 240px; margin-top: 45px;">
+                        <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyY" value="${year}"/>년</div>
+                        <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyM" value="${month}"/>월</div>
+                        <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyD" value="${day}"/>일</div>
+                    </div>
+                    <div style="font-weight: bold; margin-top: 50px; margin-left: 150px;">
+                        신청자 : <input type="text" value="${vo.name}"  style="border:0 solid black" />
+                    </div>
+                </div>
+            </div>
+        </div>    
+        
+
+    </div>
+	            </div>
+	            <!-- End Page Content -->
+                
 		    
 		    </c:when>
 		</c:choose>
