@@ -346,8 +346,8 @@
                                         <c:when test="${cat eq '3'}">
                                         	<thead>
                                                 <tr>
-                                                    <th>금일 오전</th>
-                                                    <th>금일 오후</th>
+                                                    <th>오전 업무</th>
+                                                    <th>오후 업무</th>
                                                     <th>작성 일자</th>
                                                     <th colspan="4">승인 상태</th> 
                                                 </tr>
