@@ -6,7 +6,8 @@
 	let userName = $("#userName").val();
 	let userId = $("#userId").val();
 	let chat = "";
-	let roomNum = $("#roomNum").val(); //addRoom에서 방번호 뿌려주기
+	let roomNum = $("#roomNum").val();
+	let roomNumMsg = $("#roomNumMsg").val();
 
 //------------------------------------
 	//enter 치면 메세지 보내기
@@ -46,6 +47,39 @@ function send() {
 				let d = JSON.parse(msg);
 				console.log("d : ", d);
 			
+				//roomNum이 동일할 때
+				if (roomNum == d.roomNum){
+					console.log("하하하");
+					console.log("roomNum : ", roomNum);
+					console.log("d.roomNum : ", d.roomNum);
+					
+					//타입이 메세지일 때
+					if(d.type == "message"){
+						//내가 보냈을 때
+					    if(userId == d.userId){
+						    $("#chating").append("<div class='me'>"
+						  	  					+"<div class='me-bubble-flex-first'><div class='me-bubble'>" +d.chat+"</div>");	
+					  
+					    //남이 보냈을 때
+					    }else{
+							  $("#chating").append("<div class = 'you'>"
+													+"<div class = 'you-flex'>"
+													+"<div class='you-profile'>"
+													+"<div class='pic'><img src='/img/chatroom-profile.jpg' width='35px' height='35px'></div></div>"
+													+"<div class='you-namebubble'><div class='you-name'><span><strong>"+d.userName+"</strong></span></div>"
+													+"<div class='you-bubble-flex'><div class='you-bubble'>" +d.chat+ "</div></div>"
+												);
+						}
+					}
+				}else {
+					console.log("흑흑");
+					console.log("roomNum : ", roomNum);
+					console.log("d.roomNum : ", d.roomNum);
+				}
+				
+			
+			
+			
 				//타입 연결일때 (접속)
 				if(d.type == "connect"){
 					let str = d.username + " 님이 입장하셨습니다.";
@@ -53,24 +87,7 @@ function send() {
 				  						+"<div class='al-bubble'>" +str+"</div></div>"
 				 						);		
 				}
-				//타입이 메세지일 때
-				else if(d.type == "message"){
-					//내가 보냈을 때
-				    if(userId == d.userId){
-					    $("#chating").append("<div class='me'>"
-					  	  					+"<div class='me-bubble-flex-first'><div class='me-bubble'>" +d.chat+"</div>");	
-				  
-				    //남이 보냈을 때
-				    }else{
-						  $("#chating").append("<div class = 'you'>"
-												+"<div class = 'you-flex'>"
-												+"<div class='you-profile'>"
-												+"<div class='pic'><img src='/img/chatroom-profile.jpg' width='35px' height='35px'></div></div>"
-												+"<div class='you-namebubble'><div class='you-name'><span><strong>"+d.userName+"</strong></span></div>"
-												+"<div class='you-bubble-flex'><div class='you-bubble'>" +d.chat+ "</div></div>"
-											);
-					}
-				}
+				
 				//타입이 연결해제
 				else if(d.type == "disconnect"){
 					let str = d.username + " 님이 나가셨습니다.";
