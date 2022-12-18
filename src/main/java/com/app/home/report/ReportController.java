@@ -726,12 +726,26 @@ public class ReportController {
 	//=======================류형민===================
 	
 	@GetMapping("/report/mylist")
-	public ModelAndView getMyReportList(ModelAndView mv,String cat,ReportPager pager, Principal principal) throws Exception{
+	public ModelAndView getMyReportList(ModelAndView mv,String cat,ReportPager pager, Principal principal, HttpSession session) throws Exception{
+		
+		
+		
 		
 		if(principal == null) {
 			mv.setViewName("user/login");
 			return mv;
 		}
+		
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    UserVO userVO  = (UserVO)authentication.getPrincipal();
+		
+		
+		userVO.setId(Integer.parseInt(principal.getName()));
+		userVO = reportMapper.getFirstList(userVO);	
+		mv.addObject("first", userVO);
+		userVO = reportMapper.getlastlist(userVO);	
+		mv.addObject("second", userVO);
 		
 		pager.setId(Integer.parseInt(principal.getName()));
 		
