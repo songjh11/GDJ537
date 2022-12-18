@@ -29,7 +29,7 @@ public class SocketHandler extends TextWebSocketHandler{
 	HashMap<String, WebSocketSession>sessionMap=new HashMap<>(); // 웹소켓 세션을 담아둘 맵
 	
 	//방 구분하기
-	//Map<String, ArrayList<WebSocketSession>> sm = new HashMap<>();
+	Map<String, ArrayList<WebSocketSession>> sm = new HashMap<>();
 	
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -56,7 +56,12 @@ public class SocketHandler extends TextWebSocketHandler{
 		System.out.println("UserName : "+userVO.getName());
 		String message = "{\"type\":\"connect\",\"username\":\""+userVO.getName()+"\"}";
 		sessionMap.put(session.getId(), session);
-
+		
+//		JSONObject obj =new JSONObject();
+//		obj.put("type", "getId");
+//		obj.put("sessionId", session.getId());
+//		session.sendMessage(new TextMessage(obj.toJSONString()));
+		
 		for (String key: sessionMap.keySet()) {
 			WebSocketSession wss= sessionMap.get(key);
 			try {
@@ -102,5 +107,3 @@ public class SocketHandler extends TextWebSocketHandler{
 
 
 }
-
-
