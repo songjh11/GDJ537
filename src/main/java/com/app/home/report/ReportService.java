@@ -103,7 +103,10 @@ public class ReportService {
 		return reportMapper.getGrantorCount(reportVO);
 	}
 	
-	
+	public ReportVO getLicenserId(ReportVO reportVO) throws Exception{
+		
+		return reportMapper.getLicenserId(reportVO);
+	}
 	
 	
 	

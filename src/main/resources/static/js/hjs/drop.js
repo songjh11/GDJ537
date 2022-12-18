@@ -133,36 +133,45 @@ console.log("전전전");
 
 $("#tbd").on('click', "#deleteBtn", function(event){
 
-    $("#deleteBtn").click(function(){
-
-    })
 
 
     console.log("권한회수 버튼 클릭");
 
-    let name = $(this).attr("data-name");
+    let name = $(event.target).attr("data-name");
     console.log("내가 클릭한 아이디 : ", name);
 
-    $(this).attr("disabled", false);
+    $(event.target).attr("disabled", false);
+
+    console.log("내 아이디  : ", $(event.target).attr("data-name"));
+    console.log("내 depNum :  ", $(event.target).attr("data-depNum"));
+
+    let depNum = $(event.target).attr("data-depNum");
 
     
     $.ajax({
         type: 'POST',
         url:  '/report/deleteLicenser',
         data:{
-            id : name
+            id : name,
+            depNum : depNum
         },
 
-        success:function(count){
-            console.log(count);
+        success:function(result){
+            console.log(result);
 
-            if(count >= 1){
+            // if(reportVO2 != null){     //승인자가 이미 존재한다면.
 
-                alert("ID가" + name + "인 직원의 권한을 회수 하였습니다.");
-                console.log("콘소로오오오오올");
+            //     alert("");
+            //     console.log("콘소로오오오오올");
 
-            }else if(count == 0){
-                alert("선택하신 부서에 승인자가 존재하지 않아 회수 대상이 없습니다.");
+            // }else if(count == 0){   //승인자가 존재하지 않다면
+            //     alert("선택하신 부서에 승인자가 존재하지 않아 회수 대상이 없습니다.");
+            // }
+            if(result == 1){
+                alert("아이디가 : "+ name +"인 사람을 회수 하였습니다.");
+            }else{
+                alert("권한회수를 하지 못하였습니다. 현재 이 부서에 승인자가 없거나, 현재 이 부서에 승인자가 다른 회원입니다.");
+                location.href="/report/licenserList";
             }
             
         },
