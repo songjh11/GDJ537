@@ -25,12 +25,14 @@
 <body>
     <div id="container" class="container">
       <input type="hidden" id="sessionId" value="${userVO.id}">
+      		<input type="hidden" id="roomNum" value="${param.roomNum}">
+      
    
       <div class="header">
                 <div class="header-flex">
                     <div class="tinum">
                         <div class="title">
-                            <span><strong>${roomVO.roomName}</strong></span>
+                            <span><strong>${rn}</strong></span>
                         </div>
                         <div class="number">
                             <img src="/img/chatroom-number.png" width="15px" height="15px">

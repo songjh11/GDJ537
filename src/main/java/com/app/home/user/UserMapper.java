@@ -48,9 +48,9 @@ public interface UserMapper {
 	
 	public int setDismiss(UserVO userVO) throws Exception;
 	
-	public int setRoleNumUpdate(UserVO userVO) throws Exception;
+	public int setRolenumUpdate(UserVO userVO) throws Exception;
 	
-	public int setDepNumUpdate(UserVO userVO) throws Exception;
+	public int setDepnumUpdate(UserVO userVO) throws Exception;
 	
 	public int setNameUpdate(UserVO userVO) throws Exception;
 	

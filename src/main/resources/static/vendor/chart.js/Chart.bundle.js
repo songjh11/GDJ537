@@ -181,7 +181,7 @@ var conversions = createCommonjsModule(function (module) {
 
 // NOTE: conversions should only return primitive values (i.e. arrays, or
 //       values that give correct `typeof` results).
-//       do not use box values types (i.e. Number(), String(), etc.)
+//       do not use box values types (i.e. number(), String(), etc.)
 
 var reverseKeywords = {};
 for (var key in colorName) {
@@ -1797,7 +1797,7 @@ Color.prototype = {
 		return colorString.keyword(this.values.rgb, this.values.alpha);
 	},
 
-	rgbNumber: function () {
+	rgbnumber: function () {
 		var rgb = this.values.rgb;
 		return (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
 	},
@@ -1966,7 +1966,7 @@ Color.prototype = {
 				type = ({}).toString.call(value);
 				if (type === '[object Array]') {
 					target[prop] = value.slice(0);
-				} else if (type === '[object Number]') {
+				} else if (type === '[object number]') {
 					target[prop] = value;
 				} else {
 					console.error('unexpected color value:', value);
@@ -2175,7 +2175,7 @@ var helpers = {
 	 * @returns {boolean}
 	 */
 	isFinite: function(value) {
-		return (typeof value === 'number' || value instanceof Number) && isFinite(value);
+		return (typeof value === 'number' || value instanceof number) && isFinite(value);
 	},
 
 	/**
@@ -3392,7 +3392,7 @@ helpers$1.extend(Element.prototype, {
 	},
 
 	hasValue: function() {
-		return helpers$1.isNumber(this._model.x) && helpers$1.isNumber(this._model.y);
+		return helpers$1.isnumber(this._model.x) && helpers$1.isnumber(this._model.y);
 	}
 });
 
@@ -6770,7 +6770,7 @@ function getIntersectItems(chart, position) {
  * @return {ChartElement[]} the nearest items
  */
 function getNearestItems(chart, position, intersect, distanceMetric) {
-	var minDistance = Number.POSITIVE_INFINITY;
+	var minDistance = number.POSITIVE_INFINITY;
 	var nearestItems = [];
 
 	parseVisibleItems(chart, function(element) {
@@ -7452,7 +7452,7 @@ var EVENT_TYPES = {
 function readUsedSize(element, property) {
 	var value = helpers$1.getStyle(element, property);
 	var matches = value && value.match(/^(\d+)(\.\d+)?px$/);
-	return matches ? Number(matches[1]) : undefined;
+	return matches ? number(matches[1]) : undefined;
 }
 
 /**
@@ -8277,7 +8277,7 @@ var positioners = {
 	nearest: function(elements, eventPosition) {
 		var x = eventPosition.x;
 		var y = eventPosition.y;
-		var minDistance = Number.POSITIVE_INFINITY;
+		var minDistance = number.POSITIVE_INFINITY;
 		var i, len, nearestElement;
 
 		for (i = 0, len = elements.length; i < len; ++i) {
@@ -10358,7 +10358,7 @@ var core_helpers = function() {
 	};
 
 	// -- Math methods
-	helpers$1.isNumber = function(n) {
+	helpers$1.isnumber = function(n) {
 		return !isNaN(parseFloat(n)) && isFinite(n);
 	};
 	helpers$1.almostEquals = function(x, y, epsilon) {
@@ -10374,7 +10374,7 @@ var core_helpers = function() {
 				return Math.max(max, value);
 			}
 			return max;
-		}, Number.NEGATIVE_INFINITY);
+		}, number.NEGATIVE_INFINITY);
 	};
 	helpers$1.min = function(array) {
 		return array.reduce(function(min, value) {
@@ -10382,7 +10382,7 @@ var core_helpers = function() {
 				return Math.min(min, value);
 			}
 			return min;
-		}, Number.POSITIVE_INFINITY);
+		}, number.POSITIVE_INFINITY);
 	};
 	helpers$1.sign = Math.sign ?
 		function(x) {
@@ -10404,7 +10404,7 @@ var core_helpers = function() {
 
 	/**
 	 * Returns the number of decimal places
-	 * i.e. the number of digits after the decimal point, of the value of this Number.
+	 * i.e. the number of digits after the decimal point, of the value of this number.
 	 * @param {number} x - A number.
 	 * @returns {number} The number of decimal places.
 	 * @private
@@ -10501,7 +10501,7 @@ var core_helpers = function() {
 			}
 		};
 	};
-	helpers$1.EPSILON = Number.EPSILON || 1e-14;
+	helpers$1.EPSILON = number.EPSILON || 1e-14;
 	helpers$1.splineCurveMonotone = function(points) {
 		// This function calculates Bézier control points in a similar way than |splineCurve|,
 		// but preserves monotonicity of the provided data and ensures no local extremums are added
@@ -10606,7 +10606,7 @@ var core_helpers = function() {
 		return index <= 0 ? collection[0] : collection[index - 1];
 	};
 	// Implementation of the nice number algorithm used in determining where axis labels will go
-	helpers$1.niceNum = function(range, round) {
+	helpers$1.nicenum = function(range, round) {
 		var exponent = Math.floor(helpers$1.log10(range));
 		var fraction = range / Math.pow(10, exponent);
 		var niceFraction;
@@ -10727,7 +10727,7 @@ var core_helpers = function() {
 		var constrainedContainer = view.getComputedStyle(parentNode)[maxStyle];
 		var hasCNode = isConstrainedValue(constrainedNode);
 		var hasCContainer = isConstrainedValue(constrainedContainer);
-		var infinity = Number.POSITIVE_INFINITY;
+		var infinity = number.POSITIVE_INFINITY;
 
 		if (hasCNode || hasCContainer) {
 			return Math.min(
@@ -10737,11 +10737,11 @@ var core_helpers = function() {
 
 		return 'none';
 	}
-	// returns Number or undefined if no constraint
+	// returns number or undefined if no constraint
 	helpers$1.getConstraintWidth = function(domNode) {
 		return getConstraintDimension(domNode, 'max-width', 'clientWidth');
 	};
-	// returns Number or undefined if no constraint
+	// returns number or undefined if no constraint
 	helpers$1.getConstraintHeight = function(domNode) {
 		return getConstraintDimension(domNode, 'max-height', 'clientHeight');
 	};
@@ -11881,7 +11881,7 @@ var Scale = core_element.extend({
 			return NaN;
 		}
 		// isNaN(object) returns true, so make sure NaN is checking for a number; Discard Infinite values
-		if ((typeof rawValue === 'number' || rawValue instanceof Number) && !isFinite(rawValue)) {
+		if ((typeof rawValue === 'number' || rawValue instanceof number) && !isFinite(rawValue)) {
 			return NaN;
 		}
 
@@ -12692,13 +12692,13 @@ function generateTicks(generationOptions, dataRange) {
 	var MIN_SPACING = 1e-14;
 	var stepSize = generationOptions.stepSize;
 	var unit = stepSize || 1;
-	var maxNumSpaces = generationOptions.maxTicks - 1;
+	var maxnumSpaces = generationOptions.maxTicks - 1;
 	var min = generationOptions.min;
 	var max = generationOptions.max;
 	var precision = generationOptions.precision;
 	var rmin = dataRange.min;
 	var rmax = dataRange.max;
-	var spacing = helpers$1.niceNum((rmax - rmin) / maxNumSpaces / unit) * unit;
+	var spacing = helpers$1.nicenum((rmax - rmin) / maxnumSpaces / unit) * unit;
 	var factor, niceMin, niceMax, numSpaces;
 
 	// Beyond MIN_SPACING floating point numbers being to lose precision
@@ -12708,9 +12708,9 @@ function generateTicks(generationOptions, dataRange) {
 	}
 
 	numSpaces = Math.ceil(rmax / spacing) - Math.floor(rmin / spacing);
-	if (numSpaces > maxNumSpaces) {
-		// If the calculated num of spaces exceeds maxNumSpaces, recalculate it
-		spacing = helpers$1.niceNum(numSpaces * spacing / maxNumSpaces / unit) * unit;
+	if (numSpaces > maxnumSpaces) {
+		// If the calculated num of spaces exceeds maxnumSpaces, recalculate it
+		spacing = helpers$1.nicenum(numSpaces * spacing / maxnumSpaces / unit) * unit;
 	}
 
 	if (stepSize || isNullOrUndef$2(precision)) {
@@ -12852,7 +12852,7 @@ var scale_linearbase = core_scale.extend({
 	},
 
 	_computeTickLimit: function() {
-		return Number.POSITIVE_INFINITY;
+		return number.POSITIVE_INFINITY;
 	},
 
 	handleDirectionalChanges: noop,
@@ -12898,7 +12898,7 @@ var scale_linearbase = core_scale.extend({
 
 	convertTicksToLabels: function() {
 		var me = this;
-		me.ticksAsNumbers = me.ticks.slice();
+		me.ticksAsnumbers = me.ticks.slice();
 		me.zeroLineIndex = me.ticks.indexOf(0);
 
 		core_scale.prototype.convertTicksToLabels.call(me);
@@ -13007,8 +13007,8 @@ var scale_linear = scale_linearbase.extend({
 		var ilen = metasets.length;
 		var i, meta, data, values;
 
-		me.min = Number.POSITIVE_INFINITY;
-		me.max = Number.NEGATIVE_INFINITY;
+		me.min = number.POSITIVE_INFINITY;
+		me.max = number.NEGATIVE_INFINITY;
 
 		if (hasStacks === undefined) {
 			for (i = 0; !hasStacks && i < ilen; ++i) {
@@ -13075,7 +13075,7 @@ var scale_linear = scale_linearbase.extend({
 	},
 
 	getPixelForTick: function(index) {
-		var ticks = this.ticksAsNumbers;
+		var ticks = this.ticksAsnumbers;
 		if (index < 0 || index > ticks.length - 1) {
 			return null;
 		}
@@ -13163,9 +13163,9 @@ var scale_logarithmic = core_scale.extend({
 		var datasetIndex, meta, value, data, i, ilen;
 
 		// Calculate Range
-		me.min = Number.POSITIVE_INFINITY;
-		me.max = Number.NEGATIVE_INFINITY;
-		me.minNotZero = Number.POSITIVE_INFINITY;
+		me.min = number.POSITIVE_INFINITY;
+		me.max = number.NEGATIVE_INFINITY;
+		me.minNotZero = number.POSITIVE_INFINITY;
 
 		var hasStacks = opts.stacked;
 		if (hasStacks === undefined) {
@@ -13421,10 +13421,10 @@ var defaultConfig$3 = {
 		// String - The colour of the label backdrop
 		backdropColor: 'rgba(255,255,255,0.75)',
 
-		// Number - The backdrop padding above & below the label in pixels
+		// number - The backdrop padding above & below the label in pixels
 		backdropPaddingY: 2,
 
-		// Number - The backdrop padding to the side of the label in pixels
+		// number - The backdrop padding to the side of the label in pixels
 		backdropPaddingX: 2,
 
 		callback: core_ticks.formatters.linear
@@ -13434,7 +13434,7 @@ var defaultConfig$3 = {
 		// Boolean - if true, show point labels
 		display: true,
 
-		// Number - Point label font size in pixels
+		// number - Point label font size in pixels
 		fontSize: 10,
 
 		// Function - Used to convert point labels
@@ -13672,7 +13672,7 @@ function drawRadiusLine(scale, gridLineOpts, radius, index) {
 }
 
 function numberOrZero(param) {
-	return helpers$1.isNumber(param) ? param : 0;
+	return helpers$1.isnumber(param) ? param : 0;
 }
 
 var scale_radialLinear = scale_linearbase.extend({
@@ -13691,8 +13691,8 @@ var scale_radialLinear = scale_linearbase.extend({
 	determineDataLimits: function() {
 		var me = this;
 		var chart = me.chart;
-		var min = Number.POSITIVE_INFINITY;
-		var max = Number.NEGATIVE_INFINITY;
+		var min = number.POSITIVE_INFINITY;
+		var max = number.NEGATIVE_INFINITY;
 
 		helpers$1.each(chart.data.datasets, function(dataset, datasetIndex) {
 			if (chart.isDatasetVisible(datasetIndex)) {
@@ -13710,8 +13710,8 @@ var scale_radialLinear = scale_linearbase.extend({
 			}
 		});
 
-		me.min = (min === Number.POSITIVE_INFINITY ? 0 : min);
-		me.max = (max === Number.NEGATIVE_INFINITY ? 0 : max);
+		me.min = (min === number.POSITIVE_INFINITY ? 0 : min);
+		me.max = (max === number.NEGATIVE_INFINITY ? 0 : max);
 
 		// Common base implementation to handle ticks.min, ticks.max, ticks.beginAtZero
 		me.handleTickRangeOptions();
@@ -13854,7 +13854,7 @@ var scale_radialLinear = scale_linearbase.extend({
 		if (gridLineOpts.display) {
 			helpers$1.each(me.ticks, function(label, index) {
 				if (index !== 0) {
-					offset = me.getDistanceFromCenterForValue(me.ticksAsNumbers[index]);
+					offset = me.getDistanceFromCenterForValue(me.ticksAsnumbers[index]);
 					drawRadiusLine(me, gridLineOpts, offset, index);
 				}
 			});
@@ -13912,7 +13912,7 @@ var scale_radialLinear = scale_linearbase.extend({
 				return;
 			}
 
-			offset = me.getDistanceFromCenterForValue(me.ticksAsNumbers[index]);
+			offset = me.getDistanceFromCenterForValue(me.ticksAsnumbers[index]);
 
 			if (tickOpts.showLabelBackdrop) {
 				width = ctx.measureText(label).width;
@@ -13948,8 +13948,8 @@ var resolve$5 = helpers$1.options.resolve;
 var valueOrDefault$d = helpers$1.valueOrDefault;
 
 // Integer constants are from the ES6 spec.
-var MIN_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
-var MAX_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
+var MIN_INTEGER = number.MIN_SAFE_INTEGER || -9007199254740991;
+var MAX_INTEGER = number.MAX_SAFE_INTEGER || 9007199254740991;
 
 var INTERVALS = {
 	millisecond: {
@@ -14754,8 +14754,8 @@ var moment = createCommonjsModule(function (module, exports) {
         return input === void 0;
     }
 
-    function isNumber(input) {
-        return typeof input === 'number' || Object.prototype.toString.call(input) === '[object Number]';
+    function isnumber(input) {
+        return typeof input === 'number' || Object.prototype.toString.call(input) === '[object number]';
     }
 
     function isDate(input) {
@@ -14970,11 +14970,11 @@ var moment = createCommonjsModule(function (module, exports) {
     }
 
     function toInt(argumentForCoercion) {
-        var coercedNumber = +argumentForCoercion,
+        var coercednumber = +argumentForCoercion,
             value = 0;
 
-        if (coercedNumber !== 0 && isFinite(coercedNumber)) {
-            value = absFloor(coercedNumber);
+        if (coercednumber !== 0 && isFinite(coercednumber)) {
+            value = absFloor(coercednumber);
         }
 
         return value;
@@ -15244,11 +15244,11 @@ var moment = createCommonjsModule(function (module, exports) {
     }
 
     function zeroFill(number, targetLength, forceSign) {
-        var absNumber = '' + Math.abs(number),
-            zerosToFill = targetLength - absNumber.length,
+        var absnumber = '' + Math.abs(number),
+            zerosToFill = targetLength - absnumber.length,
             sign = number >= 0;
         return (sign ? (forceSign ? '+' : '') : '-') +
-            Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absNumber;
+            Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absnumber;
     }
 
     var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
@@ -15399,7 +15399,7 @@ var moment = createCommonjsModule(function (module, exports) {
         if (typeof token === 'string') {
             token = [token];
         }
-        if (isNumber(callback)) {
+        if (isnumber(callback)) {
             func = function (input, array) {
                 array[callback] = toInt(input);
             };
@@ -15748,7 +15748,7 @@ var moment = createCommonjsModule(function (module, exports) {
             } else {
                 value = mom.localeData().monthsParse(value);
                 // TODO: Another silent failure?
-                if (!isNumber(value)) {
+                if (!isnumber(value)) {
                     return mom;
                 }
             }
@@ -17324,7 +17324,7 @@ var moment = createCommonjsModule(function (module, exports) {
             configFromArray(config);
         } else if (isObject(input)) {
             configFromObject(config);
-        } else if (isNumber(input)) {
+        } else if (isnumber(input)) {
             // from milliseconds
             config._d = new Date(input);
         } else {
@@ -17746,7 +17746,7 @@ var moment = createCommonjsModule(function (module, exports) {
                 d  : input._days,
                 M  : input._months
             };
-        } else if (isNumber(input)) {
+        } else if (isnumber(input)) {
             duration = {};
             if (key) {
                 duration[key] = input;
@@ -18758,7 +18758,7 @@ var moment = createCommonjsModule(function (module, exports) {
     }
 
     function listMonthsImpl (format, index, field) {
-        if (isNumber(format)) {
+        if (isnumber(format)) {
             index = format;
             format = undefined;
         }
@@ -18787,7 +18787,7 @@ var moment = createCommonjsModule(function (module, exports) {
     // (true, fmt)
     function listWeekdaysImpl (localeSorted, format, index, field) {
         if (typeof localeSorted === 'boolean') {
-            if (isNumber(format)) {
+            if (isnumber(format)) {
                 index = format;
                 format = undefined;
             }
@@ -18798,7 +18798,7 @@ var moment = createCommonjsModule(function (module, exports) {
             index = format;
             localeSorted = false;
 
-            if (isNumber(format)) {
+            if (isnumber(format)) {
                 index = format;
                 format = undefined;
             }

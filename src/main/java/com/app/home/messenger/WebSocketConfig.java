@@ -19,7 +19,7 @@ public class WebSocketConfig  implements WebSocketConfigurer{
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 
 		
-		registry.addHandler(socketHandler, "/chating")
+		registry.addHandler(socketHandler, "/oneChat")
 				.addInterceptors(new HttpSessionHandshakeInterceptor())
 				.setAllowedOrigins("*");
 		registry.addHandler(socketHandler, "/chatroom")

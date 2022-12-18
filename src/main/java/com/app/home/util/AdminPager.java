@@ -7,8 +7,8 @@ public class AdminPager {
 
 	private Long startRow;
 	private Long lastRow;
-	private Long startNum;
-	private Long lastNum;
+	private Long startnum;
+	private Long lastnum;
 	private Long page;
 	private Long perPage;
 	private Long perBlock;
@@ -25,7 +25,7 @@ public class AdminPager {
 		this.perBlock=5L;
 	}
 	
-	public void getRowNum() throws Exception{
+	public void getRownum() throws Exception{
 		this.startRow = (this.getPage()-1)*this.getPerPage();
 	}
 	
@@ -37,7 +37,7 @@ public class AdminPager {
 	}
 	
 	//jsp로 보내줄 페이지네이션 번호 계산
-		public void getNum(Long totalCount) throws Exception{
+		public void getnum(Long totalCount) throws Exception{
 			
 			//totalPage 계산
 			 Long totalPage = totalCount/this.getPerPage();
@@ -66,11 +66,11 @@ public class AdminPager {
 				 curBlock++;
 			 }
 			 		 
-			 this.startNum = (curBlock-1)*this.getPerBlock()+1;
-			 this.lastNum = curBlock*this.getPerBlock();
+			 this.startnum = (curBlock-1)*this.getPerBlock()+1;
+			 this.lastnum = curBlock*this.getPerBlock();
 			 
 			 if(curBlock==totalBlock) {
-				 this.lastNum = totalPage;
+				 this.lastnum = totalPage;
 			 }
 			 
 			 if(curBlock>1) {

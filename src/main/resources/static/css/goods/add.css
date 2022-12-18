@@ -1,8 +1,68 @@
+
 #name, #max, #location, #carNum, #files{
+
 	width: 500px;
 }
-
 #contents{
 	width: 500px;
 	height: 300px;
+}
+.check{
+	color: red;
+	font-weight: bold;
+	font-size: 14px;
+}
+.board-filetitle{
+    margin-top: 20px;
+    text-align: center; 
+	border: none;
+    /* border : 1px solid black; */
+}
+
+.file_form {
+    
+    position: relative; /* position 기준 */
+    display: inline-block;
+    width: auto;
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid skyblue;
+    font-size: 12px;
+}
+.file_form .text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-align: center;
+    font-size : 14px;
+    width: 500px;
+    padding: 0 50px 0 10px;
+    white-space: nowrap;
+}
+.file_form .text:after { /* 버튼형태 구현 */
+    position: absolute;
+    top:0;right:0;
+    width: 80px;
+    background-color: skyblue;
+    text-align: center;
+    color: #fff;
+    content:'첨부파일';
+}
+.file_form input[type='file'] {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 10;
+    width: 100%;
+    opacity: 0;
+}
+#title{
+	font-weight: bold;
+}
+
+#fileAdd{
+	margin-top: 10px;
+	background-color: skyblue;
+	color: white;
+	font-weight: bold;
+	border: none;
 }
