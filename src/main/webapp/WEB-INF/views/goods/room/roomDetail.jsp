@@ -12,15 +12,21 @@
 </head>
 <style>
 .de {
-	width: 600px;
+	width: 550px;
 	height: 400px;
-	padding-bottom: 50px;
-	padding-left: 20px;
-	padding-right: 25px;
 }
 
-ul li {
-	list-style: none;
+.product-title {
+	text-align: center;
+	display: table;
+	width: 550px;
+	height: 400px;
+	padding-top: 15px;
+}
+
+.product-img-div {
+	display: table-cell;
+	vertical-align: middle;
 }
 </style>
 <!-- body ID 작성 -->
@@ -64,14 +70,16 @@ ul li {
 						<br>
 						<br>
 						<div class="text-center">
-						${goodDetail.contents }
-						<ul>
-							<c:forEach items="${goodDetail.goodsFileVO}" var="goods">
-								<li>
-									<img class="de" src="/file/goods/${goods.fileName}" alt="">
-								</li>
-							</c:forEach>
-						</ul>
+							${goodDetail.contents }
+							<ul>
+								<c:forEach items="${goodDetail.goodsFileVO}" var="goods">
+									<div class="product-title">
+										<div class="product-img-div">
+											<img class="de" src="/file/goods/${goods.fileName}">
+										</div>
+									</div>
+								</c:forEach>
+							</ul>
 						</div>
 						<br>
 					</section>
