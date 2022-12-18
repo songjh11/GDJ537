@@ -134,61 +134,6 @@ public class GoodsService
       return goodsMapper.getCount(goodsVO);
    }
 
-	public GoodsVO getGoods(GoodsVO goodsVO) throws Exception
-	{
-		return goodsMapper.getGoods(goodsVO);
-	}
-	
-	public int setUpdate(GoodsVO goodsVO,MultipartFile [] files,ServletContext servletContext,String [] fileUpdateNumber) throws Exception{
-//		int count = goodsMapper.getCount(goodsVO);
-//		
-//		if(count == 0) {
-//			count = 1000;
-//		}else {
-//			count = Integer.parseInt(goodsMapper.getMaxCount(goodsVO).substring(2))+1;
-//		}
-//		goodsVO.setId(goodsVO.getId().concat(String.valueOf(count)));
-		int result =  goodsMapper.setUpdate(goodsVO);
-		String path = filePath ;
-		int count = 0;
-		GoodsFileVO goodsFileVO = new GoodsFileVO();
-		if(files.length != 0) {
-			
-			for(MultipartFile file : files) {
-				log.info("test1 => {}", file);
-				log.info("test1 => {}", file.isEmpty());
-				
-				if(!file.isEmpty()) {
-					
-					String fileName = fileManager.saveFile(path,servletContext, file);
-					if(fileUpdateNumber != null) {
-						if(fileUpdateNumber.length-1 < count) {
-						
-							goodsFileVO.setFileName(fileName);
-							goodsFileVO.setOriName(file.getOriginalFilename());
-							goodsFileVO.setGoodsId(goodsVO.getGoodsId());
-							goodsMapper.setGoodsFileAdd(goodsFileVO);
-						}else {
-							goodsFileVO.setImgNum(Long.parseLong(fileUpdateNumber[count]));
-							goodsFileVO.setFileName(fileName);
-							goodsFileVO.setOriName(file.getOriginalFilename());
-							goodsFileVO.setGoodsId(goodsVO.getGoodsId());
-							goodsMapper.setGoodsFileAdd(goodsFileVO);
-							count++;
-						}
-					}else if(fileUpdateNumber == null) {
-						goodsFileVO.setFileName(fileName);
-						goodsFileVO.setOriName(file.getOriginalFilename());
-						goodsFileVO.setGoodsId(goodsVO.getGoodsId());
-						goodsMapper.setGoodsFileAdd(goodsFileVO);
-					}
-				}
-			}
-		}
-			return result;
-	}
-
-
    public String getMaxCount(GoodsVO goodsVO) throws Exception
    {
       return goodsMapper.getMaxCount(goodsVO);
