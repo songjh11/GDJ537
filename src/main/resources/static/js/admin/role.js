@@ -1,14 +1,14 @@
 console.log("role");
 
   $(".roleDel").click(function(){
-    let roleNum=$(this).prev().prev().text();
+    let rolenum=$(this).prev().prev().text();
     let roleName=$(this).prev().text();
 
     $.ajax({
         type:"post",
         url:"/user/admin/roleCheck",
         data:{
-            "roleNum":roleNum
+            "rolenum":rolenum
         },
         success:function(data){
             if(data==0){
@@ -28,7 +28,7 @@ console.log("role");
                             type:"post",
                             url:"/user/admin/roleDel",
                             data:{
-                                "roleNum":roleNum
+                                "rolenum":rolenum
                             },
                             success:function(success){
                                 Swal.fire('직급을 삭제하였습니다.', '', 'success');
@@ -64,7 +64,7 @@ console.log("role");
   })
   
   $('.showRole').click(function(){
-    let roleNum = $(this).parent().children().first().text();
+    let rolenum = $(this).parent().children().first().text();
     let content = $(this).text();
     let select = $(this).data().role;
     
@@ -77,18 +77,18 @@ console.log("role");
         })
         if (getName) { // Swal.fire(`: ${getName}`)
             switch(select){
-                case 'roleName': roleNameUpdate(roleNum,getName);
+                case 'roleName': roleNameUpdate(rolenum,getName);
                 break;
             }
         }
     })() 
 })
-function roleNameUpdate(roleNum,roleName){
+function roleNameUpdate(rolenum,roleName){
 $.ajax({
     type:"post",
     url:"/user/admin/roleNameUpdate",
     data:{
-        roleNum:roleNum,
+        rolenum:rolenum,
         roleName:roleName
     },
     success:function(){

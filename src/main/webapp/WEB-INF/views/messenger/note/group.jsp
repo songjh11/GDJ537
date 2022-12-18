@@ -147,6 +147,14 @@
             val = $("#inputContents").val();
             console.log(val.length);
             $("#count").text(val.length+" / 5000");
+
+            if(val.length>5000) {
+                alert("최대 5000자까지 입력 가능합니다.");
+                $("#count").text(val.length+" / 5000");
+                // $("#count").text("5000 / 5000");
+                
+                $("#inputContents").val(val.substring(0, 5000));
+            }
         })
 
         $("#sendBtn").on("click", function(){
@@ -159,7 +167,7 @@
         })
 
 
-        opener.document.getElementById("pInput").value;
+        // opener.document.getElementById("pInput").value;
         
     </script>
 </body>

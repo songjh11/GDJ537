@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.home.schedule.goods.GoodsVO;
 import com.app.home.schedule.goods.ReserveVO;
+import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,6 +17,17 @@ public class CarService {
 	
 	@Autowired
 	private CarMapper carMapper;
+	
+	// 예약현황 보기
+	public List<ReserveVO> getResInfo(ReserveVO reserveVO) throws Exception {
+		
+		return carMapper.getResInfo(reserveVO);
+	}
+	
+	public List<ReserveVO> getStartTime(ReserveVO reserveVO) throws Exception {
+		
+		return carMapper.getStartTime(reserveVO);
+	}
 	
 	// 예약 취소
 	public int setDelete(ReserveVO reserveVO) throws Exception {
@@ -46,6 +58,11 @@ public class CarService {
 		
 		return carMapper.getReserveList(reserveVO);
 	}
+	
+	public List<ReserveVO> getReserveUserList(UserVO userVO) throws Exception{
+		
+		return carMapper.getReserveUserList(userVO);
+	}
 
 	// 예약
 	public int setReserve(ReserveVO reserveVO) throws Exception {
@@ -55,7 +72,7 @@ public class CarService {
 		return result; 
 	}
 	
-	// 상세보기
+	// 차량 상세보기
 	public GoodsVO getGoods(GoodsVO goodsVO) throws Exception {
 		
 		return carMapper.getGoods(goodsVO);

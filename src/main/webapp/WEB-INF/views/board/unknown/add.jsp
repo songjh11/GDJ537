@@ -58,7 +58,7 @@
 								  	</div>
 								</div> -->
                     <!-- 나중에 로그인한 사용자의 값이 오도록 수정 -->
-                    <input type="hidden" name="id" id="id" value="1234">
+                    <input type="hidden" name="creator" id="id" value="1234">
                     <div class="mb-3 row">
                       <label class="col-sm-2 col-form-label" for="title">제목</label>
                       <div class="col-sm-10">

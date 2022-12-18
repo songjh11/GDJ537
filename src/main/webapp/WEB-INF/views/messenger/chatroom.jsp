@@ -51,7 +51,7 @@ charset=UTF-8" pageEncoding="UTF-8"%>
 				<input type="hidden" name="userId" id="userId" value="${user.id}">
 				<input type="hidden" name="roomNumMsg" id="roomNumMsg" value="">
 				<input type="text" id="inputChat" placeholder="보내실 메시지를 입력하세요.">
-				<button onclick="send()" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
+				<button onclick="javascript:send();" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
 			</div>
 		</div>
 	</div>

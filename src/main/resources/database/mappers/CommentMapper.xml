@@ -7,34 +7,36 @@
 
 	<insert id="setCommentAdd" parameterType="CommentVO">
 		INSERT INTO COMMENT
-		(ID,NUM,CONTENTS)
-		VALUES(#{id},#{num},#{contents})
+		(CREATOR,BOARDID,CONTENTS)
+		VALUES(#{creator},#{boardId},#{contents})
 	</insert>
 
 	<select id="getCommentList" resultType="CommentVO"
 		parameterType="CommentPager">
 		SELECT * FROM COMMENT
-		WHERE NUM = #{num}
-		ORDER BY COMMENTNUM DESC
+		WHERE BOARDID = #{boardId}
+		ORDER BY
+		ID DESC
 		LIMIT #{startRow}, #{perPage}
 	</select>
 
 	<select id="getCommentListTotalCount" resultType="Long"
 		parameterType="CommentPager">
-		SELECT COUNT(COMMENTNUM) FROM COMMENT
-		WHERE NUM = #{num}
+		SELECT COUNT(ID) FROM COMMENT
+		WHERE BOARDID = #{boardId}
 	</select>
 
 	<insert id="setCommentUpdate" parameterType="CommentVO">
 		UPDATE COMMENT
 		SET
-		CONTENTS=#{contents} WHERE COMMENTNUM=#{commentNum}
+		CONTENTS=#{contents}, UPDATEDATE=current_timestamp() WHERE
+		ID=#{id}
 	</insert>
 
 	<delete id="setCommentDelete" parameterType="CommentVO">
 		DELETE FROM COMMENT
 		WHERE
-		COMMENTNUM=#{commentNum}
+		ID = #{id}
 	</delete>
 
 </mapper>
