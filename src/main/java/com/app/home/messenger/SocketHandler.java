@@ -1,13 +1,12 @@
 package com.app.home.messenger;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -27,6 +26,7 @@ public class SocketHandler extends TextWebSocketHandler{
 	private static List<WebSocketSession> weblist = new ArrayList<>();
 	
 	HashMap<String, WebSocketSession>sessionMap=new HashMap<>(); // 웹소켓 세션을 담아둘 맵
+	
 	
 	//방 구분하기
 	Map<String, ArrayList<WebSocketSession>> sm = new HashMap<>();
@@ -52,8 +52,9 @@ public class SocketHandler extends TextWebSocketHandler{
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
 		UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
-		 
 		System.out.println("UserName : "+userVO.getName());
+		
+		
 		String message = "{\"type\":\"connect\",\"username\":\""+userVO.getName()+"\"}";
 		sessionMap.put(session.getId(), session);
 		
@@ -74,15 +75,14 @@ public class SocketHandler extends TextWebSocketHandler{
 		
 		weblist.add(session);
 		log.info(session + "접속");
-		
-	}
+	
+			
+		}
+		 
 
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-	
-	log.info("session : {}", session);	
-	log.info("map : {}", sessionMap);
 	
 	SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
 	UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();

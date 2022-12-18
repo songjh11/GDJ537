@@ -29,7 +29,7 @@ function send() {
 				userName : userName,
 				userId : userId,
 				chat : chat,
-				roomNum : roomNum
+				//roomNum : roomNum
 			}
 		ws.send(JSON.stringify(option))
 		$("#inputChat").val("");

@@ -437,6 +437,46 @@ public class MessengerController extends Socket {
 		return mv;
 	}
 	
+	@PostMapping("roomPw")
+	@ResponseBody
+	public int getRoomPw(RoomVO roomVO, String pw)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		log.info("룸넘 들어왔니?!!! ======> {} ",roomVO.getRoomNum());
+		log.info("비밀번호는?! =====> {} ", pw);
+		
+		// 클릭한 채팅방 번호와 입력한 채팅방 비밀번호가 옴
+		// String => Integer로 변환
+		int roomPw = Integer.parseInt(pw);
+		
+		// roomVO에 값을 넣어줌
+		roomVO.setPw(roomPw);
+		
+		// 방과 비밀번호가 같은지 체크
+		roomVO = messengerService.getRoomPw(roomVO);
+		
+		int result = 0;
+		
+//		log.info("룸브이오가 비었니? {} ", roomVO.getRoomName());
+		
+		if(roomVO!=null) {
+			result = 1;
+		}
+		
+		
+//		mv.addObject("roomPw", roomVO.getPw());
+		
+		return result;
+	}
+	
+	@PostMapping("pwCheck")
+	@ResponseBody
+	public int getPwCheck(RoomVO roomVO)throws Exception{
+		
+		int result = messengerService.getPwCheck(roomVO);
+		
+		return result;
+	}
 	
 	// --------------------- 효경 끝 ------------------------------
 	
@@ -444,13 +484,19 @@ public class MessengerController extends Socket {
 	// --------------------- 다은 ------------------------------
 
 	@GetMapping("oneChat")
-	public ModelAndView chatroom(HttpSession session, UserVO userVO)throws Exception{
+	public ModelAndView chatroom(HttpSession session, UserVO userVO, RoomVO roomVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
-	    userVO  =(UserVO)authentication.getPrincipal();	  
+	    userVO  =(UserVO)authentication.getPrincipal();	
+	    
+	    userVO = userService.getMypage(userVO);
 	    mv.addObject("userVO", userVO);  
-		mv.setViewName("messenger/oneChat");
+	    
+	    String rn = messengerService.getChatName(roomVO);
+		mv.addObject("rn", rn);
+
+	    mv.setViewName("messenger/oneChat");
 		
 		return mv;
 	}
@@ -477,6 +523,7 @@ public class MessengerController extends Socket {
 		//채팅방 제목
 		String rn = messengerService.getChatName(roomVO);
 		mv.addObject("rn", rn);
+
 		
 		mv.setViewName("messenger/chatroom");
 		return mv;
