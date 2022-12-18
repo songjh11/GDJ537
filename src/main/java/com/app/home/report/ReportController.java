@@ -339,7 +339,7 @@ public class ReportController {
 	//승인자 테이블에서 권한을 다시 회수하기 위해 lstatus == 0으로 만듬
 	@RequestMapping(value = "/report/deleteLicenser", method = RequestMethod.POST)
 	@ResponseBody
-	public ReportVO setLicenserUpdate(String depNum, String id, UserVO userVO, ReportVO reportVO, Model model) throws Exception{
+	public int setLicenserUpdate(String depNum, String id, UserVO userVO, ReportVO reportVO, Model model) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -371,7 +371,7 @@ public class ReportController {
 		mv.addObject("reportVO2", reportVO2);
 //		mv.addObject("count", count);
 		
-		return reportVO2;
+		return result;
 	}
 	
 	
@@ -530,8 +530,6 @@ public class ReportController {
 	@PostMapping("/report/updatecancelapply")
 	@ResponseBody
 	public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception{
-		log.info("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:{}",reportApplyVO.getLstatus());
-		log.info("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv:{}",reportApplyVO.getApplyNum());
 		int result = reportService.setUpdateCancelApply(reportApplyVO);
 		return result;
 	}
@@ -733,26 +731,12 @@ public class ReportController {
 	//=======================류형민===================
 	
 	@GetMapping("/report/mylist")
-	public ModelAndView getMyReportList(ModelAndView mv,String cat,ReportPager pager, Principal principal, HttpSession session) throws Exception{
-		
-		
-		
+	public ModelAndView getMyReportList(ModelAndView mv,String cat,ReportPager pager, Principal principal) throws Exception{
 		
 		if(principal == null) {
 			mv.setViewName("user/login");
 			return mv;
 		}
-		
-		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
-	    Authentication authentication = context.getAuthentication();
-	    UserVO userVO  = (UserVO)authentication.getPrincipal();
-		
-		
-		userVO.setId(Integer.parseInt(principal.getName()));
-		userVO = reportMapper.getFirstList(userVO);	
-		mv.addObject("first", userVO);
-		userVO = reportMapper.getlastlist(userVO);	
-		mv.addObject("second", userVO);
 		
 		pager.setId(Integer.parseInt(principal.getName()));
 		
@@ -761,17 +745,6 @@ public class ReportController {
 			mv.addObject("list", list);
 		}else if(cat.equals("2")){
 			List<ReportVacaVO> list = reportService.getMyVacaList(pager);
-			
-			for(int i = 0; i < list.size(); i++) {
-				String startDate = list.get(i).getStartDate();
-				startDate = startDate.substring(0, startDate.lastIndexOf("T"));
-				list.get(i).setStartDate(startDate);
-				
-				String endDate = list.get(i).getEndDate();
-				endDate = endDate.substring(0, endDate.lastIndexOf("T"));
-				list.get(i).setEndDate(endDate);
-			}
-			
 			mv.addObject("list", list);
 		}else if(cat.equals("3")) {
 			List<ReportWorkVO> list = reportService.getMyWorkList(pager);

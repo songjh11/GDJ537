@@ -168,7 +168,7 @@ $("#tbd").on('click', "#deleteBtn", function(event){
             //     alert("선택하신 부서에 승인자가 존재하지 않아 회수 대상이 없습니다.");
             // }
             if(result == 1){
-                alert("아이디가 : ", name ,"인 사람을 회수 하였습니다.");
+                alert("아이디가 : "+ name +"인 사람을 회수 하였습니다.");
             }else{
                 alert("권한회수를 하지 못하였습니다. 현재 이 부서에 승인자가 없거나, 현재 이 부서에 승인자가 다른 회원입니다.");
                 location.href="/report/licenserList";
