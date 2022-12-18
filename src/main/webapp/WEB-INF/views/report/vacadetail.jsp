@@ -1,57 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- meta tag 추가 -->
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
-<!-- 공통 css, js, jquery -->
-<c:import url="../temp/layout_header.jsp"></c:import>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Document</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>결재 신청 상세</title>
+    <c:import url="../temp/layout_header.jsp"></c:import>
     <script defer="defer" type="text/javascript" src="/js/report/report.js"></script>
-    <style>
-        #bc{
-            background-color ;
-        }
-        #ajaaja{
-            border-right: solid 1px black;
-             height: 90px;
-              width: 122px;
-              margin-top: 6px;
-        }
-    </style>
 </head>
-
-<!-- body ID 작성 -->
-<body id="page-top">
-
-	<!-- Page Wrapper 전체 Contents Wrapper -->
+<body>
+    <!-- Page Wrapper -->
     <div id="wrapper">
+		
+        <!-- Sidebar -->
+        <c:import url="../temp/layout_sidebar.jsp"></c:import>
+        <!-- End of Sidebar -->
 
-		<!-- Sidebar import -->
-		<c:import url="../temp/layout_sidebar.jsp"></c:import>
-		<!-- End of Sidebar -->
-		
-		 <!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
-			<!-- Main Content -->
-			<div id="content">
-			
-				<!-- Topbar import-->
-				<c:import url="../temp/layout_topbar.jsp"></c:import>
-				<!-- End of Topbar -->
-		
-				<!-- Begin Page Content -->
-        
-				<input type="text" id="result" style="display: none;" value="${result }" data-status="${result }">
-    			<input type="text" id="applyNum" style="display: none;" value="${reportVacaVO.applyNum }" data-num="${reportVacaVO.applyNum }">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <c:import url="../temp/layout_topbar.jsp"></c:import>
+                <!-- End of Topbar -->
+				 <input type="text" style="display: none;" id="result" value="${result }" data-status="${result }">
+ 				 <input type="text" style="display: none;" id="applyNum" value="${reportVacaVO.applyNum }" data-num="${reportVacaVO.applyNum }">
+				<div class="container px-4 px-lg-5 my-5">
+					<a href="./doreport?cat=1" class="btn btn-primary btn-icon-split btn-sm">
+                       <span class="icon text-white-50">
+                       <i class="fas fa-arrow-right"></i>
+                       </span>
+                       <span class="text">휴가신청 목록</span>
+                       </a>
+				</div>
+				
 	            <div class="container-fluid">
 						<div class="container px-4 px-lg-5 my-5">
         <div  style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1150px; border: solid 1px black; text-align: center;">
@@ -64,22 +51,32 @@
                         </div>
                         <div class="row" style="border-bottom: solid 1px black; margin-top: -120px; width: 368px; margin-left: 30px; height: 30px; font-size: 15px;">
                             <div style="padding-top:3px; letter-spacing: 0; margin-left: 30px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
-                        <c:choose>
-                            	<c:when test="${reportVacaVO.status == 2}">
-                            		<div id="ajaaja"></div>
+                                                                                                &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
                             
-                            	</c:when>
-                            	<c:when test="${reportVacaVO.status == 3}">
-                            		<div id="ajaaja"></div>
-                            		<div id="ajaaja"></div>
-                           
-                            	</c:when>
-                            	<c:otherwise>
-                            	
-                            	</c:otherwise>
-                        </c:choose>                                                     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
-                            
+                            <c:choose>
+                            <c:when test="${reportVacaVO.status eq 1}">
+                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
+                                </div>
+                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
+                                </div>
                             <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            </c:when>
+                            <c:when test="${reportVacaVO.status eq 2}">
+                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
+                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
+                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
+                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
+                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            </c:when>
+                            <c:when test="${reportVacaVO.status eq 3}">
+                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
+                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
+                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
+                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
+                            <div style=" height: 90px; width: 122px; margin-top: 6px;">
+                            	<img src="/img/report/sign.png" width="85px" height="85px"></div>
+                            </c:when>
+                            </c:choose>
                             
                         </div>
                     </div>
@@ -91,7 +88,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 소속
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input type="text" id="depNameArea" name="depName" readonly style="border: 0; text-align: center; width: 645px; height: 97px;" value="${reportVacaVO.depName}">
+                                    <input readonly style="border: 0; text-align: center; width: 645px; height: 97px;" value="${reportVacaVO.depName}">
                                     <!-- DEOARTMENT.DEPNAME = 부서번호 -->
                                 </div>
                             </div>
@@ -100,7 +97,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 성명
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input type="text" id="nameArea" name="name" readonly value="${reportVacaVO.name }" style="border: 0; text-align: center; width: 645px; height: 97px;">
+                                    <input type="text" readonly style="border: 0; text-align: center; width: 645px; height: 97px;" value="${reportVacaVO.name}">
                                     <!-- USER.NAME = 이름 -->
                                 </div>
                             </div>
@@ -110,39 +107,79 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 직위
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input type="text" id="roleNameArea" name="roleName" readonly value="${reportVacaVO.roleName }" style="border: 0; text-align: center; width: 645px; height: 97px;">
+                                    <input type="text" readonly style="border: 0; text-align: center; width: 645px; height: 97px;" value="${reportVacaVO.roleName}">
                                     <!-- ROLE.ROELNAME = 직급이름  -->
                                 </div>
                             </div>
                             
                         </div>
                         <div style="width: 900px; height: 100px; border-bottom: solid 1px black;">
-                            <div  id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
+                            <div  id="bc" style="text-align: left; font-weight: bold; font-size: 17px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 종류
-                                    <div style="margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                        <div style="margin-left: 29px; margin-top: 0px;">
+                                    <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -55px;">
+                                        <div style="margin-left: 29px;" id="cate">
                                             <!--<input type="hidden" name="categoryNum" id="checkRadio"/> --> 
                                             <c:choose>
-                                            	<c:when test="${reportVacaVO.categoryNum == 1 }">
-                                            		<input type="radio" class="mail" name="categoryNum" value="1" name="categoryNum" data-radio="1"/>
-                                            		<label for="mail">연차</label>	
-                                            	</c:when>
-                                            	<c:when test="${reportVacaVO.categoryNum == 2 }">
-                                           		    <input type="radio" class="mail" name="categoryNum" value="2" name="categoryNum" data-radio="2"/>
-                                                    <label for="mail">월차</label>
-                                            	</c:when>
-                                            	<c:when test="${reportVacaVO.categoryNum == 3 }">
-                                           		    <input type="radio" class="mail" name="categoryNum" value="3" name="categoryNum" data-radio="3"/>
-                                                    <label for="mail">병가</label>
-                                            	</c:when>
-                                            	<c:when test="${reportVacaVO.categoryNum == 4 }">
-                                           		    <input type="radio" class="mail" name="categoryNum" value="4" name="categoryNum" data-radio="4"/>
-                                                    <label for="mail">반차</label>
-                                            	</c:when>
-                                            	<c:otherwise>
-		                                            <input type="radio" class="mail" name="categoryNum" value="5" name="categoryNum" data-radio="5"/>
-        		                                    <label for="mail">기타</label>
-                                            	</c:otherwise>
+                                            <c:when test="${reportVacaVO.categoryNum eq 1}">
+                                            <input type="radio" class="mail" id="s1" name="categoryNum" checked disabled value="1" name="categoryNum" data-radio="1"/>
+                                            <label for="mail">연차</label>
+                                            <input type="radio" class="mail" id="s2" name="categoryNum" value="2" name="categoryNum" data-radio="2"/>
+                                            <label for="mail">월차</label>
+                                            <input type="radio" class="mail" id="s3" name="categoryNum" value="3" name="categoryNum" data-radio="3"/>
+                                            <label for="mail">병가</label>
+                                            <input type="radio" class="mail" id="s4" name="categoryNum" value="4" name="categoryNum" data-radio="4"/>
+                                            <label for="mail">반차</label>
+                                            <input type="radio" class="mail" id="s5" name="categoryNum" value="5" name="categoryNum" data-radio="5"/>
+                                            <label for="mail">기타</label>
+                                            </c:when>
+                                            <c:when test="${reportVacaVO.categoryNum eq 2}">
+                                            <input type="radio" class="mail" id="s1" name="categoryNum" value="1" name="categoryNum" data-radio="1"/>
+                                            <label for="mail">연차</label>
+                                            <input type="radio" class="mail" id="s2" name="categoryNum" checked disabled value="2" name="categoryNum" data-radio="2"/>
+                                            <label for="mail">월차</label>
+                                            <input type="radio" class="mail" id="s3" name="categoryNum" value="3" name="categoryNum" data-radio="3"/>
+                                            <label for="mail">병가</label>
+                                            <input type="radio" class="mail" id="s4" name="categoryNum" value="4" name="categoryNum" data-radio="4"/>
+                                            <label for="mail">반차</label>
+                                            <input type="radio" class="mail" id="s5" name="categoryNum" value="5" name="categoryNum" data-radio="5"/>
+                                            <label for="mail">기타</label>
+                                            </c:when>
+                                            <c:when test="${reportVacaVO.categoryNum eq 3}">
+                                            <input type="radio" class="mail" id="s1" name="categoryNum" value="1" name="categoryNum" data-radio="1"/>
+                                            <label for="mail">연차</label>
+                                            <input type="radio" class="mail" id="s2" name="categoryNum" value="2" name="categoryNum" data-radio="2"/>
+                                            <label for="mail">월차</label>
+                                            <input type="radio" class="mail" id="s3" name="categoryNum" checked disabled value="3" name="categoryNum" data-radio="3"/>
+                                            <label for="mail">병가</label>
+                                            <input type="radio" class="mail" id="s4" name="categoryNum" value="4" name="categoryNum" data-radio="4"/>
+                                            <label for="mail">반차</label>
+                                            <input type="radio" class="mail" id="s5" name="categoryNum" value="5" name="categoryNum" data-radio="5"/>
+                                            <label for="mail">기타</label>
+                                            </c:when>
+                                            <c:when test="${reportVacaVO.categoryNum eq 4}">
+                                            <input type="radio" class="mail" id="s1" name="categoryNum" value="1" name="categoryNum" data-radio="1"/>
+                                            <label for="mail">연차</label>
+                                            <input type="radio" class="mail" id="s2" name="categoryNum" value="2" name="categoryNum" data-radio="2"/>
+                                            <label for="mail">월차</label>
+                                            <input type="radio" class="mail" id="s3" name="categoryNum" value="3" name="categoryNum" data-radio="3"/>
+                                            <label for="mail">병가</label>
+                                            <input type="radio" class="mail" id="s4" name="categoryNum" checked disabled value="4" name="categoryNum" data-radio="4"/>
+                                            <label for="mail">반차</label>
+                                            <input type="radio" class="mail" id="s5" name="categoryNum" value="5" name="categoryNum" data-radio="5"/>
+                                            <label for="mail">기타</label>
+                                            </c:when>
+                                            <c:when test="${reportVacaVO.categoryNum eq 5}">
+                                            <input type="radio" class="mail" id="s1" name="categoryNum" value="1" name="categoryNum" data-radio="1"/>
+                                            <label for="mail">연차</label>
+                                            <input type="radio" class="mail" id="s2" name="categoryNum" value="2" name="categoryNum" data-radio="2"/>
+                                            <label for="mail">월차</label>
+                                            <input type="radio" class="mail" id="s3" name="categoryNum" value="3" name="categoryNum" data-radio="3"/>
+                                            <label for="mail">병가</label>
+                                            <input type="radio" class="mail" id="s4" name="categoryNum" value="4" name="categoryNum" data-radio="4"/>
+                                            <label for="mail">반차</label>
+                                            <input type="radio" class="mail" id="s5" name="categoryNum" checked disabled value="5" name="categoryNum" data-radio="5"/>
+                                            <label for="mail">기타</label>
+                                            </c:when>
                                             </c:choose>
                                         </div>
                                     </div>   
@@ -152,7 +189,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 사유
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input type="text" id="textArea" name="text" readonly="readonly" value="${reportVacaVO.text }" style="border: 0; text-align: left; width: 645px; height: 97px;">
+                                    <input type="text" readonly style="border: 0; text-align: center; width: 645px; height: 97px;" value="${reportVacaVO.text}">
                                     <span id="textAreaHelp"></span>
                                 </div>
                             </div>    
@@ -179,9 +216,9 @@
                                         <input type="number" id="d2" style="width: 40px; border:0 solid black; text-align:right" value="30"/>
                                         <div>일</div> -->
 
-                                        <input type="datetime-local" readonly="readonly" value="${reportVacaVO.startDate }" name="startDate" id="startInput">
+                                        <input  id="start" type="datetime-local" name="startDate" readonly value="${reportVacaVO.startDate}">
                                             <div>~</div>
-                                        <input type="datetime-local" readonly="readonly" value="${reportVacaVO.endDate }" name="endDate" id="endInput">
+                                        <input id="stop" type="datetime-local" name="endDate" readonly value="${reportVacaVO.endDate}">
 
 
                                     </div>
@@ -193,7 +230,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 45px; padding-top: 34px; letter-spacing: 15px;">
                                 비상연락망
                                 <div style="margin-left: 205px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input type="text" id="callInput" class="callHelp" readonly="readonly" name="call" value="${reportVacaVO.call}" style="border: 0; width: 645px; height: 97px;  text-align:center"/>
+                                    <input id="callInput" class="callHelp" type="text" name="call" readonly value="${reportVacaVO.call}" style="border: 0; width: 645px; height: 97px;  text-align:center"/>
                                 </div>
                             </div>
                         </div>
@@ -214,12 +251,20 @@
                     </div>
             </div>
         </div>    
+        
     </div>
 
 
+        
 
-        <button type="button" id="license" class="btn btn-info btn-icon-split">승인</button>
-		<button type="button" id="returns" class="btn btn-info btn-icon-split">반려</button>
+        <button type="button" id="license" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;">승인</button>
+		<button type="button" id="returns" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;">반려</button>
+	            </div>
+
+           
+
+
+
 
 	            </div>
 	            <!-- End Page Content -->
@@ -232,7 +277,6 @@
 			<!-- End of Footer -->
 		</div>
 		<!-- End of Content Wrapper -->
-	</div>
 
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>

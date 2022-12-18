@@ -1,45 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- meta tag 추가 -->
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
-<!-- 공통 css, js, jquery -->
-<c:import url="../temp/layout_header.jsp"></c:import>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Document</title>
-    <script defer="defer" type="text/javascript" src="/js/report/report.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>결재 신청 상세</title>
+    <c:import url="../temp/layout_header.jsp"></c:import>
 </head>
-
-<!-- body ID 작성 -->
-<body id="page-top">
-
-	<!-- Page Wrapper 전체 Contents Wrapper -->
+<body>
+    <!-- Page Wrapper -->
     <div id="wrapper">
-
-		<!-- Sidebar import -->
-		<c:import url="../temp/layout_sidebar.jsp"></c:import>
-		<!-- End of Sidebar -->
 		
-		 <!-- Content Wrapper -->
-		<input type="text" style="display: none;" value="${result }" data-status="${result }">
-    	<input type="text" style="display: none;" value="${reportWorkVO.applyNum }" data-num="${reportWorkVO.applyNum }">
-		<div id="content-wrapper" class="d-flex flex-column">
-			<!-- Main Content -->
-			<div id="content">
-			
-				<!-- Topbar import-->
-				<c:import url="../temp/layout_topbar.jsp"></c:import>
-				<!-- End of Topbar -->
+        <!-- Sidebar -->
+        <c:import url="../temp/layout_sidebar.jsp"></c:import>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <c:import url="../temp/layout_topbar.jsp"></c:import>
+                <!-- End of Topbar -->
 				
-				<!-- Begin Page Content -->
-                
+				<div class="container px-4 px-lg-5 my-5">
+					<a href="./doreport?cat=2" class="btn btn-primary btn-icon-split btn-sm">
+                       <span class="icon text-white-50">
+                       <i class="fas fa-arrow-right"></i>
+                       </span>
+                       <span class="text">업무보고서 목록</span>
+                       </a>
+				</div>
+			
+			
 	            <div class="container-fluid">
 	 <div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
@@ -106,7 +104,7 @@
                                             전
                                         </div>
                                         <div style=" margin-left: 100px; width: 800px; height: 107px; margin-top: -77px;">
-                                            <input id="am" style=" width: 780px; height: 100px; text-align: left; border: 0; margin-top: 5px;" name="am" readonly="readonly" value="${reportWorkVO.am }">
+                                            ${reportWorkVO.am}
                                         </div>
                                     </div>
                                     <div style="border-right: solid 1px black; width: 100px; height: 107px;">
@@ -115,7 +113,8 @@
                                             후
                                         </div>
                                         <div style=" margin-left: 100px; width: 800px; height: 107px; margin-top: -77px;">
-                                            <input id="pm" style=" width: 780px; height: 100px; text-align: left; border: 0; margin-top: 5px;" name="pm" readonly="readonly" value="${reportWorkVO.pm }">
+                                            ${reportWorkVO.pm}
+                                            <!-- <textarea id="pm" style=" width: 780px; height: 100px; text-align: left; border: 0; margin-top: 5px;" name="pm"></textarea> -->
                                         </div>
                                     </div>
                                 </div>
@@ -124,23 +123,27 @@
                                     미처리내역 및 개선사항
                             </div>
                         <div style="height: 212px; border-bottom: solid 1px black;">
-                            <input  style="width:895px; height: 209px; text-align: left; border: 0;" name="undo" readonly="readonly" value="${reportWorkVO.undo }">
+                            ${reportWorkVO.undo}
+                            <!-- <textarea  style="width:895px; height: 209px; text-align: left; border: 0;" name="undo"></textarea> -->
                         </div>
                             <div style="height: 40px; border-bottom: solid 1px black; padding-top: 5px;">
                                 내일 예정업무
                             </div>
                         <div style="height: 212px; border-bottom: solid 1px black;">
-                            <input style="width:895px; height: 209px; text-align: left; border: 0;" name="todo" readonly="readonly" value="${reportWorkVO.todo }">
+                            ${reportWorkVO.todo}
+                            <!-- <textarea  style="width:895px; height: 209px; text-align: left; border: 0;" name="todo"></textarea> -->
                         </div>
                             <div style="height: 40px; border-bottom: solid 1px black; padding-top: 5px;">
                                 문제점 및 특이사항 보고
                             </div>
                         <div class="d-flex" style="height: 212px; border-bottom: solid 1px black; ">
                             <div style="border-right: solid 1px black; height: 212px; width: 450px;">
-                                <input  style="border: 0; width: 445px; height: 212px; text-align: left;" name="wrong" readonly="readonly" value="${reportWorkVO.wrong }">
+                                ${reportWorkVO.wrong}
+                                <!-- <textarea  style="border: 0; width: 445px; height: 212px; text-align: left;" name="wrong"></textarea> -->
                             </div>
                             <div style=" height: 212px; width: 450px;">
-                                <input  style="border: 0; width: 445px; height: 212px; text-align: left;" name="etc" readonly="readonly" value="${reportWorkVO.etc }">
+                                ${reportWorkVO.etc}
+                                <!-- <textarea  style="border: 0; width: 445px; height: 212px; text-align: left;" name="etc"></textarea> -->
                             </div>
                         </div>
                         
@@ -150,12 +153,12 @@
                    </div>
             </div>
 
-        </div>
+        </div>    
+     
 
     </div>
 	            </div>
 	            <!-- End Page Content -->
-                <!-- <button type="button" onclick="checkAll()">제출</button> -->
      
 					
 			</div>

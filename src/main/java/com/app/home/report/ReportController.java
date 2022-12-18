@@ -523,6 +523,8 @@ public class ReportController {
 	@PostMapping("/report/updatecancelapply")
 	@ResponseBody
 	public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception{
+		log.info("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:{}",reportApplyVO.getLstatus());
+		log.info("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv:{}",reportApplyVO.getApplyNum());
 		int result = reportService.setUpdateCancelApply(reportApplyVO);
 		return result;
 	}
