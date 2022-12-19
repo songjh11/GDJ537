@@ -33,13 +33,14 @@ public class RoomController
 	private RoomService roomService;
 
 	@GetMapping("/room/roomList")
-	public ModelAndView getRoomList(GoodsVO goodsVO, ReserveVO reserveVO, Authentication authentication) throws Exception
+	public ModelAndView getRoomList(GoodsVO goodsVO, ReserveVO reserveVO, Authentication authentication, GoodsRoomVO goodsRoomVO)
+			throws Exception
 	{
 		log.info("------- get room List -------");
 		ModelAndView modelAndView = new ModelAndView();
 		List<GoodsVO> goodsVOs = roomService.getRoomList(goodsVO);
 
-		log.info("goodVO list: {}", goodsVOs);
+		// log.info("goodVO list: {}", goodsVOs);
 
 		int r = 0;
 		if (authentication != null)
@@ -120,10 +121,67 @@ public class RoomController
 		List<ReserveVO> reserveVOs = roomService.getResInfo(goodsRoomVO);
 
 		log.info("roomVOs: {}", reserveVOs);
+		log.info("res: {}", reserveVOs.size());
+
+		for (int i = 0; i < reserveVOs.size(); i++)
+		{
+			String start = reserveVOs.get(i).getStartTime().substring(0, 10) + " " + reserveVOs.get(i).getStartTime().substring(11, 16);
+			String end = reserveVOs.get(i).getEndTime().substring(0, 10) + " " + reserveVOs.get(i).getEndTime().substring(11, 16);
+
+			reserveVOs.get(i).setStartTime(start);
+			reserveVOs.get(i).setEndTime(end);
+		}
 
 		modelAndView.addObject("roomInfo", reserveVOs);
 		modelAndView.setViewName("goods/room/roomResInfo");
 
 		return modelAndView;
+	}
+
+	@GetMapping("/room/roomReserveUpdate")
+	public ModelAndView setReserveUpdate(ReserveVO reserveVO, Authentication authentication) throws Exception
+	{
+		log.info("===== get room reserve update =====");
+		ModelAndView modelAndView = new ModelAndView();
+		GoodsVO goodsVO = new GoodsVO();
+		List<ReserveVO> reserveVOs = roomService.getStartTime(reserveVO);
+
+		reserveVO = roomService.getReserveDetail(reserveVO);
+		goodsVO.setGoodsId(reserveVO.getGoodsId());
+		goodsVO = roomService.getRoomTotal(goodsVO);
+
+		log.info("update reserve: {}", reserveVO);
+		log.info("set goodID: {}", goodsVO);
+		log.info("resrve time: {}", reserveVOs);
+
+		modelAndView.addObject("timeNotEqual", reserveVOs);
+		modelAndView.addObject("userInfo", authentication.getPrincipal());
+		modelAndView.addObject("reserve", reserveVO);
+		modelAndView.addObject("good", goodsVO);
+		modelAndView.setViewName("/goods/room/roomReserveUpdate");
+
+		return modelAndView;
+	}
+
+	@PostMapping("/room/roomReserveUpdate")
+	public String setReserveUpdate(ReserveVO reserveVO) throws Exception
+	{
+		int rs = roomService.setReserveUpdate(reserveVO);
+
+		log.info("rs: {}", rs);
+
+		return "redirect:/goods/room/roomList";
+	}
+
+	@GetMapping("/room/roomReserveDelete")
+	@ResponseBody
+	public String setReserveDelete(ReserveVO reserveVO) throws Exception
+	{
+		log.info("===== get room reserve delete =====");
+		int rs = roomService.setReserveDelete(reserveVO);
+
+		log.info("rs: {}", rs);
+
+		return "redirect:/goods/room/roomList";
 	}
 }

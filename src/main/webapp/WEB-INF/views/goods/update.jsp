@@ -70,11 +70,11 @@
                      <div id="namediv" class="check"></div>
                   </div>
                   <div class="mb-3">
-                     <label for="exampleInputContents" class="form-label">시설 설명</label>
+                     <label for="exampleInputContents" class="form-label">시설 상세 설명</label>
                      <textarea  class="form-control add_ele" id="contents" name="contents">${goods.contents}</textarea>
                   </div>
                   <div class="mb-3">
-                     <label for="exampleInputMax" class="form-label">*최대 인원</label>
+                     <label for="exampleInputMax" class="form-label">*최대 인원 수</label>
                      <input type="text" class="form-control" id="max" name="max" value="${goods.max}" >
                      <div id="maxdiv" class="check"></div>
 
@@ -90,8 +90,8 @@
                      <label for="exampleInputLocation" class="form-label" style="font-weight : bold">*차량 번호</label>
                      <input type="text" class="form-control" id="carNum" name="carNum" value="${goods.carNum}">
                      <div id="carNumdiv" class="check"></div>
-
                   </div>
+                  
                   <div>
                      <div class="mb-3" id="fileAddResult">   
                         <div class="board-filetitle" style="font-weight : bold">*이미지

@@ -24,7 +24,9 @@
         ]);
         var options = {
           title: `${year}년 `+'차량별 통계',
-          
+          fontSize: 20,
+          bold: true,
+
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);

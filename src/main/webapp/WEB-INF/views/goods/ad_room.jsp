@@ -23,7 +23,9 @@
           ${result}
         ]);
         var options = {
-          title: `${year}년 `+'회의실별 통계'
+          title: `${year}년 `+'회의실별 통계',
+          fontSize: 20,
+          bold: true,
           
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
