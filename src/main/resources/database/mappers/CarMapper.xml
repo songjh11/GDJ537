@@ -42,7 +42,7 @@
 	<!-- 예약 취소 -->
 	<delete id="setDelete" parameterType="ReserveVO">
 		DELETE FROM RESERVE 
-		WHERE RESERVEnum = #{reservenum}
+		WHERE RESERVENUM = #{reserveNum}
 	</delete>
 
 	<!-- 예약 변경 -->
@@ -51,18 +51,18 @@
 		INNER JOIN GOODS G
 		ON R.GOODSID = G.GOODSID 
 		SET R.STARTTIME = #{startTime}, R.ENDTIME = #{endTime}, R.USEPURPOSE = #{usePurpose}
-		WHERE R.RESERVEnum = #{reservenum}
+		WHERE R.RESERVENUM = #{reservenNm}
 	</update>
 	
 	<!-- 예약 상세보기 -->
 	<select id="getReserveDetail" resultType="ReserveVO">
 		SELECT * FROM RESERVE
-		WHERE RESERVEnum = #{reservenum}
+		WHERE RESERVENUM = #{reserveNum}
 	</select>
 	
 	<!-- 예약 리스트 -->
 	<select id="getReserveList" resultType="ReserveVO" parameterType="List">
-		SELECT * FROM RESERVE ORDER BY RESERVEnum DESC
+		SELECT * FROM RESERVE ORDER BY RESERVENUM DESC
 	</select>
 	
 	<select id="getReserveUserList" resultType="ReserveVO" parameterType="UserVO">
@@ -91,10 +91,10 @@
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
 		<result column="LOCATION" property="location"></result>
-		<result column="CARnum" property="carnum"></result>
+		<result column="CARNUM" property="carNum"></result>
 
 		<collection property="goodsFileVO" javaType="List" ofType="GoodsFileVO">
-			<id column="IMGnum" property="imgnum"></id>
+			<id column="IMGNUM" property="imgNum"></id>
 			<result column="FILENAME" property="fileName"></result>
 			<result column="ORINAME" property="oriName"></result>
 		</collection>
@@ -114,11 +114,11 @@
 		<result column="MAX" property="max"></result>
 		<result column="CONTENTS" property="contents"></result>
 		<result column="LOCATION" property="location"></result>
-		<result column="CARnum" property="carnum"></result>
+		<result column="CARnum" property="carNum"></result>
 
 		<collection property="goodsFileVO" javaType="List"
 			ofType="GoodsFileVO">
-			<id column="IMGnum" property="imgnum"></id>
+			<id column="IMGNUM" property="imgNum"></id>
 			<result column="FILENAME" property="fileName"></result>
 			<result column="ORINAME" property="oriName"></result>
 		</collection>

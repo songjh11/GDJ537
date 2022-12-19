@@ -23,7 +23,7 @@
 
 		<collection property="goodsFileVO" javaType="List"
 			ofType="GoodsFileVO">
-			<id column="IMGnum" property="imgnum"></id>
+			<id column="IMGNUM" property="imgNum"></id>
 			<result column="FILENAME" property="fileName"></result>
 			<result column="ORINAME" property="oriName"></result>
 		</collection>
@@ -48,7 +48,7 @@
 
 		<collection property="goodsFileVO" javaType="List"
 			ofType="GoodsFileVO">
-			<id column="IMGnum" property="imgnum"></id>
+			<id column="IMGNUM" property="imgNum"></id>
 			<result column="FILENAME" property="fileName"></result>
 			<result column="ORINAME" property="oriName"></result>
 		</collection>

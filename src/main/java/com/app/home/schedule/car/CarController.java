@@ -99,8 +99,8 @@ public class CarController {
 	@PostMapping("/car/carReserveChange")
 	public String setUpdate(ReserveVO reserveVO, HttpSession session) throws Exception {
 		
-		Long reservenum = (Long)session.getAttribute("reservenum");
-		reserveVO.setReservenum(reservenum);
+		Long reserveNum = (Long)session.getAttribute("reserveNum");
+		reserveVO.setReserveNum(reserveNum);
 		
 		int result = carService.setUpdate(reserveVO);
 		

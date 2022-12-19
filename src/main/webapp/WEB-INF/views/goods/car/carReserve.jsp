@@ -42,7 +42,7 @@
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
 										<th>차량번호</th>
-										<td>${goods.carnum}</td>
+										<td>${goods.carNum}</td>
 										<th>모델명</th>
 										<td>${goods.name}</td>									
 										<th>정원</th>
