@@ -71,7 +71,7 @@
 }
 
 .you{
-	margin-top: 0.5rem;
+	margin-top: 1rem;
 	margin-bottom: 0.5rem;
 }
 
@@ -93,7 +93,7 @@
     display: flex;
     align-items: flex-end;
     margin-bottom: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 0.3rem;
 }
 
 .you-bubble {
