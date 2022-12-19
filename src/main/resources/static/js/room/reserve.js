@@ -335,6 +335,15 @@ endTime.addEventListener("blur", function () {
     endHour = ':00';
     endTime.value = endTime.value.toString().substr(0, 13) + endHour;
 
+    // 동일한 시간 선택 시
+    if (startTime.value == endTime.value) {
+        alert("동일한 시간은 사용할 수 없습니다.");
+        endCheck = false;
+        return false;
+    }
+    else {
+        endCheck = true;
+    }
 })
 
 purpose.addEventListener("blur", function () {
