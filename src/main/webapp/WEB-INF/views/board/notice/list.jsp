@@ -54,7 +54,7 @@
 					  <div class="d-flex justify-content-center">
 					  	<div class="col-auto">
 						    <select class="form-control" name="kind" aria-label="Default select example">
-						    	<option value="title">제목</option>
+						    	<option  value="title">제목</option>
 						    	<option value="creator">작성자</option>
 						    </select>
 						</div>
@@ -75,9 +75,9 @@
               			</div>
 					  </div>
 					  <div class="col-auto">
-						<select class="form-control" id="noticeListOrder">
-							<option value="최신">최신순</option>
-							<option value="조회수">조회수순</option>
+						<select class="form-control" id="listOrder" title="${param.order}" name="order">
+							<option class="order" value="id">최신순</option>
+							<option class="order" value="hit">조회수순</option>
 						</select>
 					</div>
 					</form>
@@ -87,6 +87,8 @@
 					</sec:authorize>					
 					</div>
 	            	<!-- 공지사항 작성 -->
+					<!-- ajax용 div 추가-->
+					<div id="ajaxResult">
 	            	<div class="card mb-3 noticeList">
 		            	<c:forEach items="${noticeList}" var="notice">
 			            		<div class="card-header bg-white">
@@ -129,21 +131,23 @@
 						<nav aria-label="Page navigation example">
 						<ul class="pagination">
 							<c:if test="${pager.pre }">
-								<li class="page-item"><a class="page-link" href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Previous</a></li>
+								<li class="page-item"><a class="page-link" href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">Previous</a></li>
 							</c:if>
 
 							<c:forEach begin="${pager.startNum }" end="${pager.lastNum }" step="1" var="i">
-								<li class="page-item"><a class="page-link" href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">${i }</a></li>
+								<li class="page-item"><a class="page-link" href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">${i }</a></li>
 							</c:forEach>
 
 							<c:if test="${pager.next }">
-								<li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Next</a></li>
+								<li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">Next</a></li>
 							</c:if>
 
 
 						</ul>
 						</nav>
 					</div>
+				</div>
+				<!--ajaxResult 끝-->
 	            </div>
 	            <!-- End Page Content -->
 

@@ -117,12 +117,11 @@ public class NoticeService {
 	
 	//조회수순으로 리스트 불러오기
 	public List<BoardVO> getListByHit(Pager pager) throws Exception {
-		
 		Long totalCount = boardDAO.getTotalCount(pager);
 		pager.getNum(totalCount);
 		pager.getRowNum();
 		
-		return boardDAO.getListByHit(pager);
+		return boardDAO.getList(pager);
 	}
 	
 	public int setHit(BoardVO boardVO) throws Exception {

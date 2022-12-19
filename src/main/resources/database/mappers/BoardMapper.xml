@@ -65,7 +65,7 @@
 	</delete>
 
 	<select id="getList" parameterType="Pager" resultMap="resultBoardAddfiles">
-		SELECT B.ID, B.title, B.creator, B.depnum, B.hit, B.regDate, COUNT(C.ID) as cntComment, U.NAME, U.status 
+		SELECT B.ID, B.TITLE, B.CREATOR, B.DEPNUM, B.HIT, B.REGDATE, COUNT(C.ID) as cntComment, U.NAME, U.STATUS 
 		FROM BOARD B
 		LEFT JOIN COMMENT C
 		ON B.ID = C.BOARDID

@@ -26,7 +26,7 @@ import com.app.home.util.Pager;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("notice")
+@RequestMapping("/notice/*")
 @Slf4j
 public class NoticeController {
 
@@ -89,25 +89,30 @@ public class NoticeController {
 	
 	@GetMapping("list")
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
-		
+		System.out.println("Before : "+pager.getOrder());
 		pager.setSort("공지");
 		List<BoardVO> ar = noticeService.getList(pager);
 		
 		mv.addObject("noticeList", ar);
 		mv.addObject("pager", pager);
 		mv.setViewName("/board/notice/list");
-		
+		System.out.println("AFTER : "+pager.getOrder());
 		return mv;
 	}
 	
 	@GetMapping("getListByHit")
-	@ResponseBody
-	public Map<String, Object> getListByHit(Pager pager)throws Exception{
-		Map<String, Object> map = new HashMap<>();
-		pager.setSort("공지");
-		map.put("notice", noticeService.getListByHit(pager));
-		map.put("pager", pager);
-		return map;
+	//@ResponseBody
+	public ModelAndView getListByHit(Pager pager)throws Exception{
+		
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("notice", noticeService.getListByHit(pager));
+//		map.put("pager", pager);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("noticeList", noticeService.getListByHit(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("board/notice/listResult");
+		System.out.println("AFTER : "+pager.getOrder());
+		return mv;
 	}
 	
 	@GetMapping("hit")
