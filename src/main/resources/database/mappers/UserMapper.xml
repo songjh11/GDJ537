@@ -6,8 +6,8 @@
 	
    <resultMap type="UserVO" id="getUserVO">
       <id column="ID" property="id"/>
-      <result column="ROLEnum" property="rolenum"/>
-      <result column="DEPnum" property="depnum"/>
+      <result column="ROLEnum" property="roleNum"/>
+      <result column="DEPnum" property="depNum"/>
       <result column="PW" property="pw"/>
       <result column="NAME" property="name"/>
       <result column="EMAIL" property="email"/>
@@ -16,11 +16,11 @@
       <result column="PROFILE" property="profile"/>
       <result column="STATUS" property="status"/>
       <association property="roleVO" javaType="RoleVO">
-         <id column="ROLEnum" property="rolenum"/>
+         <id column="ROLEnum" property="roleNum"/>
          <result column="ROLENAME" property="roleName"/>
       </association>
       <association property="departmentVO" javaType="DepartmentVO">
-         <id column="DEPnum" property="depnum"/>
+         <id column="DEPnum" property="depNum"/>
          <result column="DEPNAME" property="depName"/>
          <result column="ID" property="id"/>
       </association>

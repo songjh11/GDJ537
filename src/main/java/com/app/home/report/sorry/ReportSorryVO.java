@@ -7,7 +7,7 @@ import com.app.home.report.ReportApplyVO;
 public class ReportSorryVO extends ReportApplyVO {
 	
 	private Long rnum;
-	private Long applynum;
+	private Long applyNum;
 	private Date date;
 	private String text;
 	private Long order;
@@ -20,10 +20,10 @@ public class ReportSorryVO extends ReportApplyVO {
 		this.rnum = rnum;
 	}
 	public Long getApplynum() {
-		return applynum;
+		return applyNum;
 	}
 	public void setApplynum(Long applynum) {
-		this.applynum = applynum;
+		this.applyNum = applynum;
 	}
 	public Date getDate() {
 		return date;
