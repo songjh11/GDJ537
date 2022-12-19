@@ -728,12 +728,24 @@ public class ReportController {
 	//=======================류형민===================
 	
 	@GetMapping("/report/mylist")
-	public ModelAndView getMyReportList(ModelAndView mv,String cat,ReportPager pager, Principal principal) throws Exception{
+	public ModelAndView getMyReportList(ModelAndView mv,String cat,ReportPager pager, Principal principal,HttpSession session) throws Exception{
 		
 		if(principal == null) {
 			mv.setViewName("user/login");
 			return mv;
 		}
+		
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    Authentication authentication = context.getAuthentication();
+	    UserVO userVO  = (UserVO)authentication.getPrincipal();
+	      
+	    int id = Integer.parseInt(principal.getName());
+	    userVO.setId(id);
+	    
+	    userVO = reportMapper.getFirstList(userVO);
+	    mv.addObject("first", userVO);
+		userVO = reportMapper.getlastlist(userVO);
+	    mv.addObject("second", userVO);
 		
 		pager.setId(Integer.parseInt(principal.getName()));
 		
@@ -742,6 +754,17 @@ public class ReportController {
 			mv.addObject("list", list);
 		}else if(cat.equals("2")){
 			List<ReportVacaVO> list = reportService.getMyVacaList(pager);
+			
+			for(int i = 0; i < list.size(); i++) {
+				String startDate = list.get(i).getStartDate();
+				startDate = startDate.substring(0, startDate.lastIndexOf("T"));
+				list.get(i).setStartDate(startDate);
+				
+				String endDate = list.get(i).getEndDate();
+				endDate = endDate.substring(0, endDate.lastIndexOf("T"));
+				list.get(i).setEndDate(endDate);
+			}
+			
 			mv.addObject("list", list);
 		}else if(cat.equals("3")) {
 			List<ReportWorkVO> list = reportService.getMyWorkList(pager);
