@@ -17,6 +17,7 @@
 		});
 		
 //------------------------------------		
+let ws = new WebSocket("ws://" + location.host + "/chatroom?roomNum"+roomNum);
 
 function send() {
 		chat = $("#inputChat").val();
@@ -35,8 +36,7 @@ function send() {
 	
 //---------------------------------------------
 
-	function wsOpen(){
-		let ws = new WebSocket("ws://" + location.host + "/chatroom?roomNum"+roomNum);		
+	function wsOpen(){		
 		
 		ws.onmessage = function(data) {
 			let msg = data.data;
@@ -84,8 +84,6 @@ function send() {
 				
 		}
 	}
-//---------------------------------------------
-
 
 
 
