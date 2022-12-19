@@ -19,11 +19,7 @@
   <c:import url="../temp/fullcalendar.jsp"></c:import>
 <style>
   /* body 스타일 */
-  html, body {
-    overflow: hidden;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
+  
   /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
   .fc-header-toolbar {
     padding-top: 1em;
@@ -32,7 +28,7 @@
   }
 </style>
 </head>
-<body style="padding:30px;">
+<body>
 
 	<!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
