@@ -1,5 +1,8 @@
 package com.app.home.user;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
@@ -23,6 +27,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.home.schedule.car.CarService;
+import com.app.home.schedule.goods.ReserveVO;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -32,9 +39,12 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CarService carService;
 
 	@GetMapping("usernum")
-	public String getNum() throws Exception {
+	public String getnum() throws Exception {
 		return "user/usernum";
 	}
 
@@ -53,7 +63,29 @@ public class UserController {
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
+	    
+	    // 개인 예약내역 추가
+	    List<ReserveVO> reserveVOs = carService.getReserveUserList(userVO);
+	    LocalDate now = LocalDate.now();
+	    List<Integer> removePast = new ArrayList<>();
+	    for(int i =0; i<reserveVOs.size(); i++) {
+	    	LocalDate data = LocalDate.parse(reserveVOs.get(i).getStartTime().substring(0, 10));
+	    	if(data.isBefore(now)) {
+	    		removePast.add(i);
+	    	}
+	    }
+	    
+	    for(int i = 0; i<removePast.size(); i++) {
+	    	reserveVOs.remove(0);
+	    }
+	   
+	    
 		userVO = userService.getMypage(userVO);
+
+		mv.addObject("reserveVO", reserveVOs);
+
+		userVO.setPhone(userVO.phone_format(userVO.getPhone()));
+
 		mv.addObject("userVO", userVO);
 		mv.setViewName("/user/mypage");
 		return mv;
@@ -65,6 +97,7 @@ public class UserController {
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
 		userVO = userService.getMypage(userVO);
+		userVO.setPhone(userVO.phone_format(userVO.getPhone()));
 		mv.addObject("userVO", userVO);
 		mv.setViewName("/user/setting");
 		return mv;
@@ -212,17 +245,17 @@ public class UserController {
 		return result;
 	}
 
-	@PostMapping("admin/roleNumUpdate")
+	@PostMapping("admin/rolenumUpdate")
 	@ResponseBody
-	public int setRoleNumUpdate(UserVO userVO) throws Exception {
-		int result = userService.setRoleNumUpdate(userVO);
+	public int setRolenumUpdate(UserVO userVO) throws Exception {
+		int result = userService.setRolenumUpdate(userVO);
 		return result;
 	}
 
-	@PostMapping("admin/depNumUpdate")
+	@PostMapping("admin/depnumUpdate")
 	@ResponseBody
-	public int setDepNumUpdate(UserVO userVO) throws Exception {
-		int result = userService.setDepNumUpdate(userVO);
+	public int setDepnumUpdate(UserVO userVO) throws Exception {
+		int result = userService.setDepnumUpdate(userVO);
 		return result;
 	}
 

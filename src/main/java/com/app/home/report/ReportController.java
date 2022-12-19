@@ -241,8 +241,8 @@ public class ReportController {
 //		
 //		
 //		userVO.setId(2209);						//로그인을 가정해서 아이디를 세팅해줌
-//		userVO.setDepNum(userVO.getDepNum());	//jsp 드롭다운에서 부서를 고르면 그에 해당하는 depNum이 세팅됨
-//		userVO.setRoleNum(userVO.getRoleNum());	//jsp 드롭다운에서 직급을 고르면 그에 해당하는 roleNum이 세팅됨
+//		userVO.setDepnum(userVO.getDepnum());	//jsp 드롭다운에서 부서를 고르면 그에 해당하는 depnum이 세팅됨
+//		userVO.setRolenum(userVO.getRolenum());	//jsp 드롭다운에서 직급을 고르면 그에 해당하는 rolenum이 세팅됨
 //		reportVO.setLstatus(2);	
 //		
 //		mv.addObject("userVO", userVO);
@@ -288,9 +288,6 @@ public class ReportController {
 		}
 		
 		
-//		int result = reportService.setLstatusUpdate(reportVO, userVO);
-		//log.info("아이디 : {} " , userVO.getId());
-		//log.info("depNum : {} ", reportVO.getDepNum());
 		
 //		model.addAttribute("result", result);
 		mv.addObject("count", count);
@@ -434,36 +431,36 @@ public class ReportController {
 //	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/report/reportMyPage")
-	public ModelAndView getFirstList(String depNum, Principal principal, UserVO userVO, ReportVO reportVO, HttpSession session) throws Exception{
-		
-		ModelAndView mv = new ModelAndView();
-		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
-	    Authentication authentication = context.getAuthentication();
-	    userVO  = (UserVO)authentication.getPrincipal();
-		
-	    int id = Integer.parseInt(principal.getName());
-	    userVO.setId(id);
-	    
-	    log.info("데엡넘 ::: {} " , userVO.getDepNum());
-	    UserVO userVO2 = new UserVO();
-	    UserVO userVO3 = new UserVO();
-	    
-	    
-		userVO = reportMapper.getFirstList(userVO);	//나의 첫번째 승인자 리스트를 띄움
-		userVO2 = reportMapper.getlastlist(userVO);	//나의 최종승인자 리스트를 띄움
-		userVO3 = userService.getMypage(userVO3);	// 마이페이지를 불러서 회원정보의 모든것을 userVO3에 가져옴
-		
-//		log.info("ID ::::: {} " , userVO.getId());
-//		log.info("depNum :::::: {} " , userVO.getDepNum());
-		
-		
-		mv.addObject("userVO", userVO);
-		mv.addObject("userVO2", userVO2);
-		mv.addObject("userVO3", userVO3);
-		
-		
-		return mv;
-	}
+	   public ModelAndView getFirstList(String depNum, Principal principal, UserVO userVO, ReportVO reportVO, HttpSession session) throws Exception{
+	      
+	      ModelAndView mv = new ModelAndView();
+	      SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+	       Authentication authentication = context.getAuthentication();
+	       userVO  = (UserVO)authentication.getPrincipal();
+	      
+	       int id = Integer.parseInt(principal.getName());
+	       userVO.setId(id);
+	       
+	       log.info("데엡넘 ::: {} " , userVO.getDepNum());
+	       UserVO userVO2 = new UserVO();
+	       UserVO userVO3 = new UserVO();
+	       
+	       
+	      userVO = reportMapper.getFirstList(userVO);   //나의 첫번째 승인자 리스트를 띄움
+	      userVO2 = reportMapper.getlastlist(userVO);   //나의 최종승인자 리스트를 띄움
+	      userVO3 = userService.getMypage(userVO3);   // 마이페이지를 불러서 회원정보의 모든것을 userVO3에 가져옴
+	      
+//	      log.info("ID ::::: {} " , userVO.getId());
+//	      log.info("depNum :::::: {} " , userVO.getDepNum());
+	      
+	      
+	      mv.addObject("userVO", userVO);
+	      mv.addObject("userVO2", userVO2);
+	      mv.addObject("userVO3", userVO3);
+	      
+	      
+	      return mv;
+	   }
 	
 	
 	

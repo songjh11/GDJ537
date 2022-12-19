@@ -140,13 +140,13 @@ public class UserService {
 		return result;
 	}
 
-	public int setRoleNumUpdate(UserVO userVO) throws Exception {
-		int result = userMapper.setRoleNumUpdate(userVO);
+	public int setRolenumUpdate(UserVO userVO) throws Exception {
+		int result = userMapper.setRolenumUpdate(userVO);
 		return result;
 	}
 
-	public int setDepNumUpdate(UserVO userVO) throws Exception {
-		int result = userMapper.setDepNumUpdate(userVO);
+	public int setDepnumUpdate(UserVO userVO) throws Exception {
+		int result = userMapper.setDepnumUpdate(userVO);
 		return result;
 	}
 
