@@ -185,6 +185,7 @@ public class GoodsController {
 					jsonObj = new JSONObject(hash);
 					jsonArr.add(jsonObj);
 				}else {
+					
 					depNum1 = Integer.valueOf(depNum);
 					userVO.setId(list.get(i).getId());
 					userVO = userService.getMypage(userVO);
@@ -223,7 +224,6 @@ public class GoodsController {
 				
 			}
 			
-			log.info("jsonArrCheck: {}", jsonArr);
 			return jsonArr;
 
 		}
