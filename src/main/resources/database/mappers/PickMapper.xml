@@ -47,7 +47,7 @@
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
 		<result column="ENTDATE" property="entDate"/>
-		<result column="PROFILES" property="profiles"/>
+		<result column="PROFILE" property="profile"/>
 		<result column="STATUS" property="status"/>
 			<association property="roleVO">
 				<id column="ROLENUM" property="roleNum"/>
