@@ -37,6 +37,7 @@
 		<result column="updatedate" property="updateDate"/>
 		<result column="updater" property="updater"/>
 		<result column="updaterName" property="updaterName"/>
+		<result column="cntComment" property="cntComment"/>
 		<association property="userVO" javaType="UserVO">
 			<id column="creator" property="id"/>
 			<result column="name" property="name"/>
