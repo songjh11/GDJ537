@@ -81,7 +81,11 @@ public class UserController {
 	   
 	    
 		userVO = userService.getMypage(userVO);
+
 		mv.addObject("reserveVO", reserveVOs);
+
+		userVO.setPhone(userVO.phone_format(userVO.getPhone()));
+
 		mv.addObject("userVO", userVO);
 		mv.setViewName("/user/mypage");
 		return mv;
@@ -93,6 +97,7 @@ public class UserController {
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
 		userVO = userService.getMypage(userVO);
+		userVO.setPhone(userVO.phone_format(userVO.getPhone()));
 		mv.addObject("userVO", userVO);
 		mv.setViewName("/user/setting");
 		return mv;
