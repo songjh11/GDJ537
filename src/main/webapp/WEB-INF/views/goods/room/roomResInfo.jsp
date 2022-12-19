@@ -69,13 +69,15 @@ ul li {
 									<td>${ro.usePurpose }</td>
 									<td>${ro.startTime }</td>
 									<td>${ro.endTime }</td>
-									<td>
-										<a href="/goods/room/roomReserveUpdate?reserveNum=${ro.reserveNum}&goodsId=${ro.goodsId}"
-											class="btn btn-outline-none">변경</a>
-									</td>
-									<td>
-										<button name='delete' class="btn btn-outline-none delete_btn" value="${ro.reserveNum}">취소</button>
-									</td>
+									<c:if test="${ro.date != '2018-01-01 09:00:00' }">
+										<td>
+											<a href="/goods/room/roomReserveUpdate?reserveNum=${ro.reserveNum}&goodsId=${ro.goodsId}"
+												class="btn btn-outline-none">변경</a>
+										</td>
+										<td>
+											<button name='delete' class="btn btn-outline-none delete_btn" value="${ro.reserveNum}">취소</button>
+										</td>
+									</c:if>
 								</tr>
 							</c:forEach>
 						</table>

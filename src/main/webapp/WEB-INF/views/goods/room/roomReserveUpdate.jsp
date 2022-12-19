@@ -51,10 +51,12 @@
 
 							<input type="hidden" name="goodsId" value="${good.goodsId }">
 							<c:forEach items="${timeNotEqual }" var="t">
-								<div class="timeCheck">
-									<input type="hidden" value="${t.startTime }" class="startTimeCheck">
-									<input type="hidden" value="${t.endTime }" class="endTimeCheck">
-								</div>
+								<c:if test="${t.startTime != reserve.startTime }">
+									<div class="timeCheck">
+										<input type="hidden" value="${t.startTime }" class="startTimeCheck">
+										<input type="hidden" value="${t.endTime }" class="endTimeCheck">
+									</div>
+								</c:if>
 							</c:forEach>
 
 							<div class="mb-3">
@@ -116,7 +118,7 @@
 
 							<div class="mb-5" style="text-align: center;">
 								<button id="resBtn" type="button" class="btn btn-outline-none"
-									style="background-color: #4e73df; color: white;">예약하기</button>
+									style="background-color: #4e73df; color: white;">예약 변경</button>
 							</div>
 						</form>
 					</section>
