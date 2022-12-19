@@ -754,6 +754,17 @@ public class ReportController {
 			mv.addObject("list", list);
 		}else if(cat.equals("2")){
 			List<ReportVacaVO> list = reportService.getMyVacaList(pager);
+			
+			for(int i = 0; i < list.size(); i++) {
+				String startDate = list.get(i).getStartDate();
+				startDate = startDate.substring(0, startDate.lastIndexOf("T"));
+				list.get(i).setStartDate(startDate);
+				
+				String endDate = list.get(i).getEndDate();
+				endDate = endDate.substring(0, endDate.lastIndexOf("T"));
+				list.get(i).setEndDate(endDate);
+			}
+			
 			mv.addObject("list", list);
 		}else if(cat.equals("3")) {
 			List<ReportWorkVO> list = reportService.getMyWorkList(pager);
