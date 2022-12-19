@@ -94,7 +94,7 @@
 																		margin-bottom: 0;
 																		color: #4E73DF;
 																		font-weight: 600;
-																		">${request.userVO.name} ·</p>
+																		">${request.userVO.name} (${request.creator }) ·</p>
 										<p class="regdate" data-date="${request.regDate }" style="display: inline-block;
 																			margin-bottom: 0;"></p>
 										<a href="/request/hit?id=${request.id}">
