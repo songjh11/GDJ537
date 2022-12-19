@@ -40,7 +40,9 @@
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
  										<th>차량번호</th>
+
 										<td>${goods.carNum}</td>
+
 										<th>모델명</th>
 										<td>${goods.name}</td>									
 										<th>정원</th>
@@ -64,7 +66,9 @@
 								
 								<div class="mb-5">
 									<label>예약자</label>
+
 									<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="${reserve.id}">
+
 								</div>
 								
 								<div class="mb-5">

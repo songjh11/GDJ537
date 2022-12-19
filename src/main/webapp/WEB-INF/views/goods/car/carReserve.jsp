@@ -42,7 +42,7 @@
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
 										<th>차량번호</th>
-										<td>${goods.carNum}</td>
+										<td>${goods.carnum}</td>
 										<th>모델명</th>
 										<td>${goods.name}</td>									
 										<th>정원</th>
@@ -50,6 +50,8 @@
 									</tr>
 								</table>
 								
+
+
 						<input type="hidden" name="goodsId" value="${goods.goodsId}">
                      	<c:forEach items="${timeNotEqual }" var="t">
 	                        <div class="timeCheck">
@@ -99,6 +101,7 @@
                         </div>
                      </form>
                </section>
+
 
             </div>
             <!-- End Page Content -->

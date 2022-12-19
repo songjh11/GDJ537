@@ -27,7 +27,6 @@ public class GoodsService
    private FileManager fileManager;
    
 
-
    public int setAdd(GoodsVO goodsVO, MultipartFile[] files, ServletContext servletContext) throws Exception
    {
       int count = goodsMapper.getCount(goodsVO);
@@ -134,6 +133,7 @@ public class GoodsService
       return goodsMapper.getCount(goodsVO);
    }
 
+
    public String getMaxCount(GoodsVO goodsVO) throws Exception
    {
       return goodsMapper.getMaxCount(goodsVO);
@@ -202,6 +202,7 @@ public class GoodsService
    public int getCarNowTotal(String month) throws Exception{
       return goodsMapper.getCarNowTotal(month);
    }
+
 
 
 }

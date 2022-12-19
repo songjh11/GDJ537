@@ -116,7 +116,7 @@
 										<ul class="acoArea">
 											<div class="userList">
 											<c:forEach items="${empList}" var="e">
-												<c:if test="${e.departmentVO.depNum eq d.depNum}">
+												<c:if test="${e.departmentVO.depnum eq d.depnum}">
 													<c:if test="${e.id ne myId}">
 													<li class="chatLi">
 														<input type="hidden" id="email${e.id}" value="${e.email}">

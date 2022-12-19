@@ -24,6 +24,7 @@
    <!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
 
+
       <!-- Sidebar import -->
       <c:import url="../temp/layout_sidebar.jsp"></c:import>
       <!-- End of Sidebar -->
@@ -53,6 +54,7 @@
                         <input type="radio" name="goodsId" value="RO" id="kind">
                         <span>회의실</span>
                      </label>
+
 
                      <label class="test_obj">
                         <input type="radio" name="goodsId" value="CA" id="kind">

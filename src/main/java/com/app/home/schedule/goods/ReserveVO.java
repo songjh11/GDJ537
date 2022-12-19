@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 public class ReserveVO {
-	private Long reserveNum;
+	private Long reservenum;
 	private String goodsId;
 	private String date;
 	private int id;
