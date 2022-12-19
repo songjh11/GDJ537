@@ -17,7 +17,7 @@ usCloseBtn.addEventListener("click", e => {
 const pwModal = document.getElementById("pwModal")
 const pwCloseBtn = pwModal.querySelector(".close-area")
 pwCloseBtn.addEventListener("click", e => {
-    pwModal.style.display = "none"
+   pwModal.style.display = "none"
 });
 
 // 채팅방추가 아이콘 누르면 체크박스 생성
