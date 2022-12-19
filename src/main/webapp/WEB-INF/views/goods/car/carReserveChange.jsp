@@ -53,28 +53,34 @@
  								<input type="hidden" name="id" value="${test.id}">
 								
 								<div class="mb-3">
-									<label>예약날짜</label>
+									<label>사용 시작 시간</label>
 									<input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1" value="${reserve.startTime}">
 									<br>
 								</div>
 								
 								<div class="mb-3">
-									<label>반납날짜</label>
+									<label>사용 종료 시간</label>
 									<input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput1" value="${reserve.endTime}">
 									<br>
 								</div> 
 								
 								<div class="mb-5">
-									<label>예약자</label>
+									<label>사원 번호</label>
 
-									<input type="text" name="memberNum" class="form-control" id="exampleFormControlInput1" value="${reserve.id}">
+									<input type="text" name="memberNum" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${reserve.id}">
 
 								</div>
 								
 								<div class="mb-5">
-									<label>부서명</label>
-									<input type="text" class="form-control" id="exampleFormControlInput1" value="애플">
-								</div>	
+		                           <label>부서명</label>
+		                           <c:choose>
+		                           <c:when test="${userInfo.departmentVO.depNum == 1}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="영업팀"></c:when>
+		                           <c:when test="${userInfo.departmentVO.depNum == 2}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="총무팀"></c:when>
+		                           <c:when test="${userInfo.departmentVO.depNum == 3}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="인사팀"></c:when>
+		                           <c:when test="${userInfo.departmentVO.depNum == 4}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="IT개발팀"></c:when>
+		                           <c:when test="${userInfo.departmentVO.depNum == 5}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="생산팀"></c:when>
+		                           </c:choose>
+		                        </div>	
 																																	
 								<div class="mb-5">
 								  <label>변경 사유</label>
