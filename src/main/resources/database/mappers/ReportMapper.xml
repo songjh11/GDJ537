@@ -422,13 +422,13 @@
 	<sql id="paging">
 		where r.id = #{id}  <choose>
 								<when test="kind == 1">
-									and r.status = 1
+									and r.status = 1 and r.returns = 0
 								</when>
 								<when test="kind == 2">
-									and r.status = 2
+									and r.status = 2 and r.returns = 0
 								</when>
 								<when test="kind == 3">
-									and r.status = 3
+									and r.status = 3 and r.returns = 0
 								</when>
 								<when test="kind == 4">
 									and r.returns = 1

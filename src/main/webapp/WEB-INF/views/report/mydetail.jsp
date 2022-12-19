@@ -284,7 +284,7 @@
 		   <div class="container-fluid">
 						 <div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px;margin-top: 45px; background-color: rgb(255, 255, 249); color: black; font-size: 35px; font-weight: bolder; vertical-align: top; margin-right: 380px;" >
+            <div style="letter-spacing: 70px;margin-top: 45px; color: black; font-size: 35px; font-weight: bolder; vertical-align: top; margin-right: 380px;" >
                    지출결의서
                     <div style="border: solid 1px black; width: 400px; margin-left: 570px; height: 120px; margin-top: -65px;">
                         <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
@@ -600,7 +600,7 @@
 	            <div class="container-fluid">
 						<div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 45px; background-color: rgb(255, 255, 249); text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
+            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 45px; text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
                    시말서
                    <div style="border: solid 1px black; width: 400px; margin-left: 500px; height: 120px; margin-top: -75px;">
                     <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
