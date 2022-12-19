@@ -102,7 +102,7 @@
                            <div class="file_form mt-2" style="width: 450px;">
                               <!-- <img src="/file/goods/${li.fileName}"  width="300" height="300"> -->
                               <input type="file" name="files" class="files form-control">
-                              <span class="text ff" style="font-weight: bold;" >${li.oriName}<button type="button" class="del btn btn-danger" style="margin-left: 400px;">X</button></span> 
+                              <span class="text ff" style="font-weight: bold;" >${li.oriName}<button type="button" class="del btn btn-danger" style="margin-left: 383px;">X</button></span> 
                               <!-- <button type="button" class="del btn btn-danger" style="margin:auto;">X</button> -->
                            </div>
                         </c:forEach>
