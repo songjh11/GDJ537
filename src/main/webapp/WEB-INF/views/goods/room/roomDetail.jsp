@@ -14,6 +14,7 @@
 .de {
 	width: 550px;
 	height: 400px;
+	object-fit: scale-down;
 }
 
 .product-title {
