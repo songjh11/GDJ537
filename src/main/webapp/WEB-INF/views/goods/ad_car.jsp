@@ -23,8 +23,10 @@
           ${result}
         ]);
         var options = {
-          title: '차량별 통계'
-          
+          title: `${year}년 `+'차량별 통계',
+          fontSize: 20,
+          bold: true,
+
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
@@ -38,13 +40,13 @@
         function drawChart1() {
           //부서명 가지고 오기
           var data = google.visualization.arrayToDataTable([
-            ['부서명', 'Count'],
+            ['부서명', '건수'],
             ${depart}
           ]);
   
           var options = {
             chart: {
-              title: '부서별 차량 예약 통계',
+              title: '부서별 차량 예약 통계    '+`(${month}월)`,
             }
           };
   
@@ -84,13 +86,12 @@
    
                   <!-- Page Heading -->
                   <h1 class="h3 mb-4 text-gray-800" style="font-weight: bold;">차량 예약 통계</h1>
-                
-                
-                <div id="piechart" style="width: 700px; height: 500px; float:left; margin-right : 30px;"></div>
-  
-                <div id="columnchart_material" style="width: 800px; height: 500px; float: left;"></div>
-  
-                <div class="card" id="total">
+                  
+
+               </div>
+               <div style="display: flow-root;">
+
+                  <div class="card" id="total1">
                     <div class="card-body">
                       <div class="row align-items-center gx-0">
                         <div class="col">
@@ -111,27 +112,32 @@
                     </div>
                   </div>
 
-                  <div class="card" id="total">
-                    <div class="card-body">
-                      <div class="row align-items-center gx-0">
-                        <div class="col">
-                          <!-- Title -->
-                          <h6 class="text-uppercase text-muted mb-2">
-                            이번 달 예약 건수
-                          </h6>
-                          <!-- Heading -->
-                          <span class="h2 mb-0">
-                            ${nowTotal}
-                          </span>
-                        </div>
-                        <div class="col-auto">
-                          <!-- Icon -->
-                          <span class="h2 fe fe-briefcase text-muted mb-0"></span>
-                        </div>
-                      </div> <!-- / .row -->
+                    <div class="card" id="total2">
+                      <div class="card-body">
+                        <div class="row align-items-center gx-0">
+                          <div class="col">
+                            <!-- Title -->
+                            <h6 class="text-uppercase text-muted mb-2">
+                              이번 달 예약 건수
+                            </h6>
+                            <!-- Heading -->
+                            <span class="h2 mb-0">
+                              ${nowTotal}
+                            </span>
+                          </div>
+                          <div class="col-auto">
+                            <!-- Icon -->
+                            <span class="h2 fe fe-briefcase text-muted mb-0"></span>
+                          </div>
+                        </div> <!-- / .row -->
+                      </div>
                     </div>
-                  </div>
-                
+                </div>
+                <div id="piechart" style="width: 700px; height: 500px; float:left; margin-right : 30px;"></div>
+  
+                <div id="columnchart_material" style="width: 800px; height: 500px; float: left;"></div>
+  
+               
                 
         
       
@@ -144,11 +150,11 @@
          <!-- End of Main Content -->
          
          <!-- Footer import -->
-         <c:import url="../temp/layout_footer.jsp"></c:import>
          <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
       </div>
-      <!-- End of Content Wrapper -->
-   </div>
+      <c:import url="../temp/layout_footer.jsp"></c:import>
 
    <!-- Scroll Top, Login Modal import -->
    <c:import url="../temp/layout_top_logoutModal.jsp"></c:import>

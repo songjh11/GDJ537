@@ -50,7 +50,6 @@ public class GoodsService
     	  goodsMapper.setReserveInit(goodsVO);
       }
 
-
       if (files.length != 0)
       {
          for (MultipartFile file : files)
@@ -128,10 +127,12 @@ public class GoodsService
          return result;
    }
 
+
    public int getCount(GoodsVO goodsVO) throws Exception
    {
       return goodsMapper.getCount(goodsVO);
    }
+
 
    public String getMaxCount(GoodsVO goodsVO) throws Exception
    {
@@ -171,28 +172,28 @@ public class GoodsService
       return goodsMapper.getCarNameList();
    }
    
-   public List<ReserveVO> getreserveGoods(GoodsVO goodsVO) throws Exception{
+   public int getreserveGoods(GoodsVO goodsVO) throws Exception{
       return goodsMapper.getreserveGoods(goodsVO);
    }
    
-   public int getreserveCount(GoodsVO goodsVO) throws Exception{
-      return goodsMapper.getreserveCount(goodsVO);
+   public int getreserveCount(ReserveVO reserveVO) throws Exception{
+      return goodsMapper.getreserveCount(reserveVO);
    }
    
-   public int getRoomTotal() throws Exception{
-      return goodsMapper.getRoomTotal();   
+   public int getRoomTotal(ReserveVO reserveVO) throws Exception{
+      return goodsMapper.getRoomTotal(reserveVO);   
    }
    
-   public int getCarTotal() throws Exception{
-      return goodsMapper.getCarTotal();   
+   public int getCarTotal(ReserveVO reserveVO) throws Exception{
+      return goodsMapper.getCarTotal(reserveVO);   
    }
    
-   public int getDepartmentRoomTotal(DepartmentVO departmentVO) throws Exception{
-      return goodsMapper.getDepartmentRoomTotal(departmentVO);
+   public int getDepartmentRoomTotal(ReserveVO reserveVO) throws Exception{
+      return goodsMapper.getDepartmentRoomTotal(reserveVO);
    }
    
-   public int getDepartmentCarTotal(DepartmentVO departmentVO) throws Exception{
-      return goodsMapper.getDepartmentCarTotal(departmentVO);
+   public int getDepartmentCarTotal(ReserveVO reserveVO) throws Exception{
+      return goodsMapper.getDepartmentCarTotal(reserveVO);
    }
    
    public int getRoomNowTotal(String month) throws Exception{
@@ -201,6 +202,19 @@ public class GoodsService
    public int getCarNowTotal(String month) throws Exception{
       return goodsMapper.getCarNowTotal(month);
    }
+   
+   public int getAllCount(GoodsVO goodsVO) throws Exception{
+	   return goodsMapper.getAllCount(goodsVO);
+   }
+   
+   public int setReserveDelete(GoodsVO goodsVO) throws Exception{
+	   return goodsMapper.setReserveDelete(goodsVO);
+   }
+   
+   public int setFileDelete(GoodsVO goodsVO) throws Exception{
+	   return goodsMapper.setFileDelete(goodsVO);
+   }
+
 
 
 }

@@ -48,7 +48,7 @@
         }
 
         #contents {
-            height: 380px;
+            height: 384px;
             background-color: #fff;
             width: 430px;
             margin: 0 auto 7px;
@@ -86,7 +86,7 @@
         }
 
         #sendBtn {
-            background: linear-gradient(45deg, #758eff, #8a63da8a);
+            background: linear-gradient(45deg, #4e73df, #2196f3);
             height: 30px;
             width: 60px;
             border: none;
@@ -117,8 +117,8 @@
             <input type="hidden" name="sendId" value="${member.id}">
             <input type="hidden" name="receiveId" value="${param.receiveId}">
             <div id="title">
-                <div style="margin: 15px;">발신자 : 발신자 (${member.id})</div>
-                <div style="margin: 15px;">수신자 : 수신자 (${param.receiveId})</div>
+                <div style="margin: 15px;">발신자 : ${member.name} (${member.id})</div>
+                <div style="margin: 15px;">수신자 : ${receiveUser.name} (${param.receiveId})</div>
             </div>
             <div id="contents">
                 <div id="realContents">

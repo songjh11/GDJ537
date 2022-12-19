@@ -51,17 +51,17 @@
                   </div>
                   <div class="card-body">
                     <div class="mb-0 row">
-                      <input class="form-control-plaintext d-none" id="num" name="num" type="text"
-                        value="${boardVO.num}" />
-                      <label class="col-sm-2 col-form-label" for="id">수정자 사번</label>
+                      <input class="form-control-plaintext d-none" id="id" name="id" type="text"
+                        value="${boardVO.id}" />
+                      <label class="col-sm-2 col-form-label" for="creator">수정자 사번</label>
                       <div class="col-sm-10">
-                        <input class="form-control-plaintext outline-none" id="id" name="id" type="text" value="1234" />
+                        <input class="form-control-plaintext outline-none" id="creator" name="creator" type="text" value="1234" />
                       </div>
                     </div>
                     <div class="mb-3 row">
                       <label class="col-sm-2 col-form-label" for="title">제목</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="title" name="title" type="text" value="${boardVO.title }" />
+                        <input class="form-control" id="title" name="title" type="text" value="<c:out value="${boardVO.title }"></c:out>" />
                       </div>
                     </div>
                     <div class="mb-3 row">
@@ -80,7 +80,7 @@
                     </c:forEach>
                     <div id="fileDiv" data-fileCnt="${fileCnt }">
                       <c:forEach var="files" items="${boardVO.fileVOs}" varStatus="st">
-                        <div class="mb-1 row" data-fileNum="${files.fileNum }">
+                        <div class="mb-1 row" data-filenum="${files.id }">
                           <label class="col-sm-2 col-form-label justify-contents-end" for=""><button type="button"
                               class="btn btn-sm btn-danger" id="DelFileInput">파일삭제</button></label>
                           <div class="col-sm-10">
@@ -115,7 +115,8 @@
         <!-- End of Content Wrapper -->
       </div>
       <script type="text/javascript">
-        $('#contents').summernote('pasteHTML', '${boardVO.contents}',
+      $('#contents').html('${boardVO.contents}')
+      $('#contents').summernote(
           {
             placeholder: '내용을 입력해주세요',
             tabsize: 2,

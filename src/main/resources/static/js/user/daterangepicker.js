@@ -44,8 +44,8 @@
         this.showDropdowns = false;
         this.minYear = moment().subtract(100, 'year').format('YYYY');
         this.maxYear = moment().add(100, 'year').format('YYYY');
-        this.showWeekNumbers = false;
-        this.showISOWeekNumbers = false;
+        this.showWeeknumbers = false;
+        this.showISOWeeknumbers = false;
         this.showCustomRangeLabel = true;
         this.timePicker = false;
         this.timePicker24Hour = false;
@@ -218,11 +218,11 @@
         if (typeof options.drops === 'string')
             this.drops = options.drops;
 
-        if (typeof options.showWeekNumbers === 'boolean')
-            this.showWeekNumbers = options.showWeekNumbers;
+        if (typeof options.showWeeknumbers === 'boolean')
+            this.showWeeknumbers = options.showWeeknumbers;
 
-        if (typeof options.showISOWeekNumbers === 'boolean')
-            this.showISOWeekNumbers = options.showISOWeekNumbers;
+        if (typeof options.showISOWeeknumbers === 'boolean')
+            this.showISOWeeknumbers = options.showISOWeeknumbers;
 
         if (typeof options.buttonClasses === 'string')
             this.buttonClasses = options.buttonClasses;
@@ -695,7 +695,7 @@
             html += '<tr>';
 
             // add empty cell for week number
-            if (this.showWeekNumbers || this.showISOWeekNumbers)
+            if (this.showWeeknumbers || this.showISOWeeknumbers)
                 html += '<th></th>';
 
             if ((!minDate || minDate.isBefore(calendar.firstDay)) && (!this.linkedCalendars || side == 'left')) {
@@ -723,7 +723,7 @@
                     } else {
                         monthHtml += "<option value='" + m + "'" +
                             (m === currentMonth ? " selected='selected'" : "") +
-                            " disabled='disabled'>" + this.locale.monthNames[m] + "</option>";
+                            ">" + this.locale.monthNames[m] + "</option>";
                     }
                 }
                 monthHtml += "</select>";
@@ -750,7 +750,7 @@
             html += '<tr>';
 
             // add week number label
-            if (this.showWeekNumbers || this.showISOWeekNumbers)
+            if (this.showWeeknumbers || this.showISOWeeknumbers)
                 html += '<th class="week">' + this.locale.weekLabel + '</th>';
 
             $.each(this.locale.daysOfWeek, function(index, dayOfWeek) {
@@ -774,9 +774,9 @@
                 html += '<tr>';
 
                 // add week number
-                if (this.showWeekNumbers)
+                if (this.showWeeknumbers)
                     html += '<td class="week">' + calendar[row][0].week() + '</td>';
-                else if (this.showISOWeekNumbers)
+                else if (this.showISOWeeknumbers)
                     html += '<td class="week">' + calendar[row][0].isoWeek() + '</td>';
 
                 for (var col = 0; col < 7; col++) {
@@ -1414,7 +1414,7 @@
                 leftOrRight = isLeft ? 'left' : 'right',
                 cal = this.container.find('.drp-calendar.'+leftOrRight);
 
-            // Month must be Number for new moment versions
+            // Month must be number for new moment versions
             var month = parseInt(cal.find('.monthselect').val(), 10);
             var year = cal.find('.yearselect').val();
 

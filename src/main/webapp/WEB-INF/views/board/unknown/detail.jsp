@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <!DOCTYPE html>
     <html>
 
@@ -13,6 +15,11 @@
       <!-- 파일 다운로드 아이콘 -->
       <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      <style type="text/css">
+      	.dropdown-toggle::after{
+      		vertical-align:inherit;
+      	}
+      </style>
     </head>
 
     <!-- body ID 작성 -->
@@ -51,20 +58,32 @@
                     <div class="col-fill ml-auto align-self-end mr-5">
                       <p>조회수 ${boardVO.hit} </p>
                       <p id="regdate" data-date="${boardVO.regDate}"> 등록일자 </p>
+                      <c:if test="${boardVO.updateDate != null}">
+                    	 수정일자 
+                      	<fmt:formatDate value="${boardVO.updateDate}" pattern="yyyy-MM-dd HH:mm"/>
+                      </c:if>
                     </div>
                   </div>
                 </div>
                 <div class="card-body" style="min-height: 500px">
                   <div class="mb-1 row justify-content-end">
-                    <div class="col-3">
-                      <c:forEach items="${boardVO.fileVOs}" var="files">
-                        <p>
-                          <a href="/fileDown/board/${files.fileNum}">
-                            <span class="material-symbols-outlined">
-                              download
-                            </span> ${files.oriName}</a>
-                        </p>
-                      </c:forEach>
+                    <div class="col-2">
+                    <c:if test="${!empty boardVO.fileVOs }">
+                  	<button class="btn btn-outline-dark btn-block  dropdown-toggle dropdown-toggle-split"  data-toggle="dropdown" aria-expanded="false" type="button">
+                            <span class="material-symbols-outlined my-auto" style="vertical-align: middle;">
+                              
+                            </span>
+
+                            <span style="vertical-align: middle;"> 첨부파일 (${fn:length(boardVO.fileVOs) }) </span>
+                      </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
+	                        <a class="dropdown-item" href="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/${file.fileName}">${file.oriName } (${file.fileSize}) </a>
+	                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
+	                      </c:forEach>
+
+						  </div>
+					</c:if>
                     </div>
                   </div>
                   <div class="mb-5 row">
@@ -84,11 +103,11 @@
                   placeholder="Leave a comment here"></textarea>
               </div>
               <div class="mb-5">
-                <button type="button" id="b1" data-boardNum="${boardVO.num}" class="btn btn-success">댓글등록</button>
+                <button type="button" id="b1" data-boardnum="${boardVO.id}" class="btn btn-success">댓글등록</button>
               </div>
               <!-- 댓글 목록 -->
               <div>
-                <table id="commentList" class="table table-striped"></table>
+                <table id="commentList" class="table table-bordered"></table>
               </div>
 
               <div>
@@ -127,8 +146,8 @@
               </div>
 
               <!-- 나중에 로그인한 사용자와 작성자가 일치하는지 검증 -->
-              <a href="/unknown/update?num=${boardVO.num}" class="btn btn-danger">글 수정</a>
-              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.num}">글 삭제</button>
+              <a href="/unknown/update?id=${boardVO.id}" class="btn btn-danger">글 수정</a>
+              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>
             </div>
             <!-- End Page Content -->
 
@@ -162,6 +181,7 @@
       <!-- <script src="/js/boardHit.js"></script> -->
       <!-- Scroll Top, Logout Modal import -->
       <c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
+      
     </body>
 
     </html>

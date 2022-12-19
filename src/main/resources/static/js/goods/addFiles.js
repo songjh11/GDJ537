@@ -14,11 +14,11 @@ $("#fileAdd").click(function(){
     }
     
     if($(".files").length<5){
-        let r = '<div class="file_form mt-2">';
+        let r = '<div class="file_form mt-2" style="width:450px;">';
         /* r = r+'<label for="contents" class="form-label">Files</label>'; label 여부 체크 */
         r = r+'<input type="file" name="files" class="files form-control" id="files">';
-        r = r+'<span class="text">선택된 파일 없음</span> ';
-        r = r+'<button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>'
+        r = r+'<span class="text">선택된 파일 없음 <button type="button" class="del btn btn-danger" style="margin-left:340px;">X</button></span>';
+        // r = r+'<button type="button" class="del btn btn-danger" style="margin:auto;">X</button>'
         r = r+'<div id="see"></div>'
         r = r+'</div>';
         $("#fileAddResult").append(r);
@@ -51,8 +51,8 @@ $("#fileAdd").click(function(){
             //     type:"POST",
             //     url :"./fileDelete",
             //     data:{
-            //         "rowNum":i,
-            //         "noticeNum":noticeNum
+            //         "rownum":i,
+            //         "noticenum":noticenum
             //     },
             //     success:function(result){
             //         console.log("Result : ",result)
@@ -81,20 +81,22 @@ for(let i=0; i<$(".files").length; i++){
         console.log();
                     $.ajax({
                         type:"POST",
-                        url :"./fileUpdateNumber",
+                        url :"./fileUpdatenumber",
                         data:{
+
                             "rowNum":i,
                             "goodsId":goodId
+
                         },
                         success:function(result){
                             console.log("Result : ",result)
                             console.log("After Result This", $(this));
                             // if(result == 1 ){
                             //     swal("첨부파일이 삭제되었습니다.").then(function(){
-                            //         location.replace("./update?noticeNum="+noticeNum);
+                            //         location.replace("./update?noticenum="+noticenum);
                             //     })
                             // }
-                            let r = '<input type="hidden" name="fileUpdateNumber" id="fileUpdateNumber" value="'+result
+                            let r = '<input type="hidden" name="fileUpdatenumber" id="fileUpdatenumber" value="'+result
                             r = r + '">';
                             $("#fileAddResult").append(r);
                         },
@@ -110,8 +112,10 @@ for(let i=0; i<$(".files").length; i++){
             type:"POST",
             url :"./fileDelete",
             data:{
+
                 "rowNum":i,
                 "goodsId":goodId
+
             },
             success:function(result){
                 console.log("Result : ",result)
@@ -129,8 +133,10 @@ for(let i=0; i<$(".files").length; i++){
         });
     })
 }
+
 $("#fileAddResult").on("click", ".del", function(){
-    $(this).parent().remove();
+    // console.log($(this).parent().parent());
+    $(this).parent().parent().remove();
     
 });
 flag=true;
@@ -148,15 +154,15 @@ $(".deleteFile").click(function(){
     if(check){
         //post
         // /qna/fileDelete
-        //파라미터 fileNum
-        let imgNum = $(this).attr("data-file-num");
+        //파라미터 filenum
+        let imgnum = $(this).attr("data-file-num");
         console.log("Before Result This", $(this));
         const btn = $(this);
         $.ajax({
             type:"POST",
             url :"fileDelete",
             data:{
-                imgNum:imgNum
+                imgnum:imgnum
             },
             success:function(result){
                 console.log("Result : ",result)

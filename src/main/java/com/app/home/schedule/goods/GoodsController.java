@@ -37,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class GoodsController {
+
    
    
    @Autowired
@@ -115,16 +116,23 @@ public class GoodsController {
    @ResponseBody
    public ModelAndView setGoodsDelete(GoodsVO goodsVO,ModelAndView mv) throws Exception{
       ReserveVO reserveVO = new ReserveVO();
+      System.out.println(goodsVO);
+     
       int result = 0;
-      List<ReserveVO> reserve = goodsService.getreserveGoods(goodsVO);
-      if(reserve.size() == 0) {
-         result = 0;
+      int count = goodsService.getreserveGoods(goodsVO)-1;
+      System.out.println("count :  "+count);
+      if(count == 0) {
+    	  goodsService.setReserveDelete(goodsVO);
+    	  goodsService.setFileDelete(goodsVO);
+         result = goodsService.setGoodsDelete(goodsVO);
+         
       }else {
-         result = goodsService.setGoodsDelete(goodsVO);         
+          result = 0;
       }
+      System.out.println(result);
       
       //리스트 페이지로
-      mv.setViewName("/goods/ad_list");
+      mv.setViewName("/goods/update?goodsId="+goodsVO.getGoodsId());
       return mv;
    }
    
@@ -133,6 +141,13 @@ public class GoodsController {
       ModelAndView mv = new ModelAndView();
       List<GoodsVO> room = goodsService.getRoomList();
       List<GoodsVO> car = goodsService.getCarList();
+      for(int i=0;i<room.size();i++) {
+    	  room.get(i).setCount(goodsService.getAllCount(room.get(i))-1);
+      }
+      
+      for(int i=0;i<car.size();i++) {
+    	  car.get(i).setCount(goodsService.getAllCount(car.get(i))-1);
+      }
       
       mv.addObject("room", room);
       mv.addObject("car", car);
@@ -153,40 +168,69 @@ public class GoodsController {
          JSONArray jsonArr = new JSONArray();
          UserVO userVO = new UserVO();
          HashMap<String, Object> hash = new HashMap<>();
-         log.info("list -> {}",list.size());
-         log.info("ReserveVO -> room : {}, car : {}, vacation : {}",reserveVO.isRoom(),reserveVO.isCar(),reserveVO.isVacation());
          for (int i = 0; i < list.size(); i++) {
             if(depNum == "" || depNum == null) {
                
-               userVO.setId(list.get(i).getId());
-               userVO = userService.getMypage(userVO);
-               hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
-               hash.put("start", list.get(i).getStartTime());
-               hash.put("end", list.get(i).getEndTime());
+            	if(list.get(i).getGoodsId().substring(0,2).equals("RO")) {
+            		userVO.setId(list.get(i).getId());
+                    userVO = userService.getMypage(userVO);
+                    hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+                    hash.put("start", list.get(i).getStartTime());
+                    hash.put("end", list.get(i).getEndTime());
+                    hash.put("color", "#4e73df");
+                    hash.put("content", userVO.getDepartmentVO().getDepName());
+                    hash.put("test1", userVO.getRoleVO().getRoleName());
+                    hash.put("test2", userVO.getName());
+				}else if(list.get(i).getGoodsId().substring(0,2).equals("CA")) {
+					   userVO.setId(list.get(i).getId());
+		               userVO = userService.getMypage(userVO);
+		               hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+		               hash.put("start", list.get(i).getStartTime());
+		               hash.put("end", list.get(i).getEndTime());
+		               hash.put("color", "#009000");
+		               hash.put("content", userVO.getDepartmentVO().getDepName());
+		               hash.put("test1", userVO.getRoleVO().getRoleName());
+		               hash.put("test2", userVO.getName());
+		               
+				}
                
-               hash.put("content", userVO.getDepartmentVO().getDepName());
-               hash.put("test1", userVO.getRoleVO().getRoleName());
-               hash.put("test2", userVO.getName());
                
 //            hash.put("time", listAll.get(i).getScheduleTime());
 					jsonObj = new JSONObject(hash);
 					jsonArr.add(jsonObj);
 				}else {
+					
 					depNum1 = Integer.valueOf(depNum);
 					userVO.setId(list.get(i).getId());
 					userVO = userService.getMypage(userVO);
 					if(userVO.getDepNum() == depNum1) {
-						hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
-						hash.put("start", list.get(i).getStartTime());
-						hash.put("end", list.get(i).getEndTime());
+						if(list.get(i).getGoodsId().substring(0,2).equals("RO")) {
 						
-						hash.put("content", userVO.getDepartmentVO().getDepName());
-						hash.put("test1", userVO.getRoleVO().getRoleName());
-						hash.put("test2", userVO.getName());
+							hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+							hash.put("start", list.get(i).getStartTime());
+							hash.put("end", list.get(i).getEndTime());
+							hash.put("color", "#4e73df");
+							hash.put("content", userVO.getDepartmentVO().getDepName());
+							hash.put("test1", userVO.getRoleVO().getRoleName());
+							hash.put("test2", userVO.getName());
+							
+//		            hash.put("time", listAll.get(i).getScheduleTime());
+							jsonObj = new JSONObject(hash);
+							jsonArr.add(jsonObj);
+						}else if(list.get(i).getGoodsId().substring(0,2).equals("CA")) {
+							hash.put("title", list.get(i).getGoodsVO().getName()+" / "+ userVO.getDepartmentVO().getDepName());
+							hash.put("start", list.get(i).getStartTime());
+							hash.put("end", list.get(i).getEndTime());
+							hash.put("color", "#009000");
+							hash.put("content", userVO.getDepartmentVO().getDepName());
+							hash.put("test1", userVO.getRoleVO().getRoleName());
+							hash.put("test2", userVO.getName());
+							
+//		            hash.put("time", listAll.get(i).getScheduleTime());
+							jsonObj = new JSONObject(hash);
+							jsonArr.add(jsonObj);
+						}
 						
-//	            hash.put("time", listAll.get(i).getScheduleTime());
-						jsonObj = new JSONObject(hash);
-						jsonArr.add(jsonObj);
 					}else {
 						continue;
 					}
@@ -194,8 +238,8 @@ public class GoodsController {
 				
 			}
 			
-			log.info("jsonArrCheck: {}", jsonArr);
 			return jsonArr;
+
 		}
 	
 	
@@ -207,13 +251,23 @@ public class GoodsController {
 		List<DepartmentVO> department = userService.getDepartment(); 
 		Map<String, Integer> map = new HashMap<>();
 		Map<String, Integer> departMap = new HashMap<>();
+		ReserveVO reserveVO = new ReserveVO();
+		
+		String year = now.toString().substring(0,4);
+		String month = now.toString().substring(0, 7);
+
 		
 		for(int i=0;i<room.size();i++) {
-			map.put(room.get(i).getName(), goodsService.getreserveCount(room.get(i)));
+			reserveVO.setStartTime(year);
+			reserveVO.setGoodsId(room.get(i).getGoodsId());
+			map.put(room.get(i).getName(), goodsService.getreserveCount(reserveVO));
 		}
 		
 		for(int i=0;i<department.size();i++) {
-			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(department.get(i)));
+			reserveVO.setStartTime(month);
+			reserveVO.setDepName(department.get(i).getDepName());
+			departMap.put(department.get(i).getDepName(), goodsService.getDepartmentRoomTotal(reserveVO));
+			
 		}
 		
 		String result ="";
@@ -225,7 +279,8 @@ public class GoodsController {
 			}
 			result += "['"+key+"', "+map.get(key)+"]";
 		}
-		int total = goodsService.getRoomTotal();
+		reserveVO.setStartTime(year);
+		int total = goodsService.getRoomTotal(reserveVO);
 		
 		String depart ="";
 		Set<String> reasonKey = departMap.keySet();
@@ -237,10 +292,10 @@ public class GoodsController {
 			depart += "['"+key+"', "+departMap.get(key)+"]";
 		}
 		
-		String month = now.toString().substring(5, 7);
-		int nowTotal = goodsService.getCarNowTotal(month);
-
-      System.out.println(nowTotal);
+		int nowTotal = goodsService.getRoomNowTotal(month);
+		
+      mv.addObject("year", year);
+      mv.addObject("month", month);
       mv.addObject("nowTotal", nowTotal);
       mv.addObject("depart", depart);
       mv.addObject("total", total);
@@ -257,13 +312,23 @@ public class GoodsController {
       List<DepartmentVO> department = userService.getDepartment(); 
       Map<String, Integer> map = new HashMap<>();
       Map<String, Integer> departMap = new HashMap<>();
+      ReserveVO reserveVO = new ReserveVO(); 
 
+      String year = now.toString().substring(0,4);
+      String month = now.toString().substring(0, 7);
+
+      
       for(int i=0;i<car.size();i++) {
-         map.put(car.get(i).getName(), goodsService.getreserveCount(car.get(i)));
+    	  reserveVO.setStartTime(year);
+    	  reserveVO.setGoodsId(car.get(i).getGoodsId());
+         map.put(car.get(i).getName(), goodsService.getreserveCount(reserveVO));
       }
       
       for(int i=0;i<department.size();i++) {
-         departMap.put(department.get(i).getDepName(), goodsService.getDepartmentCarTotal(department.get(i)));
+    	  reserveVO.setStartTime(month);
+    	  reserveVO.setDepName(department.get(i).getDepName());
+         departMap.put(department.get(i).getDepName(), goodsService.getDepartmentCarTotal(reserveVO));
+
       }
       
       String result ="";
@@ -275,8 +340,8 @@ public class GoodsController {
          }
          result += "['"+key+"', "+map.get(key)+"]";
       }
-      
-      int total = goodsService.getCarTotal();
+      reserveVO.setStartTime(year);
+      int total = goodsService.getCarTotal(reserveVO);
       
       String depart ="";
       Set<String> reasonKey = departMap.keySet();
@@ -288,9 +353,10 @@ public class GoodsController {
          depart += "['"+key+"', "+departMap.get(key)+"]";
       }
       
-      String month = now.toString().substring(5, 7);
       int nowTotal = goodsService.getCarNowTotal(month);
-
+		
+      mv.addObject("year", year);
+      mv.addObject("month", month);
       mv.addObject("nowTotal", nowTotal);
       mv.addObject("depart", depart);
       mv.addObject("total", total);

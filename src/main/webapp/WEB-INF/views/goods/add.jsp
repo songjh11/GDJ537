@@ -24,6 +24,7 @@
    <!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
 
+
       <!-- Sidebar import -->
       <c:import url="../temp/layout_sidebar.jsp"></c:import>
       <!-- End of Sidebar -->
@@ -39,25 +40,27 @@
             
             <!-- Begin Page Content -->
                <div class="container-fluid justify-content-center">
-               <section class="container col-lg-4 justify-content-center" style="text-align: center;">
+               <section class="container col-lg-4 justify-content-center">
                   <!-- Page Heading -->
                   <h1 class="h3 mb-4 text-gray-800" id="title" >공용 시설 추가</h1>
-                  <P>* 표시는 필수항목입니다.</P>
+                  <div class="mb-3">
+                  <b>* 표시는 필수항목입니다.</b>
+                  </div>
                   
                   <form action="add" method="post" enctype="multipart/form-data" id="addform">
                   <div class="mb-3">
                      <div>
                         <label for="exampleInputName" class="form-label" style="font-weight : bold">*종류</label>
+                        <label class="test_obj">
+                           <input type="radio" name="goodsId" value="RO" id="kind">
+                           <span>회의실</span>
+                        </label>
+                        <label class="test_obj">
+                           <input type="radio" name="goodsId" value="CA" id="kind">
+                           <span>차량</span>
+                        </label>
                      </div>
-                     <label class="test_obj">
-                        <input type="radio" name="goodsId" value="RO" id="kind">
-                        <span>회의실</span>
-                     </label>
 
-                     <label class="test_obj">
-                        <input type="radio" name="goodsId" value="CA" id="kind">
-                        <span>차량</span>
-                     </label>
                      <div id="kinddiv" class="check"></div>
 
                   </div>
@@ -69,13 +72,13 @@
                      <div id="namediv" class="check"></div>
                   </div>
                   <div class="mb-3">
-                     <label for="exampleInputContents" class="form-label">시설 설명</label>
+                     <label for="exampleInputContents" class="form-label">시설 상세 설명</label>
                      <div style="text-align: center;">
                         <textarea  class="form-control add_ele" id="contents" name="contents"></textarea>
                      </div>
                   </div>
                   <div class="mb-3">
-                     <label for="exampleInputMax" class="form-label" style="font-weight : bold">*최대 인원</label>
+                     <label for="exampleInputMax" class="form-label" style="font-weight : bold">*최대 인원 수</label>
                      <div style="text-align: center;">
                         <input type="text" class="form-control" id="max" name="max">
                      </div>
@@ -95,17 +98,17 @@
                      </div>
                      <div id="carNumdiv" class="check"></div>
                   </div>
-                  <div style="text-align: center;">
+                  <div>
                      <div class="board-filetitle" style="font-weight : bold">*이미지 첨부  
+                        <!-- <div class="mb-3"> -->
+                           <button type="button" id="fileAdd" class="btn btn-success" >파일 추가</button>
+                           <div id="imgdiv" class="check"></div>
+                        <!-- </div> -->
                         <div class="mb-3" id="fileAddResult">      
                         </div>
                      </div>
                   </div>
-                  <div class="mb-3">
-                     <button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
-                     <div id="imgdiv" class="check"></div>
-                  </div>
-                  <input type="button" class="btn btn-primary" id="sub" value="시설 추가" style="margin-top: 50px;">
+                  <input type="button" class="btn btn-primary" id="sub" value="시설 추가" style="margin-top: 50px; margin-left: 200px;">
                   </form>
       
                </div>

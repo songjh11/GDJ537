@@ -25,4 +25,7 @@ public class ReserveVO {
 	private boolean room;
 	private boolean car;
 	private boolean vacation;
+	
+//	부서 filter
+	private String depName;
 }
