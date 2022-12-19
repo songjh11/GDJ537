@@ -72,13 +72,13 @@
                      <div id="namediv" class="check"></div>
                   </div>
                   <div class="mb-3">
-                     <label for="exampleInputContents" class="form-label">시설 설명</label>
+                     <label for="exampleInputContents" class="form-label">시설 상세 설명</label>
                      <div style="text-align: center;">
                         <textarea  class="form-control add_ele" id="contents" name="contents"></textarea>
                      </div>
                   </div>
                   <div class="mb-3">
-                     <label for="exampleInputMax" class="form-label" style="font-weight : bold">*최대 인원</label>
+                     <label for="exampleInputMax" class="form-label" style="font-weight : bold">*최대 인원 수</label>
                      <div style="text-align: center;">
                         <input type="text" class="form-control" id="max" name="max">
                      </div>

@@ -80,7 +80,7 @@
 	</select>
 
 	<resultMap type="ReserveVO" id="info">
-		<id column="reservenum" property="reservenum" />
+		<id column="reserveNum" property="reserveNum" />
 		<result column="goodsId" property="goodsId" />
 		<result column="date" property="date" />
 		<result column="id" property="id" />
