@@ -11,14 +11,31 @@
 		VALUES(#{creator},#{boardId},#{contents})
 	</insert>
 
-	<select id="getCommentList" resultType="CommentVO"
+	<select id="getCommentList" resultMap="getCommentListResult"
 		parameterType="CommentPager">
-		SELECT * FROM COMMENT
+		SELECT C.*, U.name AS NAME FROM COMMENT C
+		LEFT JOIN USER U
+		ON C.creator = U.ID
+		
 		WHERE BOARDID = #{boardId}
 		ORDER BY
 		ID DESC
 		LIMIT #{startRow}, #{perPage}
 	</select>
+	
+	<resultMap type="CommentVO" id="getCommentListResult">
+		<id column="ID" property="id"/>
+		<result column="BOARDID" property="boardId"/>
+		<result column="CREATOR" property="creator"/>
+		<result column="CONTENTS" property="contents"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="UPDATEDATE" property="updateDate"/>
+		<association property="userVO" javaType="UserVO">
+			<id column="NUM" property="num"/>
+			<result column="NAME" property="name"/>
+			<result column="PROFILE" property="profile"/>
+		</association>
+	</resultMap>
 
 	<select id="getCommentListTotalCount" resultType="Long"
 		parameterType="CommentPager">

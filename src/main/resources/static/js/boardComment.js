@@ -70,71 +70,7 @@ function getCommentList(p, bn) {
       console.log(xhttp.responseText);
 
       //1. jsp 사용한 결과물
-      //commentList.innerHTML=xhttp.responseText.trim();
-
-      //2. JSON 결과물
-      let result = JSON.parse(xhttp.responseText.trim());
-      let pager = result.pager; //commentPager
-      let ar = result.list;     //댓글리스트
-
-      for (let i = 0; i < ar.length; i++) {
-        let tr = document.createElement("tr")
-
-        let td = document.createElement("td")
-        let tdText = document.createTextNode(ar[i].contents);
-        td.appendChild(tdText);
-        tr.appendChild(td);
-
-        // //익명작성자
-        // td = document.createElement("td");
-        // tdText = document.createTextNode(ar[i].id);
-        // td.appendChild(tdText);
-        // tr.appendChild(td); 
-
-        td = document.createElement("td");
-        let dateTextes = ar[i].regDate.slice(0, 16);
-        dateTextes = dateTextes.split("T");
-        tdText = document.createTextNode(dateTextes[0] + " " + dateTextes[1]);
-        td.appendChild(tdText);
-        tr.appendChild(td);
-
-        td = document.createElement("td");
-        if(ar[i].updateDate == null){
-          tdText = document.createTextNode(dateTextes[0] + " " + dateTextes[1]);
-        } else {
-          dateTextes = ar[i].updateDate.slice(0, 16).split("T");
-          tdText = document.createTextNode(dateTextes[0] + " " + dateTextes[1]);
-        }
-        td.appendChild(tdText);
-        tr.appendChild(td);
-
-        // td = document.createElement("td");
-        // tdText = document.createTextNode("수정");
-        // let tdAttr = document.createAttribute("class")
-        // tdAttr.value = "update";
-        // td.setAttributeNode(tdAttr);
-        // td.appendChild(tdText);
-        // tr.appendChild(td);
-
-        // tdAttr = document.createAttribute("data-commentnum");
-        // tdAttr.value = ar[i].id;
-        // td.setAttributeNode(tdAttr);
-        // tr.appendChild(td);
-
-        td = document.createElement("td");
-        tdText = document.createTextNode("삭제");
-        tdAttr = document.createAttribute("class")
-        tdAttr.value = "delete";
-        td.setAttributeNode(tdAttr);
-        td.appendChild(tdText);
-
-        tdAttr = document.createAttribute("data-commentnum");
-        tdAttr.value = ar[i].id;
-        td.setAttributeNode(tdAttr);
-        tr.appendChild(td);
-
-        commentList.append(tr);
-      }
+      commentList.innerHTML=xhttp.responseText.trim();
     }
   })
 
@@ -144,7 +80,7 @@ function getCommentList(p, bn) {
 commentList.addEventListener("click", function (event) {
 
   console.log(event.target.className);
-  if (event.target.className == "update") {
+  if (event.target.classList.contains("update")) {
 
     /*let contents = event.target.parentNode.parentNode.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML;
     let num = event.target.getAttribute("data-boardNum");
@@ -158,7 +94,7 @@ commentList.addEventListener("click", function (event) {
   }
 
   //----------댓글삭제----------
-  if (event.target.className == "delete") {
+  if (event.target.classList.contains("delete")) {
     let deFlag = confirm("댓글을 삭제 하시겠습니까?");
 
     if(deFlag){
