@@ -5,6 +5,7 @@
 
 <mapper namespace="com.app.home.schedule.goods.GoodsMapper">
 
+
    <update id="setUpdate" parameterType="GoodsVO">
       UPDATE GOODS SET NAME = #{name}, MAX = #{max}, CONTENTS = #{contents}, LOCATION = #{location}, CARNUM = #{carNum} WHERE GOODSID = #{goodsId}
    </update>
@@ -13,6 +14,7 @@
          INSERT INTO GOODS
             VALUES (#{goodsId},#{name},#{max},#{contents},#{location},#{carNum})
    </insert>
+
 
    <select id="getCount" parameterType="GoodsVO" resultType="int">
       SELECT
@@ -28,6 +30,7 @@
       resultType="GoodsVO">
       SELECT * FROM GOODS WHERE GOODSID = #{goodsId}
    </select>
+
 
    <insert id="setGoodsFileAdd" parameterType="GoodsFileVO">
        INSERT INTO GOODSFILE
@@ -86,6 +89,7 @@
        LEFT JOIN GOODSFILE GF
        ON G.GOODSID = GF.GOODSID
        WHERE G.GOODSID LIKE 'RO%'
+       ORDER BY G.GOODSID DESC
     </select>
     
     <select id="getCarList" resultMap="getGoodsDetail">
@@ -94,7 +98,9 @@
        LEFT JOIN GOODSFILE GF
        ON G.GOODSID = GF.GOODSID
        WHERE G.GOODSID LIKE 'CA%'
+       ORDER BY G.GOODSID DESC
     </select>
+
 
    <!-- 전체 정보 출력을 위한 리스트 -->
    <select id="getGoodsList" parameterType="GoodsVO"
@@ -103,6 +109,7 @@
       left JOIN GOODSFILE F
       ON G.GOODSID = F.GOODSID
    </select>
+
 
    <resultMap type="GoodsVO" id="getGoods">
       <id column="GOODSID" property="goodsId"></id>
@@ -174,8 +181,8 @@
       SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'CA%'
    </select>
    
-   <select id="getreserveGoods" parameterType="GoodsVO" resultType="ReserveVO">
-      SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
+   <select id="getreserveGoods" parameterType="GoodsVO" resultType="int">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
    </select>
    
    <select id="getreserveCount" parameterType="ReserveVO" resultType="int">
@@ -236,6 +243,19 @@
 		VALUE(null,#{goodsId},"2018-01-01 09:00:00",2022001,"예시","2018-01-01T09:00","2018-01-01T09:00")
    </insert>
    
+   <select id="getAllCount" parameterType="GoodsVO" resultType="int">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
+   </select>
+   
+   <delete id="setReserveDelete" parameterType="GoodsVO">
+	  DELETE FROM RESERVE WHERE GOODSID = #{goodsId}
+   </delete>
+   
+   <delete id="setFileDelete" parameterType="GoodsVO">
+	  DELETE FROM GOODSFILE WHERE GOODSID = #{goodsId}
+   </delete>
    
    
-</mapper> 
+   
+</mapper>
+

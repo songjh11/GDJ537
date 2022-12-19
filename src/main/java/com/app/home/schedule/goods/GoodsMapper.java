@@ -11,6 +11,7 @@ import com.app.home.user.DepartmentVO;
 @Mapper
 public interface GoodsMapper
 {
+
    public int setAdd(GoodsVO goodsVO) throws Exception;
 
    public int getCount(GoodsVO goodsVO) throws Exception;
@@ -40,7 +41,7 @@ public interface GoodsMapper
    
    public List<GoodsVO> getCarNameList() throws Exception;
    
-   public List<ReserveVO> getreserveGoods(GoodsVO goodsVO) throws Exception;
+   public int getreserveGoods(GoodsVO goodsVO) throws Exception;
    
    public int getreserveCount(ReserveVO reserveVO) throws Exception;
    
@@ -60,4 +61,11 @@ public interface GoodsMapper
    public int getCarNowTotal(String month) throws Exception;
    
    public int setReserveInit(GoodsVO goodsVO) throws Exception;
+   public int getAllCount(GoodsVO goodsVO) throws Exception;
+   
+   public int setReserveDelete(GoodsVO goodsVO) throws Exception;
+   
+   public int setFileDelete(GoodsVO goodsVO) throws Exception;
+   
+   
 }

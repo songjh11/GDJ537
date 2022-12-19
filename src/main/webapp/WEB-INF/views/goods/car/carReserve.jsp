@@ -50,6 +50,8 @@
 									</tr>
 								</table>
 								
+
+
 						<input type="hidden" name="goodsId" value="${goods.goodsId}">
                      	<c:forEach items="${timeNotEqual }" var="t">
 	                        <div class="timeCheck">
@@ -99,6 +101,7 @@
                         </div>
                      </form>
                </section>
+
 
             </div>
             <!-- End Page Content -->

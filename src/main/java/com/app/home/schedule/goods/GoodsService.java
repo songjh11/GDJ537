@@ -50,7 +50,6 @@ public class GoodsService
     	  goodsMapper.setReserveInit(goodsVO);
       }
 
-
       if (files.length != 0)
       {
          for (MultipartFile file : files)
@@ -128,10 +127,12 @@ public class GoodsService
          return result;
    }
 
+
    public int getCount(GoodsVO goodsVO) throws Exception
    {
       return goodsMapper.getCount(goodsVO);
    }
+
 
    public String getMaxCount(GoodsVO goodsVO) throws Exception
    {
@@ -171,7 +172,7 @@ public class GoodsService
       return goodsMapper.getCarNameList();
    }
    
-   public List<ReserveVO> getreserveGoods(GoodsVO goodsVO) throws Exception{
+   public int getreserveGoods(GoodsVO goodsVO) throws Exception{
       return goodsMapper.getreserveGoods(goodsVO);
    }
    
@@ -201,6 +202,19 @@ public class GoodsService
    public int getCarNowTotal(String month) throws Exception{
       return goodsMapper.getCarNowTotal(month);
    }
+   
+   public int getAllCount(GoodsVO goodsVO) throws Exception{
+	   return goodsMapper.getAllCount(goodsVO);
+   }
+   
+   public int setReserveDelete(GoodsVO goodsVO) throws Exception{
+	   return goodsMapper.setReserveDelete(goodsVO);
+   }
+   
+   public int setFileDelete(GoodsVO goodsVO) throws Exception{
+	   return goodsMapper.setFileDelete(goodsVO);
+   }
+
 
 
 }

@@ -55,11 +55,13 @@
 							<c:set var="TextValue" value="${goods.goodsId}" />
 							<c:if test="${fn:substring(TextValue,0,2) == 'CA' }">
 								<tr>
+
 									<td>${goods.carNum}</td>
 									<td>${goods.name}</td>
 									<td><a href="./carDetail?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">정보 보기</button></a></td>
 									<td><a href="./carReserve?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">예약하기</button></a></td>
 									<td><a href="./carResInfo?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">현황보기</button></a></td>
+
 								</tr>
 								</c:if>
 							</c:forEach>
@@ -82,13 +84,13 @@
 
 	<script>
 		$('.delete_btn').click(function() {
-			console.log($(this).val()); // 클릭 한 요소의 value값(reserveNum)을 출력한다.
+			console.log($(this).val()); // 클릭 한 요소의 value값(reservenum)을 출력한다.
 			
-			let reserve = $(this).val(); // value값(reserveNum)을 reserve에 저장한다.
+			let reserve = $(this).val(); // value값(reservenum)을 reserve에 저장한다.
 			let result = confirm("예약을 취소하시겠습니까? \n취소 후에는 되돌릴 수 없습니다.");
 
 			if (result) { // 확인 클릭 시
-				$.get("carReserveDelete?reserveNum=" + reserve, function(result) { // controller로 get방식의 보낸다
+				$.get("carReserveDelete?reservenum=" + reserve, function(result) { // controller로 get방식의 보낸다
 					console.log(reserve);
 					location.reload();
 				});

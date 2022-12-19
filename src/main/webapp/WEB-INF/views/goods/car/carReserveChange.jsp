@@ -40,7 +40,9 @@
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
  										<th>차량번호</th>
+
 										<td>${goods.carNum}</td>
+
 										<th>모델명</th>
 										<td>${goods.name}</td>									
 										<th>최대 탑승 수</th>
