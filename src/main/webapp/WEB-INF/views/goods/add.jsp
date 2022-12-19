@@ -108,7 +108,10 @@
                         </div>
                      </div>
                   </div>
-                  <input type="button" class="btn btn-primary" id="sub" value="시설 추가" style="margin-top: 50px; margin-left: 200px;">
+                  <div class="test mt-5 mb-5">
+                  	<input type="button" class="btn btn-primary" id="sub" value="시설 추가">
+                  	<a href="../goods/ad_list" class="btn" style="background-color: #4e73df; color: white; width: 95px;">뒤로가기</a>
+                  </div>
                   </form>
       
                </div>
