@@ -95,6 +95,15 @@ public class UnknownService {
 
 		return boardDAO.getList(pager);
 	}
+	
+	//(조회수순,최신순) Ajax 리스트 불러오기
+	public List<BoardVO> getListByUnknownAjax(Pager pager) throws Exception {
+		Long totalCount = boardDAO.getTotalCount(pager);
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		
+		return boardDAO.getList(pager);
+	}
 
 	public int setHit(BoardVO boardVO) throws Exception {
 		return boardDAO.setHit(boardVO);

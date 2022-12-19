@@ -18,7 +18,7 @@ import com.app.home.util.Pager;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("request")
+@RequestMapping("/request/*")
 @Slf4j
 public class RequestController {
 	
@@ -84,12 +84,22 @@ public class RequestController {
 
 	@GetMapping("list")
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
-		
+		System.out.println("Before : "+pager.getOrder());
 		pager.setSort("요청");
-		mv.addObject("requestList", requestService.getRequestList(pager));
+		mv.addObject("requestList", requestService.getList(pager));
 		mv.addObject("pager", pager);
 		mv.setViewName("/board/request/list");
-		
+		System.out.println("AFTER : "+pager.getOrder());
+		return mv;
+	}
+	
+	@GetMapping("getListByRequestAjax")
+	public ModelAndView getListByRequestAjax(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("requestList", requestService.getListByRequestAjax(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("board/request/requestResult");
+		System.out.println("AFTER : "+pager.getOrder());
 		return mv;
 	}
 	

@@ -101,17 +101,17 @@ public class NoticeController {
 	}
 	
 
-	@GetMapping("getListByHit")
+	@GetMapping("getListByNoticeAjax")
 	//@ResponseBody
-	public ModelAndView getListByHit(Pager pager)throws Exception{
+	public ModelAndView getListByNoticeAjax(Pager pager)throws Exception{
 		
 //		Map<String, Object> map = new HashMap<>();
 //		map.put("notice", noticeService.getListByHit(pager));
 //		map.put("pager", pager);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("noticeList", noticeService.getListByHit(pager));
+		mv.addObject("noticeList", noticeService.getListByNoticeAjax(pager));
 		mv.addObject("pager", pager);
-		mv.setViewName("board/notice/listResult");
+		mv.setViewName("board/notice/noticeResult");
 		System.out.println("AFTER : "+pager.getOrder());
 		return mv;
 	}

@@ -79,6 +79,16 @@ public class UnknownController {
 
 		return mv;
 	}
+	
+	@GetMapping("getListByUnknownAjax")
+	public ModelAndView getListByUnknownAjax(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("unknownList", unknownService.getListByUnknownAjax(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("board/unknown/unknownResult");
+		System.out.println("AFTER : "+pager.getOrder());
+		return mv;
+	}
 
 	@GetMapping("hit")
 	public ModelAndView setHit(BoardVO boardVO) throws Exception {

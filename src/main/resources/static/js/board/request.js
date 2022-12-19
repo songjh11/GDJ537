@@ -1,18 +1,17 @@
-const noticeList = $(".noticeList");
+const requestList = $(".requestList");
 const listOrder = $("#listOrder");
 changeSelect();
-function changeSelect(){
 
+function changeSelect(){
     let v = listOrder.attr("title");
     if(v != null && v !=''){
         listOrder.val(v);
-
     }
     console.log("Order : "+v);
 }
 
 listOrder.change(function(){
-        noticeList.empty();
+        requestList.empty();
         let order='';
         $(".order").each(function(idx,item){
             if($(item).prop('selected')){
@@ -22,7 +21,7 @@ listOrder.change(function(){
 
         $.ajax({
             type: "GET",
-            url: "/notice/getListByNoticeAjax?sort=공지&order="+order,
+            url: "/request/getListByRequestAjax?sort=요청&order="+order,
 
             success: function(result){
                 $("#ajaxResult").html(result);

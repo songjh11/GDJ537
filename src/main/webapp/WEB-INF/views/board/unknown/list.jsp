@@ -75,9 +75,10 @@
 					  </div>
 					 <div class="d-flex justify-content-center">					 
 					<div class="col-auto">
-						<select class="form-control" id="noticeListOrder">
-							<option value="최신">최신순</option>
-							<option value="조회수">조회수순</option>
+						<select class="form-control" id="listOrder" title="${param.order}" name="order">
+							<option class="order" value="ID">최신순</option>
+							<option class="order" value="hit">조회수순</option>
+							<option class="order" value="comment">댓글수순</option>
 						</select>
 					</div>
 					<div class="col-auto">
@@ -94,7 +95,9 @@
 
               
               <!-- 공지사항 작성 -->
-              <div class="card mb-3">
+              <!-- ajax용 div 추가-->
+					  <div id="ajaxResult">
+              <div class="card mb-3 unknownList">
                 <c:forEach items="${unknownList }" var="unknown">
                   <div class="card-header bg-white">
                     <div class="row justify-content-between">
@@ -151,23 +154,25 @@
                 <ul class="pagination">
                   <c:if test="${pager.pre }">
                     <li class="page-item"><a class="page-link"
-                        href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Previous</a>
+                        href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">Previous</a>
                     </li>
                   </c:if>
 
                   <c:forEach begin="${pager.startNum }" end="${pager.lastNum }" step="1" var="i">
                     <li class="page-item"><a class="page-link"
-                        href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">${i }</a></li>
+                        href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">${i }</a></li>
                   </c:forEach>
 
                   <c:if test="${pager.next }">
                     <li class="page-item"><a class="page-link"
-                        href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Next</a></li>
+                        href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">Next</a></li>
                   </c:if>
 
                 </ul>
               </nav>
             </div>
+          </div>
+          <!--ajaxResult 끝-->
             <!-- End Page Content -->
             </div>
             </div>
@@ -183,6 +188,8 @@
       </div>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="/js/board/unknown.js"></script>
+
       <script type="text/javascript">
         let regDates = $(".regdate");
         $.each(regDates, function (index, item) {
