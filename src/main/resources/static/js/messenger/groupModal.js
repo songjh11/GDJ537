@@ -28,7 +28,7 @@ $("#userBtn").click(function(){
     // 다음버튼 클릭
     $("#roomBtn").click(function(){
         // 유저 체크창 닫기
-        $(".check-overlay").css('display','none').hide().fadeIn();
+        $(".check-overlay").css('display','none').hide().fadeOut();
         // 채팅방 생성창 열기
         $(".room-overlay").css('display','flex').hide().fadeIn();
 
