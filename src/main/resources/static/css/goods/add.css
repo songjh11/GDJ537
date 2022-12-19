@@ -1,6 +1,5 @@
 
-#name, #max, #location, #carNum, #files{
-
+#name, #max, #location, #carNum{
 	width: 500px;
 }
 #contents{
@@ -14,7 +13,7 @@
 }
 .board-filetitle{
     margin-top: 20px;
-    text-align: center; 
+    /* text-align: center;  */
 	border: none;
     /* border : 1px solid black; */
 }
@@ -32,10 +31,10 @@
 .file_form .text {
     overflow: hidden;
     text-overflow: ellipsis;
-    display: block;
+    /* display: block; */
     text-align: center;
     font-size : 14px;
-    width: 500px;
+    /* width: 500px; */
     padding: 0 50px 0 10px;
     white-space: nowrap;
 }

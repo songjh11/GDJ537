@@ -62,6 +62,8 @@
                               <p class="mb-1 text-muted" data-item-num="${ro.goodsId}">최대 정원 : ${ro.max}명</p>
                               <p class="card-text mb-auto" data-item-num="${ro.goodsId}">상세설명 : ${ro.contents}</p>
                               <p class="card-text mb-auto" data-item-num="${ro.goodsId}">위치 : ${ro.location}</p>
+                              <p class="card-text mb-auto" data-item-num="${ro.goodsId}">예약 건수 : ${ro.count}</p>
+
                               
                            </div>
                            <div class="col-auto d-none d-lg-block white" data-item-num="${ro.goodsId}">
@@ -85,6 +87,7 @@
                              <p class="card-text mb-auto" data-item-num="${ca.goodsId}">상세설명 : ${ca.contents}</p>
                              <p class="card-text mb-auto" data-item-num="${ca.goodsId}">위치 : ${ca.location}</P>
                              <p class="card-text mb-auto" data-item-num="${ca.goodsId}">차량 번호 : ${ca.carNum}</P>
+                             <p class="card-text mb-auto" data-item-num="${ca.goodsId}">예약 건수 : ${ca.count}</P>
                              
                            </div>
                            <div class="col-auto d-none d-lg-block white" data-item-num="${ca.goodsId}">

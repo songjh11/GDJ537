@@ -116,16 +116,23 @@ public class GoodsController {
    @ResponseBody
    public ModelAndView setGoodsDelete(GoodsVO goodsVO,ModelAndView mv) throws Exception{
       ReserveVO reserveVO = new ReserveVO();
+      System.out.println(goodsVO);
+     
       int result = 0;
-      List<ReserveVO> reserve = goodsService.getreserveGoods(goodsVO);
-      if(reserve.size() == 0) {
-         result = 0;
+      int count = goodsService.getreserveGoods(goodsVO)-1;
+      System.out.println("count :  "+count);
+      if(count == 0) {
+    	  goodsService.setReserveDelete(goodsVO);
+    	  goodsService.setFileDelete(goodsVO);
+         result = goodsService.setGoodsDelete(goodsVO);
+         
       }else {
-         result = goodsService.setGoodsDelete(goodsVO);         
+          result = 0;
       }
+      System.out.println(result);
       
       //리스트 페이지로
-      mv.setViewName("/goods/ad_list");
+      mv.setViewName("/goods/update?goodsId="+goodsVO.getGoodsId());
       return mv;
    }
    
@@ -134,6 +141,13 @@ public class GoodsController {
       ModelAndView mv = new ModelAndView();
       List<GoodsVO> room = goodsService.getRoomList();
       List<GoodsVO> car = goodsService.getCarList();
+      for(int i=0;i<room.size();i++) {
+    	  room.get(i).setCount(goodsService.getAllCount(room.get(i))-1);
+      }
+      
+      for(int i=0;i<car.size();i++) {
+    	  car.get(i).setCount(goodsService.getAllCount(car.get(i))-1);
+      }
       
       mv.addObject("room", room);
       mv.addObject("car", car);
