@@ -25,6 +25,7 @@ public class Pager {
 	private String search;
 	//정렬
 	private String order;
+	
 
 	public Pager() {
 		this.perPage=10L;

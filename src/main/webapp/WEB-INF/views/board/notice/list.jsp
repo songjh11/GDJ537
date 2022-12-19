@@ -48,7 +48,8 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-
+	            <div class="row">
+	            <div class="col-lg-10">
 	            <div class="container-fluid">
 	            	<form class="row g-3 m-3" action="./list" method="get" style="justify-content: space-between;">
 					  <div class="d-flex justify-content-center">
@@ -68,24 +69,27 @@
 	                             </button>
 	                         </div>
 	                    </div>
-	                    <div class="col-auto">
-	                      	<button type="button" class="btn btn-info" id="fiveBtn"><span class="badge text-bg-info">5</span></button>
-              				<button type="button" class="btn btn-info" id="tenBtn"><span class="badge text-bg-info">10</span></button>
-              				<button type="button" class="btn btn-info" id="twentyBtn"><span class="badge text-bg-info">20</span></button>
-              			</div>
 					  </div>
+					  <div class="d-flex justify-content-center">
 					  <div class="col-auto">
 						<select class="form-control" id="noticeListOrder">
 							<option value="최신">최신순</option>
 							<option value="조회수">조회수순</option>
 						</select>
 					</div>
-					</form>
-					<div>
+	                    <div class="col-auto">
+	                      	<button type="button" class="btn btn-info" id="fiveBtn"><span class="badge text-bg-info">5</span></button>
+              				<button type="button" class="btn btn-info" id="tenBtn"><span class="badge text-bg-info">10</span></button>
+              				<button type="button" class="btn btn-info" id="twentyBtn"><span class="badge text-bg-info">20</span></button>
+              			</div>
+					 <div>
 					<sec:authorize access="hasAuthority('관리자')">
-						<a href="/notice/add" class="btn btn-danger" style="margin:10px 0;">글 작성</a>
+						<a href="/notice/add" class="btn btn-danger">글 작성</a>
 					</sec:authorize>					
 					</div>
+					  </div>
+					</form>
+
 	            	<!-- 공지사항 작성 -->
 	            	<div class="card mb-3 noticeList">
 		            	<c:forEach items="${noticeList}" var="notice">
@@ -149,7 +153,8 @@
 
 			</div>
 			<!-- End of Main Content -->
-
+			</div>
+			</div>
 			<!-- Footer import -->
 			<c:import url="../../temp/layout_footer.jsp"></c:import>
 			<!-- End of Footer -->

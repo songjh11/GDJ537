@@ -54,7 +54,7 @@
             <div class="col-lg-10">
             
             <div class="container-fluid">
-              <form class="row g-3" action="./list" method="get">
+              <form class="row g-3 justify-content-between m-3" action="./list" method="get">
                 <div class="d-flex justify-content-center">
 					  	<div class="col-auto">
 						    <select class="form-control" name="kind" aria-label="Default select example">
@@ -71,15 +71,28 @@
 	                             </button>
 	                         </div>
 	                      </div>
-	                      <div class="col-auto">
-	                      	<button type="button" class="btn btn-info" id="fiveBtn"><span class="badge text-bg-info">5</span></button>
+
+					  </div>
+					 <div class="d-flex justify-content-center">					 
+					<div class="col-auto">
+						<select class="form-control" id="noticeListOrder">
+							<option value="최신">최신순</option>
+							<option value="조회수">조회수순</option>
+						</select>
+					</div>
+					<div class="col-auto">
+						<button type="button" class="btn btn-info" id="fiveBtn"><span class="badge text-bg-info">5</span></button>
               				<button type="button" class="btn btn-info" id="tenBtn"><span class="badge text-bg-info">10</span></button>
               				<button type="button" class="btn btn-info" id="twentyBtn"><span class="badge text-bg-info">20</span></button>
-              			  </div>
-					  </div>
+              			  
+					</div>
+						 <div class="col-auto">
+	                      	<a href="/unknown/add" class="btn btn-danger">글 작성</a>
+	                      </div>
+					 </div>
               </form>
 
-              <a href="/unknown/add" class="btn btn-danger" style="margin:10px 0;">글 작성</a>
+              
               <!-- 공지사항 작성 -->
               <div class="card mb-3">
                 <c:forEach items="${unknownList }" var="unknown">

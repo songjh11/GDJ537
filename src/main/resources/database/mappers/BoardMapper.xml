@@ -9,7 +9,7 @@
 		INSERT INTO BOARD (ID, CREATOR, TITLE,
 		CONTENTS, DEPnum, HIT, SORT)
 		VALUES (0, #{creator}, #{title}, #{contents},
-		#{depnum}, 0, #{sort})
+		#{depNum}, 0, #{sort})
 	</insert>
 
 	<select id="getDetail" parameterType="BoardVO"
@@ -30,13 +30,14 @@
 		<result column="title" property="title" />
 		<result column="contents" property="contents" />
 		<result column="creator" property="creator" />
-		<result column="depnum" property="depnum" />
+		<result column="depnum" property="depNum" />
 		<result column="hit" property="hit" />
 		<result column="sort" property="sort" />
 		<result column="regdate" property="regDate" />
 		<result column="updatedate" property="updateDate"/>
 		<result column="updater" property="updater"/>
 		<result column="updaterName" property="updaterName"/>
+		<result column="cntComment" property="cntComment"/>
 		<association property="userVO" javaType="UserVO">
 			<id column="creator" property="id"/>
 			<result column="name" property="name"/>
@@ -116,7 +117,7 @@
 			 JOIN
 			 REQCATEGORY RC 
 			 ON D.DEPnum = RC.DEPnum
-		WHERE RC.DEPnum = #{depnum}
+		WHERE RC.DEPnum = #{depNum}
 	</select>
 	<resultMap type="ReqCategoryVO" id="reqCategoryResult">
 		<id column="id" property="id"/>
