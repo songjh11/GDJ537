@@ -18,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -484,13 +485,19 @@ public class MessengerController extends Socket {
 	// --------------------- 다은 ------------------------------
 
 	@GetMapping("oneChat")
-	public ModelAndView chatroom(HttpSession session, UserVO userVO)throws Exception{
+	public ModelAndView chatroom(HttpSession session, UserVO userVO, RoomVO roomVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
-	    userVO  =(UserVO)authentication.getPrincipal();	  
+	    userVO  =(UserVO)authentication.getPrincipal();	
+	    
+	    userVO = userService.getMypage(userVO);
 	    mv.addObject("userVO", userVO);  
-		mv.setViewName("messenger/oneChat");
+	    
+	    String rn = messengerService.getChatName(roomVO);
+		mv.addObject("rn", rn);
+
+	    mv.setViewName("messenger/oneChat");
 		
 		return mv;
 	}
@@ -498,8 +505,8 @@ public class MessengerController extends Socket {
 	
 	//--------------------- 소영 ------------------------------
 	// 그룹 채팅방
-	@GetMapping("chatroom")
-	public ModelAndView chat3(HttpSession session, UserVO userVO, RoomVO roomVO)throws Exception{
+	@GetMapping("chatroom/{roomNum}")
+	public ModelAndView chat3(HttpSession session, UserVO userVO, RoomVO roomVO, @PathVariable String roomNum)throws Exception{
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    Authentication authentication = context.getAuthentication();
 	    userVO  = (UserVO)authentication.getPrincipal();
@@ -517,7 +524,8 @@ public class MessengerController extends Socket {
 		//채팅방 제목
 		String rn = messengerService.getChatName(roomVO);
 		mv.addObject("rn", rn);
-		
+
+		mv.addObject("roomNum", roomNum);
 		mv.setViewName("messenger/chatroom");
 		return mv;
 	}

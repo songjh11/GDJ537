@@ -17,7 +17,7 @@ usCloseBtn.addEventListener("click", e => {
 const pwModal = document.getElementById("pwModal")
 const pwCloseBtn = pwModal.querySelector(".close-area")
 pwCloseBtn.addEventListener("click", e => {
-    pwModal.style.display = "none"
+   pwModal.style.display = "none"
 });
 
 // 채팅방추가 아이콘 누르면 체크박스 생성
@@ -70,10 +70,3 @@ $("#roomBtn").click(function(){
 });
 
 
-//채팅창 방 팝업띄우기 
-
-$("#aaa").click(function(){
-    let style= "width=450px, height=550px, left=300px";
-   let oponUrl= '/messenger/oneChat';
-   window.open(oponUrl,'',style)
-})

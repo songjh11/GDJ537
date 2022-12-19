@@ -26,7 +26,7 @@
 																		<div class="userArea" style="display: flex;	justify-content: start; align-items: center;">
 																			<div class="userAdd">
 																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
-																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+																				<img id="yourImg${e.id}" class="yourImg" src="/file/profile/${e.profile}">
 																			</div>
 																			<div class="userInfo" style="width: 60%; color: white; margin-left: 9px;">
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
@@ -49,7 +49,7 @@
 																		<div class="userArea" style="display: flex;	justify-content: start; align-items: center;">
 																			<div>
 																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
-																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+																				<img id="yourImg${e.id}" class="yourImg" src="/file/profile/${e.profile}">
 																			</div>
 																			<div class="userAdd" style="width: 60%;">
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
@@ -80,12 +80,7 @@
 									<div class="content">
 										<div class="roomInfo">
 											<div class="row">
-												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
-												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
-											</div>
-											<div class="row">
-												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
-												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
+												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;"><span>2</span>
 											</div>
 											<div class="infoArea" style="background: transparent; border: none; box-shadow: none !important;">
 												<!-- <div class="mb-3">
@@ -106,8 +101,9 @@
 												<!-- is-invalid 클래스 추가시 인풋 라인이 빨간색 -->
 												<div class="input-group has-validation mb-3 justify-content-center">
 													<div class="form-floating is-invalid">
-													  <label for="floatingInputGroup2">비밀번호</label>
-													  <input type="password" id="numCheck" name="pw" class="form-control" id="floatingInputGroup2" placeholder="숫자를 입력해 주세요" required>
+													  <input type="checkbox">
+													  <label for="floatingInputGroup2">비밀번호 설정 체크</label>
+													  <input type="password" id="numCheck" name="pw" class="form-control" id="floatingInputGroup2" placeholder="숫자를 입력해 주세요">
 													  <div class="invalid-feedback">
 														Please choose a username.
 													  </div>

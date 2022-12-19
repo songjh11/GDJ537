@@ -3,7 +3,7 @@ $(".chatRoomArea").on("click", ".roomLink", function(){
     
     // 채팅방 번호
     let roomNum = $(this).attr("data-room-num");
-
+    console.log('counttttttt')
     // console.log("방번호 : ", roomNum);
 
     // console.log("룸넘이 나오니!", roomNum);
@@ -31,13 +31,25 @@ $(".chatRoomArea").on("click", ".roomLink", function(){
 
                 // 비밀번호가 없음
 
+                // 비밀번호 모달창을 닫음
+                $(".close-area").click();
+
+                // 채팅방 팝업창 띄우기
+                chatPop(roomNum);
 
             }
 
         }
     });
 
-    $("#pwCheckBtn").click(function(){
+    let count=0;
+    $("#pwCheckBtn").click(function(e){
+        count++;
+       if(count>1){
+        count=0;
+        return;
+       }
+        console.log("clllllllllllllllllll")
 
         let pw = $("#roomPwCheck").val();
 
@@ -60,11 +72,13 @@ $(".chatRoomArea").on("click", ".roomLink", function(){
                 if(roomVO==1){
                     // console.log("비밀번호 맞음")
 
+                    // 비밀번호 모달창을 닫음
                     $(".close-area").click();
                     
+                    // 채팅방 팝업창 띄우기
                     chatPop(roomNum);
 
-                }else{
+                }else if(roomVO==0){
                     // console.log("틀림")
                     alert("비밀번호가 맞지 않습니다.")
                 }
@@ -97,5 +111,5 @@ strOption += "toolbar=no,menubar=no,location=no,";
 strOption += "resizable=yes,status=yes";
 
 function chatPop(roomNum){
-    window.open('/messenger/chatroom?roomNum='+roomNum, '단체 채팅방', strOption);
+    window.open('/messenger/chatroom/'+roomNum, '단체 채팅방', strOption);
 }

@@ -25,7 +25,7 @@ charset=UTF-8" pageEncoding="UTF-8"%>
 <body>
     <div id="container" class="container">
 		<input type="hidden" id="sessionId" value="${user.id}">
-		<input type="hidden" id="roomNum" value="${param.roomNum}">
+		<input type="hidden" id="roomNum" value="${roomNum}">
 	
 		<div class="header">
                 <div class="header-flex">

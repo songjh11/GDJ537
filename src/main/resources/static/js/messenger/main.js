@@ -112,7 +112,6 @@ $(".acoArea").on("click", ".rrrr", function(e){
         $("#proId").val(id);
         let name = $(this).attr("value");
         $("#roomName").val(name);
-        console.log("상대방 이름 : ", name);
         let email = $('#email'+id).val();
         let phone = $('#phone'+id).val();
         let img = $('#yourImg'+id).attr("src");
@@ -138,6 +137,7 @@ $(".searchArea").on("click", ".rrrr", function(e){
     let img = $('#yourImg'+id).attr("src");
     let dep = $('#depN'+id).attr("value");
     modalChat.style.display = "flex";
+    console.log(img);
     $("#proImg").attr("src", img);
     $("#proName").text(name);
     $("#proDep").text(dep);
