@@ -133,6 +133,13 @@ public class GoodsController {
       ModelAndView mv = new ModelAndView();
       List<GoodsVO> room = goodsService.getRoomList();
       List<GoodsVO> car = goodsService.getCarList();
+      for(int i=0;i<room.size();i++) {
+    	  room.get(i).setCount(goodsService.getAllCount(room.get(i))-1);
+      }
+      
+      for(int i=0;i<car.size();i++) {
+    	  car.get(i).setCount(goodsService.getAllCount(car.get(i))-1);
+      }
       
       mv.addObject("room", room);
       mv.addObject("car", car);

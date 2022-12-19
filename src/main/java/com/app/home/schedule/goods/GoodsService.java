@@ -201,6 +201,10 @@ public class GoodsService
    public int getCarNowTotal(String month) throws Exception{
       return goodsMapper.getCarNowTotal(month);
    }
+   
+   public int getAllCount(GoodsVO goodsVO) throws Exception{
+	   return goodsMapper.getAllCount(goodsVO);
+   }
 
 
 }

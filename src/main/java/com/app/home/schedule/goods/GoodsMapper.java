@@ -60,4 +60,7 @@ public interface GoodsMapper
    public int getCarNowTotal(String month) throws Exception;
    
    public int setReserveInit(GoodsVO goodsVO) throws Exception;
+   public int getAllCount(GoodsVO goodsVO) throws Exception;
+   
+   
 }
