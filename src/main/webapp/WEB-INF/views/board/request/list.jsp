@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +30,7 @@
 
 <!-- body ID 작성 -->
 <body id="page-top">
+<sec:authentication property="Principal" var="member"/>
 
 	<!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
@@ -98,7 +100,7 @@
 																		font-size: 20px;
 																		font-weight: bold;
 																		margin-left: 10px;
-																	">[요청]</p>
+																	">[요청] ${member.departmentVO.depName }</p>
 									<div class="col-auto align-self-center">
 										<p style="
 																		display: inline-block;

@@ -32,7 +32,7 @@ public class RequestController {
 	
 	@PostMapping("add")
 	public String setRequest(@AuthenticationPrincipal UserVO userVO, BoardVO boardVO) throws Exception{
-		
+		;
 		boardVO.setCreator(userVO.getId());
 		
 		boolean chk = requestService.checkValid(boardVO);
@@ -83,8 +83,9 @@ public class RequestController {
 	}
 
 	@GetMapping("list")
-	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
-		
+	public ModelAndView getList(@AuthenticationPrincipal UserVO userVO, ModelAndView mv, Pager pager) throws Exception{
+		log.info("요청게시판 {}", userVO.getDepartmentVO().getDepNum());
+		pager.setDepNum(userVO.getDepartmentVO().getDepNum());
 		pager.setSort("요청");
 		mv.addObject("requestList", requestService.getRequestList(pager));
 		mv.addObject("pager", pager);

@@ -74,6 +74,8 @@
 		ON B.CREATOR = U.ID 
 		WHERE SORT = #{sort}
 		AND
+		<include refid="depNumChk"></include>
+		AND
 		B.<include refid="search"></include>
 		GROUP BY B.ID
 		ORDER BY <include refid="order"></include>
@@ -82,10 +84,12 @@
 
 	<select id="getTotalCount" parameterType="Pager"
 		resultType="Long">
-		SELECT COUNT(ID) FROM BOARD
+		SELECT COUNT(ID) FROM BOARD B
 		WHERE SORT = #{sort}
 		AND
 		<include refid="search"></include>
+		AND
+		<include refid="depNumChk"></include>
 	</select>
 
 	<sql id="search">
@@ -102,6 +106,13 @@
 			<when test="order == 'comment'">cntComment DESC</when>
 			<when test="order == 'hit'">HIT DESC</when>
 			<otherwise>ID DESC</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="depNumChk">
+		<choose>
+			<when test="depNum == null">1=1</when>
+			<otherwise>B.depNum=#{depNum}</otherwise>
 		</choose>
 	</sql>
 
