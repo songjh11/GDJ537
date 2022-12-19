@@ -25,7 +25,7 @@ charset=UTF-8" pageEncoding="UTF-8"%>
 <body>
     <div id="container" class="container">
 		<input type="hidden" id="sessionId" value="${user.id}">
-		<input type="hidden" id="roomNum" value="${param.roomNum}">
+		<input type="hidden" id="roomNum" value="${roomNum}">
 	
 		<div class="header">
                 <div class="header-flex">
@@ -49,7 +49,6 @@ charset=UTF-8" pageEncoding="UTF-8"%>
 			<div id="msg">
 				<input type="hidden" name="userName" id="userName" value="${user.name}">
 				<input type="hidden" name="userId" id="userId" value="${user.id}">
-				<input type="hidden" name="roomNumMsg" id="roomNumMsg" value="">
 				<input type="text" id="inputChat" placeholder="보내실 메시지를 입력하세요.">
 				<button onclick="javascript:send();" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
 			</div>
