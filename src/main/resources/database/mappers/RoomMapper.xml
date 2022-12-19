@@ -56,7 +56,8 @@
 
 	<!-- 회의실 예약하기 -->
 	<insert id="setRoomReserve" parameterType="GoodsRoomVO">
-		insert into RESERVE(RESERVENUM, GOODSID, DATE, ID, USEPURPOSE, STARTTIME, ENDTIME)
+		insert into
+		RESERVE(RESERVENUM, GOODSID, DATE, ID, USEPURPOSE, STARTTIME, ENDTIME)
 		values(null, #{goodsId},
 		now(), #{id},
 		#{usePurpose},
@@ -80,7 +81,7 @@
 	</select>
 
 	<resultMap type="ReserveVO" id="info">
-		<id column="reservenum" property="reservenum" />
+		<id column="reserveNum" property="reserveNum" />
 		<result column="goodsId" property="goodsId" />
 		<result column="date" property="date" />
 		<result column="id" property="id" />
@@ -103,5 +104,31 @@
 		select STARTTIME, ENDTIME from RESERVE where GOODSID =
 		#{goodsId}
 	</select>
+
+	<!-- 예약 상세보기 -->
+	<select id="getReserveDetail" resultType="ReserveVO">
+		SELECT * FROM RESERVE
+		WHERE RESERVENUM = #{reserveNum}
+	</select>
+
+	<!-- 예약 변경 -->
+	<update id="setReserveUpdate" parameterType="ReserveVO">
+		UPDATE RESERVE R
+		INNER JOIN GOODS G
+		ON R.GOODSID = G.GOODSID
+		SET
+		R.STARTTIME =
+		#{startTime}, R.ENDTIME = #{endTime},
+		R.USEPURPOSE =
+		#{usePurpose}
+		WHERE
+		R.RESERVENUM = #{reserveNum}
+	</update>
+
+	<!-- 예약 취소 -->
+	<delete id="setReserveDelete" parameterType="ReserveVO">
+		DELETE FROM RESERVE
+		WHERE RESERVENUM = #{reserveNum}
+	</delete>
 
 </mapper>    

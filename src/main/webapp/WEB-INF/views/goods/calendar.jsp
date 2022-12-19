@@ -137,24 +137,18 @@
   var loadCalendar = function() {
       // calendar element 취득
       var calendarEl = $('#calendar')[0];
-      console.log("rr");
       var params = {
 				room : $("#room").is(':checked') ,
 				car : $("#car").is(':checked'),
 				vacation : $("#vacation").is(':checked'),
         depNum : $("#depNum").val()
-			}
-      
-
+      }
       var request = $.ajax({
           url: "/goods/calendar", // 변경하기
           method: "POST",
       	  data : params,
           dataType: "json"
       });
-      
-      
-      
       request.done(function (data) {
           console.log(data); // log 로 데이터 찍어주기.
 
@@ -178,48 +172,25 @@
               selectable: true, // 달력 일자 드래그 설정가능
               nowIndicator: true, // 현재 시간 마크
               dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
-              locale: 'ko', // 한국어 설정
-              eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
-                console.log(obj);
-              },
-              eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
-                console.log(obj);
-              },
-              eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트
-                console.log(obj);
-              },
-              
+              locale: 'ko', // 한국어 설정          
               /**
                * data 로 값이 넘어온다. log 값 전달.
                */
                events: data
-               
-
-               
-              
                ,eventClick:function(data) {
                 
                   if(data) {
                     $('#calendarModal').modal("show");    
                 	  var startTimeCheck = new Date(data.event.start);
                 	  var endTimeCheck = new Date(data.event.end);
-                    console.log(data.event)
-                    console.log(data.event.extendedProps.content);
-                	  
-
                 	  $('#calendar_content').val(data.event.title);
 			        		  $('#calendar_start_date').val(startTimeCheck.toLocaleDateString('ko-kr')+startTimeCheck.toLocaleTimeString('ko-kr'));
 				        	  $('#calendar_end_date').val(endTimeCheck.toLocaleDateString('ko-kr')+endTimeCheck.toLocaleTimeString('ko-kr'));
                     $('#calendar_user_roleName').val(data.event.extendedProps.test1);
 				        	  $('#calendar_user_name').val(data.event.extendedProps.test2);
-                    
-                    
-                  }
-              }
 
-              
-               
-              
+                  }
+              }   
           });
 
           calendar.render();
@@ -229,8 +200,6 @@
       request.fail(function( jqXHR, textStatus ) {
           alert( "Request failed: " + textStatus );
       });
-
-     
    }; 
    
    loadCalendar();

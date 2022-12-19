@@ -10,6 +10,7 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
+
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -31,27 +32,31 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-					<h3 style="text-align: center;">---- 모든 정보를 필수로 입력해야 합니다. ----</h3>
-					<br>
-					<br>
-					<section class="container col-lg-6 justify-content-center">
-						<form action="./roomReserve" method="POST" id="frm">
-							<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">회의실 예약</h1>
+					<section class="container d-flex flex-wrap justify-content-center">
+						<!-- Page Heading -->
+
+						<form action="roomReserveUpdate" method="POST" id="frm">
+							<input type="hidden" value="${reserve.reserveNum}" name="reserveNum">
+							<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">회의실 예약 변경</h1>
 							<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 								<tr>
-									<th>회의실</th>
-									<td>${goodDetail.name }</td>
+									<th>회의실 번호</th>
+									<td>${good.goodsId}</td>
+									<th>회의실 이름</th>
+									<td>${good.name}</td>
 									<th>정원</th>
-									<td>${goodDetail.max }명</td>
+									<td>${good.max}명</td>
 								</tr>
 							</table>
 
-							<input type="hidden" name="goodsId" value="${goodDetail.goodsId }">
+							<input type="hidden" name="goodsId" value="${good.goodsId }">
 							<c:forEach items="${timeNotEqual }" var="t">
-								<div class="timeCheck">
-									<input type="hidden" value="${t.startTime }" class="startTimeCheck">
-									<input type="hidden" value="${t.endTime }" class="endTimeCheck">
-								</div>
+								<c:if test="${t.startTime != reserve.startTime }">
+									<div class="timeCheck">
+										<input type="hidden" value="${t.startTime }" class="startTimeCheck">
+										<input type="hidden" value="${t.endTime }" class="endTimeCheck">
+									</div>
+								</c:if>
 							</c:forEach>
 
 							<div class="mb-3">
@@ -60,25 +65,23 @@
 								</div>
 								<br>
 								<label>사용 시작 시간</label>
-								<input type="datetime-local" name="startTime" class="form-control" id="start" placeholder="시작시간">
+								<input type="datetime-local" name="startTime" class="form-control" id="start"
+									value="${reserve.startTime}">
 								<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
 								<br>
 							</div>
 
 							<div class="mb-3">
 								<label>사용 종료 시간</label>
-								<input type="datetime-local" name="endTime" class="form-control" id="end" placeholder="시작시간"
-									disabled='disabled'>
-								<p id="endText" style="color: red; display: none;">필수 작성 조건입니다..</p>
+								<input type="datetime-local" name="endTime" class="form-control" id="end" value="${reserve.endTime}">
+								<p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>
 								<br>
 							</div>
 
 							<div class="mb-5">
 								<label>예약자</label>
-								<input type="hidden" name="id" class="form-control" id="member" value="${userInfo.id }" readonly>
-								<input type="text" class="form-control" value="${userInfo.name }" disabled>
+								<input type="text" name="id" class="form-control" id="member" value="${reserve.id}" readonly>
 							</div>
-
 
 							<div class="mb-5">
 								<label>부서명</label>
@@ -107,21 +110,19 @@
 							</div>
 
 							<div class="mb-5">
-								<label>사용 목적</label>
-								<input type="text" name="usePurpose" class="form-control" id="purpose">
+								<label>변경 사유</label>
+								<input type="text" name="usePurpose" class="form-control" id="purpose" value="${reserve.usePurpose }">
 								<p id="purposeText" style="color: red; display: none;">필수 작성 조건입니다.</p>
 								<br>
 							</div>
 
-							<div style="text-align: center;" class="mb-5">
+							<div class="mb-5" style="text-align: center;">
 								<button id="resBtn" type="button" class="btn btn-outline-none"
-									style="background-color: #4e73df; color: white;">예약하기</button>
-								<a href="./roomList">
-									<button type="button" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">뒤로가기</button>
-								</a>
+									style="background-color: #4e73df; color: white;">예약 변경</button>
 							</div>
 						</form>
 					</section>
+
 				</div>
 				<!-- End Page Content -->
 
@@ -138,7 +139,5 @@
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 </body>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/js/room/reserve.js"></script>
 </html>
