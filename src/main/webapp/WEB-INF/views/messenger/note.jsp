@@ -739,9 +739,12 @@
 							flagflag='<img id="noteDelete" style="margin-left: auto;" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png">'
 						}
 
+						let img = "https://i.pravatar.cc/200?img="+index;
 						// 쪽지번호, 수신자라는 글자 있는 버전
 						// tempest += '<div class="noteList" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId">'+item.noteNum+' 수신자 : <strong>'+item.receiveName+'</strong></div><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png"></div><div id="previewNote">'+item.contents+'</div></div></div>'
-						tempest += '<div class="noteList" flag="'+item.flag+'" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/file/user/'+item.receiveImg+'" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId"><strong>'+item.receiveName+'</strong></div>'+flagflag+'</div><div id="previewNote">'+item.contents+'</div></div></div>'
+						tempest += '<div class="noteList" flag="'+item.flag+'" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/file/profile/'+item.receiveImg+'" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId"><strong>'+item.receiveName+'</strong></div>'+flagflag+'</div><div id="previewNote">'+item.contents+'</div></div></div>'
+						// tempest += '<div class="noteList" flag="'+item.flag+'" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src='+img+'"></div><div id="listInfo"><div style="display: flex;"><div id="previewId"><strong>'+item.receiveName+'</strong></div>'+flagflag+'</div><div id="previewNote">'+item.contents+'</div></div></div>'
+
 
 						$('#noteContent').html(tempest);
 					})
