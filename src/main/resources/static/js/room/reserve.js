@@ -380,7 +380,7 @@ btn.addEventListener("click", function () {
         return false;
     }
     else {
-        let a = confirm("정말 예약하시겠습니까?");
+        let a = confirm("예약하시겠습니까?");
 
         // 조건에 총족하였을 때
         if ((a && startCheck && endCheck && purposeCheck && startValueCheck && endValueCheck && timeCheck && holidayCheck && betweenDayCheck) == true) {

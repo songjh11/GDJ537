@@ -56,10 +56,10 @@
 						<!-- Page Heading -->
 						<table class="table table-hover">
 							<tr>
-								<th>회의실 번호</th>
-								<th>이름</th>
-								<th>최대 인원 수</th>
-								<th>회의실 위치</th>
+								<th style="color: black;">회의실 번호</th>
+								<th style="color: black;">이름</th>
+								<th style="color: black;">최대 인원 수</th>
+								<th style="color: black;">회의실 위치</th>
 							</tr>
 							<tr>
 								<td>${goodDetail.goodsId }</td>

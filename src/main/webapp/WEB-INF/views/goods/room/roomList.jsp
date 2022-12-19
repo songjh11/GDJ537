@@ -38,11 +38,11 @@
 						<input type="hidden" value="${loginCheck }" id="userID">
 						<table class="table table-hover justify-content-right" style="text-align: center;">
 							<tr>
-								<th>이름</th>
-								<th>위치</th>
-								<th>상세정보</th>
-								<th>예약</th>
-								<th>예약 현황</th>
+								<th style="color: black;">이름</th>
+								<th style="color: black;">위치</th>
+								<th style="color: black;">상세정보</th>
+								<th style="color: black;">예약</th>
+								<th style="color: black;">예약 현황</th>
 							</tr>
 							<c:forEach items="${goodVO }" var="good">
 								<c:set var="TextValue" value="${good.goodsId}" />

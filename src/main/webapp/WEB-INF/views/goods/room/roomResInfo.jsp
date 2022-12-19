@@ -53,12 +53,12 @@ ul li {
 						<table class="table table-hover">
 							<tr>
 								<!-- <th>회의실 예약 번호</th> -->
-								<th>사원 번호</th>
-								<th>예약 신청일</th>
-								<th>사용 기간</th>
-								<th>사용 목적</th>
-								<th>예약 정보 변경</th>
-								<th>예약 취소</th>
+								<th style="color: black;">사원 번호</th>
+								<th style="color: black;">예약 신청일</th>
+								<th style="color: black;">사용 기간</th>
+								<th style="color: black;">사용 목적</th>
+								<th style="color: black;">예약 정보 변경</th>
+								<th style="color: black;">예약 취소</th>
 							</tr>
 							<c:forEach items="${roomInfo }" var="ro">
 								<tr>

@@ -55,8 +55,8 @@
 							</c:forEach>
 
 							<div class="mb-3">
-								<div>
-									<font size="2em"> *분 단위는 모두 0으로 입력됩니다.* </font>
+								<div style="text-align: center;">
+									<font> *분 단위는 모두 0으로 입력됩니다.* </font>
 								</div>
 								<br>
 								<label>사용 시작 시간</label>
