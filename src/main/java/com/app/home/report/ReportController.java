@@ -626,7 +626,7 @@ public class ReportController {
 		}
 		String id = principal.getName();
 		int num = Integer.parseInt(id);
-		int category = 0;
+		int category = 1;
 		if(cat != null) {
 			category = Integer.parseInt(cat);
 		}

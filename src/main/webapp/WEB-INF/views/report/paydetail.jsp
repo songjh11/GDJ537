@@ -43,7 +43,7 @@
 		   <div class="container-fluid">
 						 <div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px;margin-top: 45px; background-color: rgb(255, 255, 249); color: black; font-size: 35px; font-weight: bolder; vertical-align: top; margin-right: 380px;" >
+            <div style="letter-spacing: 70px;margin-top: 45px; color: black; font-size: 35px; font-weight: bolder; vertical-align: top; margin-right: 380px;" >
                    지출결의서
                     <div style="border: solid 1px black; width: 400px; margin-left: 570px; height: 120px; margin-top: -65px;">
                         <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
@@ -54,30 +54,38 @@
                             <div style="padding-top:3px; letter-spacing: 0; margin-left: 5px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
                                                                                               &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
                              <c:choose>
-                            <c:when test="${reportPayVO.status eq 1}">
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                </div>
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                </div>
-                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            <c:when test="${reportPayVO.status eq 1 and reportPayVO.returns eq 0}">
+	                           <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
                             </c:when>
-                            <c:when test="${reportPayVO.status eq 2}">
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
-                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            <c:when test="${reportPayVO.status eq 2 and reportPayVO.returns eq 0}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
                             </c:when>
-                            <c:when test="${reportPayVO.status eq 3}">
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
-                            <div style=" height: 90px; width: 122px; margin-top: 6px;">
-                            	<img src="/img/report/sign.png" width="85px" height="85px"></div>
+                            <c:when test="${reportPayVO.status eq 3 and reportPayVO.returns eq 0}">
+                           		<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
                             </c:when>
+                            <c:when test="${reportPayVO.status eq 1 and reportPayVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>
+                            <c:when test="${reportPayVO.status eq 2 and reportPayVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>
+                            <c:when test="${reportPayVO.status eq 3 and reportPayVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>                            
                             </c:choose>
-                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                           
                             
                         </div>
                     </div>
@@ -194,8 +202,10 @@
             </div>
 
         </div>    
-		<button type="button" id="license" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;">승인</button>
-		<button type="button" id="returns" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;">반려</button>
+		<div style="text-align: right; margin-left: 20px;">
+        <button type="button" id="license" class="btn btn-primary" style="margin-left: 900px; margin-top: 12px; display: inline-block;">승인</button>
+		<button type="button" id="returns" class="btn btn-primary" style="margin-top: 12px; display: inline-block;">반려</button>
+        </div>   
    </div>
 	            </div>
 	            <!-- End Page Content -->
