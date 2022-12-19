@@ -39,25 +39,27 @@
             
             <!-- Begin Page Content -->
                <div class="container-fluid justify-content-center">
-               <section class="container col-lg-4 justify-content-center" style="text-align: center;">
+               <section class="container col-lg-4 justify-content-center">
                   <!-- Page Heading -->
                   <h1 class="h3 mb-4 text-gray-800" id="title" >공용 시설 추가</h1>
-                  <P>* 표시는 필수항목입니다.</P>
+                  <div class="mb-3">
+                  <b>* 표시는 필수항목입니다.</b>
+                  </div>
                   
                   <form action="add" method="post" enctype="multipart/form-data" id="addform">
                   <div class="mb-3">
                      <div>
                         <label for="exampleInputName" class="form-label" style="font-weight : bold">*종류</label>
+                        <label class="test_obj">
+                           <input type="radio" name="goodsId" value="RO" id="kind">
+                           <span>회의실</span>
+                        </label>
+                        <label class="test_obj">
+                           <input type="radio" name="goodsId" value="CA" id="kind">
+                           <span>차량</span>
+                        </label>
                      </div>
-                     <label class="test_obj">
-                        <input type="radio" name="goodsId" value="RO" id="kind">
-                        <span>회의실</span>
-                     </label>
 
-                     <label class="test_obj">
-                        <input type="radio" name="goodsId" value="CA" id="kind">
-                        <span>차량</span>
-                     </label>
                      <div id="kinddiv" class="check"></div>
 
                   </div>
@@ -95,17 +97,17 @@
                      </div>
                      <div id="carNumdiv" class="check"></div>
                   </div>
-                  <div style="text-align: center;">
+                  <div>
                      <div class="board-filetitle" style="font-weight : bold">*이미지 첨부  
+                        <!-- <div class="mb-3"> -->
+                           <button type="button" id="fileAdd" class="btn btn-success" >파일 추가</button>
+                           <div id="imgdiv" class="check"></div>
+                        <!-- </div> -->
                         <div class="mb-3" id="fileAddResult">      
                         </div>
                      </div>
                   </div>
-                  <div class="mb-3">
-                     <button type="button" id="fileAdd" class="btn btn-success">파일 추가</button>
-                     <div id="imgdiv" class="check"></div>
-                  </div>
-                  <input type="button" class="btn btn-primary" id="sub" value="시설 추가" style="margin-top: 50px;">
+                  <input type="button" class="btn btn-primary" id="sub" value="시설 추가" style="margin-top: 50px; margin-left: 200px;">
                   </form>
       
                </div>

@@ -39,7 +39,7 @@
             
             <!-- Begin Page Content -->
                <div class="container-fluid">
-               <section class="container col-lg-4 justify-content-center" style="text-align: center;">
+               <section class="container col-lg-4 justify-content-center">
    
                   <!-- Page Heading -->
                   <h1 class="h3 mb-4 text-gray-800" id="title">공용 시설 수정</h1>
@@ -92,22 +92,21 @@
                   </div>
                   <div>
                      <div class="mb-3" id="fileAddResult">   
-                        <div class="board-filetitle" style="font-weight : bold">*이미지</div> 
+                        <div class="board-filetitle" style="font-weight : bold">*이미지
+                           <button type="button" id="fileAdd" class="btn btn-primary">파일 추가</button>
+                           <div id="imgdiv" class="check"></div>
+                        </div> 
                         <c:forEach items="${list}" var="li">
-                           <div class="file_form mt-2">
+                           <div class="file_form mt-2" style="width: 450px;">
                               <!-- <img src="/file/goods/${li.fileName}"  width="300" height="300"> -->
                               <input type="file" name="files" class="files form-control">
-                              <span class="text ff" >${li.oriName}</span> 
-                              <button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>
+                              <span class="text ff" style="font-weight: bold;" >${li.oriName}<button type="button" class="del btn btn-danger" style="margin-left: 385px;">X</button></span> 
+                              <!-- <button type="button" class="del btn btn-danger" style="margin:auto;">X</button> -->
                            </div>
                         </c:forEach>
                      </div>
-                     <div class="mb-3">
-                        <button type="button" id="fileAdd" class="btn btn-primary">파일 추가</button>
-                        <div id="imgdiv" class="check"></div>
-                     </div>
                   </div>
-                  <input type="button" class="btn btn-primary" value="수정" id="sub" style="margin-top : 50px;">
+                  <input type="button" class="btn btn-primary" value="수정" id="sub" style="margin-top : 50px; margin-left:160px;">
                   <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}" style="margin-top : 50px;">
                   </form>
    

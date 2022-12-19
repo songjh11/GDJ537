@@ -89,7 +89,7 @@
                </div>
                <div style="display: flow-root;">
 
-                  <div class="card" id="total">
+                  <div class="card" id="total1">
                     <div class="card-body">
                       <div class="row align-items-center gx-0">
                         <div class="col">
@@ -110,7 +110,7 @@
                     </div>
                   </div>
 
-                    <div class="card" id="total">
+                    <div class="card" id="total2">
                       <div class="card-body">
                         <div class="row align-items-center gx-0">
                           <div class="col">
