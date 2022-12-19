@@ -52,23 +52,26 @@ ul li {
 						<input type="hidden" value="${loginCheck }" id="userID">
 						<table class="table table-hover">
 							<tr>
-								<th>회의실 예약 번호</th>
+								<!-- <th>회의실 예약 번호</th> -->
 								<th>사원 번호</th>
 								<th>예약 신청일</th>
+								<th>사용 기간</th>
 								<th>사용 목적</th>
-								<th>사용 시작 날</th>
-								<th>사용 종료 날</th>
 								<th>예약 정보 변경</th>
 								<th>예약 취소</th>
 							</tr>
 							<c:forEach items="${roomInfo }" var="ro">
 								<tr>
-									<td>${ro.reserveNum }</td>
+									<%-- <td>${ro.reserveNum }</td> --%>
 									<td>${ro.id }</td>
 									<td>${ro.date }</td>
+									<td>${ro.startTime }
+										<br>
+										~
+										<br>
+										${ro.endTime }
+									</td>
 									<td>${ro.usePurpose }</td>
-									<td>${ro.startTime }</td>
-									<td>${ro.endTime }</td>
 									<c:if test="${ro.date != '2018-01-01 09:00:00' }">
 										<td>
 											<a href="/goods/room/roomReserveUpdate?reserveNum=${ro.reserveNum}&goodsId=${ro.goodsId}"
