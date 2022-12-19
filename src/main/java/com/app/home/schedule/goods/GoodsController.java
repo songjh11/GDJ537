@@ -37,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class GoodsController {
+
    
    
    @Autowired
@@ -238,6 +239,7 @@ public class GoodsController {
 			
 			log.info("jsonArrCheck: {}", jsonArr);
 			return jsonArr;
+
 		}
 	
 	

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -34,11 +34,10 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBoard"
                     aria-expanded="true" aria-controls="collapseBoard">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Board</span>
+                    <span>게시판</span>
                 </a>
                 <div id="collapseBoard" class="collapse" aria-labelledby="headingBoard" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Board List</h6>
                         <a class="collapse-item" href="/notice/list">공지사항</a>
                         <a class="collapse-item" href="/request/list">요청게시판</a>
                         <a class="collapse-item" href="/unknown/list">익명게시판</a>
@@ -98,9 +97,22 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - Messanger -->
             <li class="nav-item">
-                <a class="nav-link" href="/messenger/chat">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMessenger"
+                    aria-expanded="true" aria-controls="collapseReport">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Messenger</span>
+                </a>
+                <!-- <a class="nav-link" href="/messenger/chat">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Messenger</span></a>
+                    <span>Messenger</span>
+                </a> -->
+                <div id="collapseMessenger" class="collapse" aria-labelledby="headingMessenger" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/messenger/chat">채팅</a>
+                        <a class="collapse-item" href="/messenger/note">쪽지</a>
+                        
+                    </div>
+                </div>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -111,7 +123,14 @@
             </li> -->
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <sec:authorize access="hasAnyAuthority('사장', '부장', '과장', '관리자')">
+
+
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            
+
             <!-- Nav Item - 관리자 -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/user/admin/wait" data-toggle="collapse" data-target="#collapseAdmin"
@@ -122,6 +141,8 @@
                 <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">인사</h6>
+                    <a class="collapse-item" href="/user/admin/wait">인사 관리</a>
                         <h6 class="collapse-header">시설</h6>
                         <a class="collapse-item" href="/goods/ad_list">시설 관리</a>
                         <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseReserve" aria-expanded="true" aria-controls="collapseReserve" id="accordionReserve">
@@ -137,8 +158,8 @@
                     </div>
                 </div>
             </li> 
+</sec:authorize>
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

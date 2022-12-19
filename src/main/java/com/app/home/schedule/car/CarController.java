@@ -80,6 +80,7 @@ public class CarController {
 	public ModelAndView setUpdate(ReserveVO reserveVO, ModelAndView mv, HttpSession session) throws Exception {
 		GoodsVO goodsVO = new GoodsVO();
 		
+
 		reserveVO = carService.getReserveDetail(reserveVO);		
 		goodsVO.setGoodsId(reserveVO.getGoodsId());
 		goodsVO = carService.getGoods(goodsVO);

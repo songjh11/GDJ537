@@ -11,6 +11,7 @@ import com.app.home.user.DepartmentVO;
 @Mapper
 public interface GoodsMapper
 {
+
    public int setAdd(GoodsVO goodsVO) throws Exception;
 
    public int getCount(GoodsVO goodsVO) throws Exception;

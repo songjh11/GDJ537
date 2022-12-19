@@ -44,7 +44,7 @@ public class UserController {
 	private CarService carService;
 
 	@GetMapping("usernum")
-	public String getNum() throws Exception {
+	public String getnum() throws Exception {
 		return "user/usernum";
 	}
 
@@ -81,7 +81,11 @@ public class UserController {
 	   
 	    
 		userVO = userService.getMypage(userVO);
+
 		mv.addObject("reserveVO", reserveVOs);
+
+		userVO.setPhone(userVO.phone_format(userVO.getPhone()));
+
 		mv.addObject("userVO", userVO);
 		mv.setViewName("/user/mypage");
 		return mv;
@@ -93,6 +97,7 @@ public class UserController {
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();
 		userVO = userService.getMypage(userVO);
+		userVO.setPhone(userVO.phone_format(userVO.getPhone()));
 		mv.addObject("userVO", userVO);
 		mv.setViewName("/user/setting");
 		return mv;
@@ -240,17 +245,17 @@ public class UserController {
 		return result;
 	}
 
-	@PostMapping("admin/roleNumUpdate")
+	@PostMapping("admin/rolenumUpdate")
 	@ResponseBody
-	public int setRoleNumUpdate(UserVO userVO) throws Exception {
-		int result = userService.setRoleNumUpdate(userVO);
+	public int setRolenumUpdate(UserVO userVO) throws Exception {
+		int result = userService.setRolenumUpdate(userVO);
 		return result;
 	}
 
-	@PostMapping("admin/depNumUpdate")
+	@PostMapping("admin/depnumUpdate")
 	@ResponseBody
-	public int setDepNumUpdate(UserVO userVO) throws Exception {
-		int result = userService.setDepNumUpdate(userVO);
+	public int setDepnumUpdate(UserVO userVO) throws Exception {
+		int result = userService.setDepnumUpdate(userVO);
 		return result;
 	}
 

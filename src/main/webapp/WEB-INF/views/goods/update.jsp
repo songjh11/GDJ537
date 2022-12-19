@@ -24,6 +24,7 @@
    <!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
 
+
       <!-- Sidebar import -->
       <c:import url="../temp/layout_sidebar.jsp"></c:import>
       <!-- End of Sidebar -->
@@ -76,6 +77,7 @@
                      <label for="exampleInputMax" class="form-label">*최대 인원</label>
                      <input type="text" class="form-control" id="max" name="max" value="${goods.max}" >
                      <div id="maxdiv" class="check"></div>
+
 
                   </div>
                   <div class="mb-3">

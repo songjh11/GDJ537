@@ -24,6 +24,7 @@
    <!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
 
+
       <!-- Sidebar import -->
       <c:import url="../temp/layout_sidebar.jsp"></c:import>
       <!-- End of Sidebar -->

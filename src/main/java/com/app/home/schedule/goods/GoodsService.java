@@ -50,7 +50,6 @@ public class GoodsService
     	  goodsMapper.setReserveInit(goodsVO);
       }
 
-
       if (files.length != 0)
       {
          for (MultipartFile file : files)
@@ -128,10 +127,12 @@ public class GoodsService
          return result;
    }
 
+
    public int getCount(GoodsVO goodsVO) throws Exception
    {
       return goodsMapper.getCount(goodsVO);
    }
+
 
    public String getMaxCount(GoodsVO goodsVO) throws Exception
    {
@@ -213,6 +214,7 @@ public class GoodsService
    public int setFileDelete(GoodsVO goodsVO) throws Exception{
 	   return goodsMapper.setFileDelete(goodsVO);
    }
+
 
 
 }

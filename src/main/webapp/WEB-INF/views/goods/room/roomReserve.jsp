@@ -65,7 +65,7 @@
 								<label>사용 종료 시간</label>
 								<input type="datetime-local" name="endTime" class="form-control" id="end" placeholder="시작시간"
 									disabled='disabled'>
-								<p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+								<p id="endText" style="color: red; display: none;">필수 작성 조건입니다..</p>
 								<br>
 							</div>
 

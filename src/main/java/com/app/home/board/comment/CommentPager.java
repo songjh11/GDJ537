@@ -10,19 +10,22 @@ public class CommentPager {
 	private Long perPage;
 	private Long totalPage;
 	
-	private Integer num;
+	private Integer boardId;
+	
+	private boolean pre;
+	private boolean next;
 	
 	public CommentPager() {
 		this.perPage=10L;
 	}
 
 	//1. mapper에서 사용할 값 계산
-	public void getRowNum()throws Exception {
+	public void getRownum()throws Exception {
 		this.startRow = (this.getPage()-1)*this.getPerPage();
 	}
 
 	//2. Jsp에서 사용할 값 계산
-	public void getNum(Long totalCount)throws Exception {
+	public void getnum(Long totalCount)throws Exception {
 		//2. totalCount로 totalPage구하기
 		this.totalPage = totalCount/(this.getPerPage() / 2);
 		if(totalCount%(this.getPerPage() / 2) != 0) {
