@@ -156,6 +156,7 @@ public class MessengerController extends Socket {
 		mv.addObject("list", ar);
 //		log.info("수신함AR {}",ar);
 		mv.addObject("pager", notePager);
+		
 		if(getNotReadCount==0L) {
 			mv.addObject("getNotReadCount", "");
 		} else {
@@ -238,8 +239,16 @@ public class MessengerController extends Socket {
 		userVO.setId(userVO.getId());
 		
 		noteVO.setReceiveId(userVO.getId());
+		
+		
+		NoteVO checkMinus = new NoteVO();
+		checkMinus.setNoteNum(noteVO.getNoteNum()-1);
+		checkMinus.setReceiveId(noteVO.getReceiveId());
+		
+		
 		if(noteVO.getReadCheck()==1) {
-			int result = noteService.updateCheck(noteVO);
+			noteService.updateCheck(noteVO);
+			int result = noteService.updateCheck(checkMinus);
 		} else {
 			
 		}
