@@ -50,7 +50,7 @@
 				<!-- Begin Page Content -->
 
 	            <div class="container-fluid">
-	            	<form class="row g-3" action="./list" method="get" style="justify-content: space-between;">
+	            	<form class="row g-3 m-3" action="./list" method="get" style="justify-content: space-between;">
 					  <div class="d-flex justify-content-center">
 					  	<div class="col-auto">
 						    <select class="form-control" name="kind" aria-label="Default select example">
@@ -104,7 +104,7 @@
 											margin-bottom: 0;
 											color: #4E73DF;
     										font-weight: 600;
-										  ">${notice.creator} ·</p>
+										  ">${notice.userVO.name} (${notice.creator }) ·</p>
 										  <p class="regdate" data-date="${notice.regDate }" style="display: inline-block;
 												margin-bottom: 0;"></p>
 			            				  <a href="/notice/hit?id=${notice.id }">

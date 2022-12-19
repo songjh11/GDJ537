@@ -50,6 +50,9 @@
 
             <!-- Begin Page Content -->
 
+            <div class="row">
+            <div class="col-lg-10">
+            
             <div class="container-fluid">
               <form class="row g-3" action="./list" method="get">
                 <div class="d-flex justify-content-center">
@@ -153,6 +156,8 @@
               </nav>
             </div>
             <!-- End Page Content -->
+            </div>
+            </div>
 
           </div>
           <!-- End of Main Content -->

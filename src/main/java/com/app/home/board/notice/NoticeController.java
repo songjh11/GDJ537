@@ -100,16 +100,6 @@ public class NoticeController {
 		return mv;
 	}
 	
-	@GetMapping("getListByHit")
-	@ResponseBody
-	public Map<String, Object> getListByHit(Pager pager)throws Exception{
-		Map<String, Object> map = new HashMap<>();
-		pager.setSort("공지");
-		map.put("notice", noticeService.getListByHit(pager));
-		map.put("pager", pager);
-		return map;
-	}
-	
 	@GetMapping("hit")
 	public ModelAndView setHit(BoardVO boardVO) throws Exception {
 		int result = noticeService.setHit(boardVO);
