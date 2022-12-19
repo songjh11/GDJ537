@@ -1,4 +1,4 @@
-const noticeList = $(".noticeList");
+const unknownList = $(".unknownList");
 const listOrder = $("#listOrder");
 changeSelect();
 function changeSelect(){
@@ -12,7 +12,7 @@ function changeSelect(){
 }
 
 listOrder.change(function(){
-        noticeList.empty();
+    unknownList.empty();
         let order='';
         $(".order").each(function(idx,item){
             if($(item).prop('selected')){
@@ -22,7 +22,7 @@ listOrder.change(function(){
 
         $.ajax({
             type: "GET",
-            url: "/notice/getListByNoticeAjax?sort=공지&order="+order,
+            url: "/unknown/getListByUnknownAjax?sort=익명&order="+order,
 
             success: function(result){
                 $("#ajaxResult").html(result);

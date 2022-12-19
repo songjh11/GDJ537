@@ -116,8 +116,8 @@ public class NoticeService {
 	}
 	
 
-	//조회수순으로 리스트 불러오기
-	public List<BoardVO> getListByHit(Pager pager) throws Exception {
+	//(조회수순,최신순) Ajax 리스트 불러오기
+	public List<BoardVO> getListByNoticeAjax(Pager pager) throws Exception {
 		Long totalCount = boardDAO.getTotalCount(pager);
 		pager.getNum(totalCount);
 		pager.getRowNum();
