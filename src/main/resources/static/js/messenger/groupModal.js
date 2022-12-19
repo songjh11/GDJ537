@@ -32,15 +32,6 @@ $("#userBtn").click(function(){
         // 채팅방 생성창 열기
         $(".room-overlay").css('display','flex').hide().fadeIn();
 
-        // // ------------- Ajax -------------
-        // $.ajax({
-        //     type:"POST",
-        //     url:"addRoom",
-        //     data: id,
-        //     success:function(result){
-        //         console.log("result : ", result);
-        //     }
-        // });
         let arr = [];
 
         $(".checkUser").each(function(index, item) {
@@ -54,9 +45,14 @@ $("#userBtn").click(function(){
         
 
         $("#roomAddBtn").click(function(){
-
-
-
+            let regExp = /^[0-9]*$/;
+            let num = $("#numCheck").val();
+            if(!regExp.test(num)){
+              alert("숫자만 입력 가능합니다. 다시 입력해주세요.");
+              return false;
+            }
+            $("#addRoomForm").submit();
+            return true;
         })
 
     });
