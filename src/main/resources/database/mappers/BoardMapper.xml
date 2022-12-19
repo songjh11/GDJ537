@@ -7,9 +7,9 @@
 	<insert id="setBoard" parameterType="BoardVO"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO BOARD (ID, CREATOR, TITLE,
-		CONTENTS, DEPnum, HIT, SORT)
+		CONTENTS, DEPnum, HIT, SORT, PASSWORD)
 		VALUES (0, #{creator}, #{title}, #{contents},
-		#{depNum}, 0, #{sort})
+		#{depNum}, 0, #{sort}, #{password)
 	</insert>
 
 	<select id="getDetail" parameterType="BoardVO"

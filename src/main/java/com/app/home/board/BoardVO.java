@@ -24,6 +24,7 @@ public class BoardVO {
 	private Timestamp updateDate; //수정일자
 	private Integer updater;	//수정자
 	private String updaterName;
+	private String password;
 	private MultipartFile[] multipartFiles;
 	private List<FileVO> fileVOs;
 	

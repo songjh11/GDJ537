@@ -15,9 +15,15 @@
 				<div style="display: flex;">
 					<div style="width: 80px; height: 80px;">
 						<!-- profile -->
+						<c:if test="${commentVO.sort eq '익명'}">
+							<img alt="" src="/img/anonymous.png">
+						</c:if>
 						<img alt="" src="/file/profile/${commentVO.userVO.profile}">
 					</div>
 					<div style="margin-left: 10px; display: flex; flex-direction: column;">
+						<c:if test="${commentVO.sort eq '익명'}">
+							<div style="font-size: 20px;">익명</div>
+						</c:if>
 						<div style="font-size: 20px;">${commentVO.userVO.name}</div>
 						<div style="font-size: 20px; margin-left:10px;">${commentVO.contents}</div>
 					</div>

@@ -16,6 +16,7 @@ public class CommentVO {
 	//작성자
 	private Integer creator;
 	
+	private String sort;
 	//댓글 내용
 	private String contents;
 	//날짜 

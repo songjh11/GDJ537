@@ -13,10 +13,12 @@
 
 	<select id="getCommentList" resultMap="getCommentListResult"
 		parameterType="CommentPager">
-		SELECT C.*, U.name AS NAME FROM COMMENT C
+		SELECT C.*, U.name AS NAME, B.SORT
+		FROM COMMENT C
 		LEFT JOIN USER U
 		ON C.creator = U.ID
-		
+		INNER JOIN BOARD B
+		ON C.BOARDID = B.ID
 		WHERE BOARDID = #{boardId}
 		ORDER BY
 		ID DESC
@@ -30,6 +32,7 @@
 		<result column="CONTENTS" property="contents"/>
 		<result column="REGDATE" property="regDate"/>
 		<result column="UPDATEDATE" property="updateDate"/>
+		<result column="SORT" property="sort"/>
 		<association property="userVO" javaType="UserVO">
 			<id column="NUM" property="num"/>
 			<result column="NAME" property="name"/>
