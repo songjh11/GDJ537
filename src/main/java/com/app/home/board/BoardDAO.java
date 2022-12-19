@@ -11,7 +11,7 @@ import com.app.home.util.Pager;
 public interface BoardDAO {
 
 	public List<BoardVO> getList(Pager pager) throws Exception;
-	
+
 	public BoardVO getDetail(BoardVO boardVO) throws Exception;
 
 	public int setBoard(BoardVO boardVO)throws Exception;
