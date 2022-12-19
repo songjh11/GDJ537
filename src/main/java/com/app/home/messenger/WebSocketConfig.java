@@ -22,7 +22,7 @@ public class WebSocketConfig  implements WebSocketConfigurer{
 		registry.addHandler(socketHandler, "/oneChat")
 				.addInterceptors(new HttpSessionHandshakeInterceptor())
 				.setAllowedOrigins("*");
-		registry.addHandler(socketHandler, "/chatroom")
+		registry.addHandler(socketHandler, "/chatroom/{roomNum}")
 				.addInterceptors(new HttpSessionHandshakeInterceptor())
 				.setAllowedOrigins("*");
 	}
