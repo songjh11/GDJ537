@@ -68,7 +68,7 @@ function send() {
 					}
 	
 					//타입이 메세지일 때
-					if(d.type == "message"){
+					else if(d.type == "message"){
 						//내가 보냈을 때
 					    if(userId == d.userId){
 						    $("#chating").append("<div class='me'>"
