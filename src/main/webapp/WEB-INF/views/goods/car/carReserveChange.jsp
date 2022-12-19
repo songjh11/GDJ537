@@ -54,13 +54,13 @@
 								${reserve}
 								
 								<div class="mb-3">
-									<label>사용 시작 날짜</label>
+									<label>사용 시작 시간</label>
 									<input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1" value="${reserve.startTime}">
 									<br>
 								</div>
 								
 								<div class="mb-3">
-									<label>사용 종료 날짜</label>
+									<label>사용 종료 시간</label>
 									<input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput1" value="${reserve.endTime}">
 									<br>
 								</div> 
@@ -80,7 +80,7 @@
 		                           <c:when test="${userInfo.departmentVO.depNum == 4}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="IT개발팀"></c:when>
 		                           <c:when test="${userInfo.departmentVO.depNum == 5}"><input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly" value="생산팀"></c:when>
 		                           </c:choose>
-		                        </div>
+		                        </div>	
 																																	
 								<div class="mb-5">
 								  <label>변경 사유</label>
