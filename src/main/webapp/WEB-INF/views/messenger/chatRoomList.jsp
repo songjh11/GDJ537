@@ -6,25 +6,29 @@
 							<thead>
 								<tr>
 								  <th scope="col" class="text-end" style="padding: 0.8rem; border-top: 0px;">
-									<div class="mb-2" style="margin-left: 80px;">방장</div>
+									<div class="mb-2" style="margin-left: 90px;">방장</div>
 								  </th>
 								  <th scope="col" class="text-start" style="padding: 0.8rem; border-top: 0px;">
 									<div class="mb-2" style="margin-right: 8px;">채팅방이름</div>
 								  </th>
 								  <th scope="col" style="padding: 0.8rem; border-top: 0px;">
-									<div class="mb-2" style="margin-right: 25px;">인원</div>
+									<div class="mb-2" style="margin-right: 20px;">인원</div>
 								  </th>
 								</tr>
 							</thead>
 						</table>
-    					<div class="chatRoomArea" style="overflow-y: scroll; overflow-x: hidden; height: 550px;">					
 						<!-- 그룹채팅 목록 -->
-							<h3>Group</h3>
+    					<div class="chatRoomArea" style="overflow-y: scroll; overflow-x: hidden; height: 550px;">
+							<select class="form-control" style="width: 110px; margin-left: 7px;">
+								<option value="0">그룹채팅</option>
+								<option value="1">1:1채팅</option>
+							</select>				
+							<!-- <h3>Group</h3> -->
 							<c:forEach items="${roomList}" var="roomVO">
 								<c:if test="${roomVO.kind eq '0'}">
 									<div class="chatRoomList">
 										<div class="col-3" style="margin-left: 6.4%;">
-											<img class="yourImg" src="/img/undraw_profile_3.svg">
+											<img class="yourImg" src="/img/user/user.webp">
 											<span>${roomVO.userVO.name}</span>
 										</div>
 										<!-- <c:choose>
@@ -61,7 +65,7 @@
 							<c:if test="${roomVO.kind eq '1'}">
 								<div class="chatRoomList">
 									<div class="col-3" style="margin-left: 6.4%;">
-										<img class="yourImg" src="/img/undraw_profile_3.svg">
+										<img class="yourImg" src="/img/user/user.webp">
 										<span>${roomVO.userVO.name}</span>
 									</div>
 <%-- 									<c:choose>
@@ -79,7 +83,6 @@
 									<!-- 1:1채팅 입장 a태그 -->
 									<div class="col text-center" style="margin-left: 3%;">
 										 <a class="roomLink1" href="" onclick="javascript:Popup('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a>
-										<%-- <a class="roomLink" href="./oneChat?roomNum=${roomVO.roomNum}"><b>${roomVO.roomName}</b></a> --%>
 									</div>
 									<div class="col text-center style="margin-left: 8%;">
 										${roomVO.total}

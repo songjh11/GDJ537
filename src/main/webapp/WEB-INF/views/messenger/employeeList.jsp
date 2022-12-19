@@ -80,7 +80,7 @@
 															<input type="hidden" id="phone${p.id}" value="${p.phone}">
 															<div class="userArea rrrr" empId="${p.id}" value="${p.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 																<div class="userAdd">
-																	<img id="yourImg${p.id}" class="yourImg" src="/file/profile/${p.profile}" val="/file/profile/${p.profile}">
+																	<img id="yourImg${p.id}" class="yourImg" src="/file/profile/${p.profile}">
 																</div>
 																<div class="userInfo" style="width: 60%;">
 																	<span class="empName" empId="${p.id}" value="${p.name}">😎${p.name}</span>
@@ -211,7 +211,7 @@
 								</ul>
 									<c:choose>
 										<c:when test="${empty empList}">
-											<h6 style="text-align: center;">검색 결과가 없습니다</h6>
+											<h6 style="text-align: center; margin-top: 10px;">검색 결과가 없습니다</h6>
 										</c:when>
 										<c:when test="${not empty empList}">
 											<li class="titleLi">
