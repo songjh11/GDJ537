@@ -26,7 +26,7 @@
 																		<div class="userArea" style="display: flex;	justify-content: start; align-items: center;">
 																			<div class="userAdd">
 																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
-																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+																				<img id="yourImg${e.id}" class="yourImg" src="/file/profile/${e.profile}">
 																			</div>
 																			<div class="userInfo" style="width: 60%; color: white; margin-left: 9px;">
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
@@ -49,7 +49,7 @@
 																		<div class="userArea" style="display: flex;	justify-content: start; align-items: center;">
 																			<div>
 																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
-																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+																				<img id="yourImg${e.id}" class="yourImg" src="/file/profile/${e.profile}">
 																			</div>
 																			<div class="userAdd" style="width: 60%;">
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
