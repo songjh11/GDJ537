@@ -17,6 +17,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
+import software.amazon.awssdk.services.s3.endpoints.internal.Substring;
 
 @Component
 @Slf4j
@@ -35,12 +36,11 @@ public class SocketHandler extends TextWebSocketHandler{
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 	//메서지 발송
-		log.info(("redsfsdf"));
 		String msg= message.getPayload();
 		for (String key: sessionMap.keySet()) {
 			WebSocketSession wss= sessionMap.get(key);
 			try {
-				System.out.println(msg);
+				System.out.println("handler - message : "+ msg);
 			wss.sendMessage(new TextMessage(msg));
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -53,17 +53,23 @@ public class SocketHandler extends TextWebSocketHandler{
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
 		UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
-		System.out.println("UserName : "+userVO.getName());
+		
+		// 웹소켓 주소
+		// ws://localhost:81/chatroom/숫자 <- 숫자만 가져오기
+		
+		String uri = session.getUri().toString();
+		uri=uri.substring(uri.lastIndexOf("/")+1);
 		
 		
-		String message = "{\"type\":\"connect\",\"username\":\""+userVO.getName()+"\"}";
+		String message = "{\"type\":\"connect\",\"username\":\""+userVO.getName()+"\",\"roomNum\":\""+uri+"\"}";
 		sessionMap.put(session.getId(), session);
-	
+		
 		for (String key: sessionMap.keySet()) {
 			WebSocketSession wss= sessionMap.get(key);
-			try {
-				
+			try {	
 			wss.sendMessage(new TextMessage(message));//userVO.getName()));
+			System.out.println("after : "+message);
+			
 			}catch(Exception e) {
 				e.printStackTrace();
 			}

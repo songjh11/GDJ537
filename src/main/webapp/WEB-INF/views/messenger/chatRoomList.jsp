@@ -114,7 +114,7 @@
 						strOption += "resizable=yes,status=yes";
 
 						function chatPop(roomNum){
-							window.open('/messenger/chatroom?roomNum='+roomNum, '그룹 채팅방', strOption);
+							window.open('/messenger/chatroom/'+roomNum, '그룹 채팅방', strOption);
 						}
 						
 						function Popup(roomNum){
