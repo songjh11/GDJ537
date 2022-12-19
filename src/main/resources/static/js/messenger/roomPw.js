@@ -97,5 +97,5 @@ strOption += "toolbar=no,menubar=no,location=no,";
 strOption += "resizable=yes,status=yes";
 
 function chatPop(roomNum){
-    window.open('/messenger/chatroom?roomNum='+roomNum, '단체 채팅방', strOption);
+    window.open('/messenger/chatroom/'+roomNum, '단체 채팅방', strOption);
 }
