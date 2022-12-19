@@ -74,7 +74,7 @@
 							</div>
 
 							<div class="mb-5">
-								<label>예약자</label>
+								<label>사원 이름</label>
 								<input type="hidden" name="id" class="form-control" id="member" value="${userInfo.id }" readonly>
 								<input type="text" class="form-control" value="${userInfo.name }" disabled>
 							</div>
