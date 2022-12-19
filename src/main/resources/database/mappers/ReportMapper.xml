@@ -465,6 +465,7 @@
 		FROM REPORTAPPLY r
 		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM 
 		<include refid="paging"></include>
+		ORDER BY r.APPLYNUM DESC
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
@@ -481,6 +482,7 @@
 		FROM REPORTAPPLY r
 		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM 
 		<include refid="paging"></include>
+		ORDER BY r.APPLYNUM DESC
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
@@ -497,6 +499,7 @@
 		FROM REPORTAPPLY r
 		INNER JOIN REPORTPAY r2 ON r.APPLYNUM = r2.APPLYNUM 
 		<include refid="paging"></include>
+		ORDER BY r.APPLYNUM DESC 
 		LIMIT #{startRow},#{perPage}
 	</select>
 	
@@ -559,14 +562,16 @@
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
 		INNER JOIN REPORTWORK r2 ON r.APPLYNUM = r2.APPLYNUM
-		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum}
+		
 	</select>
 	
 	<select id="getMySorryDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
 		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM
-		where r.ID = #{id} and r.APPLYNUM = #{applyNum};
+		where r.ID = #{id} and r.APPLYNUM = #{applyNum}
+		
 	</select>
 	
 	<select id="getLstatus" parameterType="Integer" resultType="Integer">
