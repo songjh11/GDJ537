@@ -176,8 +176,8 @@
       SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'CA%'
    </select>
    
-   <select id="getreserveGoods" parameterType="GoodsVO" resultType="ReserveVO">
-      SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
+   <select id="getreserveGoods" parameterType="GoodsVO" resultType="int">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
    </select>
    
    <select id="getreserveCount" parameterType="ReserveVO" resultType="int">
@@ -241,6 +241,14 @@
    <select id="getAllCount" parameterType="GoodsVO" resultType="int">
       SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
    </select>
+   
+   <delete id="setReserveDelete" parameterType="GoodsVO">
+	  DELETE FROM RESERVE WHERE GOODSID = #{goodsId}
+   </delete>
+   
+   <delete id="setFileDelete" parameterType="GoodsVO">
+	  DELETE FROM GOODSFILE WHERE GOODSID = #{goodsId}
+   </delete>
    
    
    

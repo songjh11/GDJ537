@@ -194,7 +194,9 @@ $("#delete").click(function(){
         data:{
             goodsId:id
         },
+
         success:function(result){
+            console.log(result);
             console.log("삭제 완료 ");            
             location.href="/goods/ad_list";
         },
