@@ -88,7 +88,12 @@ public class SocketHandler extends TextWebSocketHandler{
 	
 	SecurityContextImpl contextImpl= (SecurityContextImpl)session.getAttributes().get("SPRING_SECURITY_CONTEXT");
 	UserVO userVO = (UserVO)contextImpl.getAuthentication().getPrincipal();
-		
+	
+	String uri = session.getUri().toString();
+	uri=uri.substring(uri.lastIndexOf("/")+1);
+
+	String message = "{\"type\":\"disconnect\",\"username\":\""+userVO.getName()+"\",\"roomNum\":\""+uri+"\"}";
+	
 	// 소켓 종료	
 	sessionMap.remove(session.getId());
 	//super.afterConnectionClosed(session, status);
@@ -99,7 +104,7 @@ public class SocketHandler extends TextWebSocketHandler{
 		WebSocketSession wss= sessionMap.get(key);
 		try {
 			
-		wss.sendMessage(new TextMessage("{\"type\":\"disconnect\",\"username\":\""+userVO.getName()+"\"}"));//userVO.getName()));
+		wss.sendMessage(new TextMessage(message));//userVO.getName()));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
