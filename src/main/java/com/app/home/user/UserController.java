@@ -184,9 +184,12 @@ public class UserController {
 	}
 
 	@GetMapping("admin/wait")
-	public ModelAndView getWait() throws Exception {
+	public ModelAndView getWait(UserVO userVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<UserVO> list = userService.getWait();
+		for(int i=0; i< list.size(); i++) {
+			list.get(i).setPhone(userVO.phone_format(list.get(i).getPhone()));			
+		}
 		mv.addObject("list", list);
 		mv.setViewName("/user/admin/wait");
 		return mv;
@@ -309,7 +312,9 @@ public class UserController {
 	@PostMapping("admin/idUpdate")
 	@ResponseBody
 	public int setIdUpdate(DepartmentVO departmentVO) throws Exception {
+		log.info("depart => {}", departmentVO);
 		int result = userService.setIdUpdate(departmentVO);
+		log.info("result => {}", result);
 		return result;
 	}
 
