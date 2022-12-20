@@ -345,7 +345,7 @@
 	</select>
 	
 	<select id="getDoFirstReport" parameterType="ReportPager" resultMap="getFinishReportResult">
-		SELECT RL.*,RA.*,U.* FROM
+		SELECT RL.LSTATUS, RL.DEPNUM, RL.LICENSERNUM ,RA.*,U.* FROM
 		REPORTLICENSER RL
 		INNER JOIN
 		REPORTAPPLY RA
