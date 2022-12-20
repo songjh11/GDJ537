@@ -138,8 +138,8 @@ for(let i=0; i<$(".files").length; i++){
     })
 }
 $("#fileAddResult").on("click", ".del", function(){
-    // console.log($(this).parent().parent().parent());
-     $(this).parent().parent().parent().remove();
+    console.log($(this).parent().parent().parent());
+      $(this).parent().parent().parent().remove();
     
 });
 
