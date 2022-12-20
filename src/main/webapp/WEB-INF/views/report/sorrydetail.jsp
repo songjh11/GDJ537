@@ -155,7 +155,7 @@
                         <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyD" value="${day}"/>일</div>
                     </div>
                     <div style="font-weight: bold; margin-top: 50px; margin-left: 150px;">
-                        신청자 : <input type="text" value="${reportSorryVO.name}"  style="border:0 solid black" />
+                        작성자 : <input type="text" value="${reportSorryVO.name}"  style="border:0 solid black" />
                     </div>
                 </div>
             </div>

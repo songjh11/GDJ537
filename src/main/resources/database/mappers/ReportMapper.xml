@@ -566,7 +566,7 @@
 		
 	</select>
 	
-	<select id="getMySorryDetail" parameterType="ReportApplyVO" resultType="ReportWorkVO">
+	<select id="getMySorryDetail" parameterType="ReportApplyVO" resultType="ReportSorryVO">
 		SELECT r.*,r2.*
 		FROM REPORTAPPLY r 
 		INNER JOIN REPORTSORRY r2 ON r.APPLYNUM = r2.APPLYNUM
