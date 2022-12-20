@@ -43,7 +43,7 @@
                   <!-- Page Heading -->
                   <h1 class="h3 mb-4 text-gray-800" style="text-align: center; font-weight: bold;">공용 시설 관리</h1>
                <input type="button" id="add" class="btn btn-primary" value="추가" style="margin-left: 80%; width: 70px; height: 40px;"></button>
-               <div class="container">
+               <div class="container" style="padding-left: 0px;padding-right: 0px;">
 
                   <ul class="tabs">
                      <li class="tab-link current" data-tab="tab-1">회의실</li>
@@ -54,7 +54,7 @@
                      <div class="row mb-2" id="ro">
                         <c:forEach items="${room}" var="ro">
                         <div class="col-md-6" data-item-num="${ro.goodsId}">
-                          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-item-num="${ro.goodsId}">
+                          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="height:300px;" data-item-num="${ro.goodsId}">
                            <div class="col p-4 d-flex flex-column position-static white" data-item-num="${ro.goodsId}">
                               <p class="card-text mb-auto" data-item-num="${ro.goodsId}">시설 번호 : ${ro.goodsId}</p>
                                 <h3 class="mb-0" data-item-num="${ro.goodsId}">${ro.name}</h3>
@@ -62,6 +62,8 @@
                               <p class="mb-1 text-muted" data-item-num="${ro.goodsId}">최대 정원 : ${ro.max}명</p>
                               <p class="card-text mb-auto" data-item-num="${ro.goodsId}">상세설명 : ${ro.contents}</p>
                               <p class="card-text mb-auto" data-item-num="${ro.goodsId}">위치 : ${ro.location}</p>
+                              <p class="card-text mb-auto" data-item-num="${ro.goodsId}">예약 건수 : ${ro.count}</p>
+
                               
                            </div>
                            <div class="col-auto d-none d-lg-block white" data-item-num="${ro.goodsId}">
@@ -76,7 +78,7 @@
                      <div class="row mb-2" id="ca">
                         <c:forEach items="${car}" var="ca">
                         <div class="col-md-6" data-item-num="${ca.goodsId}">
-                          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-item-num="${ca.goodsId}">
+                          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="height:300px;" data-item-num="${ca.goodsId}">
                            <div class="col p-4 d-flex flex-column position-static white" data-item-num="${ca.goodsId}">
                               <p class="card-text mb-auto" data-item-num="${ca.goodsId}">시설 번호 : ${ca.goodsId}</p>
                               <h3 class="mb-0" data-item-num="${ca.goodsId}">${ca.name}</h3>
@@ -85,6 +87,7 @@
                              <p class="card-text mb-auto" data-item-num="${ca.goodsId}">상세설명 : ${ca.contents}</p>
                              <p class="card-text mb-auto" data-item-num="${ca.goodsId}">위치 : ${ca.location}</P>
                              <p class="card-text mb-auto" data-item-num="${ca.goodsId}">차량 번호 : ${ca.carNum}</P>
+                             <p class="card-text mb-auto" data-item-num="${ca.goodsId}">예약 건수 : ${ca.count}</P>
                              
                            </div>
                            <div class="col-auto d-none d-lg-block white" data-item-num="${ca.goodsId}">
