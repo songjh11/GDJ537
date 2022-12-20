@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
+
+<script defer src="/js/room/reserve.js"></script>
 </head>
 
 <!-- body ID 작성 -->
@@ -40,9 +42,7 @@
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
  										<th>차량번호</th>
-
 										<td>${goods.carNum}</td>
-
 										<th>모델명</th>
 										<td>${goods.name}</td>									
 										<th>최대 탑승 수</th>
@@ -50,8 +50,25 @@
 									</tr>
 								</table>
 								
+ 								<input type="hidden" name="goodId" value="${goods.goodsId}">
+								<c:forEach items="${timeNotEqual}" var="time">
+									<c:if test="${time.startTime != reserve.startTime}">
+										<div class="timeCheck">
+											<input type="hidden" value="${time.startTime }" class="startTimeCheck">
+											<input type="hidden" value="${time.endTime }" class="endTimeCheck">
+										</div>									
+									</c:if>
+								</c:forEach>
+								
+								<input type="hidden" name="reserveNum" value="${reserve.reserveNum}">
+								<input type="hidden" name="goodsId" value="${reserve.goodsId}">
  								<input type="hidden" name="id" value="${reserve.id}">
-								${reserve}
+								
+								<div class="mb-3">
+									<div style="text-align: center;">
+										<font> *1시간 단위로 입력됩니다.* </font>
+									</div>
+								</div>
 								
 								<div class="mb-3">
 									<label>사용 시작 시간</label>
@@ -66,7 +83,7 @@
 								</div> 
 								
 								<div class="mb-5">
-									<label>사원번호</label>
+									<label>사원 이름</label>
 									<input type="text" name="memberNum" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${reserve.id}">
 								</div>
 								
@@ -87,7 +104,9 @@
 								  <input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1" placeholder="${reserve.usePurpose }">
 								</div>
 								
-								<button type="submit" class="btn btn-success">예약하기</button>
+								<div class="mb-5" style="text-align: center;">
+									<button type="submit" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">예약변경</button>
+								</div>
 							</form>
 					</section>
 
