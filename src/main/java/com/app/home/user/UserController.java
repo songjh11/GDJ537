@@ -184,18 +184,24 @@ public class UserController {
 	}
 
 	@GetMapping("admin/wait")
-	public ModelAndView getWait() throws Exception {
+	public ModelAndView getWait(UserVO userVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<UserVO> list = userService.getWait();
+		for(int i=0; i< list.size(); i++) {
+			list.get(i).setPhone(userVO.phone_format(list.get(i).getPhone()));			
+		}
 		mv.addObject("list", list);
 		mv.setViewName("/user/admin/wait");
 		return mv;
 	}
 
 	@GetMapping("admin/user")
-	public ModelAndView getUser() throws Exception {
+	public ModelAndView getUser(UserVO userVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<UserVO> list = userService.getUser();
+		for(int i=0; i< list.size(); i++) {
+			list.get(i).setPhone(userVO.phone_format(list.get(i).getPhone()));			
+		}
 		List<DepartmentVO> listD = userService.getDepartment();
 		List<RoleVO> listR = userService.getRole();
 		mv.addObject("list", list);
@@ -209,7 +215,9 @@ public class UserController {
 	public ModelAndView getDepartment() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> list = userService.getDepartment();
+		List<UserVO> listU = userService.getUser();
 		mv.addObject("list", list);
+		mv.addObject("listU", listU);
 		mv.setViewName("/user/admin/department");
 		return mv;
 	}
@@ -234,7 +242,7 @@ public class UserController {
 	@PostMapping("admin/allowNot")
 	@ResponseBody
 	public int setAllowNot(UserVO userVO) throws Exception {
-		int result = userService.setAllow(userVO);
+		int result = userService.setAllowNot(userVO);
 		return result;
 	}
 
@@ -304,7 +312,9 @@ public class UserController {
 	@PostMapping("admin/idUpdate")
 	@ResponseBody
 	public int setIdUpdate(DepartmentVO departmentVO) throws Exception {
+		log.info("depart => {}", departmentVO);
 		int result = userService.setIdUpdate(departmentVO);
+		log.info("result => {}", result);
 		return result;
 	}
 

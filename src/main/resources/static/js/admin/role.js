@@ -1,14 +1,14 @@
 console.log("role");
 
   $(".roleDel").click(function(){
-    let rolenum=$(this).prev().prev().text();
+    let roleNum=$(this).prev().prev().text();
     let roleName=$(this).prev().text();
 
     $.ajax({
         type:"post",
         url:"/user/admin/roleCheck",
         data:{
-            "rolenum":rolenum
+            "roleNum":roleNum
         },
         success:function(data){
             if(data==0){
@@ -28,7 +28,7 @@ console.log("role");
                             type:"post",
                             url:"/user/admin/roleDel",
                             data:{
-                                "rolenum":rolenum
+                                "roleNum":roleNum
                             },
                             success:function(success){
                                 Swal.fire('직급을 삭제하였습니다.', '', 'success');
@@ -45,7 +45,7 @@ console.log("role");
                     }
                   })
             }else{
-                Swal.fire('삭제할수 없습니다.','해당 직급의 사원들을 다른부서로 변경해주세요','error');
+                Swal.fire('삭제할수 없습니다.','해당 직급의 사원들을 다른직급으로 변경해주세요','error');
             }
         }
         
@@ -64,7 +64,7 @@ console.log("role");
   })
   
   $('.showRole').click(function(){
-    let rolenum = $(this).parent().children().first().text();
+    let roleNum = $(this).parent().children().first().text();
     let content = $(this).text();
     let select = $(this).data().role;
     
@@ -77,22 +77,22 @@ console.log("role");
         })
         if (getName) { // Swal.fire(`: ${getName}`)
             switch(select){
-                case 'roleName': roleNameUpdate(rolenum,getName);
+                case 'roleName': roleNameUpdate(roleNum,getName);
                 break;
             }
         }
     })() 
 })
-function roleNameUpdate(rolenum,roleName){
+function roleNameUpdate(roleNum,roleName){
 $.ajax({
     type:"post",
     url:"/user/admin/roleNameUpdate",
     data:{
-        rolenum:rolenum,
+        roleNum:roleNum,
         roleName:roleName
     },
     success:function(){
-        Swal.fire('부장을 변경하였습니다.','','success');
+        Swal.fire('직급을 변경하였습니다.','','success');
         setTimeout(function(){
             location.reload();
         },1000);
@@ -121,7 +121,7 @@ $("#roleAdd").click(function(){
                     roleName:getName
                 },
                 success:function(){
-                    Swal.fire('부서를 추가하였습니다.','','success');
+                    Swal.fire('직급을 추가하였습니다.','','success');
                     setTimeout(function(){
                         location.reload();
                     },1000);

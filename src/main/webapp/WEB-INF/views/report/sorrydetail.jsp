@@ -1,32 +1,49 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Document</title>
-    <style>
-        #ajaaja{
-            border-right: solid 1px black;
-             height: 90px;
-              width: 122px;
-              margin-top: 6px;
-        }
-    </style>
-    <script defer src="/js/Apology.js"></script>
-	<script defer="defer" type="text/javascript" src="/js/report/report.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>결재 신청 상세</title>
+    <c:import url="../temp/layout_header.jsp"></c:import>
+    <script defer="defer" type="text/javascript" src="/js/report/report.js"></script>
 </head>
 <body>
-    <div class="container px-4 px-lg-5 my-5">
-    	<input type="text" style="display: none;" value="${result }" data-status="${result }">
-    	<input type="text" style="display: none;" value="${reportSorryVO.applyNum }" data-num="${reportSorryVO.applyNum }">
-        <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 45px; background-color: rgb(255, 255, 249); text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+		
+        <!-- Sidebar -->
+        <c:import url="../temp/layout_sidebar.jsp"></c:import>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <c:import url="../temp/layout_topbar.jsp"></c:import>
+                <!-- End of Topbar -->
+				<input type="text" style="display: none;" id="result" value="${result }" data-status="${result }">
+ 				<input type="text" style="display: none;" id="applyNum" value="${reportSorryVO.applyNum }" data-num="${reportSorryVO.applyNum }">
+                <div class="container px-4 px-lg-5 my-5">
+					<a href="./doreport?cat=4" class="btn btn-primary btn-icon-split btn-sm">
+                       <span class="icon text-white-50">
+                       <i class="fas fa-arrow-right"></i>
+                       </span>
+                       <span class="text">시말서 목록</span>
+                       </a>
+				</div>
+		    
+				<!-- Begin Page Content -->
+	            <div class="container-fluid">
+						<div class="container px-4 px-lg-5 my-5">
+       <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
+            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 45px; text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
                    시말서
                    <div style="border: solid 1px black; width: 400px; margin-left: 500px; height: 120px; margin-top: -75px;">
                     <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
@@ -36,9 +53,38 @@
                     <div class="row" style="border-bottom: solid 1px black; margin-top: -120px; width: 368px; margin-left: 30px; height: 30px; font-size: 15px;">
                         <div style="padding-top:3px; letter-spacing: 0; margin-left: 30px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
                                                                                             &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
-                        <div id="ajaaja"></div>
-                        <div id="ajaaja"></div>
-                        <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                        <c:choose>
+                            <c:when test="${reportSorryVO.status eq 1 and reportSorryVO.returns eq 0}">
+	                           <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            </c:when>
+                            <c:when test="${reportSorryVO.status eq 2 and reportSorryVO.returns eq 0}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            </c:when>
+                            <c:when test="${reportSorryVO.status eq 3 and reportSorryVO.returns eq 0}">
+                           		<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            </c:when>
+                            <c:when test="${reportSorryVO.status eq 1 and reportSorryVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>
+                            <c:when test="${reportSorryVO.status eq 2 and reportSorryVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>
+                            <c:when test="${reportSorryVO.status eq 3 and reportSorryVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>                            
+                            </c:choose>
                         
                     </div>
                 </div>
@@ -53,14 +99,14 @@
                                 성명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" id="ApologyName" value="홍길동"/>
+                        <input style="width: 220px; height: 50px; border: 0; text-align: center;" readonly value="${reportSorryVO.name}"/>
 
                         <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
                             <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
                                 부서명
                             </div>
                         </div>
-                        <input style="width: 220px; height: 50px; text-align: center; border: 0;" id="ApologyPartname" value="구디아카데미"/>
+                        <input style="width: 220px; height: 50px; text-align: center; border: 0;"  readonly value="${reportSorryVO.depName}"/>
                     </div>    
                 </div> 
 
@@ -72,14 +118,14 @@
                                     직책
                                 </div>
                             </div>
-                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" id="ApologyRes" value="홍길동"/>
+                            <input style="width: 220px; height: 50px; border: 0; text-align: center;" value="${reportSorryVO.roleName}"/>
     
                             <div style="width: 225px; height: 55px; border-right: solid 1px black;  border-left: solid 1px black;">
                                 <div style=" font-size:  16px; padding-top: 15px; font-weight: bolder; letter-spacing: 40px; padding-left: 50px;">
                                     작성일
                                 </div>
                             </div>
-                            <input style="width: 220px; height: 50px; text-align: center; border: 0;" id="ApologyWDate" value="구디아카데미"/>
+                            <input style="width: 220px; height: 50px; text-align: center; border: 0;" readonly value="${year}-${month}-${day}" />
                         </div> 
                     </div>    
                 </div>    
@@ -97,26 +143,43 @@
                     </div>   
                 </div>
                 <div style="border-bottom: solid 1px black; height: 600px;">
-                    <textarea style=" width: 895px; height: 595px; border: 0;" id="ApologyText"></textarea>
+                    ${reportSorryVO.text}
                 </div>
                 <div style="font-weight: bold; text-align: center; margin-top: 25px;">
                     상기 기록사실에 허위가 없습니다.
                 </div>
                 <div style=" width: 900px; height: 250px;"> 
                     <div class="d-flex" style="font-weight: bold; margin-left: 240px; margin-top: 45px;">
-                        <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyY" value="2022"/>년</div>
-                        <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyM" value="12"/>월</div>
-                        <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyD" value="31"/>일</div>
+                        <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyY" value="${year}"/>년</div>
+                        <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyM" value="${month}"/>월</div>
+                        <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyD" value="${day}"/>일</div>
                     </div>
                     <div style="font-weight: bold; margin-top: 50px; margin-left: 150px;">
-                        신청자 : <input type="text" value="홍길동" style="border:0 solid black" id="ApologyWN"/>
+                        작성자 : <input type="text" value="${reportSorryVO.name}"  style="border:0 solid black" />
                     </div>
                 </div>
             </div>
-
         </div>    
-		<button type="button" id="license" class="btn btn-info btn-icon-split">승인</button>
-		<button type="button" id="returns" class="btn btn-info btn-icon-split">반려</button>
+        
+		<div style="text-align: right; margin-left: 20px;">
+        <button type="button" id="license" class="btn btn-primary" style="margin-left: 900px; margin-top: 12px; display: inline-block;">승인</button>
+		<button type="button" id="returns" class="btn btn-primary" style="margin-top: 12px; display: inline-block;">반려</button>
+        </div>   
     </div>
+	            </div>
+	            <!-- End Page Content -->
+					
+			</div>
+			<!-- End of Main Content -->
+			
+			<!-- Footer import -->
+			<c:import url="../temp/layout_footer.jsp"></c:import>
+			<!-- End of Footer -->
+		</div>
+		<!-- End of Content Wrapper -->
+	</div>
+
+	<!-- Scroll Top, Logout Modal import -->
+	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
 </body>
 </html>

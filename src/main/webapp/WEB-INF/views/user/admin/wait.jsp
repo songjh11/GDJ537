@@ -62,8 +62,8 @@
                         <th class="table-light" scope="col">이름</th>
                         <th class="table-light" scope="col">이메일</th>
                         <th class="table-light" scope="col">전화번호</th>
-                        <th class="table-light" scope="col"></th>
-                        <th class="table-light" scope="col"></th>
+                        <th class="table-light" scope="col">입사 승인</th>
+                        <th class="table-light" scope="col">입사 미승인</th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">

@@ -31,6 +31,9 @@ public class RoomController
 {
 	@Autowired
 	private RoomService roomService;
+	
+	@Autowired
+	private CarService carService;
 
 	@GetMapping("/room/roomList")
 	public ModelAndView getRoomList(GoodsVO goodsVO, ReserveVO reserveVO, Authentication authentication, GoodsRoomVO goodsRoomVO)
@@ -170,7 +173,7 @@ public class RoomController
 
 		log.info("rs: {}", rs);
 
-		return "redirect:/goods/room/roomList";
+		return "redirect:/user/mypage";
 	}
 
 	@GetMapping("/room/roomReserveDelete")
@@ -183,5 +186,22 @@ public class RoomController
 		log.info("rs: {}", rs);
 
 		return "redirect:/goods/room/roomList";
+	}
+	
+	// 예약 상세보기
+	@GetMapping("/room/roomReserveDetail")
+	public ModelAndView getReserveDetail(ReserveVO reserveVO, ModelAndView mv) throws Exception {
+		GoodsVO goodsVO = new GoodsVO();
+		
+		reserveVO = carService.getReserveDetail(reserveVO);
+		goodsVO.setGoodsId(reserveVO.getGoodsId());
+		goodsVO = carService.getGoods(goodsVO);
+		
+		log.info("예약 상세보기 : {}", reserveVO);
+		
+		mv.addObject("reserve", reserveVO);
+		mv.addObject("good", goodsVO);
+		
+		return mv;
 	}
 }

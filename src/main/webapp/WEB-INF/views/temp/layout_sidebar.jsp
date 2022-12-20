@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -81,15 +84,37 @@
                 </a>
                 <div id="collapseReport" class="collapse" aria-labelledby="headingReport" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">업무보고서</a>
-                        <a class="collapse-item" href="#">휴가신청서</a>
+                      
+                      	
+                      	  
+
+                        
+                      
+                        <sec:authorize access="isAuthenticated()">
+ 						<sec:authentication property="Principal" var="member"/>
+                     	<c:if test="${member.reportVO.lstatus >= 2}">
+                        <a class="collapse-item" href="/report/doreport?depNum=${member.depNum}">결제/반려 승인</a>
                         <a class="collapse-item" href="/report/licenserList">전체 승인자 리스트</a>
-                        <a class="collapse-item" href="/kdy/reportAdd">보고서 작성</a>
-                        <a class="collapse-item" href="/report/doreport">결제/반려 승인</a>
-                        <a class="collapse-item" href="/report/finishreport">결제 승인 내역</a>
-                        <a class="collapse-item" href="/report/returnreport">반려 승인 내역</a>
+                     	</c:if>
+                        <c:if test="${member.reportVO.lstatus eq 3}">	
                         <a class="collapse-item" href="/report/insa">휴가담당 관리자</a>
-                        <a class="collapse-item" href="/report/mylist?cat=1">결재 신청 목록</a>
+                        </c:if>
+                        <c:if test="${member.reportVO.lstatus ne 3}">
+                        <a class="collapse-item" href="/kdy/reportAdd">보고서 작성</a>
+                        </c:if>
+                        
+                        <%-- <sec:authorize access="hasRole('ADMIN')"> --%>
+                        <c:choose>
+                      		<c:when test="${member.reportVO.lstatus >= 0 && member.roleNum ne 1}">
+                      			<a class="collapse-item" href="/report/reportMyPage">나의 결재선</a>
+                      		</c:when>
+                      	</c:choose>
+						<%-- </sec:authorize> --%>
+						</sec:authorize>
+						<c:if test="${member.reportVO.lstatus ne 3}">
+                        	<a class="collapse-item" href="/report/mylist?cat=1">결재 신청 목록</a>
+                     	</c:if>
+                        
                     </div>
                 </div>
 			</li>
@@ -130,9 +155,6 @@
 
 
             <hr class="sidebar-divider d-none d-md-block">
-
-            
-
             <!-- Nav Item - 관리자 -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/user/admin/wait" data-toggle="collapse" data-target="#collapseAdmin"

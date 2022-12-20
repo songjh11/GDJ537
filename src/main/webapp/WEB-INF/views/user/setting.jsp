@@ -296,7 +296,7 @@
                       <div class="d-flex justify-content-end pb-4 ps-4 pe-4">
                         <button
                           type="button"
-                          class="btn btn-success"
+                          class="btn btn-primary"
                           style="border-radius: 18px; padding: 6px 18px"
                           data-bs-dismiss="modal"
                         >
@@ -335,7 +335,7 @@
                       <div class="d-flex justify-content-end pb-4 ps-4 pe-4">
                         <button
                           type="button"
-                          class="btn btn-success"
+                          class="btn btn-primary"
                           style="border-radius: 18px; padding: 6px 18px"
                           data-bs-dismiss="modal"
                           onclick="location.href='/user/setting'"

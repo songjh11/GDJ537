@@ -8,6 +8,7 @@
       <id column="ID" property="id"/>
       <result column="ROLENUM" property="roleNum"/>
       <result column="DEPNUM" property="depNum"/>
+
       <result column="PW" property="pw"/>
       <result column="NAME" property="name"/>
       <result column="EMAIL" property="email"/>
@@ -16,13 +17,18 @@
       <result column="PROFILE" property="profile"/>
       <result column="STATUS" property="status"/>
       <association property="roleVO" javaType="RoleVO">
-         <id column="ROLENUM" property="roleNum"/>
+         <id column="ROLEnum" property="roleNum"/>
          <result column="ROLENAME" property="roleName"/>
       </association>
+ 
       <association property="departmentVO" javaType="DepartmentVO">
          <id column="DEPNUM" property="depNum"/>
          <result column="DEPNAME" property="depName"/>
          <result column="ID" property="id"/>
+      </association>
+      <association property="reportVO" javaType="ReportVO">
+      	<id column="ID" property="id"/>
+      	<result column="LSTATUS" property="lstatus"/>
       </association>
    </resultMap>
    
@@ -36,7 +42,7 @@
 	</update>
 	
 	<insert id="setUser" parameterType="UserVO">
-		INSERT INTO USER VALUES(NULL, 1111111, 1, 1, '1111', #{name}, 'TESTEAMIL', 'TESTPHONE', #{entDate} , 'TESTPROFILE', 0)
+		INSERT INTO USER VALUES(NULL, 1111111, 6, 1, '1111', #{name}, 'TESTEAMIL', 'TESTPHONE', #{entDate} , 'TESTPROFILE', 0)
 	</insert>
 	
 	<select id="getMypage" parameterType="UserVO" resultMap="getUserVO">
@@ -199,11 +205,17 @@
    </update>
 
    <select id="getLogin" parameterType="String" resultMap="getUserVO">
-      SELECT U.*, R.*
+      SELECT U.*, R.*,RL.LSTATUS, D.DEPNAME
       FROM USER U
          INNER JOIN
          ROLE R
          ON U.ROLENUM = R.ROLENUM
+         LEFT JOIN
+         REPORTLICENSER RL
+         ON U.ID = RL.ID
+         INNER JOIN 
+         DEPARTMENT D 
+         ON D.DEPNUM = U.DEPNUM 
       WHERE U.id=#{username}
    </select>
    

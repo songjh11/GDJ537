@@ -28,15 +28,6 @@ public class ReportService {
 
 	//=======================김도영===================
 	//신청 보고서
-	public int setReportApply(ReportApplyVO reportApplyVO)throws Exception{
-		int result = reportMapper.setReportApply(reportApplyVO);
-		return result;
-	}
-	//업무 보고서
-	public int setWorkReport(ReportWorkVO reportWorkVO)throws Exception{
-		int result = reportMapper.setWorkReport(reportWorkVO);
-		return result;
-	}
 	
 	
 	
@@ -54,11 +45,13 @@ public class ReportService {
 	public int setLstatusUpdate(ReportVO reportVO, UserVO userVO) throws Exception{
 		
 		
-		int result = reportMapper.setLicenserAdd(userVO);
+//		int result = reportMapper.setLicenserAdd(userVO);
+//		
+//		if(result > 0) {
+//			reportMapper.setLstatusUpdate(reportVO);
+//		}
 		
-		if(result > 0) {
-			reportMapper.setLstatusUpdate(reportVO);
-		}
+		int result = reportMapper.setLstatusUpdate(reportVO);
 		
 		return result;
 	}
@@ -84,9 +77,36 @@ public class ReportService {
 //		
 //		return reportMapper.setLicenserAdd(userVO);
 //	}
-//	
+		
+	//승인자 테이블에서 권한을 회수하기 위해 delete
+	public int setLicenserUpdate(UserVO userVO) throws Exception{
+		
+		return reportMapper.setLicenserUpdate(userVO);
+	}
 	
+	//결재 신청자 입장에서 자기가 결재를 해야할 목록 리스트
+	public UserVO getFirstList(UserVO userVO) throws Exception{
+			
+		
+		return reportMapper.getFirstList(userVO);
+	}
 	
+	//결재 신청자 입장에서 자기가 결재를 해야할 목록 리스트
+	public UserVO getlastlist(UserVO userVO) throws Exception{
+		
+		return reportMapper.getlastlist(userVO);
+	}
+	
+	// 휴가관리자가 권한을 부여할때 부여하려는 부서에 승인자가 있는지 먼저 체크
+	public int getGrantorCount(ReportVO reportVO) throws Exception{
+		
+		return reportMapper.getGrantorCount(reportVO);
+	}
+	
+	public ReportVO getLicenserId(ReportVO reportVO) throws Exception{
+		
+		return reportMapper.getLicenserId(reportVO);
+	}
 	
 	
 	
@@ -97,16 +117,47 @@ public class ReportService {
 	
 	
 	public int setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
+		Integer lstatus = reportMapper.getLstatus(reportVacaVO.getId());
+		
+		reportVacaVO.setStatus(1);
+		if(lstatus != null) {
+			if(lstatus == 2) {
+			reportVacaVO.setStatus(2);
+			}
+		}
+		
 		reportMapper.setAddApply(reportVacaVO);
 		return reportMapper.setAddVaca(reportVacaVO);
 	} 
 	
 	public int setAddWork(ReportWorkVO reportWorkVO) throws Exception{
+		Integer lstatus = reportMapper.getLstatus(reportWorkVO.getId());
+		
+		reportWorkVO.setStatus(1);
+		
+		if(lstatus != null) {
+			if(lstatus == 2) {
+			reportWorkVO.setStatus(2);
+			}
+		}
+		
 		reportMapper.setAddApply(reportWorkVO);
 		return reportMapper.setAddWork(reportWorkVO);
 	}
 	
 	public int setAddPay(ReportPayVO reportPayVO) throws Exception{
+		
+		Integer lstatus = reportMapper.getLstatus(reportPayVO.getId());
+		
+		reportPayVO.setStatus(1);
+		
+		if(lstatus != null) {
+			if(lstatus == 2) {
+			reportPayVO.setStatus(2);
+			}
+		}
+		
+		
 		reportMapper.setAddApply(reportPayVO);
 		int result = reportMapper.setAddPay(reportPayVO);
 		
@@ -122,6 +173,17 @@ public class ReportService {
 	}
 	
 	public int setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
+		
+		Integer lstatus = reportMapper.getLstatus(reportSorryVO.getId());
+		
+		reportSorryVO.setStatus(1);
+		
+		if(lstatus != null) {
+			if(lstatus == 2) {
+			reportSorryVO.setStatus(2);
+			}
+		}
+		
 		reportMapper.setAddApply(reportSorryVO);
 		return reportMapper.setAddSorry(reportSorryVO);
 	}
@@ -176,9 +238,19 @@ public class ReportService {
 				return reportMapper.getDoFirstReport(reportPager);
 			}
 			
-			public ReportVO getDoFinalReport(ReportPager reportPager) throws Exception{
+			public List<ReportApplyVO> getDoFinalReport(ReportPager reportPager) throws Exception{
 				reportPager.getNum(reportMapper.getCountDoFinalReport(reportPager));
 				return reportMapper.getDoFinalReport(reportPager);
+			}
+			
+			public List<ReportApplyVO> getAdminReturnReport(ReportPager reportPager) throws Exception{
+				reportPager.getNum(reportMapper.getCountAdminReturnReport(reportPager));
+				return reportMapper.getAdminReturnReport(reportPager);
+			}
+			
+			public List<ReportApplyVO> getAdminFinishReport(ReportPager reportPager) throws Exception{
+				reportPager.getNum(reportMapper.getCountAdminFinishReport(reportPager));
+				return reportMapper.getAdminFinishReport(reportPager);
 			}
 
 		
