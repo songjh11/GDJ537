@@ -97,7 +97,7 @@
 						<script type="text/javascript">
 						
 						function Popup(roomNum){
-							window.open('/messenger/oneChat?roomNum='+roomNum, '개인 채팅방', strOption);
+							window.open('/messenger/oneChat/'+roomNum, '개인 채팅방', strOption);
 						}
 						
 					

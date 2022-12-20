@@ -84,7 +84,7 @@ function send() {
 													+"<div class='you-bubble-flex'><div class='you-bubble'>" +d.chat+ "</div></div>"
 												);
 						}
-					}
+						}
 					
 				}else {
 					console.log("흑흑");
@@ -95,16 +95,3 @@ function send() {
 		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-	
-	
