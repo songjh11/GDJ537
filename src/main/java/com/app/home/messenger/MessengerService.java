@@ -36,6 +36,8 @@ public class MessengerService {
 	// 채팅방 생성
 	public int setAddRoom(RoomVO roomVO)throws Exception{
 		
+		
+		
 		int result = messengerMapper.setAddRoom(roomVO);
 		
 		if(result > 0) {
@@ -65,13 +67,29 @@ public class MessengerService {
 		return result;
 	}
 	
-	// 채팅방 목록
+	// 채팅방 목록 조회
 	public List<RoomVO> getRoomList(RoomVO roomVO)throws Exception{
 		return messengerMapper.getRoomList(roomVO);
 	}
 	
+	// 채팅방 인원 수 조회
 	public int getUserCount(RoomVO roomVO)throws Exception{
 		return messengerMapper.getUserCount(roomVO);
+	}
+	
+	// 비밀번호 조회
+	public RoomVO getRoomPw(RoomVO roomVO)throws Exception{
+		return messengerMapper.getRoomPw(roomVO);
+	}
+	
+	// 비밀번호가 있는지 없는지 조회
+	public int getPwCheck(RoomVO roomVO)throws Exception{
+		return messengerMapper.getPwCheck(roomVO);
+	}
+	
+	//채팅방 제목
+	public String getChatName (RoomVO roomVO) throws Exception{
+		return messengerMapper.getChatName(roomVO);
 	}
 	
 }
