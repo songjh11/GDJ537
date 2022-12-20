@@ -28,11 +28,11 @@
    
    
 	<select id="getUserID" resultType="UserVO">
-		SELECT * FROM USER WHERE num = LAST_INSERT_ID()
+		SELECT * FROM USER WHERE NUM = LAST_INSERT_ID()
 	</select>
 	
 	<update id="setUserID" parameterType="UserVO">
-		UPDATE USER SET ID = CONCAT(DATE_FORMAT(#{entDate}, '%Y'),LPAD(LAST_INSERT_ID(),3,0)) WHERE num = LAST_INSERT_ID()
+		UPDATE USER SET ID = CONCAT(DATE_FORMAT(#{entDate}, '%Y'),LPAD(LAST_INSERT_ID(),3,0)) WHERE NUM = LAST_INSERT_ID()
 	</update>
 	
 	<insert id="setUser" parameterType="UserVO">
@@ -121,11 +121,11 @@
    </delete>
    
    <update id="setRoleNumUpdate" parameterType="UserVO">
-      UPDATE USER SET ROLEnum=#{roleNum} WHERE ID=#{id}
+      UPDATE USER SET ROLENUM=#{roleNum} WHERE ID=#{id}
    </update>
    
    <update id="setDepNumUpdate" parameterType="UserVO">
-      UPDATE USER SET DEPnum=#{depNum} WHERE ID=#{id}
+      UPDATE USER SET DEPNUM=#{depNum} WHERE ID=#{id}
    </update>
    
    <update id="setNameUpdate" parameterType="UserVO">
@@ -153,11 +153,11 @@
    </update>
    
    <update id="setIdUpdate" parameterType="DepartmentVO">
-      UPDATE DEPARTMENT SET ID=#{id} WHERE DEPnum=#{depNum}
+      UPDATE DEPARTMENT SET ID=#{id} WHERE DEPNUM=#{depNum}
    </update>
    
    <delete id="setDepartmentDel" parameterType="DepartmentVO">
-      DELETE FROM DEPARTMENT WHERE DEPnum=#{depNum}
+      DELETE FROM DEPARTMENT WHERE DEPNUM=#{depNum}
    </delete>
    
    <insert id="setRoleAdd" parameterType="RoleVO">
@@ -203,8 +203,8 @@
       FROM USER U
          INNER JOIN
          ROLE R
-         ON U.ROLEnum = R.ROLENUM
-      WHERE U.id=#{userName}
+         ON U.ROLENUM = R.ROLENUM
+      WHERE U.id=#{username}
    </select>
    
 	

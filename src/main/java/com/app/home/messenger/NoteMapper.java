@@ -15,6 +15,8 @@ public interface NoteMapper {
 	public Long getNotReadCount(UserVO userVO)throws Exception;
 	public int updateCheck(NoteVO noteVO)throws Exception;
 	public int setDeleteNote(NoteVO noteVO)throws Exception;
+	public int setSendNoteGroup(NoteVO noteVO)throws Exception;
+	public int setSendNoteGroup2(NoteVO noteVO)throws Exception;
 	public int setSendNote(NoteVO noteVO)throws Exception;
 	public int setSendNote2(NoteVO noteVO)throws Exception;
 	public List<NoteVO> getSendNoteList(Map<String, Object> map)throws Exception;
