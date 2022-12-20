@@ -119,6 +119,7 @@ public class ReportService {
 	public int setAddVaca(ReportVacaVO reportVacaVO) throws Exception{
 		Integer lstatus = reportMapper.getLstatus(reportVacaVO.getId());
 		
+		reportVacaVO.setStatus(1);
 		if(lstatus != null) {
 			if(lstatus == 2) {
 			reportVacaVO.setStatus(2);
@@ -131,6 +132,8 @@ public class ReportService {
 	
 	public int setAddWork(ReportWorkVO reportWorkVO) throws Exception{
 		Integer lstatus = reportMapper.getLstatus(reportWorkVO.getId());
+		
+		reportWorkVO.setStatus(1);
 		
 		if(lstatus != null) {
 			if(lstatus == 2) {
@@ -145,6 +148,8 @@ public class ReportService {
 	public int setAddPay(ReportPayVO reportPayVO) throws Exception{
 		
 		Integer lstatus = reportMapper.getLstatus(reportPayVO.getId());
+		
+		reportPayVO.setStatus(1);
 		
 		if(lstatus != null) {
 			if(lstatus == 2) {
@@ -170,6 +175,8 @@ public class ReportService {
 	public int setAddSorry(ReportSorryVO reportSorryVO) throws Exception{
 		
 		Integer lstatus = reportMapper.getLstatus(reportSorryVO.getId());
+		
+		reportSorryVO.setStatus(1);
 		
 		if(lstatus != null) {
 			if(lstatus == 2) {
