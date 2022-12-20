@@ -22,15 +22,14 @@ let ws = new WebSocket("ws://" + location.host + "/oneChat/"+roomNum);
 
  function send() {
 	
-	    	$("#inputChat").val("");
 
     let option={
         type: "message",
        	sessionId : sessionId,
        	userName : userName,
        	userId: userId,
-        chat : chat,
-       	roonNum:roomNum
+        inputChat :$("#inputChat").val(),
+       	roomNum:roomNum
       };
   
 
@@ -72,6 +71,8 @@ let ws = new WebSocket("ws://" + location.host + "/oneChat/"+roomNum);
       
       
       }if(d.type == "message"){
+	
+		console.log("fsdfsfsdfs")
          if(userId == d.userId){
             $("#chating").append("<div class='me'>"
             +"<div class='me-bubble-flex-first'><div class='me-bubble'>" +d.inputChat+"</div>"); 

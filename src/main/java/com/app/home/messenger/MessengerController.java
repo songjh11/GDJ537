@@ -500,6 +500,7 @@ public class MessengerController extends Socket {
 	    Authentication authentication = context.getAuthentication();
 	    userVO  =(UserVO)authentication.getPrincipal();	
 	    
+	    System.out.println(roomNum);
 	    userVO = userService.getMypage(userVO);
 	    mv.addObject("userVO", userVO);  
 	    
