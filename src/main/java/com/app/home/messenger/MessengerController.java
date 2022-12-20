@@ -152,6 +152,7 @@ public class MessengerController extends Socket {
 
 		List<NoteVO> ar = noteService.getReceiveNoteList(userVO, notePager);
 		
+		
 		Long getNotReadCount = noteService.getNotReadCount(userVO);
 		mv.addObject("list", ar);
 //		log.info("수신함AR {}",ar);
