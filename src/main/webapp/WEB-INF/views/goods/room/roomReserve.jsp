@@ -56,7 +56,7 @@
 
 							<div class="mb-3">
 								<div style="text-align: center;">
-									<font> *분 단위는 모두 0으로 입력됩니다.* </font>
+									<font> *1시간 단위로 입력됩니다.* </font>
 								</div>
 								<br>
 								<label>사용 시작 시간</label>
@@ -74,7 +74,7 @@
 							</div>
 
 							<div class="mb-5">
-								<label>예약자</label>
+								<label>사원 이름</label>
 								<input type="hidden" name="id" class="form-control" id="member" value="${userInfo.id }" readonly>
 								<input type="text" class="form-control" value="${userInfo.name }" disabled>
 							</div>

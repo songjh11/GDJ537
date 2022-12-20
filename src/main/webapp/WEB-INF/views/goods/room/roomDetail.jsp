@@ -12,7 +12,7 @@
 </head>
 <style>
 .de {
-	width: 550px;
+	width: 500px;
 	height: 400px;
 	object-fit: scale-down;
 }
@@ -20,7 +20,7 @@
 .product-title {
 	text-align: center;
 	display: table;
-	width: 550px;
+	width: 500px;
 	height: 400px;
 	padding-top: 15px;
 }
@@ -84,7 +84,7 @@
 						</div>
 						<br>
 					</section>
-					<div style="text-align: center;" class="mb-5">
+					<div style="text-align: center;" class="mb-5 mt-3">
 						<a href="./roomList">
 							<button type="button" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">뒤로가기</button>
 						</a>
