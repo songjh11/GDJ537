@@ -66,8 +66,7 @@ ul li {
                         		<input type="hidden" value="${ro.endTime}" class="endTime">	
 								<tr>
 									<td>${ro.reserveNum }</td>
-									<td>7</td>
-									<%-- <td>${ro.goodsVOs[0].carNum }</td> --%>
+									<td>${goods.carNum}</td>
 									<td>${ro.id }</td>
 									<td>${ro.date }</td>
 									<td>${ro.startTime} <br>~<br> ${ro.endTime}</td>
