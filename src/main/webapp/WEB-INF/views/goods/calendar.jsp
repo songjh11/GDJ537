@@ -26,6 +26,41 @@
     padding-left: 1em;
     padding-right: 1em;
   }
+  .toggleSwitch {
+  width: 50px;
+  height: 30px;
+  display: block;
+  position: relative;
+  border-radius: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+  cursor: pointer;
+  margin: 10px;
+}
+
+.toggleSwitch .toggleButton {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #3b61d1;
+}
+
+.filter:checked + .toggleSwitch {
+  background: #3b61d1;
+}
+
+.filter:checked + .toggleSwitch .toggleButton {
+  left: calc(100% - 25px);
+  background: #fff;
+}
+
+.toggleSwitch, .toggleButton {
+  transition: all 0.2s ease-in;
+}
 </style>
 </head>
 <body>
@@ -48,21 +83,37 @@
 				
 				<!-- Begin Page Content -->
 	            <div class="container-fluid">
-	
+					
+	            	  <div id='calendar-container' style="display: flex; align-items: center;">
+	            	  
+	                  <label for="pl" hidden >카테고리</label>
+	                  <select name="depNum" id="depNum" class="filter" style="margin: 0 10px;">
+	                    <option value="">부서별</option>
+	                    <option value="1">영업팀</option>
+	                    <option value="2">총무팀</option>
+	                    <option value="3">인사팀</option>
+	                    <option value="4">IT개발팀</option>
+	                    <option value="5">생산팀</option>
+	                  </select>
+	                  
+	                  
+	            	  	<input class="filter" id="room" type="checkbox" name="room"  hidden checked>회의실
+	            	  	<label for="room" class="toggleSwitch">
+						  <span class="toggleButton"></span>
+						</label>
+						
+                 		<input class="filter" id="car" type="checkbox" name="car" hidden>차량
+                 		<label for="car" class="toggleSwitch">
+						  <span class="toggleButton"></span>
+						</label>
+						
+<!--                 		<input class="filter" id="vacation" type="checkbox" name="vacation">휴가 -->
+					
+					
+					</div>
+					</div>
 	            	<!-- Page Heading -->
-	            	  <div id='calendar-container'>
-		            	<input class="filter" id="room" type="checkbox" name="room"  checked>회의실
-                  <input class="filter" id="car" type="checkbox" name="car" >차량
-                  <input class="filter" id="vacation" type="checkbox" name="vacation">휴가
-                  <label for="pl" hidden >카테고리</label>
-                  <select name="depNum" id="depNum" class="filter">
-                    <option value="">부서별</option>
-                    <option value="1">영업팀</option>
-                    <option value="2">총무팀</option>
-                    <option value="3">인사팀</option>
-                    <option value="4">IT개발팀</option>
-                    <option value="5">생산팀</option>
-                  </select>
+                		
 						<!-- Calendar -->
 				  	    <div id='calendar'></div>
 					    </div>
