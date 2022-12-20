@@ -62,8 +62,22 @@ pwCloseBtn.addEventListener("click", e => {
 
 //  채팅방 생성 모달창 열기
 $("#roomBtn").click(function(){
-    // console.log("모달창 클릭됨?")
     $(".room-overlay").css('display','flex').hide().fadeIn();
 });
 
+$("#kindCheck").blur(function(){
+
+    let kind = $("#kindCheck").val();
+    kind = parseInt(kind);
+
+    if(kind==0){
+        $(".oneRoomList").css('display','none').hide().fadeOut();
+        $(".groupRoomList").css('display','flex').hide().fadeIn();
+    }else{
+        console.log("1:1");
+        $(".oneRoomList").css('display','flex').hide().fadeIn();
+        $(".groupRoomList").css('display','none').hide().fadeOut();
+    }
+
+});
 

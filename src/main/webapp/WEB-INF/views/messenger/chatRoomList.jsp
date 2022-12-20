@@ -19,14 +19,14 @@
 						</table>
 						<!-- 그룹채팅 목록 -->
     					<div class="chatRoomArea" style="overflow-y: scroll; overflow-x: hidden; height: 550px;">
-							<select class="form-control" style="width: 110px; margin-left: 7px;">
-								<option value="0">그룹채팅</option>
+							<select class="form-control" id="kindCheck" style="width: 110px; margin-left: 7px;">
 								<option value="1">1:1채팅</option>
+								<option value="0">그룹채팅</option>
 							</select>				
-							<!-- <h3>Group</h3> -->
+							<h3>Group</h3>
 							<c:forEach items="${roomList}" var="roomVO">
 								<c:if test="${roomVO.kind eq '0'}">
-									<div class="chatRoomList">
+									<div class="chatRoomList groupRoomList" id="groupRoomList" style="display: none;">
 										<div class="col-3" style="margin-left: 6.4%;">
 											<img class="yourImg" src="/img/user/user.webp">
 											<span>${roomVO.userVO.name}</span>
@@ -63,7 +63,7 @@
 							<h3>1:1</h3>
 							<c:forEach items="${roomList}" var="roomVO">
 							<c:if test="${roomVO.kind eq '1'}">
-								<div class="chatRoomList">
+								<div class="chatRoomList oneRoomList" style="display: flex;">
 									<div class="col-3" style="margin-left: 6.4%;">
 										<img class="yourImg" src="/img/user/user.webp">
 										<span>${roomVO.userVO.name}</span>
