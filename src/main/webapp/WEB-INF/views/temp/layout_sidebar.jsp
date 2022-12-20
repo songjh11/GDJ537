@@ -109,8 +109,9 @@
                       	</c:choose>
 						<%-- </sec:authorize> --%>
 						</sec:authorize>
-                        <a class="collapse-item" href="/report/mylist?cat=1">결재 신청 목록</a>
-                     	
+						<c:if test="${member.reportVO.lstatus ne 3}">
+                        	<a class="collapse-item" href="/report/mylist?cat=1">결재 신청 목록</a>
+                     	</c:if>
                         
                     </div>
                 </div>
