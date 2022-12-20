@@ -4,10 +4,11 @@ $("#deptCate").on("change",function(){
     arrayForm= [];
     arrayCategoryName =[];
     let cate1 = $(this).find("option:selected").val();
-
+    teamText =$(this).find("option:selected").text();
     $('#formCate').children().remove();
     $('#formCate').append('<option value="none">선택</option>');
     
+    // $('.badge-info').append(teamText);
     $.ajax({
         type:"POST",
         url: "./reqcate",
@@ -23,9 +24,6 @@ $("#deptCate").on("change",function(){
                     arrayCategoryName.push(data[index].categoryName);
 
                     $('#formCate').append('<option value="'+index+'">'+data[index].categoryName+'</option>');
-              
-               
-                
             });
 
         },

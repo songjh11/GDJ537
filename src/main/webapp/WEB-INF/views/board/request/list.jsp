@@ -114,6 +114,10 @@
 										<p class="regdate" data-date="${request.regDate }" style="display: inline-block;
 																			margin-bottom: 0;"></p>
 										<a href="/request/hit?id=${request.id}">
+											<span class="badge badge-pill badge-info data-team">
+												
+												
+											</span>
 											<h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input" style="font-size: 25px">
 												${request.title }</h5>
 										</a>
@@ -228,6 +232,20 @@
         twentyBtn.on("click", () => {
         	location.href = currentPath + currentParam + "perPage=20";
         });
+
+		const teamArr =[0,"영업팀","총무팀","인사팀","IT개발팀","생산팀"];
+		console.log('ㅅㅂ0',teamArr[${member.departmentVO.depNum}])
+
+		$(".data-team").text(teamArr[${member.departmentVO.depNum}]);
+
+		
+
+
+
+		// if($('#teamText').val() === teamArr[index]){
+
+		// }
+		// $('#teamText').val() === teamArr[index]
 
 	</script>
 	<!-- Scroll Top, Logout Modal import -->
