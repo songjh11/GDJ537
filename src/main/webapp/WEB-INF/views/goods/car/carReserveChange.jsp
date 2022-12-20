@@ -9,8 +9,6 @@
 <title>Insert title here</title>
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
-
-<script defer src="/js/room/reserve.js"></script>
 </head>
 
 <!-- body ID 작성 -->
@@ -72,19 +70,19 @@
 								
 								<div class="mb-3">
 									<label>사용 시작 시간</label>
-									<input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1" value="${reserve.startTime}">
+									<input type="datetime-local" name="startTime" class="form-control" id="start" value="${reserve.startTime}">
 									<br>
 								</div>
 								
 								<div class="mb-3">
 									<label>사용 종료 시간</label>
-									<input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput1" value="${reserve.endTime}">
+									<input type="datetime-local" name="endTime" class="form-control" id="end" value="${reserve.endTime}">
 									<br>
 								</div> 
 								
 								<div class="mb-5">
 									<label>사원 이름</label>
-									<input type="text" name="memberNum" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${reserve.id}">
+									<input type="text" name="id" class="form-control" readonly="readonly" id="member" value="${reserve.id}">
 								</div>
 								
 								
@@ -101,11 +99,11 @@
 																																	
 								<div class="mb-5">
 								  <label>변경 사유</label>
-								  <input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1" value="${reserve.usePurpose }">
+								  <input type="text" name="usePurpose" class="form-control" id="purpose" value="${reserve.usePurpose }">
 								</div>
 								
 								<div class="mb-5" style="text-align: center;">
-									<button type="submit" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">예약변경</button>
+									<button type="button" id="resBtn" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">예약변경</button>
 								</div>
 							</form>
 					</section>
