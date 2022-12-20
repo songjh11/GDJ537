@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.home.report.ReportMapper;
 import com.app.home.user.util.FileUserManager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,8 @@ public class UserService {
 
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	private ReportMapper reportMapper;
 
 	@Autowired
 	private FileUserManager fileManager;
@@ -220,6 +223,10 @@ public class UserService {
 		
 	// 회원가입
 	public int setJoin(UserVO userVO, String e, String address) throws Exception {
+		
+//		//회원가입 하기전에 승인자 테이블로 먼저 insert (보고서조)
+//		int result = reportMapper.setLicenserAdd(userVO);
+//		
 		// 패스워드 암호화
 		userVO.setPw(passwordEncoder.encode(userVO.getPw()));
 
@@ -239,6 +246,7 @@ public class UserService {
 			log.info("=====회원가입 : {}", userVO);
 			return userMapper.setJoin(userVO);
 		}
+		
 		return userMapper.setJoin(userVO);
 	}
 

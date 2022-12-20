@@ -54,10 +54,12 @@
 	            <input style="display: none;" value="${vo.id}" name="id">
                  <input style="display: none;" value="${vo.depNum}" name="depNum">
                  <input style="display: none;" value="3" name="reportNum">
+                 <input style="display: none;" value="${vo.name}" name="name">
+                 <input style="display: none;" value="${vo.roleVO.roleName}" name="roleName">
 	            <div class="container-fluid">
 						 <div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px;margin-top: 45px; background-color: rgb(255, 255, 249); color: black; font-size: 35px; font-weight: bolder; vertical-align: top; margin-right: 380px;" >
+            <div style="letter-spacing: 70px;margin-top: 45px; color: black; font-size: 35px; font-weight: bolder; vertical-align: top; margin-right: 380px;" >
                    지출결의서
                     <div style="border: solid 1px black; width: 400px; margin-left: 570px; height: 120px; margin-top: -65px;">
                         <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
@@ -67,9 +69,9 @@
                         <div class="row" style="border-bottom: solid 1px black; margin-top: -120px; width: 368px; margin-left: 30px; height: 30px; font-size: 15px;">
                             <div style="padding-top:3px; letter-spacing: 0; margin-left: 5px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
                                                                                                 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
-                            <div id="ajaaja"></div>
-                            <div id="ajaaja"></div>
-                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                        <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                        <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
                             
                         </div>
                     </div>
@@ -284,7 +286,7 @@
                             <input type="number" id="total" readonly style="font-weight: bold; border: 0; width: 173px; height: 35px; margin-top: 5px; text-align: right;" name="sum">
                         </div>
                         <div style="width: 179px; margin-left: 550px; height: 42px; margin-top: -42px; text-align: left; font-weight: bold; padding-top: 7px;">
-                            만(원)
+                            원
                         </div>
                     </div>
                 </div>
@@ -311,10 +313,10 @@
 
         </div>    
 
+        <button type="button" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;" onclick="checkAll()">제 출</button>
     </div>
 	            </div>
 	            
-	       <button type="button" onclick="checkAll()">제출</button>
 	</form>
 	            <!-- End Page Content -->
 					

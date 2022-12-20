@@ -14,8 +14,8 @@ import lombok.Data;
 @Data
 public class ReportVO {
 	
-	private int licensernum;
-	private int depnum;
+	private int licenserNum;
+	private int depNum;
 	private int id;
 	private int lstatus;
 	
@@ -28,7 +28,9 @@ public class ReportVO {
 	private DepartmentVO departmentVO;
 	private RoleVO roleVO;
 	
+	private int roleNum;
 	private String roleName;
+	private String depName;
 	
 	
 	
