@@ -40,7 +40,7 @@
             
             <!-- Begin Page Content -->
                <div class="container-fluid">
-               <section class="container col-lg-4 justify-content-center" style="text-align: center;">
+               <section class="container col-lg-4 justify-content-center">
    
                   <!-- Page Heading -->
                   <h1 class="h3 mb-4 text-gray-800" id="title">공용 시설 수정</h1>
@@ -70,11 +70,11 @@
                      <div id="namediv" class="check"></div>
                   </div>
                   <div class="mb-3">
-                     <label for="exampleInputContents" class="form-label">시설 설명</label>
+                     <label for="exampleInputContents" class="form-label">시설 상세 설명</label>
                      <textarea  class="form-control add_ele" id="contents" name="contents">${goods.contents}</textarea>
                   </div>
                   <div class="mb-3">
-                     <label for="exampleInputMax" class="form-label">*최대 인원</label>
+                     <label for="exampleInputMax" class="form-label">*최대 인원 수</label>
                      <input type="text" class="form-control" id="max" name="max" value="${goods.max}" >
                      <div id="maxdiv" class="check"></div>
 
@@ -90,27 +90,31 @@
                      <label for="exampleInputLocation" class="form-label" style="font-weight : bold">*차량 번호</label>
                      <input type="text" class="form-control" id="carNum" name="carNum" value="${goods.carNum}">
                      <div id="carNumdiv" class="check"></div>
-
                   </div>
+                  
                   <div>
                      <div class="mb-3" id="fileAddResult">   
-                        <div class="board-filetitle" style="font-weight : bold">*이미지</div> 
+                        <div class="board-filetitle" style="font-weight : bold">*이미지
+                           <button type="button" id="fileAdd" class="btn btn-primary">파일 추가</button>
+                           <div id="imgdiv" class="check"></div>
+                        </div> 
                         <c:forEach items="${list}" var="li">
-                           <div class="file_form mt-2">
+                           <div class="file_form mt-2" style="width: 450px;">
                               <!-- <img src="/file/goods/${li.fileName}"  width="300" height="300"> -->
                               <input type="file" name="files" class="files form-control">
-                              <span class="text ff" >${li.oriName}</span> 
-                              <button type="button" class="del btn btn-danger" style="margin:auto;display: block;">X</button>
+                              <span class="text ff" style="font-weight: bold;" >${li.oriName}<button type="button" class="del btn btn-danger" style="margin-left: 383px;">X</button></span> 
+                              <!-- <button type="button" class="del btn btn-danger" style="margin:auto;">X</button> -->
                            </div>
                         </c:forEach>
                      </div>
-                     <div class="mb-3">
-                        <button type="button" id="fileAdd" class="btn btn-primary">파일 추가</button>
-                        <div id="imgdiv" class="check"></div>
-                     </div>
                   </div>
-                  <input type="button" class="btn btn-primary" value="수정" id="sub" style="margin-top : 50px;">
-                  <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}" style="margin-top : 50px;">
+                  <div class="mb-2">
+                  	<input type="button" class="btn btn-primary" value="수정" id="sub" style="margin-top : 50px; margin-left:160px;">
+                  	<input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}" style="margin-top : 50px;">
+                  </div>
+                  <div class="test mb-5" style="margin-left: 160px;">
+                  	<a href="../goods/ad_list" class="btn" style="background-color: #4e73df; color: white; width: 120px;">뒤로가기</a>
+                  </div>
                   </form>
    
                   </div>

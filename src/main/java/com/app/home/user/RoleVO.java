@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class RoleVO {
-	private int rolenum;
+	private int roleNum;
 	private String roleName;
 	
 //	public String getRoleName() {

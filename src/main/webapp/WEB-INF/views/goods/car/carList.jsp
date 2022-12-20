@@ -15,6 +15,7 @@
 
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
+
 </head>
 
 <!-- body ID 작성 -->
@@ -41,6 +42,8 @@
 					<section class="container d-flex flex-wrap justify-content-center">
 
 						<!-- Page Heading -->
+						<input type="hidden" value="${loginCheck }" id="userID">
+						
 						<h1 class="h3 mb-4 text-gray-800">차량 정보</h1>
 						<table class="table table-hover justify-content-right" style="text-align: center;">
 							<tr>
@@ -59,7 +62,7 @@
 									<td>${goods.carNum}</td>
 									<td>${goods.name}</td>
 									<td><a href="./carDetail?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">정보 보기</button></a></td>
-									<td><a href="./carReserve?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">예약하기</button></a></td>
+									<td><a href="./carReserve?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none res">예약하기</button></a></td>
 									<td><a href="./carResInfo?goodsId=${goods.goodsId}"><button type="button" class="btn btn-outline-none">현황보기</button></a></td>
 
 								</tr>
@@ -97,5 +100,7 @@
 			}
 		});
 	</script>
+	<!-- 로그인체크 JS -->
+<script src="/js/room/reserveIDcheck.js"></script>
 </body>
 </html>

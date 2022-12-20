@@ -89,6 +89,7 @@
        LEFT JOIN GOODSFILE GF
        ON G.GOODSID = GF.GOODSID
        WHERE G.GOODSID LIKE 'RO%'
+       ORDER BY G.GOODSID DESC
     </select>
     
     <select id="getCarList" resultMap="getGoodsDetail">
@@ -97,6 +98,7 @@
        LEFT JOIN GOODSFILE GF
        ON G.GOODSID = GF.GOODSID
        WHERE G.GOODSID LIKE 'CA%'
+       ORDER BY G.GOODSID DESC
     </select>
 
 
@@ -179,8 +181,8 @@
       SELECT GOODSID, NAME FROM GOODS WHERE GOODSID LIKE 'CA%'
    </select>
    
-   <select id="getreserveGoods" parameterType="GoodsVO" resultType="ReserveVO">
-      SELECT * FROM RESERVE WHERE GOODSID = #{goodsID}
+   <select id="getreserveGoods" parameterType="GoodsVO" resultType="int">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
    </select>
    
    <select id="getreserveCount" parameterType="ReserveVO" resultType="int">
@@ -240,6 +242,18 @@
    		INSERT INTO RESERVE 
 		VALUE(null,#{goodsId},"2018-01-01 09:00:00",2022001,"예시","2018-01-01T09:00","2018-01-01T09:00")
    </insert>
+   
+   <select id="getAllCount" parameterType="GoodsVO" resultType="int">
+      SELECT COUNT(*) FROM RESERVE WHERE GOODSID = #{goodsId}
+   </select>
+   
+   <delete id="setReserveDelete" parameterType="GoodsVO">
+	  DELETE FROM RESERVE WHERE GOODSID = #{goodsId}
+   </delete>
+   
+   <delete id="setFileDelete" parameterType="GoodsVO">
+	  DELETE FROM GOODSFILE WHERE GOODSID = #{goodsId}
+   </delete>
    
    
    

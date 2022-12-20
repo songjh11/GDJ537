@@ -7,6 +7,7 @@
 <!-- meta tag 추가 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
+
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 
@@ -34,6 +35,7 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
+					<h3 class="mb-5" style="text-align: center;">---- 모든 정보를 필수로 입력해야 합니다. ----</h3>
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
 						
@@ -42,7 +44,7 @@
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
 										<th>차량번호</th>
-										<td>${goods.carnum}</td>
+										<td>${goods.carNum}</td>
 										<th>모델명</th>
 										<td>${goods.name}</td>									
 										<th>정원</th>
@@ -60,21 +62,27 @@
 	                        </div>
                      	</c:forEach>
                      	
+                     	<div class="mb-3">
+                     		<div style="text-align: center;">
+								<font> *1시간 단위로 입력됩니다* </font>
+							</div>
+                     	</div>
+                     	
 						<div class="mb-3">
-                           <label>예약날짜</label>
-                           <input type="datetime-local" name="startTime" class="form-control" id="exampleFormControlInput1" >
+                           <label>사용 시작 시간</label>
+                           <input type="datetime-local" name="startTime" class="form-control" id="start">
                           	<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p> <br>
 						</div>
                         
                         <div class="mb-5">
-                           <label>반납날짜</label>
-                           <input type="datetime-local" name="endTime" class="form-control" id="exampleFormControlInput2">
+                           <label>사용 종료 시간</label>
+                           <input type="datetime-local" name="endTime" class="form-control" id="end" disabled="disabled">
                            <p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
                         </div> 
                         
                         <div class="mb-5">
-                           <label>사원이름</label>
-                           <input type="hidden" name="id" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${userInfo.id}">
+                           <label>사원 이름</label>
+                           <input type="hidden" name="id" class="form-control" readonly="readonly" id="member" value="${userInfo.id}">
                            <input type="text" class="form-control" readonly="readonly" id="exampleFormControlInput1" value="${userInfo.name}">
                         </div>
                         
@@ -117,8 +125,8 @@
    </div>
 <script type="text/javascript">
 
-document.getElementById('startTime').value= new Date().toISOString().slice(0, 8);
-document.getElementById('endTime').value= new Date().toISOString().slice(0, 8);
+document.getElementById('start').value= new Date().toISOString().slice(0, 8);
+document.getElementById('end').value= new Date().toISOString().slice(0, 8);
 </script>
 </body>
 </html>

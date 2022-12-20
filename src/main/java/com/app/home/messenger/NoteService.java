@@ -30,6 +30,11 @@ public class NoteService {
 	public int setDeleteNote(NoteVO noteVO)throws Exception{
 		return noteMapper.setDeleteNote(noteVO);
 	}
+	
+	public int setSendNoteGroup(NoteVO noteVO)throws Exception{
+		noteMapper.setSendNoteGroup2(noteVO);
+		return noteMapper.setSendNoteGroup(noteVO);
+	}
 
 	
 	public int setSendNote(NoteVO noteVO)throws Exception{
@@ -49,8 +54,8 @@ public class NoteService {
 		notePager.setPerPage(10L);
 		
 
-		log.info("============= : {}", totalCount);
-		log.info("==============토탈페이지 : {}", notePager.getTotalPage());
+//		log.info("============= : {}", totalCount);
+//		log.info("==============토탈페이지 : {}", notePager.getTotalPage());
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", userVO.getId());
