@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.home.schedule.goods.GoodsVO;
 import com.app.home.schedule.goods.ReserveVO;
+import com.app.home.schedule.room.GoodsRoomVO;
 import com.app.home.user.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,9 +20,9 @@ public class CarService {
 	private CarMapper carMapper;
 	
 	// 예약현황 보기
-	public List<ReserveVO> getResInfo(ReserveVO reserveVO) throws Exception {
+	public List<ReserveVO> getResInfo(GoodsRoomVO goodsRoomVO) throws Exception {
 		
-		return carMapper.getResInfo(reserveVO);
+		return carMapper.getResInfo(goodsRoomVO);
 	}
 	
 	public List<ReserveVO> getStartTime(ReserveVO reserveVO) throws Exception {
