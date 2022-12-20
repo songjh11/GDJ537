@@ -28,21 +28,24 @@
                 <!-- Topbar -->
                 <c:import url="../temp/layout_topbar.jsp"></c:import>
                 <!-- End of Topbar -->
-				 <input type="text" style="display: none;" id="result" value="${result }" data-status="${result }">
- 				 <input type="text" style="display: none;" id="applyNum" value="${reportVacaVO.applyNum }" data-num="${reportVacaVO.applyNum }">
+                <input type="text" style="display: none;" id="result" value="${result }" data-status="${result }">
+ 				<input type="text" style="display: none;" id="applyNum" value="${reportVacaVO.applyNum }" data-num="${reportVacaVO.applyNum }">
+		
+			
+				
+				
 				<div class="container px-4 px-lg-5 my-5">
 					<a href="./doreport?cat=1" class="btn btn-primary btn-icon-split btn-sm">
                        <span class="icon text-white-50">
-                       <i class="fas fa-arrow-right"></i>
+                       <i class="fas fa-arrow-left"></i>
                        </span>
                        <span class="text">휴가신청 목록</span>
                        </a>
 				</div>
-				
 	            <div class="container-fluid">
 						<div class="container px-4 px-lg-5 my-5">
         <div  style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1150px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 60px; background-color: rgb(255, 255, 249); text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
+            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 60px;  text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
                     휴가신청서
                     <div style="border: solid 1px black; width: 400px; margin-left: 500px; height: 120px; margin-top: -75px;">
                         <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
@@ -54,28 +57,36 @@
                                                                                                 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
                             
                             <c:choose>
-                            <c:when test="${reportVacaVO.status eq 1}">
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                </div>
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                </div>
-                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            <c:when test="${reportVacaVO.status eq 1 and reportVacaVO.returns eq 0}">
+	                           <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
                             </c:when>
-                            <c:when test="${reportVacaVO.status eq 2}">
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
-                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            <c:when test="${reportVacaVO.status eq 2 and reportVacaVO.returns eq 0}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
                             </c:when>
-                            <c:when test="${reportVacaVO.status eq 3}">
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
-                            <div style=" align-items:center; display: flex; justify-content:center;" id="ajaaja">
-                                <img src="/img/report/sign.png" width="85px" height="85px"></div>
-                            <div style=" height: 90px; width: 122px; margin-top: 6px;">
-                            	<img src="/img/report/sign.png" width="85px" height="85px"></div>
+                            <c:when test="${reportVacaVO.status eq 3 and reportVacaVO.returns eq 0}">
+                           		<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
                             </c:when>
+                            <c:when test="${reportVacaVO.status eq 1 and reportVacaVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>
+                            <c:when test="${reportVacaVO.status eq 2 and reportVacaVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>
+                            <c:when test="${reportVacaVO.status eq 3 and reportVacaVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>                            
                             </c:choose>
                             
                         </div>
@@ -245,40 +256,43 @@
                                 <div><input type="number" id="d3" style="width: 100px; border:0 solid black; text-align:right" value="${day}"/>일</div>
                             </div>
                             <div style="font-weight: bold; margin-top: 20px; margin-left: 150px;">
-                                신청자 : <input type="text" value="${reportVacaVO.name}" readonly style="border:0 solid black"/>
+                                신청자 : <input type="text" value=${reportVacaVO.name} readonly style="border:0 solid black"/>
                             </div>
                         </div>
                     </div>
             </div>
+        </div>
+        <div style="text-align: right; margin-left: 20px;">
+        <button type="button" id="license" class="btn btn-primary" style="margin-left: 900px; margin-top: 12px; display: inline-block;">승인</button>
+		<button type="button" id="returns" class="btn btn-primary" style="margin-top: 12px; display: inline-block;">반려</button>
         </div>    
-        
     </div>
 
 
         
 
-        <button type="button" id="license" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;">승인</button>
-		<button type="button" id="returns" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;">반려</button>
 	            </div>
 
            
-
-
-
-
-	            </div>
-	            <!-- End Page Content -->
-					
-			</div>
-			<!-- End of Main Content -->
-			
-			<!-- Footer import -->
-			<c:import url="../temp/layout_footer.jsp"></c:import>
-			<!-- End of Footer -->
+		
+		    
+		    
+		
 		</div>
-		<!-- End of Content Wrapper -->
+            <!-- End of Main Content -->
 
-	<!-- Scroll Top, Logout Modal import -->
-	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+            <!-- Footer -->
+			<c:import url="../temp/layout_footer.jsp"></c:import>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+ 	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+    <!-- Logout Modal-->
 </body>
 </html>
