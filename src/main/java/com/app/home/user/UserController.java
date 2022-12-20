@@ -242,7 +242,7 @@ public class UserController {
 	@PostMapping("admin/allowNot")
 	@ResponseBody
 	public int setAllowNot(UserVO userVO) throws Exception {
-		int result = userService.setAllow(userVO);
+		int result = userService.setAllowNot(userVO);
 		return result;
 	}
 

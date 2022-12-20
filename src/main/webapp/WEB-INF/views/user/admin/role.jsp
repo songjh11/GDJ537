@@ -58,14 +58,14 @@
                      <tr>
                         <th class="table-light" scope="col">직급번호</th>
                         <th class="table-light" scope="col">직급이름</th>
-                        <th class="table-light" scope="col">삭제 처리</th>
+                        <th class="table-light" scope="col"></th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">
                      <c:forEach items="${list}" var="roleVO">
                      <tr>
                         <th scope="row">${roleVO.roleNum}</th>
-                        <td class="showRole" data-role="${roleVO.roleName}">${roleVO.roleName}</td>
+                        <td class="showRole" data-role="roleName">${roleVO.roleName}</td>
                         <td class="roleDel"><a href="#">삭제</a></td>
                      </tr>
                      </c:forEach>

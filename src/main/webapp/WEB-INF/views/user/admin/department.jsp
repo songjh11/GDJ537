@@ -61,7 +61,7 @@
                         <th class="table-light" scope="col">부서이름</th>
                         <th class="table-light" scope="col">부장번호</th>
                         <th class="table-light" scope="col">부장이름</th>
-                        <th class="table-light" scope="col">삭제 처리</th>
+                        <th class="table-light" scope="col"></th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">

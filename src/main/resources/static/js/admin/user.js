@@ -82,9 +82,9 @@ $(".dismiss").click(function(){
         })
         if (getName) { // Swal.fire(`: ${getName}`)
             switch(select){
-                case 'rolenum': rolenumUpdate(id,getName);
+                case 'roleNum': roleNumUpdate(id,getName);
                 break;
-                case 'depnum': depnumUpdate(id,getName);
+                case 'depNum': depNumUpdate(id,getName);
                 break;
                 case 'name':nameUpdate(id,getName);
                 break;
@@ -104,24 +104,25 @@ $('.showUser1').click(function(){
     console.log(updateId);
 })
 
-$('.rolenumUpdate').click(function(){
-    let rolenum = $(this).data().rolenum;
-    rolenumUpdate(updateId,rolenum);
-})
-
-$('.depnumUpdate').click(function(){
-    let depnum = $(this).data().depnum;
-    depnumUpdate(updateId,depnum);
+$('.roleNumUpdate').click(function(){
+    let roleNum = $(this).data().rolenum;
+    // roleNumUpdate(updateId,roleNum);
 })
 
 
-function rolenumUpdate(id,rolenum){
+$('.depNumUpdate').click(function(){
+    let depNum = $(this).data().depnum;
+    depNumUpdate(updateId,depNum);
+})
+
+
+function roleNumUpdate(id,roleNum){
     $.ajax({
         type:"post",
-        url:"/user/admin/rolenumUpdate",
+        url:"/user/admin/roleNumUpdate",
         data:{
             id:id,
-            rolenum:rolenum
+            roleNum:roleNum
         },
         success:function(){
             Swal.fire('직급을 변경하였습니다.','','success');
@@ -135,13 +136,13 @@ function rolenumUpdate(id,rolenum){
     })
 };
 
-function depnumUpdate(id,depnum){
+function depNumUpdate(id,depNum){
     $.ajax({
         type:"post",
-        url:"/user/admin/depnumUpdate",
+        url:"/user/admin/depNumUpdate",
         data:{
             id:id,
-            depnum:depnum
+            depNum:depNum
         },
         success:function(){
             Swal.fire('부서를 변경하였습니다.','','success');
