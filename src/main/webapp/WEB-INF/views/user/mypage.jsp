@@ -101,7 +101,7 @@
 			                   		<img src="/img/user/user.webp" class="rounded" alt="..." style="width: 180px; margin-right: 1.3em">
 			                   	</c:when>
 			                   	<c:otherwise>
-		                            <img src="/file/profile/${userVO.profile}" class="rounded" alt="..." style="width: 180px; margin-right: 1.3em">
+		                            <img src="/file/user/${userVO.profile}" class="rounded" alt="..." style="width: 180px; margin-right: 1.3em">
 			                   	</c:otherwise>
 			                 </c:choose>
                               <div style="margin-top: 10px">

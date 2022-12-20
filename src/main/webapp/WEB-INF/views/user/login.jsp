@@ -36,33 +36,7 @@ pageEncoding="UTF-8"%>
 				
 				<!-- Begin Page Content -->
 	            <div class="container-fluid">
-                <section class="container-fluid col-lg-4 mt-5 min-vh-100">
-                  <div class="row">
-                   <div class="container-fluid">
-                      <h1><strong>로그인</strong></h1>
-                      <form action="./login" method="post">
-                          <div class="form-group">
-                              <label th:for="username"><strong>사원번호</strong> </label>
-                              <input type="text" name="id" class="form-control" placeholder="아이디 입력해주세요">
-                          </div>
-                          <div class="form-group">
-                              <label th:for="password"><strong>비밀번호</strong> </label>
-                              <input type="password" class="form-control" name="pw" placeholder="비밀번호 입력해주세요">
-                          </div>
-                          <button type="submit" class="btn btn-primary" style="width: 100%;">로그인</button>
-                          <span style="margin-left: 25px; margin-top: 2px;">
-                            <input type="checkbox" name="rememberId" class="form-check-input" id="exampleCheck1" style="margin-top: 16px;">
-                            <label class="form-check-label" for="exampleCheck1" style="margin-top: 13px;">ID기억하기</label>
-                          </span>
-                          <span style="border-right: solid lightgray;">
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#findPwModal" data-bs-whatever="@mdo">비밀번호 찾기</button>
-                            
-                          </span>
-                          <button type="button" class="btn" onclick="location.href='/user/join';">회원 가입</button>
-                      </form>
-                   </div>
-                  </div>
-              </section>
+                	<c:import url="../temp/indexContentWithnotLogin.jsp"></c:import>
 	            </div>
 	            <!-- End Page Content -->
 					
