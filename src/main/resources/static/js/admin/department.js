@@ -4,7 +4,7 @@ $("#addDepartment").click(function(){
     console.log("click");
     (async () => {
         const { value: getName } = await Swal.fire({
-            title: '추가할 부서를 입력하세요.',
+            title: '추가할 직급을 입력하세요.',
             text: '',
             input: 'text',
             inputPlaceholder: '영업팀'
@@ -18,7 +18,7 @@ $("#addDepartment").click(function(){
                     depName:getName
                 },
                 success:function(){
-                    Swal.fire('부서를 추가하였습니다.','','success');
+                    Swal.fire('직급을 추가하였습니다.','','success');
                     setTimeout(function(){
                         location.reload();
                     },1000);
@@ -32,7 +32,7 @@ $("#addDepartment").click(function(){
 })
 
 $('.showDepartment').click(function(){
-    let depnum = $(this).parent().children().first().text();
+    let depNum = $(this).parent().children().first().text();
     let content = $(this).text();
     let select = $(this).data().department;
 
@@ -45,21 +45,21 @@ $('.showDepartment').click(function(){
         })
         if (getName) { // Swal.fire(`: ${getName}`)
             switch(select){
-                case 'depName': depNameUpdate(depnum,getName);
+                case 'depName': depNameUpdate(depNum,getName);
                 break;
-                case 'id': idUpdate(depnum,getName);
+                case 'id': idUpdate(depNum,getName);
                 break;
             }
         }
     })() 
 })
 
-function depNameUpdate(depnum,depName){
+function depNameUpdate(depNum,depName){
     $.ajax({
         type:"post",
         url:"/user/admin/depNameUpdate",
         data:{
-            depnum:depnum,
+            depNum:depNum,
             depName:depName
         },
         success:function(){
@@ -74,12 +74,12 @@ function depNameUpdate(depnum,depName){
     })
 };
 
-function idUpdate(depnum,id){
+function idUpdate(depNum,id){
     $.ajax({
         type:"post",
         url:"/user/admin/idUpdate",
         data:{
-            depnum:depnum,
+            depNum:depNum,
             id:id
         },
         success:function(){
@@ -104,14 +104,14 @@ $('.showDepartment').mouseenter(function(){
   })
 
   $(".departmentDel").click(function(){
-    let depnum=$(this).prev().prev().prev().text();
-    let depName=$(this).prev().prev().text();
+    let depNum=$(this).prev().prev().prev().prev().text();
+    let depName=$(this).prev().prev().prev().text();
 
     $.ajax({
         type:"post",
         url:"/user/admin/depCheck",
         data:{
-            "depnum":depnum
+            "depNum":depNum
         },
         success:function(data){
             if(data==0){
@@ -131,7 +131,7 @@ $('.showDepartment').mouseenter(function(){
                             type:"post",
                             url:"/user/admin/departmentDel",
                             data:{
-                                "depnum":depnum
+                                "depNum":depNum
                             },
                             success:function(success){
                                 Swal.fire('부서를 삭제하였습니다.', '', 'success');

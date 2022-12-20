@@ -65,7 +65,7 @@
                      <c:forEach items="${list}" var="roleVO">
                      <tr>
                         <th scope="row">${roleVO.roleNum}</th>
-                        <td class="showRole" data-role="${roleVO.roleName}">${roleVO.roleName}</td>
+                        <td class="showRole" data-role="roleName">${roleVO.roleName}</td>
                         <td class="roleDel"><a href="#">삭제</a></td>
                      </tr>
                      </c:forEach>
