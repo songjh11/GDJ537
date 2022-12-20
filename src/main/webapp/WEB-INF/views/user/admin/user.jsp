@@ -70,13 +70,42 @@
                      <c:forEach items="${list}" var="userVO">
                      <tr>
                         <th scope="row">${userVO.id}</th>
-                        <td class="showUser1" data-user="rolenum" data-bs-toggle="modal" data-bs-target="#exampleModalR" >${userVO.roleVO.roleName}</td>
-                        <td class="showUser1" data-user="depnum"  data-bs-toggle="modal" data-bs-target="#exampleModalD" >${userVO.departmentVO.depName}</td>
-                        <td class="showUser" data-user="name">${userVO.name}</td>
-                        <td class="showUser" data-user="email">${userVO.email}</td>
-                        <td class="showUser" data-user="phone">${userVO.phone}</td>
+                        
+                        <td class="" data-user="roleNum">
+                             <select class="roleNumSelect" value=${userVO.id }>
+	                             <c:forEach items="${listR}" var="roleVO">
+	                        		<option value=${roleVO.roleNum }
+		                        		<c:if test="${userVO.roleVO.roleName eq roleVO.roleName}">
+		                        			selected="selected"                    		
+		                        		</c:if>>
+		                        		${roleVO.roleName}
+	                        		</option>
+                        		</c:forEach>
+                        	</select>
+                        </td>
+                        <td class="" data-user="depNum">
+
+                             <select class="depNumSelect" value=${userVO.id }>
+	                             <c:forEach items="${listD}" var="departmentVO">
+	                        		<option value=${departmentVO.depNum }
+		                        		<c:if test="${userVO.departmentVO.depName eq departmentVO.depName}">
+		                        			selected="selected"                    		
+		                        		</c:if>>
+		                        		${departmentVO.depName}
+	                        		</option>
+                        		</c:forEach>
+                        	</select>                        
+                        
+                        </td>
+                        <td class="" data-user="name">${userVO.name}</td>
+                        <td class="" data-user="email">${userVO.email}</td>
+                        <td class="" data-user="phone">${userVO.phone}</td>
                         <td class="showUser" data-user="entDate">${userVO.entDate}</td>
                         <td class="dismiss"><a href="#">퇴사</a></td>
+                        
+	                        	 
+                        </td>
+                        
                      </tr>
                      </c:forEach>
 
@@ -93,7 +122,7 @@
 				      </div>
 				      <div class="modal-body">
 				      	<c:forEach items="${listR}" var="roleVO">
-				        <center><button type="button" class="btn btn-primary rolenumUpdate" data-bs-dismiss="modal" data-rolenum=${roleVO.rolenum }>${roleVO.roleName}</button><br><br></center>
+				        <center><button type="button" class="btn btn-primary roleNumUpdate" data-bs-dismiss="modal" data-rolenum=${roleVO.roleNum }>${roleVO.roleName}</button><br><br></center>
 				        </c:forEach>
 				      </div>
 				      <div class="modal-footer">
@@ -113,7 +142,7 @@
 				      </div>
 				      <div class="modal-body">
 				      	<c:forEach items="${listD}" var="departmentVO">
-				        <center><button type="button" class="btn btn-primary depnumUpdate" data-bs-dismiss="modal" data-depnum=${departmentVO.depnum }>${departmentVO.depName}</button><br><br></center>
+				        <center><button type="button" class="btn btn-primary depNumUpdate" data-bs-dismiss="modal" data-depnum=${departmentVO.depNum }>${departmentVO.depName}</button><br><br></center>
 				        </c:forEach>
 				      </div>
 				      <div class="modal-footer">

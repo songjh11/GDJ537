@@ -155,9 +155,6 @@
 
 
             <hr class="sidebar-divider d-none d-md-block">
-
-            
-
             <!-- Nav Item - 관리자 -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/user/admin/wait" data-toggle="collapse" data-target="#collapseAdmin"

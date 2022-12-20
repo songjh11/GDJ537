@@ -42,7 +42,7 @@
 	</update>
 	
 	<insert id="setUser" parameterType="UserVO">
-		INSERT INTO USER VALUES(NULL, 1111111, 1, 1, '1111', #{name}, 'TESTEAMIL', 'TESTPHONE', #{entDate} , 'TESTPROFILE', 0)
+		INSERT INTO USER VALUES(NULL, 1111111, 6, 1, '1111', #{name}, 'TESTEAMIL', 'TESTPHONE', #{entDate} , 'TESTPROFILE', 0)
 	</insert>
 	
 	<select id="getMypage" parameterType="UserVO" resultMap="getUserVO">
