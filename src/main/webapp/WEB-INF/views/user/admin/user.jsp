@@ -77,6 +77,10 @@
                         <td class="showUser" data-user="phone">${userVO.phone}</td>
                         <td class="showUser" data-user="entDate">${userVO.entDate}</td>
                         <td class="dismiss"><a href="#">퇴사</a></td>
+                        
+	                        	 
+                        </td>
+                        
                      </tr>
                      </c:forEach>
 
