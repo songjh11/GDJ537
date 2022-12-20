@@ -24,11 +24,6 @@ public interface ReportMapper {
 	
 	//=======================김도영===================
 	//신청보고서
-	public int setReportApply(ReportApplyVO reportApplyVO)throws Exception;
-	//업무보고서
-	public int setWorkReport(ReportWorkVO reportWorkVO)throws Exception;
-	
-	
 	
 	
 	
@@ -51,6 +46,17 @@ public interface ReportMapper {
 	
 	public Long getReportListCount(ReportPager reportPager) throws Exception;
 	
+	public int setLicenserUpdate(UserVO userVO) throws Exception;
+	
+	//신청자입장에서 자기가 첫번째(팀장) 결재선 
+	public UserVO getFirstList(UserVO userVO) throws Exception;
+	
+	//신청자입장에서 자기가 두번째(최종결재관리자) 결재선
+	public UserVO getlastlist(UserVO userVO) throws Exception;
+	
+	public int getGrantorCount(ReportVO reportVO) throws Exception;
+	
+	public ReportVO getLicenserId(ReportVO reportVO) throws Exception;
 	
 	
 	
@@ -79,7 +85,7 @@ public interface ReportMapper {
 	
 	
 
-	public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception;
+			public int setUpdateApply(ReportApplyVO reportApplyVO) throws Exception;
 			
 			public int setUpdateCancelApply(ReportApplyVO reportApplyVO) throws Exception;
 			
@@ -105,11 +111,17 @@ public interface ReportMapper {
 			
 			public Long getCountDoFirstReport(ReportPager reportPager) throws Exception;
 			
-			public ReportVO getDoFinalReport(ReportPager reportPager) throws Exception;
+			public List<ReportApplyVO> getDoFinalReport(ReportPager reportPager) throws Exception;
 			
 			public Long getCountDoFinalReport(ReportPager reportPager) throws Exception;
+			
+			public List<ReportApplyVO> getAdminReturnReport(ReportPager reportPager) throws Exception;
+			
+			public Long getCountAdminReturnReport(ReportPager reportPager) throws Exception;
+			
+			public List<ReportApplyVO> getAdminFinishReport(ReportPager reportPager) throws Exception;
 
-
+			public Long getCountAdminFinishReport(ReportPager reportPager) throws Exception;
 
 	
 	
@@ -140,6 +152,7 @@ public interface ReportMapper {
 	public ReportPayVO getMyPayDetail(ReportApplyVO reportApplyVO) throws Exception;
 	public ReportWorkVO getMyWorkDetail(ReportApplyVO reportApplyVO) throws Exception;
 	public ReportSorryVO getMySorryDetail(ReportApplyVO reportApplyVO) throws Exception;
+	public Integer getLstatus(Integer id) throws Exception;
 	//================================================
 	
 }

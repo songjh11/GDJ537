@@ -6,13 +6,14 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.app.home.schedule.goods.GoodsVO;
 import com.app.home.schedule.goods.ReserveVO;
+import com.app.home.schedule.room.GoodsRoomVO;
 import com.app.home.user.UserVO;
 
 @Mapper
 public interface CarMapper {
 	
 	// 예약현황 보기
-	public List<ReserveVO> getResInfo(ReserveVO reserveVO) throws Exception;
+	public List<ReserveVO> getResInfo(GoodsRoomVO goodsRoomVO) throws Exception;
 	
 	public List<ReserveVO> getStartTime(ReserveVO reserveVO) throws Exception;
 	

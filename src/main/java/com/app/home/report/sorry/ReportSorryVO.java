@@ -1,16 +1,15 @@
 package com.app.home.report.sorry;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.app.home.report.ReportApplyVO;
 
 public class ReportSorryVO extends ReportApplyVO {
 	
 	private Long rnum;
-	private Long applynum;
 	private Date date;
 	private String text;
-	private Long order;
+	private String order;
 	
 	
 	public Long getRnum() {
@@ -19,12 +18,7 @@ public class ReportSorryVO extends ReportApplyVO {
 	public void setRnum(Long rnum) {
 		this.rnum = rnum;
 	}
-	public Long getApplynum() {
-		return applynum;
-	}
-	public void setApplynum(Long applynum) {
-		this.applynum = applynum;
-	}
+
 	public Date getDate() {
 		return date;
 	}
@@ -37,12 +31,16 @@ public class ReportSorryVO extends ReportApplyVO {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Long getOrder() {
+
+	public String getOrder() {
 		return order;
 	}
-	public void setOrder(Long order) {
+	public void setOrder(String order) {
 		this.order = order;
 	}
+	
+	
+	
 	
 	
 	

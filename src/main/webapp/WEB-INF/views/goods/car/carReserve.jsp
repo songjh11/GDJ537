@@ -77,7 +77,7 @@
                         <div class="mb-5">
                            <label>사용 종료 시간</label>
                            <input type="datetime-local" name="endTime" class="form-control" id="end" disabled="disabled">
-                           <p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
+                           <p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>
                         </div> 
                         
                         <div class="mb-5">
@@ -104,7 +104,7 @@
                         </div>
                         
                         <div class="text-center mb-3">
-	                        <button type="submit" id="resBtn" class="btn" style="background-color: #4e73df; color: white;">예약하기</button>
+	                        <button type="button" id="resBtn" class="btn" style="background-color: #4e73df; color: white;">예약하기</button>
 	                        <a href="../car/carList" class="btn" style="background-color: #4e73df; color: white;">뒤로가기</a>
                         </div>
                      </form>

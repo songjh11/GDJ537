@@ -68,7 +68,7 @@
 			                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			                    <!-- 휴가 신청서 -->
 			                    <div class="col mb-5">
-			                        <div class="card h-100" id="ch" onclick="location.href='/kdy/vacationApplication'">
+			                        <div class="card h-100" style="cursor: pointer;" id="ch" onclick="location.href='/kdy/vacationApplication'">
 			                            <!-- Product image-->
 			                            <img class="card-img-top" style="width: 210px; height: 220px;" src="../img/KakaoTalk_20221208_194843493.jpg" alt="..." />
 			                            <!-- Product details--> 
@@ -82,7 +82,7 @@
 			                    </div>
 			                    <!-- 보고서 -->
 			                    <div class="col mb-5">
-			                        <div class="card h-100" id="ch" onclick="location.href='/kdy/workReport'">
+			                        <div class="card h-100" id="ch" style="cursor: pointer;" onclick="location.href='/kdy/workReport'">
 			                            <!-- Product image-->
 			                            <img class="card-img-top"  style="width: 223px; height: 240px;" src="../img/KakaoTalk_20221208_194900459.jpg" alt="..." />
 			                            <!-- Product details-->
@@ -96,7 +96,7 @@
 			                    </div>
 			                    <!-- 지출 결의서 -->
 			                    <div class="col mb-5">
-			                        <div class="card h-100" id="ch" onclick="location.href='/kdy/cashDisbursementVoucher'">
+			                        <div class="card h-100" id="ch" style="cursor: pointer;" onclick="location.href='/kdy/cashDisbursementVoucher'">
 			                            <!-- Product image-->
 			                            <img class="card-img-top" style="width: 223px; height: 240px;" src="../img/KakaoTalk_20221208_194918654.jpg" alt="..." />
 			                            <!-- Product details-->
@@ -109,7 +109,7 @@
 			                    </div>
 			                    <!-- 추천서 -->
 			                    <div class="col mb-5">
-			                        <div class="card h-100" id="ch"  onclick="location.href='/kdy/writtenApology'">
+			                        <div class="card h-100" id="ch" style="cursor: pointer;"  onclick="location.href='/kdy/writtenApology'">
 			                            <!-- Product image-->
 			                            <img class="card-img-top" style="width: 223px; height: 240px;" src="../img/KakaoTalk_20221208_2046163ㄴㄴㄴㄴ44.jpg" alt="..." />
 			                            <!-- Product details-->

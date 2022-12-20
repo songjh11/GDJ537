@@ -18,25 +18,21 @@ class ReportMapperTest {
 	
 	@Test
 	void test() throws Exception {
-		for(Long i=1L; i<100; i++) {
+		
 			
 			ReportVacaVO reportVacaVO = new ReportVacaVO();
-			reportVacaVO.setCall(01012341234L);
+			reportVacaVO.setCall(01099372716L);
 			reportVacaVO.setCategoryNum(1L);
-			reportVacaVO.setDepName("ROLE_MAKER");
-			reportVacaVO.setName("류형민");
+			reportVacaVO.setDepName("인사팀");
+			reportVacaVO.setName("조규성");
 			reportVacaVO.setRoleName("사원");
 			reportVacaVO.setDepNum(4);
-			reportVacaVO.setApplyNum(i);
-			reportVacaVO.setText("사유"+i);
+			reportVacaVO.setText("개인용무");
 			reportVacaVO.setStartDate("2022-12-14T15:21");
 			reportVacaVO.setEndDate("2022-12-15T15:21");
-			reportVacaVO.setId(1209);
-			reportVacaVO.setReportNum(1);
+			reportVacaVO.setId(8209);
 			
-			if(i == 50L) {
-				Thread.sleep(5000);
-			}
+			
 			reportService.setAddVaca(reportVacaVO);
 		}
 	}
