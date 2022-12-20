@@ -42,8 +42,8 @@
 				<!-- Begin Page Content -->
 	            <div class="container-fluid">
 						<div class="container px-4 px-lg-5 my-5">
-        <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 45px; background-color: rgb(255, 255, 249); text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
+       <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
+            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 45px; text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
                    시말서
                    <div style="border: solid 1px black; width: 400px; margin-left: 500px; height: 120px; margin-top: -75px;">
                     <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
@@ -53,9 +53,38 @@
                     <div class="row" style="border-bottom: solid 1px black; margin-top: -120px; width: 368px; margin-left: 30px; height: 30px; font-size: 15px;">
                         <div style="padding-top:3px; letter-spacing: 0; margin-left: 30px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
                                                                                             &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
-                        <div id="ajaaja"></div>
-                        <div id="ajaaja"></div>
-                        <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                        <c:choose>
+                            <c:when test="${reportSorryVO.status eq 1 and reportSorryVO.returns eq 0}">
+	                           <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            </c:when>
+                            <c:when test="${reportSorryVO.status eq 2 and reportSorryVO.returns eq 0}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            </c:when>
+                            <c:when test="${reportSorryVO.status eq 3 and reportSorryVO.returns eq 0}">
+                           		<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            </c:when>
+                            <c:when test="${reportSorryVO.status eq 1 and reportSorryVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>
+                            <c:when test="${reportSorryVO.status eq 2 and reportSorryVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>
+                            <c:when test="${reportSorryVO.status eq 3 and reportSorryVO.returns eq 1}">
+                            	<div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"><img src="/img/report/sign.png" width="85px" height="85px"></div>
+	                            <div style=" height: 90px; width: 122px; margin-top: 6px;"><img src="/img/report/return.png" width="85px" height="85px"></div>
+                            </c:when>                            
+                            </c:choose>
                         
                     </div>
                 </div>
@@ -126,14 +155,16 @@
                         <div><input type="text" style="width: 100px; border:0 solid black; text-align:right" id="ApologyD" value="${day}"/>일</div>
                     </div>
                     <div style="font-weight: bold; margin-top: 50px; margin-left: 150px;">
-                        신청자 : <input type="text" value="${reportSorryVO.name}"  style="border:0 solid black" />
+                        작성자 : <input type="text" value="${reportSorryVO.name}"  style="border:0 solid black" />
                     </div>
                 </div>
             </div>
         </div>    
         
-		<button type="button" id="license" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;">승인</button>
-		<button type="button" id="returns" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;">반려</button>
+		<div style="text-align: right; margin-left: 20px;">
+        <button type="button" id="license" class="btn btn-primary" style="margin-left: 900px; margin-top: 12px; display: inline-block;">승인</button>
+		<button type="button" id="returns" class="btn btn-primary" style="margin-top: 12px; display: inline-block;">반려</button>
+        </div>   
     </div>
 	            </div>
 	            <!-- End Page Content -->
