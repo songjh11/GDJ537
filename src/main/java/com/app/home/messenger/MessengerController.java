@@ -69,8 +69,6 @@ public class MessengerController extends Socket {
 		userVO.setId(userVO.getId());
 		roomVO.setUserVO(userVO);
 		
-		//log.info("카인드가 있니?", roomVO.getKind());
-		
 		roomVOs = messengerService.getRoomList(roomVO);
 		
 		mv.addObject("roomList", roomVOs);

@@ -80,7 +80,7 @@
 									<div class="content">
 										<div class="roomInfo">
 											<div class="row">
-												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;"><span>2</span>
+												<img id="rmImg" src="/img/user/user.webp" width="100" height="100" style="border-radius: 50%;">
 											</div>
 											<div class="infoArea" style="background: transparent; border: none; box-shadow: none !important;">
 												<div class="input-group mb-3 justify-content-center">

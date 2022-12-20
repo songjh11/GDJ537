@@ -80,6 +80,7 @@ $(".chatRoomArea").on("click", ".roomLink", function(){
 
                 }else if(roomVO==0){
                     // console.log("틀림")
+                    $("#roomPwCheck").val('');
                     alert("비밀번호가 맞지 않습니다.")
                 }
             }
