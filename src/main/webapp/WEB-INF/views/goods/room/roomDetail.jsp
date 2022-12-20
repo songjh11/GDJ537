@@ -12,7 +12,7 @@
 </head>
 <style>
 .de {
-	width: 550px;
+	width: 500px;
 	height: 400px;
 	object-fit: scale-down;
 }
@@ -20,7 +20,7 @@
 .product-title {
 	text-align: center;
 	display: table;
-	width: 550px;
+	width: 500px;
 	height: 400px;
 	padding-top: 15px;
 }
