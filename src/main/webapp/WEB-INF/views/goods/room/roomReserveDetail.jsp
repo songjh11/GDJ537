@@ -52,29 +52,25 @@ ul li {
 						<h1 class="h3 mb-4 text-gray-800">예약 상세정보</h1>
 						<table class="table table-hover" style="text-align: center;">
 							<tr>
-								<th>예약 번호</th>
+								<th>이름</th>
+								<th>총 정원</th>
+								<th>현재 위치</th>
+							</tr>
+							<tr>
+								<td>${good.name }</td>
+								<td>${good.max }</td>
+								<td>${good.location }</td>
+							</tr>							
+							<tr>
 								<th>사용 시작 시간</th>
 								<th>사용 종료 시간</th>
 								<th>사용 목적</th>
 							</tr>
 							<tr>
-								<td>${reserve.reserveNum }</td>
 								<td>${reserve.startTime.substring(0,10)}  ${reserve.startTime.substring(11,reserve.startTime.length())}</td>
 								<td>${reserve.endTime.substring(0,10)}  ${reserve.endTime.substring(11,reserve.endTime.length())}</td>
 								<td>${reserve.usePurpose }</td>
 							</tr>
-							<tr>
-								<th>차량 번호</th>
-								<th>모델명</th>
-								<th>총 정원</th>
-								<th>인수/반납 위치</th>
-							</tr>
-							<tr>
-								<td>${goods.carNum }</td>
-								<td>${goods.name }</td>
-								<td>${goods.max }</td>
-								<td>${goods.location }</td>
-							</tr>							
 						</table>
 						
 						<div class="test">
