@@ -10,22 +10,6 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
-<style>
-.de {
-	width: 350px;
-	height: 350px;
-	padding-left: 20px;
-	padding-right: 25px;
-}
-
-ul {
-	display: flex;
-}
-
-ul li {
-	list-style: none;
-}
-</style>
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -57,8 +41,6 @@ ul li {
 								<th style="color: black;">예약 신청일</th>
 								<th style="color: black;">사용 기간</th>
 								<th style="color: black;">사용 목적</th>
-								<th style="color: black;">예약 정보 변경</th>
-								<th style="color: black;">예약 취소</th>
 							</tr>
 							<c:forEach items="${roomInfo }" var="ro">
 								<tr>
@@ -72,15 +54,6 @@ ul li {
 										${ro.endTime }
 									</td>
 									<td>${ro.usePurpose }</td>
-									<c:if test="${ro.date != '2018-01-01 09:00:00' }">
-										<td>
-											<a href="/goods/room/roomReserveUpdate?reserveNum=${ro.reserveNum}&goodsId=${ro.goodsId}"
-												class="btn btn-outline-none">변경</a>
-										</td>
-										<td>
-											<button name='delete' class="btn btn-outline-none delete_btn" value="${ro.reserveNum}">취소</button>
-										</td>
-									</c:if>
 								</tr>
 							</c:forEach>
 						</table>
