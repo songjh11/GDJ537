@@ -15,12 +15,21 @@ import com.app.home.board.BoardVO;
 import com.app.home.user.UserVO;
 import com.app.home.util.Pager;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/unknown/*")
 public class UnknownController {
 
 	@Autowired
 	private UnknownService unknownService;
+	
+	@PostMapping("chkboardpw")
+	@ResponseBody
+	public boolean checkBoardPassword(BoardVO boardVO)throws Exception{
+		return unknownService.checkBoardPassword(boardVO);
+	}
 
 	@PostMapping("delete")
 	@ResponseBody
@@ -59,6 +68,7 @@ public class UnknownController {
 	@PostMapping("add")
 	public String setUnknownAdd(@AuthenticationPrincipal UserVO userVO, BoardVO boardVO) throws Exception {
 		boardVO.setCreator(userVO.getId());
+		log.info("adddddddd {}", boardVO);
 		int result = unknownService.setUnknownAdd(boardVO);
 
 		return "redirect:/unknown/list";

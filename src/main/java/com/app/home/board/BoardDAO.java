@@ -25,4 +25,6 @@ public interface BoardDAO {
 	public Long getTotalCount(Pager pager) throws Exception;
 	
 	public List<ReqCategoryVO> findReqCategory(ReqCategoryVO reqCategoryVO)throws Exception;
+	
+	public String getBoardPassword(BoardVO boardVO)throws Exception;
 }
