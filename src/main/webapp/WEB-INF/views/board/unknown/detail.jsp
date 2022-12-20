@@ -70,22 +70,42 @@
                 <div class="card-body" style="min-height: 500px">
                   <div class="mb-1 row justify-content-end">
                     <div class="col-2">
-                    <c:if test="${!empty boardVO.fileVOs }">
-                  	<button class="btn btn-outline-dark btn-block  dropdown-toggle dropdown-toggle-split"  data-toggle="dropdown" aria-expanded="false" type="button">
-                            <span class="material-symbols-outlined my-auto" style="vertical-align: middle;">
-                              
-                            </span>
-
-                            <span style="vertical-align: middle;"> 첨부파일 (${fn:length(boardVO.fileVOs) }) </span>
-                      </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
-	                        <a class="dropdown-item" href="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/${file.fileName}">${file.oriName } (${file.fileSize}) </a>
-	                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
-	                      </c:forEach>
-
-						  </div>
-					</c:if>
+	                    <jsp:useBean id="now" class="java.util.Date" />
+						<c:if test="${(now.time - boardVO.regDate.time) >= (1000*60*60*24*90)}">
+						<c:if test="${!empty boardVO.fileVOs }">
+	                  	<button class="btn btn-outline-dark btn-block  dropdown-toggle dropdown-toggle-split"  data-toggle="dropdown" aria-expanded="false" type="button">
+	                            <span class="material-symbols-outlined my-auto" style="vertical-align: middle;">
+	                              
+	                            </span>
+	                            <span style="vertical-align: middle;"> 만료된 파일 (${fn:length(boardVO.fileVOs) }) </span>
+	                      </button>
+	                        <div class="dropdown-menu dropdown-menu-right">
+	                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
+		                        <a class="dropdown-item" href="javascript:void(0)">${file.oriName } (${file.fileSize}) </a>
+		                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
+		                      </c:forEach>
+	
+							  </div>
+						</c:if>
+						</c:if>
+						<c:if test="${(now.time - boardVO.regDate.time) < (1000*60*60*24*90)}">
+						<c:if test="${!empty boardVO.fileVOs }">
+	                  	<button class="btn btn-outline-dark btn-block  dropdown-toggle dropdown-toggle-split"  data-toggle="dropdown" aria-expanded="false" type="button">
+	                            <span class="material-symbols-outlined my-auto" style="vertical-align: middle;">
+	                              
+	                            </span>
+	                            <span style="vertical-align: middle;"> 첨부파일 (${fn:length(boardVO.fileVOs) }) </span>
+	                      </button>
+	                        <div class="dropdown-menu dropdown-menu-right">
+	                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
+		                        <a class="dropdown-item" href="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/${file.fileName}">${file.oriName } (${file.fileSize}) </a>
+		                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
+		                      </c:forEach>
+	
+							  </div>
+						</c:if>
+						</c:if>
+                    
                     </div>
                   </div>
                   <div class="mb-5 row">
