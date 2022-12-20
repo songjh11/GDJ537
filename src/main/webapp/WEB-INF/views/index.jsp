@@ -16,11 +16,67 @@
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
   crossorigin="anonymous">
 <c:import url="./temp/layout_header.jsp"></c:import>
+
+
+<sec:authorize access="isAuthenticated()">
+<!-- fullCaledar CDN -->
+<c:import url="./temp/fullcalendar.jsp"></c:import>
+
+<style>
+    /* body 스타일 */
+    html, body {
+      overflow: hidden;
+      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+    /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
+    .fc-header-toolbar {
+      padding-top: 1em;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+     .toggleSwitch {
+  width: 50px;
+  height: 30px;
+  display: block;
+  position: relative;
+  border-radius: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+  cursor: pointer;
+  margin: 10px;
+}
+
+.toggleSwitch .toggleButton {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #3b61d1;
+}
+
+.filter:checked + .toggleSwitch {
+  background: #3b61d1;
+}
+
+.filter:checked + .toggleSwitch .toggleButton {
+  left: calc(100% - 25px);
+  background: #fff;
+}
+
+.toggleSwitch, .toggleButton {
+  transition: all 0.2s ease-in;
+}
+</style>
+</sec:authorize>
 </head>
 
 <!-- body ID 작성 -->
 <body id="page-top">
-
+	<sec:authorize access="!isAuthenticated()">
 	<!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
 
@@ -39,107 +95,28 @@
 				
 				<!-- Begin Page Content -->
 	            <div class="container-fluid my-5">
+	            	
+					<c:import url="./temp/indexContentWithnotLogin.jsp"></c:import>
 					
-						  <!-- Outer Row -->
-			        <div class="row justify-content-center  ">
+	            						
+						
+				</div>
+			</div>	
+		</div>	
 			
-			            <div class="col-xl-10 col-lg-12 col-md-9">
-			
-			                <div class="card o-hidden border-0 shadow-lg">
-			                    <div class="card-body p-0">
-			                        <!-- Nested Row within Card Body -->
-			                        <div class="row">
-			                            <div class="col-lg-6 d-none d-lg-block bg-login-image bg-gradient-primary"></div>
-			                            <div class="col-lg-6">
-			                                <div class="p-5">
-			                                    <div class="text-center">
-			                                        <h1 class="h4 text-gray-900 mb-4">Welcome Goodee!</h1>
-			                                    </div>
-			                                    <form class="user" action="/user/login" method="post">
-			                                        <div class="form-group">
-			                                            <input type="text" class="form-control form-control-user"
-			                                                id="exampleInputEmail" name="id" aria-describedby="emailHelp"
-			                                                placeholder="아이디 입력하세요">
-			                                        </div>
-			                                        <div class="form-group">
-			                                            <input type="password" name="pw" class="form-control form-control-user"
-			                                                id="exampleInputPassword" placeholder="비밀번호 입력해주세요">
-			                                        </div>
-			                                        <div class="form-group">
-			                                            <div class="custom-control custom-checkbox small">
-			                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-			                                                <label class="custom-control-label" for="customCheck">Remember
-			                                                    Me</label>
-			                                            </div>
-			                                        </div>
-<!-- 			                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-			                                            Login
-			                                        </a> -->
-			                                        <button type="submit" class="btn btn-primary btn-user btn-block">로그인</button>
-			                                        <hr>
-
-			                                        <button type="button" class="btn btn-google btn-user btn-block" data-bs-toggle="modal" data-bs-target="#findPwModal" data-bs-whatever="@mdo">비밀번호 찾기</button>
-			                                        <a href="/user/join" class="btn btn-facebook btn-user btn-block" >회원 가입</a>
-			                                    </form>
-			                                    <hr>
-			                         
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                </div>
-			                <!-- Outer Row 끝 -->
-	            </div>
-	            <!-- End Page Content -->
-				</div>	
-			</div>
 			<!-- End of Main Content -->
-			<div style="margin-top: 240px;">
-			<!-- Footer import -->
-			<c:import url="./temp/layout_footer.jsp"></c:import>
-			</div>
-			<!-- End of Footer -->
-		</div>
-		<!-- End of Content Wrapper -->
+		<!-- Footer import -->
+		<c:import url="./temp/layout_footer.jsp"></c:import>
+		
+			
+
+			
 	</div>
-</div>	
-	<!-- modal -->
-	<div class="modal fade" id="findPwModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">비밀번호 찾기</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="/mail/findpw" method="post">
-         <div class="mb-3">
-             <label for="member-email" class="col-form-label"><strong>사원번호를 입력하세요</strong>:</label>
-             <input type="text" class="form-control" id="member-email" name="id"></input>
-          </div>
-          <div class="mb-3">
-             <label for="member-email" class="col-form-label"><strong>가입한 Email을 입력하세요</strong>:</label>
-             <input type="email" class="form-control" id="member-email" name="email"></input>
-          </div>
-  
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <button type="submit" class="btn btn-primary">비밀번호 찾기</button>
-      </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-	<!-- Scroll Top, Logout Modal import -->
-	<c:import url="./temp/layout_top_logoutModal.jsp"></c:import>
-	<script
-  defer
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-  crossorigin="anonymous"
-></script>
+		<!-- End of Content Wrapper -->
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<c:import url="./temp/indexContentWithLogin.jsp"></c:import>
+	</sec:authorize>
+	
 </body>
 </html>

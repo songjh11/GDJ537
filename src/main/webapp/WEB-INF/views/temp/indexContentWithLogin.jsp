@@ -1,78 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<!-- meta tag 추가 -->
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Insert title here</title>
-<!-- 공통 css, js -->
-<c:import url="../temp/layout_header.jsp"></c:import>
-</head>
-
-<!-- fullCaledar CDN -->
-<c:import url="../temp/fullcalendar.jsp"></c:import>
-
-<style>
-    /* body 스타일 */
-    html, body {
-      overflow: hidden;
-      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-      font-size: 14px;
-    }
-    /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
-    .fc-header-toolbar {
-      padding-top: 1em;
-      padding-left: 1em;
-      padding-right: 1em;
-    }
-     .toggleSwitch {
-  width: 50px;
-  height: 30px;
-  display: block;
-  position: relative;
-  border-radius: 30px;
-  background-color: #fff;
-  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
-  cursor: pointer;
-  margin: 10px;
-}
-
-.toggleSwitch .toggleButton {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 50%;
-  left: 4px;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  background: #3b61d1;
-}
-
-.filter:checked + .toggleSwitch {
-  background: #3b61d1;
-}
-
-.filter:checked + .toggleSwitch .toggleButton {
-  left: calc(100% - 25px);
-  background: #fff;
-}
-
-.toggleSwitch, .toggleButton {
-  transition: all 0.2s ease-in;
-}
-</style>
-
-<!-- body ID 작성 -->
-<body id="page-top">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
    <!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
 
       <!-- Sidebar import -->
-      <c:import url="../temp/layout_sidebar.jsp"></c:import>
+      <c:import url="./temp/layout_sidebar.jsp"></c:import>
       <!-- End of Sidebar -->
       
        <!-- Content Wrapper -->
@@ -81,14 +16,14 @@
          <div id="content">
          
             <!-- Topbar import-->
-            <c:import url="../temp/layout_topbar.jsp"></c:import>
+            <c:import url="./temp/layout_topbar.jsp"></c:import>
             <!-- End of Topbar -->
             
             <!-- Begin Page Content -->
                <div class="container-fluid" style="height: 900px;">
    
                   <!-- Page Heading -->
-                  <h1 class="h3 mb-4 pt-2 text-gray-800"><b>${userVO.name}님의 정보</b></h1>
+                  <h1 class="h3 mb-4 pt-2 text-gray-800"><b><sec:authentication property="Principal.name"/> 님의 정보</b></h1>
                   
                   <div class="d-flex" style="height: 700px;">
                   <div style="width: 40%">
@@ -105,12 +40,12 @@
 			                   	</c:otherwise>
 			                 </c:choose>
                               <div style="margin-top: 10px">
-                                 <h4 style="color: black; margin-bottom: 10px">${userVO.name} <span>사원</span></h4>
-                                 <span>사원번호 : ${userVO.id}</span><br/>
-                                 <span>직급 : ${userVO.roleVO.roleName}</span><br/>
-                                 <span>부서명 : ${userVO.departmentVO.depName}</span><br/>
-                                 <span>이메일 : ${userVO.email}</span><br/>
-                                 <span>전화번호 : ${userVO.phone}</span>
+                                 <h4 style="color: black; margin-bottom: 10px"><sec:authentication property="Principal.name"/> <span>사원</span></h4>
+                                 <span>사원번호 : <sec:authentication property="Principal.id"/></span><br/>
+                                 <span>직급 : <sec:authentication property="Principal.roleVO.roleName"/></span><br/>
+                                 <span>부서명 : <sec:authentication property="Principal.departmentVO.depName"/></span><br/>
+                                 <span>이메일 :<sec:authentication property="Principal.email"/></span><br/>
+                                 <span>전화번호 : <sec:authentication property="Principal.phone"/></span>
                               </div>
                               </div>
                            </div>
@@ -325,7 +260,7 @@
          <!-- End of Main Content -->
          
          <!-- Footer import -->
-         <c:import url="../temp/layout_footer.jsp"></c:import>
+         <c:import url="./temp/layout_footer.jsp"></c:import>
          <!-- End of Footer -->
       </div>
       <!-- End of Content Wrapper -->
@@ -367,7 +302,7 @@
         </div>
     </div>
    <!-- Scroll Top, Login Modal import -->
-   <c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+   <c:import url="./temp/layout_top_logoutModal.jsp"></c:import>
 <script>
     // 예약 취소 버튼을 눌렀을 때
     $('.delete_btn').click(function() {
@@ -495,5 +430,3 @@
      
   
   </script>
-</body>
-</html>
