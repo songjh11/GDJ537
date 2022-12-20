@@ -7,9 +7,9 @@
 	<insert id="setBoard" parameterType="BoardVO"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO BOARD (ID, CREATOR, TITLE,
-		CONTENTS, DEPnum, HIT, SORT)
+		CONTENTS, DEPnum, HIT, SORT, PASSWORD)
 		VALUES (0, #{creator}, #{title}, #{contents},
-		#{depnum}, 0, #{sort})
+		#{depNum}, 0, #{sort}, #{password)
 	</insert>
 
 	<select id="getDetail" parameterType="BoardVO"
@@ -30,13 +30,14 @@
 		<result column="title" property="title" />
 		<result column="contents" property="contents" />
 		<result column="creator" property="creator" />
-		<result column="depnum" property="depnum" />
+		<result column="depnum" property="depNum" />
 		<result column="hit" property="hit" />
 		<result column="sort" property="sort" />
 		<result column="regdate" property="regDate" />
 		<result column="updatedate" property="updateDate"/>
 		<result column="updater" property="updater"/>
 		<result column="updaterName" property="updaterName"/>
+		<result column="cntComment" property="cntComment"/>
 		<association property="userVO" javaType="UserVO">
 			<id column="creator" property="id"/>
 			<result column="name" property="name"/>
@@ -65,13 +66,15 @@
 	</delete>
 
 	<select id="getList" parameterType="Pager" resultMap="resultBoardAddfiles">
-		SELECT B.ID, B.title, B.creator, B.depnum, B.hit, B.regDate, COUNT(C.ID) as cntComment, U.NAME, U.status 
+		SELECT B.ID, B.TITLE, B.CREATOR, B.DEPNUM, B.HIT, B.REGDATE, COUNT(C.ID) as cntComment, U.NAME, U.STATUS 
 		FROM BOARD B
 		LEFT JOIN COMMENT C
 		ON B.ID = C.BOARDID
 		LEFT JOIN `USER` U 
 		ON B.CREATOR = U.ID 
 		WHERE SORT = #{sort}
+		AND
+		<include refid="depNumChk"></include>
 		AND
 		B.<include refid="search"></include>
 		GROUP BY B.ID
@@ -81,10 +84,12 @@
 
 	<select id="getTotalCount" parameterType="Pager"
 		resultType="Long">
-		SELECT COUNT(ID) FROM BOARD
+		SELECT COUNT(ID) FROM BOARD B
 		WHERE SORT = #{sort}
 		AND
 		<include refid="search"></include>
+		AND
+		<include refid="depNumChk"></include>
 	</select>
 
 	<sql id="search">
@@ -103,6 +108,13 @@
 			<otherwise>ID DESC</otherwise>
 		</choose>
 	</sql>
+	
+	<sql id="depNumChk">
+		<choose>
+			<when test="depNum == null">1=1</when>
+			<otherwise>B.depNum=#{depNum}</otherwise>
+		</choose>
+	</sql>
 
 	<update id="setHit" parameterType="BoardVO">
 		UPDATE BOARD SET HIT = HIT + 1
@@ -116,7 +128,7 @@
 			 JOIN
 			 REQCATEGORY RC 
 			 ON D.DEPnum = RC.DEPnum
-		WHERE RC.DEPnum = #{depnum}
+		WHERE RC.DEPnum = #{depNum}
 	</select>
 	<resultMap type="ReqCategoryVO" id="reqCategoryResult">
 		<id column="id" property="id"/>

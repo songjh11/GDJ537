@@ -31,7 +31,7 @@ public class UserVO implements UserDetails {
 	private int num;
 	private int id;
 	private int rolenum;
-	private int depnum;
+	private int depNum;
     @Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}")
 	private String pw;
 	private String name;

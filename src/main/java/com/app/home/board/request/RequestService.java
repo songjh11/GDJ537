@@ -105,7 +105,7 @@ public class RequestService {
 		return result;
 	}
 
-	public List<BoardVO> getRequestList(Pager pager) throws Exception {
+	public List<BoardVO> getList(Pager pager) throws Exception {
 		
 		Long totalCount = boardDAO.getTotalCount(pager);
 		pager.getNum(totalCount);
@@ -122,4 +122,13 @@ public class RequestService {
 		
 		return boardDAO.findReqCategory(reqCategoryVO);
 	}
+	
+	//(조회수순,최신순) Ajax 리스트 불러오기
+		public List<BoardVO> getListByRequestAjax(Pager pager) throws Exception {
+			Long totalCount = boardDAO.getTotalCount(pager);
+			pager.getNum(totalCount);
+			pager.getRowNum();
+			
+			return boardDAO.getList(pager);
+		}
 }

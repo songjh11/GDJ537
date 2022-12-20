@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-fill ml-auto align-self-end mr-5">
                       <div>
-                      	<p>작성자 <c:out value="${boardVO.creator }"></c:out></p>
+                      	<p>작성자 <c:out value="${boardVO.userVO.name }"></c:out></p>
                       	<c:if test="${not empty boardVO.updater}">
                       		<p>수정자 <c:out value="${boardVO.updater }"></c:out></p>
                       	</c:if>
