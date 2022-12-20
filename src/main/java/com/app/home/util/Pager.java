@@ -25,6 +25,9 @@ public class Pager {
 	private String search;
 	//정렬
 	private String order;
+	//부서번호
+	private Integer depNum;
+	
 
 	public Pager() {
 		this.perPage=10L;

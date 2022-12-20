@@ -48,13 +48,14 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-
+	            <div class="row">
+	            <div class="col-lg-10">
 	            <div class="container-fluid">
-	            	<form class="row g-3" action="./list" method="get" style="justify-content: space-between;">
+	            	<form class="row g-3 m-3" action="./list" method="get" style="justify-content: space-between;">
 					  <div class="d-flex justify-content-center">
 					  	<div class="col-auto">
 						    <select class="form-control" name="kind" aria-label="Default select example">
-						    	<option value="title">제목</option>
+						    	<option  value="title">제목</option>
 						    	<option value="creator">작성자</option>
 						    </select>
 						</div>
@@ -68,25 +69,30 @@
 	                             </button>
 	                         </div>
 	                    </div>
+					  </div>
+					  <div class="d-flex justify-content-center">
+					  <div class="col-auto">
+						<select class="form-control" id="listOrder" title="${param.order}" name="order">
+							<option class="order" value="id">최신순</option>
+							<option class="order" value="hit">조회수순</option>
+						</select>
+					</div>
 	                    <div class="col-auto">
 	                      	<button type="button" class="btn btn-info" id="fiveBtn"><span class="badge text-bg-info">5</span></button>
               				<button type="button" class="btn btn-info" id="tenBtn"><span class="badge text-bg-info">10</span></button>
               				<button type="button" class="btn btn-info" id="twentyBtn"><span class="badge text-bg-info">20</span></button>
               			</div>
-					  </div>
-					  <div class="col-auto">
-						<select class="form-control" id="noticeListOrder">
-							<option value="최신">최신순</option>
-							<option value="조회수">조회수순</option>
-						</select>
-					</div>
-					</form>
-					<div>
+					 <div>
 					<sec:authorize access="hasAuthority('관리자')">
-						<a href="/notice/add" class="btn btn-danger" style="margin:10px 0;">글 작성</a>
+						<a href="/notice/add" class="btn btn-danger">글 작성</a>
 					</sec:authorize>					
 					</div>
+					  </div>
+					</form>
+
 	            	<!-- 공지사항 작성 -->
+					<!-- ajax용 div 추가-->
+					<div id="ajaxResult">
 	            	<div class="card mb-3 noticeList">
 		            	<c:forEach items="${noticeList}" var="notice">
 			            		<div class="card-header bg-white">
@@ -104,7 +110,7 @@
 											margin-bottom: 0;
 											color: #4E73DF;
     										font-weight: 600;
-										  ">${notice.creator} ·</p>
+										  ">${notice.userVO.name} (${notice.creator }) ·</p>
 										  <p class="regdate" data-date="${notice.regDate }" style="display: inline-block;
 												margin-bottom: 0;"></p>
 			            				  <a href="/notice/hit?id=${notice.id }">
@@ -129,27 +135,30 @@
 						<nav aria-label="Page navigation example">
 						<ul class="pagination">
 							<c:if test="${pager.pre }">
-								<li class="page-item"><a class="page-link" href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Previous</a></li>
+								<li class="page-item"><a class="page-link" href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">Previous</a></li>
 							</c:if>
 
 							<c:forEach begin="${pager.startNum }" end="${pager.lastNum }" step="1" var="i">
-								<li class="page-item"><a class="page-link" href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">${i }</a></li>
+								<li class="page-item"><a class="page-link" href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">${i }</a></li>
 							</c:forEach>
 
 							<c:if test="${pager.next }">
-								<li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Next</a></li>
+								<li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">Next</a></li>
 							</c:if>
 
 
 						</ul>
 						</nav>
 					</div>
+				</div>
+				<!--ajaxResult 끝-->
 	            </div>
 	            <!-- End Page Content -->
 
 			</div>
 			<!-- End of Main Content -->
-
+			</div>
+			</div>
 			<!-- Footer import -->
 			<c:import url="../../temp/layout_footer.jsp"></c:import>
 			<!-- End of Footer -->

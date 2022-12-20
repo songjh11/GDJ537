@@ -15,12 +15,21 @@ import com.app.home.board.BoardVO;
 import com.app.home.user.UserVO;
 import com.app.home.util.Pager;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/unknown/*")
 public class UnknownController {
 
 	@Autowired
 	private UnknownService unknownService;
+	
+	@PostMapping("chkboardpw")
+	@ResponseBody
+	public boolean checkBoardPassword(BoardVO boardVO)throws Exception{
+		return unknownService.checkBoardPassword(boardVO);
+	}
 
 	@PostMapping("delete")
 	@ResponseBody
@@ -59,6 +68,7 @@ public class UnknownController {
 	@PostMapping("add")
 	public String setUnknownAdd(@AuthenticationPrincipal UserVO userVO, BoardVO boardVO) throws Exception {
 		boardVO.setCreator(userVO.getId());
+		log.info("adddddddd {}", boardVO);
 		int result = unknownService.setUnknownAdd(boardVO);
 
 		return "redirect:/unknown/list";
@@ -77,6 +87,16 @@ public class UnknownController {
 		mv.addObject("pager", pager);
 		mv.setViewName("/board/unknown/list");
 
+		return mv;
+	}
+	
+	@GetMapping("getListByUnknownAjax")
+	public ModelAndView getListByUnknownAjax(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("unknownList", unknownService.getListByUnknownAjax(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("board/unknown/unknownResult");
+		System.out.println("AFTER : "+pager.getOrder());
 		return mv;
 	}
 

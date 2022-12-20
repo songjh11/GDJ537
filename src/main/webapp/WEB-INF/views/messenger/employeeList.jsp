@@ -13,7 +13,7 @@
 											<input type="hidden" name="id" id="proId">
 											<input type="hidden" name="roomName" id="roomName">
 											<input type="hidden" name="pw">
-											<img id="proImg" src="/img/profiletest.png" width="200" height="200" style="border-radius: 50%;">
+											<img id="proImg" src="/file/profile/" width="200" height="200" style="border-radius: 50%;">
 											<div class="proArea" style="background: transparent; border: none; box-shadow: none !important;">
 												<p id="proName">이름</p>
 												<p id="proDep">부서/직급</p>
@@ -80,11 +80,11 @@
 															<input type="hidden" id="phone${p.id}" value="${p.phone}">
 															<div class="userArea rrrr" empId="${p.id}" value="${p.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 																<div class="userAdd">
-																	<img id="yourImg${p.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+																	<img id="yourImg${p.id}" class="yourImg" src="/file/profile/${p.profile}">
 																</div>
 																<div class="userInfo" style="width: 60%;">
 																	<span class="empName" empId="${p.id}" value="${p.name}">😎${p.name}</span>
-																	<span id="depN${p.id}" value="${p.departmentVO.depName}/${p.roleVO.roleName}">(${p.departmentVO.depName}/${p.roleVO.roleName})</span>
+																	<span id="${p.id}" value="${p.departmentVO.depName}/${p.roleVO.roleName}">(${p.departmentVO.depName}/${p.roleVO.roleName})</span>
 																</div>
 																<c:choose>
 																	<c:when test="${p.pickVO[0].myId eq myId}">
@@ -116,7 +116,7 @@
 										<ul class="acoArea">
 											<div class="userList">
 											<c:forEach items="${empList}" var="e">
-												<c:if test="${e.departmentVO.depnum eq d.depnum}">
+												<c:if test="${e.departmentVO.depNum eq d.depNum}">
 													<c:if test="${e.id ne myId}">
 													<li class="chatLi">
 														<input type="hidden" id="email${e.id}" value="${e.email}">
@@ -124,7 +124,7 @@
 														<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 															<div class="userAdd">
  																<form action="./addRoom" class="roomForm" method="get">
-																	<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+																	<img id="yourImg${e.id}" class="yourImg" src="/file/profile/${e.profile}">
 																</form>
 															</div>
 															<div class="userInfo" style="width: 60%;">
@@ -183,7 +183,7 @@
 															<input type="hidden" id="phone${p.id}" value="${p.phone}">
 															<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 																<div class="userAdd">
-																	<img id="yourImg${p.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+																	<img id="yourImg${p.id}" class="yourImg" src="/file/profile/${p.profile}">
 																</div>
 																<div class="userInfo" style="width: 60%;">
 																	<span class="empName" empId="${p.id}" value="${p.name}">😎${p.name}</span>
@@ -211,7 +211,7 @@
 								</ul>
 									<c:choose>
 										<c:when test="${empty empList}">
-											<h6 style="text-align: center;">검색 결과가 없습니다</h6>
+											<h6 style="text-align: center; margin-top: 10px;">검색 결과가 없습니다</h6>
 										</c:when>
 										<c:when test="${not empty empList}">
 											<li class="titleLi">
@@ -226,7 +226,7 @@
 														<input type="hidden" id="phone${e.id}" value="${e.phone}">
 														<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 															<div>
-																<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+																<img id="yourImg${e.id}" class="yourImg" src="/file/profile/${e.profile}">
 															</div>
 															<div class="userInfo" style="width: 60%;">
 																<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>

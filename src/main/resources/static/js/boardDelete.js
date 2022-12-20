@@ -1,6 +1,45 @@
 const deleteBtn = $("#deleteBtn");
 
+let chkPasssword = false;
+
+if($("#chkPw").length){
+$("#chkPw").click(function(){
+	
+	$.ajax({
+            type: "POST",
+            url: "/unknown/chkboardpw",
+            data: {
+                id:$("#chkPw").attr("data-boardnum"),
+                password:$("#password").val()
+            },
+            success: result => {
+                if(result == 1){
+                    alert("확인 완료")
+					chkPasssword=true;
+					$("#modifyA").attr("href", "/unknown/update?id="+$("#chkPw").attr("data-boardnum"))
+					$("#modifyA").attr("class", "btn btn-danger")
+					$("#deleteBtn").attr("class", "btn btn-danger")
+                }else{
+					alert("비밀번호가 다릅니다.")
+				}
+            },
+            error: result => {
+                console.log(result);
+                
+            }
+        });
+})
+
+
+	
+}else{
+	chkPasssword=true;
+}
+
 deleteBtn.on("click", function(){
+	console.log("글삭제 버튼 클릭", chkPasssword);
+	if(chkPasssword){
+	
     let deleteFlag = confirm("정말 삭제합니까?");
 
     // 삭제할 게시글 번호
@@ -51,6 +90,8 @@ deleteBtn.on("click", function(){
                 console.log(result);
             }
         });
+		
+	}
 
     }
 });

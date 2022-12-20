@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.app.home.user.UserVO;
 
 
 @Controller
@@ -27,8 +30,9 @@ public class CommentController {
 
 	@PostMapping("add")
 	@ResponseBody
-	public String setCommentAdd(CommentVO commentVO) throws Exception {
+	public String setCommentAdd(@AuthenticationPrincipal UserVO userVO, CommentVO commentVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		commentVO.setCreator(userVO.getId());
 		int result = commentService.setCommentAdd(commentVO);
 		String jsonResult="{\"result\":\""+result+"\"}";
 		return jsonResult;
@@ -52,14 +56,14 @@ public class CommentController {
 
 	@GetMapping("list")
 	@ResponseBody
-	public Map<String, Object> getCommentList(CommentPager commentPager) throws Exception {
-		Map<String, Object> map = new HashMap<>();
+	public ModelAndView getCommentList(CommentPager commentPager, ModelAndView mv) throws Exception {
 		List<CommentVO> list = commentService.getCommentList(commentPager);
 
-		map.put("list", list);
-		map.put("pager", commentPager);
+		mv.addObject("list", list);
+		mv.addObject("pager", commentPager);
+		mv.setViewName("board/boardComment");
 
-		return map;
+		return mv;
 	}
 
 
