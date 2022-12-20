@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //@Configuration
 public class WebUserConfig implements WebMvcConfigurer {
    
-   @Value("${app.upload.base}")
+   @Value("${app.upload.UserBase}")
    private String filePath;
    
-   @Value("${app.url.path}")
+   @Value("${app.url.userPath}")
    private String urlPath;
    
    @Override
