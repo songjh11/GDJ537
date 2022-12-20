@@ -183,7 +183,7 @@
                                                 	<tr>
                                                 		<c:choose>
                                                 			<c:when test="${pager.kind eq '1'}">
-                                                				<td><a href="./vacadetail?applyNum=${vo.applyNum }&lstatus=${vo.lstatus}">${vo.applyNum}</a></td>
+                                                				<td><a href="./vacadetail?applyNum=${vo.applyNum }&lstatus=${check}">${vo.applyNum}</a></td>
                                                 			</c:when>
                                                 			<c:otherwise>
                                                 				<td>${vo.applyNum}</td>
@@ -212,7 +212,7 @@
                                                 	<tr>
                                                 		<c:choose>
                                                 			<c:when test="${pager.kind eq '1'}">
-                                                				<td><a href="./workdetail?applyNum=${vo.applyNum }&lstatus=${vo.lstatus}">${vo.applyNum}</a></td>
+                                                				<td><a href="./workdetail?applyNum=${vo.applyNum }&lstatus=${check}">${vo.applyNum}</a></td>
                                                 			</c:when>
                                                 			<c:otherwise>
                                                 				<td>${vo.applyNum}</td>
@@ -241,7 +241,7 @@
                                                 	<tr>
                                                 		<c:choose>
                                                 			<c:when test="${pager.kind eq '1'}">
-                                                				<td><a href="./paydetail?applyNum=${vo.applyNum }&lstatus=${vo.lstatus}">${vo.applyNum}</a></td>
+                                                				<td><a href="./paydetail?applyNum=${vo.applyNum }&lstatus=${check}">${vo.applyNum}</a></td>
                                                 			</c:when>
                                                 			<c:otherwise>
                                                 				<td>${vo.applyNum}</td>
@@ -270,7 +270,7 @@
                                                 	<tr>
                                                 		<c:choose>
                                                 			<c:when test="${pager.kind eq '1'}">
-                                                				<td><a href="./sorrydetail?applyNum=${vo.applyNum }&lstatus=${vo.lstatus}">${vo.applyNum}</a></td>
+                                                				<td><a href="./sorrydetail?applyNum=${vo.applyNum }&lstatus=${check}">${vo.applyNum}</a></td>
                                                 			</c:when>
                                                 			<c:otherwise>
                                                 				<td>${vo.applyNum}</td>
@@ -299,7 +299,7 @@
                                                 	<tr>
                                                 		<c:choose>
                                                 			<c:when test="${pager.kind eq '1'}">
-                                                				<td><a href="./vacadetail?applyNum=${vo.applyNum }&lstatus=${vo.lstatus}">${vo.applyNum}</a></td>
+                                                				<td><a href="./vacadetail?applyNum=${vo.applyNum }&lstatus=${check}">${vo.applyNum}</a></td>
                                                 			</c:when>
                                                 			<c:otherwise>
                                                 				<td>${vo.applyNum}</td>
