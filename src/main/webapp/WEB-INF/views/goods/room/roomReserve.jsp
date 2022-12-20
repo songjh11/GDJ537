@@ -56,7 +56,7 @@
 
 							<div class="mb-3">
 								<div style="text-align: center;">
-									<font> *분 단위는 모두 0으로 입력됩니다.* </font>
+									<font> *1시간 단위로 입력됩니다.* </font>
 								</div>
 								<br>
 								<label>사용 시작 시간</label>
