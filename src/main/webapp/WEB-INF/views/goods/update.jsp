@@ -102,14 +102,19 @@
                            <div class="file_form mt-2" style="width: 450px;">
                               <!-- <img src="/file/goods/${li.fileName}"  width="300" height="300"> -->
                               <input type="file" name="files" class="files form-control">
-                              <span class="text ff" style="font-weight: bold;" >${li.oriName}<button type="button" class="del btn btn-danger" style="margin-left: 400px;">X</button></span> 
+                              <span class="text ff" style="font-weight: bold;" >${li.oriName}<button type="button" class="del btn btn-danger" style="margin-left: 383px;">X</button></span> 
                               <!-- <button type="button" class="del btn btn-danger" style="margin:auto;">X</button> -->
                            </div>
                         </c:forEach>
                      </div>
                   </div>
-                  <input type="button" class="btn btn-primary" value="수정" id="sub" style="margin-top : 50px; margin-left:160px;">
-                  <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}" style="margin-top : 50px;">
+                  <div class="mb-2">
+                  	<input type="button" class="btn btn-primary" value="수정" id="sub" style="margin-top : 50px; margin-left:160px;">
+                  	<input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}" style="margin-top : 50px;">
+                  </div>
+                  <div class="test mb-5" style="margin-left: 160px;">
+                  	<a href="../goods/ad_list" class="btn" style="background-color: #4e73df; color: white; width: 120px;">뒤로가기</a>
+                  </div>
                   </form>
    
                   </div>

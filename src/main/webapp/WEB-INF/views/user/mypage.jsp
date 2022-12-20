@@ -134,11 +134,15 @@
                                                 <tr>
                                                     <th>예약 날짜</th>
                                                     <th>예약정보</th>
+                                                    <th>예약 변경</th>
+                                                    <th>예약 취소</th>
                                                 </tr>
                                             회의실 예약
                                             <tr>
                                                 <td>${reserve.startTime}</td>
                                                 <td><a href="/goods/room/roomDetail?goodsId=${reserve.goodsId}" class="btn btn-outline-none">정보 보기</a></td>
+                                                <td><a href="/goods/room/roomReserveUpdate?reserveNum=${reserve.reserveNum}&goodsId=${reserve.goodsId}" class="btn btn-outline-none">변경</a></td>
+                                                <td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reserveNum}">취소</button></td>
                                             </tr>
                                           </table>
                                         </c:if>
@@ -384,7 +388,7 @@
         let result = confirm("예약을 취소하시겠습니까? \n취소 후에는 되돌릴 수 없습니다.");
 
         if (result) { // 확인 클릭 시
-            $.get("carReserveDelete?reserveNum=" + reserve, function(result) { // controller로 get방식의 보낸다
+            $.get("/goods/car/carReserveDelete?reserveNum=" + reserve, function(result) { // controller로 get방식의 보낸다
                 console.log(reserve);
                 location.reload();
             });
