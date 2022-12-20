@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +55,7 @@
 					                 </div>
 					                 <div class="col-fill ml-auto align-self-end mr-5">
 					                 	<div>
-					                      <p>작성자 ${boardVO.creator }</p>
+					                      <p>작성자 ${boardVO.userVO.name }</p>
 					                      <p>조회수 ${boardVO.hit} </p>
 					                    </div>
 										<p id="regdate" data-date="${boardVO.regDate}"> 등록일자  </p>
@@ -144,8 +145,13 @@
               </div>
 
               <!-- 나중에 로그인한 사용자와 작성자가 일치하는지 검증 -->
-              <a href="/request/update?id=${boardVO.id}" class="btn btn-danger">글 수정</a>
-              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>
+              <sec:authentication property="Principal" var="member"/>
+              <c:if test="${not empty member}">
+	              <c:if test="${member.id eq boardVO.creator}">
+		              <a href="/request/update?id=${boardVO.id}" class="btn btn-danger">글 수정</a>
+		              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>
+	              </c:if>
+              </c:if>
             </div>
             <!-- End Page Content -->
 
@@ -178,5 +184,6 @@
 	</script>
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
+	
 </body>
 </html>

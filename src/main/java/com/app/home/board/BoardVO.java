@@ -17,13 +17,14 @@ public class BoardVO {
 	private Integer creator; //사원번호
 	private String title; //제목
 	private String contents; //내용
-	private Integer depnum; // 부서번호, 요청게시판에서만 사용.
+	private Integer depNum; // 부서번호, 요청게시판에서만 사용.
 	private Integer hit; //조회수
 	private String sort; // 게시판 구분자 - 공지: 공지사항 요청:요청게시판 익명:익명게시판
 	private Timestamp regDate; //등록일자
 	private Timestamp updateDate; //수정일자
 	private Integer updater;	//수정자
 	private String updaterName;
+	private String password;
 	private MultipartFile[] multipartFiles;
 	private List<FileVO> fileVOs;
 	

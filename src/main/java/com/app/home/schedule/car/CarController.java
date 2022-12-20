@@ -46,6 +46,14 @@ public class CarController {
 		List<ReserveVO> reserveVOs = carService.getResInfo(goodsRoomVO);
 
 		log.info("carVOs: {}", reserveVOs);
+		
+		for(int i = 0; i < reserveVOs.size(); i++) {
+			String start = reserveVOs.get(i).getStartTime().substring(0, 10) + " " + reserveVOs.get(i).getStartTime().subSequence(11, 16);
+			String end = reserveVOs.get(i).getEndTime().subSequence(0, 10) + " " + reserveVOs.get(i).getEndTime().subSequence(11, 16);
+			
+			reserveVOs.get(i).setStartTime(start);
+			reserveVOs.get(i).setEndTime(end);
+		}
 
 		mv.addObject("carInfo", reserveVOs);
 		mv.setViewName("goods/car/carResInfo");
@@ -77,7 +85,7 @@ public class CarController {
 	
 	// 예약 변경 GET
 	@GetMapping("/car/carReserveChange")
-	public ModelAndView setUpdate(ReserveVO reserveVO, ModelAndView mv, HttpSession session) throws Exception {
+	public ModelAndView setUpdate(ReserveVO reserveVO, ModelAndView mv, Authentication authentication, HttpSession session) throws Exception {
 		GoodsVO goodsVO = new GoodsVO();
 		
 
@@ -88,6 +96,7 @@ public class CarController {
 		log.info("예약 변경 GET : {}", goodsVO);
 		log.info("예약 변경 GET : {}", reserveVO);
 
+		mv.addObject("userInfo", authentication.getPrincipal());
 		mv.addObject("reserve", reserveVO);
 		mv.addObject("goods", goodsVO);
 		mv.setViewName("/goods/car/carReserveChange");
@@ -97,10 +106,7 @@ public class CarController {
 	
 	// 예약 변경 POST
 	@PostMapping("/car/carReserveChange")
-	public String setUpdate(ReserveVO reserveVO, HttpSession session) throws Exception {
-		
-		Long reservenum = (Long)session.getAttribute("reservenum");
-		reserveVO.setReservenum(reservenum);
+	public String setUpdate(ReserveVO reserveVO, Authentication authentication, HttpSession session) throws Exception {
 		
 		int result = carService.setUpdate(reserveVO);
 		
@@ -110,7 +116,7 @@ public class CarController {
 			log.info("변경 실패");
 		}
 		
-		return "/goods/car/carList";
+		return "redirect:/goods/car/carList";
 	}
 	
 	// 예약 상세보기
@@ -138,9 +144,16 @@ public class CarController {
 		goodsVO = carService.getGoods(goodsVO);
 		List<ReserveVO> reserveVOs = carService.getStartTime(reserveVO);
 		
+		if (authentication == null) {
+			mv.setViewName("redirect:/goods/car/carList");
+			
+			return mv;
+		}
+		
 		log.info("예약하기 GET : {}", goodsVO);
 		log.info("예약하기 user GET : {}", authentication.getPrincipal());
 		log.info("예약하기 ss GET : {}", reserveVOs);
+		
 		
 		mv.addObject("timeNotEqual", reserveVOs);
 		mv.addObject("userInfo", authentication.getPrincipal());
@@ -179,7 +192,7 @@ public class CarController {
 
 	// 차량 리스트
 	@GetMapping("/car/carList")
-	public ModelAndView getCarList(GoodsVO goodsVO, ModelAndView mv, HttpSession session) throws Exception {
+	public ModelAndView getCarList(GoodsVO goodsVO, ModelAndView mv, Authentication authentication, HttpSession session) throws Exception {
 		ReserveVO reserveVO = new ReserveVO();
 		
 		List<GoodsVO> goodsVOs = carService.getGoodsList(goodsVO);
@@ -187,7 +200,14 @@ public class CarController {
 
 		log.info("goodVO list: {}", goodsVOs);
 		log.info("reserveVO : {}", reserveVOs);
-
+		
+		int r = 0;
+		
+		if (authentication != null) {
+			r = 1;
+		}
+		
+		mv.addObject("loginCheck", r);
 		mv.addObject("goods", goodsVOs);
 		mv.addObject("reserves", reserveVOs);
 		mv.setViewName("/goods/car/carList");

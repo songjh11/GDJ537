@@ -11,12 +11,6 @@ import com.app.home.util.Pager;
 public interface BoardDAO {
 
 	public List<BoardVO> getList(Pager pager) throws Exception;
-	
-	//조회수순으로 리스트 불러오기
-	public List<BoardVO> getListByHit(Pager pager) throws Exception;
-	
-	//댓글수순으로 리스트 불러오기
-	public List<BoardVO> getListByComment(Pager pager) throws Exception;
 
 	public BoardVO getDetail(BoardVO boardVO) throws Exception;
 
@@ -31,4 +25,6 @@ public interface BoardDAO {
 	public Long getTotalCount(Pager pager) throws Exception;
 	
 	public List<ReqCategoryVO> findReqCategory(ReqCategoryVO reqCategoryVO)throws Exception;
+	
+	public String getBoardPassword(BoardVO boardVO)throws Exception;
 }

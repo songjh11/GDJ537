@@ -146,8 +146,20 @@
               </div>
 
               <!-- 나중에 로그인한 사용자와 작성자가 일치하는지 검증 -->
-              <a href="/unknown/update?id=${boardVO.id}" class="btn btn-danger">글 수정</a>
-              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>
+              <div class="form-group d-flex">
+	              <div class="col-2">
+	              	<input id="password" name = "password" class="form-control">
+	              </div>
+	              <div class="col-auto">
+	              	<button id="chkPw" class="btn btn-primary" data-boardnum = "${boardVO.id}">패스워드 확인</button>
+	              </div>
+	              <div class="col-auto">
+		              <a href="#" class="btn btn-danger disabled" id="modifyA">글 수정</a>
+	              </div>
+	              <div class="col-auto">
+		              <button type="button" class="btn btn-danger disabled" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>
+	              </div>
+              </div>
             </div>
             <!-- End Page Content -->
 

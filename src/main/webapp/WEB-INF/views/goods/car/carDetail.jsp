@@ -11,17 +11,22 @@
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
 <style>
-/* .de {
-	width: 	1000px;
-	height: 500px;
-	padding-bottom: 50px;
-	padding-left: 20px;
-	padding-right: 25px;
-} */
-
-/* ul {
-	display: flex;
-} */
+.de {
+	width: 	500px;
+	height: 400px;
+	object-fit: scale-down
+}
+.img-title {
+	text-align: center;
+	display: table;
+	width: 500px;
+	height: 400px;
+	padding-top: 15px;
+}
+.img-div {
+	display: table-cell;
+	vertical-align: middel;
+}
 
 ul li {
 	list-style: none;
@@ -70,9 +75,11 @@ ul li {
 							${goods.contents }
 							<ul>
 								<c:forEach items="${goods.goodsFileVO}" var="goods">
-									<li>
-										<img class="de" src="/file/goods/${goods.fileName}" alt="" style="width: 500px; height: 500px;">
-									</li>
+									<div class="img-title">
+										<div class="img-div">
+											<img class="de" src="/file/goods/${goods.fileName}" alt="">
+										</div>
+									</div>
 								</c:forEach>
 							</ul>
 						</div>

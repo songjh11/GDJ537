@@ -142,14 +142,32 @@
             val = $("#inputContents").val();
             console.log(val.length);
             $("#count").text(val.length+" / 5000");
+
+            if(val.length>5000) {
+                alert("최대 5000자까지 입력 가능합니다.");
+                $("#count").text(val.length+" / 5000");
+                // $("#count").text("5000 / 5000");
+                
+                $("#inputContents").val(val.substring(0, 5000));
+            }
+            
         })
 
         $("#sendBtn").on("click", function(){
-            if(val.length<5001) {
-                $("#fofo").submit();
+
+            if(val.length>0) {
+
+                if(val.length<5001) {
+                    $("#fofo").submit();
+                } else {
+                    alert("쪽지는 5000자까지 작성할 수 있습니다.")
+                }
+
             } else {
-                alert("쪽지는 5000자까지 작성할 수 있습니다.")
+                alert("내용을 입력해 주세요.")
             }
+
+            
             
         })
         

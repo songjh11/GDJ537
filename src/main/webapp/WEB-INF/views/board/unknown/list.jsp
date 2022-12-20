@@ -50,8 +50,11 @@
 
             <!-- Begin Page Content -->
 
+            <div class="row">
+            <div class="col-lg-10">
+            
             <div class="container-fluid">
-              <form class="row g-3" action="./list" method="get">
+              <form class="row g-3 justify-content-between m-3" action="./list" method="get">
                 <div class="d-flex justify-content-center">
 					  	<div class="col-auto">
 						    <select class="form-control" name="kind" aria-label="Default select example">
@@ -68,17 +71,33 @@
 	                             </button>
 	                         </div>
 	                      </div>
-	                      <div class="col-auto">
-	                      	<button type="button" class="btn btn-info" id="fiveBtn"><span class="badge text-bg-info">5</span></button>
+
+					  </div>
+					 <div class="d-flex justify-content-center">					 
+					<div class="col-auto">
+						<select class="form-control" id="listOrder" title="${param.order}" name="order">
+							<option class="order" value="ID">최신순</option>
+							<option class="order" value="hit">조회수순</option>
+							<option class="order" value="comment">댓글수순</option>
+						</select>
+					</div>
+					<div class="col-auto">
+						<button type="button" class="btn btn-info" id="fiveBtn"><span class="badge text-bg-info">5</span></button>
               				<button type="button" class="btn btn-info" id="tenBtn"><span class="badge text-bg-info">10</span></button>
               				<button type="button" class="btn btn-info" id="twentyBtn"><span class="badge text-bg-info">20</span></button>
-              			  </div>
-					  </div>
+              			  
+					</div>
+						 <div class="col-auto">
+	                      	<a href="/unknown/add" class="btn btn-danger">글 작성</a>
+	                      </div>
+					 </div>
               </form>
 
-              <a href="/unknown/add" class="btn btn-danger" style="margin:10px 0;">글 작성</a>
+              
               <!-- 공지사항 작성 -->
-              <div class="card mb-3">
+              <!-- ajax용 div 추가-->
+					  <div id="ajaxResult">
+              <div class="card mb-3 unknownList">
                 <c:forEach items="${unknownList }" var="unknown">
                   <div class="card-header bg-white">
                     <div class="row justify-content-between">
@@ -135,24 +154,28 @@
                 <ul class="pagination">
                   <c:if test="${pager.pre }">
                     <li class="page-item"><a class="page-link"
-                        href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Previous</a>
+                        href="./list?page=${pager.startNum - 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">Previous</a>
                     </li>
                   </c:if>
 
                   <c:forEach begin="${pager.startNum }" end="${pager.lastNum }" step="1" var="i">
                     <li class="page-item"><a class="page-link"
-                        href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">${i }</a></li>
+                        href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">${i }</a></li>
                   </c:forEach>
 
                   <c:if test="${pager.next }">
                     <li class="page-item"><a class="page-link"
-                        href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}">Next</a></li>
+                        href="./list?page=${pager.lastNum + 1 }&kind=${pager.kind}&search=${pager.search}&perPage=${pager.perPage}&order=${pager.order}">Next</a></li>
                   </c:if>
 
                 </ul>
               </nav>
             </div>
+          </div>
+          <!--ajaxResult 끝-->
             <!-- End Page Content -->
+            </div>
+            </div>
 
           </div>
           <!-- End of Main Content -->
@@ -165,6 +188,8 @@
       </div>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="/js/board/unknown.js"></script>
+
       <script type="text/javascript">
         let regDates = $(".regdate");
         $.each(regDates, function (index, item) {

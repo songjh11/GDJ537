@@ -14,7 +14,8 @@ public class GoodsVO {
 	private int max;
 	private String contents;
 	private String location;
-	private String carnum;
+	private String carNum;
+	private int count;
 	
 	private MultipartFile [] files;
 	private List<GoodsFileVO> goodsFileVO;

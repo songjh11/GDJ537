@@ -55,22 +55,23 @@ ul li {
 						<table class="table table-hover" id="info">
 							<tr>
 								<th>차량 예약번호</th>
+								<th>차량 번호</th>
 								<th>사원번호</th>
-								<th>사용 목적</th>
 								<th>예약 신청일</th>
-								<th>사용 시작 날짜</th>
-								<th>사용 종료 날짜</th>
+								<th>사용 기간</th>
+								<th>사용 목적</th>
 							</tr>
 							<c:forEach items="${carInfo}" var="ro">
 								<input type="hidden" value="${ro.startTime}" class="startTime">
                         		<input type="hidden" value="${ro.endTime}" class="endTime">	
 								<tr>
 									<td>${ro.reserveNum }</td>
+									<td>7</td>
+									<%-- <td>${ro.goodsVOs[0].carNum }</td> --%>
 									<td>${ro.id }</td>
-									<td>${ro.usePurpose }</td>
 									<td>${ro.date }</td>
-									<td>${ro.startTime }</td>
-									<td>${ro.endTime }</td>
+									<td>${ro.startTime} <br>~<br> ${ro.endTime}</td>
+									<td>${ro.usePurpose }</td>
 								</tr>
 							</c:forEach>
 						</table>

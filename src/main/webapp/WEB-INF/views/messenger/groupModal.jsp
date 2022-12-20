@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 						<!-- 체크박스 생성 모달 시작 -->
-						<form action="./addRoom" method="post">
+						<form action="./addRoom" method="post" id="addRoomForm">
+						 <input type="hidden" name="kind" value="0">
 							<div id="check" class="check-overlay" style="z-index: 100;">
 								<div class="check-window">
 									<div class="close-area">X</div>
@@ -25,7 +26,7 @@
 																		<div class="userArea" style="display: flex;	justify-content: start; align-items: center;">
 																			<div class="userAdd">
 																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
-																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+																				<img id="yourImg${e.id}" class="yourImg" src="/file/profile/${e.profile}">
 																			</div>
 																			<div class="userInfo" style="width: 60%; color: white; margin-left: 9px;">
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
@@ -48,7 +49,7 @@
 																		<div class="userArea" style="display: flex;	justify-content: start; align-items: center;">
 																			<div>
 																				<input class="checkUser" type="checkbox" name="id" value="${e.id}" dep-num="${d.depNum}">
-																				<img id="yourImg${e.id}" class="yourImg" src="/img/undraw_profile_3.svg">
+																				<img id="yourImg${e.id}" class="yourImg" src="/file/profile/${e.profile}">
 																			</div>
 																			<div class="userAdd" style="width: 60%;">
 																				<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
@@ -79,41 +80,23 @@
 									<div class="content">
 										<div class="roomInfo">
 											<div class="row">
-												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
-												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
-											</div>
-											<div class="row">
-												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
-												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;">
+												<img id="rmImg" src="/img/undraw_profile_3.svg" width="100" height="100" style="border-radius: 50%;"><span>2</span>
 											</div>
 											<div class="infoArea" style="background: transparent; border: none; box-shadow: none !important;">
-												<!-- <div class="mb-3">
-													<label for="exampleFormControlTextarea1" class="form-label">채팅방 이름</label>
-													<input type="text" name="roomName" class="form-control form-control-sm" placeholder="방이름을 입력해 주세요">
-												</div> -->
-												<!-- is-valid 클래스 추가시 인풋 라인이 초록색 -->
 												<div class="input-group mb-3 justify-content-center">
 													<div class="form-floating">
 														<label for="floatingInputGroup1">채팅방 이름</label>
 													  <input type="text" name="roomName" class="form-control" id="floatingInputGroup1" placeholder="방이름을 입력해 주세요">
 													</div>
 												</div>
-												<!-- <div class="mb-3">
-													<label for="exampleFormControlTextarea1" class="form-label">비밀번호</label>
-													<input type="password" id="numCheck" name="pw" required pattern="[0-9]+" aria-invalid="true" class="form-control form-control-sm" placeholder="숫자를 입력해 주세요">
-												</div> -->
-												<!-- is-invalid 클래스 추가시 인풋 라인이 빨간색 -->
 												<div class="input-group has-validation mb-3 justify-content-center">
 													<div class="form-floating is-invalid">
-													  <label for="floatingInputGroup2">비밀번호</label>
-													  <input type="password" id="numCheck" name="pw" class="form-control" id="floatingInputGroup2" placeholder="숫자를 입력해 주세요" required>
-													  <div class="invalid-feedback">
-														Please choose a username.
-													  </div>
+													  <label for="floatingInputGroup2">비밀번호 설정</label>
+													  <input type="password" id="numCheck" name="pw" class="form-control" id="floatingInputGroup2" placeholder="숫자를 입력해 주세요">
 													</div>
 												</div>
 												<p class="mt-4">
-													<button type="submit" id="roomAddBtn" class="btn" style="background: #4e73df; color: #FFFFFF;">생성</button>
+													<button type="button" id="roomAddBtn" class="btn" style="background: #4e73df; color: #FFFFFF;">생성</button>
 												</p>
 											</div>
 										</div>

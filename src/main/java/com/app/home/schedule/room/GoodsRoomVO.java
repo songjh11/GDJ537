@@ -3,6 +3,7 @@ package com.app.home.schedule.room;
 import java.util.List;
 
 import com.app.home.schedule.goods.ReserveVO;
+import com.app.home.user.UserVO;
 
 import lombok.Data;
 

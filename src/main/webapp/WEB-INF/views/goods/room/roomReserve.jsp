@@ -55,6 +55,10 @@
 							</c:forEach>
 
 							<div class="mb-3">
+								<div style="text-align: center;">
+									<font> *1시간 단위로 입력됩니다.* </font>
+								</div>
+								<br>
 								<label>사용 시작 시간</label>
 								<input type="datetime-local" name="startTime" class="form-control" id="start" placeholder="시작시간">
 								<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
@@ -70,10 +74,11 @@
 							</div>
 
 							<div class="mb-5">
-								<label>예약자</label>
+								<label>사원 이름</label>
 								<input type="hidden" name="id" class="form-control" id="member" value="${userInfo.id }" readonly>
 								<input type="text" class="form-control" value="${userInfo.name }" disabled>
 							</div>
+
 
 							<div class="mb-5">
 								<label>부서명</label>
@@ -98,7 +103,6 @@
 										<input type="text" class="form-control" id="exampleFormControlInput1" readonly="readonly"
 											value="생산팀">
 									</c:when>
-
 								</c:choose>
 							</div>
 
