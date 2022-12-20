@@ -93,7 +93,7 @@
 				      </div>
 				      <div class="modal-body">
 				      	<c:forEach items="${listR}" var="roleVO">
-				        <center><button type="button" class="btn btn-primary rolenumUpdate" data-bs-dismiss="modal" data-rolenum=${roleVO.rolenum }>${roleVO.roleName}</button><br><br></center>
+				        <center><button type="button" class="btn btn-primary rolenumUpdate" data-bs-dismiss="modal" data-rolenum=${roleVO.roleNum }>${roleVO.roleName}</button><br><br></center>
 				        </c:forEach>
 				      </div>
 				      <div class="modal-footer">
@@ -113,7 +113,7 @@
 				      </div>
 				      <div class="modal-body">
 				      	<c:forEach items="${listD}" var="departmentVO">
-				        <center><button type="button" class="btn btn-primary depnumUpdate" data-bs-dismiss="modal" data-depnum=${departmentVO.depnum }>${departmentVO.depName}</button><br><br></center>
+				        <center><button type="button" class="btn btn-primary depnumUpdate" data-bs-dismiss="modal" data-depnum=${departmentVO.depNum }>${departmentVO.depName}</button><br><br></center>
 				        </c:forEach>
 				      </div>
 				      <div class="modal-footer">

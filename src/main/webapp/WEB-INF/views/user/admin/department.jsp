@@ -67,7 +67,7 @@
 
                      <c:forEach items="${list}" var="departmentVO">
                      <tr class="department">
-                        <th scope="row">${departmentVO.depnum}</th>
+                        <th scope="row">${departmentVO.depNum}</th>
                         <td class="showDepartment" data-department="depName">${departmentVO.depName}</td>
                         <td class="showDepartment" data-department="id">
                         <c:choose>
