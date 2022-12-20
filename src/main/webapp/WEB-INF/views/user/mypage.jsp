@@ -128,16 +128,16 @@
                             <div class="card-body">
                                 
                                     
+                                <table class="table table-hover justify-content-right" style="text-align: center;">
+                                    <tr>
+                                        <th>예약 날짜</th>
+                                        <th>예약정보</th>
+                                        <th>예약 변경</th>
+                                        <th>예약 취소</th>
+                                        <th>공공 시설</th>
+                                    </tr>
                                     <c:forEach items="${reserveVO}" var="reserve">
                                         <c:if test="${reserve.goodsId.substring(0,2) == 'RO'}">
-                                            <table class="table table-hover justify-content-right" style="text-align: center;">
-                                                <tr>
-                                                    <th>예약 날짜</th>
-                                                    <th>예약정보</th>
-                                                    <th>예약 변경</th>
-                                                    <th>예약 취소</th>
-                                                </tr>
-                                            회의실 예약
                                             <tr>
                                                 <td>${reserve.startTime}</td>
                                                 <td><a href="/goods/room/roomDetail?goodsId=${reserve.goodsId}" class="btn btn-outline-none">정보 보기</a></td>
