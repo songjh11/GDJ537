@@ -15,8 +15,8 @@ public class ReportVacaVO extends ReportApplyVO {
 	private String text;
 	private String startDate;
 	private String endDate;
-	private Long call;
-	private String date;
+	private String call;
+	private Date date;
 	
 	
 	public String getStartDate() {
@@ -49,17 +49,20 @@ public class ReportVacaVO extends ReportApplyVO {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Long getCall() {
+	
+	
+	
+	
+	public String getCall() {
 		return call;
 	}
-	public void setCall(Long call) {
+	public void setCall(String call) {
 		this.call = call;
 	}
-	
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public Long getCategoryNum() {
