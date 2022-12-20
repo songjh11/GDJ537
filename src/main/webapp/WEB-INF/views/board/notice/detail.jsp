@@ -101,7 +101,7 @@
               </div>
               <sec:authorize access="hasAuthority('관리자')">
 	              <a href="/notice/update?id=<c:out value="${boardVO.id}"></c:out>" class="btn btn-danger">글 수정</a>
-	              <button type="button" class="btn btn-danger">글 삭제</button>
+	              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>
 			  </sec:authorize>
             </div>
             <!-- End Page Content -->
@@ -122,6 +122,7 @@
       </script>
       <!-- Scroll Top, Logout Modal import -->
       <c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
+      <script src="/js/boardDelete.js"></script>
     </body>
 
     </html>

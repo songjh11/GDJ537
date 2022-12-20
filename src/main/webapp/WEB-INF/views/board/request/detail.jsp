@@ -146,7 +146,7 @@
 
               <!-- 나중에 로그인한 사용자와 작성자가 일치하는지 검증 -->
               <sec:authentication property="Principal" var="member"/>
-              <c:if test="${not empty member} ">
+              <c:if test="${not empty member}">
 	              <c:if test="${member.id eq boardVO.creator}">
 		              <a href="/request/update?id=${boardVO.id}" class="btn btn-danger">글 수정</a>
 		              <button type="button" class="btn btn-danger" id="deleteBtn" data-boardnum="${boardVO.id}">글 삭제</button>

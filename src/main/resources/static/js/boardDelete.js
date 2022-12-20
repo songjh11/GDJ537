@@ -32,6 +32,8 @@ $("#chkPw").click(function(){
 
 
 	
+}else{
+	chkPasssword=true;
 }
 
 deleteBtn.on("click", function(){
