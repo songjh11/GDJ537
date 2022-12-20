@@ -29,7 +29,7 @@ b1.addEventListener("click", function () {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   //4. 파라미터 전송 요청 발생 (메서드 post일 경우 파라미터 추가)
-  xhttp.send("num=" + boardNum + "&contents=" + cv + "&id=" + commentWriter);
+  xhttp.send("boardId=" + boardNum + "&contents=" + cv + "&creator=" + commentWriter);
 
   //5. 응답 처리
   xhttp.onreadystatechange = function () {
@@ -59,7 +59,7 @@ function getCommentList(p, bn) {
   const xhttp = new XMLHttpRequest();
 
   //2. Method URL 준비
-  xhttp.open("GET", "/comment/list?page=" + p + "&num=" + bn); // GET
+  xhttp.open("GET", "/comment/list?page=" + p + "&boardId=" + bn); // GET
 
   //3. 요청 전송 enctype x
   xhttp.send();
@@ -70,58 +70,7 @@ function getCommentList(p, bn) {
       console.log(xhttp.responseText);
 
       //1. jsp 사용한 결과물
-      //commentList.innerHTML=xhttp.responseText.trim();
-
-      //2. JSON 결과물
-      let result = JSON.parse(xhttp.responseText.trim());
-      let pager = result.pager; //commentPager
-      let ar = result.list;     //댓글리스트
-
-      for (let i = 0; i < ar.length; i++) {
-        let tr = document.createElement("tr")
-
-        let td = document.createElement("td")
-        let tdText = document.createTextNode(ar[i].contents);
-        td.appendChild(tdText);
-        tr.appendChild(td);
-
-        td = document.createElement("td");
-        tdText = document.createTextNode(ar[i].id);
-        td.appendChild(tdText);
-        tr.appendChild(td);
-
-        /*td = document.createElement("td");
-        tdText = document.createTextNode(ar[i].regDate);
-        td.appendChild(tdText);
-        tr.appendChild(td);*/
-
-        td = document.createElement("td");
-        tdText = document.createTextNode("수정");
-        let tdAttr = document.createAttribute("class")
-        tdAttr.value = "update";
-        td.setAttributeNode(tdAttr);
-        td.appendChild(tdText);
-        tr.appendChild(td);
-
-        tdAttr = document.createAttribute("data-commentnum");
-        tdAttr.value = ar[i].commentNum;
-        td.setAttributeNode(tdAttr);
-        tr.appendChild(td);
-
-        td = document.createElement("td");
-        tdText = document.createTextNode("삭제");
-        tdAttr = document.createAttribute("class")
-        tdAttr.value = "delete";
-        td.setAttributeNode(tdAttr);
-        td.appendChild(tdText);
-
-        tdAttr = document.createAttribute("data-commentnum");
-        tdAttr.value = ar[i].commentNum;
-        td.setAttributeNode(tdAttr);
-        tr.appendChild(td);
-
-        commentList.append(tr);
-      }
+      commentList.innerHTML=xhttp.responseText.trim();
     }
   })
 
@@ -131,7 +80,7 @@ function getCommentList(p, bn) {
 commentList.addEventListener("click", function (event) {
 
   console.log(event.target.className);
-  if (event.target.className == "update") {
+  if (event.target.classList.contains("update")) {
 
     /*let contents = event.target.parentNode.parentNode.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML;
     let num = event.target.getAttribute("data-boardNum");
@@ -145,7 +94,7 @@ commentList.addEventListener("click", function (event) {
   }
 
   //----------댓글삭제----------
-  if (event.target.className == "delete") {
+  if (event.target.classList.contains("delete")) {
     let deFlag = confirm("댓글을 삭제 하시겠습니까?");
 
     if(deFlag){
@@ -161,7 +110,7 @@ commentList.addEventListener("click", function (event) {
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
       //4. 요청 (파라미터와 함께)
-      xhttp.send("commentNum=" + commentNum);
+      xhttp.send("id=" + commentNum);
 
       //5. 응답처리
       xhttp.onreadystatechange = function () {
@@ -196,7 +145,8 @@ update.addEventListener("click", function(){
   // 요청 header 정보
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   // 요청 실행
-  xhttp.send("commentNum="+commentNumber+"&contents="+contents);
+  xhttp.send("id="+commentNumber+"&contents="+contents);
+  console.log('contents =',contents)
   // 응답 처리
   xhttp.onreadystatechange=function() {
       if(xhttp.readyState==4 && this.status==200) {

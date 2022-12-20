@@ -20,6 +20,9 @@ import org.springframework.web.servlet.view.AbstractView;
 import com.app.home.file.FileVO;
 
 import lombok.extern.slf4j.Slf4j;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.model.CompleteMultipartUploadResponse;
+import software.amazon.awssdk.services.s3.model.DeleteObjectResponse;
 
 @Component
 @Slf4j
@@ -97,14 +100,50 @@ public class FileManager extends AbstractView {
 
 		return boardFileName;
 	}
+
+	public String saveFileS3(MultipartFile multipartFile)throws Exception {
+
+		//amazons3Service 객체를 만든다.
+		AmazonS3Service amazonS3Service = new AmazonS3Service();
+		
+		RequestBody requestBody = RequestBody.fromInputStream(multipartFile.getInputStream(), multipartFile.getSize());
+
+		//1. 중복되지 않는 파일명 생성(UUID, Date)
+		String boardFileName = UUID.randomUUID().toString();
+		//파일명과 확장자 분리
+		String ex = multipartFile.getOriginalFilename();
+		ex = ex.substring(ex.lastIndexOf("."));
+		StringBuffer bf = new StringBuffer(boardFileName);
+		bf.append(ex);
+		boardFileName = bf.toString();
+
+		CompleteMultipartUploadResponse rr = amazonS3Service.upload(requestBody, boardFileName, "gdj537-yeyey");
+		
+		
+		return rr.key();//오브젝트 키 리턴
+	}
+	
+	//파일 삭제//
+	public boolean deleteFileS3(FileVO fileVO)throws Exception{
+
+		AmazonS3Service amazonS3Service = new AmazonS3Service();
+		
+		
+
+		DeleteObjectResponse dr = amazonS3Service.delete(fileVO.getFileName(), "gdj537-yeyey");
+		
+		log.info("drr{}",dr.deleteMarker());
+		return dr.deleteMarker();
+	}
+	
+
 	
 	public String saveFile(String path,ServletContext servletContext,MultipartFile multipartFile) throws Exception{
 		
-		String realPath = servletContext.getRealPath(path);
-		System.out.println("realPath:" + realPath);
+
 		
 		
-		File file = new File(realPath);
+		File file = new File(path);
 		if(!file.exists()) {
 			file.mkdirs();	
 		}
@@ -118,13 +157,30 @@ public class FileManager extends AbstractView {
 		return fileName;
 	}
 
-	//파일 삭제 (label 값과 FileName 필수)//
-	public boolean deleteFile(FileVO fileVO, String path)throws Exception{
+	//파일 삭제//
+	public boolean deleteFile(FileVO fileVO)throws Exception{
 
-		File file = new File(base + path, fileVO.getFileName());
+		File file = new File(base , fileVO.getFileName());
 
 		boolean result = file.delete();
 
 		return result;
+	}
+	
+	//파일 사이즈 계산
+	public String calFileSize(MultipartFile file)throws Exception{
+		long byte1 = file.getSize();
+		double kb = byte1 / 1024.0;
+		double mb = kb / 1024.0;
+		double gb = mb / 1024.0;
+		
+		String filesize = byte1 +"byte";
+		if(byte1 > 1000) {
+			filesize = Math.round(kb * 100) / 100.0 + "kb";
+			if(kb > 1000) {
+				filesize = Math.round(mb * 100) / 100.0  + "mb";
+			}
+		}
+		return filesize;
 	}
 }

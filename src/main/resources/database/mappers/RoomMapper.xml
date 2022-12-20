@@ -5,7 +5,7 @@
 
 <mapper namespace="com.app.home.schedule.room.RoomMapper">
 
-	<!-- 전체 정보 출력을 위한 리스트 -->
+	<!-- 공용시설 전체 출력을 위한 리스트 -->
 	<select id="getRoomList" parameterType="GoodsVO"
 		resultMap="getGoods">
 		SELECT * FROM GOODS G
@@ -29,6 +29,7 @@
 		</collection>
 	</resultMap>
 
+	<!-- 회의실 정보 출력하기 -->
 	<select id="getRoomTotal" parameterType="GoodsVO"
 		resultMap="getRoom">
 		SELECT * FROM GOODS G
@@ -53,21 +54,19 @@
 		</collection>
 	</resultMap>
 
+	<!-- 회의실 예약하기 -->
 	<insert id="setRoomReserve" parameterType="GoodsRoomVO">
-		insert into RESERVE
+		insert into
+		RESERVE(RESERVENUM, GOODSID, DATE, ID, USEPURPOSE, STARTTIME, ENDTIME)
 		values(null, #{goodsId},
-		#{id},
-		#{startTime},
-		#{endTime},
+		now(), #{id},
 		#{usePurpose},
-		now())
+		#{startTime},
+		#{endTime}
+		)
 	</insert>
 
-	<select id="getReserveStartTime" parameterType="List"
-		resultType="ReserveVO">
-		select STARTTIME from RESERVE where GOODSID = #{goodsId}
-	</select>
-
+	<!-- 예약된 시간 가져오기 -->
 	<select id="getResInfo" parameterType="ReserveVO"
 		resultMap="info">
 		select g.*, r.*
@@ -98,5 +97,38 @@
 			<result column="location" property="location" />
 		</collection>
 	</resultMap>
+
+	<!-- 회의실별 예약된 시작, 종료 시간 가져오기 -->
+	<select id="getStartTime" parameterType="List"
+		resultType="ReserveVO">
+		select STARTTIME, ENDTIME from RESERVE where GOODSID =
+		#{goodsId}
+	</select>
+
+	<!-- 예약 상세보기 -->
+	<select id="getReserveDetail" resultType="ReserveVO">
+		SELECT * FROM RESERVE
+		WHERE RESERVENUM = #{reserveNum}
+	</select>
+
+	<!-- 예약 변경 -->
+	<update id="setReserveUpdate" parameterType="ReserveVO">
+		UPDATE RESERVE R
+		INNER JOIN GOODS G
+		ON R.GOODSID = G.GOODSID
+		SET
+		R.STARTTIME =
+		#{startTime}, R.ENDTIME = #{endTime},
+		R.USEPURPOSE =
+		#{usePurpose}
+		WHERE
+		R.RESERVENUM = #{reserveNum}
+	</update>
+
+	<!-- 예약 취소 -->
+	<delete id="setReserveDelete" parameterType="ReserveVO">
+		DELETE FROM RESERVE
+		WHERE RESERVENUM = #{reserveNum}
+	</delete>
 
 </mapper>    

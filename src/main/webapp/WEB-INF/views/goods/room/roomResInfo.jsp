@@ -10,22 +10,6 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
-<style>
-.de {
-	width: 350px;
-	height: 350px;
-	padding-left: 20px;
-	padding-right: 25px;
-}
-
-ul {
-	display: flex;
-}
-
-ul li {
-	list-style: none;
-}
-</style>
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -44,32 +28,41 @@ ul li {
 				<!-- Topbar import-->
 				<c:import url="../../temp/layout_topbar.jsp"></c:import>
 				<!-- End of Topbar -->
-				<%-- ${goodDetail.goodsFileVO } --%>
 				<!-- Begin Page Content -->
+				<input type="hidden" value="${roomInfo[0].goodsVOs[0].name}">
 				<div class="container-fluid">
 					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
-						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVOs[0].name} 회의실 예약정보</h1>
+						<h1 class="h3 mb-4 text-gray-800">${roomInfo[0].goodsVOs[0].name}예약정보</h1>
+						<input type="hidden" value="${loginCheck }" id="userID">
 						<table class="table table-hover">
 							<tr>
-								<th>예약자</th>
-								<th>날짜</th>
-								<th>사용 목적</th>
-								<th>시작 시간</th>
-								<th>종료 시간</th>
+								<!-- <th>회의실 예약 번호</th> -->
+								<th style="color: black;">사원 번호</th>
+								<th style="color: black;">예약 신청일</th>
+								<th style="color: black;">사용 기간</th>
+								<th style="color: black;">사용 목적</th>
 							</tr>
 							<c:forEach items="${roomInfo }" var="ro">
 								<tr>
+									<%-- <td>${ro.reserveNum }</td> --%>
 									<td>${ro.id }</td>
 									<td>${ro.date }</td>
+									<td>${ro.startTime }
+										<br>
+										~
+										<br>
+										${ro.endTime }
+									</td>
 									<td>${ro.usePurpose }</td>
-									<td>${ro.startTime }</td>
-									<td>${ro.endTime }</td>
 								</tr>
 							</c:forEach>
 						</table>
-						<a href="./roomList">
-							<button type="button" class="btn btn-outline-none">뒤로가기</button>
-						</a>
+						<div>
+							<a href="./roomList">
+								<button type="button" class="btn btn-outline-none res"
+									style="background-color: #4e73df; color: white;">뒤로가기</button>
+							</a>
+						</div>
 					</section>
 
 				</div>
@@ -88,4 +81,21 @@ ul li {
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
 </body>
+<script src="/js/room/reserveIDcheck.js"></script>
+<script>
+	// 예약 취소 버튼을 눌렀을 때
+	$('.delete_btn').click(function() {
+		console.log($(this).val()); // 클릭 한 요소의 value값(reserveNum)을 출력한다.
+
+		let reserve = $(this).val(); // value값(reserveNum)을 reserve에 저장한다.
+		let result = confirm("예약을 취소하시겠습니까? \n취소 후에는 되돌릴 수 없습니다.");
+
+		if (result) { // 확인 클릭 시
+			$.get("roomReserveDelete?reserveNum=" + reserve, function(result) { // controller로 get방식의 보낸다
+				console.log(reserve);
+				location.reload();
+			});
+		}
+	});
+</script>
 </html>

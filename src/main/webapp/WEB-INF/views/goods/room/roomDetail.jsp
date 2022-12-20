@@ -12,18 +12,22 @@
 </head>
 <style>
 .de {
-	width: 350px;
-	height: 350px;
-	padding-left: 20px;
-	padding-right: 25px;
+	width: 500px;
+	height: 400px;
+	object-fit: scale-down;
 }
 
-ul {
-	display: flex;
+.product-title {
+	text-align: center;
+	display: table;
+	width: 500px;
+	height: 400px;
+	padding-top: 15px;
 }
 
-ul li {
-	list-style: none;
+.product-img-div {
+	display: table-cell;
+	vertical-align: middle;
 }
 </style>
 <!-- body ID 작성 -->
@@ -50,37 +54,41 @@ ul li {
 					<section class="container d-flex flex-wrap justify-content-center" style="text-align: center;">
 						<h1 class="h3 mb-4 text-gray-800">회의실 상세정보</h1>
 						<!-- Page Heading -->
-						<ul>
-							<li>
-								<img class="de" src="/img/undraw_profile_1.svg" alt="">
-							</li>
-							<li>
-								<img class="de" src="/img/undraw_profile_2.svg" alt="">
-							</li>
-							<li>
-								<img class="de" src="/img/undraw_profile_3.svg" alt="">
-							</li>
-						</ul>
 						<table class="table table-hover">
 							<tr>
-								<th>회의실 번호</th>
-								<th>이름</th>
-								<th>상세정보</th>
-								<th>최대 인원(명)</th>
-								<th>위치</th>
+								<th style="color: black;">회의실 번호</th>
+								<th style="color: black;">이름</th>
+								<th style="color: black;">최대 인원 수</th>
+								<th style="color: black;">회의실 위치</th>
 							</tr>
 							<tr>
 								<td>${goodDetail.goodsId }</td>
 								<td>${goodDetail.name }</td>
-								<td>${goodDetail.contents }</td>
 								<td>${goodDetail.max }</td>
 								<td>${goodDetail.location }</td>
 							</tr>
 						</table>
-						<a href="./roomList">
-							<button type="button" class="btn btn-outline-none">뒤로가기</button>
-						</a>
+						<br>
+						<br>
+						<div class="text-center">
+							${goodDetail.contents }
+							<ul>
+								<c:forEach items="${goodDetail.goodsFileVO}" var="goods">
+									<div class="product-title">
+										<div class="product-img-div">
+											<img class="de" src="/file/goods/${goods.fileName}">
+										</div>
+									</div>
+								</c:forEach>
+							</ul>
+						</div>
+						<br>
 					</section>
+					<div style="text-align: center;" class="mb-5 mt-3">
+						<a href="./roomList">
+							<button type="button" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">뒤로가기</button>
+						</a>
+					</div>
 
 				</div>
 				<!-- End Page Content -->

@@ -60,14 +60,14 @@
                         <th class="table-light" scope="col">부서번호</th>
                         <th class="table-light" scope="col">부서이름</th>
                         <th class="table-light" scope="col">부장번호</th>
-                        <th class="table-light" scope="col"></th>
+                        <th class="table-light" scope="col">삭제 처리</th>
                      </tr>
                   </thead>
                   <tbody class="table-group-divider">
 
                      <c:forEach items="${list}" var="departmentVO">
                      <tr class="department">
-                        <th scope="row">${departmentVO.depNum}</th>
+                        <th scope="row">${departmentVO.depnum}</th>
                         <td class="showDepartment" data-department="depName">${departmentVO.depName}</td>
                         <td class="showDepartment" data-department="id">
                         <c:choose>

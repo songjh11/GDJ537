@@ -4,83 +4,147 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.app.home.board.BoardDAO">
+
+	<select id="getBoardPassword" parameterType="BoardVO" resultType="String">
+		SELECT password FROM BOARD WHERE id=#{id}
+	</select>
 	<insert id="setBoard" parameterType="BoardVO"
-		useGeneratedKeys="true" keyProperty="num">
-		INSERT INTO BOARD (NUM, ID, TITLE,
-		CONTENTS, DEPNUM, HIT, SORT)
-		VALUES (0, #{id}, #{title}, #{contents},
-		#{depnum}, 0, #{sort})
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO BOARD (ID, CREATOR, TITLE,
+		CONTENTS, DEPnum, HIT, SORT, PASSWORD)
+		VALUES (0, #{creator}, #{title}, #{contents},
+		#{depNum}, 0, #{sort}, #{password})
 	</insert>
 
 	<select id="getDetail" parameterType="BoardVO"
 		resultMap="resultBoardAddfiles">
-		SELECT b.*,f.filenum, f.filename, f.oriname FROM BOARD b
-		LEFT JOIN FILE f ON b.num = f.num WHERE b.num=#{num}
+		SELECT b.*,f.id as fileid, f.filename, f.oriname, f.fileSize  , u.name , u.status , UD.NAME AS updaterName
+		FROM BOARD b
+			LEFT JOIN FILE f 
+			ON b.id = f.boardId
+			LEFT JOIN `USER` u 
+			ON b.CREATOR  = u.ID 
+			LEFT JOIN `USER` UD
+			ON b.UPDATER = UD.ID
+		WHERE b.id=#{id}
 	</select>
 
 	<resultMap type="BoardVO" id="resultBoardAddfiles">
-		<id column="num" property="num" />
+		<id column="id" property="id" />
 		<result column="title" property="title" />
 		<result column="contents" property="contents" />
-		<result column="id" property="id" />
-		<result column="depnum" property="depnum" />
+		<result column="creator" property="creator" />
+		<result column="depnum" property="depNum" />
 		<result column="hit" property="hit" />
 		<result column="sort" property="sort" />
 		<result column="regdate" property="regDate" />
-
+		<result column="updatedate" property="updateDate"/>
+		<result column="updater" property="updater"/>
+		<result column="updaterName" property="updaterName"/>
+		<result column="cntComment" property="cntComment"/>
+		<association property="userVO" javaType="UserVO">
+			<id column="creator" property="id"/>
+			<result column="name" property="name"/>
+			<result column="status" property="status"/>
+		</association>
 		<collection property="fileVOs" javaType="List"
 			ofType="FileVO">
-			<id column="filenum" property="fileNum" />
+			<id column="fileid" property="id" />
 			<result column="filename" property="fileName" />
 			<result column="oriname" property="oriName" />
+			<result column="fileSize" property="fileSize"/>
 		</collection>
 
 	</resultMap>
 
-	<update id="setUpdate" parameterType="BoardVO">
+	<update id="setUpdate" parameterType="BoardVO" >
 		UPDATE BOARD set
-		title=#{title}, CONTENTS =#{contents}
-		WHERE NUM =#{num};
+		title=#{title}, CONTENTS =#{contents}, UPDATEDATE = SYSDATE(), UPDATER = #{updater}
+		WHERE ID =#{id};
 	</update>
 
+
 	<delete id="setDelete" parameterType="BoardVO">
-		DELETE FROM BOARD WHERE NUM
-		= #{num}
+		DELETE FROM BOARD WHERE ID
+		= #{id}
 	</delete>
 
-	<select id="getList" parameterType="Pager" resultType="BoardVO">
-		SELECT B.*, COUNT(C.COMMENTNUM) as cntComment FROM BOARD B
+	<select id="getList" parameterType="Pager" resultMap="resultBoardAddfiles">
+		SELECT B.ID, B.TITLE, B.CREATOR, B.DEPNUM, B.HIT, B.REGDATE, COUNT(C.ID) as cntComment, U.NAME, U.STATUS 
+		FROM BOARD B
 		LEFT JOIN COMMENT C
-		ON B.NUM = C.NUM
+		ON B.ID = C.BOARDID
+		LEFT JOIN `USER` U 
+		ON B.CREATOR = U.ID 
 		WHERE SORT = #{sort}
 		AND
+		<include refid="depNumChk"></include>
+		AND
 		B.<include refid="search"></include>
-		GROUP BY B.NUM
-		ORDER BY NUM DESC
+		GROUP BY B.ID
+		ORDER BY <include refid="order"></include>
 		LIMIT ${startRow}, ${perPage}
 	</select>
 
 	<select id="getTotalCount" parameterType="Pager"
 		resultType="Long">
-		SELECT COUNT(NUM) FROM BOARD
+		SELECT COUNT(ID) FROM BOARD B
 		WHERE SORT = #{sort}
 		AND
 		<include refid="search"></include>
+		AND
+		<include refid="depNumChk"></include>
 	</select>
 
 	<sql id="search">
 		<choose>
 			<when test="kind == 'title'">TITLE</when>
-			<when test="kind == 'contents'">CONTENTS</when>
-			<when test="kind == 'id'">ID</when>
+			<when test="kind == 'creator'">ID</when>
 			<otherwise>CONTENTS</otherwise>
 		</choose>
 		LIKE CONCAT('%', #{search}, '%')
 	</sql>
+	
+	<sql id="order">
+		<choose>
+			<when test="order == 'comment'">cntComment DESC</when>
+			<when test="order == 'hit'">HIT DESC</when>
+			<otherwise>ID DESC</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="depNumChk">
+		<choose>
+			<when test="depNum == null">1=1</when>
+			<otherwise>B.depNum=#{depNum}</otherwise>
+		</choose>
+	</sql>
 
 	<update id="setHit" parameterType="BoardVO">
 		UPDATE BOARD SET HIT = HIT + 1
-		WHERE NUM = #{num}
+		WHERE ID = #{id}
 	</update>
+	
+	<!-- 요청카테고리 -->
+	<select id="findReqCategory" parameterType="ReqCategoryVO" resultMap="reqCategoryResult">
+		SELECT RC.*,D.DEPNAME
+		FROM DEPARTMENT D
+			 JOIN
+			 REQCATEGORY RC 
+			 ON D.DEPnum = RC.DEPnum
+		WHERE RC.DEPnum = #{depNum}
+	</select>
+	<resultMap type="ReqCategoryVO" id="reqCategoryResult">
+		<id column="id" property="id"/>
+		<result column="categoryName" property="categoryName"/>
+		<result column="categoryForm" property="categoryForm"/>
+		<result column="depNum" property="depNum"/>
+		<association property="DepartmentVO" javaType="DepartmentVO">
+			<id column="depNum" property="depNum"/>
+			<result column="depName" property="depName"/>
+			<result column="id" property="id"/>
+		</association>
+	
+	</resultMap>
 
 </mapper>    

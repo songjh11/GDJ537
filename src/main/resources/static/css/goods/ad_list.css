@@ -44,7 +44,18 @@ ul.tabs li.current{
 	background-color: white;
 }
 
-#total{
-	width: 300px;
+#total1{
+	width: 700px;
 	text-align: center;
+	float : left;
+	margin-right: 30px;
+	margin-bottom: 10px;
+}
+
+#total2{
+	width: 800px;
+	text-align: center;
+	float : left;
+	margin-bottom: 10px;
+
 }

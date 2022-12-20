@@ -1,6 +1,9 @@
 package com.app.home.board.unknown;
 
+import java.awt.event.FocusEvent;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,14 +12,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.home.board.BoardVO;
+import com.app.home.user.UserVO;
 import com.app.home.util.Pager;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/unknown/*")
 public class UnknownController {
 
 	@Autowired
 	private UnknownService unknownService;
+	
+	@PostMapping("chkboardpw")
+	@ResponseBody
+	public boolean checkBoardPassword(BoardVO boardVO)throws Exception{
+		return unknownService.checkBoardPassword(boardVO);
+	}
 
 	@PostMapping("delete")
 	@ResponseBody
@@ -25,10 +38,12 @@ public class UnknownController {
 	}
 
 	@PostMapping("update")
-	public String setUnknownUpdate(BoardVO boardVO) throws Exception{
+	public String setUnknownUpdate(@AuthenticationPrincipal UserVO userVO, BoardVO boardVO) throws Exception{
+		boardVO.setCreator(userVO.getId());
+		
 		int result = unknownService.setUnknownUpdate(boardVO);
 
-		return "redirect:/unknown/detail?num="+boardVO.getNum();
+		return "redirect:/unknown/detail?id="+boardVO.getId();
 	}
 
 	@GetMapping("update")
@@ -51,8 +66,9 @@ public class UnknownController {
 	}
 
 	@PostMapping("add")
-	public String setUnknownAdd(BoardVO boardVO) throws Exception {
-
+	public String setUnknownAdd(@AuthenticationPrincipal UserVO userVO, BoardVO boardVO) throws Exception {
+		boardVO.setCreator(userVO.getId());
+		log.info("adddddddd {}", boardVO);
 		int result = unknownService.setUnknownAdd(boardVO);
 
 		return "redirect:/unknown/list";
@@ -66,11 +82,21 @@ public class UnknownController {
 	@GetMapping("list")
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception{
 
-		pager.setSort(3);
+		pager.setSort("익명");
 		mv.addObject("unknownList", unknownService.getUnknownList(pager));
 		mv.addObject("pager", pager);
 		mv.setViewName("/board/unknown/list");
 
+		return mv;
+	}
+	
+	@GetMapping("getListByUnknownAjax")
+	public ModelAndView getListByUnknownAjax(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("unknownList", unknownService.getListByUnknownAjax(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("board/unknown/unknownResult");
+		System.out.println("AFTER : "+pager.getOrder());
 		return mv;
 	}
 

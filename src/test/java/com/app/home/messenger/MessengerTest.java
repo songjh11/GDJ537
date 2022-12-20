@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class MessengerTest {
 
 	@Test
-	public void insertTest() {
+	public void insertTest() throws Exception{
 		
 	}
 

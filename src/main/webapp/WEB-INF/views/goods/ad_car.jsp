@@ -17,21 +17,18 @@
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
-
       function drawChart() {
-
         var data = google.visualization.arrayToDataTable([
           ['Reason', 'Count'],
           ${result}
         ]);
-
         var options = {
-          title: '차량 통계'
-          
+          title: `${year}년 `+'차량별 통계',
+          fontSize: 20,
+          bold: true,
+
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
         chart.draw(data, options);
       }
       </script>
@@ -41,18 +38,15 @@
         google.charts.setOnLoadCallback(drawChart1);
   
         function drawChart1() {
+          //부서명 가지고 오기
           var data = google.visualization.arrayToDataTable([
-            ['Year', 'Sales', 'Expenses', 'Profit'],
-            ['2014', 1000, 400, 200],
-            ['2015', 1170, 460, 250],
-            ['2016', 660, 1120, 300],
-            ['2017', 1030, 540, 350]
+            ['부서명', '건수'],
+            ${depart}
           ]);
   
           var options = {
             chart: {
-              title: 'Company Performance',
-              subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+              title: '부서별 차량 예약 통계    '+`(${month}월)`,
             }
           };
   
@@ -71,96 +65,100 @@
 <!-- body ID 작성 -->
 <body id="page-top">
 
-	<!-- Page Wrapper 전체 Contents Wrapper -->
+   <!-- Page Wrapper 전체 Contents Wrapper -->
     <div id="wrapper">
 
-		<!-- Sidebar import -->
-		<c:import url="../temp/layout_sidebar.jsp"></c:import>
-		<!-- End of Sidebar -->
-		
-		 <!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
-			<!-- Main Content -->
-			<div id="content">
-			
-				<!-- Topbar import-->
-				<c:import url="../temp/layout_topbar.jsp"></c:import>
-				<!-- End of Topbar -->
-				
-				<!-- Begin Page Content -->
-	            <div class="container-fluid">
-	
-	            	<!-- Page Heading -->
-	            	<h1 class="h3 mb-4 text-gray-800">차량 예약 통계</h1>
-					
-                    
-                    <div id="piechart" style="width: 700px; height: 500px; float:left;"></div>
+      <!-- Sidebar import -->
+      <c:import url="../temp/layout_sidebar.jsp"></c:import>
+      <!-- End of Sidebar -->
+      
+       <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+         <!-- Main Content -->
+         <div id="content">
+         
+            <!-- Topbar import-->
+            <c:import url="../temp/layout_topbar.jsp"></c:import>
+            <!-- End of Topbar -->
+            
+            <!-- Begin Page Content -->
+               <div class="container-fluid">
+   
+                  <!-- Page Heading -->
+                  <h1 class="h3 mb-4 text-gray-800" style="font-weight: bold;">차량 예약 통계</h1>
+                  
 
-                    <div id="columnchart_material" style="width: 800px; height: 500px; float: left;"></div>
+               </div>
+               <div style="display: flow-root;">
 
-                    <div class="card" id="total">
-                        <div class="card-body">
-                          <div class="row align-items-center gx-0">
-                            <div class="col">
-                              <!-- Title -->
-                              <h6 class="text-uppercase text-muted mb-2">
-                                총 예약 건수
-                              </h6>
-                              <!-- Heading -->
-                              <span class="h2 mb-0">
-                                ${total}
-                              </span>
-                            </div>
-                            <div class="col-auto">
-                              <!-- Icon -->
-                              <span class="h2 fe fe-briefcase text-muted mb-0"></span>
-                            </div>
-                          </div> <!-- / .row -->
-                        </div>
-                      </div>
-
-                    <div class="card" id="total">
+                  <div class="card" id="total1">
                     <div class="card-body">
-                        <div class="row align-items-center gx-0">
+                      <div class="row align-items-center gx-0">
                         <div class="col">
+                          <!-- Title -->
+                          <h6 class="text-uppercase text-muted mb-2">
+                            총 예약 건수
+                          </h6>
+                          <!-- Heading -->
+                          <span class="h2 mb-0">
+                            ${total}
+                          </span>
+                        </div>
+                        <div class="col-auto">
+                          <!-- Icon -->
+                          <span class="h2 fe fe-briefcase text-muted mb-0"></span>
+                        </div>
+                      </div> <!-- / .row -->
+                    </div>
+                  </div>
+
+                    <div class="card" id="total2">
+                      <div class="card-body">
+                        <div class="row align-items-center gx-0">
+                          <div class="col">
                             <!-- Title -->
                             <h6 class="text-uppercase text-muted mb-2">
-                            금월 예약 건수
+                              이번 달 예약 건수
                             </h6>
                             <!-- Heading -->
                             <span class="h2 mb-0">
-                            ${total}
+                              ${nowTotal}
                             </span>
-                        </div>
-                        <div class="col-auto">
+                          </div>
+                          <div class="col-auto">
                             <!-- Icon -->
                             <span class="h2 fe fe-briefcase text-muted mb-0"></span>
-                        </div>
+                          </div>
                         </div> <!-- / .row -->
+                      </div>
                     </div>
                 </div>
+                <div id="piechart" style="width: 700px; height: 500px; float:left; margin-right : 30px;"></div>
+  
+                <div id="columnchart_material" style="width: 800px; height: 500px; float: left;"></div>
+  
+               
+                
+        
+      
+    
+  
+          </div>
+          <!-- End Page Content -->
+                
+              </div>
+         <!-- End of Main Content -->
+         
+         <!-- Footer import -->
+         <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+      </div>
+      <c:import url="../temp/layout_footer.jsp"></c:import>
 
-                    
-						
-					
-				
-	
-	            </div>
-	            <!-- End Page Content -->
-					
-			</div>
-			<!-- End of Main Content -->
-			
-			<!-- Footer import -->
-			<c:import url="../temp/layout_footer.jsp"></c:import>
-			<!-- End of Footer -->
-		</div>
-		<!-- End of Content Wrapper -->
-	</div>
-
-	<!-- Scroll Top, Login Modal import -->
-	<c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
-	<script src="/js/goods/ad_list.js"></script>
+   <!-- Scroll Top, Login Modal import -->
+   <c:import url="../temp/layout_top_logoutModal.jsp"></c:import>
+   <script src="/js/goods/ad_list.js"></script>
     
 </body>
 </html>

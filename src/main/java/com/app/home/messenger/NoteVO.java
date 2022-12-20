@@ -9,10 +9,17 @@ import lombok.Data;
 public class NoteVO {
 	
 	private Long noteNum;
-	private Long sendId;
-	private Long receiveId;
+	private int sendId;
+	private int receiveId;
 	private String contents;
 	private Timestamp regDate;
 	private int readCheck;
+	private String receiveName;
+	private String sendName;
+	private int remark;
+	private int flag;
+	
+	private String receiveImg;
+	private String sendImg;
 	
 }

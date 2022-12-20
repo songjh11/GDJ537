@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +16,10 @@ import com.app.home.file.FileVO;
 import com.app.home.util.FileManager;
 import com.app.home.util.Pager;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class UnknownService {
 
 	@Autowired
@@ -27,6 +31,21 @@ public class UnknownService {
 	private FileManager fileManager;
 	@Autowired
 	private FileDAO fileDAO;
+	
+	private final BCryptPasswordEncoder passwordEncoder;
+	
+	public UnknownService() {
+		passwordEncoder = new BCryptPasswordEncoder(15);
+	}
+	
+	public boolean checkBoardPassword(BoardVO boardVO) throws Exception{
+		String boardPw = boardDAO.getBoardPassword(boardVO);
+		
+		
+		boolean chk = passwordEncoder.matches(boardVO.getPassword(), boardPw);
+		
+		return chk;
+	}
 
 	public int setUnknownDelete(BoardVO boardVO) throws Exception{
 		int result = boardDAO.setDelete(boardVO);
@@ -42,26 +61,30 @@ public class UnknownService {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(file.getOriginalFilename()!="") {
 					FileVO fileVO = new FileVO();
-					String fileName = fileManager.saveFile(file, path);
+					String fileName = fileManager.saveFileS3(file);
 					fileVO.setFileName(fileName);
 					fileVO.setOriName(file.getOriginalFilename());
-					fileVO.setNum(boardVO.getNum());
+					fileVO.setFileSize(fileManager.calFileSize(file));
+					fileVO.setBoardId(boardVO.getId());
 
 					int result2 =fileDAO.setFile(fileVO);
 				}
 			}
 		}
-
 		return result;
 	}
 
-	public BoardVO getUnknownDetail(BoardVO boardVO) throws Exception {
+	public BoardVO getUnknownDetail(BoardVO boardVO) throws Exception {		
+		
 		return boardDAO.getDetail(boardVO);
 	}
 
 	@Transactional(rollbackFor = Exception.class)
 	public int setUnknownAdd(BoardVO boardVO) throws Exception {
-		boardVO.setSort(3);
+		boardVO.setSort("익명");
+		//password 세팅
+		String encodePw = passwordEncoder.encode(boardVO.getPassword());
+		boardVO.setPassword(encodePw);
 
 		int result = boardDAO.setBoard(boardVO);
 
@@ -69,9 +92,10 @@ public class UnknownService {
 			for(MultipartFile file : boardVO.getMultipartFiles()) {
 				if(!file.isEmpty()) {
 					FileVO fileVO = new FileVO();
-					String fileName = fileManager.saveFile(file, path);
+					String fileName = fileManager.saveFileS3(file);
 					fileVO.setFileName(fileName);
-					fileVO.setNum(boardVO.getNum());
+					fileVO.setFileSize(fileManager.calFileSize(file));
+					fileVO.setBoardId(boardVO.getId());
 					fileVO.setOriName(file.getOriginalFilename());
 
 					int result2 = fileDAO.setFile(fileVO);
@@ -88,6 +112,15 @@ public class UnknownService {
 		pager.getNum(totalCount);
 		pager.getRowNum();
 
+		return boardDAO.getList(pager);
+	}
+	
+	//(조회수순,최신순) Ajax 리스트 불러오기
+	public List<BoardVO> getListByUnknownAjax(Pager pager) throws Exception {
+		Long totalCount = boardDAO.getTotalCount(pager);
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		
 		return boardDAO.getList(pager);
 	}
 

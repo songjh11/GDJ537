@@ -6,7 +6,7 @@
  const urlParams = new URL(location.href).searchParams;
  
  if(urlParams.get("error")==1){
-	 alert("글 작성 실패.  제목, 내용, 작성자를 모두 입력해야 합니다.");
+	 alert("글 작성 실패.  관리자가 아닙니다.");
  }
  
  
@@ -16,6 +16,20 @@
  let chkContents=false
  let chkTitle = false
  let chkId =false
+ let chkPw=true
+ 
+ //pw 요소가 있으면 패스워드 검사
+ if($('#password').length){
+	 chkPw=false
+	 
+	 $('#password').on("blur", function(e){
+		 if($('#password').val()!=""){
+		 chkPw=true			 
+		 }else{
+			 chkPw=false;
+		 }
+	 })
+ }
  
  //summernote 적용
  $('#contents').summernote({
@@ -69,13 +83,15 @@ $('#btnSubmit').click(function(){
 	chkTitle = $('#title').val()!=""
 	chkId = $('#id').val()!=""
 	
-	if(chkContents&chkTitle&chkId){
+	
+	if(chkContents&chkTitle&chkId&chkPw){
 		console.log("onsubmit")
 		$('#boardForm').submit();
 	}else{
 		if(chkId){
 			let message = chkTitle?"":"제목 ";
-			message += chkContents?"":"내용";
+			message += chkContents?"":"내용 ";
+			message += chkPw?"":"비밀번호"
 			
 			alert(message+ "을 입력해주세요")
 			

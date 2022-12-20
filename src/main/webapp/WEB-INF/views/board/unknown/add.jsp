@@ -58,12 +58,17 @@
 								  	</div>
 								</div> -->
                     <!-- 나중에 로그인한 사용자의 값이 오도록 수정 -->
-                    <input type="hidden" name="id" id="id" value="1234">
+                    <input type="hidden" name="creator" id="id" value="1234">
                     <div class="mb-3 row">
                       <label class="col-sm-2 col-form-label" for="title">제목</label>
-                      <div class="col-sm-10">
+                      <div class="col-sm-4">
                         <input class="form-control" id="title" name="title" type="text" value=""
                           placeholder="제목을 입력해주세요" />
+                      </div>
+                      <label class="col-sm-2 col-form-label text-right" for="title">비밀번호</label>
+                      <div class="col-sm-4">
+                        <input class="form-control" id="password" name="password" type="password" value=""
+                          placeholder="비밀번호를 입력해주세요" />
                       </div>
                     </div>
                     <div class="mb-3 row">
@@ -93,7 +98,6 @@
 
             </div>
             <!-- End Page Content -->
-
           </div>
           <!-- End of Main Content -->
 

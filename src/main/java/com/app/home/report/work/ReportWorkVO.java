@@ -7,7 +7,7 @@ import com.app.home.report.ReportApplyVO;
 public class ReportWorkVO extends ReportApplyVO {
 	
 	private Long rnum;
-	private Long applyNum;
+	private Long applynum;
 	private Date date;
 	private String am;
 	private String pm;
@@ -23,11 +23,11 @@ public class ReportWorkVO extends ReportApplyVO {
 	public void setRnum(Long rnum) {
 		this.rnum = rnum;
 	}
-	public Long getApplyNum() {
-		return applyNum;
+	public Long getApplynum() {
+		return applynum;
 	}
-	public void setApplyNum(Long applyNum) {
-		this.applyNum = applyNum;
+	public void setApplynum(Long applynum) {
+		this.applynum = applynum;
 	}
 	public Date getDate() {
 		return date;

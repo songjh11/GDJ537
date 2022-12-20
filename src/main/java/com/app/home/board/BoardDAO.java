@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.app.home.board.request.ReqCategoryVO;
 import com.app.home.util.Pager;
 
 @Mapper
@@ -22,5 +23,8 @@ public interface BoardDAO {
 	public int setHit(BoardVO boardVO) throws Exception;
 
 	public Long getTotalCount(Pager pager) throws Exception;
-
+	
+	public List<ReqCategoryVO> findReqCategory(ReqCategoryVO reqCategoryVO)throws Exception;
+	
+	public String getBoardPassword(BoardVO boardVO)throws Exception;
 }

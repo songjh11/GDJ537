@@ -10,7 +10,28 @@
 <!-- 공통 css, js, jquery -->
 <c:import url="../../temp/layout_header.jsp"></c:import>
 </head>
+<style>
+.de {
+	width: 	500px;
+	height: 400px;
+	object-fit: scale-down
+}
+.img-title {
+	text-align: center;
+	display: table;
+	width: 500px;
+	height: 400px;
+	padding-top: 15px;
+}
+.img-div {
+	display: table-cell;
+	vertical-align: middel;
+}
 
+ul li {
+	list-style: none;
+}
+</style>
 <!-- body ID 작성 -->
 <body id="page-top">
 
@@ -35,9 +56,38 @@
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
 						<h1 class="h3 mb-4 text-gray-800">차량 상세정보</h1>
-
+						<table class="table table-hover" style="text-align: center;">
+							<tr>
+								<th>차량 번호</th>
+								<th>모델명</th>
+								<th>최대 탑승 수</th>
+								<th>인수/반납 위치</th>
+							</tr>
+							<tr>
+								<td>${goods.carNum }</td>
+								<td>${goods.name }</td>
+								<td>${goods.max }</td>
+								<td>${goods.location }</td>
+							</tr>
+						</table>
+						<div>
+						<div class="text-center">
+							${goods.contents }
+							<ul>
+								<c:forEach items="${goods.goodsFileVO}" var="goods">
+									<div class="img-title">
+										<div class="img-div">
+											<img class="de" src="/file/goods/${goods.fileName}" alt="">
+										</div>
+									</div>
+								</c:forEach>
+							</ul>
+						</div>
+						<div class="test mb-5" style="text-align: center;">
+							<a href="../car/carList" class="btn" style="background-color: #4e73df; color: white;">뒤로가기</a>
+						</div>
+						</div>
 					</section>
-
 				</div>
 				<!-- End Page Content -->
 

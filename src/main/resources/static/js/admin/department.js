@@ -32,7 +32,7 @@ $("#addDepartment").click(function(){
 })
 
 $('.showDepartment').click(function(){
-    let depNum = $(this).parent().children().first().text();
+    let depnum = $(this).parent().children().first().text();
     let content = $(this).text();
     let select = $(this).data().department;
 
@@ -45,21 +45,21 @@ $('.showDepartment').click(function(){
         })
         if (getName) { // Swal.fire(`: ${getName}`)
             switch(select){
-                case 'depName': depNameUpdate(depNum,getName);
+                case 'depName': depNameUpdate(depnum,getName);
                 break;
-                case 'id': idUpdate(depNum,getName);
+                case 'id': idUpdate(depnum,getName);
                 break;
             }
         }
     })() 
 })
 
-function depNameUpdate(depNum,depName){
+function depNameUpdate(depnum,depName){
     $.ajax({
         type:"post",
         url:"/user/admin/depNameUpdate",
         data:{
-            depNum:depNum,
+            depnum:depnum,
             depName:depName
         },
         success:function(){
@@ -74,12 +74,12 @@ function depNameUpdate(depNum,depName){
     })
 };
 
-function idUpdate(depNum,id){
+function idUpdate(depnum,id){
     $.ajax({
         type:"post",
         url:"/user/admin/idUpdate",
         data:{
-            depNum:depNum,
+            depnum:depnum,
             id:id
         },
         success:function(){
@@ -104,14 +104,14 @@ $('.showDepartment').mouseenter(function(){
   })
 
   $(".departmentDel").click(function(){
-    let depNum=$(this).prev().prev().prev().text();
+    let depnum=$(this).prev().prev().prev().text();
     let depName=$(this).prev().prev().text();
 
     $.ajax({
         type:"post",
         url:"/user/admin/depCheck",
         data:{
-            "depNum":depNum
+            "depnum":depnum
         },
         success:function(data){
             if(data==0){
@@ -131,7 +131,7 @@ $('.showDepartment').mouseenter(function(){
                             type:"post",
                             url:"/user/admin/departmentDel",
                             data:{
-                                "depNum":depNum
+                                "depnum":depnum
                             },
                             success:function(success){
                                 Swal.fire('부서를 삭제하였습니다.', '', 'success');
