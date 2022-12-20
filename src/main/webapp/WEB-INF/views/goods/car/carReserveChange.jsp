@@ -101,7 +101,7 @@
 																																	
 								<div class="mb-5">
 								  <label>변경 사유</label>
-								  <input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1" placeholder="${reserve.usePurpose }">
+								  <input type="text" name="usePurpose" class="form-control" id="exampleFormControlInput1" value="${reserve.usePurpose }">
 								</div>
 								
 								<div class="mb-5" style="text-align: center;">
@@ -125,5 +125,7 @@
 
 	<!-- Scroll Top, Logout Modal import -->
 	<c:import url="../../temp/layout_top_logoutModal.jsp"></c:import>
+	
+	<script src="/js/room/reserve.js"></script>
 </body>
 </html>

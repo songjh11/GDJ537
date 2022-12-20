@@ -116,7 +116,7 @@ public class CarController {
 			log.info("변경 실패");
 		}
 		
-		return "/goods/car/carList";
+		return "redirect:/goods/car/carList";
 	}
 	
 	// 예약 상세보기
@@ -144,9 +144,16 @@ public class CarController {
 		goodsVO = carService.getGoods(goodsVO);
 		List<ReserveVO> reserveVOs = carService.getStartTime(reserveVO);
 		
+		if (authentication == null) {
+			mv.setViewName("redirect:/goods/car/carList");
+			
+			return mv;
+		}
+		
 		log.info("예약하기 GET : {}", goodsVO);
 		log.info("예약하기 user GET : {}", authentication.getPrincipal());
 		log.info("예약하기 ss GET : {}", reserveVOs);
+		
 		
 		mv.addObject("timeNotEqual", reserveVOs);
 		mv.addObject("userInfo", authentication.getPrincipal());
@@ -185,7 +192,7 @@ public class CarController {
 
 	// 차량 리스트
 	@GetMapping("/car/carList")
-	public ModelAndView getCarList(GoodsVO goodsVO, ModelAndView mv, HttpSession session) throws Exception {
+	public ModelAndView getCarList(GoodsVO goodsVO, ModelAndView mv, Authentication authentication, HttpSession session) throws Exception {
 		ReserveVO reserveVO = new ReserveVO();
 		
 		List<GoodsVO> goodsVOs = carService.getGoodsList(goodsVO);
@@ -193,7 +200,14 @@ public class CarController {
 
 		log.info("goodVO list: {}", goodsVOs);
 		log.info("reserveVO : {}", reserveVOs);
-
+		
+		int r = 0;
+		
+		if (authentication != null) {
+			r = 1;
+		}
+		
+		mv.addObject("loginCheck", r);
 		mv.addObject("goods", goodsVOs);
 		mv.addObject("reserves", reserveVOs);
 		mv.setViewName("/goods/car/carList");
