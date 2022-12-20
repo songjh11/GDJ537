@@ -42,6 +42,10 @@ public class CarController {
 	// 예약현황 보기
 	@GetMapping("/car/carResInfo")
 	public ModelAndView getRoomResInfo(GoodsRoomVO goodsRoomVO, ModelAndView mv) throws Exception {
+		GoodsVO goodsVO = new GoodsVO();
+		
+		goodsVO.setGoodsId(goodsRoomVO.getGoodsId());
+		goodsVO = carService.getGoods(goodsVO);
 		
 		List<ReserveVO> reserveVOs = carService.getResInfo(goodsRoomVO);
 
@@ -56,6 +60,7 @@ public class CarController {
 		}
 
 		mv.addObject("carInfo", reserveVOs);
+		mv.addObject("goods", goodsVO);
 		mv.setViewName("goods/car/carResInfo");
 
 		return mv;
@@ -88,14 +93,17 @@ public class CarController {
 	public ModelAndView setUpdate(ReserveVO reserveVO, ModelAndView mv, Authentication authentication, HttpSession session) throws Exception {
 		GoodsVO goodsVO = new GoodsVO();
 		
-
-		reserveVO = carService.getReserveDetail(reserveVO);		
+		reserveVO = carService.getReserveDetail(reserveVO);
 		goodsVO.setGoodsId(reserveVO.getGoodsId());
 		goodsVO = carService.getGoods(goodsVO);
 
+		List<ReserveVO> reserveVOs = carService.getStartTime(reserveVO);
+		
 		log.info("예약 변경 GET : {}", goodsVO);
 		log.info("예약 변경 GET : {}", reserveVO);
+		log.info("예약 변경 GET : {}", reserveVOs);
 
+		mv.addObject("timeNotEqual", reserveVOs);
 		mv.addObject("userInfo", authentication.getPrincipal());
 		mv.addObject("reserve", reserveVO);
 		mv.addObject("goods", goodsVO);
@@ -116,7 +124,7 @@ public class CarController {
 			log.info("변경 실패");
 		}
 		
-		return "redirect:/goods/car/carList";
+		return "redirect:/user/mypage";
 	}
 	
 	// 예약 상세보기

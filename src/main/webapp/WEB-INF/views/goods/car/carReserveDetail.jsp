@@ -53,21 +53,21 @@ ul li {
 						<table class="table table-hover" style="text-align: center;">
 							<tr>
 								<th>예약 번호</th>
-								<th>예약 날짜</th>
-								<th>반납 날짜</th>
+								<th>사용 시작 시간</th>
+								<th>사용 종료 시간</th>
 								<th>사용 목적</th>
 							</tr>
 							<tr>
 								<td>${reserve.reserveNum }</td>
-								<td>${reserve.startTime }</td>
-								<td>${reserve.endTime }</td>
+								<td>${reserve.startTime.substring(0,10)}  ${reserve.startTime.substring(11,reserve.startTime.length())}</td>
+								<td>${reserve.endTime.substring(0,10)}  ${reserve.endTime.substring(11,reserve.endTime.length())}</td>
 								<td>${reserve.usePurpose }</td>
 							</tr>
 							<tr>
 								<th>차량 번호</th>
 								<th>모델명</th>
 								<th>총 정원</th>
-								<th>현재 위치</th>
+								<th>인수/반납 위치</th>
 							</tr>
 							<tr>
 								<td>${goods.carNum }</td>
@@ -76,21 +76,10 @@ ul li {
 								<td>${goods.location }</td>
 							</tr>							
 						</table>
-						<ul>
-							<li>
-								<img class="de" src="/img/undraw_profile_1.svg" alt="">
-							</li>
-							<li>
-								<img class="de" src="/img/undraw_profile_2.svg" alt="">
-							</li>
-							<li>
-								<img class="de" src="/img/undraw_profile_3.svg" alt="">
-							</li>
-						</ul>
 						
 						<div class="test">
-							<a href="./carList">
-								<button type="button" class="btn btn-outline-none">뒤로가기</button>
+							<a href="/user/mypage">
+								<button type="button" class="btn btn-outline-none" style="background-color: #4e73df; color: white;">뒤로가기</button>
 							</a>
 						</div>
 						

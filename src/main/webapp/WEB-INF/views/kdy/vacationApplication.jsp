@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Document</title>
-    <script defer src="/js/hjs/vacation.js"></script>
+    <script defer src="/js/kdy/vacation.js"></script>
     <style>
         #bc{
             background-color ;
@@ -49,7 +49,7 @@
 				<!-- End of Topbar -->
 		
 				<!-- Begin Page Content -->
-        <form action="/report/addvaca" method="post" id="vcaFrm">
+        <form action="/report/addvaca" method="post" id="frm">
 	
 			<sec:authentication property="Principal" var="user"/>
 
@@ -61,7 +61,7 @@
 	            <div class="container-fluid">
 						<div class="container px-4 px-lg-5 my-5">
         <div  style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1150px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 60px; background-color: rgb(255, 255, 249); text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
+            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 60px; text-align: left; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
                     휴가신청서
                     <div style="border: solid 1px black; width: 400px; margin-left: 500px; height: 120px; margin-top: -75px;">
                         <div style="border-right: solid 1px black; width: 30px; height: 119px; font-size: 19px; padding-top: 30px; padding-left: 5px;">
@@ -71,9 +71,9 @@
                         <div class="row" style="border-bottom: solid 1px black; margin-top: -120px; width: 368px; margin-left: 30px; height: 30px; font-size: 15px;">
                             <div style="padding-top:3px; letter-spacing: 0; margin-left: 30px;">팀장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;최종
                                                                                                 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;비고</div>
-                            <div class="col-sm my-3" style="align-items:center; display: flex; justify-content:center;" id="ajaaja"><img src="/img/report/sign.png" width="50px" height="50px"></div>
-                            <div class="col-sm my-3" style="align-items:center; display: flex; justify-content:center;" id="ajaaja"><img src="/img/report/sign.png" width="50px" height="50px"></div>
-                            <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
+                            <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                        <div style=" height: 90px; width: 122px; margin-top: 6px; border-right: solid 1px black;"></div>
+	                        <div style=" height: 90px; width: 122px; margin-top: 6px;"></div>
                             
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 소속
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <textarea id="depNameArea" name="depName" readonly style="border: 0; text-align: center; width: 645px; height: 97px;">${vo.departmentVO.depName}</textarea>
+                                    <textarea id="depNameArea" name="depName" readonly style="border: 0; text-align: center; width: 645px; height: 97px; line-height: 90px;">${vo.departmentVO.depName}</textarea>
                                     <!-- DEOARTMENT.DEPNAME = 부서번호 -->
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 성명
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <textarea id="nameArea" name="name" readonly value="NAME" style="border: 0; text-align: center; width: 645px; height: 97px;">${vo.name}</textarea>
+                                    <textarea id="nameArea" name="name" readonly value="NAME" style="border: 0; text-align: center; width: 645px; height: 97px; line-height: 90px;">${vo.name}</textarea>
                                     <!-- USER.NAME = 이름 -->
                                 </div>
                             </div>
@@ -104,27 +104,27 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 직위
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <textarea id="roleNameArea" name="roleName" readonly value="ROLENAME" style="border: 0; text-align: center; width: 645px; height: 97px;">${vo.roleVO.roleName}</textarea>
+                                    <textarea id="roleNameArea" name="roleName" readonly value="ROLENAME" style="border: 0; text-align: center; width: 645px; height: 97px; line-height: 90px;">${vo.roleVO.roleName}</textarea>
                                     <!-- ROLE.ROELNAME = 직급이름  -->
                                 </div>
                             </div>
                             
                         </div>
                         <div style="width: 900px; height: 100px; border-bottom: solid 1px black;">
-                            <div  id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
+                            <div  id="bc" style="text-align: left; font-weight: bold; font-size: 17px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 종류
-                                    <div style="margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                        <div style="margin-left: 29px; margin-top: 0px;">
+                                    <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -55px;">
+                                        <div style=" margin-left: 29px;" id="cate">
                                             <!--<input type="hidden" name="categoryNum" id="checkRadio"/> --> 
-                                            <input type="radio" class="mail" value="1" name="categoryNum" data-radio="1"/>
+                                            <input type="radio" class="mail" id="s1" name="categoryNum" value="1" name="categoryNum" data-radio="1"/>
                                             <label for="mail">연차</label>
-                                            <input type="radio" class="mail" value="2" name="categoryNum" data-radio="2"/>
+                                            <input type="radio" class="mail" id="s2" name="categoryNum" value="2" name="categoryNum" data-radio="2"/>
                                             <label for="mail">월차</label>
-                                            <input type="radio" class="mail" value="3" name="categoryNum" data-radio="3"/>
+                                            <input type="radio" class="mail" id="s3" name="categoryNum" value="3" name="categoryNum" data-radio="3"/>
                                             <label for="mail">병가</label>
-                                            <input type="radio" class="mail" value="4" name="categoryNum" data-radio="4"/>
+                                            <input type="radio" class="mail" id="s4" name="categoryNum" value="4" name="categoryNum" data-radio="4"/>
                                             <label for="mail">반차</label>
-                                            <input type="radio" class="mail" value="5" name="categoryNum" data-radio="5"/>
+                                            <input type="radio" class="mail" id="s5" name="categoryNum" value="5" name="categoryNum" data-radio="5"/>
                                             <label for="mail">기타</label>
                                         </div>
                                     </div>   
@@ -134,7 +134,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 70px; padding-top: 34px; letter-spacing: 70px;">
                                 사유
                                 <div style=" margin-left: 180px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <textarea id="textArea" name="text" style="border: 0; text-align: left; width: 645px; height: 97px;"></textarea>
+                                    <textarea id="sasa" name="text" style="border: 0; text-align: left; width: 645px; height: 97px;"></textarea>
                                     <span id="textAreaHelp"></span>
                                 </div>
                             </div>    
@@ -161,13 +161,10 @@
                                         <input type="number" id="d2" style="width: 40px; border:0 solid black; text-align:right" value="30"/>
                                         <div>일</div> -->
 
-                                        <input type="datetime-local" name="startDate" id="startInput">
+                                        <input  id="start" type="datetime-local" name="startDate" >
                                             <div>~</div>
-                                        <input type="datetime-local" name="endDate" id="endInput">
+                                        <input id="stop" type="datetime-local" name="endDate" >
 
-                                        <input type="datetime-local" name="startDate">
-                                            <div>~</div>
-                                        <input type="datetime-local" name="endDate">
 
                                     </div>
                                 </div>
@@ -178,7 +175,7 @@
                             <div id="bc" style="text-align: left; font-weight: bold; font-size: 20px; padding-left: 45px; padding-top: 34px; letter-spacing: 15px;">
                                 비상연락망
                                 <div style="margin-left: 205px; width: 650px; height: 100px; margin-top: -64px;">
-                                    <input id="callInput" class="callHelp" type="call" name="call" style="border: 0; width: 645px; height: 97px;  text-align:center"/>
+                                    <input id="callInput" class="callHelp" type="call" name="call" value="${vo.phone}" style="border: 0; width: 645px; height: 97px;  text-align:center"/>
                                 </div>
                             </div>
                         </div>
@@ -187,23 +184,24 @@
                                 위와 같이 휴가를 신청하오니 허락하여 주시기 바랍니다.
                             </div>
                             <div class="d-flex" style="font-weight: bold; margin-left: 240px; margin-top: 35px;">
-                                <input type="hidden" name="date" id="dateParse" value="${year}/${month}/${day}">
+                                <input type="hidden"  id="dateParse" value="${year}/${month}/${day}">
                                 <div><input type="number" id="y3" style="width: 100px; border:0 solid black; text-align:right" readonly value="${year}"/>년</div>
                                 <div><input type="number" id="m3" style="width: 100px; border:0 solid black; text-align:right" readonly value="${month}"/>월</div>
                                 <div><input type="number" id="d3" style="width: 100px; border:0 solid black; text-align:right" value="${day}"/>일</div>
                             </div>
                             <div style="font-weight: bold; margin-top: 20px; margin-left: 150px;">
-                                신청자 : <input type="text" name="name" value=${vo.name} readonly style="border:0 solid black"/>
+                                신청자 : <input type="text" value=${vo.name} readonly style="border:0 solid black"/>
                             </div>
                         </div>
                     </div>
             </div>
         </div>    
+        <button  type="button" class="btn btn-primary" style="margin-left: 1025px; margin-top: 12px;" onclick="vacaNullCheck()">제 출</button>
     </div>
 </form>
 
 
-        <button type="submit" style="float: right;" class="btn btn-secondary" id="vcaBtn">제출</button>
+        
 
 	            </div>
 	            <!-- End Page Content -->

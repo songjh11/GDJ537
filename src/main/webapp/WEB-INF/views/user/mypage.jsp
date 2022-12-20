@@ -141,7 +141,7 @@
                                             <tr>
                                                 <td>${reserve.startTime.substring(0,10)}  ${reserve.startTime.substring(11,reserve.startTime.length())}</td>
                                                 
-                                                <td><a href="/goods/room/roomDetail?goodsId=${reserve.goodsId}" class="btn btn-outline-none">정보 보기</a></td>
+                                                <td><a href="/goods/room/roomReserveDetail?reserveNum=${reserve.reserveNum}" class="btn btn-outline-none">정보 보기</a></td>
                                                 <td><a href="/goods/room/roomReserveUpdate?reserveNum=${reserve.reserveNum}&goodsId=${reserve.goodsId}" class="btn btn-outline-none">변경</a></td>
                                                 <td><button name='delete' class="btn btn-outline-none delete_btn" value="${reserve.reserveNum}">취소</button></td>
                                                 <td>회의실</td>

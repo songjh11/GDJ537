@@ -35,7 +35,7 @@
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
 						
-						<form action="carReserveChange" method="POST">
+						<form action="carReserveChange" method="POST" id="frm">
 							<h1 class="h3 mb-4 text-gray-800" style="text-align: center;">차량 예약 변경</h1>
 								<table class="table table-hover justify-content-right mb-5" style="text-align: center;">
 									<tr>
@@ -48,7 +48,8 @@
 									</tr>
 								</table>
 								
- 								<input type="hidden" name="goodId" value="${goods.goodsId}">
+								<input type="hidden" name="goodsId" value="${reserve.goodsId}">
+								
 								<c:forEach items="${timeNotEqual}" var="time">
 									<c:if test="${time.startTime != reserve.startTime}">
 										<div class="timeCheck">
@@ -59,7 +60,6 @@
 								</c:forEach>
 								
 								<input type="hidden" name="reserveNum" value="${reserve.reserveNum}">
-								<input type="hidden" name="goodsId" value="${reserve.goodsId}">
  								<input type="hidden" name="id" value="${reserve.id}">
 								
 								<div class="mb-3">
@@ -71,18 +71,21 @@
 								<div class="mb-3">
 									<label>사용 시작 시간</label>
 									<input type="datetime-local" name="startTime" class="form-control" id="start" value="${reserve.startTime}">
+									<p id="startText" style="color: red; display: none;">필수 작성 조건입니다.</p>
 									<br>
 								</div>
 								
 								<div class="mb-3">
 									<label>사용 종료 시간</label>
 									<input type="datetime-local" name="endTime" class="form-control" id="end" value="${reserve.endTime}">
+									<p id="endText" style="color: red; display: none;">필수 작성 조건입니다.</p>
 									<br>
 								</div> 
 								
 								<div class="mb-5">
 									<label>사원 이름</label>
-									<input type="text" name="id" class="form-control" readonly="readonly" id="member" value="${reserve.id}">
+									<input type="hidden" name="id" class="form-control" readonly="readonly" id="member" value="${reserve.id}">
+									<input type="text" class="form-control" value="${userInfo.name}" disabled>
 								</div>
 								
 								
@@ -100,6 +103,7 @@
 								<div class="mb-5">
 								  <label>변경 사유</label>
 								  <input type="text" name="usePurpose" class="form-control" id="purpose" value="${reserve.usePurpose }">
+								  <p id="purposeText" style="color: red; display: none;">필수 작성 조건입니다.</p>
 								</div>
 								
 								<div class="mb-5" style="text-align: center;">
