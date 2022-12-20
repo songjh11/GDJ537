@@ -86,30 +86,35 @@
 				<div style="height: 100%; margin: 0 20px;">
 	            <div class="container-fluid">
 					
-	            	  <div id='calendar-container' style="display: flex; align-items: center;">
-	            	  
-	                  <label for="pl" hidden >카테고리</label>
-	                  <select name="depNum" id="depNum" class="filter" style="margin: 0 10px;">
-	                    <option value="">부서별</option>
-	                    <option value="1">영업팀</option>
-	                    <option value="2">총무팀</option>
-	                    <option value="3">인사팀</option>
-	                    <option value="4">IT개발팀</option>
-	                    <option value="5">생산팀</option>
-	                  </select>
-	                  
-	                  
-	            	  	<input class="filter" id="room" type="checkbox" name="room"  hidden checked>회의실
-	            	  	<label for="room" class="toggleSwitch">
-						  <span class="toggleButton"></span>
-						</label>
-						
-                 		<input class="filter" id="car" type="checkbox" name="car" hidden>차량
-                 		<label for="car" class="toggleSwitch">
-						  <span class="toggleButton"></span>
-						</label>
+	            	  <div id='calendar-container' style="display: flex; " >
+	            	  <div style="display: flex; align-items: center;">
+		                  <label for="pl" hidden >카테고리</label>
+		                  <select name="depNum" id="depNum" class="filter" style="margin: 0 10px;">
+		                    <option value="">부서별</option>
+		                    <option value="1">영업팀</option>
+		                    <option value="2">총무팀</option>
+		                    <option value="3">인사팀</option>
+		                    <option value="4">IT개발팀</option>
+		                    <option value="5">생산팀</option>
+		                  </select>
+		                  
+		                  
+		            	  	<input class="filter" id="room" type="checkbox" name="room"  hidden checked>회의실
+		            	  	<label for="room" class="toggleSwitch">
+							  <span class="toggleButton"></span>
+							</label>
+							
+	                 		<input class="filter" id="car" type="checkbox" name="car" hidden>차량
+	                 		<label for="car" class="toggleSwitch">
+							  <span class="toggleButton"></span>
+							</label>
 						
 <!--                 		<input class="filter" id="vacation" type="checkbox" name="vacation">휴가 -->
+					
+						 
+					</div>
+						
+					
 					
 					</div>
 					
@@ -118,17 +123,17 @@
                 		
 						<!-- Calendar -->
 				  	    <div id='calendar'></div>
-					    
-			              <div style=" text-align: center; margin-top: 30px;" class="">
+					    <div style="  float: center; margin-top: 30px; " class="">
 			                <a href="/goods/room/roomList" class="btn" style="
-			                background: #4e73df;
-			                color: white;
-			            ">회의실 예약하기</a>
+					                background: #4e73df;
+					                color: white;
+					            ">회의실 예약하기</a>
 			                <a href="/goods/car/carList" class="btn" style="
-			                background: #009000;
-			                color: white;
-			            ">출장 차량 예약하기</a>
+					                background: #009000;
+					                color: white;
+					            ">출장 차량 예약하기</a>
 			            </div>
+			             
               </div>
 	
 	            </div>
