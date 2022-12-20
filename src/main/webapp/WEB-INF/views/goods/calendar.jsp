@@ -75,6 +75,7 @@
 		 <!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
+			
 			<div id="content">
 			
 				<!-- Topbar import-->
@@ -82,6 +83,7 @@
 				<!-- End of Topbar -->
 				
 				<!-- Begin Page Content -->
+				<div style="height: 100%; margin: 0 20px;">
 	            <div class="container-fluid">
 					
 	            	  <div id='calendar-container' style="display: flex; align-items: center;">
@@ -109,25 +111,27 @@
 						
 <!--                 		<input class="filter" id="vacation" type="checkbox" name="vacation">휴가 -->
 					
-					
 					</div>
+					
 					</div>
 	            	<!-- Page Heading -->
                 		
 						<!-- Calendar -->
 				  	    <div id='calendar'></div>
-					    </div>
-              <div style=" text-align: center;" class="mt-5">
-                <a href="/goods/room/roomList" class="btn" style="
-                background: #4e73df;
-                color: white;
-            ">회의실 예약하기</a>
-                <a href="/goods/car/carList" class="btn" style="
-                background: #009000;
-                color: white;
-            ">출장 차량 예약하기</a>
+					    
+			              <div style=" text-align: center; margin-top: 30px;" class="">
+			                <a href="/goods/room/roomList" class="btn" style="
+			                background: #4e73df;
+			                color: white;
+			            ">회의실 예약하기</a>
+			                <a href="/goods/car/carList" class="btn" style="
+			                background: #009000;
+			                color: white;
+			            ">출장 차량 예약하기</a>
+			            </div>
               </div>
 	
+	            </div>
 	            </div>
 	            <!-- End Page Content -->
 					
@@ -202,7 +206,7 @@
           var calendarEl = document.getElementById('calendar');
 
           var calendar = new FullCalendar.Calendar(calendarEl, {
-        	  height: '700px', // calendar 높이 설정
+        	  height: '80%', // calendar 높이 설정
               expandRows: true, // 화면에 맞게 높이 재설정
               slotMinTime: '08:00', // Day 캘린더에서 시작 시간
               slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
