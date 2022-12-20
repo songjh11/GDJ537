@@ -652,6 +652,8 @@ public class ReportController {
 	}
 	else if (check == 2){
 			if(reportPager.getKind().equals("2")) {
+				log.info("dddddddddddddddddddddddd");
+				log.info("ppppppppppppppppppppppppppppppppp:{}",reportPager.getReportNum());
 				reportVO = reportService.getFinishReport(reportPager);
 				if(reportVO != null) {
 					List<ReportApplyVO> reportApplyVOs = reportVO.getReportApplyVOs();
@@ -705,10 +707,11 @@ public class ReportController {
 				return mv;
 			}
 			else {
-				log.info("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+				log.info("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"); 
 				List<ReportApplyVO> reportApplyVOs = reportService.getDoFinalReport(reportPager);
 				mv.addObject("reportApplyVOs", reportApplyVOs);			
 				mv.addObject("pager", reportPager);
+				mv.addObject("check", check);
 				mv.setViewName("report/adminreport");
 				return mv;
 			}

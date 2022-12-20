@@ -314,7 +314,7 @@
 		INNER JOIN
 		USER U
 		ON RA.ID = U.ID
-		WHERE RL.ID=#{id} AND RA.REPORTNUM=#{reportNum} AND RA.STATUS=2 AND RA.RETURNS=0 AND NOT RL.ID IN(#{id})
+		WHERE RL.ID=#{id} AND RA.REPORTNUM=#{reportNum} AND RA.STATUS=2 AND RA.RETURNS=0 AND NOT RA.ID IN(#{id})
 		LIMIT #{startRow},#{perPage}
 	</select>
 
