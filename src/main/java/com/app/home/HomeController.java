@@ -35,8 +35,9 @@ public class HomeController {
 	private CarService carService;
 	
 	@GetMapping("/")
-	public String home(HttpSession session) throws Exception {
+	public ModelAndView home(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+	
 		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
 		if(context != null) {
 			
@@ -60,7 +61,7 @@ public class HomeController {
 	   
 	    
 		userVO = userService.getMypage(userVO);
-
+		
 		mv.addObject("reserveVO", reserveVOs);
 
 		userVO.setPhone(userVO.phone_format(userVO.getPhone()));
@@ -73,7 +74,7 @@ public class HomeController {
 		mv.setViewName("index");
 
 		
-		return "index";
+		return mv;
 	}
 	@GetMapping("/index2")
 	public String home2() {
