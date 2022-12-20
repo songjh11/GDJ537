@@ -38,11 +38,11 @@
 						<input type="hidden" value="${loginCheck }" id="userID">
 						<table class="table table-hover justify-content-right" style="text-align: center;">
 							<tr>
-								<th>이름</th>
-								<th>위치</th>
-								<th>상세정보</th>
-								<th>예약하기</th>
-								<th>예약된 정보 보기</th>
+								<th style="color: black;">이름</th>
+								<th style="color: black;">위치</th>
+								<th style="color: black;">상세정보</th>
+								<th style="color: black;">예약</th>
+								<th style="color: black;">예약 현황</th>
 							</tr>
 							<c:forEach items="${goodVO }" var="good">
 								<c:set var="TextValue" value="${good.goodsId}" />
@@ -52,21 +52,17 @@
 										<td>${good.name }</td>
 										<td>${good.location }</td>
 										<td>
-											<a href="./roomDetail?goodsId=${good.goodsId }">
-												<button type="button" class="btn btn-outline-none">보기</button>
-											</a>
+											<a href="./roomDetail?goodsId=${good.goodsId }" class="btn btn-outline-none"> 정보 보기 </a>
 										</td>
 										<td>
 											<div class="btnDiv">
 												<a href="./roomReserve?goodsId=${good.goodsId }">
-													<button type="button" class="btn btn-outline-none res">예약</button>
+													<button type="button" class="btn btn-outline-none res">예약하기</button>
 												</a>
 											</div>
 										</td>
 										<td>
-											<a href="./roomResInfo?goodsId=${good.goodsId }">
-												<button type="button" class="btn btn-outline-none">보기</button>
-											</a>
+											<a href="./roomResInfo?goodsId=${good.goodsId }" class="btn btn-outline-none"> 현황 보기 </a>
 										</td>
 									</tr>
 								</c:if>

@@ -23,7 +23,9 @@
           ${result}
         ]);
         var options = {
-          title: `${year}년 `+'회의실별 통계'
+          title: `${year}년 `+'회의실별 통계',
+          fontSize: 20,
+          bold: true,
           
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -85,7 +87,7 @@
                 </div>
                 <div style="display: flow-root;">
 
-                  <div class="card" id="total">
+                  <div class="card" id="total1">
                     <div class="card-body">
                       <div class="row align-items-center gx-0">
                         <div class="col">
@@ -106,7 +108,7 @@
                     </div>
                 </div>
 
-                <div class="card" id="total">
+                <div class="card" id="total2">
                   <div class="card-body">
                     <div class="row align-items-center gx-0">
                       <div class="col">

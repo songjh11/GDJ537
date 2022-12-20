@@ -25,12 +25,14 @@
 <body>
     <div id="container" class="container">
       <input type="hidden" id="sessionId" value="${userVO.id}">
+      		<input type="hidden" id="roomNum" value="${roomNum}">
+      
    
       <div class="header">
                 <div class="header-flex">
                     <div class="tinum">
                         <div class="title">
-                            <span><strong>${roomVO.roomName}</strong></span>
+                            <span><strong>${rn}</strong></span>
                         </div>
                         <div class="number">
                             <img src="/img/chatroom-number.png" width="15px" height="15px">
@@ -48,8 +50,10 @@
          <div id="msg">
            
                 <input type="hidden" name="userName" value="${userVO.name}" id="userName">
+               	<input type="hidden" name="userId" id="userId" value="${userVO.id}">
+               
                <input type="text" id="inputChat"  placeholder="보내실 메시지를 입력하세요.">
-               <button onclick="send()" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
+               <button onclick="javascript:send()" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
             
          </div>
       </div>

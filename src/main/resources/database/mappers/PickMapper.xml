@@ -24,7 +24,7 @@
 			ON E.ID=P.YOURID 
 					INNER JOIN
 					DEPARTMENT D
-					ON E.DEPnum=D.DEPnum
+					ON E.DEPNUM=D.DEPNUM
 						INNER JOIN
 					 	ROLE R
 					 	ON E.ROLENUM=R.ROLENUM	
@@ -40,21 +40,21 @@
 	<resultMap type="UserVO" id="pickListResult">
 		<id column="NUM" property="num"/>
 		<result column="ID" property="id"/>
-		<result column="DEPnum" property="depnum"/>
-		<result column="ROLEnum" property="rolenum"/>
+		<result column="DEPNUM" property="depNum"/>
+		<result column="ROLENUM" property="roleNum"/>
 		<result column="PW" property="pw"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
 		<result column="ENTDATE" property="entDate"/>
-		<result column="PROFILES" property="profiles"/>
+		<result column="PROFILE" property="profile"/>
 		<result column="STATUS" property="status"/>
 			<association property="roleVO">
-				<id column="ROLEnum" property="rolenum"/>
+				<id column="ROLENUM" property="roleNum"/>
 				<result column="ROLENAME" property="roleName"/>  
 			</association>
 			<association property="departmentVO">
-				<id column="DEPnum" property="depnum"/>
+				<id column="DEPNUM" property="depNum"/>
 				<result column="DEPNAME" property="depName"/>
 			</association>
 			<collection javaType="List" ofType="PickVO" property="pickVO">

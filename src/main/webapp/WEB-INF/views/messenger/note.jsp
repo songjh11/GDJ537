@@ -333,7 +333,7 @@
 	
 		display: flex;
 		float: right;
-		margin-left: auto;
+		/* margin-left: auto; */
 	}
 
 	#countse {
@@ -431,7 +431,7 @@
 									"> 
 										<select class="searchOption form-control" name="kind" id="kindkind" placeholder="선택하세요">
 											<option value="contents" selected>내용</option>
-											<option id="changeOption" value="sendId">보낸 사람 ID</option>
+											<option id="changeOption" value="sendId">보낸 사람</option>
 										</select>
 										<!-- <input hidden="hidden" /> -->
 										<input id="searchInput" name="search" type="text" class="form-control bg-light border-0 small" style="width: 130px !important;" placeholder="Search for..."
@@ -444,7 +444,7 @@
 										
 									</div>
 									<!-- <a href="javascript:ajaxPage(1);"><img style="width: 30px;" src="/img/messenger/return.png"></a> -->
-									<a id="goBackNote"><img style="width: 44px; margin: 5px;" src="/img/messenger/close.png"></a>
+									<a id="goBackNote"><img style="width: 44px; margin: 5px; margin-left: 25px;" src="/img/messenger/close.png"></a>
 								
 									
 								</div>
@@ -454,19 +454,29 @@
 
 							<div id="noteContent">
 								<c:forEach items="${list}" var="list">
-									<div class="noteList on" id="noteNum${list.noteNum}" noteNum="${list.noteNum}" onclick="notePop(${list.noteNum})" read-check="${list.readCheck}">
+									<div class="noteList on" id="noteNum${list.noteNum}" noteNum="${list.noteNum}" flag="${list.flag}" onclick="notePop(${list.noteNum})" read-check="${list.readCheck}">
 										<div id="listImage">
-											<img src="/img/undraw_profile_3.svg" alt="">
+											<img src="/file/user/${list.sendImg}" alt="">
+											<!-- <img src="/img/messenger/sample/samp1.png" alt=""> -->
+
 										</div>
 										<div id="listInfo">
 											<div style="display: flex;">
 											<div id="previewId"><strong>${list.sendName}</strong></div>
+											<c:if test="${list.flag eq 1}">
+											<span style="margin-left: auto;
+											font-size: 10px; color: #8198fa; margin-right: 9px; margin-top: 2px;">그룹쪽지</span>
 											<img id="noteDelete" onclick="noteDelete(${list.noteNum})" src="/img/messenger/close.png">
+											</c:if>
+											<c:if test="${list.flag eq 0}">
+											<img id="noteDelete" style="margin-left: auto;" onclick="noteDelete(${list.noteNum})" src="/img/messenger/close.png">
+											</c:if>
+											
 											</div>
 											
 											<div id="previewNote">${fn:replace(list.contents, replaceChar, "<br/>")}
-												<!-- ${list.contents} -->
 											</div>
+											
 										</div>
 									</div>
 
@@ -488,14 +498,14 @@
 							<!-- <c:if test="${not empty list}"> -->
 							<div id="pagination">
 								<p style="margin: 0; display: flex; align-items: center;">
-									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startnum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
-									<c:forEach begin="${pager.startnum}" end="${pager.lastnum}" var="i">
+									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.startNum-1}" style="margin: 0px 5px;" class="${pager.pre?'':'disabled'}"><img src="/img/messenger/left2.png" alt=""></a>
+									<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
                                     
                                     	<!-- <a href="./simpleresult?search=${pager.search}&kind=${pager.kind}&page=${i}" id="ppaaggee${i}">${i}</a> -->
                                     	<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${i}" class="pagep" id="ppaaggee${i}">${i}</a>
                                     
                                 	</c:forEach>
-									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastnum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
+									<a href="./note?kind=${pager.kind}&search=${pager.search}&page=${pager.lastNum+1}" style="margin: 0px 5px;" class="${pager.next?'':'disabled'}"><img src="/img/messenger/right2.png" alt=""></a>
 								</p>
 							</div>
 							<!-- </c:if> -->
@@ -524,12 +534,7 @@
 
 	<script>
 
-		//읽은 아이들은 회색으로 표시..
-		$($(".noteList")).each(function(index, item) {
-			if($(this).attr("read-check")==0) {
-				$(this).css("color","lightgrey");
-			}
-		});	
+		
 		
 		//검색아이콘 클릭시
 		$(document).ready(function() {
@@ -557,17 +562,24 @@
 				$.ajax({
 					type:"GET",
 					url :"./note/delete",
-					traditional:true, //배열을 전송할 때 사용, true
+					traditional:true,
 					data:{
 						noteNum: num
 					},
 					success : function(data){
-						console.log(data);
+						// console.log(data);
 						$("#noteNum"+num).remove();
 						// console.log($("#noteNum"+num).attr("id"))
-						setTimeout(function(){
-							location.reload();
-						},250);
+
+
+						//발신에서 새로고침 안하려고했는데 안하니까 페이저 반영이 안되네.. 그냥 둘다 새로고침되는걸로 해야겠다
+						// if($("#sImg").attr("src")=="/img/messenger/sendX.png") {
+							setTimeout(function(){
+								location.reload();
+							},250);
+
+						// }
+						
 						
 					},
 					error : function(){
@@ -625,7 +637,7 @@
 
 					// 검색기능을 위해 기존 폼을 발신전용으로 잠시 수정
 					$("#changeOption").val("receiveId");
-					$("#changeOption").html("받는 사람 ID");
+					$("#changeOption").html("받는 사람");
 					$("#gogogogo").attr("type","button");
 
 					$('input[type="text"]').keydown(function() {
@@ -635,7 +647,7 @@
 					});
 
 					$("#gogogogo").on("click", function(){
-						console.log("에젝에서만나와");
+						// console.log("에젝에서만나와");
 						ajaxPage(1, $("#kindkind").val(), $("#searchInput").val())
 						// console.log($("#kindkind").val());
 						// console.log($("#searchInput").val());
@@ -661,7 +673,7 @@
 						let pageAjax = "";
 
 						if($("#searchInput").val()=="") {
-							console.log("검색아닌중..");
+							// console.log("검색아닌중..");
 							// $("#searchInput").val("");
 							// $("#kindkind").val("");
 							let nullll = "";
@@ -674,7 +686,7 @@
 						
 							
 						} else {
-							console.log("검색중");
+							// console.log("검색중");
 							let kindval = $("#kindkind").val();
 							let searchval = $("#searchInput").val();
 
@@ -686,12 +698,12 @@
 						
 						}
 
-						console.log(data.notePager.totalPage);
-						console.log(data.notePager.page);
+						// console.log(data.notePager.totalPage);
+						// console.log(data.notePager.page);
 						
 
-						console.log($("#kindkind").val());
-						console.log($("#searchInput").val());
+						// console.log($("#kindkind").val());
+						// console.log($("#searchInput").val());
 						$("#pagination").html(pageAjax);
 
 						$(".disabled").removeAttr("onclick");
@@ -712,7 +724,7 @@
 					$("#soosin").css("color", "#000000");
 					$("#balsin").css("color", "#4a7bdd");
 
-					
+					let flagflag = "";
 					
 
 					$.each(data.list, function(index, item) { 
@@ -721,27 +733,46 @@
 						// console.log(item.notenum);
 						item.contents = item.contents.replace(/\r\n/g, "</br>");
 
+						if(item.flag==1) {
+							flagflag='<span style="margin-left: auto; font-size: 10px; color: #8198fa; margin-right: 9px; margin-top: 2px;">그룹쪽지</span><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png">'
+						} else {
+							flagflag='<img id="noteDelete" style="margin-left: auto;" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png">'
+						}
+
+						let img = "https://i.pravatar.cc/200?img="+index;
 						// 쪽지번호, 수신자라는 글자 있는 버전
 						// tempest += '<div class="noteList" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId">'+item.noteNum+' 수신자 : <strong>'+item.receiveName+'</strong></div><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png"></div><div id="previewNote">'+item.contents+'</div></div></div>'
-						tempest += '<div class="noteList" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/img/undraw_profile_3.svg" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId"><strong>'+item.receiveName+'</strong></div><img id="noteDelete" onclick="noteDelete('+item.noteNum+')" src="/img/messenger/close.png"></div><div id="previewNote">'+item.contents+'</div></div></div>'
+						tempest += '<div class="noteList" flag="'+item.flag+'" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src="/file/profile/'+item.receiveImg+'" alt=""></div><div id="listInfo"><div style="display: flex;"><div id="previewId"><strong>'+item.receiveName+'</strong></div>'+flagflag+'</div><div id="previewNote">'+item.contents+'</div></div></div>'
+						// tempest += '<div class="noteList" flag="'+item.flag+'" id="noteNum'+item.noteNum+'" onclick="notePop('+item.noteNum+')"><div id="listImage"><img src='+img+'"></div><div id="listInfo"><div style="display: flex;"><div id="previewId"><strong>'+item.receiveName+'</strong></div>'+flagflag+'</div><div id="previewNote">'+item.contents+'</div></div></div>'
+
 
 						$('#noteContent').html(tempest);
 					})
 
 					if(data.list.length==0) {
 						$('#noteContent').empty();
-						console.log($("#imEmpty").val());
+						// console.log($("#imEmpty").val());
 						$('#noteContent').html('<div style="justify-content: center; margin-top: 5px; display: flex;">'+data.message5+'</div>');
 						// $("#imEmpty").html(data.message5)
 					} 
 
 					$(".disabled").removeAttr("href");
 
+					$($(".noteList")).each(function(index, item) {
+						if($(this).attr("read-check")==0) {
+							$(this).css("color","lightgrey");
+						}
+
+						// if($(this).attr("flag")==1) {
+						// 	$(this).css("background","rgb(237 241 254)");
+						// }
+					});	
+
 					
 
 				},
 				error   : function(){
-					console.log("나는에러");
+					// console.log("나는에러");
 				}
 			});
 
@@ -750,6 +781,19 @@
 		}
 
 		$(".disabled").removeAttr("href");
+
+
+
+		//읽은 아이들은 회색으로 표시..
+		$($(".noteList")).each(function(index, item) {
+			if($(this).attr("read-check")==0) {
+				$(this).css("color","lightgrey");
+			}
+
+			// if($(this).attr("flag")==1) {
+			// 	$(this).css("background","rgb(195 210 255 / 24%)");
+			// }
+		});	
 
 		
 		
