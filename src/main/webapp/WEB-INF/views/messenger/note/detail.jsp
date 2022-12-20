@@ -111,7 +111,7 @@
         }
 
     </style>
-    <title>Document</title>
+    <title>쪽지 상세보기</title>
 </head>
 <body>
     <div id="noteBox">

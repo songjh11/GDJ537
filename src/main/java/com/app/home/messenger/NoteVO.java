@@ -19,4 +19,7 @@ public class NoteVO {
 	private int remark;
 	private int flag;
 	
+	private String receiveImg;
+	private String sendImg;
+	
 }
