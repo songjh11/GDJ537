@@ -79,7 +79,7 @@
 			                    </button>
 					              <div class="dropdown-menu dropdown-menu-right">
 		                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
-			                        <a class="dropdown-item" href="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/${file.fileName}">${file.oriName }(${file.fileSize }) </a>
+			                        <a class="dropdown-item" href="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/${file.fileName}">${file.oriName } <span style="color:blue;"> (${file.fileSize }) </span></a>
 			                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
 			                      </c:forEach>
 		
@@ -136,6 +136,7 @@
                       </div>
 
                       <div class="modal-footer">
+                      
                         <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal" id="update">수정하기</button>
                       </div>
