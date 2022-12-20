@@ -15,10 +15,7 @@ public class GoodsVO {
 	private String contents;
 	private String location;
 	private String carNum;
-
-	
 	private int count;
-
 	
 	private MultipartFile [] files;
 	private List<GoodsFileVO> goodsFileVO;

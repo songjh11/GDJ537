@@ -22,7 +22,7 @@ class BoardDAOTest {
 		fail("Not yet implemented");
 	}
 	
-	@Test
+//	@Test
 	void pagingTest() throws Exception {
 		int result = 0;
 		for(int i = 0; i < 30; i++) {
@@ -30,7 +30,7 @@ class BoardDAOTest {
 			boardVO.setId(1234);
 			boardVO.setTitle("test" + i);
 			boardVO.setContents("test" + i);
-			boardVO.setDepnum(null);
+//			boardVO.setDepnum(null);
 			boardVO.setSort("공지");
 			
 			noticeService.setNotice(boardVO);

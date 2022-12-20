@@ -10,7 +10,7 @@ public class ReqCategoryVO {
 	private  int id;
 	private String categoryName;
 	private String categoryForm;
-	private int depnum;
+	private int depNum;
 	
 	private DepartmentVO DepartmentVO;
 	
