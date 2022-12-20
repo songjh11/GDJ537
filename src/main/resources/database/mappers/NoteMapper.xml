@@ -77,10 +77,9 @@ WHERE RECEIVEID = #{id}
 AND #{id} = REMARK
 AND
 	<choose>
-		<when test="kind == 'contents'">CONTENTS</when>
-		<otherwise>SENDID</otherwise>
-	</choose> 
-	LIKE CONCAT('%', #{search}, '%')
+		<when test="kind == 'contents'">CONTENTS LIKE CONCAT('%', #{search}, '%')</when>
+		<otherwise>CONCAT(SENDID, US.NAME) REGEXP #{search}</otherwise>
+	</choose>
 ORDER BY NOTENUM DESC
 LIMIT #{startRow}, #{perPage}
 </select>
@@ -96,9 +95,9 @@ WHERE RECEIVEID = #{id}
 AND #{id} = REMARK
 AND 
 	<choose>
-		<when test="kind == 'contents'">CONTENTS</when>
-		<otherwise>SENDID</otherwise>
-	</choose> LIKE CONCAT('%', #{search}, '%')
+		<when test="kind == 'contents'">CONTENTS LIKE CONCAT('%', #{search}, '%')</when>
+		<otherwise>CONCAT(SENDID, US.NAME) REGEXP #{search}</otherwise>
+	</choose>
 </select>
 
 <select id="getNoteDetail" resultType="NoteVO" parameterType="NoteVO">
