@@ -35,6 +35,7 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
+					<h3 class="mb-5" style="text-align: center;">---- 모든 정보를 필수로 입력해야 합니다. ----</h3>
 					<section class="container d-flex flex-wrap justify-content-center">
 						<!-- Page Heading -->
 						
@@ -60,6 +61,12 @@
 	                           <input type="hidden" value="${t.endTime }" class="endTimeCheck">
 	                        </div>
                      	</c:forEach>
+                     	
+                     	<div class="mb-3">
+                     		<div style="text-align: center;">
+								<font> *1시간 단위로 입력됩니다* </font>
+							</div>
+                     	</div>
                      	
 						<div class="mb-3">
                            <label>사용 시작 시간</label>

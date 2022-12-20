@@ -108,8 +108,13 @@
                         </c:forEach>
                      </div>
                   </div>
-                  <input type="button" class="btn btn-primary" value="수정" id="sub" style="margin-top : 50px; margin-left:160px;">
-                  <input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}" style="margin-top : 50px;">
+                  <div class="mb-2">
+                  	<input type="button" class="btn btn-primary" value="수정" id="sub" style="margin-top : 50px; margin-left:160px;">
+                  	<input type="button" id="delete" class="btn btn-danger" value="삭제" data-id-num="${goods.goodsId}" style="margin-top : 50px;">
+                  </div>
+                  <div class="test mb-5" style="margin-left: 160px;">
+                  	<a href="../goods/ad_list" class="btn" style="background-color: #4e73df; color: white; width: 120px;">뒤로가기</a>
+                  </div>
                   </form>
    
                   </div>
