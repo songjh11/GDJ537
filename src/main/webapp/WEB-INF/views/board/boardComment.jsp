@@ -24,7 +24,9 @@
 						<c:if test="${commentVO.sort eq '익명'}">
 							<div style="font-size: 20px;">익명</div>
 						</c:if>
-						<div style="font-size: 20px;">${commentVO.userVO.name}</div>
+						<c:if test="${commentVO.sort ne '익명'}">
+							<div style="font-size: 20px;">${commentVO.userVO.name}</div>
+						</c:if>
 						<div style="font-size: 20px; margin-left:10px;">${commentVO.contents}</div>
 					</div>
 					<c:if test="${not empty commentVO.updateDate}">

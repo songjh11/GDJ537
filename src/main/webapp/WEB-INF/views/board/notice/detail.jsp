@@ -53,22 +53,23 @@
                   <div class="row justify-content-between">
                     <div class="col-auto align-self-center">
                     
-                      <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">[공지사항] <c:out value="${boardVO.title }"></c:out>
+                      <h5 class="mb-2 text-gray-800" data-anchor="data-anchor" id="file-input">[공지사항] <c:out value="${boardVO.title }"></c:out>
                       </h5>
+                      <div style="display: flex">
+                      	  <p id="regdate" style="margin-right: 5px;" data-date="<c:out value="${boardVO.regDate}"></c:out>"> 입력 </p>
+	                      <c:if test="${boardVO.updateDate != null}">
+	                      	<p>| 수정 <fmt:formatDate value="${boardVO.updateDate}" pattern="yyyy-MM-dd HH:mm"/></p>
+	                      </c:if>
+                      </div>
                     </div>
                     <div class="col-fill ml-auto align-self-end mr-5">
                       <div>
                       	<p>작성자 <c:out value="${boardVO.userVO.name }"></c:out></p>
                       	<c:if test="${not empty boardVO.updater}">
-                      		<p>수정자 <c:out value="${boardVO.updater }"></c:out></p>
+                      		<p>수정자 <c:out value="${boardVO.updaterName }"></c:out></p>
                       	</c:if>
                       	<p>조회수 <c:out value="${boardVO.hit}"></c:out> </p>
                       </div>
-                      <p id="regdate" data-date="<c:out value="${boardVO.regDate}"></c:out>"> 등록일자 </p>
-                      <c:if test="${boardVO.updateDate != null}">
-                    	 수정일자 
-                      	<fmt:formatDate value="${boardVO.updateDate}" pattern="yyyy-MM-dd HH:mm"/>
-                      </c:if>
                     </div>
                   </div>
                 </div>
