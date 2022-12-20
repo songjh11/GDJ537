@@ -44,7 +44,7 @@
 	            <div class="container-fluid">
 	 <div class="container px-4 px-lg-5 my-5">
         <div style=" margin-left: 85px; margin-top: 45px; width: 1000px; height: 1300px; border: solid 1px black; text-align: center;">
-            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 25px; background-color: rgb(255, 255, 249); text-align: center; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
+            <div style="letter-spacing: 70px; margin-left: 60px; margin-top: 25px; text-align: center; color: black; font-size: 35px; font-weight: bolder; vertical-align: top;" >
                    업무보고서
             </div>
             <hr >
