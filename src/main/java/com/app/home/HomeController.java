@@ -67,7 +67,7 @@ public class HomeController {
 
 		mv.addObject("userVO", userVO);
 		
-		log.info("Userve : {}", userVO);
+		log.info("reserveVO : {}", reserveVOs);
 		
 		}
 		mv.setViewName("index");
