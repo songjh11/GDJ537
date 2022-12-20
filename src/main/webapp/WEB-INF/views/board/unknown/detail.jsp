@@ -52,16 +52,18 @@
                 <div class="card-header bg-white">
                   <div class="row justify-content-between">
                     <div class="col-auto align-self-center">
-                      <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">[익명] ${boardVO.title}
+                      <h5 class="mb-2 text-gray-800" data-anchor="data-anchor" id="file-input">[익명] ${boardVO.title}
                       </h5>
+                      <div style="display: flex">
+	                      <p style="margin-right: 5px" id="regdate" data-date="${boardVO.regDate}"> 등록 </p>
+	                      <c:if test="${boardVO.updateDate != null}">
+	                    	 <p>| 수정 
+	                      	<fmt:formatDate value="${boardVO.updateDate}" pattern="yyyy-MM-dd HH:mm"/></p>
+	                      </c:if>
+                      </div>
                     </div>
                     <div class="col-fill ml-auto align-self-end mr-5">
                       <p>조회수 ${boardVO.hit} </p>
-                      <p id="regdate" data-date="${boardVO.regDate}"> 등록일자 </p>
-                      <c:if test="${boardVO.updateDate != null}">
-                    	 수정일자 
-                      	<fmt:formatDate value="${boardVO.updateDate}" pattern="yyyy-MM-dd HH:mm"/>
-                      </c:if>
                     </div>
                   </div>
                 </div>

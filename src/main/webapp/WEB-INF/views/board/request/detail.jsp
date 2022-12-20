@@ -51,18 +51,20 @@
 		            		<div class="card-header bg-white">
 		            			<div class="row justify-content-between">
 		            				<div class="col-auto align-self-center">
-					                  <h5 class="mb-0 text-gray-800" data-anchor="data-anchor" id="file-input">[요청사항] ${boardVO.title}</h5>
+					                  <h5 class="mb-2 text-gray-800" data-anchor="data-anchor" id="file-input">[요청사항] ${boardVO.title}</h5>
+					                 <div style="display: flex">
+					                      <p style="margin-right: 5px" id="regdate" data-date="${boardVO.regDate}"> 등록 </p>
+					                      <c:if test="${boardVO.updateDate != null}">
+					                    	 <p>| 수정 
+					                      	<fmt:formatDate value="${boardVO.updateDate}" pattern="yyyy-MM-dd HH:mm"/></p>
+					                      </c:if>
+				                      </div>
 					                 </div>
 					                 <div class="col-fill ml-auto align-self-end mr-5">
 					                 	<div>
 					                      <p>작성자 ${boardVO.userVO.name }</p>
 					                      <p>조회수 ${boardVO.hit} </p>
 					                    </div>
-										<p id="regdate" data-date="${boardVO.regDate}"> 등록일자  </p>
-					                      <c:if test="${boardVO.updateDate != null}">
-					                    	 수정일자 
-					                      	<fmt:formatDate value="${boardVO.updateDate}" pattern="yyyy-MM-dd HH:mm"/>
-					                      </c:if>
 					                </div>
 					             </div>
 					         </div>
@@ -77,7 +79,7 @@
 			                    </button>
 					              <div class="dropdown-menu dropdown-menu-right">
 		                          <c:forEach items="${boardVO.fileVOs}" var="file" varStatus="status">
-			                        <a class="dropdown-item" href="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/${file.fileName}">${file.oriName }(${file.fileSize }) </a>
+			                        <a class="dropdown-item" href="https://gdj537-yeyey.s3.ap-northeast-2.amazonaws.com/${file.fileName}">${file.oriName } <span style="color:blue;"> (${file.fileSize }) </span></a>
 			                        <c:if test="${status.last ne true}"><div class="dropdown-divider"></div></c:if>
 			                      </c:forEach>
 		
@@ -134,6 +136,7 @@
                       </div>
 
                       <div class="modal-footer">
+                      
                         <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal" id="update">수정하기</button>
                       </div>
