@@ -1,5 +1,6 @@
 console.log("user");
 
+
 $(".dismiss").click(function(){
     let id=$(this).prev().prev().prev().prev().prev().prev().prev().text();
     Swal.fire({
@@ -53,6 +54,18 @@ $(".dismiss").click(function(){
   $('.showUser1').mouseleave(function(){
     $(this).css('color','#858796');
     $(this).css('cursor','default');
+  })
+
+
+  $('.roleNumSelect').change(function(){
+    let roleNum = $("option:selected",this).val();
+    let id = $(this).parent().parent().children().first().text();
+    roleNumUpdate(id,roleNum);
+  })
+  $('.depNumSelect').change(function(){
+    let depNum = $("option:selected",this).val();
+    let id = $(this).parent().parent().children().first().text();
+    depNumUpdate(id,depNum);
   })
 
   $('.showUser').click(function(){
@@ -210,7 +223,7 @@ function entDateUpdate(id,entDate){
             entDate:entDate
         },
         success:function(){
-            Swal.fire('번호를 변경하였습니다.','','success');
+            Swal.fire('입사일을 변경하였습니다.','','success');
             setTimeout(function(){
                 location.reload();
             },1000);

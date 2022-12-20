@@ -45,7 +45,7 @@ console.log("role");
                     }
                   })
             }else{
-                Swal.fire('삭제할수 없습니다.','해당 직급의 사원들을 다른부서로 변경해주세요','error');
+                Swal.fire('삭제할수 없습니다.','해당 직급의 사원들을 다른직급으로 변경해주세요','error');
             }
         }
         
@@ -92,7 +92,7 @@ $.ajax({
         roleName:roleName
     },
     success:function(){
-        Swal.fire('부장을 변경하였습니다.','','success');
+        Swal.fire('직급을 변경하였습니다.','','success');
         setTimeout(function(){
             location.reload();
         },1000);
@@ -121,7 +121,7 @@ $("#roleAdd").click(function(){
                     roleName:getName
                 },
                 success:function(){
-                    Swal.fire('부서를 추가하였습니다.','','success');
+                    Swal.fire('직급을 추가하였습니다.','','success');
                     setTimeout(function(){
                         location.reload();
                     },1000);

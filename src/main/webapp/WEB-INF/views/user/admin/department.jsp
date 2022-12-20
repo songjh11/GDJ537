@@ -79,6 +79,17 @@
                            </c:otherwise>
                         </c:choose>
                         </td>
+                        <td>
+	                     	<c:forEach items="${listU}" var="userVO">
+		                        <c:choose>
+		                           <c:when test="${departmentVO.id eq userVO.id}">
+		                              ${userVO.name }
+		                           </c:when>
+		                           <c:otherwise>
+		                           </c:otherwise>
+		                        </c:choose>
+	                        </c:forEach>
+                        </td>
                         <td class="departmentDel"><a href="#">삭제</a></td>
                      </tr>
                      </c:forEach>

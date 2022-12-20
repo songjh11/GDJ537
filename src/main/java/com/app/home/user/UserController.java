@@ -193,9 +193,12 @@ public class UserController {
 	}
 
 	@GetMapping("admin/user")
-	public ModelAndView getUser() throws Exception {
+	public ModelAndView getUser(UserVO userVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<UserVO> list = userService.getUser();
+		for(int i=0; i< list.size(); i++) {
+			list.get(i).setPhone(userVO.phone_format(list.get(i).getPhone()));			
+		}
 		List<DepartmentVO> listD = userService.getDepartment();
 		List<RoleVO> listR = userService.getRole();
 		mv.addObject("list", list);
@@ -209,7 +212,9 @@ public class UserController {
 	public ModelAndView getDepartment() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<DepartmentVO> list = userService.getDepartment();
+		List<UserVO> listU = userService.getUser();
 		mv.addObject("list", list);
+		mv.addObject("listU", listU);
 		mv.setViewName("/user/admin/department");
 		return mv;
 	}
