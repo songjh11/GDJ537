@@ -38,6 +38,7 @@ public class SecurityConfig {
                   .antMatchers("/css/**")
                   .antMatchers("/js/**")
                   .antMatchers("/favicon/**")
+                  .antMatchers("/img/**")
                   .antMatchers("/resources/**");
    }
    
@@ -52,10 +53,15 @@ public class SecurityConfig {
                .antMatchers("/mail/findpw").permitAll()
 //               .antMatchers("/admin").hasRole("ADMIN")
 //               .antMatchers("/manager").hasRole("MANAGER")
-               .antMatchers("/user").permitAll()
+               .antMatchers("/notice/list").permitAll()
+               .antMatchers("/notice/hit").permitAll()
+               .antMatchers("/notice/detail").permitAll()
+               .antMatchers("/").permitAll()
+               .antMatchers("/notice/*").hasAnyAuthority("사장", "부장", "과장","관리자")
+               .antMatchers("/user/**").permitAll()
                .antMatchers("/user/admin/*").hasAnyAuthority("사장", "부장", "과장","관리자")
                .antMatchers("/goods/admin-list/*").hasAnyAuthority("과장","관리자")
-               .anyRequest().permitAll()
+               .anyRequest().authenticated()
                .and()
             .formLogin()
                .loginPage("/user/login")

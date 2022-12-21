@@ -30,7 +30,7 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@Value("${app.profile}") // C:/user/profile/
+	@Value("${app.file.base}") // C:/user/profile/
 	private String path;
 
 	public UserVO setUserID(UserVO userVO) throws Exception {
@@ -46,14 +46,14 @@ public class UserService {
 	
 	public UserVO setProfileSet(UserVO userVO)throws Exception{
 		
-		File file = new File(path);
+		File file = new File(path+"user/");
 		if(!file.exists()) {
 			file.mkdirs();
 		}
 		
 		if (userVO.getFile() != null) {
 			MultipartFile f = userVO.getFile();
-			String fileName = fileManager.saveFile(f, path);
+			String fileName = fileManager.saveFile(f, path+"user/");
 			userVO.setProfile(fileName);
 			userVO.setId(userVO.getId());
 			userMapper.setProfileSet(userVO);

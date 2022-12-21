@@ -195,7 +195,7 @@
 				                    		<img class="img-profile rounded-circle" src="/img/user/user.webp"> 
 				                    	</c:when>
 				                    	<c:otherwise>
-						                    <img class="img-profile rounded-circle" src="/file/profile/${user.profile}">            	
+						                    <img class="img-profile rounded-circle" src="/file/user/${user.profile}">            	
 				                    	</c:otherwise>
 				                    </c:choose>
                                     

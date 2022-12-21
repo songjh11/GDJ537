@@ -158,7 +158,7 @@
                     		<img id="profile_image" src="/img/user/user.webp" class="rounded" alt="..." style="width: 180px; height:180px; margin-right: 1.3em">
                     	</c:when>
                     	<c:otherwise>
-		                    <img id="profile_image" src="/file/profile/${userVO.profile}" class="rounded" alt="..." style="width: 180px; height:180px; margin-right: 1.3em">            	
+		                    <img id="profile_image" src="/file/user/${userVO.profile}" class="rounded" alt="..." style="width: 180px; height:180px; margin-right: 1.3em">            	
                     	</c:otherwise>
                     </c:choose>
                        <div class="d-flex pt-3">
