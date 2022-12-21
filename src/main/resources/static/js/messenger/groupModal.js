@@ -10,19 +10,15 @@ $("#userBtn").click(function(){
         // 채팅방 생성창 열기
         $(".room-overlay").css('display','flex').hide().fadeIn();
 
-        let arr = [];
-
-        $(".checkUser").each(function(index, item) {
-            if($(item).prop("checked")) {
-                
-               if($(item).val().length>0) {
-                  arr.push($(item).val());
-               }
-            }
-         })
-        
-
         $("#roomAddBtn").click(function(){
+
+            let roomName = $("#floatingInputGroup1").val();
+            
+            if(roomName==''){
+                alert("채팅방 이름을 입력해 주세요");
+                return false;
+            }
+
             let regExp = /^[0-9]*$/;
             let num = $("#numCheck").val();
             if(!regExp.test(num)){
@@ -65,7 +61,7 @@ $("#roomBtn").click(function(){
     $(".room-overlay").css('display','flex').hide().fadeIn();
 });
 
-$("#kindCheck").blur(function(){
+$("#kindCheck").change(function(){
 
     let kind = $("#kindCheck").val();
     kind = parseInt(kind);

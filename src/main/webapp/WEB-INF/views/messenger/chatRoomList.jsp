@@ -22,32 +22,14 @@
 							<select class="form-control" id="kindCheck" style="width: 110px; margin-left: 7px;">
 								<option value="1">1:1채팅</option>
 								<option value="0">그룹채팅</option>
-							</select>				
-							<h3>Group</h3>
-							<c:forEach items="${roomList}" var="roomVO">
+							</select>
+							<c:forEach items="${roomList}" var="roomVO" varStatus="status">
 								<c:if test="${roomVO.kind eq '0'}">
 									<div class="chatRoomList groupRoomList" id="groupRoomList" style="display: none;">
 										<div class="col-3" style="margin-left: 6.4%;">
-											<img class="yourImg" src="/img/user/user.webp">
+											<img class="yourImg" src="/file/profile/${roomVO.userVO.profile}">
 											<span>${roomVO.userVO.name}</span>
 										</div>
-										<!-- <c:choose>
-											<c:when test="${user.name eq roomVO.roomName}">
-												<div class="col text-center" style="margin-left: 3%;">
-													<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
-												</div>
-											</c:when>
-											<c:otherwise>
-												<div class="col text-center" style="margin-left: 3%;">
-													<a href="./chatroom?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
-												</div>
-											</c:otherwise>
-										</c:choose> -->
-										<!-- 소영이 a태그 -->
-<%-- 										<div class="col text-center" style="margin-left: 3%;">
-											<!-- <a class="roomLink" href="" onclick="javascript:chatPop('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a> -->
-											<!-- <a class="roomLink" href="./chatroom?roomNum=${roomVO.roomNum}" onclick=""><b>${roomVO.roomName}</b></a> -->
-										</div> --%>
  	 									<div class="col text-center" style="margin-left: 3%;">
 	 										<button type="button" class="roomLink" data-room-num="${roomVO.roomNum}">${roomVO.roomName}</button>			
 										</div>
@@ -58,28 +40,14 @@
 								</c:if>
 							</c:forEach>
 							<!-- 그룹채팅 목록 -->
-							<br>
 							<!-- 1:1 채팅 목록 -->
-							<h3>1:1</h3>
 							<c:forEach items="${roomList}" var="roomVO">
 							<c:if test="${roomVO.kind eq '1'}">
 								<div class="chatRoomList oneRoomList" style="display: flex;">
 									<div class="col-3" style="margin-left: 6.4%;">
-										<img class="yourImg" src="/img/user/user.webp">
+										<img class="yourImg" src="/file/profile/${roomVO.userVO.profile}">
 										<span>${roomVO.userVO.name}</span>
 									</div>
-<%-- 									<c:choose>
-										<c:when test="${user.name eq roomVO.roomName}">
-											<div class="col text-center" style="margin-left: 3%;">
-												<a href="./oneChat?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="col text-center" style="margin-left: 3%;">
-												<a href="./oneChat?roomNum=${roomVO.roomNum}" class="roomPw" data-room-num="${roomVO.roomNum}"><b>${roomVO.roomName}</b></a>
-											</div>
-										</c:otherwise>
-									</c:choose> --%>
 									<!-- 1:1채팅 입장 a태그 -->
 									<div class="col text-center" style="margin-left: 3%;">
 										 <a class="roomLink1" href="" onclick="javascript:Popup('${roomVO.roomNum}');"><b>${roomVO.roomName}</b></a>
