@@ -81,7 +81,7 @@ let ws = new WebSocket("ws://" + location.host + "/oneChat/"+roomNum);
          $("#chating").append("<div class = 'you'>"
 					         +"<div class = 'you-flex'>"
 					         +"<div class='you-profile'>"
-					         +"<div class='pic'><img src='/img/chatroom-profile.jpg' width='35px' height='35px'></div></div>"
+					         +"<div class='pic'><img src='/file/user/${user.profile}' width='35px' height='35px'></div></div>"
 					         +"<div class='you-namebubble'><div class='you-name'><span><strong>"+d.userName+"</strong></span></div>"
 					         +"<div class='you-bubble-flex'><div class='you-bubble'>" +d.inputChat+ "</div></div>"
 					            );  

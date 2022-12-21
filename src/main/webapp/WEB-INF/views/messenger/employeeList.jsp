@@ -80,7 +80,7 @@
 															<input type="hidden" id="phone${p.id}" value="${p.phone}">
 															<div class="userArea rrrr" empId="${p.id}" value="${p.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 																<div class="userAdd">
-																	<img id="yourImg${p.id}" class="yourImg" src="/file/profile/${p.profile}">
+																	<img id="yourImg${p.id}" class="yourImg" src="/file/user/${p.profile}">
 																</div>
 																<div class="userInfo" style="width: 60%;">
 																	<span class="empName" empId="${p.id}" value="${p.name}">😎${p.name}</span>
@@ -124,7 +124,7 @@
 														<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 															<div class="userAdd">
  																<form action="./addRoom" class="roomForm" method="get">
-																	<img id="yourImg${e.id}" class="yourImg" src="/file/profile/${e.profile}">
+																	<img id="yourImg${e.id}" class="yourImg" src="/file/user/${e.profile}">
 																</form>
 															</div>
 															<div class="userInfo" style="width: 60%;">
@@ -183,7 +183,7 @@
 															<input type="hidden" id="phone${p.id}" value="${p.phone}">
 															<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 																<div class="userAdd">
-																	<img id="yourImg${p.id}" class="yourImg" src="/file/profile/${p.profile}">
+																	<img id="yourImg${p.id}" class="yourImg" src="/file/user/${p.profile}">
 																</div>
 																<div class="userInfo" style="width: 60%;">
 																	<span class="empName" empId="${p.id}" value="${p.name}">😎${p.name}</span>
@@ -226,7 +226,7 @@
 														<input type="hidden" id="phone${e.id}" value="${e.phone}">
 														<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 															<div>
-																<img id="yourImg${e.id}" class="yourImg" src="/file/profile/${e.profile}">
+																<img id="yourImg${e.id}" class="yourImg" src="/file/user/${e.profile}">
 															</div>
 															<div class="userInfo" style="width: 60%;">
 																<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
