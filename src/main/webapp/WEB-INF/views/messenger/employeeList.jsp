@@ -123,8 +123,8 @@
 														<input type="hidden" id="phone${e.id}" value="${e.phone}">
 														<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 															<div class="userAdd" style="width: 36px; height: 36px;">
+																<img id="yourImg${e.id}" class="yourImg" src="/file/user/${e.profile}" style="width: 100%; height: 100%; object-fit: contain;">
  																<form action="./addRoom" class="roomForm" method="get">
-																	<img id="yourImg${e.id}" class="yourImg" src="/file/user/${e.profile}" style="width: 100%; height: 100%; object-fit: contain;">
 																</form>
 															</div>
 															<div class="userInfo" style="width: 60%;">
