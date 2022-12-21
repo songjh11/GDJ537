@@ -27,7 +27,7 @@
 								<c:if test="${roomVO.kind eq '0'}">
 									<div class="chatRoomList groupRoomList" id="groupRoomList" style="display: none;">
 										<div class="col-3" style="margin-left: 6.4%;">
-											<img class="yourImg" src="/file/profile/${roomVO.userVO.profile}">
+											<img class="yourImg" src="/file/user/${roomVO.userVO.profile}">
 											<span>${roomVO.userVO.name}</span>
 										</div>
  	 									<div class="col text-center" style="margin-left: 3%;">
@@ -45,7 +45,7 @@
 							<c:if test="${roomVO.kind eq '1'}">
 								<div class="chatRoomList oneRoomList" style="display: flex;">
 									<div class="col-3" style="margin-left: 6.4%;">
-										<img class="yourImg" src="/file/profile/${roomVO.userVO.profile}">
+										<img class="yourImg" src="/file/user/${roomVO.userVO.profile}">
 										<span>${roomVO.userVO.name}</span>
 									</div>
 									<!-- 1:1채팅 입장 a태그 -->
