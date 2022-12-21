@@ -2,6 +2,7 @@
  charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -51,6 +52,8 @@
            
                 <input type="hidden" name="userName" value="${userVO.name}" id="userName">
                	<input type="hidden" name="userId" id="userId" value="${userVO.id}">
+                   <sec:authentication property="Principal.profile" var="profile"/> 
+                   <input type="hidden" name="userProfile" id="userProfile" value=${profile}>
                
                <input type="text" id="inputChat"  placeholder="보내실 메시지를 입력하세요.">
                <button onclick="javascript:send()" id="sendBtn" class="sendBtn"><strong>보내기</strong></button>
