@@ -44,7 +44,7 @@
 				
 				<!-- Begin Page Content -->
 	            <div class="container-fluid">
-					<button type="button" class="btn btn-success" id="goListBtn">이전으로</button>
+					<button type="button" class="btn btn-success mb-3" id="goListBtn">이전으로</button>
 	            	<!-- 공지사항 작성 -->
 	            	<div class="card mb-3">
 		            	
