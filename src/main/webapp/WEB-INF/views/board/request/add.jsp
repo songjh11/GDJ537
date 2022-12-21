@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,9 +52,10 @@
 					         </div>
 				         	<div class="card-body">
 				                <div class="mb-0 row">
+								  		<sec:authentication property="Principal" var="member"/>
 								  	<label class="col-sm-2 col-form-label" for="id">작성자 사번</label>
 								  	<div class="col-sm-10">
-								  		<input class="form-control-plaintext outline-none" id="id" name="creator" type="text" value="1234"/>
+								  		<input class="form-control-plaintext outline-none" id="id" name="creator" type="text" value="${member.id }"/>
 								  	</div>
 								</div>
 								<div class="mb-0 row">

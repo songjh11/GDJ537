@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
     <!DOCTYPE html>
     <html>
 
@@ -55,7 +56,8 @@
                         value="${boardVO.id}" />
                       <label class="col-sm-2 col-form-label" for="creator">수정자 사번</label>
                       <div class="col-sm-10">
-                        <input class="form-control-plaintext outline-none" id="creator" name="creator" type="text" value="1234" />
+                      	<sec:authentication property="Principal" var="member"/>
+                        <input class="form-control-plaintext outline-none" type="text" value="${member.id}" />
                       </div>
                     </div>
                     <div class="mb-3 row">
