@@ -102,11 +102,11 @@
 						
 				</div>
 			</div>	
-		</div>	
-			
 			<!-- End of Main Content -->
 		<!-- Footer import -->
 		<c:import url="./temp/layout_footer.jsp"></c:import>
+		</div>	
+			
 		
 			
 
