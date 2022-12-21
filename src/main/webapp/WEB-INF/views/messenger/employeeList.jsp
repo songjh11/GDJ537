@@ -124,8 +124,7 @@
 														<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
 															<div class="userAdd" style="width: 36px; height: 36px;">
 																<img id="yourImg${e.id}" class="yourImg" src="/file/user/${e.profile}" style="width: 100%; height: 100%; object-fit: contain;">
- 																<form action="./addRoom" class="roomForm" method="get">
-																</form>
+ 																
 															</div>
 															<div class="userInfo" style="width: 60%;">
 																<span class="empName" empId="${e.id}" value="${e.name}">😎${e.name}</span>
@@ -182,7 +181,7 @@
 															<input type="hidden" id="email${p.id}" value="${p.email}">
 															<input type="hidden" id="phone${p.id}" value="${p.phone}">
 															<div class="userArea rrrr" empId="${e.id}" value="${e.name}" style="display: flex;	justify-content: space-between; align-items: center;">
-																<div class="userAdd" style="width: 36px; height: 36px;"></div>
+																<div class="userAdd" style="width: 36px; height: 36px;">
 																	<img id="yourImg${p.id}" class="yourImg" src="/file/user/${p.profile}" style="width: 100%; height: 100%; object-fit: contain;">
 																</div>
 																<div class="userInfo" style="width: 60%;">
